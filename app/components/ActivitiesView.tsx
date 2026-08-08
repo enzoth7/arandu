@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
 import {
-  ArrowLeft,
   Calendar,
   CheckCircle2,
   ChevronRight,
@@ -12,15 +11,12 @@ import {
   Filter,
   Heart,
   HeartHandshake,
-  HelpCircle,
   RotateCcw,
-  Sparkles,
-  UserCheck,
   Users,
-  X,
 } from "lucide-react";
 
 import { AGENDA_ACTIVITIES } from "./agendaData";
+import { Modal } from "./Modal";
 
 const ActivityMap = dynamic(() => import("./ActivityMap"), {
   ssr: false,
@@ -76,15 +72,8 @@ const MOMENTS = ["Cualquier momento", "Entre semana", "Fin de semana"];
 const MODALITIES = ["Todas las modalidades", "Presencial", "Online (Virtual)"];
 const INTEREST_OPTIONS = ["Moverme", "Aprender", "Cultura", "Conocer gente"];
 
-const QUICK_QUERIES = [
-  { label: "Aprender a usar el celular", value: "Aprender", query: "Aprender a usar el celular" },
-  { label: "Moverme suavemente", value: "Moverme", query: "Moverme suavemente" },
-  { label: "Conocer gente y cultura", value: "Cultura", query: "Conocer gente y cultura" },
-  { label: "Participar desde casa", value: "Aprender", query: "Participar desde casa" },
-];
 
-export function ActivitiesView({ onHome }: { onHome: () => void }) {
-  const [whoFor, setWhoFor] = useState<"Para mí" | "Acompaño a otra persona">("Para mí");
+export function ActivitiesView() {
   const [searchText, setSearchText] = useState("");
   const [zone, setZone] = useState("Todos los departamentos");
   const [moment, setMoment] = useState("Cualquier momento");
@@ -163,14 +152,6 @@ export function ActivitiesView({ onHome }: { onHome: () => void }) {
     return (selectedId ? filteredActivities.find((a) => a.id === selectedId) : null) || filteredActivities[0];
   }, [filteredActivities, selectedId]);
 
-  const activeFiltersCount = (zone !== "Todos los departamentos" ? 1 : 0) +
-    (moment !== "Cualquier momento" ? 1 : 0) +
-    (modality !== "Todas las modalidades" ? 1 : 0) +
-    (selectedInterests.length > 0 ? 1 : 0) +
-    (freeOnly ? 1 : 0) +
-    (accessible ? 1 : 0) +
-    (smallGroups ? 1 : 0) +
-    (searchText ? 1 : 0);
 
   const clearFilters = () => {
     setZone("Todos los departamentos");
@@ -185,10 +166,6 @@ export function ActivitiesView({ onHome }: { onHome: () => void }) {
     setSelectedId(null);
   };
 
-  const handleQuickQuery = (item: (typeof QUICK_QUERIES)[0]) => {
-    setSearchText(item.query);
-    setSelectedInterests([item.value]);
-  };
 
   return (
     <section className="activitiesSection">
@@ -515,11 +492,12 @@ export function ActivitiesView({ onHome }: { onHome: () => void }) {
 
       {/* Modal interactivo de Detalle o Acompañamiento */}
       {activeModal && (
-        <div className="activitiesModalBackdrop" onClick={() => { setActiveModal(null); setSentNotice(false); }}>
-          <div className="activitiesModalBox" onClick={(e) => e.stopPropagation()}>
-            <button className="modalCloseBtn" onClick={() => { setActiveModal(null); setSentNotice(false); }}>
-              <X size={20} />
-            </button>
+        <Modal
+          open
+          onClose={() => { setActiveModal(null); setSentNotice(false); }}
+          className="activitiesModal"
+          title={activeModal === "support" ? "Solicitar ayuda personalizada" : "Detalle de la actividad"}
+        >
 
             {activeModal === "support" ? (
               <div className="modalSupportBody">
@@ -649,8 +627,7 @@ export function ActivitiesView({ onHome }: { onHome: () => void }) {
                 )}
               </div>
             )}
-          </div>
-        </div>
+        </Modal>
       )}
     </section>
   );

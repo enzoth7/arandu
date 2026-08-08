@@ -1,5 +1,11 @@
-import { AppShell } from "../components/AppShell";
+import type { Metadata } from "next";
+import { PersonHome } from "../components/HomeView";
+
+export const metadata: Metadata = {
+  title: "Inicio",
+  description: "Buscá actividades, consultá residenciales o comunicá una preocupación sobre una persona mayor.",
+};
 
 export default function PersonasPage() {
-  return <AppShell initialView="inicio" portal="person" />;
+  return <PersonHome />;
 }

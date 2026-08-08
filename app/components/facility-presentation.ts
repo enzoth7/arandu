@@ -1,38 +1,8 @@
+import { sourceCategoryLabels as labelsForCategories } from "../../lib/facility-sources.mjs";
+import { foldText } from "../../lib/uruguay.mjs";
 import type { Facility } from "./map-types";
 
 export type FacilityDisplayCategory = "habilitado" | "mides" | "unconfirmed";
-
-const URUGUAY_DEPARTMENTS: Record<string, string> = {
-  artigas: "Artigas",
-  canelones: "Canelones",
-  "cerro largo": "Cerro Largo",
-  colonia: "Colonia",
-  durazno: "Durazno",
-  flores: "Flores",
-  florida: "Florida",
-  lavalleja: "Lavalleja",
-  maldonado: "Maldonado",
-  montevideo: "Montevideo",
-  paysandu: "Paysandú",
-  "rio negro": "Río Negro",
-  rivera: "Rivera",
-  rocha: "Rocha",
-  salto: "Salto",
-  "san jose": "San José",
-  soriano: "Soriano",
-  tacuarembo: "Tacuarembó",
-  "treinta y tres": "Treinta y Tres",
-};
-
-export function canonicalDepartment(value: string | null | undefined) {
-  const normalized = String(value || "")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLocaleLowerCase("es-UY")
-    .trim()
-    .replace(/\s+/g, " ");
-  return URUGUAY_DEPARTMENTS[normalized] ?? String(value || "").trim();
-}
 
 export function hasOfficialAdministrativeRecord(facility: Facility) {
   return facility.mspFinal || facility.midesSocial;
@@ -57,11 +27,15 @@ export function facilityDisplayLabel(facility: Facility) {
   return "Situación no confirmada";
 }
 
+/** Texto de búsqueda de una ficha, plegado para comparaciones sin acentos. */
+export function facilityHaystack(facility: Facility) {
+  return foldText(
+    `${facility.name} ${facility.address} ${facility.locality} ${facility.department} ${facility.statusShort} ${facility.sourceLabel}`,
+  );
+}
+
 function normalizedIdentity(value: string | null | undefined) {
-  return String(value || "")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLocaleLowerCase("es-UY")
+  return foldText(value)
     .replace(/\b(de|del|la|el|los|las)\b/g, " ")
     .replace(/\bresidencia(?:l)?\b/g, "residencia")
     .replace(/[^a-z0-9]+/g, " ")
@@ -125,14 +99,7 @@ export function consolidateFacilities(facilities: Facility[]) {
 }
 
 export function sourceCategoryLabels(facility: Facility) {
-  const labels = new Set<string>();
-  for (const category of facility.sourceCategories || []) {
-    if (category === "official") labels.add("Fuentes oficiales");
-    if (category === "public_maps") labels.add("Mapas públicos");
-    if (category === "social_public") labels.add("Redes sociales públicas");
-    if (category === "other_public") labels.add("Webs y directorios públicos");
-  }
-  return [...labels];
+  return labelsForCategories(facility.sourceCategories);
 }
 
 export function evidenceDescription(tier: Facility["privateCandidateEvidenceTier"]) {

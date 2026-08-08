@@ -10,6 +10,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
+import "./TeamVisitsWorkflow.css";
 
 type VisitMode = "home" | "elepem";
 

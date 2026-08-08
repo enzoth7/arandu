@@ -11,7 +11,7 @@
     "test:osm-discovery": "node --test scripts/tests/osm-candidate-discovery.test.mjs",
     "test:matching": "node --test scripts/tests/facility-matching.test.mjs scripts/tests/candidate-review.test.mjs",
     "test:candidate-review": "node --test scripts/tests/team-session.test.mjs scripts/tests/facility-candidate-review.test.mjs",
-    "test:private-map": "node --test scripts/tests/private-candidate-map.test.mjs",
+    "test:private-map": "node --test scripts/tests/private-candidate-map.test.mjs scripts/tests/private-candidate-layer.test.mjs",
     "test:intake": "node --test scripts/tests/intake-integration.test.mjs scripts/tests/n8n-workflow-sandbox.test.mjs",
     "test:normalized-backfill": "node --test scripts/tests/normalized-elepem-backfill.test.mjs scripts/tests/elepem-data-source.test.mjs",
     "discovery:osm:dry-run": "node scripts/discover-osm-candidates.mjs --dry-run",
@@ -46,17 +46,16 @@
     "next": "^15.1.0",
     "pg": "^8.22.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-leaflet": "^5.0.0"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "eslint": "^9.0.0",
-    "eslint-config-next": "15.5.22",
     "@types/leaflet": "^1.9.21",
     "@types/node": "^22.10.2",
     "@types/pg": "^8.20.0",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "15.5.22",
     "typescript": "^5.7.2"
   }
 }

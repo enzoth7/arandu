@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowLeft, Check, Clock3, Search, ShieldCheck } from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
 
@@ -21,7 +22,7 @@ function formattedDate(value: string): string {
   return Number.isNaN(date.getTime()) ? "Fecha no disponible" : new Intl.DateTimeFormat("es-UY", { dateStyle: "medium", timeStyle: "short" }).format(date);
 }
 
-export function ReportStatusLookup({ onHome, initialCode = "" }: { onHome: () => void; initialCode?: string }) {
+export function ReportStatusLookup({ initialCode = "" }: { initialCode?: string }) {
   const [code, setCode] = useState(initialCode);
   const [result, setResult] = useState<StatusResult | null>(null);
   const [message, setMessage] = useState("");
@@ -87,6 +88,6 @@ export function ReportStatusLookup({ onHome, initialCode = "" }: { onHome: () =>
       <p className="statusPrivacyNote">El seguimiento público muestra sólo información mínima compatible con la privacidad de la comunicación.</p>
     </article>}
 
-    <button className="statusLookupBack" type="button" onClick={onHome}><ArrowLeft size={17}/> Volver al inicio</button>
+    <Link className="statusLookupBack" href="/personas"><ArrowLeft size={17}/> Volver al inicio</Link>
   </section>;
 }

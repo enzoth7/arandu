@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { ArrowRight, Building2, CheckCircle2, Search } from "lucide-react";
 import { useResidenciales } from "../../hooks/useResidenciales";
+import "./TeamLicenseWorkflow.css";
 
 const stages = [
   {
@@ -74,7 +75,7 @@ export function TeamLicenseWorkflow({ onSaved }: { onSaved: (message: string) =>
       <div className="teamSectionLabel"><span>01</span><div><strong>Buscar en los puntos integrados</strong><small>La búsqueda reúne registros, certificados y habilitaciones sin confundir sus etapas.</small></div></div>
       <div className="teamSearchBar">
         <label className="teamField"><span>Nombre o dirección</span><span className="teamSearchInput"><Search size={18}/><input value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") setSearched(true); }} placeholder="Buscar establecimiento"/></span></label>
-        <button className="teamGhostButton" onClick={() => setSearched(true)}>Buscar</button>
+        <button type="button" className="teamGhostButton" onClick={() => setSearched(true)}>Buscar</button>
       </div>
 
       {searched && <div className="teamFacilityResults" aria-live="polite">
@@ -104,7 +105,7 @@ export function TeamLicenseWorkflow({ onSaved }: { onSaved: (message: string) =>
             return <label className={checked ? "isChecked" : ""} key={label}><input type="checkbox" checked={checked} onChange={() => toggleCheck(stage.number, label)}/><span><CheckCircle2 size={18}/>{label}</span></label>;
           })}
         </div>
-        <div className="teamInlineActions"><button className="teamGhostButton" onClick={() => onSaved(`Borrador ficticio de ${stage.title} guardado.`)}>Guardar esta etapa</button>{stage.number < 3 && <button className="teamSaveButton" onClick={() => setActiveStage(stage.number + 1)}>Continuar a etapa {stage.number + 1}<ArrowRight size={17}/></button>}</div>
+        <div className="teamInlineActions"><button type="button" className="teamGhostButton" onClick={() => onSaved(`Borrador ficticio de ${stage.title} guardado.`)}>Guardar esta etapa</button>{stage.number < 3 && <button type="button" className="teamSaveButton" onClick={() => setActiveStage(stage.number + 1)}>Continuar a etapa {stage.number + 1}<ArrowRight size={17}/></button>}</div>
       </div>
       <div className="teamProgressNote">{completed} de 9 controles marcados en este recorrido.</div>
     </section>
@@ -112,7 +113,7 @@ export function TeamLicenseWorkflow({ onSaved }: { onSaved: (message: string) =>
     <section className="teamWorkflowBlock">
       <div className="teamSectionLabel"><span>03</span><div><strong>Información que debería quedar conectada</strong><small>El expediente administrativo no vive aislado, pero cada vínculo respeta su finalidad y acceso.</small></div></div>
       <div className="teamConnectionGrid">{connectedInformation.map(([title, text]) => <article key={title}><strong>{title}</strong><p>{text}</p></article>)}</div>
-      <div className="teamInlineActions teamAlignEnd"><button className="teamSaveButton" onClick={() => onSaved(`Avance ficticio guardado: ${completed} de 9 controles, sin efecto administrativo real.`)}>Guardar avance del expediente<ArrowRight size={17}/></button></div>
+      <div className="teamInlineActions teamAlignEnd"><button type="button" className="teamSaveButton" onClick={() => onSaved(`Avance ficticio guardado: ${completed} de 9 controles, sin efecto administrativo real.`)}>Guardar avance del expediente<ArrowRight size={17}/></button></div>
     </section>
   </div>;
 }

@@ -379,7 +379,6 @@ export function buildKnownFacilitiesExclusionIndex({
   const candidateEntries = new Map();
   const conflicts = [];
   const reviewedRepresentatives = reviewedRepresentativeMap();
-  const officialById = new Map(officialRows.map((row) => [String(row.entity_id), row]));
   const officialEntryByEntityId = new Map();
   const pdfSummary = parsePdfTextSummary(pdfText);
   const remoteMeta = legacySnapshot.metadata || {};

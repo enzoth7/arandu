@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useId, useMemo, useRef, useState } from "react";
 import type { FormEvent, KeyboardEvent } from "react";
+import "./TeamMeasuresWorkflow.css";
 
 type MeasureTab = "panorama" | "records" | "register" | "relocation";
 type AntecedentType = "administrative" | "unregistered" | "fire" | "judicial";

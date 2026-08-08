@@ -15,11 +15,13 @@ import {
 
 export const runtime = "nodejs";
 
+// La Edge Function autoriza con el token de capacidad del expediente, no con la
+// clave: alcanza con la publicable. Mandarle la de service role ampliaba sin
+// necesidad el alcance de una función declarada con `verify_jwt = false`.
 function supabaseHeaders(publishableKey: string): Record<string, string> {
-  const authKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || publishableKey;
   return {
-    apikey: authKey,
-    Authorization: `Bearer ${authKey}`,
+    apikey: publishableKey,
+    Authorization: `Bearer ${publishableKey}`,
   };
 }
 
@@ -31,7 +33,14 @@ function supabaseServiceHeaders(): Record<string, string> | null {
 
 export async function POST(request: NextRequest, context: { params: Promise<{ caseCode: string }> }) {
   const { caseCode: rawCaseCode } = await context.params;
-  const caseCode = decodeURIComponent(rawCaseCode || "").trim().toUpperCase();
+  // `decodeURIComponent` lanza URIError con secuencias mal formadas (por ejemplo
+  // un "%" suelto). Sin este guardia, la ruta respondía 500 en vez de 400.
+  let caseCode: string;
+  try {
+    caseCode = decodeURIComponent(rawCaseCode || "").trim().toUpperCase();
+  } catch {
+    return NextResponse.json({ error: "El código de seguimiento no es válido." }, { status: 400 });
+  }
   if (!CASE_CODE_PATTERN.test(caseCode)) {
     return NextResponse.json({ error: "El código de seguimiento no es válido." }, { status: 400 });
   }

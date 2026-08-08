@@ -1,30 +1,23 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { ChevronDown, ChevronUp, RotateCcw, Search, X } from "lucide-react";
-import { useResidenciales } from "../hooks/useResidenciales";
-import { usePrivateCandidateMapLayer } from "../hooks/usePrivateCandidateMapLayer";
-import type { PrivateCandidateSummary } from "../hooks/usePrivateCandidateMapLayer";
-import { ChoiceGuideModal } from "./ChoiceGuideModal";
+import Link from "next/link";
 import {
-  canonicalDepartment,
-  consolidateFacilities,
   evidenceDescription,
   facilityDisplayCategory,
   facilityDisplayLabel,
+  facilityHaystack,
   isVerificationFacility,
 } from "./facility-presentation";
+import { canonicalDepartment, foldText } from "../../lib/uruguay.mjs";
 import type { Facility, FacilityStatus } from "./map-types";
 
 const StreetMap = dynamic(() => import("./StreetMap"), {
   ssr: false,
   loading: () => <div className="streetMapLoading">Preparando el mapa con calles…</div>,
 });
-
-function normalize(value: string) {
-  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-}
 
 function matchesAdministrativeStatus(
   facility: Facility,
@@ -38,30 +31,30 @@ function matchesAdministrativeStatus(
   return isVerificationFacility(facility);
 }
 
+// El registro es presentacional: recibe las fichas ya consolidadas y no sabe de
+// dónde vienen. Así el portal de personas nunca monta la capa privada de
+// candidatos y el de organización puede sumarla sin propagar estado hacia arriba.
 type UruguayRegistryProps = {
-  onReport?: (facility?: Facility) => void;
-  candidateDisplay?: "all" | "public" | "verification";
-  onCandidateSummary?: (summary: PrivateCandidateSummary) => void;
-  onLegacyVerificationFacilities?: (facilities: Facility[]) => void;
-  onVerificationMapFacilities?: (facilities: Facility[]) => void;
+  facilities: Facility[];
+  loading?: boolean;
+  error?: string;
+  notices?: ReactNode;
+  /** Filtro por estado de tratamiento; sólo tiene sentido en organización. */
+  showPrivateWorkflowFilter?: boolean;
+  /** Tarjeta «La persona decide»; sólo en el portal de personas. */
+  showChoiceCta?: boolean;
 };
 
 type PrivateWorkflowStatus = "" | "needs_review" | "possible_match" | "verified_new";
 
 export default function UruguayRegistry({
-  candidateDisplay = "all",
-  onCandidateSummary,
-  onLegacyVerificationFacilities,
-  onVerificationMapFacilities,
+  facilities,
+  loading = false,
+  error = "",
+  notices,
+  showPrivateWorkflowFilter = false,
+  showChoiceCta = false,
 }: UruguayRegistryProps) {
-  const { facilities: publicFacilities, loading, error } = useResidenciales();
-  const {
-    facilities: privateCandidateFacilities,
-    summary: candidateSummary,
-    available: privateCandidatesAvailable,
-    loading: privateCandidatesLoading,
-    error: privateCandidatesError,
-  } = usePrivateCandidateMapLayer();
   const [query, setQuery] = useState("");
   const [department, setDepartment] = useState("");
   const [status, setStatus] = useState<"" | FacilityStatus>("");
@@ -69,51 +62,14 @@ export default function UruguayRegistry({
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [detailId, setDetailId] = useState<string | null>(null);
   const [activeKpiHelp, setActiveKpiHelp] = useState<string | null>(null);
-  const [isGuideOpen, setIsGuideOpen] = useState(false);
-  const [isSupportOpen, setIsSupportOpen] = useState(false);
   const mapColumnRef = useRef<HTMLDivElement | null>(null);
-  const consolidatedFacilities = useMemo(
-    () => consolidateFacilities([...publicFacilities, ...privateCandidateFacilities]),
-    [privateCandidateFacilities, publicFacilities],
-  );
-  const facilities = useMemo(() => {
-    if (candidateDisplay === "verification") return consolidatedFacilities.filter(isVerificationFacility);
-    if (candidateDisplay === "public") return consolidatedFacilities.filter((facility) => !isVerificationFacility(facility));
-    return consolidatedFacilities;
-  }, [candidateDisplay, consolidatedFacilities]);
-  const legacyVerificationFacilities = useMemo(
-    () => consolidatedFacilities.filter((facility) => isVerificationFacility(facility) && !facility.privateCandidate),
-    [consolidatedFacilities],
-  );
-  const verificationMapFacilities = useMemo(
-    () => consolidatedFacilities.filter(isVerificationFacility),
-    [consolidatedFacilities],
-  );
+  const consolidatedFacilities = facilities;
 
-  useEffect(() => {
-    if (candidateDisplay === "verification") setStatus("");
-    else setPrivateWorkflowStatus("");
-    setSelectedId(null);
-    setDetailId(null);
-  }, [candidateDisplay]);
-
-  useEffect(() => {
-    onCandidateSummary?.(candidateSummary);
-  }, [candidateSummary, onCandidateSummary]);
-
-  useEffect(() => {
-    onLegacyVerificationFacilities?.(legacyVerificationFacilities);
-  }, [legacyVerificationFacilities, onLegacyVerificationFacilities]);
-
-  useEffect(() => {
-    onVerificationMapFacilities?.(verificationMapFacilities);
-  }, [onVerificationMapFacilities, verificationMapFacilities]);
-
-  const statusIndependentWithoutDepartment = useMemo(() => facilities.filter((facility) => {
-    const haystack = normalize(`${facility.name} ${facility.address} ${facility.locality} ${facility.department} ${facility.statusShort} ${facility.sourceLabel}`);
-    return (!privateWorkflowStatus || facility.privateCandidateStatus === privateWorkflowStatus)
-      && (!query || haystack.includes(normalize(query)));
-  }), [facilities, privateWorkflowStatus, query]);
+  const foldedQuery = useMemo(() => foldText(query), [query]);
+  const statusIndependentWithoutDepartment = useMemo(() => facilities.filter((facility) => (
+    (!privateWorkflowStatus || facility.privateCandidateStatus === privateWorkflowStatus)
+      && (!foldedQuery || facilityHaystack(facility).includes(foldedQuery))
+  )), [facilities, privateWorkflowStatus, foldedQuery]);
 
   const baseWithoutDepartment = useMemo(
     () => statusIndependentWithoutDepartment.filter(
@@ -131,11 +87,10 @@ export default function UruguayRegistry({
   const detailedFacility = detailId
     ? (consolidatedFacilities.find((facility) => facility.id === detailId) ?? null)
     : null;
-  const summaryKpiScope = useMemo(() => consolidatedFacilities.filter((facility) => {
-    const haystack = normalize(`${facility.name} ${facility.address} ${facility.locality} ${facility.department} ${facility.statusShort} ${facility.sourceLabel}`);
-    return (!query || haystack.includes(normalize(query)))
-      && (!department || canonicalDepartment(facility.department) === department);
-  }), [consolidatedFacilities, department, query]);
+  const summaryKpiScope = useMemo(() => consolidatedFacilities.filter((facility) => (
+    (!foldedQuery || facilityHaystack(facility).includes(foldedQuery))
+      && (!department || canonicalDepartment(facility.department) === department)
+  )), [consolidatedFacilities, department, foldedQuery]);
   const summaryTotals = useMemo(() => ({
     habilitado: summaryKpiScope.filter((facility) => facility.mspFinal).length,
     mides: summaryKpiScope.filter((facility) => facility.midesSocial).length,
@@ -165,8 +120,7 @@ export default function UruguayRegistry({
       </div>
       {loading && <div className="notice registryDataStatus" role="status">Cargando residenciales…</div>}
       {error && <div className="notice registryDataStatus registryDataError" role="alert">{error}</div>}
-      {candidateDisplay !== "public" && privateCandidatesAvailable && privateCandidatesLoading && <div className="notice registryDataStatus" role="status">Actualizando residenciales a verificar…</div>}
-      {candidateDisplay !== "public" && privateCandidatesAvailable && privateCandidatesError && <div className="notice registryDataStatus registryDataError" role="alert">{privateCandidatesError}</div>}
+      {notices}
       <div className="registryQuickSummary" aria-label="Resumen y filtros rápidos">
         <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-blue ${!status ? "selected" : ""}`} help="Total consolidado de residenciales." helpId="all" label="Todos" onActivate={() => setStatus("")} onToggleHelp={setActiveKpiHelp} value={summaryKpiScope.length} />
         <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-green ${status === "habilitado" ? "selected" : ""}`} help="Establecimientos habilitados a junio 2026" helpId="msp-final" label="Habilitados MSP" onActivate={() => setStatus(status === "habilitado" ? "" : "habilitado")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.habilitado} />
@@ -191,19 +145,15 @@ export default function UruguayRegistry({
           </label>
         </div>
 
-        {!onCandidateSummary && (
+        {showChoiceCta && (
           <div className="personDecidesInlineCard">
             <div className="personDecidesCopy">
               <strong>La persona decide</strong>
               <p>Usá el mapa para identificar opciones y preparar preguntas; no para reemplazar la voluntad de quien va a vivir allí.</p>
             </div>
-            <a
-              href="/personas/residenciales/form"
-              className="btnTurquoisePrimary inlineBtn"
-              style={{ textDecoration: "none", whiteSpace: "nowrap" }}
-            >
+            <Link href="/personas/residenciales/form" className="btnTurquoisePrimary inlineBtn">
               Preparar mi elección
-            </a>
+            </Link>
           </div>
         )}
       </div>
@@ -224,7 +174,7 @@ export default function UruguayRegistry({
         </div>
         <div className="registryToolbar">
         <label><b>Departamento</b><select value={department} onChange={(event) => setDepartment(event.target.value)}><option value="">Todos</option>{departmentCounts.map(([name]) => <option key={name}>{name}</option>)}</select></label>
-        {candidateDisplay === "verification" ? <label><b>Estado de tratamiento</b><select value={privateWorkflowStatus} onChange={(event) => setPrivateWorkflowStatus(event.target.value as PrivateWorkflowStatus)}><option value="">Todos</option><option value="needs_review">Necesita revisión</option><option value="possible_match">Posible coincidencia</option><option value="verified_new">Nuevo verificado</option></select></label> : <label><b>Situación administrativa</b><select value={status} onChange={(event) => {
+        {showPrivateWorkflowFilter ? <label><b>Estado de tratamiento</b><select value={privateWorkflowStatus} onChange={(event) => setPrivateWorkflowStatus(event.target.value as PrivateWorkflowStatus)}><option value="">Todos</option><option value="needs_review">Necesita revisión</option><option value="possible_match">Posible coincidencia</option><option value="verified_new">Nuevo verificado</option></select></label> : <label><b>Situación administrativa</b><select value={status} onChange={(event) => {
           const nextStatus = event.target.value as "" | FacilityStatus;
           setStatus(nextStatus);
         }}><option value="">Todos</option><option value="habilitado">Habilitados</option><option value="mides">Certificados</option><option value="verificar">Situación no confirmada</option></select></label>}
@@ -256,41 +206,6 @@ export default function UruguayRegistry({
       </aside>
     </div>
 
-    {/* Guía Interactiva Elegir un Lugar para Vivir */}
-    <ChoiceGuideModal
-      isOpen={isGuideOpen}
-      onClose={() => setIsGuideOpen(false)}
-      facilities={consolidatedFacilities}
-      onOpenSupport={() => {
-        setIsGuideOpen(false);
-        setIsSupportOpen(true);
-      }}
-    />
-
-    {/* Modal de Apoyo Humano */}
-    {isSupportOpen && (
-      <div className="activitiesModalBackdrop" onClick={() => setIsSupportOpen(false)}>
-        <div className="activitiesModalBox" onClick={(e) => e.stopPropagation()}>
-          <button className="modalCloseBtn" onClick={() => setIsSupportOpen(false)}>
-            <X size={20} />
-          </button>
-          <div className="modalSupportBody">
-            <div className="modalEyebrow">Apoyo Institucional</div>
-            <h2>Continuar con acompañamiento humano</h2>
-            <p>
-              Un facilitador de Alerta Mayor / Ibirapitá te ayudará a evaluar opciones, preparar visitas a residenciales y acompañar el proceso sin costo alguno.
-            </p>
-            <div className="modalSuccessMsg">
-              <strong>Canal de apoyo disponible</strong>
-              <p>Podés comunicarte directamente al 0800-ELEPEM o solicitar que te llamemos.</p>
-              <button type="button" className="modalConfirmBtn" onClick={() => setIsSupportOpen(false)}>
-                Entendido
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    )}
   </>;
 }
 

@@ -1,5 +1,11 @@
-import { AppShell } from "../../../components/AppShell";
+import type { Metadata } from "next";
+import { ResidencialesFormView } from "../../../components/ResidencialesFormView";
+
+export const metadata: Metadata = {
+  title: "Preparar mi elección",
+  description: "Una guía paso a paso para ordenar preferencias, comparar residenciales y preparar las visitas.",
+};
 
 export default function PersonasResidencialesFormPage() {
-  return <AppShell initialView="residenciales_form" portal="person" />;
+  return <ResidencialesFormView />;
 }

@@ -25,6 +25,19 @@
   --violetbg: #f5f1ff;
   --bluebg: #edf4ff;
   --focus: #ffbf47;
+
+  /* Situación administrativa de un residencial.
+     Los consume el mapa (StreetMap lee estas variables) y las fichas, de modo
+     que el color vive en un solo lugar y no duplicado en CSS y TypeScript.
+     Mantener sincronizado con facilityDisplayCategory(). */
+  --facility-habilitado: var(--green);
+  --facility-mides: #d97706;
+  --facility-unconfirmed: var(--status-gray);
+  --facility-selected: var(--blue);
+
+  /* Marca: alto del logotipo en la puerta de acceso, por portal. */
+  --brand-logo-max-height: 120px;
+  --brand-logo-max-height-organization: 90px;
 }
 
 * {
@@ -38,7 +51,7 @@ html {
 body {
   margin: 0;
   background: var(--bg);
-  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.48;
   color: var(--text);
@@ -87,11 +100,16 @@ button {
 
 .accessGateLogo {
   display: block;
-  width: min(240px, 80vw);
+  width: auto;
+  max-width: min(240px, 80vw);
   height: auto;
-  max-height: 180px;
+  max-height: var(--brand-logo-max-height);
   margin: 0 auto 0;
   object-fit: contain;
+}
+
+.accessGateLogo.isOrganization {
+  max-height: var(--brand-logo-max-height-organization);
 }
 
 .accessGatePanel h1 {
@@ -377,7 +395,7 @@ button {
   justify-content: center;
 }
 
-.nav button, .tools button {
+.nav button, .nav a, .tools button {
   border: 1px solid rgba(255,255,255,0.53);
   background: transparent;
   color: #fff;
@@ -388,13 +406,13 @@ button {
   transition: background .16s, border-color .16s, transform .16s;
 }
 
-.nav button:hover, .tools button:hover {
+.nav button:hover, .nav a:hover, .tools button:hover {
   background: rgba(255,255,255,.12);
   border-color: #fff;
   transform: translateY(-1px);
 }
 
-.nav button.active {
+.nav button.active, .nav a.active {
   background: #fff;
   color: var(--navy);
   box-shadow: 0 5px 15px #0002;
@@ -406,7 +424,7 @@ button {
   align-items: center;
 }
 
-.personSite .nav button {
+.personSite .nav button, .personSite .nav a {
   border: 0;
   background: transparent;
   color: #cbd5e1;
@@ -418,14 +436,14 @@ button {
   transition: all .16s ease;
 }
 
-.personSite .nav button:hover {
+.personSite .nav button:hover, .personSite .nav a:hover {
   background: rgba(255, 255, 255, .1);
   color: #fff;
   transform: none;
   border: 0;
 }
 
-.personSite .nav button.active {
+.personSite .nav button.active, .personSite .nav a.active {
   background: rgba(255, 255, 255, .18);
   color: #fff;
   font-weight: 850;
@@ -6418,3 +6436,130 @@ textarea {
 
 
 
+
+/* Página no encontrada */
+.notFoundPage {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.notFoundPage p {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.notFoundHomeLink {
+  display: inline-block;
+  padding: 10px 18px;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.notFoundHomeLink:hover {
+  background: var(--blue2);
+}
+
+/* Enlace de acción dentro de la tarjeta turquesa del registro */
+.personDecidesInlineCard .inlineBtn {
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Límites de error y carga de ruta */
+.routeError,
+.routeLoading {
+  padding: 48px 20px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.routeError h2 {
+  color: var(--text);
+  margin: 0 0 8px;
+}
+
+.routeError p {
+  margin: 0 0 20px;
+}
+
+/* ==========================================================================
+   Diálogo modal nativo (<dialog>)
+   Reemplaza los backdrops hechos con div: el foco, Escape y el fondo los
+   resuelve el navegador. Se reutilizan las medidas de .activitiesModalBox.
+   ========================================================================== */
+.appModal {
+  width: min(580px, calc(100vw - 40px));
+  max-height: 90vh;
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .25);
+  overflow: visible;
+}
+
+.appModal::backdrop {
+  background: rgba(15, 23, 42, .65);
+  backdrop-filter: blur(4px);
+}
+
+.appModal[open] {
+  animation: personHomeReveal .3s ease-out both;
+}
+
+.appModalBody {
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  border-radius: 20px;
+}
+
+/* ==========================================================================
+   Accesibilidad transversal
+   ========================================================================== */
+
+/* Un anillo de foco visible y uniforme. Antes convivían :focus y :focus-visible
+   con estilos distintos, y varios controles quedaban sin indicación alguna. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Respetar la preferencia del sistema por menos movimiento. Importa
+   especialmente acá: la aplicación está pensada para personas mayores y tiene
+   dos docenas de animaciones. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Enlaces que cumplen el papel de control (navegación, tarjetas de acción).
+   Son <a> reales por accesibilidad, pero no deben verse como texto enlazado. */
+.nav a,
+.action,
+.personHomeOption,
+.accessChoiceCard,
+.accessLoginBack,
+.statusLookupBack,
+.btnTurquoisePrimary,
+.reportBack,
+.reportContinue {
+  text-decoration: none;
+}
+
+.action,
+.sourceCard .sourceLink {
+  color: inherit;
+}

@@ -234,6 +234,10 @@ export function TeamFacilityCandidateQueue({ viewFilter, hideMap = false, embedd
     setCorrectedLatitude(selected.latitude === null ? "" : String(selected.latitude));
     setCorrectedLongitude(selected.longitude === null ? "" : String(selected.longitude));
     setSuccess("");
+  // Sólo debe reaccionar al cambio de selección. `selected` se recalcula con
+  // .find() en cada render, así que incluirlo reiniciaría el formulario y
+  // borraría lo que la persona esté escribiendo.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected?.id]);
 
   const submitReview = async (event: FormEvent) => {

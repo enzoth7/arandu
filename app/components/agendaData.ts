@@ -1,16 +1,9 @@
 import type { ActivityItem } from "./ActivitiesView";
-import agendaJson from "../../public/agenda.json";
 
-const sourceUrlMap = new Map<string, string>();
-if (agendaJson && Array.isArray(agendaJson.activities)) {
-  agendaJson.activities.forEach((act: { id?: string; sourceUrl?: string }) => {
-    if (act.id && act.sourceUrl) {
-      sourceUrlMap.set(act.id, act.sourceUrl);
-    }
-  });
-}
-
-const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
+// Fuente única de la agenda pública. Cada registro conserva su `sourceUrl`
+// verificable; la curaduría manual (coordenadas y selección) vive aquí y no
+// se regenera automáticamente desde `public/agenda.json`.
+export const AGENDA_ACTIVITIES: ActivityItem[] = [
   {
     "id": "uni3-musica-folklorica",
     "icon": "🎵",
@@ -31,7 +24,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Música folclórica rioplatense.",
-    "organizer": "UNI3 · Sede Eduardo Acevedo"
+    "organizer": "UNI3 · Sede Eduardo Acevedo",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "im-gen-gimnasia",
@@ -53,7 +47,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.8995,
     "lng": -56.1785,
     "description": "Gimnasia para envejecimiento activo y saludable.",
-    "organizer": "Espacio Generacciones"
+    "organizer": "Espacio Generacciones",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "im-carrasco-taichi",
@@ -75,7 +70,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.869,
     "lng": -56.116,
     "description": "Práctica de tai chi en el Espacio Integral para Personas Mayores.",
-    "organizer": "Espacio Integral para Personas Mayores"
+    "organizer": "Espacio Integral para Personas Mayores",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "tacuarembo-jurasica",
@@ -96,7 +92,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -31.72,
     "lng": -55.98,
     "description": "Exposición temática familiar.",
-    "organizer": "Club Democrático"
+    "organizer": "Club Democrático",
+    "sourceUrl": "https://mientrada.com.uy/agenda-geral"
   },
   {
     "id": "rocha-aleteos",
@@ -117,7 +114,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.657,
     "lng": -54.164,
     "description": "Muestra sobre biodiversidad y lagunas de Rocha.",
-    "organizer": "Espacio Arte Sotavento"
+    "organizer": "Espacio Arte Sotavento",
+    "sourceUrl": "https://turismorocha.gub.uy/eventos/2026/08/02/aleteos-y-trazos-4913"
   },
   {
     "id": "im-teatro-ccz14",
@@ -139,7 +137,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.862,
     "lng": -56.207,
     "description": "Taller territorial de teatro para personas mayores.",
-    "organizer": "Salón Multiuso Personas Mayores CCZ 14"
+    "organizer": "Salón Multiuso Personas Mayores CCZ 14",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "im-gen-geronto",
@@ -161,7 +160,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.8995,
     "lng": -56.1785,
     "description": "Propuesta corporal y de estimulación para personas mayores.",
-    "organizer": "Espacio Generacciones"
+    "organizer": "Espacio Generacciones",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "gym-afaf3",
@@ -183,7 +183,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.877,
     "lng": -56.115,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Cooperativa AFAF 3"
+    "organizer": "Cooperativa AFAF 3",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "ib-ia-rivera",
@@ -205,7 +206,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -30.905,
     "lng": -55.55,
     "description": "Taller introductorio sobre qué es la inteligencia artificial y para qué puede utilizarse.",
-    "organizer": "APENJUR"
+    "organizer": "APENJUR",
+    "sourceUrl": "https://www.bps.gub.uy/19355/programa-ibirapita.html"
   },
   {
     "id": "gym-club-misterio",
@@ -227,7 +229,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.887,
     "lng": -56.136,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Centro Cultural Casa del Vecino Misterio"
+    "organizer": "Centro Cultural Casa del Vecino Misterio",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "uni3-psicologia-lunes",
@@ -249,7 +252,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Psicología.",
-    "organizer": "UNI3 · Sede Arenal Grande"
+    "organizer": "UNI3 · Sede Arenal Grande",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "gym-covine5",
@@ -271,7 +275,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.842,
     "lng": -56.091,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Covine 5"
+    "organizer": "Covine 5",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "gym-mesa1",
@@ -293,7 +298,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.868,
     "lng": -56.124,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Cooperativa de Viviendas Mesa 1"
+    "organizer": "Cooperativa de Viviendas Mesa 1",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "gym-alba-roballo",
@@ -315,7 +321,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.869,
     "lng": -56.234,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Centro Cultural Alba Roballo"
+    "organizer": "Centro Cultural Alba Roballo",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "gym-cabana-anaya",
@@ -337,7 +344,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.798,
     "lng": -56.132,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Cabaña Anaya"
+    "organizer": "Cabaña Anaya",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "gym-julia-arevalo",
@@ -359,7 +367,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.886,
     "lng": -56.275,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Centro Cultural Julia Arévalo"
+    "organizer": "Centro Cultural Julia Arévalo",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "gym-barradas",
@@ -381,7 +390,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.858,
     "lng": -56.202,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Espacio Barradas · Museo Blanes"
+    "organizer": "Espacio Barradas · Museo Blanes",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "mvd-huerta-beherens",
@@ -403,7 +413,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.8627,
     "lng": -56.207,
     "description": "Espacio comunitario para participar del cuidado de una huerta creada por vecinas y vecinos en los canteros de la Quinta de Beherens.",
-    "organizer": "Vecinas y vecinos de la zona · Escuela de Jardinería de la IM"
+    "organizer": "Vecinas y vecinos de la zona · Escuela de Jardinería de la IM",
+    "sourceUrl": "https://escueladejardineria.montevideo.gub.uy/actividades/huerta-comunitaria-en-la-quinta-de-beherens"
   },
   {
     "id": "im-gen-activamente",
@@ -424,7 +435,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.8995,
     "lng": -56.1785,
     "description": "Actividad grupal de estimulación cognitiva y participación.",
-    "organizer": "Espacio Generacciones"
+    "organizer": "Espacio Generacciones",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "uni3-viajes-pres",
@@ -445,7 +457,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Compartiendo viajes.",
-    "organizer": "UNI3 · Sede Arenal Grande"
+    "organizer": "UNI3 · Sede Arenal Grande",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "gym-coop-3abril",
@@ -467,7 +480,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.849,
     "lng": -56.229,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Cooperativa 3 de Abril"
+    "organizer": "Cooperativa 3 de Abril",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "gym-casal-catala",
@@ -489,7 +503,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.909,
     "lng": -56.179,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Casal Catalá"
+    "organizer": "Casal Catalá",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "gym-club-funsa",
@@ -511,7 +526,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.862,
     "lng": -56.132,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Club Funsa"
+    "organizer": "Club Funsa",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "maca-taller-teatro",
@@ -533,7 +549,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.89,
     "lng": -54.83,
     "description": "Inicio de un taller de teatro que continúa hasta diciembre; no requiere experiencia previa.",
-    "organizer": "Museo de Arte Contemporáneo Atchugarry"
+    "organizer": "Museo de Arte Contemporáneo Atchugarry",
+    "sourceUrl": "https://macamuseo.org/eventosmaca"
   },
   {
     "id": "gym-polideportivo-colon",
@@ -555,7 +572,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.805,
     "lng": -56.218,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Espacio Polideportivo Colón"
+    "organizer": "Espacio Polideportivo Colón",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "uni3-viajes-zoom",
@@ -576,7 +594,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Compartiendo viajes.",
-    "organizer": "Zoom"
+    "organizer": "Zoom",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "can-foto-canticos",
@@ -597,7 +616,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.767,
     "lng": -55.709,
     "description": "Apertura de una exposición fotográfica.",
-    "organizer": "Centro Cultural de Parque del Plata"
+    "organizer": "Centro Cultural de Parque del Plata",
+    "sourceUrl": "https://www.imcanelones.gub.uy/agenda-cultural/exposicion-fotografica-entre-canticos-silencios-imagenes-del-silencio-fotografos"
   },
   {
     "id": "can-huerta-agroecologica-patio",
@@ -618,7 +638,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.826,
     "lng": -55.956,
     "description": "Taller municipal de huerta agroecológica publicado para los martes y viernes en el Patio Cultural de Ciudad de la Costa.",
-    "organizer": "Gobierno de Canelones"
+    "organizer": "Gobierno de Canelones",
+    "sourceUrl": "https://www.imcanelones.gub.uy/sites/default/files/2026-02/CULTURA-%20Talleres%202026%20compressed.pdf"
   },
   {
     "id": "gym-club-artigas",
@@ -640,7 +661,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.801,
     "lng": -56.236,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Club Artigas"
+    "organizer": "Club Artigas",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "im-geronto-crece",
@@ -662,7 +684,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.851,
     "lng": -56.12,
     "description": "Taller territorial de gerontopsicomotricidad.",
-    "organizer": "Crece Flor de Maroñas"
+    "organizer": "Crece Flor de Maroñas",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "uni3-reflexiones-literarias",
@@ -684,7 +707,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Reflexiones literarias: el tiempo y lo no dicho.",
-    "organizer": "Zoom"
+    "organizer": "Zoom",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "gym-villa-centauro",
@@ -706,7 +730,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.806,
     "lng": -56.059,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Espacio Cultural y Recreativo Villa Centauro"
+    "organizer": "Espacio Cultural y Recreativo Villa Centauro",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "gym-complejo-bps",
@@ -728,7 +753,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.864,
     "lng": -56.198,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Complejo BPS"
+    "organizer": "Complejo BPS",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "gym-yatay",
@@ -750,7 +776,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.856,
     "lng": -56.196,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Comisión Vecinal Yatay"
+    "organizer": "Comisión Vecinal Yatay",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "gym-coviunpro",
@@ -772,7 +799,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.823,
     "lng": -56.158,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Cooperativa Coviunpro"
+    "organizer": "Cooperativa Coviunpro",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "gym-cedel-casavalle",
@@ -794,7 +822,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.821,
     "lng": -56.154,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Cedel Casavalle"
+    "organizer": "Cedel Casavalle",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "uni3-antropologia",
@@ -816,7 +845,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Antropología.",
-    "organizer": "Zoom"
+    "organizer": "Zoom",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "im-taichi-lgbti",
@@ -838,7 +868,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.906,
     "lng": -56.187,
     "description": "Taller de tai chi para personas mayores.",
-    "organizer": "Centro LGBTIQ+ de Montevideo"
+    "organizer": "Centro LGBTIQ+ de Montevideo",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "im-gen-literario",
@@ -861,7 +892,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.8995,
     "lng": -56.1785,
     "description": "Lectura y escritura en un espacio grupal.",
-    "organizer": "Espacio Generacciones"
+    "organizer": "Espacio Generacciones",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "gym-salesiano",
@@ -883,7 +915,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.846,
     "lng": -56.195,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Centro Juvenil Salesiano"
+    "organizer": "Centro Juvenil Salesiano",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "uni3-tango-whatsapp",
@@ -905,7 +938,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Historia del tango.",
-    "organizer": "WhatsApp"
+    "organizer": "WhatsApp",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "gym-club-colonia",
@@ -927,7 +961,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.861,
     "lng": -56.194,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Club Colonia"
+    "organizer": "Club Colonia",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "gym-velodromo",
@@ -949,7 +984,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.893,
     "lng": -56.153,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Velódromo Municipal"
+    "organizer": "Velódromo Municipal",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "gym-espacio-modelo",
@@ -971,7 +1007,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.872,
     "lng": -56.156,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Espacio Modelo"
+    "organizer": "Espacio Modelo",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "gym-club-municipal",
@@ -993,7 +1030,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.906,
     "lng": -56.192,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Club Municipal"
+    "organizer": "Club Municipal",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "mvd-rio-adentro",
@@ -1014,7 +1052,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.906,
     "lng": -56.188,
     "description": "Exhibición documental en Sala Zitarrosa.",
-    "organizer": "Sala Zitarrosa"
+    "organizer": "Sala Zitarrosa",
+    "sourceUrl": "https://municipiob.montevideo.gub.uy/actividades-en-el-b"
   },
   {
     "id": "gym-plaza1",
@@ -1036,7 +1075,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.908,
     "lng": -56.21,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Plaza de Deportes N.º 1"
+    "organizer": "Plaza de Deportes N.º 1",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "im-act-blanes",
@@ -1057,7 +1097,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.859,
     "lng": -56.205,
     "description": "Taller territorial de estimulación cognitiva y participación para personas mayores.",
-    "organizer": "Museo Blanes · Espacio Barradas"
+    "organizer": "Museo Blanes · Espacio Barradas",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "flores-manipulacion",
@@ -1078,7 +1119,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -33.516,
     "lng": -56.899,
     "description": "Curso de capacitación sobre manipulación de alimentos.",
-    "organizer": "Sala Larrañaga"
+    "organizer": "Sala Larrañaga",
+    "sourceUrl": "https://agenda.flores.gub.uy/"
   },
   {
     "id": "im-gen-danza",
@@ -1101,7 +1143,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.8995,
     "lng": -56.1785,
     "description": "Danza y expresión corporal para personas mayores.",
-    "organizer": "Espacio Generacciones"
+    "organizer": "Espacio Generacciones",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "uni3-danzas-folcloricas",
@@ -1123,7 +1166,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Danzas folclóricas.",
-    "organizer": "UNI3 · Ana Monterroso de Lavalleja"
+    "organizer": "UNI3 · Ana Monterroso de Lavalleja",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "flores-jornada-musical",
@@ -1144,7 +1188,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -33.516,
     "lng": -56.899,
     "description": "Jornada educativa y musical.",
-    "organizer": "Casa de la Cultura"
+    "organizer": "Casa de la Cultura",
+    "sourceUrl": "https://agenda.flores.gub.uy/"
   },
   {
     "id": "im-teatro-saludmental",
@@ -1166,7 +1211,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.829,
     "lng": -56.216,
     "description": "Taller territorial de teatro para personas mayores.",
-    "organizer": "Casa Comunitaria de Promoción de Salud Mental"
+    "organizer": "Casa Comunitaria de Promoción de Salud Mental",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "uni3-frances",
@@ -1188,7 +1234,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Francés intermedio.",
-    "organizer": "UNI3 · Sede Arenal Grande"
+    "organizer": "UNI3 · Sede Arenal Grande",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "im-act-guyunusa",
@@ -1209,7 +1256,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.845,
     "lng": -56.161,
     "description": "Taller territorial de estimulación cognitiva y participación para personas mayores.",
-    "organizer": "Centro Cultural Guyunusa"
+    "organizer": "Centro Cultural Guyunusa",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "uni3-psicologia-miercoles",
@@ -1231,7 +1279,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Psicología.",
-    "organizer": "UNI3 · Sede Arenal Grande"
+    "organizer": "UNI3 · Sede Arenal Grande",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "gym-parque-amistad",
@@ -1253,7 +1302,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.895,
     "lng": -56.147,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Parque de la Amistad"
+    "organizer": "Parque de la Amistad",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "uni3-literatura-artes",
@@ -1275,7 +1325,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Literatura y artes escénicas: una mirada filosófica.",
-    "organizer": "UNI3 · Sede Arenal Grande"
+    "organizer": "UNI3 · Sede Arenal Grande",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "im-gen-teatro",
@@ -1297,7 +1348,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.8995,
     "lng": -56.1785,
     "description": "Taller de teatro para personas mayores.",
-    "organizer": "Espacio Generacciones"
+    "organizer": "Espacio Generacciones",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "im-geronto-ccz14",
@@ -1319,7 +1371,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.862,
     "lng": -56.207,
     "description": "Taller territorial de gerontopsicomotricidad.",
-    "organizer": "Salón Multiuso Personas Mayores CCZ 14"
+    "organizer": "Salón Multiuso Personas Mayores CCZ 14",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "ib-correo-tacuarembo",
@@ -1341,7 +1394,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -31.72,
     "lng": -55.98,
     "description": "Uso de Gmail para comunicarse y acceder a servicios digitales.",
-    "organizer": "UNI3 Tacuarembó"
+    "organizer": "UNI3 Tacuarembó",
+    "sourceUrl": "https://www.bps.gub.uy/19355/programa-ibirapita.html"
   },
   {
     "id": "uni3-mosaiquismo",
@@ -1363,7 +1417,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Mosaiquismo.",
-    "organizer": "Zoom"
+    "organizer": "Zoom",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "rocha-historias-pago",
@@ -1384,7 +1439,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -33.697,
     "lng": -53.456,
     "description": "Presentación de la publicación de Félix Flugel sobre historias del Pago Grande.",
-    "organizer": "Salón Saltarines"
+    "organizer": "Salón Saltarines",
+    "sourceUrl": "https://turismorocha.gub.uy/eventos/2026/08/12/historias-del-pago-grande-4903"
   },
   {
     "id": "uni3-radio",
@@ -1406,7 +1462,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Taller de radio.",
-    "organizer": "UNI3 · Sede Arenal Grande"
+    "organizer": "UNI3 · Sede Arenal Grande",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "flores-kamishibai",
@@ -1427,7 +1484,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -33.516,
     "lng": -56.899,
     "description": "Propuesta de narración vinculada a una huerta; puede ser intergeneracional.",
-    "organizer": "Biblioteca Municipal"
+    "organizer": "Biblioteca Municipal",
+    "sourceUrl": "https://agenda.flores.gub.uy/"
   },
   {
     "id": "im-act-castillo",
@@ -1448,7 +1506,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.911,
     "lng": -56.168,
     "description": "Taller territorial de estimulación cognitiva y participación para personas mayores.",
-    "organizer": "Castillo Parque Rodó"
+    "organizer": "Castillo Parque Rodó",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "uni3-fisica-cine",
@@ -1471,7 +1530,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Historia de la física en la cinematografía.",
-    "organizer": "Zoom"
+    "organizer": "Zoom",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "uni3-lengua-espanola",
@@ -1493,7 +1553,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Historia de la lengua española.",
-    "organizer": "UNI3 · Sede Eduardo Acevedo"
+    "organizer": "UNI3 · Sede Eduardo Acevedo",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "im-act-ccz10",
@@ -1514,7 +1575,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.816,
     "lng": -56.137,
     "description": "Taller territorial de estimulación cognitiva y participación para personas mayores.",
-    "organizer": "Comuna Mujer CCZ 10"
+    "organizer": "Comuna Mujer CCZ 10",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "im-act-mesa1",
@@ -1535,7 +1597,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.868,
     "lng": -56.124,
     "description": "Taller territorial de estimulación cognitiva y participación para personas mayores.",
-    "organizer": "Mesa 1"
+    "organizer": "Mesa 1",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "sj-master-guitarra",
@@ -1557,7 +1620,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.337,
     "lng": -56.714,
     "description": "Clase magistral de guitarra.",
-    "organizer": "Sala Eduardo Carbajal"
+    "organizer": "Sala Eduardo Carbajal",
+    "sourceUrl": "https://www.radio41.com.uy/index.php/columnistas-de-segun-como-se-mire/item/16819-cartelera-de-agosto-en-san-jose-mira-la-lista-completa-de-espectaculos-y-exposiciones-en-el-maccio-y-el-espacio-cultural"
   },
   {
     "id": "maca-cine-montana",
@@ -1578,7 +1642,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.89,
     "lng": -54.83,
     "description": "Doble función de cine en el MACA.",
-    "organizer": "Museo de Arte Contemporáneo Atchugarry"
+    "organizer": "Museo de Arte Contemporáneo Atchugarry",
+    "sourceUrl": "https://macamuseo.org/eventosmaca"
   },
   {
     "id": "gym-parque-bellan",
@@ -1600,7 +1665,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.887,
     "lng": -56.188,
     "description": "Clase gratuita de gimnasia para personas mayores, abierta a la comunidad.",
-    "organizer": "Parque Bellán"
+    "organizer": "Parque Bellán",
+    "sourceUrl": "https://montevideo.gub.uy/areas-tematicas/deportes/actividades-fisicas-para-personas-mayores"
   },
   {
     "id": "im-gen-taichi",
@@ -1622,7 +1688,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.8995,
     "lng": -56.1785,
     "description": "Práctica de tai chi para personas mayores.",
-    "organizer": "Espacio Generacciones"
+    "organizer": "Espacio Generacciones",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "sj-recital-guitarra",
@@ -1643,7 +1710,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.337,
     "lng": -56.714,
     "description": "Recital de guitarra.",
-    "organizer": "Sala Eduardo Carbajal"
+    "organizer": "Sala Eduardo Carbajal",
+    "sourceUrl": "https://www.radio41.com.uy/index.php/columnistas-de-segun-como-se-mire/item/16819-cartelera-de-agosto-en-san-jose-mira-la-lista-completa-de-espectaculos-y-exposiciones-en-el-maccio-y-el-espacio-cultural"
   },
   {
     "id": "uni3-filosofia",
@@ -1665,7 +1733,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Filosofía para la vida.",
-    "organizer": "Zoom"
+    "organizer": "Zoom",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "uni3-aleman",
@@ -1687,7 +1756,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Lengua y cultura alemana.",
-    "organizer": "Zoom"
+    "organizer": "Zoom",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "im-gen-relajacion",
@@ -1709,7 +1779,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.8995,
     "lng": -56.1785,
     "description": "Taller de relajación para personas mayores.",
-    "organizer": "Espacio Generacciones"
+    "organizer": "Espacio Generacciones",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "uni3-economia",
@@ -1731,7 +1802,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Economía.",
-    "organizer": "UNI3 · Sede Eduardo Acevedo"
+    "organizer": "UNI3 · Sede Eduardo Acevedo",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "im-carrasco-activamente",
@@ -1752,7 +1824,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.869,
     "lng": -56.116,
     "description": "Estimulación cognitiva y participación grupal.",
-    "organizer": "Espacio Integral para Personas Mayores"
+    "organizer": "Espacio Integral para Personas Mayores",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "im-act-tresombues",
@@ -1773,7 +1846,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.845,
     "lng": -56.245,
     "description": "Taller territorial de estimulación cognitiva y participación para personas mayores.",
-    "organizer": "Centro Cívico Tres Ombúes"
+    "organizer": "Centro Cívico Tres Ombúes",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "im-act-amistad",
@@ -1794,7 +1868,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.895,
     "lng": -56.147,
     "description": "Taller territorial de estimulación cognitiva y participación para personas mayores.",
-    "organizer": "Parque de la Amistad"
+    "organizer": "Parque de la Amistad",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "im-act-ccz17",
@@ -1815,7 +1890,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.867,
     "lng": -56.251,
     "description": "Taller territorial de estimulación cognitiva y participación para personas mayores.",
-    "organizer": "CCZ 17"
+    "organizer": "CCZ 17",
+    "sourceUrl": "https://montevideo.gub.uy/noticias/talleres-para-personas-mayores-0"
   },
   {
     "id": "uni3-historia-arte",
@@ -1837,7 +1913,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Historia del arte.",
-    "organizer": "Zoom"
+    "organizer": "Zoom",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "uni3-portugues",
@@ -1859,7 +1936,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.899,
     "lng": -56.178,
     "description": "Taller de UNI3: Portugués.",
-    "organizer": "UNI3 · Sede Eduardo Acevedo"
+    "organizer": "UNI3 · Sede Eduardo Acevedo",
+    "sourceUrl": "https://uni3.uy/"
   },
   {
     "id": "mnav-belmonte",
@@ -1880,7 +1958,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.913,
     "lng": -56.165,
     "description": "Proyección dentro del ciclo de cine y artes visuales del MNAV.",
-    "organizer": "Museo Nacional de Artes Visuales"
+    "organizer": "Museo Nacional de Artes Visuales",
+    "sourceUrl": "https://mnav.gub.uy/cms.php?id=ciclodecine2026"
   },
   {
     "id": "can-cine-chacra",
@@ -1901,7 +1980,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.545,
     "lng": -55.871,
     "description": "Proyección cinematográfica en una sociedad de fomento rural.",
-    "organizer": "Sociedad de Fomento Rural Los Arenales"
+    "organizer": "Sociedad de Fomento Rural Los Arenales",
+    "sourceUrl": "https://www.imcanelones.gub.uy/agenda-cultural/cine-pelicula-chacra"
   },
   {
     "id": "flores-piquin",
@@ -1922,7 +2002,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -33.516,
     "lng": -56.899,
     "description": "Espectáculo de danza y música.",
-    "organizer": "Teatro Artigas"
+    "organizer": "Teatro Artigas",
+    "sourceUrl": "https://agenda.flores.gub.uy/"
   },
   {
     "id": "rocha-ziba",
@@ -1943,7 +2024,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.483,
     "lng": -54.333,
     "description": "Muestra de danza en el Teatro 25 de Mayo.",
-    "organizer": "Teatro 25 de Mayo"
+    "organizer": "Teatro 25 de Mayo",
+    "sourceUrl": "https://turismorocha.gub.uy/eventos/2026/08/14/muestra-de-danza-ziba-4924"
   },
   {
     "id": "rocha-petru",
@@ -1964,7 +2046,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -33.697,
     "lng": -53.456,
     "description": "Espectáculo de café concert.",
-    "organizer": "Centro Cultural de Chuy"
+    "organizer": "Centro Cultural de Chuy",
+    "sourceUrl": "https://turismorocha.gub.uy/eventos/2026/08/14/petru-valenski-en-cafe-concert-4891"
   },
   {
     "id": "sj-diez-anos",
@@ -1985,7 +2068,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.337,
     "lng": -56.714,
     "description": "Espectáculo de humor.",
-    "organizer": "Teatro Macció"
+    "organizer": "Teatro Macció",
+    "sourceUrl": "https://www.radio41.com.uy/index.php/columnistas-de-segun-como-se-mire/item/16819-cartelera-de-agosto-en-san-jose-mira-la-lista-completa-de-espectaculos-y-exposiciones-en-el-maccio-y-el-espacio-cultural"
   },
   {
     "id": "sodre-camara-oscura",
@@ -2006,7 +2090,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.906,
     "lng": -56.204,
     "description": "Experiencia para comprender de forma vivencial el fenómeno físico de la cámara oscura.",
-    "organizer": "Archivo Nacional de la Imagen y la Palabra"
+    "organizer": "Archivo Nacional de la Imagen y la Palabra",
+    "sourceUrl": "https://sodre.gub.uy/actividad/taller-imagenes-al-sol-fotografia-memoria-y-experimentacion/"
   },
   {
     "id": "mvd-huerta-malvin-norte",
@@ -2028,7 +2113,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.8792,
     "lng": -56.1188,
     "description": "Encuentro gratuito de huerta comunitaria en el Centro Cultural Malvín Norte.",
-    "organizer": "Centro Cultural Malvín Norte · Municipio E"
+    "organizer": "Centro Cultural Malvín Norte · Municipio E",
+    "sourceUrl": "https://municipioe.montevideo.gub.uy/cursos-talleres-y-actividades-deportivas-2025"
   },
   {
     "id": "sodre-imagenes-sol",
@@ -2049,7 +2135,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.906,
     "lng": -56.204,
     "description": "Taller práctico de cianotipia, memoria e imágenes; no requiere conocimientos previos.",
-    "organizer": "Archivo Nacional de la Imagen y la Palabra"
+    "organizer": "Archivo Nacional de la Imagen y la Palabra",
+    "sourceUrl": "https://sodre.gub.uy/actividad/taller-imagenes-al-sol-fotografia-memoria-y-experimentacion/"
   },
   {
     "id": "salto-antiguo",
@@ -2070,7 +2157,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -31.388,
     "lng": -57.96,
     "description": "Exposición de fotografías, recuerdos e historias de la ciudad.",
-    "organizer": "Mercado 18 de Julio"
+    "organizer": "Mercado 18 de Julio",
+    "sourceUrl": "https://www.salto.gub.uy/eventos"
   },
   {
     "id": "maca-nenette-doc",
@@ -2091,7 +2179,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.89,
     "lng": -54.83,
     "description": "Proyección documental; la reserva es independiente de la del concierto.",
-    "organizer": "Museo de Arte Contemporáneo Atchugarry"
+    "organizer": "Museo de Arte Contemporáneo Atchugarry",
+    "sourceUrl": "https://macamuseo.org/eventosmaca"
   },
   {
     "id": "lavalleja-feria-varela",
@@ -2112,7 +2201,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -33.455,
     "lng": -54.536,
     "description": "Feria de artesanos y emprendimientos locales.",
-    "organizer": "Plaza de José Pedro Varela"
+    "organizer": "Plaza de José Pedro Varela",
+    "sourceUrl": "https://www.holavarela.uy/eventos"
   },
   {
     "id": "maca-nenette-concierto",
@@ -2133,7 +2223,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.89,
     "lng": -54.83,
     "description": "Concierto con repertorio inspirado en la vida y obra de Nenette Pepin.",
-    "organizer": "Museo de Arte Contemporáneo Atchugarry"
+    "organizer": "Museo de Arte Contemporáneo Atchugarry",
+    "sourceUrl": "https://macamuseo.org/eventosmaca"
   },
   {
     "id": "rocha-federico",
@@ -2154,7 +2245,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.657,
     "lng": -54.164,
     "description": "Poemas, teatro, canciones y flamenco en torno a Federico García Lorca.",
-    "organizer": "Centro Cultural Nacional La Paloma"
+    "organizer": "Centro Cultural Nacional La Paloma",
+    "sourceUrl": "https://turismorocha.gub.uy/eventos/2026/08/15/hola-soy-federico-4895"
   },
   {
     "id": "lavalleja-mezcolanza",
@@ -2175,7 +2267,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -33.455,
     "lng": -54.536,
     "description": "Concierto coral con música de los siglos XVI y XVII.",
-    "organizer": "Parroquia San Carlos Borromeo"
+    "organizer": "Parroquia San Carlos Borromeo",
+    "sourceUrl": "https://www.holavarela.uy/eventos"
   },
   {
     "id": "sj-copla-alta",
@@ -2196,7 +2289,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.337,
     "lng": -56.714,
     "description": "Espectáculo musical.",
-    "organizer": "Teatro Macció"
+    "organizer": "Teatro Macció",
+    "sourceUrl": "https://www.radio41.com.uy/index.php/columnistas-de-segun-como-se-mire/item/16819-cartelera-de-agosto-en-san-jose-mira-la-lista-completa-de-espectaculos-y-exposiciones-en-el-maccio-y-el-espacio-cultural"
   },
   {
     "id": "maca-tango",
@@ -2217,7 +2311,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.89,
     "lng": -54.83,
     "description": "Clase y milonga entre obras, arquitectura y paisaje; propuesta para explorar el abrazo y la caminata compartida.",
-    "organizer": "Museo de Arte Contemporáneo Atchugarry"
+    "organizer": "Museo de Arte Contemporáneo Atchugarry",
+    "sourceUrl": "https://macamuseo.org/eventosmaca"
   },
   {
     "id": "maca-uruguay-salvaje",
@@ -2238,7 +2333,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.89,
     "lng": -54.83,
     "description": "Documental sobre la biodiversidad del territorio uruguayo.",
-    "organizer": "Museo de Arte Contemporáneo Atchugarry"
+    "organizer": "Museo de Arte Contemporáneo Atchugarry",
+    "sourceUrl": "https://macamuseo.org/eventosmaca"
   },
   {
     "id": "salto-bajo-mar",
@@ -2259,7 +2355,8 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -31.388,
     "lng": -57.96,
     "description": "Espectáculo de teatro y danza.",
-    "organizer": "Teatro Larrañaga"
+    "organizer": "Teatro Larrañaga",
+    "sourceUrl": "https://www.salto.gub.uy/eventos"
   },
   {
     "id": "sj-gala-ballet",
@@ -2280,11 +2377,7 @@ const RAW_AGENDA_ACTIVITIES: ActivityItem[] = [
     "lat": -34.337,
     "lng": -56.714,
     "description": "Gala de ballet.",
-    "organizer": "Teatro Macció"
+    "organizer": "Teatro Macció",
+    "sourceUrl": "https://www.radio41.com.uy/index.php/columnistas-de-segun-como-se-mire/item/16819-cartelera-de-agosto-en-san-jose-mira-la-lista-completa-de-espectaculos-y-exposiciones-en-el-maccio-y-el-espacio-cultural"
   }
 ];
-
-export const AGENDA_ACTIVITIES: ActivityItem[] = RAW_AGENDA_ACTIVITIES.map((act) => ({
-  ...act,
-  sourceUrl: sourceUrlMap.get(act.id) || "",
-}));

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, Copy, Mail, MapPin, Mic, Paperclip, Phone, ShieldAlert, Square, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { Facility } from "./map-types";
@@ -66,7 +67,6 @@ const URGENCY_OPTIONS = [
   { label: "No parece haber urgencia inmediata", value: "Baja" as const },
   { label: "No lo sé", value: "Baja" as const },
 ];
-const reporters = ["La propia persona", "Familiar o referente", "Vecino/a o amistad", "Cuidador/a", "Profesional", "Otra persona"];
 const departments = ["Artigas", "Canelones", "Cerro Largo", "Colonia", "Durazno", "Flores", "Florida", "Lavalleja", "Maldonado", "Montevideo", "Paysandú", "Río Negro", "Rivera", "Rocha", "Salto", "San José", "Soriano", "Tacuarembó", "Treinta y Tres", "No se conoce"];
 
 const deptCoords: Record<string, [number, number]> = {
@@ -287,19 +287,12 @@ function AudioRecorder({ onAudioRecorded, onAudioCleared }: { onAudioRecorded: (
   );
 }
 
-function urgencyLabel(value: IntakeDraft["urgency"]): string {
-  return value === "Alta" ? "Hay riesgo ahora" : value === "Media" ? "Necesita atención pronto" : "No hay urgencia inmediata";
-}
 
 export function IntakeReportForm({
-  onHome,
-  onFollow,
   initialConcerns = [],
   initialNarrative = "",
   initialFacility = null,
 }: {
-  onHome: () => void;
-  onFollow?: (code?: string) => void;
   initialConcerns?: string[];
   initialNarrative?: string;
   initialFacility?: Facility | null;
@@ -547,19 +540,6 @@ export function IntakeReportForm({
     }
   };
 
-  const restart = () => {
-    setDraft(initialDraft);
-    setConsent(false);
-    setMessage("");
-    setCaseCode("");
-    setFiles([]);
-    setCopyState("idle");
-    setAttachmentState("idle");
-    setUploadedFileCount(0);
-    setEmailNotice("");
-    setSelectedUrgencyText("");
-    setStep(1);
-  };
 
   const copyCaseCode = async () => {
     try {
@@ -605,22 +585,19 @@ export function IntakeReportForm({
     {attachmentState === "partial" && <p className="reportSuccessNotice isWarning"><ShieldAlert size={17}/>La comunicación se guardó, pero sólo se pudieron adjuntar {uploadedFileCount} de {files.length} archivos.</p>}
     
     <div className="reportSuccessSingleAction" style={{display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap", marginTop: "24px"}}>
-      {onFollow && (
-        <button type="button" className="reportBack" onClick={() => onFollow(caseCode)}>
+      {caseCode && (
+        <Link className="reportBack" href={`/personas/seguimiento?codigo=${encodeURIComponent(caseCode)}`}>
           Consultar el estado ahora
-        </button>
+        </Link>
       )}
-      <button type="button" className="reportContinue" onClick={onHome}>
+      <Link className="reportContinue" href="/personas">
         Volver al inicio <ArrowRight size={17}/>
-      </button>
+      </Link>
     </div>
   </section>;
 
   const stageTitle = step === 1 ? "¿Qué está pasando?" : step === 2 ? "¿Dónde ocurre?" : step === 3 ? "Contacto" : "Revisá y enviá";
 
-  const availableReporters = draft.privacy === "Anónima"
-    ? ["Familiar o referente", "Vecino/a o amistad", "Cuidador/a", "Profesional", "Persona anónima / Otra"]
-    : ["La propia persona", "Familiar o referente", "Vecino/a o amistad", "Cuidador/a", "Profesional", "Otra persona"];
 
   return <section className="reportFlow">
     <header className="reportFlowHeader">
@@ -954,6 +931,7 @@ export function IntakeReportForm({
                         <strong style={{ color: "#334155" }}>{file.name}</strong>
                         <small style={{ color: "#64748b" }}>{fileSizeMB} MB</small>
                       </div>
+                      {/* eslint-disable-next-line @next/next/no-img-element -- vista previa de un archivo local (blob URL); next/image no puede optimizarla */}
                       <img src={URL.createObjectURL(file)} alt={file.name} style={{ maxHeight: "130px", borderRadius: "8px", border: "1px solid #cbd9e7", marginTop: "6px", objectFit: "contain", backgroundColor: "#f8fafc" }} />
                     </div>
                   );

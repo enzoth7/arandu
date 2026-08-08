@@ -1,8 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import L from "leaflet";
+import { flyToPoint, pointBounds, useLeafletMap } from "../hooks/useLeafletMap";
 import type { ActivityItem } from "./ActivitiesView";
+
+const ACTIVITY_VIEW = { center: [-32.5228, -55.7658] as [number, number], zoom: 7 };
+const SELECTED_ZOOM = 14;
+// Un conjunto de puntos contenido en menos de 0,7° es una ciudad o zona: en ese
+// caso se acerca más que cuando los resultados se reparten por todo el país.
+const LOCAL_AREA_DEGREES = 0.7;
 
 export default function ActivityMap({
   activities,
@@ -13,40 +20,17 @@ export default function ActivityMap({
   selectedId: string | null;
   onSelect: (id: string) => void;
 }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<L.Map | null>(null);
-  const markersRef = useRef<L.LayerGroup | null>(null);
+  const { containerRef, mapRef, markersRef } = useLeafletMap(ACTIVITY_VIEW);
 
-  useEffect(() => {
-    if (!containerRef.current || mapRef.current) return;
-
-    // Inicializar mapa centrado en Uruguay
-    const map = L.map(containerRef.current, { scrollWheelZoom: true }).setView([-32.5228, -55.7658], 7);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(map);
-
-    mapRef.current = map;
-    markersRef.current = L.layerGroup().addTo(map);
-
-    return () => {
-      map.remove();
-      mapRef.current = null;
-      markersRef.current = null;
-    };
-  }, []);
-
-  // Dibujar marcadores interactivos
   useEffect(() => {
     const map = mapRef.current;
     const markers = markersRef.current;
     if (!map || !markers) return;
 
     markers.clearLayers();
-
-    activities.forEach((act) => {
-      const isSelected = selectedId === act.id;
-      const marker = L.circleMarker([act.lat, act.lng], {
+    for (const activity of activities) {
+      const isSelected = selectedId === activity.id;
+      const marker = L.circleMarker([activity.lat, activity.lng], {
         radius: isSelected ? 11 : 8,
         color: isSelected ? "#0f172a" : "#1d4ed8",
         weight: isSelected ? 3 : 2,
@@ -54,56 +38,33 @@ export default function ActivityMap({
         fillOpacity: 0.9,
       });
 
-      const tooltipText = `${act.icon} ${act.title}`;
-      marker.bindTooltip(tooltipText, {
+      marker.bindTooltip(`${activity.icon} ${activity.title}`, {
         permanent: false,
         direction: "top",
         className: "customMapTooltip",
         offset: [0, -10],
       });
-
-      marker.on("mouseover", () => {
+      marker.on("mouseover", () => marker.openTooltip());
+      marker.on("click", (event) => {
+        L.DomEvent.stopPropagation(event);
+        onSelect(activity.id);
         marker.openTooltip();
       });
-
-      marker.on("click", (e) => {
-        L.DomEvent.stopPropagation(e);
-        onSelect(act.id);
-        marker.openTooltip();
-      });
-
-      if (isSelected) {
-        setTimeout(() => {
-          marker.openTooltip();
-        }, 50);
-      }
-
+      if (isSelected) marker.openTooltip();
       marker.addTo(markers);
-    });
-
-    if (activities.length > 0 && !selectedId) {
-      const bounds = L.latLngBounds(activities.map(({ lat, lng }) => [lat, lng]));
-      const latDiff = Math.abs(bounds.getNorth() - bounds.getSouth());
-      const lngDiff = Math.abs(bounds.getEast() - bounds.getWest());
-
-      // Si los puntos corresponden a un departamento o zona local, hace un zoom cercano a la ciudad (maxZoom 13)
-      const isLocalArea = latDiff < 0.7 && lngDiff < 0.7;
-      const maxZoom = isLocalArea ? 13 : 8;
-
-      map.fitBounds(bounds, { padding: [35, 35], maxZoom });
     }
-  }, [activities, onSelect, selectedId]);
 
-  // Vuelo reactivo hacia la actividad seleccionada cuando el usuario la toca
+    const bounds = pointBounds(activities);
+    if (bounds && !selectedId) {
+      const isLocalArea = Math.abs(bounds.getNorth() - bounds.getSouth()) < LOCAL_AREA_DEGREES
+        && Math.abs(bounds.getEast() - bounds.getWest()) < LOCAL_AREA_DEGREES;
+      map.fitBounds(bounds, { padding: [35, 35], maxZoom: isLocalArea ? 13 : 8 });
+    }
+  }, [activities, mapRef, markersRef, onSelect, selectedId]);
+
   useEffect(() => {
-    const map = mapRef.current;
-    if (!map || !selectedId) return;
+    flyToPoint(mapRef.current, activities, selectedId, SELECTED_ZOOM);
+  }, [activities, mapRef, selectedId]);
 
-    const target = activities.find((a) => a.id === selectedId);
-    if (target) {
-      map.flyTo([target.lat, target.lng], 14, { duration: 1 });
-    }
-  }, [selectedId, activities]);
-
-  return <div ref={containerRef} className="activityMapContainer" aria-label="Mapa de actividades cercanas" />;
+  return <div ref={containerRef} className="activityMapContainer" role="region" aria-label="Mapa de actividades cercanas"/>;
 }

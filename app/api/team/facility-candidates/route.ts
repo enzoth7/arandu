@@ -5,11 +5,8 @@ import {
 } from "../../../../lib/elepem-data-source.mjs";
 import { validateCandidateReviewInput } from "../../../../lib/facility-candidate-review.mjs";
 import { querySupabaseDatabase, withSupabaseTransaction } from "../../../../lib/supabase-db";
-import {
-  hasSameOrigin,
-  readTeamSession,
-  TEAM_SESSION_COOKIE,
-} from "../../../../lib/team-session.mjs";
+import { hasSameOrigin } from "../../../../lib/team-session.mjs";
+import { teamSessionOrUnauthorized } from "../../../../lib/team-auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -44,10 +41,6 @@ class ApiError extends Error {
 function filterText(value: string | null, maximum: number) {
   const result = value?.trim() || "";
   return result.slice(0, maximum);
-}
-
-function sessionFrom(request: NextRequest) {
-  return readTeamSession(request.cookies.get(TEAM_SESSION_COOKIE)?.value);
 }
 
 function buildCandidateQuery(
@@ -167,13 +160,14 @@ function buildCandidateQuery(
 }
 
 export async function GET(request: NextRequest) {
-  const session = sessionFrom(request);
+  const { session, response: unauthorized } = teamSessionOrUnauthorized(request);
+  if (!session) return unauthorized;
   try {
     const dataSource = readElepemDataSource();
     const query = buildCandidateQuery(request, dataSource);
     const candidates = await querySupabaseDatabase(query.sql, query.values);
     return NextResponse.json(
-      { candidates, reviewer: session?.reviewer ?? null },
+      { candidates, reviewer: session.reviewer },
       {
         headers: {
           "Cache-Control": "no-store",
@@ -193,10 +187,8 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const session = sessionFrom(request);
-  if (!session) {
-    return NextResponse.json({ error: "No autorizado." }, { status: 401 });
-  }
+  const { session, response: unauthorized } = teamSessionOrUnauthorized(request);
+  if (!session) return unauthorized;
   if (!hasSameOrigin(request.url, request.headers.get("origin"))) {
     return NextResponse.json({ error: "Origen no autorizado." }, { status: 403 });
   }

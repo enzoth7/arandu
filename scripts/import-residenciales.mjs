@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import pg from "pg";
 
 const { Pool } = pg;
-const sourceUrl = new URL("../app/data/facilities.json", import.meta.url);
+const sourceUrl = new URL("../data/reference/facilities-seed.json", import.meta.url);
 const records = JSON.parse(await readFile(sourceUrl, "utf8"));
 
 if (!Array.isArray(records) || records.length === 0) {

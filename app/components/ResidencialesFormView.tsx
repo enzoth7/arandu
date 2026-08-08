@@ -4,9 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useResidenciales } from "../hooks/useResidenciales";
 import { usePrivateCandidateMapLayer } from "../hooks/usePrivateCandidateMapLayer";
-import { ArrowLeft, ArrowRight, Check, ExternalLink, HeartHandshake, Info, Printer, RotateCcw, Search, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ExternalLink, Info, Printer, RotateCcw, Search, X } from "lucide-react";
 
-import { canonicalDepartment, consolidateFacilities } from "./facility-presentation";
+import { consolidateFacilities } from "./facility-presentation";
+import { canonicalDepartment } from "../../lib/uruguay.mjs";
 
 type ActorType = "self" | "supporter" | "joint" | null;
 
@@ -142,7 +143,6 @@ export function ResidencialesFormView() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFacilityId, setSelectedFacilityId] = useState<string | null>(null);
   const [visitAnswers, setVisitAnswers] = useState<Record<string, "yes" | "no" | "unknown" | "ask">>({});
-  const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
 
   // Cargar estado guardado en la sesión
   useEffect(() => {

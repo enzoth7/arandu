@@ -3,122 +3,116 @@
 import { useEffect, useRef } from "react";
 import L from "leaflet";
 import {
-  canonicalDepartment,
+  flyToPoint,
+  pointBounds,
+  pointsKey,
+  URUGUAY_VIEW,
+  useLeafletMap,
+} from "../hooks/useLeafletMap";
+import {
   evidenceDescription,
   facilityDisplayCategory,
   facilityDisplayLabel,
   sourceCategoryLabels,
 } from "./facility-presentation";
+import { canonicalDepartment } from "../../lib/uruguay.mjs";
 import type { Facility } from "./map-types";
 
-const colors = {
-  habilitado: "#087443",
-  mides: "#d97706",
-  unconfirmed: "#64748b",
+const FIT_OPTIONS = { padding: [28, 28] as [number, number], maxZoom: 14 };
+const SELECTED_ZOOM = 16;
+
+/** Los colores viven en los tokens de `globals.css`; aquí se leen del tema. */
+const MARKER_COLOR_VARIABLES: Record<string, string> = {
+  habilitado: "--facility-habilitado",
+  mides: "--facility-mides",
+  unconfirmed: "--facility-unconfirmed",
 };
 
-function membershipBadges(facility: Facility) {
-  const category = facilityDisplayCategory(facility);
-  const tone = category === "habilitado" ? "green" : category === "mides" ? "amber" : "gray";
-  return [[facilityDisplayLabel(facility), tone]] as [string, string][];
+function themeColor(variable: string, fallback: string) {
+  if (typeof window === "undefined") return fallback;
+  const value = getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+  return value || fallback;
+}
+
+function markerColor(category: string) {
+  const fallbacks: Record<string, string> = {
+    habilitado: "#087443",
+    mides: "#d97706",
+    unconfirmed: "#64748b",
+  };
+  return themeColor(MARKER_COLOR_VARIABLES[category], fallbacks[category]);
+}
+
+function appendText(parent: HTMLElement, tag: string, text: string, className?: string) {
+  const node = document.createElement(tag);
+  node.textContent = text;
+  if (className) node.className = className;
+  parent.appendChild(node);
+  return node;
 }
 
 function createPopup(facility: Facility) {
   const popup = document.createElement("div");
   popup.className = "mapPopup";
 
-  const name = document.createElement("strong");
-  name.textContent = facility.name;
-  popup.appendChild(name);
-
-  const address = document.createElement("p");
-  address.textContent = facility.address;
-  popup.appendChild(address);
-
-  const location = document.createElement("p");
-  location.textContent = `${facility.locality} · ${canonicalDepartment(facility.department)}`;
-  popup.appendChild(location);
+  appendText(popup, "strong", facility.name);
+  appendText(popup, "p", facility.address);
+  appendText(popup, "p", `${facility.locality} · ${canonicalDepartment(facility.department)}`);
 
   const badges = document.createElement("div");
   badges.className = "facilityBadges mapPopupBadges";
-  for (const [label, tone] of membershipBadges(facility)) {
-    const badge = document.createElement("span");
-    badge.className = `sourceBadge sourceBadge-${tone}`;
-    badge.textContent = label;
-    badges.appendChild(badge);
-  }
+  const category = facilityDisplayCategory(facility);
+  const tone = category === "habilitado" ? "green" : category === "mides" ? "amber" : "gray";
+  appendText(badges, "span", facilityDisplayLabel(facility), `sourceBadge sourceBadge-${tone}`);
   popup.appendChild(badges);
 
-  const status = document.createElement("b");
-  status.textContent = `Estado en el mapa: ${facilityDisplayLabel(facility)}`;
-  popup.appendChild(status);
+  appendText(popup, "b", `Estado en el mapa: ${facilityDisplayLabel(facility)}`);
 
   const sourceCategories = sourceCategoryLabels(facility);
   if (sourceCategories.length) {
-    const provenance = document.createElement("p");
-    provenance.textContent = `Procedencia: ${sourceCategories.join(" · ")}`;
-    popup.appendChild(provenance);
+    appendText(popup, "p", `Procedencia: ${sourceCategories.join(" · ")}`);
   }
 
   if (facility.privateCandidate) {
-    const evidence = document.createElement("p");
-    evidence.textContent = `Evidencia ${facility.privateCandidateEvidenceTier || "C"}: ${evidenceDescription(facility.privateCandidateEvidenceTier)}`;
-    popup.appendChild(evidence);
+    const tier = facility.privateCandidateEvidenceTier || "C";
+    appendText(popup, "p", `Evidencia ${tier}: ${evidenceDescription(facility.privateCandidateEvidenceTier)}`);
   }
 
-  const source = document.createElement("small");
-  source.textContent = facility.sourceLabel;
-  popup.appendChild(source);
-
+  appendText(popup, "small", facility.sourceLabel);
   return popup;
 }
 
-export default function StreetMap({ facilities, selectedId, onSelect }: { facilities: Facility[]; selectedId: string | null; onSelect: (id: string) => void }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<L.Map | null>(null);
-  const markersRef = useRef<L.LayerGroup | null>(null);
-  const fittedFacilitiesRef = useRef("");
+export default function StreetMap({
+  facilities,
+  selectedId,
+  onSelect,
+}: {
+  facilities: Facility[];
+  selectedId: string | null;
+  onSelect: (id: string) => void;
+}) {
+  const { containerRef, mapRef, markersRef } = useLeafletMap(URUGUAY_VIEW);
+  const fittedKeyRef = useRef("");
   const previousSelectedIdRef = useRef<string | null>(null);
 
-  useEffect(() => {
-    if (!containerRef.current || mapRef.current) return;
-
-    const map = L.map(containerRef.current, { scrollWheelZoom: true }).setView([-32.8, -56], 6);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(map);
-
-    mapRef.current = map;
-    markersRef.current = L.layerGroup().addTo(map);
-
-    return () => {
-      map.remove();
-      mapRef.current = null;
-      markersRef.current = null;
-    };
-  }, []);
-
-  // Re-dibujar marcadores cuando cambia la lista de instalaciones
+  // Redibujar marcadores cuando cambia la lista o la selección.
   useEffect(() => {
     const map = mapRef.current;
     const markers = markersRef.current;
     if (!map || !markers) return;
 
     markers.clearLayers();
-    facilities.forEach((facility) => {
+    for (const facility of facilities) {
       const isSelected = selectedId === facility.id;
-      const displayCategory = facilityDisplayCategory(facility);
-      const requiresVerification = displayCategory === "unconfirmed";
+      const category = facilityDisplayCategory(facility);
       const marker = L.circleMarker([facility.lat, facility.lng], {
-        radius: isSelected ? 11 : requiresVerification ? 8 : 6,
+        radius: isSelected ? 11 : category === "unconfirmed" ? 8 : 6,
         color: isSelected ? "#155eef" : "#fff",
         weight: isSelected ? 3 : 2,
-        fillColor: colors[displayCategory],
+        fillColor: markerColor(category),
         fillOpacity: 0.92,
       });
-      marker.on("click", () => {
-        onSelect(facility.id);
-      });
+      marker.on("click", () => onSelect(facility.id));
       marker.bindTooltip(facility.name, {
         direction: "top",
         offset: [0, -7],
@@ -127,42 +121,33 @@ export default function StreetMap({ facilities, selectedId, onSelect }: { facili
       });
       marker.bindPopup(createPopup(facility));
       marker.addTo(markers);
-    });
-
-    // Ajustar límites solo en la carga inicial o al cambiar filtros
-    const facilitiesKey = facilities.map((facility) => facility.id).sort().join("|");
-    if (facilities.length && facilitiesKey !== fittedFacilitiesRef.current) {
-      fittedFacilitiesRef.current = facilitiesKey;
-      const bounds = L.latLngBounds(facilities.map(({ lat, lng }) => [lat, lng]));
-      map.fitBounds(bounds, { padding: [28, 28], maxZoom: 14 });
     }
-  }, [facilities, onSelect, selectedId]);
 
-  // Zoom in reactivo al seleccionar un residencial
+    // Encuadrar sólo en la carga inicial o al cambiar los filtros.
+    const key = pointsKey(facilities);
+    const bounds = pointBounds(facilities);
+    if (bounds && key !== fittedKeyRef.current) {
+      fittedKeyRef.current = key;
+      map.fitBounds(bounds, FIT_OPTIONS);
+    }
+  }, [facilities, mapRef, markersRef, onSelect, selectedId]);
+
+  // Acercar al residencial seleccionado.
   useEffect(() => {
-    const map = mapRef.current;
-    if (!map || !selectedId) return;
+    flyToPoint(mapRef.current, facilities, selectedId, SELECTED_ZOOM);
+  }, [facilities, mapRef, selectedId]);
 
-    const target = facilities.find((f) => f.id === selectedId);
-    if (target) {
-      map.flyTo([target.lat, target.lng], 16, { duration: 1 });
-    }
-  }, [selectedId, facilities]);
-
-  // Al quitar una selección, volver al encuadre general de los resultados.
+  // Al quitar la selección, volver al encuadre general de los resultados.
   useEffect(() => {
     const map = mapRef.current;
     const previousSelectedId = previousSelectedIdRef.current;
     previousSelectedIdRef.current = selectedId;
     if (!map || previousSelectedId === null || selectedId !== null) return;
 
-    if (facilities.length) {
-      const bounds = L.latLngBounds(facilities.map(({ lat, lng }) => [lat, lng]));
-      map.flyToBounds(bounds, { padding: [28, 28], maxZoom: 14, duration: 0.8 });
-    } else {
-      map.flyTo([-32.8, -56], 6, { duration: 0.8 });
-    }
-  }, [facilities, selectedId]);
+    const bounds = pointBounds(facilities);
+    if (bounds) map.flyToBounds(bounds, { ...FIT_OPTIONS, duration: 0.8 });
+    else map.flyTo(URUGUAY_VIEW.center, URUGUAY_VIEW.zoom, { duration: 0.8 });
+  }, [facilities, mapRef, selectedId]);
 
-  return <div ref={containerRef} className="leafletRegistryMap" aria-label="Mapa de residenciales"/>;
+  return <div ref={containerRef} className="leafletRegistryMap" role="region" aria-label="Mapa de residenciales"/>;
 }

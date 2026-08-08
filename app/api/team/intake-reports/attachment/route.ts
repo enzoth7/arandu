@@ -1,13 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { hasTeamSession, TEAM_SESSION_COOKIE } from "../../../../../lib/team-session.mjs";
+import { teamSessionOrUnauthorized } from "../../../../../lib/team-auth";
 import { querySupabaseDatabase } from "../../../../../lib/supabase-db";
 
 export const runtime = "nodejs";
 
 export async function GET(request: NextRequest) {
-  if (!hasTeamSession(request.cookies.get(TEAM_SESSION_COOKIE)?.value)) {
-    return NextResponse.json({ error: "No autorizado." }, { status: 401 });
-  }
+  const { session, response: unauthorized } = teamSessionOrUnauthorized(request);
+  if (!session) return unauthorized;
 
   const { searchParams } = new URL(request.url);
   const path = searchParams.get("path");

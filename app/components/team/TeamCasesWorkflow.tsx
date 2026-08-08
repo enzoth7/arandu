@@ -14,6 +14,7 @@ import {
   UsersRound,
   X,
 } from "lucide-react";
+import "./TeamCasesWorkflow.css";
 
 type WorkflowTab = "inbox" | "cases" | "tasks" | "dashboard" | "roles";
 type IntakeStatus =

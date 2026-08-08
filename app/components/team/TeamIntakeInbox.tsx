@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, AlertTriangle, ArrowRight, Building2, CheckCircle2, ChevronDown, ChevronUp, ClipboardCheck, ExternalLink, FileText, Filter, Globe, History, Inbox, Mail, MessageSquare, Paperclip, Phone, PlusCircle, RefreshCw, Save, ShieldAlert, ShieldCheck, UserPlus } from "lucide-react";
+import { AlertTriangle, ArrowRight, CheckCircle2, ChevronDown, ChevronUp, ClipboardCheck, ExternalLink, FileText, Filter, History, Inbox, Mail, Paperclip, Phone, PlusCircle, RefreshCw, Save, ShieldCheck, UserPlus } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import type { Facility } from "../map-types";
 
@@ -143,25 +143,6 @@ function fileSize(value: number): string {
   return value >= 1024 * 1024 ? `${(value / 1024 / 1024).toFixed(2)} MB` : `${Math.ceil(value / 1024)} KB`;
 }
 
-function getChannelInfo(channelStr: string): { label: string; icon: React.ReactNode } {
-  const ch = channelStr.toLowerCase();
-  if (ch.includes("llamada") || ch.includes("teléfono") || ch.includes("telefono")) {
-    return { label: "Llamada", icon: <Phone size={13} /> };
-  }
-  if (ch.includes("whatsapp") || ch.includes("sms")) {
-    return { label: "WhatsApp", icon: <MessageSquare size={13} /> };
-  }
-  if (ch.includes("presencial") || ch.includes("atención")) {
-    return { label: "Presencial", icon: <Building2 size={13} /> };
-  }
-  if (ch.includes("policía") || ch.includes("policia") || ch.includes("fiscalía") || ch.includes("fiscalia")) {
-    return { label: "Policía", icon: <ShieldAlert size={13} /> };
-  }
-  if (ch.includes("salud") || ch.includes("emergencia")) {
-    return { label: "Salud", icon: <Activity size={13} /> };
-  }
-  return { label: "Formulario web", icon: <Globe size={13} /> };
-}
 
 function getUrgencyBadgeStyle(urgency: string) {
   const u = urgency.toLowerCase();
@@ -259,7 +240,7 @@ export function TeamIntakeInbox({ initialFacility }: TeamIntakeInboxProps = {}) 
   }, [initialFacility]);
   const [entryNarrative, setEntryNarrative] = useState("");
   const [entryUrgency, setEntryUrgency] = useState<"Alta" | "Media" | "Baja">("Media");
-  const [entryPrivacy, setEntryPrivacy] = useState("Confidencial");
+  const [entryPrivacy] = useState("Confidencial");
   const [entryPhone, setEntryPhone] = useState("");
   const [entryEmail, setEntryEmail] = useState("");
   const [entrySubmitting, setEntrySubmitting] = useState(false);
@@ -319,6 +300,10 @@ export function TeamIntakeInbox({ initialFacility }: TeamIntakeInboxProps = {}) 
     if (selected) {
       setOpenEvidence(Array.isArray(selected.attachments) && selected.attachments.length > 0);
     }
+  // Sólo debe reaccionar al cambio de selección. `selected` se recalcula con
+  // .find() en cada render, así que incluirlo reiniciaría el formulario y
+  // borraría lo que la persona esté escribiendo.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected?.id]);
 
   const updateReview = (changes: Partial<IntakeReview>) => {
@@ -877,6 +862,7 @@ export function TeamIntakeInbox({ initialFacility }: TeamIntakeInboxProps = {}) 
                               {isImage && (
                                 <div style={{ marginTop: "8px" }}>
                                   <a href={attachmentUrl} target="_blank" rel="noopener noreferrer">
+                                    {/* eslint-disable-next-line @next/next/no-img-element -- URL de adjunto firmada en tiempo de ejecución; next/image no puede optimizarla */}
                                     <img
                                       src={attachmentUrl}
                                       alt={attachment.file_name}

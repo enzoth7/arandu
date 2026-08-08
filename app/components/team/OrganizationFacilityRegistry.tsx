@@ -1,43 +1,60 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { usePrivateCandidateMapLayer } from "../../hooks/usePrivateCandidateMapLayer";
 import type {
-  CandidateSourceCategory,
   PrivateCandidateSummary,
   PrivateQueueCandidate,
 } from "../../hooks/usePrivateCandidateMapLayer";
-import { canonicalDepartment } from "../facility-presentation";
+import { useResidenciales } from "../../hooks/useResidenciales";
+import {
+  candidateStatusLabel,
+  SOURCE_CATEGORY_LABELS,
+} from "../../../lib/facility-sources.mjs";
+import { canonicalDepartment, foldText } from "../../../lib/uruguay.mjs";
+import { consolidateFacilities, isVerificationFacility } from "../facility-presentation";
 import type { Facility } from "../map-types";
 import UruguayRegistry from "../UruguayRegistry";
 import "./OrganizationFacilityRegistry.css";
 
-const EMPTY_CANDIDATE_SUMMARY: PrivateCandidateSummary = {
-  total: 0,
-  needsReview: 0,
-  possibleMatch: 0,
-  verifiedNew: 0,
-  otherStatuses: 0,
-  mappedFromDatabase: 0,
-  mappedFromManualSources: 0,
-  visibleOnMap: 0,
-  unlocatedCandidates: [],
-  queueCandidates: [],
-};
+/**
+ * Registro del portal de organización: padrón público + capa privada de
+ * candidatos. Ambas fuentes se consolidan acá y bajan ya resueltas al registro,
+ * en lugar de que el hijo las empuje hacia arriba con callbacks.
+ */
+export function OrganizationFacilityRegistry({ initialFacilities = [] }: { initialFacilities?: Facility[] }) {
+  const { facilities: publicFacilities, loading, error } = useResidenciales(initialFacilities);
+  const {
+    facilities: privateFacilities,
+    summary: candidateSummary,
+    available: privateAvailable,
+    loading: privateLoading,
+    error: privateError,
+  } = usePrivateCandidateMapLayer();
 
-export function OrganizationFacilityRegistry() {
-  const [candidateSummary, setCandidateSummary] = useState<PrivateCandidateSummary>(EMPTY_CANDIDATE_SUMMARY);
-  const [legacyVerificationFacilities, setLegacyVerificationFacilities] = useState<Facility[]>([]);
-  const [verificationMapFacilities, setVerificationMapFacilities] = useState<Facility[]>([]);
-  const updateCandidateSummary = useCallback((summary: PrivateCandidateSummary) => {
-    setCandidateSummary(summary);
-  }, []);
+  const consolidated = useMemo(
+    () => consolidateFacilities([...publicFacilities, ...privateFacilities]),
+    [publicFacilities, privateFacilities],
+  );
+  const verificationMapFacilities = useMemo(
+    () => consolidated.filter(isVerificationFacility),
+    [consolidated],
+  );
+  const legacyVerificationFacilities = useMemo(
+    () => verificationMapFacilities.filter((facility) => !facility.privateCandidate),
+    [verificationMapFacilities],
+  );
+
   return (
     <section className="organizationRegistryWorkspace">
       <UruguayRegistry
-        candidateDisplay="all"
-        onCandidateSummary={updateCandidateSummary}
-        onLegacyVerificationFacilities={setLegacyVerificationFacilities}
-        onVerificationMapFacilities={setVerificationMapFacilities}
+        facilities={consolidated}
+        loading={loading}
+        error={error}
+        notices={<>
+          {privateAvailable && privateLoading && <div className="notice registryDataStatus" role="status">Actualizando residenciales a verificar…</div>}
+          {privateAvailable && privateError && <div className="notice registryDataStatus registryDataError" role="alert">{privateError}</div>}
+        </>}
       />
       {(candidateSummary.total > 0 || legacyVerificationFacilities.length > 0) && (
         <CandidateInventorySummary
@@ -127,9 +144,9 @@ function CandidateInventorySummary({
   )].sort((left, right) => left.localeCompare(right, "es")), [inventoryCandidates]);
 
   const filteredCandidates = useMemo(() => {
-    const normalizedQuery = normalize(query);
+    const normalizedQuery = foldText(query);
     return inventoryCandidates.filter((candidate) => {
-      const haystack = normalize(`${candidate.name} ${candidate.address || ""} ${candidate.locality} ${candidate.department}`);
+      const haystack = foldText(`${candidate.name} ${candidate.address || ""} ${candidate.locality} ${candidate.department}`);
       const matchesCoordinates = !coordinates
         || (coordinates === "mapped" ? candidate.hasCoordinates : !candidate.hasCoordinates);
       return (!normalizedQuery || haystack.includes(normalizedQuery))
@@ -207,23 +224,6 @@ function CandidateInventorySummary({
   );
 }
 
-function normalize(value: string) {
-  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es-UY");
-}
-
-const SOURCE_LABELS: Record<CandidateSourceCategory, string> = {
-  official: "Fuente oficial",
-  public_maps: "Mapas públicos",
-  social_public: "Redes sociales públicas",
-  other_public: "Webs y directorios públicos",
-};
-
-const STATUS_LABELS: Record<string, string> = {
-  needs_review: "Necesita revisión",
-  possible_match: "Posible coincidencia",
-  verified_new: "Nuevo verificado",
-};
-
 function CandidateInventoryRow({
   candidate,
   onViewMore,
@@ -290,9 +290,9 @@ function CandidateInventoryDialog({
         <div className="candidateDetailOverview">
           <DetailItem label="Dirección" value={candidate.address || "Sin dirección informada"} />
           <DetailItem label="Coordenadas" value={candidate.hasCoordinates ? coordinateText(candidate.details) : "Sin coordenadas claras"} />
-          <DetailItem label="Estado" value={STATUS_LABELS[candidate.status] || candidate.status || "Sin estado"} />
+          <DetailItem label="Estado" value={candidateStatusLabel(candidate.status, "Sin estado")} />
           <DetailItem label="Evidencia" value={`Nivel ${candidate.evidenceTier}`} />
-          <DetailItem label="Fuentes" value={candidate.sourceCategories.map((category) => SOURCE_LABELS[category]).join(", ")} />
+          <DetailItem label="Fuentes" value={candidate.sourceCategories.map((category) => SOURCE_CATEGORY_LABELS[category]).join(", ")} />
           <DetailItem label="Revisión humana" value={candidate.humanReviewed ? "Sí" : "No"} />
         </div>
 
