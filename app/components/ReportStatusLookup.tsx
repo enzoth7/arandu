@@ -69,7 +69,7 @@ export function ReportStatusLookup({ initialCode = "" }: { initialCode?: string 
 
     <form className="statusLookupForm" onSubmit={submit}>
       <label><span>Código de seguimiento</span><div><Search size={19}/><input value={code} onChange={(event) => setCode(event.target.value.toUpperCase())} placeholder="Ej.: AM-20260728-085F9FB4" autoComplete="off"/></div></label>
-      <button type="submit" disabled={loading}>{loading ? "Consultando…" : "Consultar estado"}</button>
+      <button type="submit" disabled={loading || !code.trim()}>{loading ? "Consultando…" : "Consultar estado"}</button>
     </form>
 
     {message && <div className="statusLookupMessage" role="alert">{message}</div>}

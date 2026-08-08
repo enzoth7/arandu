@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check, CheckCircle2, Copy, Mail, MapPin, Mic, Paperclip, Phone, ShieldAlert, Square, Trash2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { AlertTriangle, ArrowLeft, ArrowRight, Check, CheckCircle2, Copy, Mail, MapPin, Mic, Paperclip, Phone, ShieldAlert, Square, Trash2 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import type { Facility } from "./map-types";
 
 type IntakeDraft = {
@@ -90,6 +90,44 @@ const deptCoords: Record<string, [number, number]> = {
   "Tacuarembó": [-31.73, -55.98],
   "Treinta y Tres": [-33.23, -54.37],
 };
+
+type ErrorTarget = "concerns" | "location" | "identity" | "consent";
+type FieldError = { target: ErrorTarget; text: string };
+
+function RequiredMark() {
+  return <span className="requiredMark">(obligatorio)</span>;
+}
+
+function FieldGroup({
+  target,
+  error,
+  register,
+  children,
+}: {
+  target: ErrorTarget;
+  error: FieldError | null;
+  register: (target: ErrorTarget, node: HTMLDivElement | null) => void;
+  children: React.ReactNode;
+}) {
+  const invalid = error?.target === target;
+  return (
+    <div
+      className={invalid ? "reportFieldGroup hasError" : "reportFieldGroup"}
+      ref={(node) => register(target, node)}
+      tabIndex={-1}
+      aria-invalid={invalid || undefined}
+      aria-describedby={invalid ? `error-${target}` : undefined}
+    >
+      {children}
+      {invalid && (
+        <p className="reportFieldError" id={`error-${target}`}>
+          <AlertTriangle size={17} aria-hidden="true"/>
+          <span>{error.text}</span>
+        </p>
+      )}
+    </div>
+  );
+}
 
 function OptionGrid({ options, selected, onSelect, multiple = false }: { options: string[]; selected: string | string[]; onSelect: (value: string) => void; multiple?: boolean }) {
   const selectedValues = Array.isArray(selected) ? selected : [selected];
@@ -255,13 +293,14 @@ function AudioRecorder({ onAudioRecorded, onAudioCleared }: { onAudioRecorded: (
 
       {isRecording && (
         <div className="reportAudioAction isRecording">
-          <div className="reportMicPulse" />
-          <button type="button" className="reportStopButton" onClick={stopRecording} aria-label="Detener grabación">
-            <Square size={22} fill="currentColor" />
-          </button>
+          <span className="reportMicStage">
+            <span className="reportMicPulse" aria-hidden="true" />
+            <button type="button" className="reportStopButton" onClick={stopRecording} aria-label="Detener grabación">
+              <Square size={22} fill="currentColor" />
+            </button>
+          </span>
           <div className="reportRecordingStatus">
-            <span className="reportRecDot" />
-            <strong>Grabando… {formatSeconds(recordingTime)}</strong>
+            <strong><span className="reportRecDot" aria-hidden="true" />Grabando… {formatSeconds(recordingTime)}</strong>
             <small>Tocá el cuadrado para finalizar</small>
           </div>
         </div>
@@ -309,7 +348,9 @@ export function IntakeReportForm({
     narrative: initialNarrative,
   }));
   const [consent, setConsent] = useState(false);
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState<FieldError | null>(null);
+  const [formMessage, setFormMessage] = useState("");
+  const errorAnchors = useRef<Partial<Record<ErrorTarget, HTMLDivElement | null>>>({});
   const [submitting, setSubmitting] = useState(false);
   const [caseCode, setCaseCode] = useState("");
   const [files, setFiles] = useState<File[]>([]);
@@ -400,7 +441,7 @@ export function IntakeReportForm({
     setShowAddressSuggestions(false);
   };
 
-  const validate = (): boolean => {
+  const validate = (): FieldError | null => {
     // Validación Paso 1
     if (step === 1) {
       const hasConcern = draft.concerns.length > 0;
@@ -408,13 +449,11 @@ export function IntakeReportForm({
       const isUnclassified = draft.concerns.includes("No sé cómo clasificarlo");
 
       if (!hasConcern && !hasNarrative) {
-        setMessage("Elegí al menos una preocupación o contá brevemente qué está pasando.");
-        return false;
+        return { target: "concerns", text: "Elegí al menos una preocupación o contá brevemente qué está pasando." };
       }
 
       if (isUnclassified && !hasNarrative) {
-        setMessage("Al elegir 'No sé cómo clasificarlo', escribí una breve explicación de lo que ocurre.");
-        return false;
+        return { target: "concerns", text: "Al elegir 'No sé cómo clasificarlo', escribí una breve explicación de lo que ocurre." };
       }
     }
 
@@ -434,40 +473,49 @@ export function IntakeReportForm({
         (isUnknownAddr && hasAnyRef);
 
       if (!isValidLocation) {
-        setMessage("Indicá una dirección o referencia, o especificá departamento y ciudad/barrio para ubicar el lugar.");
-        return false;
+        return { target: "location", text: "Indicá una dirección o referencia, o especificá departamento y ciudad/barrio para ubicar el lugar." };
       }
     }
 
     if (step === 3 && (!draft.privacy || !draft.reporter)) {
-      setMessage("Completá la privacidad y quién comunica la situación.");
-      return false;
+      return { target: "identity", text: "Completá la privacidad y quién comunica la situación." };
     }
     if (step === 3 && draft.contactEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(draft.contactEmail.trim())) {
-      setMessage("Revisá el formato del correo electrónico.");
-      return false;
+      return { target: "identity", text: "Revisá el formato del correo electrónico." };
     }
     if (step === 3 && draft.contactPhone.trim() && !/^[+()0-9\s.-]{6,24}$/.test(draft.contactPhone.trim())) {
-      setMessage("Revisá el número de celular. Puede incluir prefijo, espacios, guiones y paréntesis.");
-      return false;
+      return { target: "identity", text: "Revisá el número de celular. Puede incluir prefijo, espacios, guiones y paréntesis." };
     }
     if (step === 4 && !consent) {
-      setMessage("Confirmá que este ejercicio se guardará sólo para la demostración.");
-      return false;
+      return { target: "consent", text: "Confirmá que este ejercicio se guardará sólo para la demostración." };
     }
-    setMessage("");
-    return true;
+    return null;
+  };
+
+  const registerAnchor = (target: ErrorTarget, node: HTMLDivElement | null) => {
+    errorAnchors.current[target] = node;
+  };
+
+  const showError = (failure: FieldError) => {
+    setError(failure);
+    const anchor = errorAnchors.current[failure.target];
+    anchor?.scrollIntoView({ behavior: "smooth", block: "center" });
+    anchor?.focus({ preventScroll: true });
   };
 
   const advance = () => {
-    if (!validate()) return;
+    const failure = validate();
+    if (failure) return showError(failure);
+    setError(null);
     if (step < 4) setStep((current) => current + 1);
   };
 
   const submit = async () => {
-    if (!validate()) return;
+    const failure = validate();
+    if (failure) return showError(failure);
+    setError(null);
     setSubmitting(true);
-    setMessage("");
+    setFormMessage("");
     try {
       const response = await fetch("/api/intake-reports", {
         method: "POST",
@@ -534,7 +582,7 @@ export function IntakeReportForm({
         setAttachmentState(uploaded === files.length ? "complete" : "partial");
       }
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "No se pudo guardar la comunicación. Intentá nuevamente.");
+      setFormMessage(error instanceof Error ? error.message : "No se pudo guardar la comunicación. Intentá nuevamente.");
     } finally {
       setSubmitting(false);
     }
@@ -557,11 +605,11 @@ export function IntakeReportForm({
     const merged = [...files, ...allowed].slice(0, 5);
     setFiles(merged);
     if (Array.from(nextFiles).some((file) => file.size > 10 * 1024 * 1024)) {
-      setMessage("Cada archivo puede pesar hasta 10 MB. Los archivos más grandes no se agregaron.");
+      setFormMessage("Cada archivo puede pesar hasta 10 MB. Los archivos más grandes no se agregaron.");
     } else if (files.length + nextFiles.length > 5) {
-      setMessage("Podés adjuntar hasta 5 archivos.");
+      setFormMessage("Podés adjuntar hasta 5 archivos.");
     } else {
-      setMessage("");
+      setFormMessage("");
     }
   };
 
@@ -643,7 +691,8 @@ export function IntakeReportForm({
         </div>
         <h3 className="reportSubheading">Ámbito</h3>
         <OptionGrid options={places} selected={draft.setting} onSelect={(value) => update("setting", value)} />
-        <h3 className="reportSubheading">Preocupación</h3>
+        <FieldGroup target="concerns" error={error} register={registerAnchor}>
+        <h3 className="reportSubheading">Preocupación <RequiredMark/></h3>
         <OptionGrid options={concerns} selected={draft.concerns} onSelect={toggleConcern} multiple />
         <div className="reportNarrativeColumns">
           <label className="reportField">
@@ -663,9 +712,10 @@ export function IntakeReportForm({
             }}
           />
         </div>
+        </FieldGroup>
 
         {/* Imágenes o pruebas adjuntas en el Paso 1 */}
-        <div className="reportAttachments" style={{marginTop: "20px"}}>
+        <div className="reportAttachments">
           <div className="reportAttachmentsHeading">
             <span><Paperclip size={18}/></span>
             <div>
@@ -693,6 +743,7 @@ export function IntakeReportForm({
       </>}
 
       {step === 2 && <>
+        <FieldGroup target="location" error={error} register={registerAnchor}>
         <p className="reportStageHelp">Brindá datos suficientes para localizar el lugar. No es necesario completar todos los campos si indicás una dirección clara o referencia.</p>
         
         {/* 1. Dirección o referencia PRIMERO */}
@@ -760,9 +811,11 @@ export function IntakeReportForm({
             doorNumber={draft.doorNumber}
           />
         )}
+        </FieldGroup>
       </>}
 
       {step === 3 && <>
+        <FieldGroup target="identity" error={error} register={registerAnchor}>
         {/* 1. Selección de Privacidad y bajada explicativa */}
         <h3 className="reportSubheading">¿Cómo querés que manejemos tus datos?</h3>
         <p style={{margin: "-6px 0 14px", color: "#5c6e82", fontSize: "0.86rem", lineHeight: "1.45"}}>
@@ -888,9 +941,11 @@ export function IntakeReportForm({
             </label>
           </>
         )}
+        </FieldGroup>
       </>}
 
       {step === 4 && <>
+        <FieldGroup target="consent" error={error} register={registerAnchor}>
         <div className="reportSummary">
           <div><strong>Situación</strong><span>{draft.setting || "No indicada"}</span></div>
           <div><strong>Preocupación</strong><span>{draft.concerns.join(" · ") || "No indicada"}</span></div>
@@ -957,11 +1012,12 @@ export function IntakeReportForm({
           </div>
         )}
         <label className="reportCheckbox reportConsent"><input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} /><span>Entiendo que esto es una demostración: se guardará en la base de datos para que el equipo lo vea, pero no se enviará a ningún organismo.</span></label>
+        </FieldGroup>
       </>}
 
-      {message && <div className="reportValidation" role="alert">{message}</div>}
+      {formMessage && <div className="reportValidation" role="alert">{formMessage}</div>}
     </div>
 
-    <footer className="reportActions"><button className="reportBack" type="button" disabled={step === 1 || submitting} onClick={() => { setMessage(""); setStep((current) => current - 1); }}><ArrowLeft size={17}/> Volver</button><span>Paso {step} de 4</span>{step < 4 ? <button className="reportContinue" type="button" onClick={advance}>Continuar <ArrowRight size={17}/></button> : <button className="reportContinue" type="button" disabled={submitting} onClick={submit}>{submitting ? "Guardando…" : "Guardar y enviar al equipo"}<ArrowRight size={17}/></button>}</footer>
+    <footer className="reportActions"><button className="reportBack" type="button" disabled={step === 1 || submitting} onClick={() => { setFormMessage(""); setStep((current) => current - 1); }}><ArrowLeft size={17}/> Volver</button><span>Paso {step} de 4</span>{step < 4 ? <button className="reportContinue" type="button" onClick={advance}>Continuar <ArrowRight size={17}/></button> : <button className="reportContinue" type="button" disabled={submitting} onClick={submit}>{submitting ? "Guardando…" : "Guardar y enviar al equipo"}<ArrowRight size={17}/></button>}</footer>
   </section>;
 }

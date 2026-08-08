@@ -110,7 +110,7 @@ function SourceAccordion({
       <span>{title}</span>
       <ChevronDown className="accordionChevron" size={20}/>
     </button>
-    <div className="accordionBody"><div className="accordionContent">{children}</div></div>
+    <div className="accordionBody"><div className="accordionContent"><div className="accordionInner">{children}</div></div></div>
   </div>;
 }
 
