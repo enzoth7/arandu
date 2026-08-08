@@ -12,6 +12,8 @@ import {
 } from "./facility-presentation";
 import { canonicalDepartment } from "../../lib/uruguay.mjs";
 import { useFacilityFilters } from "../hooks/useFacilityFilters";
+import { useFacilityComparison } from "../hooks/useFacilityComparison";
+import { FacilityComparison } from "./FacilityComparison";
 import type { SortOrder } from "../../lib/facility-search.mjs";
 import type { Facility, FacilityStatus } from "./map-types";
 
@@ -66,6 +68,7 @@ export default function UruguayRegistry({
     reset,
   } = useFacilityFilters(facilities);
 
+  const comparison = useFacilityComparison(facilities);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [detailId, setDetailId] = useState<string | null>(null);
   const [activeKpiHelp, setActiveKpiHelp] = useState<string | null>(null);
@@ -201,6 +204,22 @@ export default function UruguayRegistry({
             </label>
           )}
 
+          {/* Acordados con producto: quedan a la vista aunque todavía no haya
+              datos, deshabilitados para que se lea «falta el dato» y no «está roto». */}
+          <label>
+            <b>Tipo de habitación</b>
+            <select disabled aria-describedby="registryPendingFilters">
+              <option>Sin información por ahora</option>
+            </select>
+          </label>
+
+          <label>
+            <b>Rango de precio</b>
+            <select disabled aria-describedby="registryPendingFilters">
+              <option>Sin información por ahora</option>
+            </select>
+          </label>
+
           <label>
             <b>Ordenar por</b>
             <select value={sortOrder} onChange={(event) => setSortOrder(event.target.value as SortOrder)}>
@@ -209,6 +228,9 @@ export default function UruguayRegistry({
               ))}
             </select>
           </label>
+          <p className="registryFilterNote" id="registryPendingFilters">
+            Tipo de habitación y rango de precio todavía no están relevados: quedan visibles para cuando exista la información.
+          </p>
           <p className="registryFilterNote">
             El orden es alfabético o por la etapa administrativa que consta en las fuentes. No hay puntajes, estrellas ni posiciones pagas.
           </p>
@@ -225,12 +247,33 @@ export default function UruguayRegistry({
           {visibleOfficialCount} con situación institucional localizada
           {visibleVerificationCount > 0 ? ` · ${visibleVerificationCount} sin información vigente en las fuentes consultadas` : ""}
         </p>
+        {comparison.selectedIds.length > 0 && (
+          <div className="comparisonBar" role="status">
+            <p>
+              {comparison.selectedIds.length === 1
+                ? `1 ELEPEM elegido · elegí ${comparison.minimum - 1} más para comparar`
+                : `${comparison.selectedIds.length} ELEPEM elegidos`}
+            </p>
+            <div className="comparisonBarActions">
+              <button type="button" className="reportBack" onClick={comparison.clear}>Quitar</button>
+              <button
+                type="button"
+                className="reportContinue"
+                disabled={!comparison.canCompare}
+                onClick={comparison.open}
+              >Comparar</button>
+            </div>
+          </div>
+        )}
         <div className="registryResultsScroll">
           {visible.map((facility) => (
             <FacilityAccordionCard
               facility={facility}
               isSelected={selected?.id === facility.id}
               onSelect={setSelectedId}
+              isCompared={comparison.isSelected(facility.id)}
+              canCompareMore={!comparison.atLimit}
+              onToggleCompare={comparison.toggle}
               onViewMore={(selectedFacility) => {
                 setSelectedId(selectedFacility.id);
                 setDetailId(selectedFacility.id);
@@ -252,6 +295,11 @@ export default function UruguayRegistry({
       </aside>
     </div>
 
+    <FacilityComparison
+      facilities={comparison.selected}
+      open={comparison.isOpen}
+      onClose={comparison.close}
+    />
   </>;
 }
 
@@ -317,11 +365,17 @@ function FacilityAccordionCard({
   isSelected,
   onSelect,
   onViewMore,
+  isCompared,
+  canCompareMore,
+  onToggleCompare,
 }: {
   facility: Facility;
   isSelected: boolean;
   onSelect: (id: string) => void;
   onViewMore: (facility: Facility) => void;
+  isCompared: boolean;
+  canCompareMore: boolean;
+  onToggleCompare: (id: string) => void;
 }) {
   const [isOpen, setIsOpen] = useState(isSelected);
   const cardRef = useRef<HTMLElement | null>(null);
@@ -359,6 +413,15 @@ function FacilityAccordionCard({
           {facility.address && <p className="facilityAddress"><strong>Dirección:</strong> {facility.address}</p>}
           <div className="facilityAccordionActions">
             <button type="button" className="reportContinue facilityViewMoreBtn" onClick={() => onViewMore(facility)}>Ver más</button>
+            <label className="facilityCompareToggle">
+              <input
+                type="checkbox"
+                checked={isCompared}
+                disabled={!isCompared && !canCompareMore}
+                onChange={() => onToggleCompare(facility.id)}
+              />
+              <span>Comparar</span>
+            </label>
           </div>
         </div>
       )}

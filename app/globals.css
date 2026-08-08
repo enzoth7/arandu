@@ -6615,3 +6615,135 @@ textarea {
 .registryEmptyResults strong {
   color: var(--text);
 }
+
+/* Texto sólo para lectores de pantalla (por ejemplo el <caption> de la tabla). */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Comparación de ELEPEM
+   ========================================================================== */
+.facilityCompareToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.facilityCompareToggle:has(input:disabled) {
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.facilityCompareToggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--blue);
+}
+
+.comparisonBar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bluebg);
+}
+
+.comparisonBar p {
+  margin: 0;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.comparisonBarActions {
+  display: flex;
+  gap: 8px;
+}
+
+.comparisonDialog {
+  width: min(960px, calc(100vw - 32px));
+}
+
+.comparisonHeader h2 {
+  margin: 0 0 6px;
+}
+
+.comparisonHeader p {
+  margin: 0 0 18px;
+  color: var(--muted);
+}
+
+/* En pantallas angostas la tabla se desplaza en lugar de comprimir el texto. */
+.comparisonTableScroll {
+  overflow-x: auto;
+}
+
+.comparisonTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.comparisonTable th,
+.comparisonTable td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.comparisonTable thead th {
+  border-bottom: 2px solid var(--line);
+  background: var(--surface2);
+}
+
+.comparisonTable tbody th {
+  width: 30%;
+  min-width: 150px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.comparisonFacilityName {
+  display: block;
+  color: var(--navy);
+  font-size: 1rem;
+}
+
+.comparisonTable thead small {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.comparisonMissing {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.comparisonNote {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: .86rem;
+  line-height: 1.45;
+}
