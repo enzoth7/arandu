@@ -115,31 +115,31 @@ export default function UruguayRegistry({
   return <>
     <section className="card registryIntro">
       <div className="registryIntroCopy">
-        <h1>Encontrá un residencial</h1>
-        <p className="lead">Buscá por nombre o ubicación y consultá su situación administrativa.</p>
+        <h1>Encontrá información sobre establecimientos de larga estadía</h1>
+        <p className="lead">Buscá, compará y consultá información sobre ELEPEM en Uruguay: los establecimientos de larga estadía donde viven personas mayores.</p>
       </div>
-      {loading && <div className="notice registryDataStatus" role="status">Cargando residenciales…</div>}
+      {loading && <div className="notice registryDataStatus" role="status">Cargando ELEPEM…</div>}
       {error && <div className="notice registryDataStatus registryDataError" role="alert">{error}</div>}
       {notices}
       <div className="registryQuickSummary" aria-label="Resumen y filtros rápidos">
-        <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-blue ${!status ? "selected" : ""}`} help="Total consolidado de residenciales." helpId="all" label="Todos" onActivate={() => setStatus("")} onToggleHelp={setActiveKpiHelp} value={summaryKpiScope.length} />
-        <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-green ${status === "habilitado" ? "selected" : ""}`} help="Establecimientos habilitados a junio 2026" helpId="msp-final" label="Habilitados MSP" onActivate={() => setStatus(status === "habilitado" ? "" : "habilitado")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.habilitado} />
+        <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-blue ${!status ? "selected" : ""}`} help="Total consolidado de ELEPEM." helpId="all" label="Todos" onActivate={() => setStatus("")} onToggleHelp={setActiveKpiHelp} value={summaryKpiScope.length} />
+        <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-green ${status === "habilitado" ? "selected" : ""}`} help="Establecimientos con habilitación final del MSP a junio de 2026." helpId="msp-final" label="Habilitados MSP" onActivate={() => setStatus(status === "habilitado" ? "" : "habilitado")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.habilitado} />
         <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-amber ${status === "mides" ? "selected" : ""}`} help="Establecimientos que se encuentran en proceso de habilitación (definido por el Decreto 356/016) y que obtuvieron el certificado social por parte del Mides." helpId="mides" label="Certificados Social MIDES" onActivate={() => setStatus(status === "mides" ? "" : "mides")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.mides} />
         <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-gray ${status === "verificar" ? "selected" : ""}`} help="No figuran ni como habilitados ni como certificados." helpId="unconfirmed" label="Situación no confirmada" onActivate={() => setStatus(status === "verificar" ? "" : "verificar")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.unconfirmed} />
       </div>
       <p className="registryOverlapNote">
-        Algunos residenciales están incluidos tanto en la lista de <strong> Habilitados como en la de Certificados.</strong>
+        Algunos ELEPEM están incluidos tanto en la lista de <strong> Habilitados como en la de Certificados.</strong>
       </p>
       <div className="registrySearchHeaderRow">
         <div className="registrySearchFirst">
           <label className="searchField">
-            <b>¿Qué residencial estás buscando?</b>
+            <b>Buscar por nombre, localidad o departamento</b>
             <div className="registrySearchBox">
               <Search size={26} />
               <input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Escribí un nombre, una calle o una localidad"
+                placeholder="Escribí un nombre, una localidad o un departamento"
               />
             </div>
           </label>
@@ -151,7 +151,7 @@ export default function UruguayRegistry({
               <strong>La persona decide</strong>
               <p>Usá el mapa para identificar opciones y preparar preguntas; no para reemplazar la voluntad de quien va a vivir allí.</p>
             </div>
-            <Link href="/personas/residenciales/form" className="btnTurquoisePrimary inlineBtn">
+            <Link href="/guia" className="btnTurquoisePrimary inlineBtn">
               Preparar mi elección
             </Link>
           </div>
@@ -160,7 +160,7 @@ export default function UruguayRegistry({
     </section>
 
     <div className="registryMapLayout">
-      <aside className="card registryFiltersPanel" aria-label="Filtros del mapa">
+      <aside className="card registryFiltersPanel" aria-label="Filtros de resultados">
         <div className="registryFiltersHeading">
           <div><span>Filtrar resultados</span><small>Elegí una o más opciones</small></div>
           <button
@@ -186,7 +186,7 @@ export default function UruguayRegistry({
       </div>
 
       <aside className="card registryResults">
-        <div className="resultsHead"><h2>Residenciales encontrados</h2><output className="resultCount">{visible.length}</output></div>
+        <div className="resultsHead"><h2>ELEPEM encontrados</h2><output className="resultCount">{visible.length}</output></div>
         <p className="resultsMeta">{visibleOfficialCount} habilitados o certificados{visibleVerificationCount > 0 ? ` + ${visibleVerificationCount} con situación no confirmada` : ""}</p>
         <div className="registryResultsScroll">
           {orderedResults.map((facility) => (

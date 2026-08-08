@@ -149,5 +149,5 @@ export default function StreetMap({
     else map.flyTo(URUGUAY_VIEW.center, URUGUAY_VIEW.zoom, { duration: 0.8 });
   }, [facilities, mapRef, selectedId]);
 
-  return <div ref={containerRef} className="leafletRegistryMap" role="region" aria-label="Mapa de residenciales"/>;
+  return <div ref={containerRef} className="leafletRegistryMap" role="region" aria-label="Mapa de ELEPEM"/>;
 }

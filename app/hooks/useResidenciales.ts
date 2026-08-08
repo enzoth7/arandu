@@ -37,18 +37,18 @@ export function useResidenciales(initialFacilities: Facility[] = []) {
         try {
           data = await response.json() as ResidencialesResponse;
         } catch {
-          throw new Error("No se pudo cargar el registro de residenciales.");
+          throw new Error("No se pudo cargar el listado de ELEPEM.");
         }
 
         if (!response.ok || !Array.isArray(data.facilities)) {
-          throw new Error(data.error || "No se pudo cargar el registro.");
+          throw new Error(data.error || "No se pudo cargar el listado de ELEPEM.");
         }
 
         setFacilities(data.facilities);
         setError("");
       } catch (loadError) {
         if (controller.signal.aborted) return;
-        setError(loadError instanceof Error ? loadError.message : "No se pudo cargar el registro.");
+        setError(loadError instanceof Error ? loadError.message : "No se pudo cargar el listado de ELEPEM.");
       } finally {
         if (!controller.signal.aborted) setLoading(false);
       }

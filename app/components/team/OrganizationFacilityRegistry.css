@@ -411,32 +411,14 @@
 }
 
 .candidateInventoryViewMore:focus-visible,
-.candidateDetailClose:focus-visible {
-  outline: 3px solid #ffbf47;
-  outline-offset: 2px;
-}
-
-.candidateDetailBackdrop {
-  position: fixed;
-  z-index: 3000;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  background: rgba(8, 25, 47, .48);
-}
-
 .candidateDetailDialog {
-  width: min(820px, 100%);
+  width: min(820px, calc(100vw - 40px));
   max-height: min(88vh, 920px);
-  overflow-y: auto;
   border: 1px solid #cddbe9;
   border-radius: 22px;
-  background: #fff;
-  box-shadow: 0 24px 70px rgba(4, 20, 40, .3);
 }
 
-.candidateDetailDialog > header {
+.candidateDetailDialog header {
   position: sticky;
   z-index: 1;
   top: 0;
@@ -449,7 +431,7 @@
   background: #f7faff;
 }
 
-.candidateDetailDialog > header span {
+.candidateDetailDialog header span {
   color: #1764d8;
   font-size: .74rem;
   font-weight: 900;
@@ -457,26 +439,13 @@
   text-transform: uppercase;
 }
 
-.candidateDetailDialog > header h2 {
+.candidateDetailDialog header h2 {
   margin: 5px 0 4px;
   font-size: clamp(1.35rem, 3vw, 1.85rem);
 }
 
-.candidateDetailDialog > header p {
+.candidateDetailDialog header p {
   margin: 0;
-}
-
-.candidateDetailClose {
-  flex: 0 0 42px;
-  width: 42px;
-  height: 42px;
-  border: 1px solid #cbd9e7;
-  border-radius: 50%;
-  background: #fff;
-  color: #17365d;
-  font-size: 1.6rem;
-  line-height: 1;
-  cursor: pointer;
 }
 
 .candidateDetailOverview {
@@ -731,16 +700,13 @@
     width: 100%;
   }
 
-  .candidateDetailBackdrop {
-    padding: 10px;
-  }
 
   .candidateDetailDialog {
     max-height: 94vh;
     border-radius: 16px;
   }
 
-  .candidateDetailDialog > header,
+  .candidateDetailDialog header,
   .candidateDetailOverview,
   .candidateDetailDatabase {
     padding-left: 17px;

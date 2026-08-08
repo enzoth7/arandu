@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { ResidencialesFormView } from "../../../components/ResidencialesFormView";
+import { ResidencialesFormView } from "../../components/ResidencialesFormView";
 
 export const metadata: Metadata = {
-  title: "Preparar mi elección",
+  title: "Cómo elegir",
   description: "Una guía paso a paso para ordenar preferencias, comparar residenciales y preparar las visitas.",
 };
 

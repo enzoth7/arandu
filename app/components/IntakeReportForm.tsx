@@ -586,7 +586,7 @@ export function IntakeReportForm({
     
     <div className="reportSuccessSingleAction" style={{display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap", marginTop: "24px"}}>
       {caseCode && (
-        <Link className="reportBack" href={`/personas/seguimiento?codigo=${encodeURIComponent(caseCode)}`}>
+        <Link className="reportBack" href={`/seguimiento?codigo=${encodeURIComponent(caseCode)}`}>
           Consultar el estado ahora
         </Link>
       )}

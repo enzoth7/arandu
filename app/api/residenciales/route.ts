@@ -21,7 +21,7 @@ export async function GET() {
       message: error instanceof Error ? error.message : "Unknown error",
     });
     return NextResponse.json(
-      { error: "No se pudo cargar el registro de residenciales." },
+      { error: "No se pudo cargar el listado de ELEPEM." },
       { status: 503 },
     );
   }

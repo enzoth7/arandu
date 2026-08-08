@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { usePrivateCandidateMapLayer } from "../../hooks/usePrivateCandidateMapLayer";
 import type {
   PrivateCandidateSummary,
@@ -14,6 +14,7 @@ import {
 import { canonicalDepartment, foldText } from "../../../lib/uruguay.mjs";
 import { consolidateFacilities, isVerificationFacility } from "../facility-presentation";
 import type { Facility } from "../map-types";
+import { Modal } from "../Modal";
 import UruguayRegistry from "../UruguayRegistry";
 import "./OrganizationFacilityRegistry.css";
 
@@ -257,34 +258,21 @@ function CandidateInventoryDialog({
   candidate: PrivateQueueCandidate;
   onClose: () => void;
 }) {
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [onClose]);
-
   const detailEntries = Object.entries(candidate.details)
     .filter(([, value]) => value !== null && value !== undefined && value !== "")
     .sort(([left], [right]) => left.localeCompare(right, "es"));
 
+  // <Modal> usa el <dialog> nativo: la trampa de foco, Escape, el backdrop y la
+  // devolución del foco al disparador los resuelve el navegador.
   return (
-    <div className="candidateDetailBackdrop" role="presentation" onMouseDown={onClose}>
-      <section
-        aria-labelledby="candidate-detail-title"
-        aria-modal="true"
-        className="candidateDetailDialog"
-        onMouseDown={(event) => event.stopPropagation()}
-        role="dialog"
-      >
+    <Modal open onClose={onClose} className="candidateDetailDialog" labelledBy="candidate-detail-title">
+      <>
         <header>
           <div>
             <span>Información completa del registro</span>
             <h2 id="candidate-detail-title">{candidate.name}</h2>
             <p>{candidate.locality} · {candidate.department}</p>
           </div>
-          <button aria-label="Cerrar detalle" className="candidateDetailClose" onClick={onClose} type="button">×</button>
         </header>
 
         <div className="candidateDetailOverview">
@@ -307,8 +295,8 @@ function CandidateInventoryDialog({
             ))}
           </dl>
         </section>
-      </section>
-    </div>
+      </>
+    </Modal>
   );
 }
 

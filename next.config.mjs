@@ -62,6 +62,23 @@ const nextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  // Rutas anteriores a la reestructuración hacia ELEPEM. Se resuelven acá y no
+  // con páginas de redirección: no cargan React ni suman nada al bundle.
+  async redirects() {
+    const permanent = true;
+    return [
+      { source: "/personas", destination: "/", permanent },
+      { source: "/personas/residenciales", destination: "/", permanent },
+      { source: "/personas/residenciales/form", destination: "/guia", permanent },
+      { source: "/personas/denuncia", destination: "/preocupacion", permanent },
+      { source: "/personas/seguimiento", destination: "/seguimiento", permanent },
+      { source: "/personas/fuentes", destination: "/fuentes", permanent },
+      // La agenda de actividades sale del producto público.
+      { source: "/personas/actividades", destination: "/", permanent },
+      { source: "/residenciales", destination: "/", permanent },
+      { source: "/login", destination: "/organizacion/login", permanent },
+    ];
+  },
 };
 
 export default nextConfig;

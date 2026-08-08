@@ -250,8 +250,8 @@ export function ResidencialesFormView() {
     <div className="formViewContainer">
       {/* Barra Superior de Retorno */}
       <div className="formViewTopBar">
-        <Link href="/personas/residenciales" className="formViewBackLink">
-          <ArrowLeft size={18} /> Volver a Residenciales
+        <Link href="/" className="formViewBackLink">
+          <ArrowLeft size={18} /> Volver a la búsqueda de ELEPEM
         </Link>
       </div>
 

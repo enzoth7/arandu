@@ -130,7 +130,7 @@ export async function loadPublicFacilitiesOrEmpty(): Promise<Facility[]> {
   try {
     return (await loadPublicFacilities()).facilities;
   } catch (error) {
-    console.error("No se pudo precargar el padrón en el servidor.", {
+    console.error("No se pudo precargar el listado de ELEPEM en el servidor.", {
       message: error instanceof Error ? error.message : "Unknown error",
     });
     return [];

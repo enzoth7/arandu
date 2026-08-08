@@ -4,14 +4,21 @@ import { useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LogOut, Menu, ShieldAlert } from "lucide-react";
-import { ACCESS_SESSION_KEY, navItemsFor, pathFor, type Portal } from "./navigation";
+import { Building2, LogOut, Menu, ShieldAlert } from "lucide-react";
+import {
+  homeFor,
+  navItemsFor,
+  ORGANIZATION_LOGIN,
+  pathFor,
+  type Portal,
+} from "./navigation";
 
-// Cabecera y marco compartidos por los dos portales.
+// Cabecera compartida por el producto público y el portal de organización.
 //
-// La navegación usa <Link> y no botones con router.push: son enlaces reales, así
-// que funcionan con clic central, "abrir en pestaña nueva" y lectores de
-// pantalla, y Next puede precargarlos.
+// La navegación usa <Link>: son enlaces reales, así que funcionan con clic
+// central, «abrir en pestaña nueva» y lectores de pantalla, y Next los precarga.
+// El público no tiene sesión, así que no muestra «Salir»; en su lugar ofrece un
+// acceso institucional discreto.
 
 export function PortalChrome({ portal, children }: { portal: Portal; children: ReactNode }) {
   const router = useRouter();
@@ -19,32 +26,25 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
   const [menuOpen, setMenuOpen] = useState(false);
   const isOrganization = portal === "organization";
 
-  const leave = () => {
-    if (isOrganization) {
-      void fetch("/api/team/session", { method: "DELETE" }).catch(() => undefined);
-    }
-    try {
-      window.sessionStorage.removeItem(ACCESS_SESSION_KEY);
-    } catch {
-      // sessionStorage puede estar bloqueado; la cookie ya fue invalidada.
-    }
+  const signOut = () => {
+    void fetch("/api/team/session", { method: "DELETE" }).catch(() => undefined);
     router.push("/");
     router.refresh();
   };
 
-  return <main className={`site ${isOrganization ? "organizationSite" : "personSite"}`}>
+  return <main className={`site ${isOrganization ? "organizationSite" : "publicSite"}`}>
     <header className="top">
       <div className="topin">
-        <button type="button" className="brand" onClick={leave} aria-label="Volver a la selección">
+        <Link className="brand" href={homeFor(portal)} aria-label="+Cerca, ir al inicio">
           {isOrganization
             ? <>
-                <Image src="/iconoarandu.png" alt="Arandú" className="brandLogo" width={70} height={70} priority/>
+                <Image src="/iconoarandu.png" alt="" width={70} height={70} className="brandLogo" priority/>
                 <span>Arandú</span>
               </>
-            : <div className="masCercaLogoContainer">
-                <Image src="/mascerca.png" alt="Más Cerca" className="masCercaBrandImg" width={32} height={32} priority/>
-              </div>}
-        </button>
+            : <span className="masCercaLogoContainer">
+                <Image src="/mascerca.png" alt="+Cerca" width={32} height={32} className="masCercaBrandImg" priority/>
+              </span>}
+        </Link>
 
         <nav className={menuOpen ? "nav open" : "nav"} aria-label="Navegación principal">
           {navItemsFor(portal).map((item) => {
@@ -68,9 +68,14 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
             aria-expanded={menuOpen}
             aria-label="Abrir menú"
           ><Menu size={17}/> Menú</button>
-          <button type="button" className="profileReset" onClick={leave} aria-label="Salir">
-            <LogOut size={16}/><span>Salir</span>
-          </button>
+
+          {isOrganization
+            ? <button type="button" className="profileReset" onClick={signOut}>
+                <LogOut size={16}/><span>Salir</span>
+              </button>
+            : <Link className="institutionalAccess" href={ORGANIZATION_LOGIN}>
+                <Building2 size={16}/><span>Acceso institucional</span>
+              </Link>}
         </div>
       </div>
     </header>

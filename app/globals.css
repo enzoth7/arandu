@@ -419,12 +419,12 @@ button {
 }
 
 /* Estilo Minimalista para Portal de Personas */
-.personSite .nav {
+.publicSite .nav {
   gap: 12px;
   align-items: center;
 }
 
-.personSite .nav button, .personSite .nav a {
+.publicSite .nav button, .publicSite .nav a {
   border: 0;
   background: transparent;
   color: #cbd5e1;
@@ -436,14 +436,14 @@ button {
   transition: all .16s ease;
 }
 
-.personSite .nav button:hover, .personSite .nav a:hover {
+.publicSite .nav button:hover, .publicSite .nav a:hover {
   background: rgba(255, 255, 255, .1);
   color: #fff;
   transform: none;
   border: 0;
 }
 
-.personSite .nav button.active, .personSite .nav a.active {
+.publicSite .nav button.active, .publicSite .nav a.active {
   background: rgba(255, 255, 255, .18);
   color: #fff;
   font-weight: 850;
@@ -528,7 +528,8 @@ button {
   gap: 6px;
 }
 
-.tools button {
+.tools button,
+.tools a {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -6357,7 +6358,7 @@ textarea {
   background: #066359;
 }
 
-/* Vista de Página Dedicada: /personas/residenciales/form */
+/* Vista de página dedicada: /guia */
 .formViewContainer {
   max-width: 1000px;
   margin: 0 auto;
@@ -6562,4 +6563,28 @@ textarea {
 .action,
 .sourceCard .sourceLink {
   color: inherit;
+}
+
+/* Acceso institucional: presente pero discreto, como pide la especificación.
+   El producto público no tiene sesión, así que no muestra «Salir». */
+.tools .institutionalAccess {
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 999px;
+  padding: 6px 13px;
+  color: #dbe6f5;
+  font-size: .86rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .16s, border-color .16s, color .16s;
+}
+
+.tools .institutionalAccess:hover {
+  background: rgba(255, 255, 255, .12);
+  border-color: #fff;
+  color: #fff;
+}
+
+/* La marca es un enlace al inicio del portal, no un botón de reinicio. */
+.brand {
+  text-decoration: none;
 }

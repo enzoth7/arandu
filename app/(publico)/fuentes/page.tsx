@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Sources } from "../../components/Sources";
 
 export const metadata: Metadata = {
-  title: "Fuentes",
+  title: "Cómo usamos los datos",
   description: "Origen, fecha y límites de la información: qué puede y qué no puede afirmar cada ficha.",
 };
 
