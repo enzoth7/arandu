@@ -52,6 +52,7 @@ export function OrganizationFacilityRegistry({ initialFacilities = [] }: { initi
         facilities={consolidated}
         loading={loading}
         error={error}
+        showPrivateWorkflowFilter
         notices={<>
           {privateAvailable && privateLoading && <div className="notice registryDataStatus" role="status">Actualizando residenciales a verificar…</div>}
           {privateAvailable && privateError && <div className="notice registryDataStatus registryDataError" role="alert">{privateError}</div>}

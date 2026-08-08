@@ -6588,3 +6588,30 @@ textarea {
 .brand {
   text-decoration: none;
 }
+
+/* Nota que explica el criterio de ordenamiento: el producto no tiene ranking. */
+.registryFilterNote {
+  grid-column: 1 / -1;
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.4;
+}
+
+/* Sin resultados: se ofrece una salida y se aclara que la ausencia en el
+   listado no dice nada sobre la situación del establecimiento. */
+.registryEmptyResults {
+  padding: 22px 18px;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  background: var(--surface2);
+  color: var(--muted);
+}
+
+.registryEmptyResults p {
+  margin: 0 0 10px;
+}
+
+.registryEmptyResults strong {
+  color: var(--text);
+}

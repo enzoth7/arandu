@@ -9,7 +9,7 @@
     "lint": "eslint app lib scripts",
     "test:discovery": "node --test scripts/tests/residencial-discovery.test.mjs",
     "test:osm-discovery": "node --test scripts/tests/osm-candidate-discovery.test.mjs",
-    "test:matching": "node --test scripts/tests/facility-matching.test.mjs scripts/tests/candidate-review.test.mjs",
+    "test:matching": "node --test scripts/tests/facility-matching.test.mjs scripts/tests/candidate-review.test.mjs scripts/tests/facility-search.test.mjs",
     "test:candidate-review": "node --test scripts/tests/team-session.test.mjs scripts/tests/facility-candidate-review.test.mjs",
     "test:private-map": "node --test scripts/tests/private-candidate-map.test.mjs scripts/tests/private-candidate-layer.test.mjs",
     "test:intake": "node --test scripts/tests/intake-integration.test.mjs scripts/tests/n8n-workflow-sandbox.test.mjs",

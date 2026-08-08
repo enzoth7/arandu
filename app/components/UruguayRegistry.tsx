@@ -8,10 +8,11 @@ import {
   evidenceDescription,
   facilityDisplayCategory,
   facilityDisplayLabel,
-  facilityHaystack,
   isVerificationFacility,
 } from "./facility-presentation";
-import { canonicalDepartment, foldText } from "../../lib/uruguay.mjs";
+import { canonicalDepartment } from "../../lib/uruguay.mjs";
+import { useFacilityFilters } from "../hooks/useFacilityFilters";
+import type { SortOrder } from "../../lib/facility-search.mjs";
 import type { Facility, FacilityStatus } from "./map-types";
 
 const StreetMap = dynamic(() => import("./StreetMap"), {
@@ -19,17 +20,12 @@ const StreetMap = dynamic(() => import("./StreetMap"), {
   loading: () => <div className="streetMapLoading">Preparando el mapa con calles…</div>,
 });
 
-function matchesAdministrativeStatus(
-  facility: Facility,
-  status: FacilityStatus,
-) {
-  if (status === "habilitado") return facility.mspFinal;
-  if (status === "mides") return facility.midesSocial;
-  if (status === "otra_fuente") return facility.otherSource;
-  if (status === "app") return facility.appDiscovered;
-  if (status === "candidate_private") return facility.privateCandidate === true;
-  return isVerificationFacility(facility);
-}
+const SORT_LABELS: Record<SortOrder, string> = {
+  name: "Nombre (A–Z)",
+  department: "Departamento",
+  stage: "Etapa institucional",
+  places: "Plazas publicadas",
+};
 
 // El registro es presentacional: recibe las fichas ya consolidadas y no sabe de
 // dónde vienen. Así el portal de personas nunca monta la capa privada de
@@ -55,59 +51,47 @@ export default function UruguayRegistry({
   showPrivateWorkflowFilter = false,
   showChoiceCta = false,
 }: UruguayRegistryProps) {
-  const [query, setQuery] = useState("");
-  const [department, setDepartment] = useState("");
-  const [status, setStatus] = useState<"" | FacilityStatus>("");
-  const [privateWorkflowStatus, setPrivateWorkflowStatus] = useState<PrivateWorkflowStatus>("");
+  const {
+    query, setQuery,
+    department, setDepartment,
+    locality, setLocality,
+    status, setStatus,
+    privateWorkflowStatus, setPrivateWorkflowStatus,
+    sortOrder, setSortOrder,
+    visible,
+    departments,
+    localities,
+    summaryScope,
+    hasActiveFilters,
+    reset,
+  } = useFacilityFilters(facilities);
+
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [detailId, setDetailId] = useState<string | null>(null);
   const [activeKpiHelp, setActiveKpiHelp] = useState<string | null>(null);
   const mapColumnRef = useRef<HTMLDivElement | null>(null);
-  const consolidatedFacilities = facilities;
 
-  const foldedQuery = useMemo(() => foldText(query), [query]);
-  const statusIndependentWithoutDepartment = useMemo(() => facilities.filter((facility) => (
-    (!privateWorkflowStatus || facility.privateCandidateStatus === privateWorkflowStatus)
-      && (!foldedQuery || facilityHaystack(facility).includes(foldedQuery))
-  )), [facilities, privateWorkflowStatus, foldedQuery]);
-
-  const baseWithoutDepartment = useMemo(
-    () => statusIndependentWithoutDepartment.filter(
-      (facility) => !status || matchesAdministrativeStatus(facility, status),
-    ),
-    [statusIndependentWithoutDepartment, status],
-  );
-  const visible = useMemo(() => baseWithoutDepartment.filter((facility) => !department || canonicalDepartment(facility.department) === department), [baseWithoutDepartment, department]);
-  const departmentCounts = useMemo(() => Object.entries(baseWithoutDepartment.reduce<Record<string, number>>((counts, facility) => {
-    const canonical = canonicalDepartment(facility.department);
-    if (canonical) counts[canonical] = (counts[canonical] ?? 0) + 1;
-    return counts;
-  }, {})).sort(([a], [b]) => a.localeCompare(b, "es")), [baseWithoutDepartment]);
   const selected = selectedId ? (visible.find((facility) => facility.id === selectedId) ?? null) : null;
   const detailedFacility = detailId
-    ? (consolidatedFacilities.find((facility) => facility.id === detailId) ?? null)
+    ? (facilities.find((facility) => facility.id === detailId) ?? null)
     : null;
-  const summaryKpiScope = useMemo(() => consolidatedFacilities.filter((facility) => (
-    (!foldedQuery || facilityHaystack(facility).includes(foldedQuery))
-      && (!department || canonicalDepartment(facility.department) === department)
-  )), [consolidatedFacilities, department, foldedQuery]);
+
   const summaryTotals = useMemo(() => ({
-    habilitado: summaryKpiScope.filter((facility) => facility.mspFinal).length,
-    mides: summaryKpiScope.filter((facility) => facility.midesSocial).length,
-    unconfirmed: summaryKpiScope.filter(isVerificationFacility).length,
-  }), [summaryKpiScope]);
+    habilitado: summaryScope.filter((facility) => facility.mspFinal).length,
+    mides: summaryScope.filter((facility) => facility.midesSocial).length,
+    unconfirmed: summaryScope.filter(isVerificationFacility).length,
+  }), [summaryScope]);
   const visibleOfficialCount = visible.filter((facility) => !isVerificationFacility(facility)).length;
   const visibleVerificationCount = visible.filter(isVerificationFacility).length;
+
   useEffect(() => {
     if (selectedId && !visible.some((facility) => facility.id === selectedId)) {
       setSelectedId(null);
     }
   }, [visible, selectedId]);
 
-  const orderedResults = visible;
-
   function resetFilters() {
-    setQuery(""); setDepartment(""); setStatus(""); setPrivateWorkflowStatus("");
+    reset();
     setSelectedId(null);
     setDetailId(null);
   }
@@ -122,13 +106,13 @@ export default function UruguayRegistry({
       {error && <div className="notice registryDataStatus registryDataError" role="alert">{error}</div>}
       {notices}
       <div className="registryQuickSummary" aria-label="Resumen y filtros rápidos">
-        <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-blue ${!status ? "selected" : ""}`} help="Total consolidado de ELEPEM." helpId="all" label="Todos" onActivate={() => setStatus("")} onToggleHelp={setActiveKpiHelp} value={summaryKpiScope.length} />
+        <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-blue ${!status ? "selected" : ""}`} help="Total consolidado de ELEPEM." helpId="all" label="Todos" onActivate={() => setStatus("")} onToggleHelp={setActiveKpiHelp} value={summaryScope.length} />
         <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-green ${status === "habilitado" ? "selected" : ""}`} help="Establecimientos con habilitación final del MSP a junio de 2026." helpId="msp-final" label="Habilitados MSP" onActivate={() => setStatus(status === "habilitado" ? "" : "habilitado")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.habilitado} />
         <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-amber ${status === "mides" ? "selected" : ""}`} help="Establecimientos que se encuentran en proceso de habilitación (definido por el Decreto 356/016) y que obtuvieron el certificado social por parte del Mides." helpId="mides" label="Certificados Social MIDES" onActivate={() => setStatus(status === "mides" ? "" : "mides")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.mides} />
-        <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-gray ${status === "verificar" ? "selected" : ""}`} help="No figuran ni como habilitados ni como certificados." helpId="unconfirmed" label="Situación no confirmada" onActivate={() => setStatus(status === "verificar" ? "" : "verificar")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.unconfirmed} />
+        <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-gray ${status === "verificar" ? "selected" : ""}`} help="No se encontró una situación actualizada en las fuentes públicas consultadas. Requiere verificación institucional; no significa que el establecimiento sea irregular." helpId="unconfirmed" label="Sin situación localizada" onActivate={() => setStatus(status === "verificar" ? "" : "verificar")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.unconfirmed} />
       </div>
       <p className="registryOverlapNote">
-        Algunos ELEPEM están incluidos tanto en la lista de <strong> Habilitados como en la de Certificados.</strong>
+        Un mismo ELEPEM puede constar a la vez en la lista de <strong>habilitados</strong> y en la de <strong>certificados</strong>: son etapas distintas y se muestran por separado.
       </p>
       <div className="registrySearchHeaderRow">
         <div className="registrySearchFirst">
@@ -166,18 +150,68 @@ export default function UruguayRegistry({
           <button
             type="button"
             className="registryClearFilters"
-            disabled={!(query || department || status || privateWorkflowStatus || selectedId)}
+            disabled={!hasActiveFilters && !selectedId}
             aria-label="Restablecer filtros y mapa"
             title="Restablecer filtros y mapa"
             onClick={resetFilters}
           ><RotateCcw size={17}/></button>
         </div>
         <div className="registryToolbar">
-        <label><b>Departamento</b><select value={department} onChange={(event) => setDepartment(event.target.value)}><option value="">Todos</option>{departmentCounts.map(([name]) => <option key={name}>{name}</option>)}</select></label>
-        {showPrivateWorkflowFilter ? <label><b>Estado de tratamiento</b><select value={privateWorkflowStatus} onChange={(event) => setPrivateWorkflowStatus(event.target.value as PrivateWorkflowStatus)}><option value="">Todos</option><option value="needs_review">Necesita revisión</option><option value="possible_match">Posible coincidencia</option><option value="verified_new">Nuevo verificado</option></select></label> : <label><b>Situación administrativa</b><select value={status} onChange={(event) => {
-          const nextStatus = event.target.value as "" | FacilityStatus;
-          setStatus(nextStatus);
-        }}><option value="">Todos</option><option value="habilitado">Habilitados</option><option value="mides">Certificados</option><option value="verificar">Situación no confirmada</option></select></label>}
+          <label>
+            <b>Departamento</b>
+            <select value={department} onChange={(event) => setDepartment(event.target.value)}>
+              <option value="">Todos</option>
+              {departments.map(([name, count]) => <option key={name} value={name}>{name} ({count})</option>)}
+            </select>
+          </label>
+
+          <label>
+            <b>Localidad</b>
+            <select
+              value={locality}
+              onChange={(event) => setLocality(event.target.value)}
+              disabled={localities.length === 0}
+            >
+              <option value="">Todas</option>
+              {localities.map(([name, count]) => <option key={name} value={name}>{name} ({count})</option>)}
+            </select>
+          </label>
+
+          <label>
+            <b>Situación institucional</b>
+            <select value={status} onChange={(event) => setStatus(event.target.value as "" | FacilityStatus)}>
+              <option value="">Todas</option>
+              <option value="habilitado">Habilitación final MSP</option>
+              <option value="mides">Certificado social MIDES</option>
+              <option value="verificar">Sin situación localizada</option>
+            </select>
+          </label>
+
+          {/* Ortogonal a la situación institucional: una es la etapa que consta
+              en las fuentes y la otra el avance de la revisión interna. */}
+          {showPrivateWorkflowFilter && (
+            <label>
+              <b>Estado de tratamiento</b>
+              <select value={privateWorkflowStatus} onChange={(event) => setPrivateWorkflowStatus(event.target.value as PrivateWorkflowStatus)}>
+                <option value="">Todos</option>
+                <option value="needs_review">Necesita revisión</option>
+                <option value="possible_match">Posible coincidencia</option>
+                <option value="verified_new">Nuevo verificado</option>
+              </select>
+            </label>
+          )}
+
+          <label>
+            <b>Ordenar por</b>
+            <select value={sortOrder} onChange={(event) => setSortOrder(event.target.value as SortOrder)}>
+              {(Object.keys(SORT_LABELS) as SortOrder[]).map((order) => (
+                <option key={order} value={order}>{SORT_LABELS[order]}</option>
+              ))}
+            </select>
+          </label>
+          <p className="registryFilterNote">
+            El orden es alfabético o por la etapa administrativa que consta en las fuentes. No hay puntajes, estrellas ni posiciones pagas.
+          </p>
         </div>
       </aside>
       <div className="registryMapColumn" ref={mapColumnRef}>
@@ -187,9 +221,12 @@ export default function UruguayRegistry({
 
       <aside className="card registryResults">
         <div className="resultsHead"><h2>ELEPEM encontrados</h2><output className="resultCount">{visible.length}</output></div>
-        <p className="resultsMeta">{visibleOfficialCount} habilitados o certificados{visibleVerificationCount > 0 ? ` + ${visibleVerificationCount} con situación no confirmada` : ""}</p>
+        <p className="resultsMeta">
+          {visibleOfficialCount} con situación institucional localizada
+          {visibleVerificationCount > 0 ? ` · ${visibleVerificationCount} sin información vigente en las fuentes consultadas` : ""}
+        </p>
         <div className="registryResultsScroll">
-          {orderedResults.map((facility) => (
+          {visible.map((facility) => (
             <FacilityAccordionCard
               facility={facility}
               isSelected={selected?.id === facility.id}
@@ -202,6 +239,15 @@ export default function UruguayRegistry({
               key={facility.id}
             />
           ))}
+          {!loading && visible.length === 0 && (
+            <div className="registryEmptyResults">
+              <p><strong>No hay ELEPEM que coincidan con esta búsqueda.</strong></p>
+              <p>Probá con menos filtros o con otra forma de escribir el nombre. Que no aparezca acá no significa que el establecimiento no exista: puede no constar en las fuentes públicas consultadas.</p>
+              {hasActiveFilters && (
+                <button type="button" className="reportBack" onClick={resetFilters}>Quitar los filtros</button>
+              )}
+            </div>
+          )}
         </div>
       </aside>
     </div>

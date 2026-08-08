@@ -1,18 +1,18 @@
 import { sourceCategoryLabels as labelsForCategories } from "../../lib/facility-sources.mjs";
+import { hasOfficialAdministrativeRecord } from "../../lib/facility-search.mjs";
 import { foldText } from "../../lib/uruguay.mjs";
 import type { Facility } from "./map-types";
 
 export type FacilityDisplayCategory = "habilitado" | "mides" | "unconfirmed";
 
-export function hasOfficialAdministrativeRecord(facility: Facility) {
-  return facility.mspFinal || facility.midesSocial;
-}
-
-export function isUnconfirmedFacility(facility: Facility) {
-  return !hasOfficialAdministrativeRecord(facility);
-}
-
-export const isVerificationFacility = isUnconfirmedFacility;
+// Los predicados de situación viven en `lib/facility-search.mjs`, junto al
+// filtrado que los usa, para que exista una única definición de «consta» y de
+// «no se localizó información».
+export {
+  hasOfficialAdministrativeRecord,
+  isUnconfirmedFacility,
+  isUnconfirmedFacility as isVerificationFacility,
+} from "../../lib/facility-search.mjs";
 
 export function facilityDisplayCategory(facility: Facility): FacilityDisplayCategory {
   if (facility.mspFinal) return "habilitado";
@@ -24,7 +24,7 @@ export function facilityDisplayLabel(facility: Facility) {
   const category = facilityDisplayCategory(facility);
   if (category === "habilitado") return "Habilitado";
   if (category === "mides") return "Certificado";
-  return "Situación no confirmada";
+  return "Sin situación localizada";
 }
 
 /** Texto de búsqueda de una ficha, plegado para comparaciones sin acentos. */
