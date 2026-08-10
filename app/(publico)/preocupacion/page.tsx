@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function PersonasDenunciaPage() {
-  return <IntakeReportForm />;
+  return <IntakeReportForm enabled={process.env.DEMO_MODE === "true" && process.env.DEMO_INTAKE_ENABLED === "true"} />;
 }

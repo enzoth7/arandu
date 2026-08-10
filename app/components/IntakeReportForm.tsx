@@ -140,7 +140,10 @@ function OptionGrid({ options, selected, onSelect, multiple = false }: { options
   })}</div>;
 }
 
-function LocationMap({ department, city, locality, streetAddress, doorNumber }: { department: string; city: string; locality: string; streetAddress: string; doorNumber: string }) {
+type LocationSnapshot = { department: string; city: string; locality: string; streetAddress: string; doorNumber: string };
+
+function LocationMap({ location }: { location: LocationSnapshot }) {
+  const { department, city, locality, streetAddress, doorNumber } = location;
   const [exactCoords, setExactCoords] = useState<[number, number] | null>(null);
   const [isGeocoding, setIsGeocoding] = useState(false);
 
@@ -151,7 +154,7 @@ function LocationMap({ department, city, locality, streetAddress, doorNumber }: 
       return;
     }
 
-    const timer = setTimeout(async () => {
+    void (async () => {
       setIsGeocoding(true);
       try {
         const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(fullQuery)}&limit=1`);
@@ -168,9 +171,7 @@ function LocationMap({ department, city, locality, streetAddress, doorNumber }: 
       } finally {
         setIsGeocoding(false);
       }
-    }, 600);
-
-    return () => clearTimeout(timer);
+    })();
   }, [department, city, locality, streetAddress, doorNumber]);
 
   const baseCoords = deptCoords[department];
@@ -331,10 +332,12 @@ export function IntakeReportForm({
   initialConcerns = [],
   initialNarrative = "",
   initialFacility = null,
+  enabled = false,
 }: {
   initialConcerns?: string[];
   initialNarrative?: string;
   initialFacility?: Facility | null;
+  enabled?: boolean;
 }) {
   const [step, setStep] = useState(1);
   const [draft, setDraft] = useState<IntakeDraft>(() => ({
@@ -360,7 +363,8 @@ export function IntakeReportForm({
   const [emailNotice, setEmailNotice] = useState("");
   const [selectedUrgencyText, setSelectedUrgencyText] = useState("");
   
-  // Sugerencias de dirección ricas en tiempo real
+  // La asistencia de ubicación sólo consulta servicios externos después de
+  // una acción explícita. Escribir en los campos nunca dispara geocodificación.
   type AddressSuggestionItem = {
     displayName: string;
     road: string;
@@ -372,24 +376,29 @@ export function IntakeReportForm({
   
   const [addressSuggestions, setAddressSuggestions] = useState<AddressSuggestionItem[]>([]);
   const [showAddressSuggestions, setShowAddressSuggestions] = useState(false);
+  const [locationSnapshot, setLocationSnapshot] = useState<LocationSnapshot | null>(null);
+  const [locationLookupStatus, setLocationLookupStatus] = useState<"idle" | "loading" | "empty" | "error">("idle");
 
   const update = <Key extends keyof IntakeDraft>(key: Key, value: IntakeDraft[Key]) => setDraft((current) => ({ ...current, [key]: value }));
   const toggleConcern = (concern: string) => update("concerns", draft.concerns.includes(concern) ? draft.concerns.filter((item) => item !== concern) : [...draft.concerns, concern]);
   const locationSummary = [draft.city, draft.locality, draft.streetAddress, draft.doorNumber].filter(Boolean).join(" · ");
 
-  // Efecto de sugerencias de dirección con Nominatim addressdetails=1
-  useEffect(() => {
+  const lookupLocation = async () => {
     const query = draft.streetAddress.trim();
-    if (query.length < 3) {
-      setAddressSuggestions([]);
-      setShowAddressSuggestions(false);
-      return;
-    }
-
+    const snapshot = {
+      department: draft.department,
+      city: draft.city,
+      locality: draft.locality,
+      streetAddress: draft.streetAddress,
+      doorNumber: draft.doorNumber,
+    };
+    setLocationSnapshot(snapshot);
+    setLocationLookupStatus("loading");
     const fullQuery = [query, draft.locality, draft.city, draft.department, "Uruguay"].filter(Boolean).join(", ");
-    const timer = setTimeout(async () => {
-      try {
+    try {
+      if (query.length >= 3) {
         const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${encodeURIComponent(fullQuery)}&limit=5`);
+        if (!res.ok) throw new Error("location-lookup-failed");
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
           const suggestions: AddressSuggestionItem[] = data.map((item: { display_name: string; address?: Record<string, string> }) => {
@@ -419,18 +428,23 @@ export function IntakeReportForm({
 
           setAddressSuggestions(suggestions);
           setShowAddressSuggestions(true);
+          setLocationLookupStatus("idle");
         } else {
           setAddressSuggestions([]);
           setShowAddressSuggestions(false);
+          setLocationLookupStatus("empty");
         }
-      } catch {
+      } else {
         setAddressSuggestions([]);
         setShowAddressSuggestions(false);
+        setLocationLookupStatus("idle");
       }
-    }, 450);
-
-    return () => clearTimeout(timer);
-  }, [draft.streetAddress, draft.locality, draft.city, draft.department]);
+    } catch {
+      setAddressSuggestions([]);
+      setShowAddressSuggestions(false);
+      setLocationLookupStatus("error");
+    }
+  };
 
   const selectSuggestion = (item: AddressSuggestionItem) => {
     update("streetAddress", item.road || item.displayName);
@@ -438,6 +452,13 @@ export function IntakeReportForm({
     if (item.suburb) update("locality", item.suburb);
     if (item.city) update("city", item.city);
     if (item.department) update("department", item.department);
+    setLocationSnapshot({
+      department: item.department || draft.department,
+      city: item.city || draft.city,
+      locality: item.suburb || draft.locality,
+      streetAddress: item.road || item.displayName,
+      doorNumber: item.houseNumber || draft.doorNumber,
+    });
     setShowAddressSuggestions(false);
   };
 
@@ -523,7 +544,8 @@ export function IntakeReportForm({
         body: JSON.stringify({
           report: {
             setting: draft.setting,
-            reporter: draft.reporterName ? `${draft.reporter} (${draft.reporterName})` : draft.reporter,
+            reporter: draft.reporter,
+            reporterName: draft.reporterName,
             channel: "Formulario web / app",
             location: {
               department: draft.department,
@@ -638,13 +660,13 @@ export function IntakeReportForm({
           Consultar el estado ahora
         </Link>
       )}
-      <Link className="reportContinue" href="/personas">
+      <Link className="reportContinue" href="/">
         Volver al inicio <ArrowRight size={17}/>
       </Link>
     </div>
   </section>;
 
-  const stageTitle = step === 1 ? "¿Qué está pasando?" : step === 2 ? "¿Dónde ocurre?" : step === 3 ? "Contacto" : "Revisá y enviá";
+  const stageTitle = step === 1 ? "¿Qué está pasando?" : step === 2 ? "¿Dónde ocurre?" : step === 3 ? "Privacidad y contacto" : "Revisá y enviá";
 
 
   return <section className="reportFlow">
@@ -657,10 +679,11 @@ export function IntakeReportForm({
           ? "Brindá datos suficientes para localizar el lugar de la situación."
           : "Completá según tus preferencias de privacidad."}
       </p>
+      {!enabled && <p className="notice" role="status">La recepción demo está desactivada. Podés recorrer el formulario, pero el envío requiere habilitar el entorno de demostración.</p>}
     </header>
 
     <nav className="reportStepper reportStepperFour" aria-label="Pasos de la comunicación">
-      {["Situación", "Lugar", "Contacto", "Enviar"].map((label, index) => <button key={label} type="button" className={`reportStep ${step === index + 1 ? "isCurrent" : ""} ${step > index + 1 ? "isComplete" : ""}`} onClick={() => index + 1 < step && setStep(index + 1)} disabled={index + 1 > step || submitting} aria-current={step === index + 1 ? "step" : undefined}><span className="reportStepNumber">{step > index + 1 ? <CheckCircle2 size={15}/> : index + 1}</span><span className="reportStepLabel">{label}</span></button>)}
+      {["Situación", "Lugar", "Privacidad y contacto", "Revisión"].map((label, index) => <button key={label} type="button" className={`reportStep ${step === index + 1 ? "isCurrent" : ""} ${step > index + 1 ? "isComplete" : ""}`} onClick={() => index + 1 < step && setStep(index + 1)} disabled={index + 1 > step || submitting} aria-current={step === index + 1 ? "step" : undefined}><span className="reportStepNumber">{step > index + 1 ? <CheckCircle2 size={15}/> : index + 1}</span><span className="reportStepLabel">{label}</span></button>)}
     </nav>
 
     <div className="reportStage">
@@ -754,7 +777,6 @@ export function IntakeReportForm({
               <input
                 value={draft.streetAddress}
                 onChange={(event) => update("streetAddress", event.target.value)}
-                onFocus={() => addressSuggestions.length > 0 && setShowAddressSuggestions(true)}
                 placeholder="Ej.: Av. 18 de Julio 1234, Montevideo"
               />
             </label>
@@ -801,15 +823,23 @@ export function IntakeReportForm({
             Indicá cualquier referencia que pueda ayudar: nombre del lugar, barrio, esquina, comercio cercano o descripción de la zona en el relato.
           </div>
         )}
-        
-        {draft.department && draft.department !== "No se conoce" && (
-          <LocationMap
-            department={draft.department}
-            city={draft.city}
-            locality={draft.locality}
-            streetAddress={draft.streetAddress}
-            doorNumber={draft.doorNumber}
-          />
+
+        <div className="reportLocationAction">
+          <button
+            type="button"
+            className="reportBack"
+            disabled={locationLookupStatus === "loading" || ![draft.streetAddress, draft.locality, draft.city, draft.department].some((value) => value.trim())}
+            onClick={() => void lookupLocation()}
+          >
+            <MapPin size={17}/>{locationLookupStatus === "loading" ? "Buscando…" : "Buscar dirección y mostrar mapa"}
+          </button>
+          <small>La consulta de ubicación se realiza sólo al usar este botón.</small>
+          {locationLookupStatus === "empty" && <p role="status">No encontramos una coincidencia exacta. Podés conservar la referencia escrita.</p>}
+          {locationLookupStatus === "error" && <p role="alert">No se pudo consultar el mapa. La comunicación puede enviarse igualmente.</p>}
+        </div>
+
+        {locationSnapshot && locationSnapshot.department && locationSnapshot.department !== "No se conoce" && (
+          <LocationMap location={locationSnapshot} />
         )}
         </FieldGroup>
       </>}
@@ -1018,6 +1048,6 @@ export function IntakeReportForm({
       {formMessage && <div className="reportValidation" role="alert">{formMessage}</div>}
     </div>
 
-    <footer className="reportActions"><button className="reportBack" type="button" disabled={step === 1 || submitting} onClick={() => { setFormMessage(""); setStep((current) => current - 1); }}><ArrowLeft size={17}/> Volver</button><span>Paso {step} de 4</span>{step < 4 ? <button className="reportContinue" type="button" onClick={advance}>Continuar <ArrowRight size={17}/></button> : <button className="reportContinue" type="button" disabled={submitting} onClick={submit}>{submitting ? "Guardando…" : "Guardar y enviar al equipo"}<ArrowRight size={17}/></button>}</footer>
+    <footer className="reportActions"><button className="reportBack" type="button" disabled={step === 1 || submitting} onClick={() => { setFormMessage(""); setStep((current) => current - 1); }}><ArrowLeft size={17}/> Volver</button><span>Paso {step} de 4</span>{step < 4 ? <button className="reportContinue" type="button" onClick={advance}>Continuar <ArrowRight size={17}/></button> : <button className="reportContinue" type="button" disabled={submitting || !enabled} onClick={submit}>{submitting ? "Guardando…" : "Guardar y enviar al equipo"}<ArrowRight size={17}/></button>}</footer>
   </section>;
 }

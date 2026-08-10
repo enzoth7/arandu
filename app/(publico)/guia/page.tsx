@@ -3,7 +3,7 @@ import { ResidencialesFormView } from "../../components/ResidencialesFormView";
 
 export const metadata: Metadata = {
   title: "Cómo elegir",
-  description: "Una guía paso a paso para ordenar preferencias, comparar residenciales y preparar las visitas.",
+  description: "Una guía paso a paso para ordenar preferencias y preparar las visitas a residenciales.",
 };
 
 export default function PersonasResidencialesFormPage() {
