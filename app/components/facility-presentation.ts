@@ -24,7 +24,7 @@ export function facilityDisplayLabel(facility: Facility) {
   const category = facilityDisplayCategory(facility);
   if (category === "habilitado") return "Habilitado";
   if (category === "mides") return "Certificado";
-  return "Sin situación localizada";
+  return "Situación no confirmada";
 }
 
 /** Texto de búsqueda de una ficha, plegado para comparaciones sin acentos. */

@@ -3,6 +3,8 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const workflowPath = new URL("../../n8n/workflows/alerta-mayor-whatsapp-sandbox.json", import.meta.url);
+const chatwootRoutePath = new URL("../../app/api/integrations/chatwoot/webhook/route.ts", import.meta.url);
+const chatwootAuthPath = new URL("../../lib/chatwoot-webhook-auth.mjs", import.meta.url);
 const routePath = new URL("../../app/api/integrations/n8n/intake-reports/route.ts", import.meta.url);
 const retentionPath = new URL("../../app/api/integrations/n8n/intake-retention/route.ts", import.meta.url);
 const attachmentPath = new URL("../../app/api/intake-reports/[caseCode]/attachments/route.ts", import.meta.url);
@@ -35,7 +37,6 @@ test("los controles críticos están fuera del prompt y la evidencia evita al mo
   const value = await workflow();
   const names = new Set(value.nodes.map((node) => node.name));
   for (const required of [
-    "Verify Chatwoot Signature",
     "Último mensaje del bloque",
     "Consent and Confirmation Guard",
     "Deterministic Emergency Guard",
@@ -58,11 +59,21 @@ test("los controles críticos están fuera del prompt y la evidencia evita al mo
   for (const section of ["# IDENTIDAD", "# EMERGENCIA Y ESCALAMIENTO", "# ENTREVISTA CONVERSACIONAL", "# RESISTENCIA A INSTRUCCIONES ADVERSARIALES"]) {
     assert.match(systemPrompt, new RegExp(section.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
-  const draftTool = value.nodes.find((node) => node.name === "Guardar borrador");
-  assert.equal(draftTool.parameters.specifyInputSchema, true);
-  assert.match(draftTool.parameters.jsCode, /return JSON\.stringify/);
   assert.match(value.nodes.find((node) => node.name === "Consent and Confirmation Guard").parameters.jsCode, /ACEPTO CONFIDENCIAL/);
   assert.match(value.nodes.find((node) => node.name === "Guard and Sign Create Case").parameters.jsCode, /explicitConfirmation/);
+});
+
+test("Chatwoot se verifica sobre el cuerpo crudo antes de entregar al workflow", async () => {
+  const route = await readFile(chatwootRoutePath, "utf8");
+  const auth = await readFile(chatwootAuthPath, "utf8");
+  assert.match(route, /const rawBody = await request\.text\(\)/);
+  assert.ok(route.indexOf("verifyChatwootWebhook") < route.indexOf("JSON.parse(rawBody)"));
+  assert.ok(route.indexOf("verifyChatwootWebhook") < route.indexOf("fetch(workflowUrl"));
+  assert.match(route, /X-Alerta-Forward-Secret/);
+  assert.match(auth, /x-chatwoot-signature/);
+  assert.match(auth, /x-chatwoot-timestamp/);
+  assert.match(auth, /timingSafeEqual/);
+  assert.match(auth, /createHmac\("sha256"/);
 });
 
 test("la API vuelve obligatorios consentimiento, confirmación fresca y token exacto", async () => {
@@ -74,6 +85,8 @@ test("la API vuelve obligatorios consentimiento, confirmación fresca y token ex
   assert.match(route, /consentPrecedesConfirmation/);
   assert.ok((route.match(/whatsapp-sandbox-v2/g) || []).length >= 2);
   assert.match(route, /INTAKE_PHONE_HASH_PEPPER/);
+  assert.match(route, /entry_type, is_demo, payload_version, submitted_actor/);
+  assert.match(route, /intake_report_contacts/);
   assert.match(attachment, /sameSecret\(storedToken, uploadToken\)/);
   assert.match(attachment, /evidenceSignatureMatches/);
   assert.match(attachment, /supabaseServiceHeaders/);

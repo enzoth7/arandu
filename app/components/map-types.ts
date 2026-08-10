@@ -37,6 +37,14 @@ export type Facility = {
   privateCandidateRetrievedAt?: string;
   createdAt?: string;
   updatedAt?: string;
+  contactPhone?: string;
+  contactEmail?: string;
+  description?: string;
+  photoUrl?: string;
+  monthlyPriceUyu?: number;
+  monthlyPriceIncludes?: string[];
+  sourceUrl?: string;
+  validThrough?: string;
 };
 
 export type MapMode = "streets" | "list";

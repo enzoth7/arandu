@@ -10,7 +10,9 @@ export async function GET(request: NextRequest) {
 
   const { searchParams } = new URL(request.url);
   const path = searchParams.get("path");
-  if (!path) return NextResponse.json({ error: "Path no proporcionado." }, { status: 400 });
+  if (!path || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(path)) {
+    return NextResponse.json({ error: "Adjunto no válido." }, { status: 400 });
+  }
 
   const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
   const publishableKey = process.env.SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
@@ -19,23 +21,17 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    let realObjectPath = path;
-    let dbMimeType: string | null = null;
-
-    if (!path.includes("/")) {
-      try {
-        const records = await querySupabaseDatabase<{ object_path?: string; mime_type?: string }>(
-          "SELECT object_path, mime_type FROM public.intake_report_attachments WHERE id = $1 LIMIT 1",
-          [path]
-        );
-        if (records && records[0]?.object_path) {
-          realObjectPath = records[0].object_path;
-          dbMimeType = records[0].mime_type || null;
-        }
-      } catch (err) {
-        console.error("Error querying attachment object_path:", err);
-      }
-    }
+    const records = await querySupabaseDatabase<{ object_path: string; mime_type: string }>(
+      `SELECT attachment.object_path, attachment.mime_type
+       FROM public.intake_report_attachments AS attachment
+       JOIN public.intake_reports AS report ON report.id = attachment.report_id
+       WHERE attachment.id = $1 AND report.is_demo = true
+       LIMIT 1`,
+      [path],
+    );
+    if (!records[0]) return NextResponse.json({ error: "No se encontró el adjunto demo." }, { status: 404 });
+    const realObjectPath = records[0].object_path;
+    const dbMimeType = records[0].mime_type;
 
     const authKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || publishableKey;
 
