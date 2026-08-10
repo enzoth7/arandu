@@ -25,7 +25,8 @@ const contentSecurityPolicy = [
   "img-src 'self' data: blob: https://*.tile.openstreetmap.org",
   "font-src 'self' data:",
   "media-src 'self' blob:",
-  `connect-src 'self' ${supabaseOrigin} https://*.supabase.co https://vitals.vercel-insights.com https://va.vercel-scripts.com`,
+  `connect-src 'self' ${supabaseOrigin} https://*.supabase.co https://nominatim.openstreetmap.org https://vitals.vercel-insights.com https://va.vercel-scripts.com`,
+  "frame-src 'self' https://www.openstreetmap.org",
   // Vercel Analytics carga su script en los dos entornos (en desarrollo usa la
   // variante .debug), así que su origen va siempre. Next inyecta además el
   // arranque en línea, y en desarrollo necesita eval para el HMR.
@@ -76,7 +77,13 @@ const nextConfig = {
       // La agenda de actividades sale del producto público.
       { source: "/personas/actividades", destination: "/", permanent },
       { source: "/residenciales", destination: "/", permanent },
-      { source: "/login", destination: "/organizacion/login", permanent },
+      { source: "/login", destination: "/acceso-institucional", permanent },
+      { source: "/organizacion/login", destination: "/acceso-institucional", permanent },
+      { source: "/organizacion/residenciales", destination: "/institucional/estado/elepem", permanent },
+      { source: "/organizacion/equipos", destination: "/institucional/estado/bandeja", permanent },
+      { source: "/organizacion/review", destination: "/institucional/estado/bandeja?tipo=experience", permanent },
+      { source: "/organizacion/fuentes", destination: "/institucional/estado/fuentes", permanent },
+      { source: "/organizacion", destination: "/institucional/estado", permanent },
     ];
   },
 };

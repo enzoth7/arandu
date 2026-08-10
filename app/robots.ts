@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
       // El portal de organización y las APIs no se indexan.
-      disallow: ["/organizacion/", "/api/"],
+      disallow: ["/organizacion/", "/institucional/", "/acceso-institucional", "/api/"],
     }],
     sitemap: `${siteUrl}/sitemap.xml`,
   };

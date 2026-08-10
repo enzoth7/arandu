@@ -8,7 +8,7 @@ import { Building2, LogOut, Menu, ShieldAlert } from "lucide-react";
 import {
   homeFor,
   navItemsFor,
-  ORGANIZATION_LOGIN,
+  INSTITUTIONAL_LOGIN,
   pathFor,
   type Portal,
 } from "./navigation";
@@ -24,19 +24,19 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
   const router = useRouter();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const isOrganization = portal === "organization";
+  const isInstitutional = portal !== "public";
 
   const signOut = () => {
-    void fetch("/api/team/session", { method: "DELETE" }).catch(() => undefined);
+    void fetch("/api/institutional/session", { method: "DELETE" }).catch(() => undefined);
     router.push("/");
     router.refresh();
   };
 
-  return <main className={`site ${isOrganization ? "organizationSite" : "publicSite"}`}>
+  return <main className={`site ${isInstitutional ? "organizationSite" : "publicSite"}`}>
     <header className="top">
       <div className="topin">
         <Link className="brand" href={homeFor(portal)} aria-label="+Cerca, ir al inicio">
-          {isOrganization
+          {isInstitutional
             ? <>
                 <Image src="/iconoarandu.png" alt="" width={70} height={70} className="brandLogo" priority/>
                 <span>Arandú</span>
@@ -69,11 +69,11 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
             aria-label="Abrir menú"
           ><Menu size={17}/> Menú</button>
 
-          {isOrganization
+          {isInstitutional
             ? <button type="button" className="profileReset" onClick={signOut}>
                 <LogOut size={16}/><span>Salir</span>
               </button>
-            : <Link className="institutionalAccess" href={ORGANIZATION_LOGIN}>
+            : <Link className="institutionalAccess" href={INSTITUTIONAL_LOGIN}>
                 <Building2 size={16}/><span>Acceso institucional</span>
               </Link>}
         </div>

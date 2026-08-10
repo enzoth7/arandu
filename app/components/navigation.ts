@@ -9,32 +9,44 @@ export type View =
   | "buscar"
   | "guia"
   | "preocupacion"
+  | "experiencia"
   | "seguimiento"
   | "fuentes"
   // Organización
   | "residenciales"
   | "equipos"
-  | "review";
+  | "review"
+  | "bandeja"
+  | "mis_elepem"
+  | "solicitudes"
+  | "nuevo_cambio";
 
-export type Portal = "public" | "organization";
+export type Portal = "public" | "state" | "facility";
 
 export const PUBLIC_HOME = "/";
-export const ORGANIZATION_HOME = "/organizacion/residenciales";
-export const ORGANIZATION_LOGIN = "/organizacion/login";
+export const STATE_HOME = "/institucional/estado/bandeja";
+export const FACILITY_HOME = "/institucional/elepem";
+export const INSTITUTIONAL_LOGIN = "/acceso-institucional";
 
 const publicViewPaths: Partial<Record<View, string>> = {
   buscar: PUBLIC_HOME,
   guia: "/guia",
   preocupacion: "/preocupacion",
+  experiencia: "/experiencia",
   seguimiento: "/seguimiento",
   fuentes: "/fuentes",
 };
 
 const organizationViewPaths: Partial<Record<View, string>> = {
-  residenciales: ORGANIZATION_HOME,
-  equipos: "/organizacion/equipos",
-  review: "/organizacion/review",
-  fuentes: "/organizacion/fuentes",
+  bandeja: STATE_HOME,
+  residenciales: "/institucional/estado/elepem",
+  fuentes: "/institucional/estado/fuentes",
+};
+
+const facilityViewPaths: Partial<Record<View, string>> = {
+  mis_elepem: FACILITY_HOME,
+  solicitudes: "/institucional/elepem/solicitudes",
+  nuevo_cambio: "/institucional/elepem/solicitudes/nueva",
 };
 
 export type NavItem = { view: View; label: string };
@@ -48,26 +60,33 @@ export const publicNavItems: readonly NavItem[] = [
   { view: "buscar", label: "Buscar ELEPEM" },
   { view: "guia", label: "Cómo elegir" },
   { view: "preocupacion", label: "Comunicar una preocupación" },
+  { view: "experiencia", label: "Compartir experiencia" },
   { view: "seguimiento", label: "Seguimiento" },
   { view: "fuentes", label: "Cómo usamos los datos" },
 ];
 
 export const organizationNavItems: readonly NavItem[] = [
+  { view: "bandeja", label: "Bandeja" },
   { view: "residenciales", label: "ELEPEM" },
-  { view: "equipos", label: "Equipos" },
   { view: "fuentes", label: "Fuentes" },
 ];
 
+export const facilityNavItems: readonly NavItem[] = [
+  { view: "mis_elepem", label: "Mis ELEPEM" },
+  { view: "solicitudes", label: "Solicitudes" },
+  { view: "nuevo_cambio", label: "Proponer cambio" },
+];
+
 export function navItemsFor(portal: Portal) {
-  return portal === "organization" ? organizationNavItems : publicNavItems;
+  return portal === "state" ? organizationNavItems : portal === "facility" ? facilityNavItems : publicNavItems;
 }
 
 export function homeFor(portal: Portal) {
-  return portal === "organization" ? ORGANIZATION_HOME : PUBLIC_HOME;
+  return portal === "state" ? STATE_HOME : portal === "facility" ? FACILITY_HOME : PUBLIC_HOME;
 }
 
 /** Ruta de una vista dentro de un portal, con reserva al inicio del portal. */
 export function pathFor(portal: Portal, view: View) {
-  const paths = portal === "organization" ? organizationViewPaths : publicViewPaths;
+  const paths = portal === "state" ? organizationViewPaths : portal === "facility" ? facilityViewPaths : publicViewPaths;
   return paths[view] ?? homeFor(portal);
 }
