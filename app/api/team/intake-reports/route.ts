@@ -73,6 +73,7 @@ export async function GET(request: NextRequest) {
            WHERE attachment.report_id = report.id
          ), '[]'::jsonb) AS attachments
        FROM public.intake_reports AS report
+       WHERE report.is_demo = true
        ORDER BY report.created_at DESC
        LIMIT 100`);
 
@@ -135,7 +136,7 @@ export async function POST(request: NextRequest) {
       `WITH updated_report AS (
          UPDATE public.intake_reports
          SET current_status = $2, priority = $3, updated_at = now()
-         WHERE id = $1
+         WHERE id = $1 AND is_demo = true
          RETURNING id
        )
        INSERT INTO public.intake_report_events (

@@ -108,6 +108,7 @@ export async function POST(request: Request) {
   if (!externalEventId || !chatwoot || !consent || !confirmation || !requiredWhatsappFields || !confirmationIsFresh || !consentPrecedesConfirmation || !payload || payload.privacy !== consent.mode) {
     return json({ error: "Faltan datos requeridos o el consentimiento no coincide." }, 400);
   }
+  const { contactPhone, contactEmail, reporterName, ...contentPayload } = payload;
 
   const phonePepper = process.env.INTAKE_PHONE_HASH_PEPPER || "";
   if (phonePepper.length < 32) return json({ error: "La correlación técnica no está configurada." }, 503);
@@ -144,8 +145,11 @@ export async function POST(request: Request) {
         const caseCode = newCaseCode();
         const uploadToken = newUploadToken();
         const inserted = await client.query<{ id: string }>(
-          `INSERT INTO public.intake_reports (case_code, source, priority, department, report_payload)
-           VALUES ($1, 'whatsapp_sandbox', $2, $3, $4::jsonb)
+          `INSERT INTO public.intake_reports (
+             case_code, source, priority, department, report_payload,
+             entry_type, is_demo, payload_version, submitted_actor
+           )
+           VALUES ($1, 'whatsapp_sandbox', $2, $3, $4::jsonb, 'concern', true, 2, 'system')
            ON CONFLICT (case_code) DO NOTHING
            RETURNING id`,
           [
@@ -153,7 +157,7 @@ export async function POST(request: Request) {
             payload.preliminaryPriority,
             isRecord(payload.location) ? payload.location.department : null,
             JSON.stringify({
-                ...payload,
+                ...contentPayload,
                 consent: { ...consent, transport: "whatsapp" },
                 confirmation,
                 evidenceUploadToken: uploadToken,
@@ -161,7 +165,14 @@ export async function POST(request: Request) {
           ],
         );
         const reportId = inserted.rows[0]?.id;
-        if (!reportId) continue;
+          if (!reportId) continue;
+          if (reporterName || contactPhone || contactEmail) {
+            await client.query(
+              `INSERT INTO public.intake_report_contacts (report_id, name, phone, email)
+               VALUES ($1, $2, $3, $4)`,
+              [reportId, reporterName || null, contactPhone || null, contactEmail || null],
+            );
+          }
           await client.query(
             `INSERT INTO public.intake_channel_links (
                report_id, source, external_account_id, external_inbox_id,

@@ -5,7 +5,7 @@ import {
 } from "../../../../lib/elepem-data-source.mjs";
 import { validateCandidateReviewInput } from "../../../../lib/facility-candidate-review.mjs";
 import { querySupabaseDatabase, withSupabaseTransaction } from "../../../../lib/supabase-db";
-import { hasSameOrigin } from "../../../../lib/team-session.mjs";
+import { hasSameOrigin } from "../../../../lib/institutional-session.mjs";
 import { teamSessionOrUnauthorized } from "../../../../lib/team-auth";
 
 export const runtime = "nodejs";

@@ -78,6 +78,14 @@ export async function POST(request: NextRequest, context: { params: Promise<{ ca
   const sourceMessageIdValue = input.get("sourceMessageId");
   const sourceChannel = sourceChannelValue === "whatsapp_sandbox" ? "whatsapp_sandbox" : "web";
   const sourceMessageId = typeof sourceMessageIdValue === "string" ? sourceMessageIdValue.trim().slice(0, 100) : null;
+  const purposeValue = input.get("purpose");
+  const purpose = purposeValue === "facility_photo" ? "facility_photo" : cleanType.startsWith("audio/") ? "audio" : "evidence";
+  const rightsSourceValue = input.get("rightsSource");
+  const rightsSource = typeof rightsSourceValue === "string" ? rightsSourceValue.trim().slice(0, 1_000) : "";
+  const rightsConfirmed = input.get("rightsConfirmed") === "true";
+  if (purpose === "facility_photo" && (!cleanType.startsWith("image/") || !rightsConfirmed || rightsSource.length < 10)) {
+    return NextResponse.json({ error: "La foto requiere una declaración de procedencia y derechos." }, { status: 400 });
+  }
 
   const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
   const publishableKey = process.env.SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
@@ -93,15 +101,22 @@ export async function POST(request: NextRequest, context: { params: Promise<{ ca
   forwarded.set("sha256", fileHash);
   forwarded.set("sourceChannel", sourceChannel);
   if (sourceMessageId) forwarded.set("sourceMessageId", sourceMessageId);
+  forwarded.set("purpose", purpose);
+  if (rightsSource) forwarded.set("rightsSource", rightsSource);
+  forwarded.set("rightsConfirmed", String(rightsConfirmed));
   forwarded.set("file", new Blob([new Uint8Array(fileBuffer)], { type: cleanType }), cleanName);
 
   try {
-    const response = await fetch(`${supabaseUrl}/functions/v1/upload-intake-evidence`, {
-      method: "POST",
-      headers: supabaseHeaders(publishableKey),
-      body: forwarded,
-      cache: "no-store",
-    });
+    // Las fotos de ficha llevan metadatos de derechos nuevos. Hasta que la Edge
+    // Function v2 esté desplegada, pasan por el fallback privado del servidor.
+    const response = purpose === "facility_photo"
+      ? new Response(null, { status: 503 })
+      : await fetch(`${supabaseUrl}/functions/v1/upload-intake-evidence`, {
+          method: "POST",
+          headers: supabaseHeaders(publishableKey),
+          body: forwarded,
+          cache: "no-store",
+        });
     
     const result: unknown = await response.json().catch(() => null);
 
@@ -169,9 +184,10 @@ export async function POST(request: NextRequest, context: { params: Promise<{ ca
       await querySupabaseDatabase(
         `INSERT INTO public.intake_report_attachments (
            id, report_id, object_path, file_name, mime_type, size_bytes,
-           sha256_hex, source_channel, source_message_id, validation_status
-         ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 'signature_validated')`,
-        [attachmentId, reportId, objectPath, cleanName, cleanType, file.size, fileHash, sourceChannel, sourceMessageId]
+           sha256_hex, source_channel, source_message_id, validation_status,
+           purpose, rights_metadata
+         ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 'signature_validated', $10, $11::jsonb)`,
+        [attachmentId, reportId, objectPath, cleanName, cleanType, file.size, fileHash, sourceChannel, sourceMessageId, purpose, JSON.stringify({ sourceDeclaration: rightsSource || null, rightsConfirmed })]
       );
     } catch (dbErr) {
       console.error("Error inserting attachment metadata:", dbErr);

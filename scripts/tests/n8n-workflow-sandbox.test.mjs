@@ -85,6 +85,8 @@ test("la API vuelve obligatorios consentimiento, confirmación fresca y token ex
   assert.match(route, /consentPrecedesConfirmation/);
   assert.ok((route.match(/whatsapp-sandbox-v2/g) || []).length >= 2);
   assert.match(route, /INTAKE_PHONE_HASH_PEPPER/);
+  assert.match(route, /entry_type, is_demo, payload_version, submitted_actor/);
+  assert.match(route, /intake_report_contacts/);
   assert.match(attachment, /sameSecret\(storedToken, uploadToken\)/);
   assert.match(attachment, /evidenceSignatureMatches/);
   assert.match(attachment, /supabaseServiceHeaders/);
