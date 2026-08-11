@@ -88,3 +88,16 @@ test("el portal ELEPEM usa la ficha canonica sin etiquetas de demostracion", asy
   assert.match(source, /Ver ficha pública/);
   assert.doesNotMatch(source, /Portal ELEPEM demo|Datos ficticios/i);
 });
+
+test("los precios publicados no dependen del flag de entorno y se limitan a MSP o MIDES", async () => {
+  const source = await readFile(new URL("../../lib/facility-registry.ts", import.meta.url), "utf8");
+  assert.doesNotMatch(source, /demoPriceEnabled|DEMO_MODE/);
+  assert.match(source, /row\.msp_final \|\| row\.mides_social/);
+  assert.match(source, /monthlyPriceUyu,/);
+});
+
+test("la ficha muestra cualquier experiencia moderada y publicada", async () => {
+  const source = await readFile(new URL("../../app/api/residenciales/[facilityKey]/experiencias/route.ts", import.meta.url), "utf8");
+  assert.match(source, /facility_experiences_published/);
+  assert.doesNotMatch(source, /DEMO_MODE|AND is_demo/);
+});

@@ -103,7 +103,11 @@ function isOtherSource(row: ResidentialRow) {
 function toFacility(row: ResidentialRow): Facility {
   const otherSource = isOtherSource(row);
   const links = sourceLinks(row.source_links);
-  const demoPriceEnabled = process.env.DEMO_MODE === "true";
+  const monthlyPriceUyu = (
+    typeof row.demo_monthly_price_uyu === "number"
+    && (row.msp_final || row.mides_social)
+  ) ? row.demo_monthly_price_uyu : undefined;
+  const hasPublishedPrice = typeof monthlyPriceUyu === "number";
   return {
     id: row.id,
     name: row.name,
@@ -142,11 +146,9 @@ function toFacility(row: ResidentialRow): Facility {
     contactEmail: row.public_contact_email || undefined,
     description: row.public_description || undefined,
     photoUrl: row.public_image_url || undefined,
-    monthlyPriceUyu: demoPriceEnabled && typeof row.demo_monthly_price_uyu === "number"
-      ? row.demo_monthly_price_uyu
-      : undefined,
-    monthlyPriceAsOf: demoPriceEnabled && row.demo_price_as_of ? row.demo_price_as_of : undefined,
-    monthlyPriceIncludes: demoPriceEnabled && Array.isArray(row.demo_price_includes)
+    monthlyPriceUyu,
+    monthlyPriceAsOf: hasPublishedPrice && row.demo_price_as_of ? row.demo_price_as_of : undefined,
+    monthlyPriceIncludes: hasPublishedPrice && Array.isArray(row.demo_price_includes)
       ? row.demo_price_includes.filter((item): item is string => typeof item === "string" && Boolean(item.trim()))
       : undefined,
     createdAt: row.created_at,

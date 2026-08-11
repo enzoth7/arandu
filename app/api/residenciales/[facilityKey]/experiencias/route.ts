@@ -32,23 +32,21 @@ export async function GET(
     if (!facility) {
       return NextResponse.json({ error: "No se encontro el ELEPEM en el padron publico." }, { status: 404 });
     }
-    const isDemo = process.env.DEMO_MODE === "true";
     const [countRows, rows] = await Promise.all([
       querySupabaseDatabase<{ count: string }>(
         `SELECT count(*)::text AS count
          FROM public.facility_experiences_published
-         WHERE facility_key = $1 AND is_demo = $2`,
-        [facility.key, isDemo],
+         WHERE facility_key = $1`,
+        [facility.key],
       ),
       querySupabaseDatabase<PublicExperienceRow>(
         `SELECT publication_id, public_body, public_relationship, public_period, published_at
          FROM public.facility_experiences_published
          WHERE facility_key = $1
-           AND is_demo = $2
-           AND ($3::timestamptz IS NULL OR (published_at, publication_id) < ($3::timestamptz, $4::uuid))
+           AND ($2::timestamptz IS NULL OR (published_at, publication_id) < ($2::timestamptz, $3::uuid))
          ORDER BY published_at DESC, publication_id DESC
-         LIMIT $5`,
-        [facility.key, isDemo, cursor?.publishedAt || null, cursor?.id || null, limit + 1],
+         LIMIT $4`,
+        [facility.key, cursor?.publishedAt || null, cursor?.id || null, limit + 1],
       ),
     ]);
     const pageRows = rows.slice(0, limit);
