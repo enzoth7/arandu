@@ -19,12 +19,13 @@ export type DemoFacilityProfile = {
 };
 
 export type ExperienceSubmission = {
-  facilityId: DemoFacilityProfile["id"];
+  facilityId: string;
   relationship: string;
   period: string;
   answers: Record<string, "yes" | "partial" | "no" | "unknown" | "prefer_not_to_answer">;
   narrative?: string;
   requestedDestination: "aggregate" | "private_facility" | "consider_anonymized";
+  publicationConsent: boolean;
   contact?: { name?: string; phone?: string; email?: string };
   consent: boolean;
 };
@@ -49,6 +50,33 @@ export type InstitutionalInboxItem = {
   priority: string;
   createdAt: string;
   demoFacilityId: string | null;
+  facility: InstitutionalFacilityReference | null;
+  publication: ExperiencePublicationSummary | null;
   summary: string;
   payload: Record<string, unknown>;
+};
+
+export type InstitutionalFacilityReference = {
+  id: number;
+  key: string;
+  name: string;
+  locality: string;
+  department: string;
+};
+
+export type ExperiencePublicationSummary = {
+  id: string;
+  status: "draft" | "published" | "withdrawn";
+  publicBody: string;
+  publicRelationship: string | null;
+  publicPeriod: string | null;
+  publishedAt: string | null;
+};
+
+export type PublicExperienceItem = {
+  id: string;
+  body: string;
+  relationship: string | null;
+  period: string | null;
+  publishedAt: string;
 };

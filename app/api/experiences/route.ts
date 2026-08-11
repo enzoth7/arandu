@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { demoIntakeEnabled, parseExperienceSubmission } from "../../../lib/demo-intake.mjs";
 import { insertDemoIntake } from "../../../lib/demo-intake-db";
 import { MAX_INTAKE_REQUEST_BYTES } from "../../../lib/intake-report.mjs";
+import { resolvePublicFacilityReference } from "../../../lib/facility-registry";
 
 export const runtime = "nodejs";
 
@@ -26,10 +27,17 @@ export async function POST(request: Request) {
   }
 
   try {
+    const facility = await resolvePublicFacilityReference(parsed.payload.facilityId);
+    if (!facility) {
+      return NextResponse.json({ error: "El ELEPEM seleccionado no pertenece al padrón público." }, { status: 400 });
+    }
     const result = await insertDemoIntake({
       kind: "experience",
       submittedActor: "public",
-      demoFacilityId: parsed.payload.facilityId,
+      demoFacilityId: null,
+      facilityId: facility.id,
+      payloadVersion: 3,
+      department: facility.department,
       payload: parsed.payload,
       contact: parsed.contact,
     });

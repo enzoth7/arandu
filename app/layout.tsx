@@ -16,25 +16,25 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   title: {
-    default: "Más Cerca · Información para decidir",
-    template: "%s · Más Cerca",
+    default: "Arandú | Información para elegir",
+    template: "%s | Arandú",
   },
-  description: "Más Cerca · Información para decidir.",
-  applicationName: "Más Cerca",
+  description: "Información clara sobre ELEPEM en Uruguay.",
+  applicationName: "Arandú",
   icons: {
-    icon: "/mascerca.png",
-    apple: "/mascerca.png",
+    icon: "/arandu-mark.svg",
   },
   openGraph: {
     type: "website",
     locale: "es_UY",
-    siteName: "Más Cerca",
-    images: ["/mascerca.png"],
+    siteName: "Arandú",
+    title: "Arandú | Información para elegir",
+    images: ["/arandu-hero-v2.webp"],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#155eef",
+  themeColor: "#153f3b",
   colorScheme: "light",
 };
 

@@ -65,7 +65,7 @@ async function main() {
     exclusionDocument: JSON.parse(exclusionContent),
     inputHash: createHash("sha256").update(inputContent).digest("hex"),
   });
-  const pool = createSupabasePool("alertamayor-reviewed-department-import");
+  const pool = createSupabasePool("arandu-reviewed-department-import");
   const client = await pool.connect();
   try {
     const inspection = await inspectReviewedDepartmentImport(client, plan);

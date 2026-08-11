@@ -1,4 +1,4 @@
-# Alerta Mayor — instrucciones para Codex
+# Arandú — instrucciones para Codex
 
 ## Objetivo
 
@@ -21,8 +21,6 @@ privada de revisión humana.
 - No recopilar datos de residentes, historias clínicas, documentos, teléfonos
   personales ni contenido de denuncias.
 - Ningún candidato se publica automáticamente.
-- Solo candidatos revisados por una persona y con evidencia A o B pueden ser
-  elegibles para el mapa público.
 - Nunca guardar secretos o archivos .env en Git.
 - Nunca utilizar credenciales de producción en pruebas.
 - No alterar rutas públicas o la interfaz existente fuera de la tarea indicada.
@@ -51,7 +49,7 @@ privada de revisión humana.
 - La clave de Google Maps almacenada localmente podrá usarse únicamente para
   verificación controlada de candidatos y obtención de place_id.
 - No se usará Google Places para construir automáticamente la base nacional,
-  copiar masivamente fichas ni generar coordenadas para el mapa de Alerta Mayor.
+  copiar masivamente fichas ni generar coordenadas para el mapa de Arandú.
 - De Google solo se conservará de forma permanente el place_id, la URL externa,
   la fecha de verificación y la identidad de la persona revisora.
 - Ningún candidato se publica automáticamente.

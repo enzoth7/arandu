@@ -7,6 +7,9 @@ export type FacilitySearchCriteria = {
   foldedQuery?: string;
   department?: string;
   locality?: string;
+  /** Límites inclusivos para el precio mensual publicado (UYU). */
+  monthlyPriceMin?: number | null;
+  monthlyPriceMax?: number | null;
   status?: "" | FacilityStatus;
   privateWorkflowStatus?: string;
   canonicalDepartmentOf?: (value: string) => string;

@@ -96,7 +96,7 @@ async function main() {
     `normalized-backfill-source-${uruguayDateStamp()}.json`,
   );
   const projectRef = process.env.SUPABASE_PROJECT_REF;
-  const pool = createSupabasePool("alertamayor-normalized-backfill-readonly-export");
+  const pool = createSupabasePool("arandu-normalized-backfill-readonly-export");
   const client = await pool.connect();
 
   try {

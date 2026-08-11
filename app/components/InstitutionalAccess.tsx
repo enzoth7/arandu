@@ -38,19 +38,18 @@ export function InstitutionalAccess({ initialRole = null }: { initialRole?: Inst
 
   return <main className="accessGate">
     <div className={`accessGatePanel ${role ? "isLogin" : ""}`}>
-      <Image src="/arandu.png" alt="Arandú" className="accessGateLogo isOrganization" width={1536} height={1024} priority />
+      <Image src="/arandu-mark.svg" alt="Arandú" className="accessGateLogo isOrganization" width={160} height={160} priority />
       <h1>Acceso institucional</h1>
       <p className="accessGateLead">Elegí el tipo de portal. Las credenciales demo y los permisos están separados por rol.</p>
 
       {!role ? <div className="accessChoiceGrid">
         <button type="button" className="accessChoiceCard accessChoiceOrganization" onClick={() => setRole("state")}>
-          <span className="accessChoiceIcon"><Landmark size={42} /></span><strong>Soy el Estado</strong><small>Revisar preocupaciones, experiencias y solicitudes de cambio.</small>
+          <span className="accessChoiceIcon"><Landmark size={42} /></span><strong>Soy de la Organización</strong><small>Revisar preocupaciones, experiencias y solicitudes de cambio.</small>
         </button>
         <button type="button" className="accessChoiceCard accessChoicePerson" onClick={() => setRole("facility")}>
-          <span className="accessChoiceIcon"><Building2 size={42} /></span><strong>Soy un ELEPEM</strong><small>Ver establecimientos asignados y proponer cambios para revisión.</small>
+          <span className="accessChoiceIcon"><Building2 size={42} /></span><strong>Soy un ELEPEM</strong><small>Ver mis establecimientos asignados y modificar datos.</small>
         </button>
       </div> : <form className="organizationLoginForm" onSubmit={submit}>
-        <span className="demoPermanentBadge">Acceso demo · {role === "state" ? "Estado" : "ELEPEM"}</span>
         <label><span>Usuario</span><div className="accessInput"><UserRound size={19} /><input name="username" value={username} onChange={(event) => { setUsername(event.target.value); setError(""); }} autoComplete="username" autoFocus /></div></label>
         <label><span>Contraseña</span><div className="accessInput"><LockKeyhole size={19} /><input name="password" type="password" value={password} onChange={(event) => { setPassword(event.target.value); setError(""); }} autoComplete="current-password" /></div></label>
         {error && <div className="accessLoginError" role="alert">{error}</div>}

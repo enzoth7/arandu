@@ -11,7 +11,7 @@ async function readJson(path) {
 
 async function readTargets(dataSource) {
   const readSql = socialDryRunReadSql(dataSource);
-  const pool = createSupabasePool("alertamayor-social-candidate-dry-run");
+  const pool = createSupabasePool("arandu-social-candidate-dry-run");
   const client = await pool.connect();
   try {
     await client.query("begin transaction read only");

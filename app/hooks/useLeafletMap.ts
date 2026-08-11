@@ -32,9 +32,22 @@ export function useLeafletMap(view: { center: [number, number]; zoom: number } =
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
 
-    const map = L.map(containerRef.current, { scrollWheelZoom: true })
+    const map = L.map(containerRef.current, {
+      scrollWheelZoom: true,
+      preferCanvas: true,
+      markerZoomAnimation: false,
+      wheelDebounceTime: 48,
+      wheelPxPerZoomLevel: 90,
+    })
       .setView(viewRef.current.center, viewRef.current.zoom);
-    L.tileLayer(TILE_URL, { attribution: TILE_ATTRIBUTION }).addTo(map);
+    L.tileLayer(TILE_URL, {
+      attribution: TILE_ATTRIBUTION,
+      updateWhenIdle: true,
+      updateWhenZooming: false,
+      keepBuffer: 3,
+      detectRetina: false,
+      maxZoom: 19,
+    }).addTo(map);
 
     mapRef.current = map;
     markersRef.current = L.layerGroup().addTo(map);

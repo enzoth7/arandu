@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { demoIntakeEnabled, parseFacilityChangeSubmission } from "../../../../../lib/demo-intake.mjs";
 import { insertDemoIntake } from "../../../../../lib/demo-intake-db";
+import { resolvePublicFacilityReference } from "../../../../../lib/facility-registry";
 import { institutionalSessionOrError } from "../../../../../lib/institutional-auth";
 import { querySupabaseDatabase } from "../../../../../lib/supabase-db";
 
@@ -13,8 +14,9 @@ export async function GET(request: NextRequest) {
   try {
     const reports = await querySupabaseDatabase<{
       id: string; case_code: string; demo_facility_id: string; current_status: string;
-      report_payload: Record<string, unknown>; created_at: string; events: unknown;
+      facility_name: string | null; report_payload: Record<string, unknown>; created_at: string; events: unknown;
     }>(`SELECT report.id, report.case_code, report.demo_facility_id, report.current_status,
+         preferred_name.name AS facility_name,
          report.report_payload, report.created_at,
          COALESCE((SELECT jsonb_agg(jsonb_build_object(
            'status', event.status, 'public_title', event.public_title,
@@ -23,6 +25,13 @@ export async function GET(request: NextRequest) {
          ) ORDER BY event.created_at) FROM public.intake_report_events AS event
          WHERE event.report_id = report.id), '[]'::jsonb) AS events
        FROM public.intake_reports AS report
+       LEFT JOIN elepem_core.facilities AS facility ON facility.id = report.facility_id
+       LEFT JOIN LATERAL (
+         SELECT name.name
+         FROM elepem_core.facility_names AS name
+         WHERE name.facility_id = facility.id AND name.is_preferred
+         ORDER BY name.id DESC LIMIT 1
+       ) AS preferred_name ON true
        WHERE report.is_demo = true
          AND report.entry_type = 'facility_change'
          AND report.demo_facility_id = ANY($1::text[])
@@ -70,10 +79,15 @@ export async function POST(request: NextRequest) {
   if (!parsed) return NextResponse.json({ error: "Revisá la fecha, el respaldo, los cambios y los derechos de la foto." }, { status: 400 });
   if (!auth.session.facilityIds.includes(parsed.facilityId)) return NextResponse.json({ error: "Ese ELEPEM no está asignado a tu sesión." }, { status: 403 });
   try {
+    const facility = await resolvePublicFacilityReference(parsed.facilityId);
+    if (!facility || facility.key !== parsed.facilityId) {
+      return NextResponse.json({ error: "El ELEPEM asignado no está disponible en el padrón público." }, { status: 409 });
+    }
     const result = await insertDemoIntake({
       kind: "facility_change",
       submittedActor: "facility",
       demoFacilityId: parsed.facilityId,
+      facilityId: facility.id,
       payload: parsed.payload,
     });
     return NextResponse.json({ caseCode: result.caseCode, uploadToken: result.uploadToken }, { status: 201 });

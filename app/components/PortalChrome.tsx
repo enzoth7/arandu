@@ -4,7 +4,7 @@ import { useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Building2, LogOut, Menu, ShieldAlert } from "lucide-react";
+import { Building2, Check, Copy, LogOut, Menu, ShieldAlert } from "lucide-react";
 import {
   homeFor,
   navItemsFor,
@@ -24,6 +24,7 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
   const router = useRouter();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [contactCopied, setContactCopied] = useState(false);
   const isInstitutional = portal !== "public";
 
   const signOut = () => {
@@ -32,18 +33,22 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
     router.refresh();
   };
 
+  const copyContact = async () => {
+    try {
+      await navigator.clipboard.writeText("contacto@arandu.com");
+      setContactCopied(true);
+      window.setTimeout(() => setContactCopied(false), 1800);
+    } catch {
+      setContactCopied(false);
+    }
+  };
+
   return <main className={`site ${isInstitutional ? "organizationSite" : "publicSite"}`}>
     <header className="top">
       <div className="topin">
-        <Link className="brand" href={homeFor(portal)} aria-label="+Cerca, ir al inicio">
-          {isInstitutional
-            ? <>
-                <Image src="/iconoarandu.png" alt="" width={70} height={70} className="brandLogo" priority/>
-                <span>Arandú</span>
-              </>
-            : <span className="masCercaLogoContainer">
-                <Image src="/mascerca.png" alt="+Cerca" width={32} height={32} className="masCercaBrandImg" priority/>
-              </span>}
+        <Link className="brand" href={homeFor(portal)} aria-label="Arandú, ir al inicio">
+          <Image src="/arandu-mark.svg" alt="" width={50} height={50} className="brandMark" priority />
+          <span className="brandWordmark">Arandú</span>
         </Link>
 
         <nav className={menuOpen ? "nav open" : "nav"} aria-label="Navegación principal">
@@ -53,7 +58,7 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
             return <Link
               key={item.view}
               href={href}
-              className={isActive ? "active" : ""}
+              className={`${isActive ? "active" : ""} nav-${item.view}`}
               aria-current={isActive ? "page" : undefined}
               onClick={() => setMenuOpen(false)}
             >{item.label}</Link>;
@@ -81,11 +86,34 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
     </header>
 
     <div className="shell">
-      <div className="banner">
-        <ShieldAlert size={20}/>
-        <span><strong>PROTOTIPO ACADÉMICO</strong> · Usá sólo datos de demostración. Las comunicaciones se guardan para que el equipo las vea en su bandeja, pero no se envían a ningún organismo ni representan un servicio oficial.</span>
-      </div>
       {children}
+      <footer className="aranduFooter">
+        {portal === "public" && <div className="aranduFooterContent">
+          <div className="aranduFooterIdentity">
+            <Link href="/" className="aranduFooterBrand" aria-label="Arandú, ir al inicio">
+              <Image src="/arandu-mark.svg" alt="" width={38} height={38} />
+              <strong>Arandú</strong>
+            </Link>
+            <span>Información para elegir</span>
+          </div>
+          <nav className="aranduFooterLinks" aria-label="Enlaces del pie">
+            <Link href="/fuentes">Datos y fuentes</Link>
+            <Link href="/terminos">Términos y condiciones</Link>
+            <Link href="/privacidad">Privacidad</Link>
+            <Link href="/acceso-institucional">Acceso institucional</Link>
+          </nav>
+          <div className="aranduFooterContact">
+            <a href="mailto:contacto@arandu.com">contacto@arandu.com</a>
+            <button type="button" onClick={copyContact} aria-label="Copiar correo de contacto" title="Copiar correo">
+              {contactCopied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
+            </button>
+          </div>
+        </div>}
+        <div className="aranduFooterDemo" role="note">
+          <ShieldAlert size={18} aria-hidden="true" />
+          <span><strong>ENTORNO DE DEMOSTRACIÓN</strong> · Usá datos ficticios. Nada se envía a organismos.</span>
+        </div>
+      </footer>
     </div>
   </main>;
 }

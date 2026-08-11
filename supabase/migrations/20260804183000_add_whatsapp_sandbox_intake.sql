@@ -1,4 +1,4 @@
--- Private, sandbox-only channel metadata for the Alerta Mayor WhatsApp intake.
+-- Private, sandbox-only channel metadata for the Arandú WhatsApp intake.
 -- This migration does not expose data, publish candidates, or forward reports.
 
 create table public.intake_channel_links (

@@ -274,7 +274,7 @@ export const LINK_SOURCES_SQL = `
     observation.id,
     'lead',
     'automated',
-    'alertamayor-osm-import/1.0'
+    'arandu-osm-import/1.0'
   from incoming
   join discovery_private.facility_candidates as candidate
     on candidate.candidate_key = incoming."candidateKey"
@@ -315,7 +315,7 @@ export const INSERT_EXTERNAL_IDS_SQL = `
     incoming."externalId",
     incoming."externalUrl",
     'source_observation',
-    'alertamayor-osm-import/1.0'
+    'arandu-osm-import/1.0'
   from incoming
   join discovery_private.facility_candidates as candidate
     on candidate.candidate_key = incoming."candidateKey"

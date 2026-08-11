@@ -1,5 +1,40 @@
 import Image from "next/image";
 import Link from "next/link";
-import { DEMO_FACILITIES } from "../../../lib/demo-facilities";
+import { loadAssignedFacilityProfiles } from "../../../lib/facility-registry";
 import { requireInstitutionalRole } from "../../../lib/institutional-auth";
-export default async function FacilityHomePage() { const session = await requireInstitutionalRole("facility"); const facilities = DEMO_FACILITIES.filter((facility) => session.facilityIds.includes(facility.id)); return <section className="institutionalWorkspace"><header className="institutionalPageHeader"><div><span className="demoPermanentBadge">Portal ELEPEM demo</span><h1>Mis ELEPEM</h1><p>Organización asignada: {session.organizationId}. Sólo podés acceder a estos identificadores reservados.</p></div></header><div className="demoFacilityGrid">{facilities.map((facility) => <article className="demoFacilityCard" key={facility.id}><div className="demoFacilityImage"><Image src={facility.imageUrl} alt={facility.imageAlt} fill sizes="33vw" /><span className="demoPermanentBadge">Datos ficticios</span></div><div className="demoFacilityBody"><small>{facility.id}</small><h2>{facility.name}</h2><p>{facility.description}</p><Link href={`/institucional/elepem/solicitudes/nueva?elepem=${facility.id}`} className="reportContinue">Proponer un cambio</Link></div></article>)}</div></section>; }
+
+export default async function FacilityHomePage() {
+  const session = await requireInstitutionalRole("facility");
+  const facilities = await loadAssignedFacilityProfiles(session.facilityIds);
+
+  return (
+    <section className="institutionalWorkspace">
+      <header className="institutionalPageHeader">
+        <div>
+          <h1>Mis ELEPEM</h1>
+          <p>Consultá la ficha pública y proponé actualizaciones para revisión institucional.</p>
+        </div>
+      </header>
+      <div className="demoFacilityGrid">
+        {facilities.map((facility) => (
+          <article className="demoFacilityCard" key={facility.id}>
+            <div className="demoFacilityImage">
+              <Image src={facility.imageUrl} alt={facility.imageAlt} fill sizes="(max-width: 760px) 100vw, 33vw" />
+            </div>
+            <div className="demoFacilityBody">
+              <h2>{facility.name}</h2>
+              <p>{facility.description}</p>
+              <div className="facilityPortalActions">
+                <Link href={`/?elepem=${encodeURIComponent(facility.id)}`} className="reportBack">Ver ficha pública</Link>
+                <Link href={`/institucional/elepem/solicitudes/nueva?elepem=${encodeURIComponent(facility.id)}`} className="reportContinue">Proponer un cambio</Link>
+              </div>
+            </div>
+          </article>
+        ))}
+        {facilities.length === 0 && (
+          <p className="registryEmptyResults">No hay ELEPEM asignados a esta cuenta.</p>
+        )}
+      </div>
+    </section>
+  );
+}

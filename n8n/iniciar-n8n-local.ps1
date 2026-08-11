@@ -8,7 +8,7 @@ if (-not (Test-Path -LiteralPath $n8nCommand)) {
 }
 
 $env:N8N_BLOCK_ENV_ACCESS_IN_NODE = 'false'
-$env:ALERTA_MAYOR_BASE_URL = 'http://localhost:3000'
+$env:ARANDU_BASE_URL = 'http://localhost:3000'
 $env:CHATWOOT_BASE_URL = 'http://localhost:3201'
 
 $localEnvPath = Join-Path $workspaceRoot '.env'

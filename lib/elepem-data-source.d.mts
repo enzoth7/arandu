@@ -4,7 +4,7 @@ export function readElepemDataSource(value?: string): ElepemDataSource;
 export function publicFacilityRelation(dataSource: ElepemDataSource):
   | "public.residenciales"
   | "public.residenciales_legacy_compat"
-  | "public.facilities_public_approved";
+  | "public.arandu_facilities_registry";
 export function matchingFacilityRelation(dataSource: ElepemDataSource):
   | "public.residenciales"
   | "public.residenciales_legacy_compat"

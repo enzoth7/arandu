@@ -4,7 +4,7 @@ Fecha de revisión: 2026-08-02.
 
 ## Alcance
 
-El archivo `public/alertamayor-discovery-starter.patch` se utilizó solamente
+El archivo `public/arandu-discovery-starter.patch` se utilizó solamente
 como referencia de diseño. No se aplicó porque parte de una versión anterior de
 `package.json` y propone un segundo esquema de candidatos incompatible con el
 repositorio actual.

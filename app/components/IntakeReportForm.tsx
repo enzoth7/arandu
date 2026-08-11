@@ -574,7 +574,7 @@ export function IntakeReportForm({
       const savedCaseCode = data.caseCode;
       const uploadToken = "uploadToken" in data && typeof data.uploadToken === "string" ? data.uploadToken : "";
       setCaseCode(savedCaseCode);
-      try { window.sessionStorage.setItem("alerta-mayor-last-code", savedCaseCode); } catch {}
+      try { window.sessionStorage.setItem("arandu-last-code", savedCaseCode); } catch {}
       const notification = "emailNotification" in data && data.emailNotification && typeof data.emailNotification === "object"
         ? data.emailNotification as Record<string, unknown>
         : null;

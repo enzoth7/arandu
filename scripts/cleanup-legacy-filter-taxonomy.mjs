@@ -26,7 +26,7 @@ async function main() {
     throw new Error("Para aplicar, --acknowledge-project debe coincidir con SUPABASE_PROJECT_REF.");
   }
 
-  const pool = createSupabasePool("alertamayor-legacy-filter-taxonomy-cleanup");
+  const pool = createSupabasePool("arandu-legacy-filter-taxonomy-cleanup");
   const client = await pool.connect();
   try {
     await client.query("begin");

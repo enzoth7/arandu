@@ -60,7 +60,7 @@ async function main() {
   const document = JSON.parse(await readFile(inputPath, "utf8"));
   const rows = suggestionRows(document);
   const dataSource = readElepemDataSource();
-  const pool = createSupabasePool("alertamayor-private-match-suggestion-sync");
+  const pool = createSupabasePool("arandu-private-match-suggestion-sync");
   const client = await pool.connect();
   try {
     await client.query("begin");

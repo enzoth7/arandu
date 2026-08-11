@@ -24,7 +24,7 @@ async function main() {
     args.output,
     `residenciales-live-${dateStamp}.json`,
   );
-  const pool = createSupabasePool("alertamayor-residenciales-readonly-export");
+  const pool = createSupabasePool("arandu-residenciales-readonly-export");
   const client = await pool.connect();
   try {
     await client.query("begin transaction read only");

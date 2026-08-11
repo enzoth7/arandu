@@ -19,7 +19,7 @@ test("compatibility and normalized relations are fixed allowlisted names", () =>
   );
   assert.equal(
     publicFacilityRelation("normalized"),
-    "public.facilities_public_approved",
+    "public.arandu_facilities_registry",
   );
   assert.equal(
     matchingFacilityRelation("normalized"),

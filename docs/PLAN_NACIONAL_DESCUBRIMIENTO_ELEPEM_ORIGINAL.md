@@ -1,7 +1,7 @@
 # Plan maestro nacional de descubrimiento y normalización de ELEPEM
 ## ChatGPT Plus/Pro + Codex + Google Maps + fuentes públicas
 
-**Proyecto:** Alerta Mayor  
+**Proyecto:** Arandú
 **Fecha del plan:** 2026-08-02  
 **Versión:** 2 — Supabase como fuente operativa única de verdad  
 **Archivo de referencia para Codex:** `docs/PLAN_NACIONAL_DESCUBRIMIENTO_ELEPEM.md`
@@ -712,7 +712,7 @@ por este bloque:
 - La clave de Google Maps almacenada localmente podrá usarse únicamente para
   verificación controlada de candidatos y obtención de place_id.
 - No se usará Google Places para construir automáticamente la base nacional,
-  copiar masivamente fichas ni generar coordenadas para el mapa de Alerta Mayor.
+  copiar masivamente fichas ni generar coordenadas para el mapa de Arandú.
 - De Google solo se conservará de forma permanente el place_id, la URL externa,
   la fecha de verificación y la identidad de la persona revisora.
 - Ningún candidato se publica automáticamente.

@@ -172,7 +172,7 @@ export function TeamIntakeInbox({ initialFacility }: TeamIntakeInboxProps = {}) 
   const [readIds, setReadIds] = useState<Set<string>>(() => {
     if (typeof window === "undefined") return new Set();
     try {
-      const stored = sessionStorage.getItem("alerta-mayor-read-ids");
+      const stored = sessionStorage.getItem("arandu-read-ids");
       return stored ? new Set(JSON.parse(stored)) : new Set();
     } catch {
       return new Set();
@@ -189,7 +189,7 @@ export function TeamIntakeInbox({ initialFacility }: TeamIntakeInboxProps = {}) 
       const next = new Set(prev).add(id);
       if (typeof window !== "undefined") {
         try {
-          sessionStorage.setItem("alerta-mayor-read-ids", JSON.stringify(Array.from(next)));
+          sessionStorage.setItem("arandu-read-ids", JSON.stringify(Array.from(next)));
         } catch {}
       }
       return next;
@@ -214,10 +214,10 @@ export function TeamIntakeInbox({ initialFacility }: TeamIntakeInboxProps = {}) 
 
   useEffect(() => {
     try {
-      const raw = window.sessionStorage.getItem("alerta-mayor-preselected-facility");
+      const raw = window.sessionStorage.getItem("arandu-preselected-facility");
       if (raw) {
         const facility = JSON.parse(raw);
-        window.sessionStorage.removeItem("alerta-mayor-preselected-facility");
+        window.sessionStorage.removeItem("arandu-preselected-facility");
         if (facility && typeof facility === "object") {
           setActiveTab("newEntry");
           setEntrySetting("En un residencial / ELEPEM");

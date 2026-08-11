@@ -3,8 +3,9 @@ import { dirname, resolve } from "node:path";
 import { ideQueryUrl, selectStrictIdeResult } from "./lib/ide-geocoding.mjs";
 import { createSupabasePool } from "./lib/supabase-script-db.mjs";
 import { repairMojibakeDeep } from "./lib/text-encoding.mjs";
+import { loadManualDiscoveryPilot } from "../lib/manual-discovery-pilot.mjs";
 
-const USER_AGENT = "AlertaMayorDiscovery/1.0 (controlled IDE Uruguay geocoding; contacto: equipo@alertamayor.local)";
+const USER_AGENT = "AranduDiscovery/1.0 (controlled IDE Uruguay geocoding; contacto: contacto@arandu.com)";
 
 function argument(flag) {
   const index = process.argv.indexOf(flag);
@@ -45,15 +46,36 @@ if (!process.argv.includes("--live") || !process.argv.includes("--acknowledge-id
 }
 
 const useOfficialDatabaseSelection = process.argv.includes("--supabase-official-unlocated");
+const useAllDatabaseSelection = process.argv.includes("--supabase-unlocated");
+if (useOfficialDatabaseSelection && useAllDatabaseSelection) {
+  throw new Error("Usá sólo uno de --supabase-official-unlocated o --supabase-unlocated.");
+}
 const candidates = [];
 let scope = "Solo candidatos verified_new con evidencia A/B y direcciÃ³n independiente.";
-if (useOfficialDatabaseSelection) {
-  const pool = createSupabasePool("alertamayor-ide-official-unlocated-readonly");
+if (useOfficialDatabaseSelection || useAllDatabaseSelection) {
+  const pool = createSupabasePool("arandu-ide-official-unlocated-readonly");
   const client = await pool.connect();
   try {
     await client.query("begin transaction read only");
     await client.query("set local statement_timeout = '30s'");
-    const selected = await client.query(`
+    const selected = useAllDatabaseSelection ? await client.query(`
+      select
+        candidate.candidate_key as "candidateKey",
+        candidate.normalized_name as name,
+        candidate.normalized_department as department,
+        candidate.normalized_locality as locality,
+        candidate.normalized_address as address,
+        candidate.status as "candidateStatus",
+        candidate.evidence_tier as "evidenceTier",
+        candidate.reviewed_by as "reviewedBy",
+        candidate.reviewed_at as "reviewedAt"
+      from discovery_private.facility_candidates as candidate
+      where candidate.lat is null and candidate.lng is null
+        and nullif(trim(candidate.normalized_address), '') is not null
+        and nullif(trim(candidate.normalized_department), '') is not null
+        and candidate.status in ('needs_review', 'verified_new')
+      order by candidate.id
+    `) : await client.query(`
       select distinct on (candidate.id)
         candidate.candidate_key as "candidateKey",
         candidate.normalized_name as name,
@@ -85,7 +107,27 @@ if (useOfficialDatabaseSelection) {
     client.release();
     await pool.end();
   }
-  scope = "Candidatos privados con fuente oficial, direcciÃ³n y sin coordenadas; consulta IDE sin escritura en Supabase.";
+  if (useAllDatabaseSelection) {
+    const existingKeys = new Set(candidates.map((candidate) => candidate.candidateKey));
+    const pilot = await loadManualDiscoveryPilot(process.cwd());
+    for (const candidate of pilot.candidates) {
+      if (existingKeys.has(candidate.candidateKey) || candidate.hasCoordinates || !candidate.address || !candidate.department) continue;
+      candidates.push({
+        candidateKey: candidate.candidateKey,
+        name: candidate.name,
+        department: candidate.department,
+        locality: candidate.locality,
+        address: candidate.address,
+        candidateStatus: "needs_review",
+        evidenceTier: candidate.evidenceTier,
+        reviewedBy: null,
+        reviewedAt: null,
+      });
+    }
+    scope = "Todos los candidatos privados con dirección y sin coordenadas, incluidas entradas manuales pendientes; consulta IDE sin escritura en Supabase.";
+  } else {
+    scope = "Candidatos privados con fuente oficial, direcciÃ³n y sin coordenadas; consulta IDE sin escritura en Supabase.";
+  }
 } else {
   const sourcesArgument = optionalArgument("--sources");
   const reviewsArgument = optionalArgument("--reviews");
@@ -162,7 +204,9 @@ const report = {
     source: "IDE Uruguay",
     sourceBaseUrl: "https://direcciones.ide.uy",
     scope,
-    selectionMode: useOfficialDatabaseSelection ? "supabase_official_unlocated" : "reviewed_department_files",
+    selectionMode: useAllDatabaseSelection
+      ? "supabase_all_unlocated_with_address"
+      : useOfficialDatabaseSelection ? "supabase_official_unlocated" : "reviewed_department_files",
     humanCoordinateReviewRequired: true,
     supabaseWrites: 0,
     publicResidencialesWrites: 0,

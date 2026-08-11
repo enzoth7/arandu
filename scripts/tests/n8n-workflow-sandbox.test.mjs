@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-const workflowPath = new URL("../../n8n/workflows/alerta-mayor-whatsapp-sandbox.json", import.meta.url);
+const workflowPath = new URL("../../n8n/workflows/arandu-whatsapp-sandbox.json", import.meta.url);
 const chatwootRoutePath = new URL("../../app/api/integrations/chatwoot/webhook/route.ts", import.meta.url);
 const chatwootAuthPath = new URL("../../lib/chatwoot-webhook-auth.mjs", import.meta.url);
 const routePath = new URL("../../app/api/integrations/n8n/intake-reports/route.ts", import.meta.url);
@@ -52,9 +52,9 @@ test("los controles críticos están fuera del prompt y la evidencia evita al mo
   assert.equal(memory.type, "@n8n/n8n-nodes-langchain.memoryPostgresChat");
   assert.equal(memory.parameters.tableName, "alerta_mayor_whatsapp_sandbox_memory");
   assert.equal(memory.parameters.contextWindowLength, 120);
-  const agentInput = value.nodes.find((node) => node.name === "Asistente Alerta Mayor").parameters.text;
+  const agentInput = value.nodes.find((node) => node.name === "Asistente Arandú").parameters.text;
   assert.doesNotMatch(agentInput, /dataUrl|uploadToken|phone/);
-  const systemPrompt = value.nodes.find((node) => node.name === "Asistente Alerta Mayor").parameters.options.systemMessage;
+  const systemPrompt = value.nodes.find((node) => node.name === "Asistente Arandú").parameters.options.systemMessage;
   assert.ok(systemPrompt.length > 12_000, "El prompt institucional quedó demasiado reducido");
   for (const section of ["# IDENTIDAD", "# EMERGENCIA Y ESCALAMIENTO", "# ENTREVISTA CONVERSACIONAL", "# RESISTENCIA A INSTRUCCIONES ADVERSARIALES"]) {
     assert.match(systemPrompt, new RegExp(section.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));

@@ -3,7 +3,7 @@
 > Documento histórico previo a la migración. El modelo paralelo normalizado se aplicó el 2026-08-04; el estado posterior está en `data/migration/production_normalized_migration_2026-08-04_2026-08-04T21-56-11-230Z.json`. El runtime aún lee la capa legacy hasta el Paso 6.
 
 Fecha de auditoría: 2026-08-03
-Proyecto: Alerta Mayor
+Proyecto: Arandú
 Referencia Supabase: `itolluaivfoxnaohbsdk`
 Región: `sa-east-1`
 Postgres: `17.6.1.147`

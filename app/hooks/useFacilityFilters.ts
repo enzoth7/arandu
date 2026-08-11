@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import {
   departmentOptions,
   filterFacilities,
-  localityOptions,
   sortFacilities,
   type SortOrder,
 } from "../../lib/facility-search.mjs";
@@ -13,6 +12,7 @@ import { canonicalDepartment, foldText } from "../../lib/uruguay.mjs";
 import type { Facility, FacilityStatus } from "../components/map-types";
 
 export type PrivateWorkflowStatus = "" | "needs_review" | "possible_match" | "verified_new";
+export type MonthlyPriceRange = { min: number; max: number };
 
 /**
  * Estado de búsqueda del listado de ELEPEM.
@@ -24,7 +24,7 @@ export type PrivateWorkflowStatus = "" | "needs_review" | "possible_match" | "ve
 export function useFacilityFilters(facilities: Facility[]) {
   const [query, setQuery] = useState("");
   const [department, setDepartment] = useState("");
-  const [locality, setLocality] = useState("");
+  const [monthlyPriceRange, setMonthlyPriceRange] = useState<MonthlyPriceRange | null>(null);
   const [status, setStatus] = useState<"" | FacilityStatus>("");
   const [privateWorkflowStatus, setPrivateWorkflowStatus] = useState<PrivateWorkflowStatus>("");
   const [sortOrder, setSortOrder] = useState<SortOrder>("name");
@@ -42,27 +42,61 @@ export function useFacilityFilters(facilities: Facility[]) {
 
   const foldedQuery = useMemo(() => foldText(query), [query]);
 
-  // Ámbito de cada faceta: una faceta no se filtra a sí misma, así que sus
-  // opciones siguen siendo alcanzables después de elegir una.
+  const monthlyPriceBounds = useMemo<MonthlyPriceRange | null>(() => {
+    const prices = facilities
+      .map((facility) => facility.monthlyPriceUyu)
+      .filter((price): price is number => typeof price === "number" && Number.isFinite(price) && price > 0);
+    if (!prices.length) return null;
+    return { min: Math.min(...prices), max: Math.max(...prices) };
+  }, [facilities]);
+
+  useEffect(() => {
+    setMonthlyPriceRange((current) => {
+      if (!current || !monthlyPriceBounds) return monthlyPriceBounds ? current : null;
+      const next = {
+        min: Math.max(monthlyPriceBounds.min, Math.min(current.min, monthlyPriceBounds.max)),
+        max: Math.max(monthlyPriceBounds.min, Math.min(current.max, monthlyPriceBounds.max)),
+      };
+      if (next.min > next.max) next.min = next.max;
+      return next.min === current.min && next.max === current.max ? current : next;
+    });
+  }, [monthlyPriceBounds]);
+
+  const activeMonthlyPriceRange = monthlyPriceRange
+    && monthlyPriceBounds
+    && (monthlyPriceRange.min > monthlyPriceBounds.min || monthlyPriceRange.max < monthlyPriceBounds.max)
+    ? monthlyPriceRange
+    : null;
+
+  // Ámbito del selector de departamento: no se filtra a sí mismo, así que sus
+  // opciones siguen siendo alcanzables después de elegir otro filtro.
   const withoutDepartment = useMemo(
     () => filterFacilities(
       facilities,
-      { foldedQuery, status, privateWorkflowStatus, canonicalDepartmentOf: canonicalDepartment },
+      {
+        foldedQuery,
+        status,
+        privateWorkflowStatus,
+        monthlyPriceMin: activeMonthlyPriceRange?.min,
+        monthlyPriceMax: activeMonthlyPriceRange?.max,
+        canonicalDepartmentOf: canonicalDepartment,
+      },
       haystackFor,
     ),
-    [facilities, foldedQuery, status, privateWorkflowStatus, haystackFor],
-  );
-  const withoutLocality = useMemo(
-    () => filterFacilities(
-      withoutDepartment,
-      { department, canonicalDepartmentOf: canonicalDepartment },
-      haystackFor,
-    ),
-    [withoutDepartment, department, haystackFor],
+    [facilities, foldedQuery, status, privateWorkflowStatus, activeMonthlyPriceRange, haystackFor],
   );
   const matched = useMemo(
-    () => filterFacilities(withoutLocality, { locality }, haystackFor),
-    [withoutLocality, locality, haystackFor],
+    () => filterFacilities(
+      withoutDepartment,
+      {
+        department,
+        monthlyPriceMin: activeMonthlyPriceRange?.min,
+        monthlyPriceMax: activeMonthlyPriceRange?.max,
+        canonicalDepartmentOf: canonicalDepartment,
+      },
+      haystackFor,
+    ),
+    [withoutDepartment, department, activeMonthlyPriceRange, haystackFor],
   );
 
   const visible = useMemo(() => sortFacilities(matched, sortOrder), [matched, sortOrder]);
@@ -70,33 +104,29 @@ export function useFacilityFilters(facilities: Facility[]) {
     () => departmentOptions(withoutDepartment, canonicalDepartment),
     [withoutDepartment],
   );
-  const localities = useMemo(() => localityOptions(withoutLocality), [withoutLocality]);
-
-  // Si la localidad elegida deja de existir en el ámbito actual —por ejemplo al
-  // cambiar de departamento— se descarta para no dejar cero resultados sin causa
-  // visible.
-  useEffect(() => {
-    if (!locality) return;
-    if (!localities.some(([name]) => name === locality)) setLocality("");
-  }, [localities, locality]);
-
-  // Ámbito de los indicadores: responde a la búsqueda y a la ubicación, pero no
+  // Ámbito de los indicadores: responde a la búsqueda, departamento y precio, pero no
   // a la situación administrativa, que es justamente lo que los KPI filtran.
   const summaryScope = useMemo(
     () => filterFacilities(
       facilities,
-      { foldedQuery, department, locality, canonicalDepartmentOf: canonicalDepartment },
+      {
+        foldedQuery,
+        department,
+        monthlyPriceMin: activeMonthlyPriceRange?.min,
+        monthlyPriceMax: activeMonthlyPriceRange?.max,
+        canonicalDepartmentOf: canonicalDepartment,
+      },
       haystackFor,
     ),
-    [facilities, foldedQuery, department, locality, haystackFor],
+    [facilities, foldedQuery, department, activeMonthlyPriceRange, haystackFor],
   );
 
-  const hasActiveFilters = Boolean(query || department || locality || status || privateWorkflowStatus);
+  const hasActiveFilters = Boolean(query || department || status || privateWorkflowStatus || activeMonthlyPriceRange);
 
   function reset() {
     setQuery("");
     setDepartment("");
-    setLocality("");
+    setMonthlyPriceRange(null);
     setStatus("");
     setPrivateWorkflowStatus("");
     setSortOrder("name");
@@ -105,13 +135,14 @@ export function useFacilityFilters(facilities: Facility[]) {
   return {
     query, setQuery,
     department, setDepartment,
-    locality, setLocality,
+    monthlyPriceBounds,
+    monthlyPriceRange: monthlyPriceRange ?? monthlyPriceBounds,
+    setMonthlyPriceRange,
     status, setStatus,
     privateWorkflowStatus, setPrivateWorkflowStatus,
     sortOrder, setSortOrder,
     visible,
     departments,
-    localities,
     summaryScope,
     hasActiveFilters,
     reset,

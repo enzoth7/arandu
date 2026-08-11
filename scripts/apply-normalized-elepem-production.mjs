@@ -146,7 +146,7 @@ async function main() {
     ssl: process.env.SUPABASE_DB_SSL_MODE === "disable"
       ? false
       : { rejectUnauthorized: process.env.SUPABASE_DB_SSL_REJECT_UNAUTHORIZED === "true" },
-    application_name: "alertamayor-normalized-production-migration",
+    application_name: "arandu-normalized-production-migration",
     connectionTimeoutMillis: 20_000,
     keepAlive: true,
     keepAliveInitialDelayMillis: 1_000,

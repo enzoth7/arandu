@@ -42,9 +42,18 @@ export type Facility = {
   description?: string;
   photoUrl?: string;
   monthlyPriceUyu?: number;
+  monthlyPriceAsOf?: string;
   monthlyPriceIncludes?: string[];
   sourceUrl?: string;
+  sourceLinks?: Array<{
+    label: string;
+    url: string;
+    sourceDate?: string;
+    retrievedAt?: string;
+  }>;
   validThrough?: string;
+  /** Registro ficticio aislado; nunca forma parte de los conteos oficiales. */
+  isDemo?: boolean;
 };
 
 export type MapMode = "streets" | "list";

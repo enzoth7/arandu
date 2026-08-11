@@ -279,7 +279,7 @@ async function main() {
   const pool = new Pool({
     connectionString: databaseUrl,
     ssl: false,
-    application_name: "alertamayor-normalized-local-backfill",
+    application_name: "arandu-normalized-local-backfill",
     max: 1,
     connectionTimeoutMillis: 10_000,
     idleTimeoutMillis: 10_000,

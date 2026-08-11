@@ -5,7 +5,7 @@ export const OSM_SOURCE_LICENSE = "ODbL 1.0";
 export const DEFAULT_OVERPASS_ENDPOINT =
   "https://overpass-api.de/api/interpreter";
 export const DEFAULT_PROJECT_USER_AGENT =
-  "AlertaMayor-OSM-Discovery/1.0 (Uruguay ELEPEM candidate research)";
+  "Arandu-OSM-Discovery/1.0 (Uruguay ELEPEM candidate research)";
 
 const ELEMENT_TYPES = ["node", "way", "relation"];
 const SENIOR_FOR_PATTERN =

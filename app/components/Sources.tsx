@@ -4,8 +4,6 @@ import { useState, type ReactNode } from "react";
 import { ChevronDown, ExternalLink } from "lucide-react";
 
 type SourceCard = {
-  badge: string;
-  tone: "green" | "blue" | "violet" | "navy";
   title: string;
   copy: string;
   href: string;
@@ -14,32 +12,24 @@ type SourceCard = {
 
 const mainSources: SourceCard[] = [
   {
-    badge: "ETAPA 3 · MSP",
-    tone: "green",
     title: "Habilitados a junio de 2026",
     copy: "La publicación oficial más reciente contiene 212 habilitados. Se usa para verificar vigencia, pero no se mezcla silenciosamente con coordenadas provenientes de otro corte.",
     href: "https://www.gub.uy/ministerio-salud-publica/comunicacion/comunicados/listado-residenciales-habilitados-certificados-msp-alojan-personas-mayores",
     linkLabel: "Abrir publicación",
   },
   {
-    badge: "ETAPA 2 · MIDES",
-    tone: "blue",
     title: "Certificado social",
     copy: "El directorio oficial informa 319 establecimientos con certificado social al 12 de enero de 2026 y los presenta como establecimientos en proceso de habilitación.",
     href: "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
     linkLabel: "Abrir directorio",
   },
   {
-    badge: "IM + CIEn",
-    tone: "violet",
     title: "Informe de atención 2025",
     copy: "Fundamenta que la puerta de comunicación también contemple situaciones domiciliarias, consultas de terceros y problemas que finalmente pueden no clasificarse como violencia.",
     href: "https://cien.ei.udelar.edu.uy/wp-content/uploads/2026/04/DIGITAL-Informe-Atencion-a-PM.pdf",
     linkLabel: "Abrir informe",
   },
   {
-    badge: "NORMA",
-    tone: "navy",
     title: "Decreto 356/016",
     copy: "Define las tres etapas y, separadamente, observación, apercibimiento, sanción pecuniaria, suspensión y clausura definitiva.",
     href: "https://www.impo.com.uy/bases/decretos/356-2016",
@@ -49,8 +39,6 @@ const mainSources: SourceCard[] = [
 
 const backgroundSources: SourceCard[] = [
   {
-    badge: "OFICIAL · AUDITORÍA",
-    tone: "blue",
     title: "Universo y denuncias",
     copy: "La auditoría informa un universo de 1.481 ELEPEM y 133 denuncias recepcionadas, con datos a marzo de 2024.",
     href: "https://www.gub.uy/ministerio-economia-finanzas/sites/ministerio-economia-finanzas/files/documentos/publicaciones/2025_MinisteriodeDesarrolloSocial-InstitutoNacionaldelasPersonasMayores.pdf",
@@ -76,7 +64,6 @@ function SourceCards({ cards }: { cards: SourceCard[] }) {
   return <div className="grid three sourceCards">
     {cards.map((card) => (
       <div className="sourceCard" key={card.title}>
-        <span className={`sourceBadge sourceBadge-${card.tone}`}>{card.badge}</span>
         <strong>{card.title}</strong>
         <p>{card.copy}</p>
         <a className="sourceLink" href={card.href} target="_blank" rel="noopener noreferrer">

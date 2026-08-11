@@ -37,13 +37,24 @@ try {
        AND object.name = attachment.object_path
      RETURNING object.name`,
   );
+  const publications = await client.query(
+    `DELETE FROM elepem_core.facility_experience_publications AS publication
+     USING public.intake_reports AS report
+     WHERE publication.report_id = report.id
+       AND report.is_demo = true
+     RETURNING publication.id`,
+  );
   const reports = await client.query(
     `DELETE FROM public.intake_reports
      WHERE is_demo = true
      RETURNING id`,
   );
   await client.query("commit");
-  console.log(JSON.stringify({ demoReportsDeleted: reports.rowCount, demoObjectsDeleted: objects.rowCount }));
+  console.log(JSON.stringify({
+    demoReportsDeleted: reports.rowCount,
+    demoObjectsDeleted: objects.rowCount,
+    demoPublicationsDeleted: publications.rowCount,
+  }));
 } catch (error) {
   await client.query("rollback");
   throw error;

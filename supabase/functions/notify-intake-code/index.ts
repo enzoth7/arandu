@@ -17,7 +17,7 @@ function trackingEmailHtml(caseCode: string): string {
 <html lang="es">
   <body style="margin:0;padding:24px;background:#f4f7fb;font-family:Arial,sans-serif;color:#17324d">
     <div style="max-width:560px;margin:auto;padding:28px;border-radius:16px;background:#ffffff">
-      <p style="margin:0 0 8px;color:#155eef;font-size:13px;font-weight:700;text-transform:uppercase">Alerta Mayor</p>
+      <p style="margin:0 0 8px;color:#153f3b;font-size:13px;font-weight:700;text-transform:uppercase">Arandú</p>
       <h1 style="margin:0 0 14px;font-size:24px">Tu comunicación fue recibida</h1>
       <p style="line-height:1.55">Guardá este código. Lo vas a necesitar para seguir el avance o hacer un reclamo:</p>
       <p style="padding:16px;border:2px solid #ebbd58;border-radius:12px;background:#fff9e9;font-family:monospace;font-size:20px;font-weight:700;text-align:center">${caseCode}</p>
@@ -78,7 +78,7 @@ export default {
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
     if (!resendApiKey) return json({ configured: false, sent: false }, 202);
 
-    const from = Deno.env.get("RESEND_FROM_EMAIL") || "Alerta Mayor <onboarding@resend.dev>";
+    const from = Deno.env.get("RESEND_FROM_EMAIL") || "Arandú <onboarding@resend.dev>";
     const resendResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {

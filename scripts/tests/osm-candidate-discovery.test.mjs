@@ -135,7 +135,7 @@ test("el documento de caché declara que no publica residenciales", () => {
   const cache = buildCacheDocument({
     endpoint: "https://overpass.example.test/api/interpreter",
     query,
-    userAgent: "AlertaMayor-test",
+    userAgent: "Arandu-test",
     retrievedAt,
     candidates,
   });

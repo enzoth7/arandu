@@ -2,15 +2,17 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { ChevronDown, ChevronUp, RotateCcw, Search, X } from "lucide-react";
+import { ChevronDown, ChevronUp, CircleHelp, RotateCcw, Search, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { FacilityExperiences } from "./FacilityExperiences";
 import {
   facilityDisplayCategory,
   facilityDisplayLabel,
+  facilityHaystack,
   isVerificationFacility,
 } from "./facility-presentation";
-import { canonicalDepartment } from "../../lib/uruguay.mjs";
+import { canonicalDepartment, foldText } from "../../lib/uruguay.mjs";
 import { useFacilityFilters } from "../hooks/useFacilityFilters";
 import type { SortOrder } from "../../lib/facility-search.mjs";
 import type { Facility, FacilityStatus } from "./map-types";
@@ -20,18 +22,24 @@ const StreetMap = dynamic(() => import("./StreetMap"), {
   loading: () => <div className="streetMapLoading">Preparando el mapa con calles…</div>,
 });
 
-const SORT_LABELS: Record<SortOrder, string> = {
+type PublicSortOrder = Extract<SortOrder, "name" | "department">;
+
+const SORT_LABELS: Record<PublicSortOrder, string> = {
   name: "Nombre (A–Z)",
   department: "Departamento",
-  stage: "Etapa institucional",
-  places: "Plazas publicadas",
 };
+
+function formatMonthlyPrice(value: number) {
+  return `UYU ${value.toLocaleString("es-UY")}`;
+}
 
 // El registro es presentacional: recibe las fichas ya consolidadas y no sabe de
 // dónde vienen. Así el portal de personas nunca monta la capa privada de
 // candidatos y el de organización puede sumarla sin propagar estado hacia arriba.
 type UruguayRegistryProps = {
   facilities: Facility[];
+  /** Capa ficticia separada: aparece sólo en el mapa y no altera resultados/KPI. */
+  demoFacilities?: Facility[];
   loading?: boolean;
   error?: string;
   notices?: ReactNode;
@@ -45,50 +53,115 @@ type PrivateWorkflowStatus = "" | "needs_review" | "possible_match" | "verified_
 
 export default function UruguayRegistry({
   facilities,
+  demoFacilities = [],
   loading = false,
   error = "",
   notices,
   showPrivateWorkflowFilter = false,
   showChoiceCta = false,
 }: UruguayRegistryProps) {
+  const registryFacilities = useMemo(
+    () => facilities.filter((facility) => !facility.isDemo),
+    [facilities],
+  );
+  const mapOnlyDemoFacilities = useMemo(() => {
+    const byId = new Map<string, Facility>();
+    for (const facility of facilities) {
+      if (facility.isDemo) byId.set(facility.id, facility);
+    }
+    for (const facility of demoFacilities) byId.set(facility.id, facility);
+    return [...byId.values()];
+  }, [demoFacilities, facilities]);
+  const allFacilities = useMemo(() => {
+    const byId = new Map<string, Facility>();
+    for (const facility of [...registryFacilities, ...mapOnlyDemoFacilities]) {
+      byId.set(facility.id, facility);
+    }
+    return [...byId.values()];
+  }, [mapOnlyDemoFacilities, registryFacilities]);
   const {
     query, setQuery,
     department, setDepartment,
-    locality, setLocality,
+    monthlyPriceBounds,
+    monthlyPriceRange,
+    setMonthlyPriceRange,
     status, setStatus,
     privateWorkflowStatus, setPrivateWorkflowStatus,
     sortOrder, setSortOrder,
     visible,
     departments,
-    localities,
     summaryScope,
     hasActiveFilters,
     reset,
-  } = useFacilityFilters(facilities);
+  } = useFacilityFilters(registryFacilities);
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [detailId, setDetailId] = useState<string | null>(null);
   const [activeKpiHelp, setActiveKpiHelp] = useState<string | null>(null);
   const mapColumnRef = useRef<HTMLDivElement | null>(null);
+  const directFacilityHandled = useRef(false);
 
-  const selected = selectedId ? (visible.find((facility) => facility.id === selectedId) ?? null) : null;
+  const visibleDemoFacilities = useMemo(() => {
+    if (status || privateWorkflowStatus) return [];
+    const foldedQuery = foldText(query);
+    const hasPriceFilter = Boolean(
+      monthlyPriceBounds
+      && monthlyPriceRange
+      && (monthlyPriceRange.min > monthlyPriceBounds.min || monthlyPriceRange.max < monthlyPriceBounds.max),
+    );
+    return mapOnlyDemoFacilities.filter((facility) => {
+      const matchesQuery = !foldedQuery || facilityHaystack(facility).includes(foldedQuery);
+      const matchesDepartment = !department || canonicalDepartment(facility.department) === department;
+      const matchesPrice = !hasPriceFilter || (
+        typeof facility.monthlyPriceUyu === "number"
+        && monthlyPriceRange
+        && facility.monthlyPriceUyu >= monthlyPriceRange.min
+        && facility.monthlyPriceUyu <= monthlyPriceRange.max
+      );
+      return matchesQuery && matchesDepartment && matchesPrice;
+    });
+  }, [department, mapOnlyDemoFacilities, monthlyPriceBounds, monthlyPriceRange, privateWorkflowStatus, query, status]);
+  const resultFacilities = useMemo(
+    () => [...visibleDemoFacilities, ...visible],
+    [visible, visibleDemoFacilities],
+  );
+  const mapFacilities = useMemo(
+    () => [...visible, ...mapOnlyDemoFacilities],
+    [mapOnlyDemoFacilities, visible],
+  );
+  const selected = selectedId ? (mapFacilities.find((facility) => facility.id === selectedId) ?? null) : null;
   const detailedFacility = detailId
-    ? (facilities.find((facility) => facility.id === detailId) ?? null)
+    ? (allFacilities.find((facility) => facility.id === detailId) ?? null)
     : null;
 
+  const kpiScope = useMemo(() => summaryScope.filter((facility) => !facility.isDemo), [summaryScope]);
   const summaryTotals = useMemo(() => ({
-    habilitado: summaryScope.filter((facility) => facility.mspFinal).length,
-    mides: summaryScope.filter((facility) => facility.midesSocial).length,
-    unconfirmed: summaryScope.filter(isVerificationFacility).length,
-  }), [summaryScope]);
-  const visibleOfficialCount = visible.filter((facility) => !isVerificationFacility(facility)).length;
-  const visibleVerificationCount = visible.filter(isVerificationFacility).length;
+    habilitado: kpiScope.filter((facility) => facility.mspFinal).length,
+    mides: kpiScope.filter((facility) => facility.midesSocial).length,
+    unconfirmed: kpiScope.filter(isVerificationFacility).length,
+  }), [kpiScope]);
+  const monthlyPriceSpread = monthlyPriceBounds ? monthlyPriceBounds.max - monthlyPriceBounds.min : 0;
+  const monthlyPriceStart = monthlyPriceBounds && monthlyPriceRange && monthlyPriceSpread > 0
+    ? ((monthlyPriceRange.min - monthlyPriceBounds.min) / monthlyPriceSpread) * 100
+    : 0;
+  const monthlyPriceEnd = monthlyPriceBounds && monthlyPriceRange && monthlyPriceSpread > 0
+    ? ((monthlyPriceRange.max - monthlyPriceBounds.min) / monthlyPriceSpread) * 100
+    : 100;
+  useEffect(() => {
+    if (directFacilityHandled.current || allFacilities.length === 0) return;
+    directFacilityHandled.current = true;
+    const requestedId = new URLSearchParams(window.location.search).get("elepem");
+    if (requestedId && allFacilities.some((facility) => facility.id === requestedId)) {
+      setSelectedId(requestedId);
+      setDetailId(requestedId);
+    }
+  }, [allFacilities]);
 
   useEffect(() => {
-    if (selectedId && !visible.some((facility) => facility.id === selectedId)) {
+    if (selectedId && !mapFacilities.some((facility) => facility.id === selectedId)) {
       setSelectedId(null);
     }
-  }, [visible, selectedId]);
+  }, [mapFacilities, selectedId]);
 
   function resetFilters() {
     reset();
@@ -97,22 +170,22 @@ export default function UruguayRegistry({
   }
 
   return <>
-    <section className="card registryIntro">
+    <section className="card registryIntro" id="registro">
       <div className="registryIntroCopy">
-        <h1>Encontrá información sobre establecimientos de larga estadía</h1>
-        <p className="lead">Buscá y consultá información sobre ELEPEM en Uruguay: los establecimientos de larga estadía donde viven personas mayores.</p>
+        <h2>Buscá un ELEPEM</h2>
+        <p className="lead">Por nombre, localidad o departamento.</p>
       </div>
       {loading && <div className="notice registryDataStatus" role="status">Cargando ELEPEM…</div>}
       {error && <div className="notice registryDataStatus registryDataError" role="alert">{error}</div>}
       {notices}
       <div className="registryQuickSummary" aria-label="Resumen y filtros rápidos">
-        <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-blue ${!status ? "selected" : ""}`} help="Total consolidado de ELEPEM." helpId="all" label="Todos" onActivate={() => setStatus("")} onToggleHelp={setActiveKpiHelp} value={summaryScope.length} />
+        <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-blue ${!status ? "selected" : ""}`} help="Total consolidado de ELEPEM, sin la referencia de demostración." helpId="all" label="Todos" onActivate={() => setStatus("")} onToggleHelp={setActiveKpiHelp} value={kpiScope.length} />
         <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-green ${status === "habilitado" ? "selected" : ""}`} help="Establecimientos con habilitación final del MSP a junio de 2026." helpId="msp-final" label="Habilitados MSP" onActivate={() => setStatus(status === "habilitado" ? "" : "habilitado")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.habilitado} />
         <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-amber ${status === "mides" ? "selected" : ""}`} help="Establecimientos que se encuentran en proceso de habilitación (definido por el Decreto 356/016) y que obtuvieron el certificado social por parte del Mides." helpId="mides" label="Certificados Social MIDES" onActivate={() => setStatus(status === "mides" ? "" : "mides")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.mides} />
         <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-gray ${status === "verificar" ? "selected" : ""}`} help="No se encontró una situación actualizada en las fuentes públicas consultadas. Requiere verificación institucional; no significa que el establecimiento sea irregular." helpId="unconfirmed" label="Situación no confirmada" onActivate={() => setStatus(status === "verificar" ? "" : "verificar")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.unconfirmed} />
       </div>
       <p className="registryOverlapNote">
-        Un mismo ELEPEM puede constar a la vez en la lista de <strong>habilitados</strong> y en la de <strong>certificados</strong>: son etapas distintas y se muestran por separado.
+        <strong>Habilitación MSP</strong> y <strong>certificado MIDES</strong> son datos distintos.
       </p>
       <div className="registrySearchHeaderRow">
         <div className="registrySearchFirst">
@@ -166,18 +239,6 @@ export default function UruguayRegistry({
           </label>
 
           <label>
-            <b>Localidad</b>
-            <select
-              value={locality}
-              onChange={(event) => setLocality(event.target.value)}
-              disabled={localities.length === 0}
-            >
-              <option value="">Todas</option>
-              {localities.map(([name, count]) => <option key={name} value={name}>{name} ({count})</option>)}
-            </select>
-          </label>
-
-          <label>
             <b>Situación institucional</b>
             <select value={status} onChange={(event) => setStatus(event.target.value as "" | FacilityStatus)}>
               <option value="">Todas</option>
@@ -201,51 +262,80 @@ export default function UruguayRegistry({
             </label>
           )}
 
-          {/* Acordados con producto: quedan a la vista aunque todavía no haya
-              datos, deshabilitados para que se lea «falta el dato» y no «está roto». */}
-          <label>
-            <b>Tipo de habitación</b>
-            <select disabled aria-describedby="registryPendingFilters">
-              <option>Sin información por ahora</option>
-            </select>
-          </label>
-
-          <label>
-            <b>Rango de precio</b>
-            <select disabled aria-describedby="registryPendingFilters">
-              <option>Sin información por ahora</option>
-            </select>
-          </label>
+          {monthlyPriceBounds && monthlyPriceRange ? (
+            <fieldset className="registryPriceRange">
+              <legend>Precio mensual</legend>
+              <output>
+                <span>Desde {formatMonthlyPrice(monthlyPriceRange.min)}</span>
+                <span>Hasta {formatMonthlyPrice(monthlyPriceRange.max)}</span>
+              </output>
+              <div className="registryPriceTrack">
+                <span
+                  aria-hidden="true"
+                  className="registryPriceTrackSelected"
+                  style={{ left: `${monthlyPriceStart}%`, right: `${100 - monthlyPriceEnd}%` }}
+                />
+                <input
+                  aria-label="Precio mensual mínimo"
+                  aria-valuetext={formatMonthlyPrice(monthlyPriceRange.min)}
+                  max={monthlyPriceBounds.max}
+                  min={monthlyPriceBounds.min}
+                  onChange={(event) => {
+                    const min = Math.min(Number(event.target.value), monthlyPriceRange.max);
+                    setMonthlyPriceRange({ min, max: monthlyPriceRange.max });
+                  }}
+                  step={1_000}
+                  type="range"
+                  value={monthlyPriceRange.min}
+                />
+                <input
+                  aria-label="Precio mensual máximo"
+                  aria-valuetext={formatMonthlyPrice(monthlyPriceRange.max)}
+                  max={monthlyPriceBounds.max}
+                  min={monthlyPriceBounds.min}
+                  onChange={(event) => {
+                    const max = Math.max(Number(event.target.value), monthlyPriceRange.min);
+                    setMonthlyPriceRange({ min: monthlyPriceRange.min, max });
+                  }}
+                  step={1_000}
+                  type="range"
+                  value={monthlyPriceRange.max}
+                />
+              </div>
+              <p>Precios ficticios. Al mover el rango se muestran sólo fichas con precio demo.</p>
+            </fieldset>
+          ) : (
+            <section className="registryPriceRange registryPriceRangeUnavailable">
+              <strong>Precio mensual</strong>
+              <div className="registryPriceTrack" aria-hidden="true"><span className="registryPriceTrackSelected" /></div>
+              <p>Sin precios publicados todavía.</p>
+            </section>
+          )}
 
           <label>
             <b>Ordenar por</b>
             <select value={sortOrder} onChange={(event) => setSortOrder(event.target.value as SortOrder)}>
-              {(Object.keys(SORT_LABELS) as SortOrder[]).map((order) => (
+              {(Object.keys(SORT_LABELS) as PublicSortOrder[]).map((order) => (
                 <option key={order} value={order}>{SORT_LABELS[order]}</option>
               ))}
             </select>
           </label>
-          <p className="registryFilterNote" id="registryPendingFilters">
-            Tipo de habitación y rango de precio todavía no están relevados: quedan visibles para cuando exista la información.
-          </p>
           <p className="registryFilterNote">
             El orden es alfabético o por la etapa administrativa que consta en las fuentes. No hay puntajes, estrellas ni posiciones pagas.
           </p>
         </div>
       </aside>
       <div className="registryMapColumn" ref={mapColumnRef}>
-        <StreetMap facilities={visible} selectedId={selected?.id ?? null} onSelect={setSelectedId}/>
+        <StreetMap facilities={mapFacilities} selectedId={selected?.id ?? null} onSelect={setSelectedId}/>
+
         {detailedFacility && <FacilityMapDialog facility={detailedFacility} onClose={() => setDetailId(null)} />}
       </div>
 
       <aside className="card registryResults">
         <div className="resultsHead"><h2>ELEPEM encontrados</h2><output className="resultCount">{visible.length}</output></div>
-        <p className="resultsMeta">
-          {visibleOfficialCount} con situación institucional localizada
-          {visibleVerificationCount > 0 ? ` · ${visibleVerificationCount} sin información vigente en las fuentes consultadas` : ""}
-        </p>
+
         <div className="registryResultsScroll">
-          {visible.map((facility) => (
+          {resultFacilities.map((facility) => (
             <FacilityAccordionCard
               facility={facility}
               isSelected={selected?.id === facility.id}
@@ -258,7 +348,7 @@ export default function UruguayRegistry({
               key={facility.id}
             />
           ))}
-          {!loading && visible.length === 0 && (
+          {!loading && resultFacilities.length === 0 && (
             <div className="registryEmptyResults">
               <p><strong>No hay ELEPEM que coincidan con esta búsqueda.</strong></p>
               <p>Probá con menos filtros o con otra forma de escribir el nombre. Que no aparezca acá no significa que el establecimiento no exista: puede no constar en las fuentes públicas consultadas.</p>
@@ -298,13 +388,19 @@ function RegistryKpi({ activeHelp, className, help, helpId, label, onActivate, o
       aria-expanded={helpVisible}
       aria-label={`Explicar ${label}`}
       onClick={() => onToggleHelp(helpVisible ? null : helpId)}
-    >?</button>
-    {helpVisible && <span className="registryKpiTooltip" role="status">{help}</span>}
+      aria-describedby={`registry-kpi-tooltip-${helpId}`}
+    ><CircleHelp size={17} aria-hidden="true" /></button>
+    <span
+      className={`registryKpiTooltip${helpVisible ? " is-open" : ""}`}
+      id={`registry-kpi-tooltip-${helpId}`}
+      role="tooltip"
+    >{help}</span>
   </div>;
 }
 
 function badgeTone(facility: Facility) {
   const category = facilityDisplayCategory(facility);
+  if (category === "demo") return "violet";
   if (category === "habilitado") return "green";
   if (category === "mides") return "amber";
   return "gray";
@@ -317,7 +413,7 @@ function FacilityPrimaryBadge({ facility }: { facility: Facility }) {
 }
 
 function FacilityMembershipBadges({ facility }: { facility: Facility }) {
-  if (isVerificationFacility(facility)) return <FacilityPrimaryBadge facility={facility} />;
+  if (facility.isDemo || isVerificationFacility(facility)) return <FacilityPrimaryBadge facility={facility} />;
 
   const badges = [
     facility.mspFinal && { label: "Habilitado", tone: "green" },
@@ -396,66 +492,62 @@ function FacilityMapDialog({ facility, onClose }: { facility: Facility; onClose:
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [onClose]);
 
-  const formatDate = (value?: string) => {
-    if (!value) return "No informada";
-    const parsed = new Date(value);
-    return Number.isNaN(parsed.getTime()) ? value : parsed.toLocaleDateString("es-UY");
-  };
-  const source = facility.sourceLabel || "Fuente no informada";
-  const verified = formatDate(facility.updatedAt || facility.createdAt);
-  const noConfirmation = isVerificationFacility(facility);
+  const sourceLinks = (facility.sourceLinks || []).filter((item) => {
+    try {
+      const url = new URL(item.url);
+      return ["http:", "https:"].includes(url.protocol) && !url.hostname.toLowerCase().endsWith("supabase.co");
+    } catch {
+      return false;
+    }
+  });
   return <section ref={dialogRef} tabIndex={-1} className="facilityMapDialog" role="dialog" aria-modal="false" aria-labelledby="facility-map-dialog-title">
     <div className="facilityMapDialogHeader">
       <div>
-        <span>Ficha pública del ELEPEM</span>
         <h2 id="facility-map-dialog-title">{facility.name}</h2>
-        <p>{facility.locality} · {canonicalDepartment(facility.department)}</p>
+        <p className="facilityMapDialogLocation">
+          <span>{facility.address || "Dirección no informada"}</span>
+          <i aria-hidden="true">|</i>
+          <span>{facility.locality || "Localidad no informada"}</span>
+          <i aria-hidden="true">|</i>
+          <span>{canonicalDepartment(facility.department)}</span>
+        </p>
       </div>
       <button type="button" onClick={onClose}><X size={18}/> Cerrar</button>
     </div>
     <div className="facilityProfileLead">
-      {facility.photoUrl
-        ? <Image src={facility.photoUrl} alt={`Vista del ELEPEM ${facility.name}`} width={720} height={420} unoptimized />
-        : <div className="facilityProfilePhotoMissing">Foto no informada</div>}
+      <div className="facilityProfileMedia">
+        {facility.photoUrl
+          ? <Image src={facility.photoUrl} alt={`Vista del ELEPEM ${facility.name}`} width={720} height={420} unoptimized />
+          : <div className="facilityProfilePhotoMissing">Foto no informada</div>}
+        <div className="facilityProfilePrice">
+          <strong>{facility.monthlyPriceUyu
+            ? `Desde $ ${facility.monthlyPriceUyu.toLocaleString("es-UY")}`
+            : "No informado"}</strong>
+          <span>Precio mensual</span>
+        </div>
+      </div>
       <div>
         <FacilityMembershipBadges facility={facility} />
         <p>{facility.description || "Todavía no hay una descripción pública verificada de la vida cotidiana en este ELEPEM."}</p>
-        <p><strong>Contacto comercial:</strong> {facility.contactPhone || facility.contactEmail || "No informado"}</p>
-        <p><strong>Precio mensual:</strong> {facility.monthlyPriceUyu
-          ? `Desde $ ${facility.monthlyPriceUyu.toLocaleString("es-UY")} UYU`
-          : "No informado"}</p>
-        <p><strong>Incluye:</strong> {facility.monthlyPriceIncludes?.length
-          ? facility.monthlyPriceIncludes.join(", ")
-          : "No informado"}</p>
       </div>
     </div>
-
-    <div className="facilityInstitutionalFacts" aria-label="Situaciones institucionales separadas">
-      <article><strong>Habilitación final MSP</strong><span>{facility.mspFinal ? "Consta en la fuente consultada" : "No consta confirmación en la fuente consultada"}</span></article>
-      <article><strong>Certificado social MIDES</strong><span>{facility.midesSocial ? "Consta en la fuente consultada" : "No consta confirmación en la fuente consultada"}</span></article>
-      <article><strong>Situación no confirmada</strong><span>{noConfirmation ? "Requiere verificación institucional; no implica irregularidad" : "No aplica a esta ficha"}</span></article>
-    </div>
-
-    <dl className="facilityMapDialogFacts facilityPublicFacts">
-      <div><dt>Dirección</dt><dd>{facility.address || "No informada"}</dd></div>
-      <div><dt>Localidad</dt><dd>{facility.locality || "No informada"}</dd></div>
-      <div><dt>Departamento</dt><dd>{canonicalDepartment(facility.department)}</dd></div>
-      <div><dt>Capacidad</dt><dd>{facility.places != null ? `${facility.places} plazas informadas` : "No informada"}</dd></div>
-    </dl>
 
     <div className="facilityTraceability">
-      <h3>Fuente y vigencia de los datos</h3>
-      <div className="facilityTraceabilityTable" role="table" aria-label="Trazabilidad por campo">
-        {[
-          ["Nombre y ubicación", source, verified, facility.validThrough ? `Hasta ${formatDate(facility.validThrough)}` : "No informada", verified],
-          ["Habilitación MSP", source, verified, facility.validThrough ? `Hasta ${formatDate(facility.validThrough)}` : "No informada", verified],
-          ["Certificado MIDES", source, verified, facility.validThrough ? `Hasta ${formatDate(facility.validThrough)}` : "No informada", verified],
-          ["Contacto, foto y precio", facility.sourceUrl ? source : "No informada", "No informada", facility.validThrough ? `Hasta ${formatDate(facility.validThrough)}` : "No informada", "No informada"],
-        ].map(([field, fieldSource, sourceDate, validity, lastVerified]) => <div role="row" key={field}>
-          <strong role="cell">{field}</strong><span role="cell">Fuente: {fieldSource}</span><span role="cell">Fecha de fuente: {sourceDate}</span><span role="cell">Vigencia: {validity}</span><span role="cell">Última verificación: {lastVerified}</span>
-        </div>)}
-      </div>
-      <p>La ausencia de un dato significa que no fue informado o verificado; no se completan campos mediante inferencias.</p>
+      <h3>Fuentes</h3>
+      {sourceLinks.length > 0 ? (
+        <div className="facilitySourceLinks" aria-label="Enlaces a las fuentes originales">
+          {sourceLinks.map((item) => (
+            <a href={item.url} key={`${item.label}:${item.url}`} target="_blank" rel="noreferrer noopener">
+              {item.label}
+            </a>
+          ))}
+        </div>
+      ) : <p className="facilitySourcePending">{facility.sourceLabel || "Fuente pendiente de vincular."}</p>}
     </div>
+    <div className="facilityProfileActions">
+      <Link href={`/experiencia?elepem=${encodeURIComponent(facility.id)}`}>Dejar una experiencia</Link>
+      <Link href={`/preocupacion?elepem=${encodeURIComponent(facility.name)}`}>Contar una preocupación</Link>
+    </div>
+    <FacilityExperiences facilityId={facility.id} />
   </section>;
 }

@@ -2,7 +2,7 @@ import { loadManualDiscoveryPilot } from "../lib/manual-discovery-pilot.mjs";
 import { discoveryPath, parseArgs, uruguayDateStamp, writeJsonAtomically } from "./lib/discovery-files.mjs";
 import { ideQueryUrl, selectStrictIdeResult } from "./lib/ide-geocoding.mjs";
 
-const USER_AGENT = "AlertaMayorDiscovery/1.0 (controlled IDE Uruguay geocoding; contacto: equipo@alertamayor.local)";
+const USER_AGENT = "AranduDiscovery/1.0 (controlled IDE Uruguay geocoding; contacto: equipo@arandu.local)";
 
 async function fetchJson(url) {
   let lastError;

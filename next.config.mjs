@@ -50,7 +50,7 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
-  distDir: process.env.ALERTAMAYOR_NEXT_DIST_DIR || ".next",
+  distDir: process.env.ARANDU_NEXT_DIST_DIR || ".next",
   outputFileTracingRoot: projectRoot,
   poweredByHeader: false,
   outputFileTracingIncludes: {

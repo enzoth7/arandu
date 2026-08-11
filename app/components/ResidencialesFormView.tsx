@@ -147,7 +147,7 @@ export function ResidencialesFormView() {
   // Cargar estado guardado en la sesión
   useEffect(() => {
     try {
-      const raw = sessionStorage.getItem("alerta_mayor_form_draft");
+      const raw = sessionStorage.getItem("arandu_form_draft");
       if (raw) {
         const data = JSON.parse(raw);
         if (data.currentStep) setCurrentStep(data.currentStep);
@@ -174,7 +174,7 @@ export function ResidencialesFormView() {
         selectedFacilityId,
         visitAnswers,
       };
-      sessionStorage.setItem("alerta_mayor_form_draft", JSON.stringify(draft));
+      sessionStorage.setItem("arandu_form_draft", JSON.stringify(draft));
     } catch {}
   }, [currentStep, actor, selectedPreferences, selectedDepartment, selectedFacilityId, visitAnswers]);
 
@@ -235,7 +235,7 @@ export function ResidencialesFormView() {
 
   const resetAll = () => {
     try {
-      sessionStorage.removeItem("alerta_mayor_form_draft");
+      sessionStorage.removeItem("arandu_form_draft");
     } catch {}
     setCurrentStep(1);
     setActor(null);
@@ -686,7 +686,7 @@ export function ResidencialesFormView() {
 
               {/* Cabezal exclusivo para impresión */}
               <div className="printOnlyHeader" style={{ display: "none", marginBottom: 20, borderBottom: "2px solid #0f766e", paddingBottom: 12 }}>
-                <h2 style={{ margin: 0, color: "#0f766e", fontSize: "1.4rem" }}>Más Cerca · Guía de Elección de Residenciales</h2>
+                <h2 style={{ margin: 0, color: "#153f3b", fontSize: "1.4rem" }}>Arandú · Guía para elegir</h2>
                 <p style={{ margin: "4px 0 0", color: "#475569", fontSize: "0.85rem" }}>
                   Informe de cotejo y observaciones completado el {new Date().toLocaleDateString("es-UY")}
                 </p>

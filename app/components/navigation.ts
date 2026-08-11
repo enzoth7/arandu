@@ -1,4 +1,4 @@
-// Arquitectura de navegación de +Cerca.
+// Arquitectura de navegación de Arandú.
 //
 // El producto público vive en la raíz: ya no existe el selector Persona /
 // Organización, así que un segmento `/personas` no significaría nada. El acceso
@@ -57,12 +57,11 @@ export type NavItem = { view: View; label: string };
  * que no lleven a ninguna parte.
  */
 export const publicNavItems: readonly NavItem[] = [
-  { view: "buscar", label: "Buscar ELEPEM" },
+  { view: "buscar", label: "Buscar" },
   { view: "guia", label: "Cómo elegir" },
-  { view: "preocupacion", label: "Comunicar una preocupación" },
-  { view: "experiencia", label: "Compartir experiencia" },
+  { view: "experiencia", label: "Experiencias" },
+  { view: "preocupacion", label: "Tengo una preocupación" },
   { view: "seguimiento", label: "Seguimiento" },
-  { view: "fuentes", label: "Cómo usamos los datos" },
 ];
 
 export const organizationNavItems: readonly NavItem[] = [

@@ -42,6 +42,7 @@ test("un ELEPEM con MSP o MIDES tiene respaldo administrativo", () => {
 test("la ausencia de dato es «no confirmada», no una categoría negativa", () => {
   assert.equal(isUnconfirmedFacility(facility()), true);
   assert.equal(isUnconfirmedFacility(facility({ mspFinal: true })), false);
+  assert.equal(isUnconfirmedFacility(facility({ isDemo: true })), false);
   // El registro histórico por sí solo no acredita situación vigente.
   assert.equal(isUnconfirmedFacility(facility({ mspRegistroHistorico: true })), true);
 });
@@ -74,6 +75,16 @@ test("la localidad también ignora acentos y mayúsculas", () => {
 test("los criterios vacíos no filtran", () => {
   const list = [facility({ id: "a" }), facility({ id: "b" })];
   assert.equal(filterFacilities(list, criteria(), haystackFor).length, 2);
+});
+
+test("el rango de precio usa importes mensuales publicados y no infiere los faltantes", () => {
+  const list = [
+    facility({ id: "bajo", monthlyPriceUyu: 58_000 }),
+    facility({ id: "medio", monthlyPriceUyu: 84_000 }),
+    facility({ id: "sin-precio" }),
+  ];
+  const found = filterFacilities(list, criteria({ monthlyPriceMin: 70_000, monthlyPriceMax: 90_000 }), haystackFor);
+  assert.deepEqual(found.map((f) => f.id), ["medio"]);
 });
 
 test("los criterios se combinan", () => {

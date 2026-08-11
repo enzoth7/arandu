@@ -3,7 +3,7 @@ import { hasOfficialAdministrativeRecord } from "../../lib/facility-search.mjs";
 import { foldText } from "../../lib/uruguay.mjs";
 import type { Facility } from "./map-types";
 
-export type FacilityDisplayCategory = "habilitado" | "mides" | "unconfirmed";
+export type FacilityDisplayCategory = "habilitado" | "mides" | "unconfirmed" | "demo";
 
 // Los predicados de situación viven en `lib/facility-search.mjs`, junto al
 // filtrado que los usa, para que exista una única definición de «consta» y de
@@ -15,6 +15,7 @@ export {
 } from "../../lib/facility-search.mjs";
 
 export function facilityDisplayCategory(facility: Facility): FacilityDisplayCategory {
+  if (facility.isDemo) return "demo";
   if (facility.mspFinal) return "habilitado";
   if (facility.midesSocial) return "mides";
   return "unconfirmed";
@@ -24,6 +25,7 @@ export function facilityDisplayLabel(facility: Facility) {
   const category = facilityDisplayCategory(facility);
   if (category === "habilitado") return "Habilitado";
   if (category === "mides") return "Certificado";
+  if (category === "demo") return "Demostración";
   return "Situación no confirmada";
 }
 

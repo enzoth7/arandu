@@ -59,7 +59,7 @@ async function main() {
 
   const rows = privateCandidateRows(input, review);
   const dataSource = readElepemDataSource();
-  const pool = createSupabasePool("alertamayor-private-osm-candidate-import");
+  const pool = createSupabasePool("arandu-private-osm-candidate-import");
   const client = await pool.connect();
   try {
     const database = await applyPrivateCandidates(client, {

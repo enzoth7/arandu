@@ -316,7 +316,7 @@ async function fetchOverpassDepartment(department) {
           method: "POST",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-            "User-Agent": "AlertaMayor-ELEPEM-discovery/0.1",
+            "User-Agent": "Arandu-ELEPEM-discovery/0.1",
           },
           body,
           timeoutMs: 180_000,

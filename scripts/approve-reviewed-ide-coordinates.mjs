@@ -264,7 +264,7 @@ async function main() {
   if (rows.length !== expectedCount) throw new Error(`Se esperaban ${expectedCount} coordenadas aprobadas y se encontraron ${rows.length}.`);
   const inputHash = sha256(raw);
   const reviewHash = reviewRaw ? sha256(reviewRaw) : null;
-  const pool = createSupabasePool("alertamayor-approved-ide-coordinates");
+  const pool = createSupabasePool("arandu-approved-ide-coordinates");
   const client = await pool.connect();
   try {
     const inspection = await inspect(client, rows);

@@ -61,7 +61,7 @@ function databaseConfig() {
 
 async function fetchJson(url) {
   const response = await fetch(url, {
-    headers: { "User-Agent": "AlertaMayorAcademic/0.1 location-normalization" },
+    headers: { "User-Agent": "AranduAcademic/0.1 location-normalization" },
     signal: AbortSignal.timeout(10_000),
   });
   if (!response.ok) throw new Error(`IDE Uruguay returned HTTP ${response.status}`);

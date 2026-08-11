@@ -8,6 +8,8 @@ export async function insertDemoIntake(input: {
   kind: IntakeKind;
   submittedActor: SubmittedActor;
   demoFacilityId?: string | null;
+  facilityId?: number | null;
+  payloadVersion?: 2 | 3;
   priority?: "Alta" | "Media" | "Baja";
   department?: string | null;
   payload: Record<string, unknown>;
@@ -20,8 +22,8 @@ export async function insertDemoIntake(input: {
       const inserted = await client.query<{ id: string }>(
         `INSERT INTO public.intake_reports (
            case_code, source, priority, department, report_payload,
-           entry_type, is_demo, demo_facility_id, payload_version, submitted_actor
-         ) VALUES ($1, 'web', $2, $3, $4::jsonb, $5, true, $6, 2, $7)
+           entry_type, is_demo, demo_facility_id, facility_id, payload_version, submitted_actor
+         ) VALUES ($1, 'web', $2, $3, $4::jsonb, $5, true, $6, $7, $8, $9)
          ON CONFLICT (case_code) DO NOTHING
          RETURNING id`,
         [
@@ -31,6 +33,8 @@ export async function insertDemoIntake(input: {
           JSON.stringify({ ...input.payload, evidenceUploadToken: uploadToken }),
           input.kind,
           input.demoFacilityId || null,
+          input.facilityId || null,
+          input.payloadVersion || 2,
           input.submittedActor,
         ],
       );

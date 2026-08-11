@@ -33,9 +33,9 @@ export const DEMO_FACILITIES: readonly DemoFacilityProfile[] = [
   },
   {
     id: "DEMO-ELEPEM-003",
-    name: "Jardín del Prado Demo",
-    locality: "Zona ficticia de jardines",
-    department: "Montevideo",
+    name: "Jardín del Litoral Demo",
+    locality: "Zona ficticia del litoral",
+    department: "Paysandú",
     address: "Pasaje de Prueba 303 (dirección ficticia)",
     description: "Patio protegido, galerías con sombra y una agenda cotidiana centrada en jardinería y encuentros familiares.",
     imageUrl: "/demo/elepem-jardin-del-prado.webp",

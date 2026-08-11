@@ -6,7 +6,7 @@ Informe de ejecución: `data/migration/production_normalized_migration_2026-08-0
 
 ## Puerta de seguridad
 
-El proyecto conectado identificado durante la auditoría es `itolluaivfoxnaohbsdk` (`Alerta Mayor`, región `sa-east-1`) y se trató como producción. La aplicación se realizó únicamente después de la confirmación explícita del target por el responsable del proyecto.
+El proyecto conectado identificado durante la auditoría es `itolluaivfoxnaohbsdk` (`Arandú`, región `sa-east-1`) y se trató como producción. La aplicación se realizó únicamente después de la confirmación explícita del target por el responsable del proyecto.
 
 Antes de ejecutar SQL se requiere:
 
