@@ -1,6 +1,6 @@
 import {
   publicFacilityRelation,
-  readElepemDataSource,
+  runtimeElepemDataSource,
 } from "./elepem-data-source.mjs";
 import { classifyRegistryRow } from "./facility-sources.mjs";
 import { querySupabaseDatabase } from "./supabase-db";
@@ -155,7 +155,7 @@ function toFacility(row: ResidentialRow): Facility {
 }
 
 export async function loadPublicFacilities(): Promise<{ facilities: Facility[]; dataSource: string }> {
-  const dataSource = readElepemDataSource();
+  const dataSource = runtimeElepemDataSource();
   const relation = publicFacilityRelation(dataSource);
   const unifiedProjection = dataSource === "normalized" ? `
       registry.source_url,
@@ -308,7 +308,7 @@ export async function loadPublicFacilitiesOrEmpty(): Promise<Facility[]> {
 }
 
 export async function publicFacilityExists(id: string): Promise<boolean> {
-  const dataSource = readElepemDataSource();
+  const dataSource = runtimeElepemDataSource();
   const relation = publicFacilityRelation(dataSource);
   const rows = await querySupabaseDatabase<{ exists: boolean }>(`
     select exists (

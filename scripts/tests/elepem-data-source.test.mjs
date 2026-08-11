@@ -5,10 +5,12 @@ import {
   matchingFacilityRelation,
   publicFacilityRelation,
   readElepemDataSource,
+  runtimeElepemDataSource,
 } from "../../lib/elepem-data-source.mjs";
 
-test("legacy remains the default production-safe source", () => {
-  assert.equal(readElepemDataSource(""), "legacy");
+test("the unified registry is the default and mandatory web runtime source", () => {
+  assert.equal(readElepemDataSource(""), "normalized");
+  assert.equal(runtimeElepemDataSource(), "normalized");
   assert.equal(publicFacilityRelation("legacy"), "public.residenciales");
 });
 

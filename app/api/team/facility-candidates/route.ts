@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   candidateSuggestionSql,
   readElepemDataSource,
+  runtimeElepemDataSource,
 } from "../../../../lib/elepem-data-source.mjs";
 import { validateCandidateReviewInput } from "../../../../lib/facility-candidate-review.mjs";
 import { querySupabaseDatabase, withSupabaseTransaction } from "../../../../lib/supabase-db";
@@ -163,7 +164,7 @@ export async function GET(request: NextRequest) {
   const { session, response: unauthorized } = teamSessionOrUnauthorized(request);
   if (!session) return unauthorized;
   try {
-    const dataSource = readElepemDataSource();
+    const dataSource = runtimeElepemDataSource();
     const query = buildCandidateQuery(request, dataSource);
     const candidates = await querySupabaseDatabase(query.sql, query.values);
     return NextResponse.json(
@@ -211,7 +212,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const dataSource = readElepemDataSource();
+    const dataSource = runtimeElepemDataSource();
     const updated = await withSupabaseTransaction(async (client) => {
       const currentResult = await client.query(
         `select *

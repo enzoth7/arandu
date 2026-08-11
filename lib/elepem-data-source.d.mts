@@ -1,6 +1,7 @@
 export type ElepemDataSource = "legacy" | "compatibility" | "normalized";
 
 export function readElepemDataSource(value?: string): ElepemDataSource;
+export function runtimeElepemDataSource(): "normalized";
 export function publicFacilityRelation(dataSource: ElepemDataSource):
   | "public.residenciales"
   | "public.residenciales_legacy_compat"
