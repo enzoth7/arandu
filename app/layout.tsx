@@ -1,16 +1,40 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import "leaflet/dist/leaflet.css";
 import "./globals.css";
 
-// `globals.css` pedía Inter pero nadie la cargaba, así que en la práctica caía
-// siempre a la tipografía del sistema. next/font la sirve desde el mismo origen
-// y reserva las métricas, con lo que no hay salto de maquetado.
-const inter = Inter({
-  subsets: ["latin"],
+const merriweather = localFont({
+  src: [
+    {
+      path: "../public/Tipografías/web/Merriweather-Latin-Variable.woff2",
+      style: "normal",
+      weight: "300 900",
+    },
+  ],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-merriweather",
+  fallback: ["Georgia", "Times New Roman", "serif"],
+  adjustFontFallback: "Times New Roman",
+});
+
+const merriweatherSans = localFont({
+  src: [
+    {
+      path: "../public/Tipografías/web/MerriweatherSans-Latin-Variable.woff2",
+      style: "normal",
+      weight: "300 800",
+    },
+    {
+      path: "../public/Tipografías/web/MerriweatherSans-Latin-Italic-Variable.woff2",
+      style: "italic",
+      weight: "300 800",
+    },
+  ],
+  display: "swap",
+  variable: "--font-merriweather-sans",
+  fallback: ["Arial", "sans-serif"],
+  adjustFontFallback: "Arial",
 });
 
 export const metadata: Metadata = {
@@ -40,7 +64,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={inter.variable}>
+    <html lang="es" className={`${merriweather.variable} ${merriweatherSans.variable}`}>
       <body>
         {children}
         <Analytics />

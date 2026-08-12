@@ -25,6 +25,9 @@
   --violetbg: #f5f1ff;
   --bluebg: #edf4ff;
   --focus: #d69e2e;
+  --font-title: var(--font-merriweather), Georgia, "Times New Roman", serif;
+  --font-subtitle: var(--font-merriweather-sans), Arial, sans-serif;
+  --font-text: var(--font-merriweather-sans), Arial, sans-serif;
 
   /* Situación administrativa de un residencial.
      Los consume el mapa (StreetMap lee estas variables) y las fichas, de modo
@@ -53,10 +56,24 @@ html {
 body {
   margin: 0;
   background: var(--bg);
-  font-family: var(--font-inter), ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-family: var(--font-text);
   font-size: 18px;
+  font-weight: 400;
   line-height: 1.52;
   color: var(--text);
+}
+
+:where(h1, h2, .typeTitle) {
+  font-family: var(--font-title);
+  font-optical-sizing: auto;
+}
+
+:where(h3, h4, h5, h6, .typeSubtitle, .lead) {
+  font-family: var(--font-subtitle);
+}
+
+:where(.typeText) {
+  font-family: var(--font-text);
 }
 
 button, input, textarea, select {
@@ -629,6 +646,7 @@ p {
 
 .lead {
   font-size: 1.06rem;
+  font-weight: 500;
   max-width: 1100px;
 }
 
@@ -3925,7 +3943,7 @@ textarea {
   background: #153f3b;
   color: #fff;
   box-shadow: 0 4px 12px rgba(21, 63, 59, .26);
-  font-family: var(--font-inter), ui-sans-serif, sans-serif;
+  font-family: var(--font-subtitle);
   font-size: .74rem;
   font-weight: 850;
   line-height: 1;
