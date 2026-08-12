@@ -1,0 +1,72 @@
+import { NextRequest, NextResponse } from "next/server";
+import { querySupabaseDatabase } from "../../../../../../lib/supabase-db";
+
+export const runtime = "nodejs";
+
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+const FACILITY_KEY = /^DEMO-ELEPEM-00[1-3]$/;
+
+export async function GET(
+  _request: NextRequest,
+  context: { params: Promise<{ facilityKey: string; photoId: string }> },
+) {
+  const { facilityKey: rawFacilityKey, photoId } = await context.params;
+  const facilityKey = decodeURIComponent(rawFacilityKey || "").trim().toUpperCase();
+  if (!FACILITY_KEY.test(facilityKey) || !UUID.test(photoId)) {
+    return NextResponse.json({ error: "Foto pública inválida." }, { status: 400 });
+  }
+
+  const rows = await querySupabaseDatabase<{
+    object_path: string;
+    file_name: string;
+    mime_type: string;
+  }>(
+    `SELECT attachment.object_path, attachment.file_name, attachment.mime_type
+     FROM public.facility_change_publication_photos AS photo
+     JOIN public.facility_change_publications AS publication
+       ON publication.id = photo.publication_id
+     JOIN public.intake_report_attachments AS attachment
+       ON attachment.id = photo.attachment_id
+     JOIN elepem_core.facilities AS facility
+       ON facility.id = publication.facility_id
+     WHERE photo.id = $1
+       AND facility.facility_key = $2
+       AND facility.is_demo = true
+       AND attachment.purpose = 'facility_photo'
+       AND attachment.mime_type LIKE 'image/%'
+       AND attachment.rights_metadata->>'rightsConfirmed' = 'true'
+       AND publication.id = (
+         SELECT latest.id
+         FROM public.facility_change_publications AS latest
+         WHERE latest.facility_id = facility.id
+         ORDER BY latest.published_at DESC, latest.id DESC
+         LIMIT 1
+       )
+     LIMIT 1`,
+    [photoId, facilityKey],
+  );
+  const photo = rows[0];
+  if (!photo) return NextResponse.json({ error: "Foto pública no encontrada." }, { status: 404 });
+
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!supabaseUrl || !serviceRoleKey) {
+    return NextResponse.json({ error: "El servidor de imágenes no está configurado." }, { status: 503 });
+  }
+
+  const response = await fetch(`${supabaseUrl}/storage/v1/object/intake-evidence/${photo.object_path}`, {
+    headers: { apikey: serviceRoleKey, Authorization: `Bearer ${serviceRoleKey}` },
+    cache: "no-store",
+  });
+  if (!response.ok) return NextResponse.json({ error: "No se pudo cargar la foto pública." }, { status: 502 });
+
+  return new NextResponse(await response.arrayBuffer(), {
+    status: 200,
+    headers: {
+      "Content-Type": photo.mime_type,
+      "Content-Disposition": `inline; filename*=UTF-8''${encodeURIComponent(photo.file_name)}`,
+      "Cache-Control": "public, max-age=300, stale-while-revalidate=3600",
+      "X-Content-Type-Options": "nosniff",
+    },
+  });
+}

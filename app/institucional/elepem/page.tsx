@@ -12,20 +12,29 @@ export default async function FacilityHomePage() {
       <header className="institutionalPageHeader">
         <div>
           <h1>Mis ELEPEM</h1>
-          <p>Consultá la ficha pública y proponé actualizaciones para revisión institucional.</p>
+          <p>Consultá los datos registrados y proponé actualizaciones para revisión institucional.</p>
         </div>
       </header>
       <div className="demoFacilityGrid">
         {facilities.map((facility) => (
           <article className="demoFacilityCard" key={facility.id}>
-            <div className="demoFacilityImage">
-              <Image src={facility.imageUrl} alt={facility.imageAlt} fill sizes="(max-width: 760px) 100vw, 33vw" />
+            <div className={`demoFacilityImage${(facility.imageUrls?.length || 0) > 1 ? " hasGallery" : ""}`}>
+              {(facility.imageUrls?.length ? facility.imageUrls : [facility.imageUrl]).map((imageUrl, index) => (
+                <Image
+                  src={imageUrl}
+                  alt={index === 0 ? facility.imageAlt : `Foto pública ${index + 1} de ${facility.name}`}
+                  width={720}
+                  height={420}
+                  sizes="(max-width: 760px) 100vw, 33vw"
+                  unoptimized={imageUrl.startsWith("/api/")}
+                  key={imageUrl}
+                />
+              ))}
             </div>
             <div className="demoFacilityBody">
               <h2>{facility.name}</h2>
               <p>{facility.description}</p>
               <div className="facilityPortalActions">
-                <Link href={`/?elepem=${encodeURIComponent(facility.id)}`} className="reportBack">Ver ficha pública</Link>
                 <Link href={`/institucional/elepem/solicitudes/nueva?elepem=${encodeURIComponent(facility.id)}`} className="reportContinue">Proponer un cambio</Link>
               </div>
             </div>

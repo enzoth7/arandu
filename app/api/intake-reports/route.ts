@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { demoIntakeEnabled, DEMO_FACILITY_ID_PATTERN } from "../../../lib/demo-intake.mjs";
 import { insertDemoIntake } from "../../../lib/demo-intake-db";
 import { buildReportPayload, isRecord, MAX_INTAKE_REQUEST_BYTES } from "../../../lib/intake-report.mjs";
+import { resolvePublicFacilityReference } from "../../../lib/facility-registry";
 
 export const runtime = "nodejs";
 
@@ -57,7 +58,10 @@ export async function POST(request: Request) {
   const { contactEmail, contactPhone, reporterName, ...content } = payload;
   const facility = isRecord(payload.facility) ? payload.facility : {};
   const location = isRecord(payload.location) ? payload.location : {};
-  const demoFacilityId = typeof facility.id === "string" && DEMO_FACILITY_ID_PATTERN.test(facility.id) ? facility.id : null;
+  const requestedFacilityId = typeof facility.id === "string" ? facility.id : "";
+  const resolvedFacility = await resolvePublicFacilityReference(requestedFacilityId);
+  if (!resolvedFacility) return NextResponse.json({ error: "El ELEPEM seleccionado no pertenece al padrón público." }, { status: 400 });
+  const demoFacilityId = DEMO_FACILITY_ID_PATTERN.test(requestedFacilityId) ? requestedFacilityId : null;
   const contact = contactEmail || contactPhone || reporterName
     ? { name: typeof reporterName === "string" ? reporterName : null, phone: typeof contactPhone === "string" ? contactPhone : null, email: typeof contactEmail === "string" ? contactEmail : null }
     : null;
@@ -70,8 +74,9 @@ export async function POST(request: Request) {
       kind: "concern",
       submittedActor: "public",
       demoFacilityId,
+      facilityId: resolvedFacility.id,
       priority,
-      department: typeof location.department === "string" ? location.department : null,
+      department: resolvedFacility.department || (typeof location.department === "string" ? location.department : null),
       payload: { ...content, version: 2, publication: "never_automatic" },
       contact,
     });

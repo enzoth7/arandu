@@ -34,6 +34,7 @@ export async function GET(request: NextRequest) {
        ) AS preferred_name ON true
        WHERE report.is_demo = true
          AND report.entry_type = 'facility_change'
+         AND report.current_status <> 'draft'
          AND report.demo_facility_id = ANY($1::text[])
        ORDER BY report.created_at DESC`, [auth.session.facilityIds]);
     return NextResponse.json({ reports }, { headers: { "Cache-Control": "no-store" } });
@@ -75,8 +76,43 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  if (input.mode === "finalize") {
+    const caseCode = typeof input.caseCode === "string" ? input.caseCode.trim().toUpperCase() : "";
+    const uploadToken = typeof input.uploadToken === "string" ? input.uploadToken.trim() : "";
+    if (!/^AM-\d{8}-[A-F0-9]{8}$/.test(caseCode) || !/^[A-Za-z0-9_-]{32}$/.test(uploadToken)) return NextResponse.json({ error: "Borrador inválido." }, { status: 400 });
+    try {
+      const rows = await querySupabaseDatabase<{ id: string; report_payload: Record<string, unknown> }>(
+        `SELECT id, report_payload FROM public.intake_reports
+         WHERE case_code = $1 AND is_demo = true AND entry_type = 'facility_change'
+           AND current_status = 'draft' AND demo_facility_id = ANY($2::text[]) LIMIT 1`,
+        [caseCode, auth.session.facilityIds],
+      );
+      const report = rows[0];
+      if (!report || report.report_payload.evidenceUploadToken !== uploadToken) return NextResponse.json({ error: "No se encontró el borrador o la autorización ya no es válida." }, { status: 404 });
+      const counts = await querySupabaseDatabase<{ purpose: string; count: string }>(
+        `SELECT purpose, count(*)::text AS count FROM public.intake_report_attachments WHERE report_id = $1 GROUP BY purpose`, [report.id],
+      );
+      const byPurpose = Object.fromEntries(counts.map((item) => [item.purpose, Number(item.count)]));
+      if (Number(report.report_payload.photoCount || 0) !== (byPurpose.facility_photo || 0)) return NextResponse.json({ error: "Todavía faltan fotos por adjuntar al borrador." }, { status: 400 });
+      if (report.report_payload.needsSupportingDocument === true && !(byPurpose.supporting_document > 0)) return NextResponse.json({ error: "Este cambio necesita por lo menos un documento de respaldo." }, { status: 400 });
+      await querySupabaseDatabase(
+        `WITH updated AS (
+           UPDATE public.intake_reports SET current_status = 'received', updated_at = now()
+           WHERE id = $1 AND current_status = 'draft' RETURNING id
+         ) INSERT INTO public.intake_report_events (report_id, status, public_title, public_description, internal_note, event_data, actor)
+           SELECT id, 'received', 'Solicitud recibida', 'La solicitud quedó disponible para revisión estatal.', NULL,
+             $2::jsonb, 'facility' FROM updated`,
+        [report.id, JSON.stringify({ decision: "facility_change_finalized", reviewer: auth.session.identity, canonicalWrite: false })],
+      );
+      return NextResponse.json({ finalized: true }, { status: 201 });
+    } catch (error) {
+      console.error("Facility draft finalization failed.", { message: error instanceof Error ? error.message : "unknown" });
+      return NextResponse.json({ error: "No se pudo finalizar la solicitud." }, { status: 502 });
+    }
+  }
+
   const parsed = parseFacilityChangeSubmission(body);
-  if (!parsed) return NextResponse.json({ error: "Revisá la fecha, el respaldo, los cambios y los derechos de la foto." }, { status: 400 });
+  if (!parsed) return NextResponse.json({ error: "Revisá los cambios y la cantidad de fotos propuestas." }, { status: 400 });
   if (!auth.session.facilityIds.includes(parsed.facilityId)) return NextResponse.json({ error: "Ese ELEPEM no está asignado a tu sesión." }, { status: 403 });
   try {
     const facility = await resolvePublicFacilityReference(parsed.facilityId);
@@ -89,6 +125,7 @@ export async function POST(request: NextRequest) {
       demoFacilityId: parsed.facilityId,
       facilityId: facility.id,
       payload: parsed.payload,
+      initialStatus: "draft",
     });
     return NextResponse.json({ caseCode: result.caseCode, uploadToken: result.uploadToken }, { status: 201 });
   } catch (error) {

@@ -52,7 +52,19 @@ export function useLeafletMap(view: { center: [number, number]; zoom: number } =
     mapRef.current = map;
     markersRef.current = L.layerGroup().addTo(map);
 
+    // Leaflet toma las dimensiones disponibles al montarse. El mapa puede
+    // aparecer dentro de una vista que acaba de cambiar de tamaño, por lo que
+    // se recalcula en el siguiente frame y ante cada cambio real del panel.
+    const refreshSize = () => map.invalidateSize({ animate: false, pan: false });
+    const frame = window.requestAnimationFrame(refreshSize);
+    const resizeObserver = typeof ResizeObserver === "undefined"
+      ? null
+      : new ResizeObserver(refreshSize);
+    resizeObserver?.observe(containerRef.current);
+
     return () => {
+      window.cancelAnimationFrame(frame);
+      resizeObserver?.disconnect();
       map.remove();
       mapRef.current = null;
       markersRef.current = null;

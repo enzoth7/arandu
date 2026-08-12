@@ -41,11 +41,21 @@ test("rechaza anonimato y casos fuera de ELEPEM en WhatsApp", () => {
   assert.equal(buildReportPayload({ ...sandboxReport, setting: "En su casa o comunidad" }, { source: "whatsapp_sandbox", isSandbox: true }), null);
 });
 
-test("conserva el contrato web versión 1", () => {
-  const payload = buildReportPayload({ ...sandboxReport, setting: "En su casa o comunidad", privacy: "Anónima" });
+test("el contrato web exige consentimiento y un ELEPEM del padrón", () => {
+  const webReport = {
+    ...sandboxReport,
+    reporter: "No indicado",
+    privacy: "Anónima",
+    location: { department: "Montevideo", reference: "ELEPEM ficticio \u00b7 Montevideo" },
+    facility: { id: "REAL-123", name: "ELEPEM ficticio" },
+    consent: true,
+  };
+  const payload = buildReportPayload(webReport);
   assert.ok(payload);
   assert.equal(payload.version, 1);
   assert.equal(payload.source, "web");
+  assert.equal(buildReportPayload({ ...webReport, consent: false }), null);
+  assert.equal(buildReportPayload({ ...webReport, facility: { name: "Sin identificador" } }), null);
 });
 
 test("genera código y token con formatos estables", () => {

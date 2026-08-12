@@ -43,6 +43,7 @@ export async function POST(request: Request) {
     });
     return NextResponse.json({
       caseCode: result.caseCode,
+      uploadToken: result.uploadToken,
       message: "La experiencia quedó en revisión humana. No se publicó ningún contenido.",
     }, { status: 201 });
   } catch (error) {

@@ -120,6 +120,16 @@ test("la etapa ordena por situación declarada, no por calidad", () => {
   assert.equal(facilityStageRank(facility({ mspFinal: true, midesSocial: true })), 1);
 });
 
+test("la clasificación documental filtra sin representar un ranking de calidad", () => {
+  const list = [
+    facility({ id: "dos" }),
+    facility({ id: "tres", mspFinal: true }),
+    facility({ id: "cuatro", mspFinal: true, midesSocial: true }),
+  ];
+  assert.deepEqual(filterFacilities(list, criteria({ documentaryStatus: "outstanding" }), haystackFor).map((f) => f.id), ["cuatro"]);
+  assert.deepEqual(filterFacilities(list, criteria({ documentaryStatus: "needs-improvement" }), haystackFor).map((f) => f.id), ["dos"]);
+});
+
 test("sin plazas publicadas se ordena al final, no como capacidad cero", () => {
   const list = [
     facility({ id: "sin", places: null }),

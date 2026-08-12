@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import L from "leaflet";
 import {
   flyToPoint,
@@ -14,7 +14,7 @@ import type { Facility } from "./map-types";
 
 const FIT_OPTIONS = { padding: [28, 28] as [number, number], maxZoom: 14 };
 const SELECTED_ZOOM = 16;
-const PRICE_LABEL_ZOOM = 14;
+const PRICE_LABEL_ZOOM = 13;
 
 const MARKER_COLOR_VARIABLES: Record<string, string> = {
   habilitado: "--facility-habilitado",
@@ -80,14 +80,16 @@ function circleMarkerStyle(category: string, isSelected: boolean) {
     weight: isSelected ? 3 : 2,
     fillColor: markerColor(category),
     fillOpacity: 0.92,
+    bubblingMouseEvents: false,
   };
 }
 
 function updateMarkerSelection(marker: RenderedMarker | undefined, isSelected: boolean) {
   if (!marker) return;
   if (marker.layer instanceof L.Marker) {
-    const icon = priceMarkerIcon(marker.facility, marker.category, isSelected);
-    if (icon) marker.layer.setIcon(icon);
+    marker.layer.getElement()
+      ?.querySelector(".mapPriceMarker")
+      ?.classList.toggle("mapPriceMarker-selected", isSelected);
     return;
   }
   const style = circleMarkerStyle(marker.category, isSelected);
@@ -99,21 +101,36 @@ export default function StreetMap({
   facilities,
   selectedId,
   onSelect,
+  onOpenDetails,
 }: {
   facilities: Facility[];
   selectedId: string | null;
   onSelect: (id: string) => void;
+  onOpenDetails?: (id: string) => void;
 }) {
   const { containerRef, mapRef, markersRef } = useLeafletMap(URUGUAY_VIEW);
+  const mappedFacilities = useMemo(
+    () => facilities.filter((facility) => (
+      Number.isFinite(facility.lat)
+      && Number.isFinite(facility.lng)
+      && facility.lat >= -56
+      && facility.lat <= -29
+      && facility.lng >= -59
+      && facility.lng <= -52
+    )),
+    [facilities],
+  );
   const fittedKeyRef = useRef("");
   const previousSelectedIdRef = useRef<string | null>(null);
   const styledSelectedIdRef = useRef<string | null>(null);
   const renderedMarkersRef = useRef(new Map<string, RenderedMarker>());
   const onSelectRef = useRef(onSelect);
+  const onOpenDetailsRef = useRef(onOpenDetails);
   const selectedIdRef = useRef(selectedId);
   const [showPriceMarkers, setShowPriceMarkers] = useState(false);
   const [viewportRevision, setViewportRevision] = useState(0);
   onSelectRef.current = onSelect;
+  onOpenDetailsRef.current = onOpenDetails;
   selectedIdRef.current = selectedId;
 
   useEffect(() => {
@@ -151,8 +168,8 @@ export default function StreetMap({
     renderedMarkersRef.current.clear();
     const visibleBounds = showPriceMarkers ? map.getBounds().pad(0.35) : null;
     const visibleFacilities = visibleBounds
-      ? facilities.filter((facility) => visibleBounds.contains([facility.lat, facility.lng]))
-      : facilities;
+      ? mappedFacilities.filter((facility) => visibleBounds.contains([facility.lat, facility.lng]))
+      : mappedFacilities;
 
     for (const facility of visibleFacilities) {
       const isSelected = selectedIdRef.current === facility.id;
@@ -161,7 +178,18 @@ export default function StreetMap({
       const visibleMarker: L.CircleMarker | L.Marker = priceIcon
         ? L.marker([facility.lat, facility.lng], { icon: priceIcon, keyboard: true })
         : L.circleMarker([facility.lat, facility.lng], circleMarkerStyle(category, isSelected));
-      visibleMarker.on("click", () => onSelectRef.current(facility.id));
+      let singleClickTimer: number | undefined;
+      visibleMarker.on("click", () => {
+        window.clearTimeout(singleClickTimer);
+        singleClickTimer = window.setTimeout(() => onSelectRef.current(facility.id), 240);
+      });
+      visibleMarker.on("dblclick", (event: L.LeafletMouseEvent) => {
+        window.clearTimeout(singleClickTimer);
+        L.DomEvent.preventDefault(event.originalEvent);
+        L.DomEvent.stopPropagation(event.originalEvent);
+        onOpenDetailsRef.current?.(facility.id);
+      });
+      visibleMarker.on("remove", () => window.clearTimeout(singleClickTimer));
       visibleMarker.bindTooltip(facility.name, {
         direction: "top",
         offset: [0, -7],
@@ -171,7 +199,7 @@ export default function StreetMap({
       visibleMarker.addTo(markers);
       renderedMarkersRef.current.set(facility.id, { facility, category, layer: visibleMarker });
     }
-  }, [facilities, mapRef, markersRef, showPriceMarkers, viewportRevision]);
+  }, [mapRef, mappedFacilities, markersRef, showPriceMarkers, viewportRevision]);
 
   // La selección sólo modifica los dos marcadores afectados.
   useEffect(() => {
@@ -187,17 +215,17 @@ export default function StreetMap({
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
-    const key = pointsKey(facilities);
-    const bounds = pointBounds(facilities);
+    const key = pointsKey(mappedFacilities);
+    const bounds = pointBounds(mappedFacilities);
     if (bounds && key !== fittedKeyRef.current) {
       fittedKeyRef.current = key;
       map.fitBounds(bounds, FIT_OPTIONS);
     }
-  }, [facilities, mapRef]);
+  }, [mapRef, mappedFacilities]);
 
   useEffect(() => {
-    flyToPoint(mapRef.current, facilities, selectedId, SELECTED_ZOOM);
-  }, [facilities, mapRef, selectedId]);
+    flyToPoint(mapRef.current, mappedFacilities, selectedId, SELECTED_ZOOM);
+  }, [mapRef, mappedFacilities, selectedId]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -205,10 +233,10 @@ export default function StreetMap({
     previousSelectedIdRef.current = selectedId;
     if (!map || previousSelectedId === null || selectedId !== null) return;
 
-    const bounds = pointBounds(facilities);
+    const bounds = pointBounds(mappedFacilities);
     if (bounds) map.flyToBounds(bounds, { ...FIT_OPTIONS, duration: 0.8 });
     else map.flyTo(URUGUAY_VIEW.center, URUGUAY_VIEW.zoom, { duration: 0.8 });
-  }, [facilities, mapRef, selectedId]);
+  }, [mapRef, mappedFacilities, selectedId]);
 
   return <div ref={containerRef} className="leafletRegistryMap" role="region" aria-label="Mapa de ELEPEM"/>;
 }

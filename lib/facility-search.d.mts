@@ -2,6 +2,8 @@ import type { Facility, FacilityStatus } from "../app/components/map-types";
 
 export type SortOrder = "name" | "department" | "stage" | "places";
 
+export type DocumentaryStatusFilter = "" | "outstanding" | "good" | "needs-improvement";
+
 export type FacilitySearchCriteria = {
   /** Consulta ya plegada con `foldText`. */
   foldedQuery?: string;
@@ -11,6 +13,7 @@ export type FacilitySearchCriteria = {
   monthlyPriceMin?: number | null;
   monthlyPriceMax?: number | null;
   status?: "" | FacilityStatus;
+  documentaryStatus?: DocumentaryStatusFilter;
   privateWorkflowStatus?: string;
   canonicalDepartmentOf?: (value: string) => string;
 };

@@ -41,6 +41,7 @@ export type Facility = {
   contactEmail?: string;
   description?: string;
   photoUrl?: string;
+  photoUrls?: string[];
   monthlyPriceUyu?: number;
   monthlyPriceAsOf?: string;
   monthlyPriceIncludes?: string[];

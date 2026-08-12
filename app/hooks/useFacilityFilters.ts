@@ -5,7 +5,7 @@ import {
   departmentOptions,
   filterFacilities,
   sortFacilities,
-  type SortOrder,
+  type DocumentaryStatusFilter,
 } from "../../lib/facility-search.mjs";
 import { facilityHaystack } from "../components/facility-presentation";
 import { canonicalDepartment, foldText } from "../../lib/uruguay.mjs";
@@ -26,8 +26,8 @@ export function useFacilityFilters(facilities: Facility[]) {
   const [department, setDepartment] = useState("");
   const [monthlyPriceRange, setMonthlyPriceRange] = useState<MonthlyPriceRange | null>(null);
   const [status, setStatus] = useState<"" | FacilityStatus>("");
+  const [documentaryStatus, setDocumentaryStatus] = useState<DocumentaryStatusFilter>("");
   const [privateWorkflowStatus, setPrivateWorkflowStatus] = useState<PrivateWorkflowStatus>("");
-  const [sortOrder, setSortOrder] = useState<SortOrder>("name");
 
   // El texto buscable se calcula una vez por lista y no en cada pulsación.
   const haystacks = useMemo(() => {
@@ -76,6 +76,7 @@ export function useFacilityFilters(facilities: Facility[]) {
       {
         foldedQuery,
         status,
+        documentaryStatus,
         privateWorkflowStatus,
         monthlyPriceMin: activeMonthlyPriceRange?.min,
         monthlyPriceMax: activeMonthlyPriceRange?.max,
@@ -83,7 +84,7 @@ export function useFacilityFilters(facilities: Facility[]) {
       },
       haystackFor,
     ),
-    [facilities, foldedQuery, status, privateWorkflowStatus, activeMonthlyPriceRange, haystackFor],
+    [facilities, foldedQuery, status, documentaryStatus, privateWorkflowStatus, activeMonthlyPriceRange, haystackFor],
   );
   const matched = useMemo(
     () => filterFacilities(
@@ -99,7 +100,7 @@ export function useFacilityFilters(facilities: Facility[]) {
     [withoutDepartment, department, activeMonthlyPriceRange, haystackFor],
   );
 
-  const visible = useMemo(() => sortFacilities(matched, sortOrder), [matched, sortOrder]);
+  const visible = useMemo(() => sortFacilities(matched, "name"), [matched]);
   const departments = useMemo(
     () => departmentOptions(withoutDepartment, canonicalDepartment),
     [withoutDepartment],
@@ -121,15 +122,15 @@ export function useFacilityFilters(facilities: Facility[]) {
     [facilities, foldedQuery, department, activeMonthlyPriceRange, haystackFor],
   );
 
-  const hasActiveFilters = Boolean(query || department || status || privateWorkflowStatus || activeMonthlyPriceRange);
+  const hasActiveFilters = Boolean(query || department || status || documentaryStatus || privateWorkflowStatus || activeMonthlyPriceRange);
 
   function reset() {
     setQuery("");
     setDepartment("");
     setMonthlyPriceRange(null);
     setStatus("");
+    setDocumentaryStatus("");
     setPrivateWorkflowStatus("");
-    setSortOrder("name");
   }
 
   return {
@@ -139,8 +140,8 @@ export function useFacilityFilters(facilities: Facility[]) {
     monthlyPriceRange: monthlyPriceRange ?? monthlyPriceBounds,
     setMonthlyPriceRange,
     status, setStatus,
+    documentaryStatus, setDocumentaryStatus,
     privateWorkflowStatus, setPrivateWorkflowStatus,
-    sortOrder, setSortOrder,
     visible,
     departments,
     summaryScope,

@@ -79,7 +79,11 @@ export async function POST(request: NextRequest, context: { params: Promise<{ ca
   const sourceChannel = sourceChannelValue === "whatsapp_sandbox" ? "whatsapp_sandbox" : "web";
   const sourceMessageId = typeof sourceMessageIdValue === "string" ? sourceMessageIdValue.trim().slice(0, 100) : null;
   const purposeValue = input.get("purpose");
-  const purpose = purposeValue === "facility_photo" ? "facility_photo" : cleanType.startsWith("audio/") ? "audio" : "evidence";
+  const purpose = purposeValue === "facility_photo"
+    ? "facility_photo"
+    : purposeValue === "supporting_document"
+      ? "supporting_document"
+      : cleanType.startsWith("audio/") ? "audio" : "evidence";
   const rightsSourceValue = input.get("rightsSource");
   const rightsSource = typeof rightsSourceValue === "string" ? rightsSourceValue.trim().slice(0, 1_000) : "";
   const rightsConfirmed = input.get("rightsConfirmed") === "true";
@@ -109,7 +113,12 @@ export async function POST(request: NextRequest, context: { params: Promise<{ ca
   try {
     // Las fotos de ficha llevan metadatos de derechos nuevos. Hasta que la Edge
     // Function v2 esté desplegada, pasan por el fallback privado del servidor.
-    const response = purpose === "facility_photo"
+    const needsPrivateValidation = purpose === "facility_photo" || purpose === "supporting_document" || cleanType.startsWith("audio/");
+    const serviceHeaders = supabaseServiceHeaders();
+    if (needsPrivateValidation && !serviceHeaders) {
+      return NextResponse.json({ error: "La carga privada de fotos y documentos no está configurada en este entorno." }, { status: 503 });
+    }
+    const response = needsPrivateValidation
       ? new Response(null, { status: 503 })
       : await fetch(`${supabaseUrl}/functions/v1/upload-intake-evidence`, {
           method: "POST",
@@ -125,7 +134,6 @@ export async function POST(request: NextRequest, context: { params: Promise<{ ca
     }
 
     // The direct fallback is privileged and must never use a publishable key.
-    const serviceHeaders = supabaseServiceHeaders();
     if (!serviceHeaders) {
       return NextResponse.json({ error: "No se pudo validar y guardar el archivo." }, { status: response.status >= 400 ? response.status : 502 });
     }
@@ -134,14 +142,17 @@ export async function POST(request: NextRequest, context: { params: Promise<{ ca
     let reportId: string | null = null;
 
     try {
-      const rows = await querySupabaseDatabase<{ id: string; report_payload: Record<string, unknown> }>(
-        "SELECT id, report_payload FROM public.intake_reports WHERE case_code = $1 LIMIT 1",
+      const rows = await querySupabaseDatabase<{ id: string; report_payload: Record<string, unknown>; entry_type: string }>(
+        "SELECT id, report_payload, entry_type FROM public.intake_reports WHERE case_code = $1 LIMIT 1",
         [caseCode]
       );
       const storedToken = rows[0]?.report_payload && typeof rows[0].report_payload.evidenceUploadToken === "string"
         ? rows[0].report_payload.evidenceUploadToken
         : "";
       if (rows[0]?.id && storedToken && sameSecret(storedToken, uploadToken)) {
+        if ((purpose === "facility_photo" || purpose === "supporting_document") && rows[0].entry_type !== "facility_change") {
+          return NextResponse.json({ error: "Ese tipo de adjunto no corresponde a este expediente." }, { status: 400 });
+        }
         reportId = rows[0].id;
       }
     } catch (err) {
@@ -152,11 +163,19 @@ export async function POST(request: NextRequest, context: { params: Promise<{ ca
       return NextResponse.json({ error: "No se encontró la comunicación o la autorización no es válida." }, { status: 404 });
     }
 
-    const countRows = await querySupabaseDatabase<{ count: string }>(
-      "SELECT count(*)::text AS count FROM public.intake_report_attachments WHERE report_id = $1",
+    const countRows = await querySupabaseDatabase<{ purpose: string; count: string }>(
+      "SELECT purpose, count(*)::text AS count FROM public.intake_report_attachments WHERE report_id = $1 GROUP BY purpose",
       [reportId],
     );
-    if (Number(countRows[0]?.count || 0) >= MAX_EVIDENCE_FILES) {
+    const counts = Object.fromEntries(countRows.map((row) => [row.purpose, Number(row.count)]));
+    const total = Object.values(counts).reduce((sum, count) => sum + count, 0);
+    if (purpose === "facility_photo" && (counts.facility_photo || 0) >= 10) {
+      return NextResponse.json({ error: "La solicitud ya alcanzó el máximo de 10 fotos." }, { status: 409 });
+    }
+    if (purpose === "supporting_document" && (counts.supporting_document || 0) >= 5) {
+      return NextResponse.json({ error: "La solicitud ya alcanzó el máximo de 5 documentos de respaldo." }, { status: 409 });
+    }
+    if (purpose !== "facility_photo" && purpose !== "supporting_document" && total >= MAX_EVIDENCE_FILES) {
       return NextResponse.json({ error: "La comunicación ya alcanzó el máximo de 5 archivos." }, { status: 409 });
     }
 

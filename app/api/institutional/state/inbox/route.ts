@@ -17,6 +17,7 @@ export async function GET(request: NextRequest) {
         id: string; status: "draft" | "published" | "withdrawn"; publicBody: string;
         publicRelationship: string | null; publicPeriod: string | null; publishedAt: string | null;
       };
+      documentReview: null | { decision: "inadequate" | "clear"; reason: string; createdAt: string };
     }>(`SELECT
          report.id, report.case_code, report.entry_type, report.current_status,
          report.priority, report.demo_facility_id, report.report_payload, report.created_at,
@@ -31,6 +32,10 @@ export async function GET(request: NextRequest) {
            'publicPeriod', experience_publication.public_period,
            'publishedAt', experience_publication.published_at
          ) END AS publication,
+         CASE WHEN document_review.id IS NULL THEN NULL ELSE jsonb_build_object(
+           'decision', document_review.decision, 'reason', document_review.reason,
+           'createdAt', document_review.created_at
+         ) END AS "documentReview",
          COALESCE((SELECT jsonb_agg(jsonb_build_object(
            'name', contact.name, 'phone', contact.phone, 'email', contact.email
          )) FROM public.intake_report_contacts AS contact WHERE contact.report_id = report.id), '[]'::jsonb) AS contacts,
@@ -60,7 +65,14 @@ export async function GET(request: NextRequest) {
        ) AS current_address ON true
        LEFT JOIN elepem_core.facility_experience_publications AS experience_publication
          ON experience_publication.report_id = report.id
+       LEFT JOIN LATERAL (
+         SELECT review.id, review.decision, review.reason, review.created_at
+         FROM public.facility_document_status_reviews AS review
+         WHERE review.facility_id = facility.id
+         ORDER BY review.created_at DESC LIMIT 1
+       ) AS document_review ON true
        WHERE report.is_demo = true
+         AND report.current_status <> 'draft'
        ORDER BY report.created_at DESC
        LIMIT 200`);
     return NextResponse.json({ reports }, { headers: { "Cache-Control": "no-store" } });

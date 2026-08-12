@@ -10,6 +10,7 @@ export type DemoFacilityProfile = {
   address: string;
   description: string;
   imageUrl: string;
+  imageUrls?: string[];
   imageAlt: string;
   phone: string;
   email: string;
@@ -24,7 +25,7 @@ export type ExperienceSubmission = {
   period: string;
   answers: Record<string, "yes" | "partial" | "no" | "unknown" | "prefer_not_to_answer">;
   narrative?: string;
-  requestedDestination: "aggregate" | "private_facility" | "consider_anonymized";
+  requestedDestination: "private_review" | "private_facility" | "consider_anonymized";
   publicationConsent: boolean;
   contact?: { name?: string; phone?: string; email?: string };
   consent: boolean;

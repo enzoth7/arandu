@@ -54,6 +54,7 @@ export function InstitutionalAccess({ initialRole = null }: { initialRole?: Inst
         <label><span>Contraseña</span><div className="accessInput"><LockKeyhole size={19} /><input name="password" type="password" value={password} onChange={(event) => { setPassword(event.target.value); setError(""); }} autoComplete="current-password" /></div></label>
         {error && <div className="accessLoginError" role="alert">{error}</div>}
         <button className="accessLoginSubmit" type="submit" disabled={submitting}>{submitting ? "Ingresando…" : "Ingresar"}<ArrowRight size={18} /></button>
+        <p className="accessDemoCredentials" role="note"><span>Usuario: <code>{role === "state" ? "username" : "username"}</code></span><span>Contraseña: <code>123456</code></span></p>
         <button className="accessLoginBack" type="button" onClick={() => { setRole(null); setError(""); setPassword(""); }}><ArrowLeft size={17} />Elegir otro rol</button>
       </form>}
       <Link className="accessLoginBack" href="/"><ArrowLeft size={17} />Volver al sitio público</Link>

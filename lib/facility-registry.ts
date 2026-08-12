@@ -42,6 +42,8 @@ type ResidentialRow = Record<string, unknown> & {
   public_description?: string | null;
   public_image_url?: string | null;
   public_image_alt?: string | null;
+  approved_photo_ids?: string[] | null;
+  approved_remove_current_photo?: boolean | null;
   public_contact_phone?: string | null;
   public_contact_email?: string | null;
 };
@@ -103,9 +105,16 @@ function isOtherSource(row: ResidentialRow) {
 function toFacility(row: ResidentialRow): Facility {
   const otherSource = isOtherSource(row);
   const links = sourceLinks(row.source_links);
+  const approvedPhotoUrls = Array.isArray(row.approved_photo_ids)
+    ? row.approved_photo_ids.map((photoId) => `/api/residenciales/${encodeURIComponent(row.id)}/photos/${encodeURIComponent(photoId)}`)
+    : [];
+  const photoUrls = [
+    ...approvedPhotoUrls,
+    ...(!row.approved_remove_current_photo && row.public_image_url ? [row.public_image_url] : []),
+  ];
   const monthlyPriceUyu = (
     typeof row.demo_monthly_price_uyu === "number"
-    && (row.msp_final || row.mides_social)
+    && (row.is_demo || row.msp_final || row.mides_social)
   ) ? row.demo_monthly_price_uyu : undefined;
   const hasPublishedPrice = typeof monthlyPriceUyu === "number";
   return {
@@ -145,7 +154,8 @@ function toFacility(row: ResidentialRow): Facility {
     contactPhone: row.public_contact_phone || undefined,
     contactEmail: row.public_contact_email || undefined,
     description: row.public_description || undefined,
-    photoUrl: row.public_image_url || undefined,
+    photoUrl: photoUrls[0] || undefined,
+    photoUrls,
     monthlyPriceUyu,
     monthlyPriceAsOf: hasPublishedPrice && row.demo_price_as_of ? row.demo_price_as_of : undefined,
     monthlyPriceIncludes: hasPublishedPrice && Array.isArray(row.demo_price_includes)
@@ -168,6 +178,8 @@ export async function loadPublicFacilities(): Promise<{ facilities: Facility[]; 
       profile.description as public_description,
       profile.image_url as public_image_url,
       profile.image_alt as public_image_alt,
+      approved_photos.photo_ids as approved_photo_ids,
+      approved_photos.remove_current_photo as approved_remove_current_photo,
       profile.contact_phone as public_contact_phone,
       profile.contact_email as public_contact_email,
       canonical.is_demo,
@@ -180,6 +192,8 @@ export async function loadPublicFacilities(): Promise<{ facilities: Facility[]; 
       null::text as public_description,
       null::text as public_image_url,
       null::text as public_image_alt,
+      null::text[] as approved_photo_ids,
+      false as approved_remove_current_photo,
       null::text as public_contact_phone,
       null::text as public_contact_email,
       false as is_demo,
@@ -189,6 +203,19 @@ export async function loadPublicFacilities(): Promise<{ facilities: Facility[]; 
       on canonical.facility_key = registry.id
     left join elepem_core.facility_public_profiles as profile
       on profile.facility_id = canonical.id
+    left join lateral (
+      select
+        publication.remove_current_photo,
+        coalesce((
+          select array_agg(photo.id::text order by photo.position)
+          from public.facility_change_publication_photos as photo
+          where photo.publication_id = publication.id
+        ), '{}'::text[]) as photo_ids
+      from public.facility_change_publications as publication
+      where publication.facility_id = canonical.id
+      order by publication.published_at desc, publication.id desc
+      limit 1
+    ) as approved_photos on true
   ` : "";
   const sourceLabelProjection = dataSource === "normalized"
     ? "coalesce(nullif(registry.source_label, 'Fuente pendiente de vincular'), canonical.primary_source_label, registry.source_label) as source_label"
@@ -238,6 +265,8 @@ export async function loadAssignedFacilityProfiles(
     description: string;
     image_url: string;
     image_alt: string;
+    approved_photo_ids: string[] | null;
+    approved_remove_current_photo: boolean | null;
     contact_phone: string | null;
     contact_email: string | null;
     monthly_price_from_uyu: number;
@@ -253,6 +282,8 @@ export async function loadAssignedFacilityProfiles(
       profile.description,
       profile.image_url,
       profile.image_alt,
+      approved_photos.photo_ids as approved_photo_ids,
+      approved_photos.remove_current_photo as approved_remove_current_photo,
       profile.contact_phone,
       profile.contact_email,
       profile.monthly_price_from_uyu,
@@ -274,27 +305,50 @@ export async function loadAssignedFacilityProfiles(
     ) as current_address on true
     join elepem_core.facility_public_profiles as profile
       on profile.facility_id = facility.id
+    left join lateral (
+      select
+        publication.remove_current_photo,
+        coalesce((
+          select array_agg(photo.id::text order by photo.position)
+          from public.facility_change_publication_photos as photo
+          where photo.publication_id = publication.id
+        ), '{}'::text[]) as photo_ids
+      from public.facility_change_publications as publication
+      where publication.facility_id = facility.id
+      order by publication.published_at desc, publication.id desc
+      limit 1
+    ) as approved_photos on true
     where facility.facility_key = any($1::text[])
       and facility.is_demo = true
       and facility.lifecycle_status = 'current'
       and facility.registry_visibility = 'public'
     order by preferred_name.name
   `, [[...facilityKeys]]);
-  return rows.map((row) => ({
-    id: row.id,
-    name: row.name,
-    locality: row.locality,
-    department: row.department,
-    address: row.address,
-    description: row.description,
-    imageUrl: row.image_url,
-    imageAlt: row.image_alt,
-    phone: row.contact_phone || "",
-    email: row.contact_email || "",
-    monthlyPriceFromUyu: row.monthly_price_from_uyu,
-    priceVerifiedAt: row.price_as_of,
-    priceIncludes: row.price_includes,
-  }));
+  return rows.map((row) => {
+    const approvedUrls = Array.isArray(row.approved_photo_ids)
+      ? row.approved_photo_ids.map((photoId) => `/api/residenciales/${encodeURIComponent(row.id)}/photos/${encodeURIComponent(photoId)}`)
+      : [];
+    const imageUrls = [
+      ...approvedUrls,
+      ...(!row.approved_remove_current_photo ? [row.image_url] : []),
+    ];
+    return {
+      id: row.id,
+      name: row.name,
+      locality: row.locality,
+      department: row.department,
+      address: row.address,
+      description: row.description,
+      imageUrl: imageUrls[0] || row.image_url,
+      imageUrls,
+      imageAlt: row.image_alt,
+      phone: row.contact_phone || "",
+      email: row.contact_email || "",
+      monthlyPriceFromUyu: row.monthly_price_from_uyu,
+      priceVerifiedAt: row.price_as_of,
+      priceIncludes: row.price_includes,
+    };
+  });
 }
 
 /** Igual que `loadPublicFacilities`, pero nunca lanza: para el primer render. */
