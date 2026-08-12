@@ -1,0 +1,90 @@
+{
+  "projectRef": "itolluaivfoxnaohbsdk",
+  "capturedAt": "2026-08-10T22:21:45.758Z",
+  "before": {
+    "public_msp": 212,
+    "legacy_total": 801,
+    "public_mides": 275,
+    "public_registry": 910
+  },
+  "rows": [
+    {
+      "id": "DEMO-ELEPEM-001",
+      "name": "Casa Costa Serena",
+      "department": "Canelones",
+      "locality": "Canelones (ubicación ficticia)",
+      "address": "Camino Demostración 101 (dirección ficticia)",
+      "description": "Rutinas tranquilas, talleres de huerta y espacios comunes accesibles.",
+      "phone": "+598 000 001 001 (ficticio)",
+      "email": "costa-serena@demo.invalid",
+      "lat": -34.5228,
+      "lng": -56.2778,
+      "monthly_price_from_uyu": 78000,
+      "price_as_of": "2026-08-10T03:00:00.000Z",
+      "price_includes": [
+        "Alojamiento",
+        "Cuatro comidas",
+        "Actividades grupales",
+        "Lavandería básica"
+      ],
+      "image_url": "/demo/elepem-costa-serena.webp",
+      "image_alt": "Imagen sintética de un acceso residencial accesible sin personas",
+      "is_test": true,
+      "active": true,
+      "created_at": "2026-08-10T22:11:30.904Z",
+      "updated_at": "2026-08-10T22:11:30.904Z"
+    },
+    {
+      "id": "DEMO-ELEPEM-002",
+      "name": "Residencia Horizonte",
+      "department": "Montevideo",
+      "locality": "Montevideo (ubicación ficticia)",
+      "address": "Avenida Ejemplo 2020 (dirección ficticia)",
+      "description": "Sala luminosa y propuestas ficticias de lectura, música y movimiento adaptado.",
+      "phone": "+598 000 002 002 (ficticio)",
+      "email": "horizonte@demo.invalid",
+      "lat": -34.9011,
+      "lng": -56.1645,
+      "monthly_price_from_uyu": 92500,
+      "price_as_of": "2026-08-10T03:00:00.000Z",
+      "price_includes": [
+        "Alojamiento",
+        "Alimentación",
+        "Enfermería de referencia",
+        "Actividades"
+      ],
+      "image_url": "/demo/elepem-horizonte.webp",
+      "image_alt": "Imagen sintética de una sala común accesible sin personas",
+      "is_test": true,
+      "active": true,
+      "created_at": "2026-08-10T22:11:30.904Z",
+      "updated_at": "2026-08-10T22:11:30.904Z"
+    },
+    {
+      "id": "DEMO-ELEPEM-003",
+      "name": "Jardín del Litoral Demo",
+      "department": "Paysandú",
+      "locality": "Paysandú (ubicación ficticia)",
+      "address": "Pasaje de Prueba 303 (dirección ficticia)",
+      "description": "Patio protegido y una agenda ficticia centrada en jardinería y encuentros familiares.",
+      "phone": "+598 000 003 003 (ficticio)",
+      "email": "jardin-litoral@demo.invalid",
+      "lat": -32.3171,
+      "lng": -58.0807,
+      "monthly_price_from_uyu": 85000,
+      "price_as_of": "2026-08-10T03:00:00.000Z",
+      "price_includes": [
+        "Alojamiento",
+        "Alimentación",
+        "Lavandería",
+        "Talleres de jardinería"
+      ],
+      "image_url": "/demo/elepem-jardin-del-prado.webp",
+      "image_alt": "Imagen sintética de un jardín residencial accesible sin personas",
+      "is_test": true,
+      "active": true,
+      "created_at": "2026-08-10T22:11:30.904Z",
+      "updated_at": "2026-08-10T22:11:30.904Z"
+    }
+  ]
+}

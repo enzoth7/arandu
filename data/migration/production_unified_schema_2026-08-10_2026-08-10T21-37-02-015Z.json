@@ -1,0 +1,31 @@
+{
+  "projectRef": "itolluaivfoxnaohbsdk",
+  "appliedAt": "2026-08-10T21:37:02.028Z",
+  "migrationPath": "C:\\Orchestrator\\Agente Fullstack\\Projects\\arandu\\supabase\\migrations\\20260810183000_unify_elepem_registry.sql",
+  "backupPath": "C:\\Orchestrator\\Agente Fullstack\\Projects\\arandu\\data\\migration\\pre_unified_registry_2026-08-10_2026-08-10T19-45-38-873Z.json",
+  "backupSha256": "4AA893002DAE080FEEDB00C8AE717E927120DEB946648F3230A515E7BA8A09F4",
+  "before": {
+    "candidates": 226,
+    "core_total": 893,
+    "legacy_msp": 212,
+    "queue_view": false,
+    "source_view": false,
+    "legacy_mides": 275,
+    "legacy_total": 801,
+    "registry_view": false,
+    "unified_schema": false
+  },
+  "after": {
+    "candidates": 226,
+    "core_total": 893,
+    "legacy_msp": 212,
+    "queue_view": true,
+    "source_view": true,
+    "legacy_mides": 275,
+    "legacy_total": 801,
+    "registry_view": true,
+    "unified_schema": true
+  },
+  "runtimeSwitched": false,
+  "automaticPublication": false
+}

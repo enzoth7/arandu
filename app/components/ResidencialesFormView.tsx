@@ -663,7 +663,7 @@ export function ResidencialesFormView() {
                     rel="noopener noreferrer"
                     style={{ fontSize: "0.86rem", color: "#0369a1", fontWeight: 750, textDecoration: "underline", display: "inline-flex", alignItems: "center", gap: 6 }}
                   >
-                    🤝 Movimiento de Familiares y Residentes de ELEPEM · Guía ELEPEM ↗
+                    🤝 Recomendaciones para Elegir un Centro de Larga Estadía ↗
                   </a>
                 </div>
               </div>

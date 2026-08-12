@@ -1,0 +1,60 @@
+{
+  "projectRef": "itolluaivfoxnaohbsdk",
+  "appliedAt": "2026-08-11T17:52:56.007Z",
+  "migrationPaths": [
+    "C:\\Orchestrator\\Agente Fullstack\\Projects\\arandu\\supabase\\migrations\\20260810120000_add_demo_institutional_intake_v2.sql",
+    "C:\\Orchestrator\\Agente Fullstack\\Projects\\arandu\\supabase\\migrations\\20260811120000_add_moderated_public_experiences.sql"
+  ],
+  "migrationSha256": "93AAE35E61831F3B79AB738F1525C7E35BD159F1366CD7204D111933F4ED1C78",
+  "backupPath": "C:\\Orchestrator\\Agente Fullstack\\Projects\\arandu\\data\\migration\\pre_moderated_public_experiences_2026-08-11_2026-08-11T17-52-45-896Z.json",
+  "backupSha256": "2E741EE5C06A0952C8D8868968BC89E008D634874C01BFFF732C3D10A017EED7",
+  "before": {
+    "core_msp": 212,
+    "core_mides": 275,
+    "core_total": 1121,
+    "events_total": 8,
+    "intake_total": 4,
+    "attachments_total": 0,
+    "experience_total": 0,
+    "experience_demo": 0,
+    "contacts_total": 0,
+    "resolvable_experiences": 0,
+    "unresolved_experiences": 0,
+    "linked_experiences": 0,
+    "publications": {
+      "total": 0,
+      "draft": 0,
+      "published": 0,
+      "withdrawn": 0
+    }
+  },
+  "after": {
+    "core_msp": 212,
+    "core_mides": 275,
+    "core_total": 1121,
+    "events_total": 8,
+    "intake_total": 4,
+    "attachments_total": 0,
+    "experience_total": 0,
+    "experience_demo": 0,
+    "contacts_total": 0,
+    "resolvable_experiences": 0,
+    "unresolved_experiences": 0,
+    "linked_experiences": 0,
+    "publications": {
+      "total": 0,
+      "draft": 0,
+      "published": 0,
+      "withdrawn": 0
+    }
+  },
+  "security": {
+    "forced_rls": true,
+    "anon_view_select": false,
+    "anon_table_select": false,
+    "authenticated_view_select": false,
+    "authenticated_table_select": false
+  },
+  "automaticPublication": false,
+  "canonicalFacilityRowsChanged": false
+}
