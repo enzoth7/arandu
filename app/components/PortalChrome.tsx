@@ -111,7 +111,7 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
         </div>}
         <div className="aranduFooterDemo" role="note">
           <ShieldAlert size={18} aria-hidden="true" />
-          <span><strong>PROTOTIPO ACADÉMICO</strong> · Usa sólo datos de demostración.</span>
+          <span><strong>PROTOTIPO ACADÉMICO</strong> · Combina datos públicos, datos de demostración y estimaciones expresamente identificadas.</span>
         </div>
       </footer>
     </div>
