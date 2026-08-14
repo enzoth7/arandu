@@ -1,51 +1,45 @@
-import {
-  publicFacilityRelation,
-  runtimeElepemDataSource,
-} from "./elepem-data-source.mjs";
-import { classifyRegistryRow } from "./facility-sources.mjs";
 import { querySupabaseDatabase } from "./supabase-db";
 import type { Facility } from "../app/components/map-types";
 import type { DemoFacilityProfile } from "./institutional-types";
 
-// Lectura del padrón público. Vive acá para que la ruta `/api/residenciales` y
-// los componentes de servidor usen exactamente el mismo mapeo fila → ficha: la
-// página no hace un salto HTTP contra su propia API sólo para reutilizar esto.
-
-type ResidentialRow = Record<string, unknown> & {
-  id: string;
-  name: string;
-  department: string;
-  locality: string;
-  address: string;
-  places: number | null;
+type FlatElepemRow = Record<string, unknown> & {
+  canonical_id: string;
+  codigo: string;
+  legacy_id: string | null;
+  nombre: string;
+  nombres_alternativos: string[];
+  departamento: string;
+  localidad: string;
+  direccion: string;
   lat: number;
   lng: number;
-  precision: Facility["precision"];
-  precision_label: string;
-  status_group: "habilitado" | "registro" | "verificar" | "app";
-  status_stage: string;
-  status_short: string;
-  source_label: string;
-  msp_final: boolean;
-  msp_registro_historico: boolean;
-  mides_social: boolean;
-  pacp: boolean;
-  other_source: boolean;
-  created_at: string;
-  updated_at: string;
-  source_url?: string | null;
-  source_links?: unknown;
-  demo_monthly_price_uyu?: number | null;
-  demo_price_as_of?: string | null;
-  demo_price_includes?: string[] | null;
-  is_demo?: boolean;
-  public_description?: string | null;
-  public_image_url?: string | null;
-  public_image_alt?: string | null;
-  approved_photo_ids?: string[] | null;
-  approved_remove_current_photo?: boolean | null;
-  public_contact_phone?: string | null;
-  public_contact_email?: string | null;
+  precision_ubicacion: Facility["precision"];
+  precision_etiqueta: string;
+  telefonos: string[];
+  emails: string[];
+  sitios_web: string[];
+  instagram_urls: string[];
+  facebook_urls: string[];
+  precio_mensual_uyu: number | null;
+  precio_fecha: string | null;
+  precio_incluye: string[];
+  precio_es_demo: boolean;
+  msp_habilitado: boolean;
+  mides_certificado: boolean;
+  situacion: "habilitacion_msp" | "certificado_social_mides" | "situacion_no_confirmada";
+  descripcion: string | null;
+  imagen_url: string | null;
+  imagen_alt: string | null;
+  fuentes_referencias: string[];
+  fuentes_urls: string[];
+  fuentes_proveedores: string[];
+  fuentes_fechas: Array<string | null>;
+  fuentes_consultadas_at: Array<string | Date | null>;
+  fuentes_campos_respaldados: string[];
+  approved_photo_ids: string[] | null;
+  approved_remove_current_photo: boolean | null;
+  created_at: string | Date;
+  updated_at: string | Date;
 };
 
 function safePublicUrl(value: unknown) {
@@ -60,149 +54,140 @@ function safePublicUrl(value: unknown) {
   }
 }
 
-function sourceLinks(value: unknown): NonNullable<Facility["sourceLinks"]> {
-  if (!Array.isArray(value)) return [];
-  const links: NonNullable<Facility["sourceLinks"]> = [];
+function isoDate(value: string | Date | null | undefined) {
+  if (!value) return undefined;
+  const date = value instanceof Date ? value : new Date(value);
+  return Number.isNaN(date.valueOf()) ? undefined : date.toISOString();
+}
+
+function sourceLinks(row: FlatElepemRow): NonNullable<Facility["sourceLinks"]> {
+  const result: NonNullable<Facility["sourceLinks"]> = [];
   const seen = new Set<string>();
-  for (const item of value) {
-    if (!item || typeof item !== "object" || Array.isArray(item)) continue;
-    const row = item as Record<string, unknown>;
-    const url = safePublicUrl(row.url);
-    const label = typeof row.label === "string" ? row.label.trim().slice(0, 200) : "";
-    if (!url || !label || seen.has(`${label}:${url}`)) continue;
-    seen.add(`${label}:${url}`);
-    links.push({
+  for (let index = 0; index < row.fuentes_referencias.length; index += 1) {
+    const url = safePublicUrl(row.fuentes_urls[index]);
+    if (!url) continue;
+    const provider = String(row.fuentes_proveedores[index] || "").trim();
+    const reference = String(row.fuentes_referencias[index] || "").trim();
+    const label = (provider || reference || "Fuente pÃºblica").slice(0, 200);
+    const key = `${label}:${url}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    result.push({
       label,
       url,
-      sourceDate: typeof row.sourceDate === "string" ? row.sourceDate : undefined,
-      retrievedAt: typeof row.retrievedAt === "string" ? row.retrievedAt : undefined,
+      sourceDate: row.fuentes_fechas[index] || undefined,
+      retrievedAt: isoDate(row.fuentes_consultadas_at[index]),
+      backedFields: String(row.fuentes_campos_respaldados[index] || "")
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean),
     });
   }
-  return links;
+  return result;
 }
 
-function deriveStatusGroup(row: ResidentialRow): Facility["statusGroup"] {
-  if (row.is_demo) return "app";
-  if (row.status_group === "app") return "app";
-  if (row.status_group === "verificar") return "verificar";
-  if (row.msp_final) return "habilitado";
-  if (row.mides_social) return "mides";
-  if (row.msp_registro_historico) return "registro";
-  return "otra_fuente";
+function statusGroup(row: FlatElepemRow): Facility["statusGroup"] {
+  if (row.msp_habilitado) return "habilitado";
+  if (row.mides_certificado) return "mides";
+  return "verificar";
 }
 
-function isOtherSource(row: ResidentialRow) {
-  return (
-    row.status_group !== "verificar" &&
-    row.status_group !== "app" &&
-    !row.msp_final &&
-    !row.msp_registro_historico &&
-    !row.mides_social &&
-    row.other_source && !row.pacp
-  );
+function statusShort(row: FlatElepemRow) {
+  if (row.msp_habilitado) return "HabilitaciÃ³n MSP";
+  if (row.mides_certificado) return "Certificado social MIDES";
+  return "SituaciÃ³n no confirmada";
 }
 
-function toFacility(row: ResidentialRow): Facility {
-  const otherSource = isOtherSource(row);
-  const links = sourceLinks(row.source_links);
+function toFacility(row: FlatElepemRow): Facility {
+  const links = sourceLinks(row);
   const approvedPhotoUrls = Array.isArray(row.approved_photo_ids)
-    ? row.approved_photo_ids.map((photoId) => `/api/residenciales/${encodeURIComponent(row.id)}/photos/${encodeURIComponent(photoId)}`)
+    ? row.approved_photo_ids.map((photoId) => `/api/residenciales/${encodeURIComponent(row.codigo)}/photos/${encodeURIComponent(photoId)}`)
     : [];
   const photoUrls = [
     ...approvedPhotoUrls,
-    ...(!row.approved_remove_current_photo && row.public_image_url ? [row.public_image_url] : []),
+    ...(!row.approved_remove_current_photo && row.imagen_url ? [row.imagen_url] : []),
   ];
-  const monthlyPriceUyu = (
-    typeof row.demo_monthly_price_uyu === "number"
-    && (row.is_demo || row.msp_final || row.mides_social)
-  ) ? row.demo_monthly_price_uyu : undefined;
-  const hasPublishedPrice = typeof monthlyPriceUyu === "number";
+  const providers = [...new Set(row.fuentes_proveedores.map((item) => String(item || "").trim()).filter(Boolean))];
   return {
-    id: row.id,
-    name: row.name,
-    department: row.department,
-    locality: row.locality,
-    address: row.address,
-    places: row.places,
+    id: row.codigo,
+    legacyId: row.legacy_id || undefined,
+    name: row.nombre,
+    alternativeNames: row.nombres_alternativos,
+    department: row.departamento,
+    locality: row.localidad,
+    address: row.direccion,
     lat: row.lat,
     lng: row.lng,
-    precision: row.precision,
-    precisionLabel: row.precision_label,
-    statusGroup: deriveStatusGroup(row),
-    statusStage: row.status_stage,
-    statusShort:
-      otherSource && !row.pacp
-        ? "Webs y directorios públicos · pendiente de clasificación detallada"
-        : row.status_short,
-    sourceLabel: row.source_label,
-    mspFinal: row.msp_final,
-    mspRegistroHistorico: row.msp_registro_historico,
-    midesSocial: row.mides_social,
-    pacp: row.pacp,
-    otherSource,
-    pendingVerification: row.status_group === "verificar",
-    appDiscovered: row.status_group === "app",
-    sourceCategories: classifyRegistryRow({
-      official: Boolean(row.msp_final || row.msp_registro_historico || row.mides_social || row.pacp),
-      sourceLabel: String(row.source_label || ""),
-      otherSource,
-    }),
-    privateCandidate: false,
-    isDemo: row.is_demo === true,
-    sourceUrl: safePublicUrl(row.source_url) || links[0]?.url,
+    precision: row.precision_ubicacion,
+    precisionLabel: row.precision_etiqueta,
+    situacion: row.situacion,
+    statusGroup: statusGroup(row),
+    statusShort: statusShort(row),
+    sourceLabel: providers.join(" + ") || "Referencia conservada sin URL pÃºblica",
+    mspFinal: row.msp_habilitado,
+    midesSocial: row.mides_certificado,
+    sourceUrl: links[0]?.url,
     sourceLinks: links,
-    contactPhone: row.public_contact_phone || undefined,
-    contactEmail: row.public_contact_email || undefined,
-    description: row.public_description || undefined,
+    contactPhone: row.telefonos[0] || undefined,
+    contactPhones: row.telefonos,
+    contactEmail: row.emails[0] || undefined,
+    contactEmails: row.emails,
+    websites: row.sitios_web,
+    instagramUrls: row.instagram_urls,
+    facebookUrls: row.facebook_urls,
+    description: row.descripcion || undefined,
     photoUrl: photoUrls[0] || undefined,
     photoUrls,
-    monthlyPriceUyu,
-    monthlyPriceAsOf: hasPublishedPrice && row.demo_price_as_of ? row.demo_price_as_of : undefined,
-    monthlyPriceIncludes: hasPublishedPrice && Array.isArray(row.demo_price_includes)
-      ? row.demo_price_includes.filter((item): item is string => typeof item === "string" && Boolean(item.trim()))
-      : undefined,
-    createdAt: row.created_at,
-    updatedAt: row.updated_at,
+    monthlyPriceUyu: row.precio_mensual_uyu ?? undefined,
+    monthlyPriceAsOf: row.precio_fecha || undefined,
+    monthlyPriceIncludes: row.precio_incluye,
+    priceIsDemo: row.precio_es_demo,
+    createdAt: isoDate(row.created_at),
+    updatedAt: isoDate(row.updated_at),
   };
 }
 
 export async function loadPublicFacilities(): Promise<{ facilities: Facility[]; dataSource: string }> {
-  const dataSource = runtimeElepemDataSource();
-  const relation = publicFacilityRelation(dataSource);
-  const unifiedProjection = dataSource === "normalized" ? `
-      registry.source_url,
-      registry.source_links,
-      coalesce(profile.monthly_price_from_uyu, registry.demo_monthly_price_uyu) as demo_monthly_price_uyu,
-      coalesce(profile.price_as_of, registry.demo_price_as_of) as demo_price_as_of,
-      coalesce(profile.price_includes, registry.demo_price_includes) as demo_price_includes,
-      profile.description as public_description,
-      profile.image_url as public_image_url,
-      profile.image_alt as public_image_alt,
+  const rows = await querySupabaseDatabase<FlatElepemRow>(`
+    select
+      registry.id::text as canonical_id,
+      registry.codigo,
+      registry.legacy_id,
+      registry.nombre,
+      registry.nombres_alternativos,
+      registry.departamento,
+      registry.localidad,
+      registry.direccion,
+      registry.lat,
+      registry.lng,
+      registry.precision_ubicacion,
+      registry.precision_etiqueta,
+      registry.telefonos,
+      registry.emails,
+      registry.sitios_web,
+      registry.instagram_urls,
+      registry.facebook_urls,
+      registry.precio_mensual_uyu,
+      registry.precio_fecha,
+      registry.precio_incluye,
+      registry.precio_es_demo,
+      registry.msp_habilitado,
+      registry.mides_certificado,
+      registry.situacion,
+      registry.descripcion,
+      registry.imagen_url,
+      registry.imagen_alt,
+      registry.fuentes_referencias,
+      registry.fuentes_urls,
+      registry.fuentes_proveedores,
+      registry.fuentes_fechas,
+      registry.fuentes_consultadas_at,
+      registry.fuentes_campos_respaldados,
       approved_photos.photo_ids as approved_photo_ids,
       approved_photos.remove_current_photo as approved_remove_current_photo,
-      profile.contact_phone as public_contact_phone,
-      profile.contact_email as public_contact_email,
-      canonical.is_demo,
-  ` : `
-      null::text as source_url,
-      '[]'::jsonb as source_links,
-      null::integer as demo_monthly_price_uyu,
-      null::date as demo_price_as_of,
-      '{}'::text[] as demo_price_includes,
-      null::text as public_description,
-      null::text as public_image_url,
-      null::text as public_image_alt,
-      null::text[] as approved_photo_ids,
-      false as approved_remove_current_photo,
-      null::text as public_contact_phone,
-      null::text as public_contact_email,
-      false as is_demo,
-  `;
-  const profileJoin = dataSource === "normalized" ? `
-    left join elepem_core.facilities as canonical
-      on canonical.facility_key = registry.id
-    left join elepem_core.facility_public_profiles as profile
-      on profile.facility_id = canonical.id
+      registry.created_at,
+      registry.updated_at
+    from public.elepem as registry
     left join lateral (
       select
         publication.remove_current_photo,
@@ -210,46 +195,15 @@ export async function loadPublicFacilities(): Promise<{ facilities: Facility[]; 
           select array_agg(photo.id::text order by photo.position)
           from public.facility_change_publication_photos as photo
           where photo.publication_id = publication.id
-        ), '{}'::text[]) as photo_ids
+        ), '{}')::text[] as photo_ids
       from public.facility_change_publications as publication
-      where publication.facility_id = canonical.id
+      where publication.facility_id = registry.id
       order by publication.published_at desc, publication.id desc
       limit 1
     ) as approved_photos on true
-  ` : "";
-  const sourceLabelProjection = dataSource === "normalized"
-    ? "coalesce(nullif(registry.source_label, 'Fuente pendiente de vincular'), canonical.primary_source_label, registry.source_label) as source_label"
-    : "registry.source_label";
-  const rows = await querySupabaseDatabase<ResidentialRow>(`
-    select
-      registry.id,
-      registry.name,
-      registry.department,
-      registry.locality,
-      registry.address,
-      registry.places,
-      registry.lat,
-      registry.lng,
-      registry.precision,
-      registry.precision_label,
-      registry.status_group,
-      registry.status_stage,
-      registry.status_short,
-      ${sourceLabelProjection},
-      registry.msp_final,
-      registry.msp_registro_historico,
-      registry.mides_social,
-      registry.pacp,
-      registry.other_source,
-      ${unifiedProjection}
-      registry.created_at,
-      registry.updated_at
-    from ${relation} as registry
-    ${profileJoin}
-    order by registry.department, registry.name, registry.id
+    order by registry.departamento, registry.nombre, registry.codigo
   `);
-
-  return { facilities: rows.map(toFacility), dataSource };
+  return { facilities: rows.map(toFacility), dataSource: "public.elepem" };
 }
 
 export async function loadAssignedFacilityProfiles(
@@ -267,44 +221,29 @@ export async function loadAssignedFacilityProfiles(
     image_alt: string;
     approved_photo_ids: string[] | null;
     approved_remove_current_photo: boolean | null;
-    contact_phone: string | null;
-    contact_email: string | null;
+    phone: string;
+    email: string;
     monthly_price_from_uyu: number;
     price_as_of: string;
     price_includes: string[];
   }>(`
     select
-      facility.facility_key as id,
-      preferred_name.name,
-      current_address.locality,
-      current_address.department,
-      current_address.address_line as address,
-      profile.description,
-      profile.image_url,
-      profile.image_alt,
+      facility.id,
+      facility.name,
+      facility.locality,
+      facility.department,
+      facility.address,
+      facility.description,
+      facility.image_url,
+      facility.image_alt,
       approved_photos.photo_ids as approved_photo_ids,
       approved_photos.remove_current_photo as approved_remove_current_photo,
-      profile.contact_phone,
-      profile.contact_email,
-      profile.monthly_price_from_uyu,
-      profile.price_as_of,
-      profile.price_includes
-    from elepem_core.facilities as facility
-    join lateral (
-      select name.name
-      from elepem_core.facility_names as name
-      where name.facility_id = facility.id and name.is_preferred
-      order by name.id desc limit 1
-    ) as preferred_name on true
-    join lateral (
-      select address.address_line, address.locality, address.department
-      from elepem_core.facility_addresses as address
-      where address.facility_id = facility.id
-        and address.is_current and address.address_type = 'physical'
-      order by address.id desc limit 1
-    ) as current_address on true
-    join elepem_core.facility_public_profiles as profile
-      on profile.facility_id = facility.id
+      facility.phone,
+      facility.email,
+      facility.monthly_price_from_uyu,
+      facility.price_as_of,
+      facility.price_includes
+    from arandu_demo.facilities as facility
     left join lateral (
       select
         publication.remove_current_photo,
@@ -312,26 +251,20 @@ export async function loadAssignedFacilityProfiles(
           select array_agg(photo.id::text order by photo.position)
           from public.facility_change_publication_photos as photo
           where photo.publication_id = publication.id
-        ), '{}'::text[]) as photo_ids
+        ), '{}')::text[] as photo_ids
       from public.facility_change_publications as publication
-      where publication.facility_id = facility.id
+      where publication.demo_facility_id = facility.id
       order by publication.published_at desc, publication.id desc
       limit 1
     ) as approved_photos on true
-    where facility.facility_key = any($1::text[])
-      and facility.is_demo = true
-      and facility.lifecycle_status = 'current'
-      and facility.registry_visibility = 'public'
-    order by preferred_name.name
+    where facility.id = any($1::text[]) and facility.active and facility.is_test
+    order by facility.name
   `, [[...facilityKeys]]);
   return rows.map((row) => {
     const approvedUrls = Array.isArray(row.approved_photo_ids)
       ? row.approved_photo_ids.map((photoId) => `/api/residenciales/${encodeURIComponent(row.id)}/photos/${encodeURIComponent(photoId)}`)
       : [];
-    const imageUrls = [
-      ...approvedUrls,
-      ...(!row.approved_remove_current_photo ? [row.image_url] : []),
-    ];
+    const imageUrls = [...approvedUrls, ...(!row.approved_remove_current_photo ? [row.image_url] : [])];
     return {
       id: row.id,
       name: row.name,
@@ -342,8 +275,8 @@ export async function loadAssignedFacilityProfiles(
       imageUrl: imageUrls[0] || row.image_url,
       imageUrls,
       imageAlt: row.image_alt,
-      phone: row.contact_phone || "",
-      email: row.contact_email || "",
+      phone: row.phone,
+      email: row.email,
       monthlyPriceFromUyu: row.monthly_price_from_uyu,
       priceVerifiedAt: row.price_as_of,
       priceIncludes: row.price_includes,
@@ -351,7 +284,6 @@ export async function loadAssignedFacilityProfiles(
   });
 }
 
-/** Igual que `loadPublicFacilities`, pero nunca lanza: para el primer render. */
 export async function loadPublicFacilitiesOrEmpty(): Promise<Facility[]> {
   try {
     return (await loadPublicFacilities()).facilities;
@@ -363,16 +295,12 @@ export async function loadPublicFacilitiesOrEmpty(): Promise<Facility[]> {
   }
 }
 
-export async function publicFacilityExists(id: string): Promise<boolean> {
-  const dataSource = runtimeElepemDataSource();
-  const relation = publicFacilityRelation(dataSource);
+export async function publicFacilityExists(value: string): Promise<boolean> {
   const rows = await querySupabaseDatabase<{ exists: boolean }>(`
     select exists (
-      select 1
-      from ${relation}
-      where id = $1
+      select 1 from public.elepem where codigo = $1 or legacy_id = $1
     ) as exists
-  `, [id]);
+  `, [value]);
   return rows[0]?.exists === true;
 }
 
@@ -384,69 +312,36 @@ export type PublicFacilityReference = {
   department: string;
 };
 
-/**
- * Resuelve tanto la clave canonica publicada como un id legado mapeado. La
- * referencia solo se acepta si el ELEPEM sigue visible en el padron unificado;
- * esto evita adjuntar experiencias a candidatos o identidades retenidas.
- */
 export async function resolvePublicFacilityReference(value: string): Promise<PublicFacilityReference | null> {
   const key = typeof value === "string" ? value.trim() : "";
   if (!key || key.length > 240 || /[\u0000-\u001f]/.test(key)) return null;
   const rows = await querySupabaseDatabase<{
     id: string;
-    facility_key: string;
-    name: string;
-    locality: string;
-    department: string;
+    codigo: string;
+    nombre: string;
+    localidad: string;
+    departamento: string;
   }>(`
-    with resolved as (
-      select facility.id, facility.facility_key,
-        case when facility.facility_key = $1 then 0 else 1 end as resolution_order
-      from elepem_core.facilities as facility
-      left join elepem_core.legacy_facility_map as legacy
-        on legacy.facility_id = facility.id
-       and legacy.mapping_status = 'mapped'
-      where facility.facility_key = $1 or legacy.legacy_residencial_id = $1
-      order by resolution_order, facility.id
-      limit 1
-    )
-    select
-      facility.id::text as id,
-      facility.facility_key,
-      preferred_name.name,
-      current_address.locality,
-      current_address.department
-    from resolved
-    join elepem_core.facilities as facility on facility.id = resolved.id
-    join lateral (
-      select name.name
-      from elepem_core.facility_names as name
-      where name.facility_id = facility.id and name.is_preferred
-      order by name.id desc limit 1
-    ) as preferred_name on true
-    join lateral (
-      select address.locality, address.department
-      from elepem_core.facility_addresses as address
-      where address.facility_id = facility.id
-        and address.is_current and address.address_type = 'physical'
-      order by address.id desc limit 1
-    ) as current_address on true
-    where facility.lifecycle_status = 'current'
-      and facility.identity_status = 'confirmed_facility'
-      and facility.registry_visibility = 'public'
-      and facility.location_status = 'mapped'
+    select id::text, codigo, nombre, localidad, departamento
+    from public.elepem
+    where codigo = $1 or legacy_id = $1
+    order by case when codigo = $1 then 0 else 1 end, id
     limit 1
   `, [key]);
   const row = rows[0];
   const id = Number(row?.id);
   if (!row || !Number.isSafeInteger(id) || id <= 0) return null;
-  return {
-    id,
-    key: row.facility_key,
-    name: row.name,
-    locality: row.locality,
-    department: row.department,
-  };
+  return { id, key: row.codigo, name: row.nombre, locality: row.localidad, department: row.departamento };
+}
+
+export async function demoFacilityExists(value: string): Promise<boolean> {
+  if (!/^DEMO-ELEPEM-00[1-3]$/.test(value)) return false;
+  const rows = await querySupabaseDatabase<{ exists: boolean }>(`
+    select exists (
+      select 1 from arandu_demo.facilities where id = $1 and active and is_test
+    ) as exists
+  `, [value]);
+  return rows[0]?.exists === true;
 }
 
 type DemoMapFacilityRow = {
@@ -464,11 +359,10 @@ type DemoMapFacilityRow = {
   price_as_of: string;
   price_includes: string[];
   image_url: string;
-  created_at: string;
-  updated_at: string;
+  created_at: string | Date;
+  updated_at: string | Date;
 };
 
-/** Capa ficticia aislada: se consulta solamente en modo demostración. */
 export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Facility[]> {
   if (!enabled) return [];
   try {
@@ -478,7 +372,7 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
         lat, lng, monthly_price_from_uyu, price_as_of, price_includes,
         image_url, created_at, updated_at
       from arandu_demo.facilities
-      where active and is_test
+      where active and is_test and id = 'DEMO-ELEPEM-001'
       order by id
     `);
     return rows.map((row) => ({
@@ -487,33 +381,29 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
       department: row.department,
       locality: row.locality,
       address: row.address,
-      places: null,
       lat: row.lat,
       lng: row.lng,
       precision: "referencial",
-      precisionLabel: "Ubicación ficticia aproximada para demostración",
+      precisionLabel: "UbicaciÃ³n ficticia aproximada para demostraciÃ³n",
+      situacion: "demo",
       statusGroup: "app",
-      statusStage: "demo_test",
       statusShort: "Datos ficticios",
-      sourceLabel: "Prueba de Arandú · datos ficticios",
+      sourceLabel: "Prueba de ArandÃº Â· datos ficticios",
       mspFinal: false,
-      mspRegistroHistorico: false,
       midesSocial: false,
-      pacp: false,
-      otherSource: false,
-      pendingVerification: false,
-      appDiscovered: false,
-      sourceCategories: [],
-      privateCandidate: false,
       contactPhone: row.phone,
+      contactPhones: [row.phone],
       contactEmail: row.email,
+      contactEmails: [row.email],
       description: row.description,
       photoUrl: row.image_url,
+      photoUrls: [row.image_url],
       monthlyPriceUyu: row.monthly_price_from_uyu,
       monthlyPriceAsOf: row.price_as_of,
       monthlyPriceIncludes: row.price_includes,
-      createdAt: row.created_at,
-      updatedAt: row.updated_at,
+      priceIsDemo: true,
+      createdAt: isoDate(row.created_at),
+      updatedAt: isoDate(row.updated_at),
       isDemo: true,
     }));
   } catch (error) {

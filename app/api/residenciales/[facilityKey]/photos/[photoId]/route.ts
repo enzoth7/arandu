@@ -4,15 +4,14 @@ import { querySupabaseDatabase } from "../../../../../../lib/supabase-db";
 export const runtime = "nodejs";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-const FACILITY_KEY = /^DEMO-ELEPEM-00[1-3]$/;
 
 export async function GET(
   _request: NextRequest,
   context: { params: Promise<{ facilityKey: string; photoId: string }> },
 ) {
   const { facilityKey: rawFacilityKey, photoId } = await context.params;
-  const facilityKey = decodeURIComponent(rawFacilityKey || "").trim().toUpperCase();
-  if (!FACILITY_KEY.test(facilityKey) || !UUID.test(photoId)) {
+  const facilityKey = decodeURIComponent(rawFacilityKey || "").trim();
+  if (!facilityKey || facilityKey.length > 240 || /[\u0000-\u001f]/.test(facilityKey) || !UUID.test(photoId)) {
     return NextResponse.json({ error: "Foto pública inválida." }, { status: 400 });
   }
 
@@ -27,18 +26,18 @@ export async function GET(
        ON publication.id = photo.publication_id
      JOIN public.intake_report_attachments AS attachment
        ON attachment.id = photo.attachment_id
-     JOIN elepem_core.facilities AS facility
-       ON facility.id = publication.facility_id
+     LEFT JOIN public.elepem AS facility ON facility.id = publication.facility_id
+     LEFT JOIN arandu_demo.facilities AS demo ON demo.id = publication.demo_facility_id
      WHERE photo.id = $1
-       AND facility.facility_key = $2
-       AND facility.is_demo = true
+       AND COALESCE(facility.codigo, demo.id) = $2
        AND attachment.purpose = 'facility_photo'
        AND attachment.mime_type LIKE 'image/%'
        AND attachment.rights_metadata->>'rightsConfirmed' = 'true'
        AND publication.id = (
          SELECT latest.id
          FROM public.facility_change_publications AS latest
-         WHERE latest.facility_id = facility.id
+         WHERE latest.facility_id IS NOT DISTINCT FROM publication.facility_id
+           AND latest.demo_facility_id IS NOT DISTINCT FROM publication.demo_facility_id
          ORDER BY latest.published_at DESC, latest.id DESC
          LIMIT 1
        )

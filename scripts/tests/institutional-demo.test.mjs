@@ -159,6 +159,14 @@ test("publicar acepta el texto moderado y completa el flujo en una sola accion",
   assert.match(workflow, /SET status = 'published'/);
 });
 
+test("las experiencias demo usan la referencia aislada tras el corte ELEPEM", async () => {
+  const workflow = await readFile(new URL("../../lib/experience-publication-db.ts", import.meta.url), "utf8");
+  assert.match(workflow, /SELECT id, entry_type, is_demo, facility_id::text, demo_facility_id/);
+  assert.match(workflow, /report_id, facility_id, demo_facility_id/);
+  assert.match(workflow, /facility_id IS NULL AND demo_facility_id = \$2/);
+  assert.doesNotMatch(workflow, /WHERE report_id = \$1 AND facility_id = \$2/);
+});
+
 test("la bandeja presenta experiencias legibles sin JSON ni historial tecnico", async () => {
   const source = await readFile(new URL("../../app/components/institutional/StateInbox.tsx", import.meta.url), "utf8");
   assert.match(source, /Lista de/);
@@ -181,11 +189,12 @@ test("el portal ELEPEM usa la ficha canonica sin etiquetas de demostracion", asy
   assert.doesNotMatch(source, /Portal ELEPEM demo|Datos ficticios/i);
 });
 
-test("los precios publicados se limitan a MSP o MIDES salvo la referencia demo explicita", async () => {
+test("los precios sintéticos conservados se identifican explícitamente como demo", async () => {
   const source = await readFile(new URL("../../lib/facility-registry.ts", import.meta.url), "utf8");
   assert.doesNotMatch(source, /demoPriceEnabled|DEMO_MODE/);
-  assert.match(source, /row\.is_demo \|\| row\.msp_final \|\| row\.mides_social/);
-  assert.match(source, /monthlyPriceUyu,/);
+  assert.match(source, /registry\.precio_es_demo/);
+  assert.match(source, /monthlyPriceUyu: row\.precio_mensual_uyu/);
+  assert.match(source, /priceIsDemo: row\.precio_es_demo/);
 });
 
 test("la ficha muestra cualquier experiencia moderada y publicada", async () => {

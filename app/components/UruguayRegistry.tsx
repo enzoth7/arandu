@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { ChevronDown, ChevronUp, CircleHelp, Image as ImageIcon, Map as MapIcon, RotateCcw, Search, Star, X } from "lucide-react";
+import { ChevronDown, ChevronUp, CircleHelp, Image as ImageIcon, Map as MapIcon, RotateCcw, Search, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { FacilityExperiences } from "./FacilityExperiences";
@@ -15,7 +15,6 @@ import {
 import { canonicalDepartment, foldText } from "../../lib/uruguay.mjs";
 import { useFacilityFilters } from "../hooks/useFacilityFilters";
 import type { Facility, FacilityStatus } from "./map-types";
-import { facilityDocumentStatus, facilityDocumentStatusDescription } from "../../lib/facility-document-status.mjs";
 
 const StreetMap = dynamic(() => import("./StreetMap"), {
   ssr: false,
@@ -37,12 +36,10 @@ type UruguayRegistryProps = {
   error?: string;
   notices?: ReactNode;
   /** Filtro por estado de tratamiento; sólo tiene sentido en organización. */
-  showPrivateWorkflowFilter?: boolean;
   /** Tarjeta «La persona decide»; sólo en el portal de personas. */
   showChoiceCta?: boolean;
 };
 
-type PrivateWorkflowStatus = "" | "needs_review" | "possible_match" | "verified_new";
 type RegistryView = "list" | "map" | "mixed";
 
 export default function UruguayRegistry({
@@ -51,7 +48,6 @@ export default function UruguayRegistry({
   loading = false,
   error = "",
   notices,
-  showPrivateWorkflowFilter = false,
   showChoiceCta = false,
 }: UruguayRegistryProps) {
   const registryFacilities = useMemo(
@@ -80,8 +76,6 @@ export default function UruguayRegistry({
     monthlyPriceRange,
     setMonthlyPriceRange,
     status, setStatus,
-    documentaryStatus, setDocumentaryStatus,
-    privateWorkflowStatus, setPrivateWorkflowStatus,
     visible,
     departments,
     summaryScope,
@@ -97,15 +91,14 @@ export default function UruguayRegistry({
   const directFacilityHandled = useRef(false);
 
   const visibleDemoFacilities = useMemo(() => {
-    if (status || privateWorkflowStatus) return [];
+    if (status) return [];
     const foldedQuery = foldText(query);
     return mapOnlyDemoFacilities.filter((facility) => {
       const matchesQuery = !foldedQuery || facilityHaystack(facility).includes(foldedQuery);
       const matchesDepartment = !department || canonicalDepartment(facility.department) === department;
-      const matchesDocumentaryStatus = !documentaryStatus || facilityDocumentStatus(facility).key === documentaryStatus;
-      return matchesQuery && matchesDepartment && matchesDocumentaryStatus;
+      return matchesQuery && matchesDepartment;
     });
-  }, [department, documentaryStatus, mapOnlyDemoFacilities, privateWorkflowStatus, query, status]);
+  }, [department, mapOnlyDemoFacilities, query, status]);
   const resultFacilities = useMemo(
     () => [...visibleDemoFacilities, ...visible],
     [visible, visibleDemoFacilities],
@@ -245,20 +238,6 @@ export default function UruguayRegistry({
             </select>
           </label>
 
-          {/* Ortogonal a la situación institucional: una es la etapa que consta
-              en las fuentes y la otra el avance de la revisión interna. */}
-          {showPrivateWorkflowFilter && (
-            <label>
-              <b>Estado de tratamiento</b>
-              <select value={privateWorkflowStatus} onChange={(event) => setPrivateWorkflowStatus(event.target.value as PrivateWorkflowStatus)}>
-                <option value="">Todos</option>
-                <option value="needs_review">Necesita revisión</option>
-                <option value="possible_match">Posible coincidencia</option>
-                <option value="verified_new">Nuevo verificado</option>
-              </select>
-            </label>
-          )}
-
           {monthlyPriceBounds && monthlyPriceRange ? (
             <fieldset className="registryPriceRange">
               <legend>Precio mensual</legend>
@@ -308,19 +287,6 @@ export default function UruguayRegistry({
               <p>Sin precios publicados todavía.</p>
             </section>
           )}
-
-          <label>
-            <b>Clasificación</b>
-            <select value={documentaryStatus} onChange={(event) => setDocumentaryStatus(event.target.value as typeof documentaryStatus)}>
-              <option value="">Todas</option>
-              <option value="outstanding">Sobresaliente (4 estrellas)</option>
-              <option value="good">Bueno (3 estrellas)</option>
-              <option value="needs-improvement">Requiere mejoras (2 estrellas)</option>
-            </select>
-          </label>
-          <p className="registryFilterNote">
-            Las estrellas describen registros documentales; no son una evaluación de calidad, seguridad ni condiciones de vida.
-          </p>
         </div>
       </aside>
       {registryView !== "list" && <div className="registryMapColumn" ref={mapColumnRef}>
@@ -333,7 +299,7 @@ export default function UruguayRegistry({
       </div>}
 
       {registryView !== "map" && <aside className="card registryResults">
-        <div className="resultsHead"><h2>ELEPEM encontrados</h2><output className="resultCount">{visible.length}</output></div>
+        <div className="resultsHead"><h2>ELEPEM encontrados</h2><output className="resultCount">{resultFacilities.length}</output></div>
 
         <div className="registryResultsScroll">
           {resultFacilities.map((facility) => (
@@ -418,15 +384,7 @@ function badgeTone(facility: Facility) {
   return "gray";
 }
 
-function FacilityMembershipBadges({
-  facility,
-  includeDocument = true,
-  documentLabel = true,
-}: {
-  facility: Facility;
-  includeDocument?: boolean;
-  documentLabel?: boolean;
-}) {
+function FacilityMembershipBadges({ facility }: { facility: Facility }) {
   const badges = [
     facility.mspFinal && { label: "Habilitado", tone: "green" },
     facility.midesSocial && { label: "Certificado", tone: "amber" },
@@ -439,16 +397,6 @@ function FacilityMembershipBadges({
     ) : badges.map((badge) => (
       <span className={`sourceBadge sourceBadge-${badge.tone}`} key={badge.label}>{badge.label}</span>
     ))}
-    {includeDocument && <FacilityDocumentBadge facility={facility} showLabel={documentLabel} />}
-  </span>;
-}
-
-function FacilityDocumentBadge({ facility, showLabel = true }: { facility: Facility; showLabel?: boolean }) {
-  const status = facilityDocumentStatus(facility);
-  const description = facilityDocumentStatusDescription(status);
-  return <span className={`facilityDocumentBadge facilityDocumentBadge-${status.tone}${showLabel ? "" : " is-compact"}`} aria-label={`${status.label}: ${status.stars} de 4 estrellas. ${description}`} title={`${status.label}. ${description}`}>
-    <span className="facilityDocumentStars" aria-hidden="true">{Array.from({ length: 4 }, (_, index) => <Star className={index < status.stars ? "is-filled" : "is-empty"} key={index} size={13} fill={index < status.stars ? "currentColor" : "none"} />)}</span>
-    {showLabel && <strong>{status.label}</strong>}
   </span>;
 }
 
@@ -496,13 +444,13 @@ function FacilityAccordionCard({
         <div className="facilityAccordionTitle">
           <strong>{facility.name}</strong>
           <span className="facilityLocation">{facility.locality} · {canonicalDepartment(facility.department)}</span>
-          <FacilityMembershipBadges facility={facility} documentLabel={false} />
+          <FacilityMembershipBadges facility={facility} />
           {typeof facility.monthlyPriceUyu === "number" && facility.monthlyPriceUyu > 0 && (
             <span
               className="facilityCompactPrice"
-              aria-label={`${facility.isDemo ? "Precio mensual de prueba" : "Precio mensual publicado"}: ${formatMonthlyPrice(facility.monthlyPriceUyu)}`}
+              aria-label={`${facility.priceIsDemo ? "Precio mensual demostrativo" : "Precio mensual publicado"}: ${formatMonthlyPrice(facility.monthlyPriceUyu)}`}
             >
-              <small>{facility.isDemo ? "Precio de prueba" : "Precio mensual"}</small>
+              <small>{facility.priceIsDemo ? "Precio demostrativo" : "Precio mensual"}</small>
               <b>{formatMonthlyPrice(facility.monthlyPriceUyu)}</b>
             </span>
           )}
@@ -515,7 +463,6 @@ function FacilityAccordionCard({
       {isOpen && (
         <div className="facilityAccordionBody">
           {facility.address && <p className="facilityAddress"><strong>Dirección:</strong> {facility.address}</p>}
-          {!facility.isDemo && <p className="facilityDocumentNote">Las estrellas muestran registros documentales; no evalúan calidad, seguridad ni condiciones de vida.</p>}
           <div className="facilityAccordionActions">
             <button type="button" className="reportContinue facilityViewMoreBtn" onClick={() => onViewMore(facility)}>Ver más</button>
           </div>
@@ -536,19 +483,17 @@ function FacilityListCard({ facility, onViewMore }: { facility: Facility; onView
     <div className="facilityBookingContent">
       <h3>{facility.name}</h3>
       <p className="facilityBookingLocation">{facility.locality} · {canonicalDepartment(facility.department)}</p>
-      <FacilityMembershipBadges facility={facility} includeDocument={false} />
+      <FacilityMembershipBadges facility={facility} />
       <div className="facilityBookingFacts">
         {facility.address && <span>{facility.address}</span>}
-        {typeof facility.places === "number" && <span>{facility.places} plazas informadas</span>}
       </div>
       {facility.description && <p className="facilityBookingDescription">{facility.description}</p>}
       {facility.sourceLabel && <p className="facilityBookingSource">Fuente: {facility.sourceLabel}</p>}
     </div>
     <div className="facilityBookingAside">
-      <FacilityDocumentBadge facility={facility} />
       <div className="facilityBookingAsideFooter">
         {hasPublicPrice && <div className="facilityBookingPrice">
-          <small>{facility.isDemo ? "Precio mensual de prueba" : "Precio mensual publicado"}</small>
+          <small>{facility.priceIsDemo ? "Precio mensual demostrativo" : "Precio mensual publicado"}</small>
           <strong>{formatMonthlyPrice(facility.monthlyPriceUyu as number)}</strong>
         </div>}
         <button type="button" className="facilityBookingAction" onClick={() => onViewMore(facility)}>Ver ficha</button>
@@ -627,12 +572,11 @@ function FacilityMapDialog({ facility, onClose }: { facility: Facility; onClose:
           <strong>{facility.monthlyPriceUyu
             ? `Desde $ ${facility.monthlyPriceUyu.toLocaleString("es-UY")}`
             : "No informado"}</strong>
-          <span>{facility.isDemo ? "Precio mensual de prueba" : "Precio mensual"}</span>
+          <span>{facility.priceIsDemo ? "Precio mensual demostrativo" : "Precio mensual"}</span>
         </div>
       </div>
       <div>
         <FacilityMembershipBadges facility={facility} />
-        {!facility.isDemo && <p className="facilityDocumentNote">La clasificación se basa sólo en registros oficiales disponibles y no es una evaluación de calidad o seguridad.</p>}
         <p>{facility.description || "Todavía no hay una descripción pública verificada de la vida cotidiana en este ELEPEM."}</p>
       </div>
     </div>

@@ -81,8 +81,8 @@ export function TeamLicenseWorkflow({ onSaved }: { onSaved: (message: string) =>
       {searched && <div className="teamFacilityResults" aria-live="polite">
         {loading ? <div className="teamEmptyState">Consultando residenciales en Supabase…</div> : error ? <div className="teamEmptyState">{error}</div> : results.length ? results.map((facility) => <button type="button" className={selectedId === facility.id ? "isSelected" : ""} onClick={() => setSelectedId(facility.id)} key={facility.id}>
           <span className="teamFacilityIcon"><Building2 size={19}/></span>
-          <span><strong>{facility.name}</strong><small>{facility.address} · {facility.department}{facility.places != null ? ` · ${facility.places} plazas` : ""}</small><em>{facility.sourceLabel}</em></span>
-          <span className="teamStagePill">{facility.statusStage}</span>
+          <span><strong>{facility.name}</strong><small>{facility.address} · {facility.department}</small><em>{facility.sourceLabel}</em></span>
+          <span className="teamStagePill">{facility.statusShort}</span>
         </button>) : <div className="teamEmptyState">Sin coincidencias en las fuentes integradas.</div>}
       </div>}
 

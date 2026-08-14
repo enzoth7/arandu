@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useResidenciales } from "../hooks/useResidenciales";
-import { usePrivateCandidateMapLayer } from "../hooks/usePrivateCandidateMapLayer";
 import { ArrowLeft, ArrowRight, Check, ExternalLink, Info, Printer, RotateCcw, Search, X } from "lucide-react";
 
 import { consolidateFacilities } from "./facility-presentation";
@@ -134,7 +133,6 @@ const CHOICE_CATEGORIES = [
 
 export function ResidencialesFormView() {
   const { facilities: publicFacilities } = useResidenciales();
-  const { facilities: privateCandidateFacilities } = usePrivateCandidateMapLayer();
 
   const [currentStep, setCurrentStep] = useState(1);
   const [actor, setActor] = useState<ActorType>(null);
@@ -179,8 +177,8 @@ export function ResidencialesFormView() {
   }, [currentStep, actor, selectedPreferences, selectedDepartment, selectedFacilityId, visitAnswers]);
 
   const consolidatedFacilities = useMemo(
-    () => consolidateFacilities([...publicFacilities, ...privateCandidateFacilities]),
-    [privateCandidateFacilities, publicFacilities],
+    () => consolidateFacilities(publicFacilities),
+    [publicFacilities],
   );
 
   const displayedFacilities = useMemo(() => {

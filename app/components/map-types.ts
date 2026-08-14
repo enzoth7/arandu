@@ -1,59 +1,56 @@
-export type FacilityStatus =
-  | "habilitado"
-  | "registro"
-  | "mides"
-  | "otra_fuente"
-  | "verificar"
-  | "app"
-  | "candidate_private";
+export type FacilityStatus = "habilitado" | "mides" | "verificar" | "app";
+
+export type FacilitySituation =
+  | "habilitacion_msp"
+  | "certificado_social_mides"
+  | "situacion_no_confirmada"
+  | "demo";
 
 export type Facility = {
+  /** Stable public code. The bigint database id is kept behind the API. */
   id: string;
+  legacyId?: string;
   name: string;
+  alternativeNames?: string[];
   department: string;
   locality: string;
   address: string;
-  places: number | null;
   lat: number;
   lng: number;
   precision: "puerta" | "calle" | "referencial";
   precisionLabel: string;
+  situacion: FacilitySituation;
   statusGroup: FacilityStatus;
-  statusStage: string;
   statusShort: string;
   sourceLabel: string;
   mspFinal: boolean;
-  mspRegistroHistorico: boolean;
   midesSocial: boolean;
-  pacp: boolean;
-  otherSource: boolean;
-  pendingVerification: boolean;
-  appDiscovered: boolean;
-  sourceCategories?: Array<"official" | "public_maps" | "social_public" | "other_public">;
-  privateCandidate?: boolean;
-  privateCandidateStatus?: string;
-  privateCandidateEvidenceTier?: "A" | "B" | "C";
-  privateCandidateSourceUrl?: string;
-  privateCandidateRetrievedAt?: string;
   createdAt?: string;
   updatedAt?: string;
   contactPhone?: string;
+  contactPhones?: string[];
   contactEmail?: string;
+  contactEmails?: string[];
+  websites?: string[];
+  instagramUrls?: string[];
+  facebookUrls?: string[];
   description?: string;
   photoUrl?: string;
   photoUrls?: string[];
   monthlyPriceUyu?: number;
   monthlyPriceAsOf?: string;
   monthlyPriceIncludes?: string[];
+  /** Synthetic values remain visible but are always identified as demo. */
+  priceIsDemo?: boolean;
   sourceUrl?: string;
   sourceLinks?: Array<{
     label: string;
     url: string;
     sourceDate?: string;
     retrievedAt?: string;
+    backedFields?: string[];
   }>;
-  validThrough?: string;
-  /** Registro ficticio aislado; nunca forma parte de los conteos oficiales. */
+  /** Fictitious isolated record; never part of productive KPI. */
   isDemo?: boolean;
 };
 

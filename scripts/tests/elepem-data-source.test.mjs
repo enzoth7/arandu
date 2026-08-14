@@ -8,38 +8,16 @@ import {
   runtimeElepemDataSource,
 } from "../../lib/elepem-data-source.mjs";
 
-test("the unified registry is the default and mandatory web runtime source", () => {
-  assert.equal(readElepemDataSource(""), "normalized");
-  assert.equal(runtimeElepemDataSource(), "normalized");
-  assert.equal(publicFacilityRelation("legacy"), "public.residenciales");
+test("public.elepem is the only runtime relation", () => {
+  assert.equal(readElepemDataSource(""), "flat");
+  assert.equal(readElepemDataSource("flat"), "flat");
+  assert.equal(runtimeElepemDataSource(), "flat");
+  assert.equal(publicFacilityRelation(), "public.elepem");
+  assert.equal(matchingFacilityRelation(), "public.elepem");
 });
 
-test("compatibility and normalized relations are fixed allowlisted names", () => {
-  assert.equal(
-    publicFacilityRelation("compatibility"),
-    "public.residenciales_legacy_compat",
-  );
-  assert.equal(
-    publicFacilityRelation("normalized"),
-    "public.arandu_facilities_registry",
-  );
-  assert.equal(
-    matchingFacilityRelation("normalized"),
-    "public.known_facilities_exclusion_view",
-  );
-  assert.equal(
-    matchingFacilityRelation("compatibility"),
-    "public.residenciales_legacy_compat",
-  );
-});
-
-test("invalid data source cannot reach SQL interpolation", () => {
-  assert.throws(() => readElepemDataSource("public.residenciales; drop table x"));
-});
-
-test("normalized candidate suggestions join only canonical facility IDs", () => {
-  const sql = candidateSuggestionSql("normalized");
-  assert.match(sql, /facilities_current_internal/);
-  assert.match(sql, /suggestion\.facility_id/);
-  assert.doesNotMatch(sql, /join public\.residenciales as/);
+test("legacy selectors and database candidate queues are disabled", () => {
+  assert.throws(() => readElepemDataSource("normalized"), /public\.elepem/);
+  assert.throws(() => readElepemDataSource("legacy"), /public\.elepem/);
+  assert.throws(() => candidateSuggestionSql(), /retirada/);
 });

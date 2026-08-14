@@ -53,13 +53,6 @@ const nextConfig = {
   distDir: process.env.ARANDU_NEXT_DIST_DIR || ".next",
   outputFileTracingRoot: projectRoot,
   poweredByHeader: false,
-  outputFileTracingIncludes: {
-    "/api/team/facility-candidates/unlocated": [
-      "./data/discovery/artigas_department_elepem_public_candidates_2026-08-02.json",
-      "./data/discovery/instagram_paysandu_candidates_2026-08-02.json",
-      "./data/discovery/manual-ide-geocoding-2026-08-02.json",
-    ],
-  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

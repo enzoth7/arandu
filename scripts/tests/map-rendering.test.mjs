@@ -32,12 +32,12 @@ test("los puntos comparten canvas y los precios se limitan al viewport", async (
   assert.match(mapSource, /onOpenDetailsRef\.current\?\.\(facility\.id\)/);
 });
 
-test("la ficha permite salir y muestra el precio demo solamente cuando existe", async () => {
+test("la ficha permite salir e identifica los precios sintéticos", async () => {
   const [source, styles] = await Promise.all([
     readFile(registryPath, "utf8"),
     readFile(globalStylesPath, "utf8"),
   ]);
-  assert.match(source, /Precio mensual de prueba/);
+  assert.match(source, /Precio mensual demostrativo/);
   assert.match(source, /facilityCompactPrice/);
   assert.match(source, /onOpenDetails=\{openFacilityDetails\}/);
   assert.doesNotMatch(source, /!facility\.isDemo && typeof facility\.monthlyPriceUyu/);

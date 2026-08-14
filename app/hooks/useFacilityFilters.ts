@@ -1,35 +1,19 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import {
-  departmentOptions,
-  filterFacilities,
-  sortFacilities,
-  type DocumentaryStatusFilter,
-} from "../../lib/facility-search.mjs";
+import { departmentOptions, filterFacilities, sortFacilities } from "../../lib/facility-search.mjs";
 import { facilityHaystack } from "../components/facility-presentation";
 import { canonicalDepartment, foldText } from "../../lib/uruguay.mjs";
 import type { Facility, FacilityStatus } from "../components/map-types";
 
-export type PrivateWorkflowStatus = "" | "needs_review" | "possible_match" | "verified_new";
 export type MonthlyPriceRange = { min: number; max: number };
 
-/**
- * Estado de búsqueda del listado de ELEPEM.
- *
- * Separa el estado y la memoización del dibujo: el registro queda como
- * componente de presentación y la lógica de filtrado vive en
- * `lib/facility-search.mjs`, donde se puede probar sin React.
- */
 export function useFacilityFilters(facilities: Facility[]) {
   const [query, setQuery] = useState("");
   const [department, setDepartment] = useState("");
   const [monthlyPriceRange, setMonthlyPriceRange] = useState<MonthlyPriceRange | null>(null);
   const [status, setStatus] = useState<"" | FacilityStatus>("");
-  const [documentaryStatus, setDocumentaryStatus] = useState<DocumentaryStatusFilter>("");
-  const [privateWorkflowStatus, setPrivateWorkflowStatus] = useState<PrivateWorkflowStatus>("");
 
-  // El texto buscable se calcula una vez por lista y no en cada pulsación.
   const haystacks = useMemo(() => {
     const map = new Map<string, string>();
     for (const facility of facilities) map.set(facility.id, facilityHaystack(facility));
@@ -39,7 +23,6 @@ export function useFacilityFilters(facilities: Facility[]) {
     () => (facility: Facility) => haystacks.get(facility.id) ?? facilityHaystack(facility),
     [haystacks],
   );
-
   const foldedQuery = useMemo(() => foldText(query), [query]);
 
   const monthlyPriceBounds = useMemo<MonthlyPriceRange | null>(() => {
@@ -68,23 +51,19 @@ export function useFacilityFilters(facilities: Facility[]) {
     ? monthlyPriceRange
     : null;
 
-  // Ámbito del selector de departamento: no se filtra a sí mismo, así que sus
-  // opciones siguen siendo alcanzables después de elegir otro filtro.
   const withoutDepartment = useMemo(
     () => filterFacilities(
       facilities,
       {
         foldedQuery,
         status,
-        documentaryStatus,
-        privateWorkflowStatus,
         monthlyPriceMin: activeMonthlyPriceRange?.min,
         monthlyPriceMax: activeMonthlyPriceRange?.max,
         canonicalDepartmentOf: canonicalDepartment,
       },
       haystackFor,
     ),
-    [facilities, foldedQuery, status, documentaryStatus, privateWorkflowStatus, activeMonthlyPriceRange, haystackFor],
+    [facilities, foldedQuery, status, activeMonthlyPriceRange, haystackFor],
   );
   const matched = useMemo(
     () => filterFacilities(
@@ -99,14 +78,11 @@ export function useFacilityFilters(facilities: Facility[]) {
     ),
     [withoutDepartment, department, activeMonthlyPriceRange, haystackFor],
   );
-
   const visible = useMemo(() => sortFacilities(matched, "name"), [matched]);
   const departments = useMemo(
     () => departmentOptions(withoutDepartment, canonicalDepartment),
     [withoutDepartment],
   );
-  // Ámbito de los indicadores: responde a la búsqueda, departamento y precio, pero no
-  // a la situación administrativa, que es justamente lo que los KPI filtran.
   const summaryScope = useMemo(
     () => filterFacilities(
       facilities,
@@ -121,16 +97,13 @@ export function useFacilityFilters(facilities: Facility[]) {
     ),
     [facilities, foldedQuery, department, activeMonthlyPriceRange, haystackFor],
   );
-
-  const hasActiveFilters = Boolean(query || department || status || documentaryStatus || privateWorkflowStatus || activeMonthlyPriceRange);
+  const hasActiveFilters = Boolean(query || department || status || activeMonthlyPriceRange);
 
   function reset() {
     setQuery("");
     setDepartment("");
     setMonthlyPriceRange(null);
     setStatus("");
-    setDocumentaryStatus("");
-    setPrivateWorkflowStatus("");
   }
 
   return {
@@ -140,8 +113,6 @@ export function useFacilityFilters(facilities: Facility[]) {
     monthlyPriceRange: monthlyPriceRange ?? monthlyPriceBounds,
     setMonthlyPriceRange,
     status, setStatus,
-    documentaryStatus, setDocumentaryStatus,
-    privateWorkflowStatus, setPrivateWorkflowStatus,
     visible,
     departments,
     summaryScope,

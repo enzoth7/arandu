@@ -22,8 +22,8 @@ export async function GET(request: NextRequest) {
          report.id, report.case_code, report.entry_type, report.current_status,
          report.priority, report.demo_facility_id, report.report_payload, report.created_at,
          CASE WHEN facility.id IS NULL THEN NULL ELSE jsonb_build_object(
-           'id', facility.id, 'key', facility.facility_key, 'name', preferred_name.name,
-           'locality', current_address.locality, 'department', current_address.department
+           'id', facility.id, 'key', facility.codigo, 'name', facility.nombre,
+           'locality', facility.localidad, 'department', facility.departamento
          ) END AS facility,
          CASE WHEN experience_publication.id IS NULL THEN NULL ELSE jsonb_build_object(
            'id', experience_publication.id, 'status', experience_publication.status,
@@ -49,26 +49,14 @@ export async function GET(request: NextRequest) {
            'size_bytes', attachment.size_bytes, 'purpose', attachment.purpose, 'rights_metadata', attachment.rights_metadata
          ) ORDER BY attachment.created_at) FROM public.intake_report_attachments AS attachment WHERE attachment.report_id = report.id), '[]'::jsonb) AS attachments
        FROM public.intake_reports AS report
-       LEFT JOIN elepem_core.facilities AS facility ON facility.id = report.facility_id
-       LEFT JOIN LATERAL (
-         SELECT name.name
-         FROM elepem_core.facility_names AS name
-         WHERE name.facility_id = facility.id AND name.is_preferred
-         ORDER BY name.id DESC LIMIT 1
-       ) AS preferred_name ON true
-       LEFT JOIN LATERAL (
-         SELECT address.locality, address.department
-         FROM elepem_core.facility_addresses AS address
-         WHERE address.facility_id = facility.id
-           AND address.is_current AND address.address_type = 'physical'
-         ORDER BY address.id DESC LIMIT 1
-       ) AS current_address ON true
+       LEFT JOIN public.elepem AS facility ON facility.id = report.facility_id
        LEFT JOIN elepem_core.facility_experience_publications AS experience_publication
          ON experience_publication.report_id = report.id
        LEFT JOIN LATERAL (
          SELECT review.id, review.decision, review.reason, review.created_at
          FROM public.facility_document_status_reviews AS review
          WHERE review.facility_id = facility.id
+            OR review.demo_facility_id = report.demo_facility_id
          ORDER BY review.created_at DESC LIMIT 1
        ) AS document_review ON true
        WHERE report.is_demo = true

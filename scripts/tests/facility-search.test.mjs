@@ -20,12 +20,8 @@ function facility(overrides = {}) {
     department: "Montevideo",
     locality: "Centro",
     address: "18 de Julio 1000",
-    places: 20,
     mspFinal: false,
     midesSocial: false,
-    mspRegistroHistorico: false,
-    otherSource: false,
-    appDiscovered: false,
     ...overrides,
   };
 }
@@ -43,8 +39,6 @@ test("la ausencia de dato es «no confirmada», no una categoría negativa", () 
   assert.equal(isUnconfirmedFacility(facility()), true);
   assert.equal(isUnconfirmedFacility(facility({ mspFinal: true })), false);
   assert.equal(isUnconfirmedFacility(facility({ isDemo: true })), false);
-  // El registro histórico por sí solo no acredita situación vigente.
-  assert.equal(isUnconfirmedFacility(facility({ mspRegistroHistorico: true })), true);
 });
 
 test("el filtro por situación no colapsa etapas distintas", () => {
@@ -109,34 +103,14 @@ test("ordenar no muta la lista original", () => {
   assert.deepEqual(list.map((f) => f.id), copy.map((f) => f.id));
 });
 
-test("la etapa ordena por situación declarada, no por calidad", () => {
+test("la etapa ordena por las tres situaciones acordadas", () => {
   const list = [
     facility({ id: "sin" }),
     facility({ id: "mides", midesSocial: true }),
     facility({ id: "msp", mspFinal: true }),
-    facility({ id: "registro", mspRegistroHistorico: true }),
   ];
-  assert.deepEqual(sortFacilities(list, "stage").map((f) => f.id), ["msp", "mides", "registro", "sin"]);
+  assert.deepEqual(sortFacilities(list, "stage").map((f) => f.id), ["msp", "mides", "sin"]);
   assert.equal(facilityStageRank(facility({ mspFinal: true, midesSocial: true })), 1);
-});
-
-test("la clasificación documental filtra sin representar un ranking de calidad", () => {
-  const list = [
-    facility({ id: "dos" }),
-    facility({ id: "tres", mspFinal: true }),
-    facility({ id: "cuatro", mspFinal: true, midesSocial: true }),
-  ];
-  assert.deepEqual(filterFacilities(list, criteria({ documentaryStatus: "outstanding" }), haystackFor).map((f) => f.id), ["cuatro"]);
-  assert.deepEqual(filterFacilities(list, criteria({ documentaryStatus: "needs-improvement" }), haystackFor).map((f) => f.id), ["dos"]);
-});
-
-test("sin plazas publicadas se ordena al final, no como capacidad cero", () => {
-  const list = [
-    facility({ id: "sin", places: null }),
-    facility({ id: "chico", places: 8 }),
-    facility({ id: "grande", places: 40 }),
-  ];
-  assert.deepEqual(sortFacilities(list, "places").map((f) => f.id), ["grande", "chico", "sin"]);
 });
 
 test("las opciones de departamento traen conteo y orden alfabético", () => {

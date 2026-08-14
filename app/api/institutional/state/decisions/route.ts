@@ -60,8 +60,9 @@ export async function POST(request: NextRequest) {
         entry_type: keyof typeof ACTIONS;
         report_payload: Record<string, unknown>;
         facility_id: string | null;
+        demo_facility_id: string | null;
       }>(
-        "SELECT entry_type, report_payload, facility_id::text FROM public.intake_reports WHERE id = $1 AND is_demo = true LIMIT 1 FOR UPDATE",
+        "SELECT entry_type, report_payload, facility_id::text, demo_facility_id FROM public.intake_reports WHERE id = $1 AND is_demo = true LIMIT 1 FOR UPDATE",
         [reportId],
       );
       const report = reports.rows[0];
@@ -97,7 +98,11 @@ export async function POST(request: NextRequest) {
       if (!rows.rows[0]) return { error: "No se pudo aplicar la decisión.", httpStatus: 404 as const };
 
       let publishedPhotoCount = 0;
-      if (action === "approve_preview" && report.entry_type === "facility_change" && report.facility_id) {
+      if (
+        action === "approve_preview"
+        && report.entry_type === "facility_change"
+        && (report.facility_id || report.demo_facility_id)
+      ) {
         const photos = await client.query<{ id: string }>(
           `SELECT id
            FROM public.intake_report_attachments
@@ -116,11 +121,17 @@ export async function POST(request: NextRequest) {
         if (photos.rows.length > 0) {
           const publication = await client.query<{ id: string }>(
             `INSERT INTO public.facility_change_publications (
-               report_id, facility_id, remove_current_photo, reviewer
-             ) VALUES ($1, $2::bigint, $3, $4)
+               report_id, facility_id, demo_facility_id, remove_current_photo, reviewer
+             ) VALUES ($1, $2::bigint, $3, $4, $5)
              ON CONFLICT (report_id) DO NOTHING
              RETURNING id`,
-            [reportId, report.facility_id, report.report_payload.removeCurrentPhoto === true, auth.session.identity],
+            [
+              reportId,
+              report.facility_id,
+              report.demo_facility_id,
+              report.report_payload.removeCurrentPhoto === true,
+              auth.session.identity,
+            ],
           );
           const publicationId = publication.rows[0]?.id;
           if (publicationId) {
