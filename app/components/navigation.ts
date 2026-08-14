@@ -7,7 +7,6 @@
 export type View =
   // Público
   | "buscar"
-  | "precios"
   | "guia"
   | "preocupacion"
   | "experiencia"
@@ -31,7 +30,6 @@ export const INSTITUTIONAL_LOGIN = "/acceso-institucional";
 
 const publicViewPaths: Partial<Record<View, string>> = {
   buscar: PUBLIC_HOME,
-  precios: "/precios",
   guia: "/guia",
   preocupacion: "/preocupacion",
   experiencia: "/experiencia",
@@ -60,7 +58,6 @@ export type NavItem = { view: View; label: string };
  */
 export const publicNavItems: readonly NavItem[] = [
   { view: "buscar", label: "Buscar" },
-  { view: "precios", label: "Precios orientativos" },
   { view: "guia", label: "Cómo elegir" },
   { view: "experiencia", label: "Experiencias" },
   { view: "preocupacion", label: "Tengo una preocupación" },
