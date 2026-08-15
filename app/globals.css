@@ -8233,6 +8233,35 @@ select:not(:disabled) {
   padding-inline: clamp(12px, 2.5vw, 38px);
 }
 
+.publicPrototypeBanner {
+  width: min(1180px, 100%);
+  margin: 0 auto 16px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #e3c56f;
+  border-radius: 14px;
+  background: #fff8df;
+  color: #5f430b;
+  box-shadow: 0 8px 20px rgba(95, 67, 11, .08);
+  font-size: .92rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.publicPrototypeBanner svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color: #a06b19;
+}
+
+.publicPrototypeBanner strong {
+  color: #6e4608;
+  letter-spacing: .04em;
+}
+
 .banner {
   width: fit-content;
   max-width: 100%;
