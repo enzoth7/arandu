@@ -21,9 +21,6 @@ const StreetMap = dynamic(() => import("./StreetMap"), {
   loading: () => <div className="streetMapLoading">Preparando el mapa con calles…</div>,
 });
 
-function formatMonthlyPrice(value: number) {
-  return `UYU ${value.toLocaleString("es-UY")}`;
-}
 
 // El registro es presentacional: recibe las fichas ya consolidadas y no sabe de
 // dónde vienen. Así el portal de personas nunca monta la capa privada de
@@ -72,9 +69,6 @@ export default function UruguayRegistry({
   const {
     query, setQuery,
     department, setDepartment,
-    monthlyPriceBounds,
-    monthlyPriceRange,
-    setMonthlyPriceRange,
     status, setStatus,
     visible,
     departments,
@@ -118,13 +112,6 @@ export default function UruguayRegistry({
     mides: kpiScope.filter((facility) => facility.midesSocial).length,
     unconfirmed: kpiScope.filter(isVerificationFacility).length,
   }), [kpiScope]);
-  const monthlyPriceSpread = monthlyPriceBounds ? monthlyPriceBounds.max - monthlyPriceBounds.min : 0;
-  const monthlyPriceStart = monthlyPriceBounds && monthlyPriceRange && monthlyPriceSpread > 0
-    ? ((monthlyPriceRange.min - monthlyPriceBounds.min) / monthlyPriceSpread) * 100
-    : 0;
-  const monthlyPriceEnd = monthlyPriceBounds && monthlyPriceRange && monthlyPriceSpread > 0
-    ? ((monthlyPriceRange.max - monthlyPriceBounds.min) / monthlyPriceSpread) * 100
-    : 100;
   useEffect(() => {
     if (directFacilityHandled.current || allFacilities.length === 0) return;
     directFacilityHandled.current = true;
@@ -168,7 +155,7 @@ export default function UruguayRegistry({
         <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-gray ${status === "verificar" ? "selected" : ""}`} help="No se encontró una situación actualizada en las fuentes públicas consultadas. Requiere verificación institucional; no significa que el establecimiento sea irregular." helpId="unconfirmed" label="Situación no confirmada" onActivate={() => setStatus(status === "verificar" ? "" : "verificar")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.unconfirmed} />
       </div>
       <p className="registryOverlapNote">
-        <strong>Habilitación MSP</strong> y <strong>certificado MIDES</strong> son datos distintos.
+        Algunos residenciales están incluidos tanto en la lista de Habilitados como en la de Certificados.
       </p>
       <div className="registrySearchHeaderRow">
         <div className="registrySearchFirst">
@@ -238,55 +225,6 @@ export default function UruguayRegistry({
             </select>
           </label>
 
-          {monthlyPriceBounds && monthlyPriceRange ? (
-            <fieldset className="registryPriceRange">
-              <legend>Precio mensual</legend>
-              <output>
-                <span>Desde {formatMonthlyPrice(monthlyPriceRange.min)}</span>
-                <span>Hasta {formatMonthlyPrice(monthlyPriceRange.max)}</span>
-              </output>
-              <div className="registryPriceTrack">
-                <span
-                  aria-hidden="true"
-                  className="registryPriceTrackSelected"
-                  style={{ left: `${monthlyPriceStart}%`, right: `${100 - monthlyPriceEnd}%` }}
-                />
-                <input
-                  aria-label="Precio mensual mínimo"
-                  aria-valuetext={formatMonthlyPrice(monthlyPriceRange.min)}
-                  max={monthlyPriceBounds.max}
-                  min={monthlyPriceBounds.min}
-                  onChange={(event) => {
-                    const min = Math.min(Number(event.target.value), monthlyPriceRange.max);
-                    setMonthlyPriceRange({ min, max: monthlyPriceRange.max });
-                  }}
-                  step={1_000}
-                  type="range"
-                  value={monthlyPriceRange.min}
-                />
-                <input
-                  aria-label="Precio mensual máximo"
-                  aria-valuetext={formatMonthlyPrice(monthlyPriceRange.max)}
-                  max={monthlyPriceBounds.max}
-                  min={monthlyPriceBounds.min}
-                  onChange={(event) => {
-                    const max = Math.max(Number(event.target.value), monthlyPriceRange.min);
-                    setMonthlyPriceRange({ min: monthlyPriceRange.min, max });
-                  }}
-                  step={1_000}
-                  type="range"
-                  value={monthlyPriceRange.max}
-                />
-              </div>
-              <p>Filtrá los precios públicos que constan en las fichas.</p>
-            </fieldset>
-          ) : (
-            <section className="registryPriceRange registryPriceRangeUnavailable">
-              <strong>Precio mensual</strong>
-              <div className="registryPriceTrack" aria-hidden="true"><span className="registryPriceTrackSelected" /></div>
-              <p>Sin precios publicados todavía.</p>
-            </section>
-          )}
         </div>
       </aside>
       {registryView !== "list" && <div className="registryMapColumn" ref={mapColumnRef}>
@@ -445,15 +383,6 @@ function FacilityAccordionCard({
           <strong>{facility.name}</strong>
           <span className="facilityLocation">{facility.locality} · {canonicalDepartment(facility.department)}</span>
           <FacilityMembershipBadges facility={facility} />
-          {typeof facility.monthlyPriceUyu === "number" && facility.monthlyPriceUyu > 0 && (
-            <span
-              className="facilityCompactPrice"
-              aria-label={`${facility.priceIsDemo ? "Precio mensual demostrativo" : "Precio mensual publicado"}: ${formatMonthlyPrice(facility.monthlyPriceUyu)}`}
-            >
-              <small>{facility.priceIsDemo ? "Precio demostrativo" : "Precio mensual"}</small>
-              <b>{formatMonthlyPrice(facility.monthlyPriceUyu)}</b>
-            </span>
-          )}
         </div>
         <span className="facilityAccordionChevron">
           {isOpen ? <ChevronUp size={18}/> : <ChevronDown size={18}/>}
@@ -473,7 +402,6 @@ function FacilityAccordionCard({
 }
 
 function FacilityListCard({ facility, onViewMore }: { facility: Facility; onViewMore: (facility: Facility) => void }) {
-  const hasPublicPrice = typeof facility.monthlyPriceUyu === "number" && facility.monthlyPriceUyu > 0;
   return <article className={`facilityBookingCard facility-${facilityDisplayCategory(facility)}`}>
     <div className="facilityBookingMedia" aria-hidden="true">
     {facility.photoUrl
@@ -491,11 +419,7 @@ function FacilityListCard({ facility, onViewMore }: { facility: Facility; onView
       {facility.sourceLabel && <p className="facilityBookingSource">Fuente: {facility.sourceLabel}</p>}
     </div>
     <div className="facilityBookingAside">
-      <div className="facilityBookingAsideFooter">
-        {hasPublicPrice && <div className="facilityBookingPrice">
-          <small>{facility.priceIsDemo ? "Precio mensual demostrativo" : "Precio mensual publicado"}</small>
-          <strong>{formatMonthlyPrice(facility.monthlyPriceUyu as number)}</strong>
-        </div>}
+      <div className="facilityBookingAsideFooter">}
         <button type="button" className="facilityBookingAction" onClick={() => onViewMore(facility)}>Ver ficha</button>
       </div>
     </div>
@@ -568,12 +492,6 @@ function FacilityMapDialog({ facility, onClose }: { facility: Facility; onClose:
               </div>}
             </div>
           : <div className="facilityProfilePhotoMissing">Foto no informada</div>}
-        <div className="facilityProfilePrice">
-          <strong>{facility.monthlyPriceUyu
-            ? `Desde $ ${facility.monthlyPriceUyu.toLocaleString("es-UY")}`
-            : "No informado"}</strong>
-          <span>{facility.priceIsDemo ? "Precio mensual demostrativo" : "Precio mensual"}</span>
-        </div>
       </div>
       <div>
         <FacilityMembershipBadges facility={facility} />
