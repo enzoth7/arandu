@@ -419,7 +419,7 @@ function FacilityListCard({ facility, onViewMore }: { facility: Facility; onView
       {facility.sourceLabel && <p className="facilityBookingSource">Fuente: {facility.sourceLabel}</p>}
     </div>
     <div className="facilityBookingAside">
-      <div className="facilityBookingAsideFooter">}
+      <div className="facilityBookingAsideFooter">
         <button type="button" className="facilityBookingAction" onClick={() => onViewMore(facility)}>Ver ficha</button>
       </div>
     </div>
