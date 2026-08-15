@@ -3154,17 +3154,25 @@ textarea {
 .unlocatedPilotCandidates li span { color: #6b5a5a; font-size: .75rem; line-height: 1.35; }
 .unlocatedPilotCandidates li small { color: #a13b33; font-size: .68rem; font-weight: 700; }
 .unlocatedEmpty { margin: 0; padding: 16px; color: #7c4a47; font-size: .82rem; }
-.leaflet-tooltip.facilityNameTooltip {
+.leaflet-tooltip.facilityRichTooltip {
+  width: min(310px, calc(100vw - 36px));
   border: 0;
-  border-radius: 7px;
-  padding: 5px 8px;
-  background: #102a4d;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(15, 42, 77, .28);
-  font-size: .75rem;
-  font-weight: 750;
+  border-radius: 14px;
+  padding: 0;
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 12px 30px rgba(15, 42, 77, .25);
+  white-space: normal;
 }
-.leaflet-tooltip-top.facilityNameTooltip::before { border-top-color: #102a4d; }
+.leaflet-tooltip-top.facilityRichTooltip::before { border-top-color: #fff; }
+.mapFacilityTooltipCard { display: grid; grid-template-columns: 76px minmax(0, 1fr); min-height: 86px; overflow: hidden; border-radius: inherit; }
+.mapFacilityTooltipMedia { position: relative; display: grid; place-items: center; min-height: 86px; overflow: hidden; background: #e9eef1; color: #687a86; font-size: .68rem; font-weight: 750; }
+.mapFacilityTooltipMedia img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; }
+.mapFacilityTooltipCopy { min-width: 0; padding: 11px 12px; display: grid; align-content: center; gap: 5px; }
+.mapFacilityTooltipCopy strong { color: #102a4d; font-size: .88rem; line-height: 1.25; }
+.mapFacilityTooltipCopy small { color: #5c6f7d; font-size: .72rem; line-height: 1.35; }
+.mapFacilityTooltipRating { width: max-content; max-width: 100%; padding: 3px 7px; border-radius: 999px; background: #eaf6ed; color: #17613d; font-size: .66rem; font-weight: 850; }
+.mapFacilityTooltipRating.is-unrated { background: #eef1f4; color: #5e6d78; }
 .resultsMeta { margin: 0 0 4px; color: var(--muted); font-size: .76rem; }
 
 .registryResultsScroll {
@@ -3487,6 +3495,35 @@ textarea {
   flex-direction: column;
   gap: 15px;
 }
+
+.bibliographyPage { gap: 18px; }
+.bibliographySection { padding: clamp(22px, 3vw, 34px); }
+.bibliographySection h2 { margin: 0 0 20px; color: var(--navy); }
+.bibliographyList {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding-left: 1.45rem;
+}
+.bibliographyList li {
+  padding: 18px 6px 18px 10px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  line-height: 1.7;
+}
+.bibliographyList li:first-child { padding-top: 0; }
+.bibliographyList li:last-child { padding-bottom: 0; border-bottom: 0; }
+.bibliographyList a {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: baseline;
+  gap: 5px;
+  color: var(--blue2);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+  text-underline-offset: 3px;
+}
+.bibliographyList a svg { flex: 0 0 auto; }
 
 .sourcesSection {
   animation: sourceFadeUp .6s cubic-bezier(.16,1,.3,1) backwards;
@@ -4313,7 +4350,7 @@ textarea {
 .registryMapLayout,
 .registryMapLayout.hasUnlocatedPanel {
   width: 100%;
-  grid-template-columns: minmax(240px, 290px) minmax(520px, 1.75fr) minmax(330px, .85fr);
+  grid-template-columns: minmax(240px, 290px) minmax(0, 1fr) minmax(0, 1fr);
   gap: 16px;
   margin: 18px 0 0;
   transform: none;
@@ -4380,6 +4417,16 @@ textarea {
 }
 .registryFiltersPanel .registryToolbar label { min-width: 0; }
 .registryFiltersPanel .registryToolbar select { height: 52px; }
+
+.registryFilterHelp {
+  display: block;
+  margin-top: 6px;
+  color: #6b7d91;
+  font-size: .74rem;
+  line-height: 1.4;
+}
+
+.qualityRatingBadge { display: inline-flex; width: max-content; padding: 4px 8px; border-radius: 999px; background: #eaf6ed; color: #17613d; font-size: .72rem; font-weight: 850; }
 
 .registryPriceRange {
   min-width: 0;
@@ -4569,7 +4616,11 @@ textarea {
 @media (max-width: 1180px) {
   .registryMapLayout,
   .registryMapLayout.hasUnlocatedPanel {
-    grid-template-columns: minmax(220px, 260px) minmax(430px, 1.35fr) minmax(300px, .8fr);
+    grid-template-columns: minmax(220px, 260px) minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .registryMapLayout-list,
+  .registryMapLayout-map {
+    grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
   }
 }
 
@@ -4578,7 +4629,8 @@ textarea {
   .registryMapLayout.hasUnlocatedPanel,
   .registryMapLayout.mapListOnly { grid-template-columns: 1fr; }
   .registryFiltersPanel { height: auto; overflow: visible; }
-  .registryFiltersPanel .registryToolbar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .registryFiltersPanel .registryToolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .registryFiltersPanel .registryPriceRange { grid-column: 1 / -1; }
   .registryFiltersPanel .mapModes { max-width: 360px; }
   .registryQuickSummary {
     grid-template-columns: repeat(4, minmax(140px, 170px));
@@ -7700,12 +7752,23 @@ select:not(:disabled) {
 }
 
 .stateInboxQueue small { color: var(--muted); }
-.stateInboxQueue em {
-  color: var(--green);
-  font-size: .72rem;
+.stateInboxKind {
+  display: inline-flex;
+  width: max-content;
+  margin-bottom: 5px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #eaf1f7;
+  color: #315b7c;
+  font-size: .67rem;
   font-style: normal;
   font-weight: 850;
+  line-height: 1.2;
 }
+.stateInboxKind-concern { background: #fff0ed; color: #9f2d24; }
+.stateInboxKind-experience { background: #eaf5f4; color: #176b5b; }
+.stateInboxKind-facility_change { background: #edf1ff; color: #3f51a5; }
+.stateInboxHeaderBadges { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 7px; }
 
 .stateInboxDetail {
   min-width: 0;
@@ -8267,6 +8330,26 @@ select:not(:disabled) {
   animation: aranduHeroEnter .65s cubic-bezier(.16, 1, .3, 1) both;
 }
 
+.aranduDemoBanner {
+  width: min(1280px, calc(100% - 34px));
+  margin: 0 auto 18px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  border: 2px solid #e7b33d;
+  border-radius: 16px;
+  background: #fff2ad;
+  color: #5f3b00;
+  box-shadow: 0 8px 22px rgba(120, 79, 10, .1);
+  font-size: clamp(.98rem, 1.35vw, 1.12rem);
+  line-height: 1.55;
+}
+
+.aranduDemoBanner svg { flex: 0 0 auto; margin-top: 2px; color: #8a5700; }
+.aranduDemoBanner p { margin: 0; }
+.aranduDemoBanner strong { color: #4c3000; letter-spacing: .045em; }
+
 .aranduHero::before {
   position: absolute;
   z-index: 1;
@@ -8299,6 +8382,14 @@ select:not(:disabled) {
   object-position: center 52%;
   transform: scale(1.015);
   animation: aranduImageSettle 1.2s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.aranduHeroCredit {
+  width: min(1280px, calc(100% - 34px));
+  margin: 8px auto 0;
+  color: #64756e;
+  font-size: .78rem;
+  text-align: right;
 }
 
 .aranduHeroContent {
@@ -8473,25 +8564,9 @@ select:not(:disabled) {
   color: var(--muted);
 }
 
-.aranduFooterDemo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  min-height: 46px;
-  padding: 10px 20px;
-  background: transparent;
-  color: #496058;
-  font-size: .78rem;
-  text-align: center;
-}
-
-.aranduFooterDemo svg { color: #a06b19; }
-.aranduFooterDemo strong { color: #385048; letter-spacing: .045em; }
-
 .aranduFooterContent {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 28px;
   padding: 24px 8px;
@@ -8524,45 +8599,17 @@ select:not(:disabled) {
   gap: 8px 18px;
 }
 
-.aranduFooterLinks a,
-.aranduFooterContact a {
+.aranduFooterLinks a {
   color: var(--muted);
   font-size: .86rem;
   font-weight: 750;
   text-decoration: none;
 }
 
-.aranduFooterLinks a:hover,
-.aranduFooterContact a:hover {
+.aranduFooterLinks a:hover {
   color: var(--blue2);
   text-decoration: underline;
   text-underline-offset: 3px;
-}
-
-.aranduFooterContact {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  justify-self: end;
-}
-
-.aranduFooterContact button {
-  width: 32px;
-  min-height: 32px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border: 0;
-  border-radius: 7px;
-  background: transparent;
-  color: var(--blue2);
-  font-size: .76rem;
-  font-weight: 800;
-}
-
-.aranduFooterContact button:hover {
-  background: #edf3ed;
 }
 
 @keyframes aranduHeroEnter {
@@ -8610,6 +8657,11 @@ select:not(:disabled) {
   .brandWordmark { font-size: 1.25rem; }
   .tools .institutionalAccess span { display: none; }
   .banner { border-radius: 13px; }
+  .aranduDemoBanner {
+    width: calc(100% - 20px);
+    padding: 16px;
+    border-radius: 13px;
+  }
   .aranduHero {
     min-height: 0;
     grid-template-columns: 1fr;
@@ -8625,6 +8677,7 @@ select:not(:disabled) {
   .aranduHeroImage {
     object-position: center 52%;
   }
+  .aranduHeroCredit { width: calc(100% - 20px); }
   .aranduHeroContent {
     min-height: 0;
     padding: 36px 24px 34px;
@@ -8651,7 +8704,6 @@ select:not(:disabled) {
   }
   .aranduFooterIdentity { justify-items: center; }
   .aranduFooterLinks { justify-content: center; }
-  .aranduFooterContact { justify-self: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -9151,6 +9203,15 @@ select:not(:disabled) {
 }
 .stateInboxDecision .institutionalCardActions button:first-child { border-color: var(--state-step-blue); }
 .stateInboxDecision .institutionalCardActions button:hover { background: #e5f1f8; }
+.statePublicationChoice { width: 100%; padding: 16px; border: 1px solid #bad2e3; border-radius: 12px; background: #fff; }
+.statePublicationChoice > strong { color: #153f5e; font-size: 1rem; }
+.statePublicationChoice > p { margin: 7px 0 0; color: #526d80; font-size: .82rem; line-height: 1.5; }
+.statePublicationChoice .institutionalCardActions { margin-top: 14px; }
+.statePublicationChoice .institutionalCardActions button { flex: 1 1 180px; }
+.statePublicationChoice .institutionalCardActions button:first-child { border-color: #176b5b; background: #176b5b; color: #fff; }
+.statePublicationChoice .institutionalCardActions button:first-child:hover { background: #105648; }
+.statePublicationChoice .institutionalCardActions button:disabled { cursor: not-allowed; opacity: .55; }
+.statePublicationUnavailable { padding: 9px 11px; border-radius: 9px; background: #fff2ef; color: #8f2f27 !important; }
 
 .stateInboxActions > .stateDocumentStatus {
   border-color: var(--state-step-danger-line);

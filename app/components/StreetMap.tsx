@@ -10,11 +10,10 @@ import {
   useLeafletMap,
 } from "../hooks/useLeafletMap";
 import { facilityDisplayCategory } from "./facility-presentation";
-import type { Facility } from "./map-types";
+import { QUALITY_RATING_LABELS, type Facility } from "./map-types";
 
 const FIT_OPTIONS = { padding: [28, 28] as [number, number], maxZoom: 14 };
 const SELECTED_ZOOM = 16;
-const PRICE_LABEL_ZOOM = 13;
 
 const MARKER_COLOR_VARIABLES: Record<string, string> = {
   habilitado: "--facility-habilitado",
@@ -65,6 +64,42 @@ function priceMarkerIcon(facility: Facility, category: string, isSelected: boole
     iconAnchor: [width / 2, 16],
     iconSize: [width, 32],
   });
+}
+
+function facilityTooltipContent(facility: Facility) {
+  const card = document.createElement("article");
+  card.className = "mapFacilityTooltipCard";
+  card.setAttribute("aria-label", `Información de ${facility.name}`);
+
+  const media = document.createElement("span");
+  media.className = "mapFacilityTooltipMedia";
+  if (facility.photoUrl) {
+    const image = document.createElement("img");
+    image.src = facility.photoUrl;
+    image.alt = "";
+    image.loading = "lazy";
+    media.append(image);
+  } else {
+    media.classList.add("is-placeholder");
+    media.textContent = "Sin foto";
+  }
+
+  const copy = document.createElement("span");
+  copy.className = "mapFacilityTooltipCopy";
+  const name = document.createElement("strong");
+  name.textContent = facility.name;
+  const rating = document.createElement("span");
+  rating.className = facility.qualityRating
+    ? `mapFacilityTooltipRating mapFacilityTooltipRating-${facility.qualityRating}`
+    : "mapFacilityTooltipRating is-unrated";
+  rating.textContent = facility.qualityRating
+    ? QUALITY_RATING_LABELS[facility.qualityRating]
+    : "Sin calificación disponible";
+  const address = document.createElement("small");
+  address.textContent = facility.address || "Dirección no informada";
+  copy.append(name, rating, address);
+  card.append(media, copy);
+  return card;
 }
 
 type RenderedMarker = {
@@ -127,7 +162,6 @@ export default function StreetMap({
   const onSelectRef = useRef(onSelect);
   const onOpenDetailsRef = useRef(onOpenDetails);
   const selectedIdRef = useRef(selectedId);
-  const [showPriceMarkers, setShowPriceMarkers] = useState(false);
   const [viewportRevision, setViewportRevision] = useState(0);
   onSelectRef.current = onSelect;
   onOpenDetailsRef.current = onOpenDetails;
@@ -137,11 +171,7 @@ export default function StreetMap({
     const map = mapRef.current;
     if (!map) return;
     let timer: number | undefined;
-    const syncViewport = () => {
-      const nextPriceMode = map.getZoom() >= PRICE_LABEL_ZOOM;
-      setShowPriceMarkers(nextPriceMode);
-      if (nextPriceMode) setViewportRevision((value) => value + 1);
-    };
+    const syncViewport = () => setViewportRevision((value) => value + 1);
     const scheduleSync = () => {
       window.clearTimeout(timer);
       timer = window.setTimeout(syncViewport, 60);
@@ -157,8 +187,8 @@ export default function StreetMap({
     };
   }, [mapRef]);
 
-  // Los puntos normales comparten un único canvas. Al mostrar precios se crean
-  // solamente los marcadores del viewport, no cientos de nodos fuera de vista.
+  // Los puntos normales comparten un único canvas y los marcadores con precio
+  // se limitan al viewport, pero se ven también desde el encuadre nacional.
   useEffect(() => {
     const map = mapRef.current;
     const markers = markersRef.current;
@@ -166,23 +196,24 @@ export default function StreetMap({
 
     markers.clearLayers();
     renderedMarkersRef.current.clear();
-    const visibleBounds = showPriceMarkers ? map.getBounds().pad(0.35) : null;
-    const visibleFacilities = visibleBounds
-      ? mappedFacilities.filter((facility) => visibleBounds.contains([facility.lat, facility.lng]))
-      : mappedFacilities;
+    const visibleBounds = map.getBounds().pad(0.35);
+    const visibleFacilities = mappedFacilities.filter((facility) => visibleBounds.contains([facility.lat, facility.lng]));
 
     for (const facility of visibleFacilities) {
       const isSelected = selectedIdRef.current === facility.id;
       const category = facility.isDemo ? "demo" : facilityDisplayCategory(facility);
-      const priceIcon = showPriceMarkers ? priceMarkerIcon(facility, category, isSelected) : null;
+      const priceIcon = priceMarkerIcon(facility, category, isSelected);
       const visibleMarker: L.CircleMarker | L.Marker = priceIcon
         ? L.marker([facility.lat, facility.lng], { icon: priceIcon, keyboard: true })
         : L.circleMarker([facility.lat, facility.lng], circleMarkerStyle(category, isSelected));
       let singleClickTimer: number | undefined;
       visibleMarker.on("click", () => {
         window.clearTimeout(singleClickTimer);
+        visibleMarker.openTooltip();
         singleClickTimer = window.setTimeout(() => onSelectRef.current(facility.id), 240);
       });
+      visibleMarker.on("focus", () => visibleMarker.openTooltip());
+      visibleMarker.on("blur", () => visibleMarker.closeTooltip());
       visibleMarker.on("dblclick", (event: L.LeafletMouseEvent) => {
         window.clearTimeout(singleClickTimer);
         L.DomEvent.preventDefault(event.originalEvent);
@@ -190,16 +221,17 @@ export default function StreetMap({
         onOpenDetailsRef.current?.(facility.id);
       });
       visibleMarker.on("remove", () => window.clearTimeout(singleClickTimer));
-      visibleMarker.bindTooltip(facility.name, {
+      visibleMarker.bindTooltip(facilityTooltipContent(facility), {
         direction: "top",
-        offset: [0, -7],
+        offset: [0, -10],
         opacity: 0.96,
-        className: "facilityNameTooltip",
+        className: "facilityRichTooltip",
+        interactive: true,
       });
       visibleMarker.addTo(markers);
       renderedMarkersRef.current.set(facility.id, { facility, category, layer: visibleMarker });
     }
-  }, [mapRef, mappedFacilities, markersRef, showPriceMarkers, viewportRevision]);
+  }, [mapRef, mappedFacilities, markersRef, viewportRevision]);
 
   // La selección sólo modifica los dos marcadores afectados.
   useEffect(() => {

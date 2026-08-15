@@ -9,6 +9,7 @@ import {
   isUnconfirmedFacility,
   localityOptions,
   matchesAdministrativeStatus,
+  prioritizeFacility,
   sortFacilities,
 } from "../../lib/facility-search.mjs";
 import { canonicalDepartment, foldText } from "../../lib/uruguay.mjs";
@@ -71,6 +72,25 @@ test("los criterios vacíos no filtran", () => {
   assert.equal(filterFacilities(list, criteria(), haystackFor).length, 2);
 });
 
+test("los cuatro filtros de clasificación reflejan el único demo público", () => {
+  const list = [
+    facility({ id: "demo-bueno", isDemo: true, qualityRating: "good" }),
+    facility({ id: "real-sin-clasificar", mspFinal: true }),
+  ];
+  const good = filterFacilities(list, criteria({ qualityRating: "good" }), haystackFor);
+  const outstanding = filterFacilities(list, criteria({ qualityRating: "outstanding" }), haystackFor);
+  const requiresImprovement = filterFacilities(
+    list,
+    criteria({ qualityRating: "requires_improvement" }),
+    haystackFor,
+  );
+  const inadequate = filterFacilities(list, criteria({ qualityRating: "inadequate" }), haystackFor);
+  assert.deepEqual(good.map((f) => f.id), ["demo-bueno"]);
+  assert.deepEqual(outstanding, []);
+  assert.deepEqual(requiresImprovement, []);
+  assert.deepEqual(inadequate, []);
+});
+
 test("el rango de precio usa importes mensuales publicados y no infiere los faltantes", () => {
   const list = [
     facility({ id: "bajo", monthlyPriceUyu: 58_000 }),
@@ -83,11 +103,18 @@ test("el rango de precio usa importes mensuales publicados y no infiere los falt
 
 test("los criterios se combinan", () => {
   const list = [
-    facility({ id: "a", department: "Montevideo", mspFinal: true }),
-    facility({ id: "b", department: "Montevideo" }),
-    facility({ id: "c", department: "Salto", mspFinal: true }),
+    facility({ id: "a", department: "Montevideo", mspFinal: true, monthlyPriceUyu: 80_000, qualityRating: "good" }),
+    facility({ id: "b", department: "Montevideo", mspFinal: true, monthlyPriceUyu: 80_000 }),
+    facility({ id: "c", department: "Montevideo", mspFinal: true, monthlyPriceUyu: 120_000, qualityRating: "good" }),
+    facility({ id: "d", department: "Salto", mspFinal: true, monthlyPriceUyu: 80_000, qualityRating: "good" }),
   ];
-  const found = filterFacilities(list, criteria({ department: "Montevideo", status: "habilitado" }), haystackFor);
+  const found = filterFacilities(list, criteria({
+    department: "Montevideo",
+    status: "habilitado",
+    qualityRating: "good",
+    monthlyPriceMin: 70_000,
+    monthlyPriceMax: 90_000,
+  }), haystackFor);
   assert.deepEqual(found.map((f) => f.id), ["a"]);
 });
 
@@ -101,6 +128,17 @@ test("ordenar no muta la lista original", () => {
   const copy = [...list];
   sortFacilities(list, "name");
   assert.deepEqual(list.map((f) => f.id), copy.map((f) => f.id));
+});
+
+test("Casa Costa Serena aparece primero cuando forma parte de los resultados", () => {
+  const list = [
+    facility({ id: "a", name: "Alameda" }),
+    facility({ id: "DEMO-ELEPEM-001", name: "Casa Costa Serena" }),
+    facility({ id: "z", name: "Zorzal" }),
+  ];
+  const prioritized = prioritizeFacility(list, "DEMO-ELEPEM-001");
+  assert.deepEqual(prioritized.map((item) => item.id), ["DEMO-ELEPEM-001", "a", "z"]);
+  assert.deepEqual(list.map((item) => item.id), ["a", "DEMO-ELEPEM-001", "z"]);
 });
 
 test("la etapa ordena por las tres situaciones acordadas", () => {

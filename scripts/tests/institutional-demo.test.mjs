@@ -171,8 +171,38 @@ test("la bandeja presenta experiencias legibles sin JSON ni historial tecnico", 
   const source = await readFile(new URL("../../app/components/institutional/StateInbox.tsx", import.meta.url), "utf8");
   assert.match(source, /Lista de/);
   assert.match(source, /Experiencia recibida/);
-  assert.match(source, /Publicar experiencia/);
-  assert.doesNotMatch(source, /Historial append-only|event_data|<pre>/);
+  assert.match(source, /Confirmar publicación/);
+  assert.doesNotMatch(source, /Historial append-only|<pre>/);
+});
+
+test("la bandeja unifica entradas y etiqueta cada tipo", async () => {
+  const source = await readFile(new URL("../../app/components/institutional/StateInbox.tsx", import.meta.url), "utf8");
+  assert.match(source, /KIND_LABELS/);
+  assert.match(source, /reports\.map\(\(report\)/);
+  assert.match(source, /Solicitud de cambio/);
+  assert.doesNotMatch(source, /const TABS|reports\.filter\(\(report\) => report\.entry_type/);
+});
+
+test("el triaje conserva las cuatro verificaciones auditables", async () => {
+  const [inbox, route] = await Promise.all([
+    readFile(new URL("../../app/components/institutional/StateInbox.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../../app/api/institutional/state/decisions/route.ts", import.meta.url), "utf8"),
+  ]);
+  for (const key of ["immediateDangerReviewed", "safeContactRecorded", "relatedCasesSearched", "personWillRecorded"]) {
+    assert.match(inbox, new RegExp(key));
+    assert.match(route, new RegExp(key));
+  }
+  assert.match(inbox, /event\.event_data\?\.triage/);
+  assert.match(route, /JSON\.stringify\(\{ decision: action, preview, triage, reviewer/);
+});
+
+test("la decisión de experiencias distingue publicar de no publicar", async () => {
+  const source = await readFile(new URL("../../app/components/institutional/StateInbox.tsx", import.meta.url), "utf8");
+  assert.match(source, />Publicar<\/button>/);
+  assert.match(source, />No publicar<\/button>/);
+  assert.match(source, /!canPublishExperience\(selected\)/);
+  assert.match(source, /private_facility[\s\S]*private_review/);
+  assert.match(source, /La publicación nunca es automática/);
 });
 
 test("el reset elimina publicaciones solamente a traves de expedientes demo", async () => {

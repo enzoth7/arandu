@@ -34,8 +34,10 @@ function parseTriage(value: unknown) {
   const scope = typeof input.scope === "string" ? input.scope.trim().slice(0, 120) : "";
   const route = typeof input.route === "string" ? input.route.trim().slice(0, 120) : "";
   return {
-    received: input.received === true,
-    reviewed: input.reviewed === true,
+    immediateDangerReviewed: input.immediateDangerReviewed === true,
+    safeContactRecorded: input.safeContactRecorded === true,
+    relatedCasesSearched: input.relatedCasesSearched === true,
+    personWillRecorded: input.personWillRecorded === true,
     priority,
     scope: scope || null,
     route: route || null,

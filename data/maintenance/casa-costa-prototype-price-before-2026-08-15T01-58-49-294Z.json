@@ -1,0 +1,20 @@
+{
+  "projectRef": "itolluaivfoxnaohbsdk",
+  "capturedAt": "2026-08-15T01:58:49.296Z",
+  "reason": "Restore the single Casa Costa Serena prototype price for public UI validation",
+  "casa": [
+    {
+      "id": "DEMO-ELEPEM-001",
+      "monthly_price_from_uyu": null,
+      "price_as_of": null,
+      "price_includes": [],
+      "active": true,
+      "is_test": true
+    }
+  ],
+  "metrics": {
+    "isolated_prices": 0,
+    "other_isolated_prices": 0,
+    "unsafe_real_prices": 0
+  }
+}

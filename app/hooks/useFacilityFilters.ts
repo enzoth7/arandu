@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { departmentOptions, filterFacilities, sortFacilities } from "../../lib/facility-search.mjs";
+import { departmentOptions, filterFacilities, prioritizeFacility, sortFacilities } from "../../lib/facility-search.mjs";
 import { facilityHaystack } from "../components/facility-presentation";
 import { canonicalDepartment, foldText } from "../../lib/uruguay.mjs";
-import type { Facility, FacilityStatus } from "../components/map-types";
+import type { Facility, FacilityQualityRating, FacilityStatus } from "../components/map-types";
 
 export type MonthlyPriceRange = { min: number; max: number };
 
@@ -13,6 +13,7 @@ export function useFacilityFilters(facilities: Facility[]) {
   const [department, setDepartment] = useState("");
   const [monthlyPriceRange, setMonthlyPriceRange] = useState<MonthlyPriceRange | null>(null);
   const [status, setStatus] = useState<"" | FacilityStatus>("");
+  const [qualityRating, setQualityRating] = useState<"" | FacilityQualityRating>("");
 
   const haystacks = useMemo(() => {
     const map = new Map<string, string>();
@@ -57,28 +58,30 @@ export function useFacilityFilters(facilities: Facility[]) {
       {
         foldedQuery,
         status,
+        qualityRating,
         monthlyPriceMin: activeMonthlyPriceRange?.min,
         monthlyPriceMax: activeMonthlyPriceRange?.max,
         canonicalDepartmentOf: canonicalDepartment,
       },
       haystackFor,
     ),
-    [facilities, foldedQuery, status, activeMonthlyPriceRange, haystackFor],
+    [facilities, foldedQuery, status, qualityRating, activeMonthlyPriceRange, haystackFor],
   );
   const matched = useMemo(
     () => filterFacilities(
       withoutDepartment,
       {
         department,
-        monthlyPriceMin: activeMonthlyPriceRange?.min,
-        monthlyPriceMax: activeMonthlyPriceRange?.max,
         canonicalDepartmentOf: canonicalDepartment,
       },
       haystackFor,
     ),
-    [withoutDepartment, department, activeMonthlyPriceRange, haystackFor],
+    [withoutDepartment, department, haystackFor],
   );
-  const visible = useMemo(() => sortFacilities(matched, "name"), [matched]);
+  const visible = useMemo(
+    () => prioritizeFacility(sortFacilities(matched, "name"), "DEMO-ELEPEM-001"),
+    [matched],
+  );
   const departments = useMemo(
     () => departmentOptions(withoutDepartment, canonicalDepartment),
     [withoutDepartment],
@@ -89,21 +92,23 @@ export function useFacilityFilters(facilities: Facility[]) {
       {
         foldedQuery,
         department,
+        qualityRating,
         monthlyPriceMin: activeMonthlyPriceRange?.min,
         monthlyPriceMax: activeMonthlyPriceRange?.max,
         canonicalDepartmentOf: canonicalDepartment,
       },
       haystackFor,
     ),
-    [facilities, foldedQuery, department, activeMonthlyPriceRange, haystackFor],
+    [facilities, foldedQuery, department, qualityRating, activeMonthlyPriceRange, haystackFor],
   );
-  const hasActiveFilters = Boolean(query || department || status || activeMonthlyPriceRange);
+  const hasActiveFilters = Boolean(query || department || status || qualityRating || activeMonthlyPriceRange);
 
   function reset() {
     setQuery("");
     setDepartment("");
     setMonthlyPriceRange(null);
     setStatus("");
+    setQualityRating("");
   }
 
   return {
@@ -113,6 +118,7 @@ export function useFacilityFilters(facilities: Facility[]) {
     monthlyPriceRange: monthlyPriceRange ?? monthlyPriceBounds,
     setMonthlyPriceRange,
     status, setStatus,
+    qualityRating, setQualityRating,
     visible,
     departments,
     summaryScope,

@@ -648,20 +648,20 @@ export function ResidencialesFormView() {
                 </p>
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                   <a
-                    href="https://itolluaivfoxnaohbsdk.supabase.co/storage/v1/object/public/pdf/BUENAS%20PRACTICAS%20DE%20CUIDADO%20DESDE%20EL%20ROL%20FAMILIAR-ALLEGADO.pdf"
+                    href="https://www.movimientoelepem.org.uy/documentos/otros-documentos/"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ fontSize: "0.86rem", color: "#0369a1", fontWeight: 750, textDecoration: "underline", display: "inline-flex", alignItems: "center", gap: 6 }}
                   >
-                    📄 Buenas Prácticas de Cuidado desde el Rol del Familiar/Allegado de la Persona Mayor Residente en ELEPEM (Junio 2026) ↗
+                    <ExternalLink size={16} aria-hidden="true" /> Movimiento de Familiares y Residentes de Elepem. (2026, junio). Buenas prácticas de cuidado desde el rol del familiar/allegado de la persona mayor residente en ELEPEM.
                   </a>
                   <a
-                    href="https://itolluaivfoxnaohbsdk.supabase.co/storage/v1/object/public/pdf/Recomendaciones.pdf"
+                    href="https://www.gub.uy/ministerio-desarrollo-social/comunicacion/publicaciones/elegir-centro-larga-estadia-tener-cuenta-folleto"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ fontSize: "0.86rem", color: "#0369a1", fontWeight: 750, textDecoration: "underline", display: "inline-flex", alignItems: "center", gap: 6 }}
                   >
-                    🤝 Recomendaciones para Elegir un Centro de Larga Estadía ↗
+                    <ExternalLink size={16} aria-hidden="true" /> Ministerio de Desarrollo Social, Instituto Nacional de las Personas Mayores, Sistema de Cuidados, &amp; Ministerio de Salud. (2019). Elegir un centro de larga estadía: ¿Qué tener en cuenta?
                   </a>
                 </div>
               </div>

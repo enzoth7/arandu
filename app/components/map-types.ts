@@ -1,4 +1,12 @@
 export type FacilityStatus = "habilitado" | "mides" | "verificar" | "app";
+export type FacilityQualityRating = "outstanding" | "good" | "requires_improvement" | "inadequate";
+
+export const QUALITY_RATING_LABELS: Record<FacilityQualityRating, string> = {
+  outstanding: "Sobresaliente",
+  good: "Bueno",
+  requires_improvement: "Requiere mejoras",
+  inadequate: "Inadecuado",
+};
 
 export type FacilitySituation =
   | "habilitacion_msp"
@@ -42,6 +50,8 @@ export type Facility = {
   monthlyPriceIncludes?: string[];
   /** Synthetic values remain visible but are always identified as demo. */
   priceIsDemo?: boolean;
+  /** Clasificación futura del cuestionario; por ahora sólo existe en la ficha demo. */
+  qualityRating?: FacilityQualityRating;
   sourceUrl?: string;
   sourceLinks?: Array<{
     label: string;

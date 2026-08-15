@@ -1,4 +1,4 @@
-import type { Facility, FacilityStatus } from "../app/components/map-types";
+import type { Facility, FacilityQualityRating, FacilityStatus } from "../app/components/map-types";
 
 export type SortOrder = "name" | "department" | "stage";
 
@@ -9,6 +9,7 @@ export type FacilitySearchCriteria = {
   monthlyPriceMin?: number | null;
   monthlyPriceMax?: number | null;
   status?: "" | FacilityStatus;
+  qualityRating?: "" | FacilityQualityRating;
   canonicalDepartmentOf?: (value: string) => string;
 };
 
@@ -20,6 +21,7 @@ export function matchesAdministrativeStatus(facility: Facility, status: Facility
 export function facilityStageRank(facility: Facility): number;
 export function isSortOrder(value: unknown): value is SortOrder;
 export function sortFacilities(facilities: readonly Facility[], order?: SortOrder): Facility[];
+export function prioritizeFacility(facilities: readonly Facility[], facilityId: string): Facility[];
 export function filterFacilities(
   facilities: readonly Facility[],
   criteria: FacilitySearchCriteria,

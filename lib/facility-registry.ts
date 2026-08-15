@@ -68,7 +68,7 @@ function sourceLinks(row: FlatElepemRow): NonNullable<Facility["sourceLinks"]> {
     if (!url) continue;
     const provider = String(row.fuentes_proveedores[index] || "").trim();
     const reference = String(row.fuentes_referencias[index] || "").trim();
-    const label = (provider || reference || "Fuente pÃºblica").slice(0, 200);
+    const label = (provider || reference || "Fuente pública").slice(0, 200);
     const key = `${label}:${url}`;
     if (seen.has(key)) continue;
     seen.add(key);
@@ -93,9 +93,9 @@ function statusGroup(row: FlatElepemRow): Facility["statusGroup"] {
 }
 
 function statusShort(row: FlatElepemRow) {
-  if (row.msp_habilitado) return "HabilitaciÃ³n MSP";
+  if (row.msp_habilitado) return "Habilitación MSP";
   if (row.mides_certificado) return "Certificado social MIDES";
-  return "SituaciÃ³n no confirmada";
+  return "Situación no confirmada";
 }
 
 function toFacility(row: FlatElepemRow): Facility {
@@ -123,7 +123,7 @@ function toFacility(row: FlatElepemRow): Facility {
     situacion: row.situacion,
     statusGroup: statusGroup(row),
     statusShort: statusShort(row),
-    sourceLabel: providers.join(" + ") || "Referencia conservada sin URL pÃºblica",
+    sourceLabel: providers.join(" + ") || "Referencia conservada sin URL pública",
     mspFinal: row.msp_habilitado,
     midesSocial: row.mides_certificado,
     sourceUrl: links[0]?.url,
@@ -355,10 +355,12 @@ type DemoMapFacilityRow = {
   email: string;
   lat: number;
   lng: number;
-  monthly_price_from_uyu: number;
-  price_as_of: string;
+  monthly_price_from_uyu: number | null;
+  price_as_of: string | null;
   price_includes: string[];
   image_url: string;
+  approved_photo_ids: string[] | null;
+  approved_remove_current_photo: boolean | null;
   created_at: string | Date;
   updated_at: string | Date;
 };
@@ -368,44 +370,71 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
   try {
     const rows = await querySupabaseDatabase<DemoMapFacilityRow>(`
       select
-        id, name, department, locality, address, description, phone, email,
-        lat, lng, monthly_price_from_uyu, price_as_of, price_includes,
-        image_url, created_at, updated_at
-      from arandu_demo.facilities
-      where active and is_test and id = 'DEMO-ELEPEM-001'
-      order by id
+        facility.id, facility.name, facility.department, facility.locality,
+        facility.address, facility.description, facility.phone, facility.email,
+        facility.lat, facility.lng, facility.monthly_price_from_uyu,
+        facility.price_as_of, facility.price_includes, facility.image_url,
+        approved_photos.photo_ids as approved_photo_ids,
+        approved_photos.remove_current_photo as approved_remove_current_photo,
+        facility.created_at, facility.updated_at
+      from arandu_demo.facilities as facility
+      left join lateral (
+        select
+          publication.remove_current_photo,
+          coalesce((
+            select array_agg(photo.id::text order by photo.position)
+            from public.facility_change_publication_photos as photo
+            where photo.publication_id = publication.id
+          ), '{}')::text[] as photo_ids
+        from public.facility_change_publications as publication
+        where publication.demo_facility_id = facility.id
+        order by publication.published_at desc, publication.id desc
+        limit 1
+      ) as approved_photos on true
+      where facility.active and facility.is_test and facility.id = 'DEMO-ELEPEM-001'
+      order by facility.id
     `);
-    return rows.map((row) => ({
-      id: row.id,
-      name: row.name,
-      department: row.department,
-      locality: row.locality,
-      address: row.address,
-      lat: row.lat,
-      lng: row.lng,
-      precision: "referencial",
-      precisionLabel: "UbicaciÃ³n ficticia aproximada para demostraciÃ³n",
-      situacion: "demo",
-      statusGroup: "app",
-      statusShort: "Datos ficticios",
-      sourceLabel: "Prueba de ArandÃº Â· datos ficticios",
-      mspFinal: false,
-      midesSocial: false,
-      contactPhone: row.phone,
-      contactPhones: [row.phone],
-      contactEmail: row.email,
-      contactEmails: [row.email],
-      description: row.description,
-      photoUrl: row.image_url,
-      photoUrls: [row.image_url],
-      monthlyPriceUyu: row.monthly_price_from_uyu,
-      monthlyPriceAsOf: row.price_as_of,
-      monthlyPriceIncludes: row.price_includes,
-      priceIsDemo: true,
-      createdAt: isoDate(row.created_at),
-      updatedAt: isoDate(row.updated_at),
-      isDemo: true,
-    }));
+    const publicReferenceText = (value: string) => value
+      .replace(/\s*\([^)]*fictici[^)]*\)\s*$/i, "")
+      .replace(/Demostraci[oó]n/gi, "de la Costa")
+      .trim();
+    return rows.map((row) => {
+      const approvedPhotoUrls = Array.isArray(row.approved_photo_ids)
+        ? row.approved_photo_ids.map((photoId) => `/api/residenciales/${encodeURIComponent(row.id)}/photos/${encodeURIComponent(photoId)}`)
+        : [];
+      const photoUrls = [
+        ...approvedPhotoUrls,
+        ...(!row.approved_remove_current_photo && row.image_url ? [row.image_url] : []),
+      ];
+      return {
+        id: row.id,
+        name: row.name,
+        department: row.department,
+        locality: publicReferenceText(row.locality),
+        address: publicReferenceText(row.address),
+        lat: row.lat,
+        lng: row.lng,
+        precision: "referencial",
+        precisionLabel: "Ubicación aproximada",
+        situacion: "demo",
+        statusGroup: "app",
+        statusShort: "Referencia Arandú",
+        sourceLabel: "Arandú",
+        mspFinal: false,
+        midesSocial: false,
+        description: row.description,
+        photoUrl: photoUrls[0] || undefined,
+        photoUrls,
+        monthlyPriceUyu: row.monthly_price_from_uyu ?? undefined,
+        monthlyPriceAsOf: row.price_as_of ?? undefined,
+        monthlyPriceIncludes: row.price_includes,
+        priceIsDemo: row.monthly_price_from_uyu !== null,
+        qualityRating: "good",
+        createdAt: isoDate(row.created_at),
+        updatedAt: isoDate(row.updated_at),
+        isDemo: true,
+      };
+    });
   } catch (error) {
     console.error("No se pudo cargar la capa ficticia del mapa.", {
       message: error instanceof Error ? error.message : "Unknown error",

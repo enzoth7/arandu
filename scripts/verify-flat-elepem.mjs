@@ -28,7 +28,7 @@ export function assertMetrics(metrics) {
     both: 170,
     mides_only: 105,
     unconfirmed: 702,
-    demo_prices: 317,
+    demo_prices: 0,
     canelones: 117,
     unlocated: 83,
     unlocated_canelones: 39,

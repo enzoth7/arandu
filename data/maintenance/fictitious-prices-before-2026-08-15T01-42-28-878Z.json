@@ -1,0 +1,4153 @@
+{
+  "projectRef": "itolluaivfoxnaohbsdk",
+  "capturedAt": "2026-08-15T01:42:28.882Z",
+  "reason": "Remove all values explicitly identified as synthetic or demo prices",
+  "counts": {
+    "publicElepem": 317,
+    "unlocatedElepem": 0,
+    "normalizedSource": 0,
+    "demoPublicProfiles": 0,
+    "isolatedDemoFacilities": 1
+  },
+  "rows": {
+    "publicElepem": [
+      {
+        "id": "18",
+        "codigo": "FAC-LEGACY-ELP-0001-F6ABEFE5A9A8D44E",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "19",
+        "codigo": "FAC-LEGACY-ELP-0002-83BDCCE3E921B857",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "21",
+        "codigo": "FAC-LEGACY-ELP-0004-EEC62519E36ECC62",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "24",
+        "codigo": "FAC-LEGACY-ELP-0007-0F0B0EE287155CBB",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "25",
+        "codigo": "FAC-LEGACY-ELP-0008-9602786A674FE8FA",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "27",
+        "codigo": "FAC-LEGACY-ELP-0010-5DDDBBACB37040F9",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "28",
+        "codigo": "FAC-LEGACY-ELP-0011-6028818C56BC9219",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "32",
+        "codigo": "FAC-LEGACY-ELP-0015-41ED01B6D4DF92CA",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "34",
+        "codigo": "FAC-LEGACY-ELP-0019-E46AE17AFFE94467",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "35",
+        "codigo": "FAC-LEGACY-ELP-0020-80BCF604D11FEDF4",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "41",
+        "codigo": "FAC-LEGACY-ELP-0028-348FD93CBE1D2C61",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "42",
+        "codigo": "FAC-LEGACY-ELP-0029-E2EEF787A24FD67A",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "45",
+        "codigo": "FAC-LEGACY-ELP-0032-6739A3CA551578D4",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "46",
+        "codigo": "FAC-LEGACY-ELP-0033-37E55E3B86BDED85",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "48",
+        "codigo": "FAC-LEGACY-ELP-0036-804A5D43730D5EE0",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "49",
+        "codigo": "FAC-LEGACY-ELP-0038-CD01F108CA02F2EC",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "57",
+        "codigo": "FAC-LEGACY-ELP-0048-2D20813D86F4F23D",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "60",
+        "codigo": "FAC-LEGACY-ELP-0051-4610FB1E2D8F1473",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "64",
+        "codigo": "FAC-LEGACY-ELP-0056-F35989C075D724E7",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "71",
+        "codigo": "FAC-LEGACY-ELP-0064-1BEC0DD0F246B044",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "75",
+        "codigo": "FAC-LEGACY-ELP-0069-F9333523C753C566",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "97",
+        "codigo": "FAC-LEGACY-ELP-0092-659F60900D60E0E8",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "103",
+        "codigo": "FAC-LEGACY-ELP-0101-6667E82497E2B43A",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "107",
+        "codigo": "FAC-LEGACY-ELP-0108-6F0DFDEE8432E5AC",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "111",
+        "codigo": "FAC-LEGACY-ELP-0112-532F86D862C9BA62",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "122",
+        "codigo": "FAC-LEGACY-ELP-0135-7CECD751BA8A7CAF",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "124",
+        "codigo": "FAC-LEGACY-ELP-0138-D525586A24CDC068",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "126",
+        "codigo": "FAC-LEGACY-ELP-0140-9F2678684042F0C7",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "129",
+        "codigo": "FAC-LEGACY-ELP-0143-FBE9962E305BDAB6",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "132",
+        "codigo": "FAC-LEGACY-ELP-0147-F333F1A420B5DA36",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "134",
+        "codigo": "FAC-LEGACY-ELP-0149-F48007AB383B0FB7",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "135",
+        "codigo": "FAC-LEGACY-ELP-0150-674195E11666BB51",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "137",
+        "codigo": "FAC-LEGACY-ELP-0152-B55EC42FB9C367DB",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "156",
+        "codigo": "FAC-LEGACY-ELP-0174-B8AF581FD0F63004",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "162",
+        "codigo": "FAC-LEGACY-ELP-0182-72A05D6CDBE107FB",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "164",
+        "codigo": "FAC-LEGACY-ELP-0184-86E69DBF4A85AA6D",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "165",
+        "codigo": "FAC-LEGACY-ELP-0186-330C8BF29F107603",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "167",
+        "codigo": "FAC-LEGACY-ELP-0188-CFDB1F706FC3FA43",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "176",
+        "codigo": "FAC-LEGACY-ELP-0198-451BEAE19375EA0C",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "178",
+        "codigo": "FAC-LEGACY-ELP-0201-8F5EEC7E1BC01B56",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "192",
+        "codigo": "FAC-LEGACY-ELP-0215-699BE7F25918E3C1",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "196",
+        "codigo": "FAC-LEGACY-ELP-0222-DB431E5562C4BADB",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "203",
+        "codigo": "FAC-LEGACY-ELP-0234-5ED1C5A12CCF89F5",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "205",
+        "codigo": "FAC-LEGACY-ELP-0236-439E68FABE130579",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "208",
+        "codigo": "FAC-LEGACY-ELP-0240-2B8F89BDCA2A8794",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "239",
+        "codigo": "FAC-LEGACY-ELP-0273-AC38A7DF4D54866F",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "241",
+        "codigo": "FAC-LEGACY-ELP-0275-52E53D8BDDF8C9A8",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "242",
+        "codigo": "FAC-LEGACY-ELP-0276-D9240C1AB4D5A097",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "244",
+        "codigo": "FAC-LEGACY-ELP-0278-9505F8143DA61DA3",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "246",
+        "codigo": "FAC-LEGACY-ELP-0282-4F7AC1D89F3D730F",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "247",
+        "codigo": "FAC-LEGACY-ELP-0283-202BE0A92AFD2F73",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "250",
+        "codigo": "FAC-LEGACY-ELP-0287-FDFB6B331ACD82FA",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "251",
+        "codigo": "FAC-LEGACY-ELP-0288-87B7BBAAAE895033",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "252",
+        "codigo": "FAC-LEGACY-ELP-0289-AB6072CD328BEED1",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "253",
+        "codigo": "FAC-LEGACY-ELP-0290-1BBC962858CAB618",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "254",
+        "codigo": "FAC-LEGACY-ELP-0292-D93731188E1DEB7C",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "257",
+        "codigo": "FAC-LEGACY-ELP-0301-8AB5A8EF51BB3576",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "259",
+        "codigo": "FAC-LEGACY-ELP-0304-E2871F1B4D5762FB",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "260",
+        "codigo": "FAC-LEGACY-ELP-0305-43E1EB226253ABCB",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "263",
+        "codigo": "FAC-LEGACY-ELP-0312-73CE4ABBB3B54F57",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "264",
+        "codigo": "FAC-LEGACY-ELP-0314-FD6191FA7A5F232F",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "266",
+        "codigo": "FAC-LEGACY-ELP-0320-86F73D92E5DA73CD",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "267",
+        "codigo": "FAC-LEGACY-ELP-0321-D37703C4802F37C1",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "269",
+        "codigo": "FAC-LEGACY-ELP-0323-0AE0F719E394692C",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "275",
+        "codigo": "FAC-LEGACY-ELP-0335-013D30DB5536124B",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "277",
+        "codigo": "FAC-LEGACY-ELP-0339-553455CD6DDCA934",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "279",
+        "codigo": "FAC-LEGACY-ELP-0342-777B9023E2268D38",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "282",
+        "codigo": "FAC-LEGACY-ELP-0346-9A12DEE3D11B1CE5",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "283",
+        "codigo": "FAC-LEGACY-ELP-0347-FA38342308FADB1A",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "286",
+        "codigo": "FAC-LEGACY-ELP-0350-1A44EC6E54F3F2D9",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "290",
+        "codigo": "FAC-LEGACY-ELP-0355-8B12B90681D4EAB1",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "293",
+        "codigo": "FAC-LEGACY-ELP-0361-4900E7DD859CC675",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "294",
+        "codigo": "FAC-LEGACY-ELP-0363-90C5494758EB2F6F",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "295",
+        "codigo": "FAC-LEGACY-ELP-0366-6CC8F5B459BDD6B5",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "298",
+        "codigo": "FAC-LEGACY-ELP-0372-1BBCE435E591FC03",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "305",
+        "codigo": "FAC-LEGACY-ELP-0385-737712F583D36F3E",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "306",
+        "codigo": "FAC-LEGACY-ELP-0387-7159D641D246FE87",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "308",
+        "codigo": "FAC-LEGACY-ELP-0391-4F4F6D012412946B",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "309",
+        "codigo": "FAC-LEGACY-ELP-0392-0BE8C30A89F33BFD",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "310",
+        "codigo": "FAC-LEGACY-ELP-0393-451E8EF49739AE14",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "312",
+        "codigo": "FAC-LEGACY-ELP-0398-2D1CFDE9FEFF7587",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "315",
+        "codigo": "FAC-LEGACY-ELP-0408-0DCF7999C6A4C1C8",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "316",
+        "codigo": "FAC-LEGACY-ELP-0410-FCA89065EE676836",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "318",
+        "codigo": "FAC-LEGACY-ELP-0416-52C86E1752BACDCB",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "319",
+        "codigo": "FAC-LEGACY-ELP-0420-EADFBC2533222975",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "320",
+        "codigo": "FAC-LEGACY-ELP-0423-48663F84E3D7A49E",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "322",
+        "codigo": "FAC-LEGACY-ELP-0426-2EDE1ADB96977C46",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "323",
+        "codigo": "FAC-LEGACY-ELP-0427-C438EEBBD66E1884",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "324",
+        "codigo": "FAC-LEGACY-ELP-0429-0B05E2BEB5F59927",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "326",
+        "codigo": "FAC-LEGACY-ELP-0433-C5C4DE1CA2059CDF",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "328",
+        "codigo": "FAC-LEGACY-ELP-0437-C3267606B15A6749",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "329",
+        "codigo": "FAC-LEGACY-ELP-0443-8535553F7664370B",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "330",
+        "codigo": "FAC-LEGACY-ELP-0444-D5F59ECF36FEDD3F",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "331",
+        "codigo": "FAC-LEGACY-ELP-0445-8AD2BF3A8C007AA5",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "332",
+        "codigo": "FAC-LEGACY-ELP-0446-29FE18A201FAB372",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "339",
+        "codigo": "FAC-LEGACY-ELP-0466-DE28192637873E26",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "340",
+        "codigo": "FAC-LEGACY-ELP-0467-59CDE79AA182BBC7",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "343",
+        "codigo": "FAC-LEGACY-ELP-0474-3A314DF45EB3668D",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "347",
+        "codigo": "FAC-LEGACY-ELP-0481-3EF94DBB594E9CEB",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "352",
+        "codigo": "FAC-LEGACY-ELP-0491-5855AD19264B7624",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "356",
+        "codigo": "FAC-LEGACY-ELP-0498-3ADF230EA4872E07",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "358",
+        "codigo": "FAC-LEGACY-ELP-0502-DC7127D8E135BD36",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "359",
+        "codigo": "FAC-LEGACY-ELP-0504-FE307E4ECADD5577",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "362",
+        "codigo": "FAC-LEGACY-ELP-0514-9786418E7252118B",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "364",
+        "codigo": "FAC-LEGACY-ELP-0519-B8D4707E13890A90",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "368",
+        "codigo": "FAC-LEGACY-ELP-0527-F5C7B75EDB343175",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "369",
+        "codigo": "FAC-LEGACY-ELP-0528-9F4C6D97D6A8B7A2",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "371",
+        "codigo": "FAC-LEGACY-ELP-0531-FDC7823882FC9337",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "378",
+        "codigo": "FAC-LEGACY-ELP-0543-0C966F75AD276BEA",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "379",
+        "codigo": "FAC-LEGACY-ELP-0545-EC6C0D665F58A92D",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "381",
+        "codigo": "FAC-LEGACY-ELP-0548-37DCCB08474CC79F",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "382",
+        "codigo": "FAC-LEGACY-ELP-0549-BB7AFDB486ED1287",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "387",
+        "codigo": "FAC-LEGACY-ELP-0555-BB4202A284A223D2",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "389",
+        "codigo": "FAC-LEGACY-ELP-0562-404C27AA365AF779",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "406",
+        "codigo": "FAC-LEGACY-ELP-0582-93D22D7B7E424AB9",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "454",
+        "codigo": "FAC-LEGACY-ELP-0639-08FFECDCAAB16BF5",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "457",
+        "codigo": "FAC-LEGACY-ELP-0645-F278438AB4B11EE2",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "461",
+        "codigo": "FAC-LEGACY-ELP-0652-61C73CB02C567F5F",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "472",
+        "codigo": "FAC-LEGACY-ELP-0670-669642F0DA62C800",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "482",
+        "codigo": "FAC-LEGACY-ELP-0684-BB262AD87E9DC04B",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "483",
+        "codigo": "FAC-LEGACY-ELP-0685-EC361299A4D3F397",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "486",
+        "codigo": "FAC-LEGACY-ELP-0692-EB524965683E6707",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "489",
+        "codigo": "FAC-LEGACY-ELP-0699-2AF5C4249501D7D2",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "492",
+        "codigo": "FAC-LEGACY-ELP-0711-FDFCC7F749E9C6FE",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "493",
+        "codigo": "FAC-LEGACY-ELP-0719-C6C307AB5545C919",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "495",
+        "codigo": "FAC-LEGACY-ELP-0721-939F5BB966B064D7",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "505",
+        "codigo": "FAC-LEGACY-ELP-0733-A9116E8745E6D3D0",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "520",
+        "codigo": "FAC-LEGACY-ELP-0751-EF1359A7E07B6ECB",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "523",
+        "codigo": "FAC-LEGACY-ELP-0754-05196AF01BB5CE6B",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "524",
+        "codigo": "FAC-LEGACY-ELP-0756-5329ABA058C824D5",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "525",
+        "codigo": "FAC-LEGACY-ELP-0758-2211F4B8DA31CF5B",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "526",
+        "codigo": "FAC-LEGACY-ELP-0760-9E86504908CFD1E5",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "530",
+        "codigo": "FAC-LEGACY-ELP-0765-BC3465F42EFA0233",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "532",
+        "codigo": "FAC-LEGACY-ELP-0769-789B985A66683672",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "537",
+        "codigo": "FAC-LEGACY-ELP-0777-534C0A5F1F39C9A9",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "547",
+        "codigo": "FAC-LEGACY-ELP-0787-1FD7AA34C00B569C",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "548",
+        "codigo": "FAC-LEGACY-ELP-0790-8142906DCEA90E69",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "549",
+        "codigo": "FAC-LEGACY-ELP-0791-F5E7D38A55959D55",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "550",
+        "codigo": "FAC-LEGACY-ELP-0792-4D75C8DBFF0B9698",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "554",
+        "codigo": "FAC-LEGACY-ELP-0797-63C686B582F77A78",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "569",
+        "codigo": "FAC-LEGACY-MSP24-002-B428248480CD6891",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "570",
+        "codigo": "FAC-LEGACY-MSP24-003-13C0D57F97D6119A",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "572",
+        "codigo": "FAC-LEGACY-MSP24-005-4BBDD41E0A4E6812",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "574",
+        "codigo": "FAC-LEGACY-MSP24-007-7F62C2FB4968E98C",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "584",
+        "codigo": "FAC-LEGACY-MSP24-017-1C5CDAB5906A7872",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "596",
+        "codigo": "FAC-LEGACY-MSP24-029-B8FB24CAA3DB9A65",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "601",
+        "codigo": "FAC-LEGACY-MSP24-034-032CEC2AB776551D",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "604",
+        "codigo": "FAC-LEGACY-MSP24-037-C1459532DE226F02",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "605",
+        "codigo": "FAC-LEGACY-MSP24-038-EF27E2634E365AAF",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "606",
+        "codigo": "FAC-LEGACY-MSP24-039-14C040C48BA310DB",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "608",
+        "codigo": "FAC-LEGACY-MSP24-041-25544A83B648E4BA",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "609",
+        "codigo": "FAC-LEGACY-MSP24-042-5D26034E038A7BC6",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "610",
+        "codigo": "FAC-LEGACY-MSP24-043-F296BAA525093376",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "611",
+        "codigo": "FAC-LEGACY-MSP24-044-83322A666C272E22",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "612",
+        "codigo": "FAC-LEGACY-MSP24-045-5CD64EA754FC2E3A",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "613",
+        "codigo": "FAC-LEGACY-MSP24-046-D297BCD57B98CBAE",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "614",
+        "codigo": "FAC-LEGACY-MSP24-047-0905A202132ED4B2",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "615",
+        "codigo": "FAC-LEGACY-MSP24-048-C43C5C936F750703",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "616",
+        "codigo": "FAC-LEGACY-MSP24-049-61E880CE46578315",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "617",
+        "codigo": "FAC-LEGACY-MSP24-050-E69311E81118A1FB",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "618",
+        "codigo": "FAC-LEGACY-MSP24-051-105DDB470E6947FA",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "619",
+        "codigo": "FAC-LEGACY-MSP24-052-C90ADB7C6B515FFB",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "620",
+        "codigo": "FAC-LEGACY-MSP24-053-BFFD96ACFA7A2B38",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "621",
+        "codigo": "FAC-LEGACY-MSP24-054-1F55BAF0A5A7AF4D",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "622",
+        "codigo": "FAC-LEGACY-MSP24-055-E621D275C1BBB860",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "623",
+        "codigo": "FAC-LEGACY-MSP24-056-B178BB18D24ADF7A",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "624",
+        "codigo": "FAC-LEGACY-MSP24-057-3E1B5095852841CB",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "625",
+        "codigo": "FAC-LEGACY-MSP24-058-1ADEE24A9F301052",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "626",
+        "codigo": "FAC-LEGACY-MSP24-059-B490BC90DFB4E82B",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "627",
+        "codigo": "FAC-LEGACY-MSP24-060-2F6A9CE7CDDDE4F2",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "628",
+        "codigo": "FAC-LEGACY-MSP24-061-31302148B63DA6AC",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "629",
+        "codigo": "FAC-LEGACY-MSP24-062-C91BAC24A86BB575",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "630",
+        "codigo": "FAC-LEGACY-MSP24-063-431A57ADF257AD85",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "631",
+        "codigo": "FAC-LEGACY-MSP24-064-F1148D1EB95D66E5",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "632",
+        "codigo": "FAC-LEGACY-MSP24-065-74002DF2A7730A5B",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "633",
+        "codigo": "FAC-LEGACY-MSP24-066-A8E51F7AFA9F0366",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "634",
+        "codigo": "FAC-LEGACY-MSP24-067-11D2A9934CD5D0EC",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "635",
+        "codigo": "FAC-LEGACY-MSP24-068-7F9F5C6151599A13",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "636",
+        "codigo": "FAC-LEGACY-MSP24-069-D4E9A980E5EB1D58",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "637",
+        "codigo": "FAC-LEGACY-MSP24-070-E6D2D10FE73A320E",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "638",
+        "codigo": "FAC-LEGACY-MSP24-071-E030B255C45270E7",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "639",
+        "codigo": "FAC-LEGACY-MSP24-072-811E25FC964E9DA9",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "640",
+        "codigo": "FAC-LEGACY-MSP24-073-04B3F059079E2500",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "641",
+        "codigo": "FAC-LEGACY-MSP24-074-1F6A59DB4CB83E73",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "642",
+        "codigo": "FAC-LEGACY-MSP24-075-78A678B276254CC3",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "643",
+        "codigo": "FAC-LEGACY-MSP24-076-EE09F6B6D2F6453C",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "644",
+        "codigo": "FAC-LEGACY-MSP24-077-0C5DC5C70929F1A3",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "645",
+        "codigo": "FAC-LEGACY-MSP24-078-2FF7FE1EDEDC6DB9",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "646",
+        "codigo": "FAC-LEGACY-MSP24-079-E6EAD45FBD280DDD",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "647",
+        "codigo": "FAC-LEGACY-MSP24-080-D81556CAB4920CBF",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "648",
+        "codigo": "FAC-LEGACY-MSP24-081-8371836BFC6FD057",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "649",
+        "codigo": "FAC-LEGACY-MSP24-082-06F75864F65EC956",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "650",
+        "codigo": "FAC-LEGACY-MSP24-083-1F0DE2A8DE239013",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "651",
+        "codigo": "FAC-LEGACY-MSP24-084-8800A6DB6AC6EBAE",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "652",
+        "codigo": "FAC-LEGACY-MSP24-085-7C4C049CDF8FDDBE",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "653",
+        "codigo": "FAC-LEGACY-MSP24-086-5EDD21227DF5C42D",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "654",
+        "codigo": "FAC-LEGACY-MSP24-087-9C51F0B196BA6EDB",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "655",
+        "codigo": "FAC-LEGACY-MSP24-088-9481A2619E4C0497",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "656",
+        "codigo": "FAC-LEGACY-MSP24-089-2F5FCE712661F566",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "657",
+        "codigo": "FAC-LEGACY-MSP24-090-4A11510FD602BB26",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "658",
+        "codigo": "FAC-LEGACY-MSP24-091-E17E6DFD5631F47F",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "659",
+        "codigo": "FAC-LEGACY-MSP24-092-5736EEE98A7F1D02",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "660",
+        "codigo": "FAC-LEGACY-MSP24-093-A21C6ADBDD8C5FFC",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "661",
+        "codigo": "FAC-LEGACY-MSP24-094-C05D562E40AF2EDC",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "662",
+        "codigo": "FAC-LEGACY-MSP24-095-0738C046E5B038A7",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "663",
+        "codigo": "FAC-LEGACY-MSP24-096-12CFE6D3211FC604",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "664",
+        "codigo": "FAC-LEGACY-MSP24-097-5F0573FDE12B4F4B",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "665",
+        "codigo": "FAC-LEGACY-MSP24-098-97FB0A9C9768DBA8",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "666",
+        "codigo": "FAC-LEGACY-MSP24-099-85E0EA134D40834A",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "667",
+        "codigo": "FAC-LEGACY-MSP24-100-1FD8787EF4D4C69D",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "668",
+        "codigo": "FAC-LEGACY-MSP24-101-FF14167DE934502F",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "669",
+        "codigo": "FAC-LEGACY-MSP24-102-19A8C6892BD2A3C5",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "670",
+        "codigo": "FAC-LEGACY-MSP24-103-22AFABAB94253884",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "671",
+        "codigo": "FAC-LEGACY-MSP24-104-0C4180EE278FF7BC",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "672",
+        "codigo": "FAC-LEGACY-MSP24-105-9D22EB27123FBAD1",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "673",
+        "codigo": "FAC-LEGACY-MSP24-106-C430CE227A5CCA37",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "674",
+        "codigo": "FAC-LEGACY-MSP24-107-C93B1881ABD34766",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "675",
+        "codigo": "FAC-LEGACY-MSP24-108-E4E9E88C2484768E",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "676",
+        "codigo": "FAC-LEGACY-MSP24-109-62B585A8A99437D0",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "677",
+        "codigo": "FAC-LEGACY-MSP24-110-0B51FA48EDCD85C6",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "678",
+        "codigo": "FAC-LEGACY-MSP24-111-D0D05002AAEC40A3",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "679",
+        "codigo": "FAC-LEGACY-MSP24-112-F4748E33606BE13E",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "680",
+        "codigo": "FAC-LEGACY-MSP24-113-9E135D5A88992368",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "681",
+        "codigo": "FAC-LEGACY-MSP24-114-182276A521299E2B",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "682",
+        "codigo": "FAC-LEGACY-MSP24-115-2656DC80B95FB56C",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "683",
+        "codigo": "FAC-LEGACY-MSP24-116-4E3543F7B42116F8",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "684",
+        "codigo": "FAC-LEGACY-MSP24-117-3DF44497DB30DD5E",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "685",
+        "codigo": "FAC-LEGACY-MSP24-118-9B1D3C0D6EFA5B22",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "686",
+        "codigo": "FAC-LEGACY-MSP24-119-9B8936041627F79F",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "687",
+        "codigo": "FAC-LEGACY-MSP24-120-047C1A8B299A5AC4",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "688",
+        "codigo": "FAC-LEGACY-MSP24-121-94F1B1B61BD03B6E",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "689",
+        "codigo": "FAC-LEGACY-MSP24-122-3FAEB5AFF2453D44",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "690",
+        "codigo": "FAC-LEGACY-MSP24-123-448E633E313E8E94",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "691",
+        "codigo": "FAC-LEGACY-MSP24-124-09C27508D8F271DA",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "692",
+        "codigo": "FAC-LEGACY-MSP24-125-8D81AE0237C91BD7",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "693",
+        "codigo": "FAC-LEGACY-MSP24-126-69FF132EE6096508",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "694",
+        "codigo": "FAC-LEGACY-MSP24-127-F558E4970A6AC9D9",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "695",
+        "codigo": "FAC-LEGACY-MSP24-128-0077C3F2BA4412D2",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "696",
+        "codigo": "FAC-LEGACY-MSP24-129-D669E149728BE4D7",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "697",
+        "codigo": "FAC-LEGACY-MSP24-130-6724E4E79ACBAFED",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "698",
+        "codigo": "FAC-LEGACY-MSP24-131-CD87F79BBD0D09F3",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "699",
+        "codigo": "FAC-LEGACY-MSP24-132-A5E4A5B062506CC2",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "700",
+        "codigo": "FAC-LEGACY-MSP24-133-86CE111BD6D1B1E8",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "701",
+        "codigo": "FAC-LEGACY-MSP24-134-83B90547E9CE0C7C",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "702",
+        "codigo": "FAC-LEGACY-MSP24-135-74512E86EA4C32B8",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "703",
+        "codigo": "FAC-LEGACY-MSP24-136-65145E1D19E1A66D",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "704",
+        "codigo": "FAC-LEGACY-MSP24-137-B135EC1059C0FF1A",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "705",
+        "codigo": "FAC-LEGACY-MSP24-138-74E69D7E38521818",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "706",
+        "codigo": "FAC-LEGACY-MSP24-139-955EF34FE1502141",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "707",
+        "codigo": "FAC-LEGACY-MSP24-140-23D9C2FA981CDB8F",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "708",
+        "codigo": "FAC-LEGACY-MSP24-141-17E9A43582091406",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "709",
+        "codigo": "FAC-LEGACY-MSP24-142-9CC510C8E4A219CB",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "710",
+        "codigo": "FAC-LEGACY-MSP24-143-1B5AC615C15B8150",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "711",
+        "codigo": "FAC-LEGACY-MSP24-144-3144A3F62E200A55",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "712",
+        "codigo": "FAC-LEGACY-MSP24-145-48D24F7C9B1A2EE7",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "713",
+        "codigo": "FAC-LEGACY-MSP24-146-C32616613036BC2F",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "714",
+        "codigo": "FAC-LEGACY-MSP24-147-D629BDB9DE5E1245",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "715",
+        "codigo": "FAC-LEGACY-MSP24-148-B5BAD05FD79A26F5",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "716",
+        "codigo": "FAC-LEGACY-MSP24-149-5C71D8E69F960B72",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "717",
+        "codigo": "FAC-LEGACY-MSP24-150-2A83FDB194491D4E",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "719",
+        "codigo": "FAC-LEGACY-MSP24-152-D08DF429E7D890D3",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "720",
+        "codigo": "FAC-LEGACY-MSP24-153-9893F989041A799F",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "721",
+        "codigo": "FAC-LEGACY-MSP24-154-84B4CB16C17B0B52",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "722",
+        "codigo": "FAC-LEGACY-MSP24-155-5286297DD6B22692",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "723",
+        "codigo": "FAC-LEGACY-MSP24-156-A76AE0F7AE5DB6C1",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "724",
+        "codigo": "FAC-LEGACY-MSP24-157-49D0130C706DBF47",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "725",
+        "codigo": "FAC-LEGACY-MSP24-158-20EB90AA4AC20624",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "726",
+        "codigo": "FAC-LEGACY-MSP24-159-40CD2AF0948F8BCD",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "727",
+        "codigo": "FAC-LEGACY-MSP24-160-94BD11C3649DBA7B",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "728",
+        "codigo": "FAC-LEGACY-MSP24-161-7F284E6E017823E0",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "729",
+        "codigo": "FAC-LEGACY-MSP24-162-3442EB95E4B69D52",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "730",
+        "codigo": "FAC-LEGACY-MSP24-163-E9E75F95BD0A8370",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "731",
+        "codigo": "FAC-LEGACY-MSP24-164-AEEDA28F5E079E45",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "732",
+        "codigo": "FAC-LEGACY-MSP24-165-FE59DF82200AF31F",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "733",
+        "codigo": "FAC-LEGACY-MSP24-166-385A3FED68F2D9DF",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "734",
+        "codigo": "FAC-LEGACY-MSP24-167-AC35210625FE2694",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "735",
+        "codigo": "FAC-LEGACY-MSP24-168-417BC7C33AFFB8F6",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "736",
+        "codigo": "FAC-LEGACY-MSP24-169-E9DA0C1CBF11911B",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "737",
+        "codigo": "FAC-LEGACY-MSP24-170-B1591D79C0ADFBE3",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "738",
+        "codigo": "FAC-LEGACY-MSP24-171-A9D36E8D4CC37886",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "740",
+        "codigo": "FAC-LEGACY-MSP24-173-EA9E02947A62FFFB",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "741",
+        "codigo": "FAC-LEGACY-MSP24-174-59F2EB2E04B1A3CB",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "742",
+        "codigo": "FAC-LEGACY-MSP24-175-C2CF644275FD0B9B",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "743",
+        "codigo": "FAC-LEGACY-MSP24-176-94333E846CB0216E",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "744",
+        "codigo": "FAC-LEGACY-MSP24-177-B5B1D701750DE28F",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "745",
+        "codigo": "FAC-LEGACY-MSP24-178-4DF69FF5EC0DF23E",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "746",
+        "codigo": "FAC-LEGACY-MSP24-179-66D4323AD735D24C",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "747",
+        "codigo": "FAC-LEGACY-MSP24-180-44F328CE4EEAC11B",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "748",
+        "codigo": "FAC-LEGACY-MSP24-181-FF88636802664DF1",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "749",
+        "codigo": "FAC-LEGACY-MSP24-182-FD74056743CFC1D6",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "750",
+        "codigo": "FAC-LEGACY-MSP24-183-4B0AC4B60E7C4517",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "752",
+        "codigo": "FAC-LEGACY-MSP24-185-074BA78BC0039AEB",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "753",
+        "codigo": "FAC-LEGACY-MSP24-186-8E26478B2DFA9414",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "754",
+        "codigo": "FAC-LEGACY-MSP24-187-78C710CE68959902",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "755",
+        "codigo": "FAC-LEGACY-MSP24-188-9A9C318C6FCD8DF4",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "756",
+        "codigo": "FAC-LEGACY-MSP24-189-6522B0078B702068",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "757",
+        "codigo": "FAC-LEGACY-MSP24-190-7D215B4076C03E75",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "758",
+        "codigo": "FAC-LEGACY-MSP24-191-7113CCB17C3085F6",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "759",
+        "codigo": "FAC-LEGACY-MSP24-192-7672139F5E197822",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "760",
+        "codigo": "FAC-LEGACY-MSP24-193-F1045A47FC4F30A5",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "761",
+        "codigo": "FAC-LEGACY-MSP24-194-D458D1A0B878D49B",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "762",
+        "codigo": "FAC-LEGACY-MSP24-195-E8533DF249438374",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "764",
+        "codigo": "FAC-LEGACY-MSP24-197-BE65A63206C8AB1A",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "765",
+        "codigo": "FAC-LEGACY-MSP24-198-3594CDE104903FA4",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "766",
+        "codigo": "FAC-LEGACY-MSP24-199-A0A7AFDC814487A2",
+        "precio_mensual_uyu": 110000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "767",
+        "codigo": "FAC-LEGACY-MSP24-200-76F715192040320B",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "768",
+        "codigo": "FAC-LEGACY-MSP24-201-9FB845559584A1B7",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "769",
+        "codigo": "FAC-LEGACY-MSP24-202-BF615AA2395EF852",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "771",
+        "codigo": "FAC-LEGACY-MSP24-204-21AA3DC01037F8B2",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "773",
+        "codigo": "FAC-LEGACY-MSP24-206-E21BFE5ECEA36079",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "774",
+        "codigo": "FAC-LEGACY-MSP24-207-7DD48E1DD175E35A",
+        "precio_mensual_uyu": 95000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "777",
+        "codigo": "FAC-LEGACY-MSPREG24-003-59CCE09A5FD4A0CD",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "782",
+        "codigo": "FAC-LEGACY-MSPREG24-009-041B33BA57DF254C",
+        "precio_mensual_uyu": 75000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "791",
+        "codigo": "FAC-LEGACY-MSPREG24-018-743AD467F25D2C55",
+        "precio_mensual_uyu": 55000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "798",
+        "codigo": "FAC-LEGACY-MSPREG24-025-F762A2AD9BFF55D8",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "799",
+        "codigo": "FAC-LEGACY-MSPREG24-026-F805686553BDBED3",
+        "precio_mensual_uyu": 65000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      },
+      {
+        "id": "800",
+        "codigo": "FAC-LEGACY-MSPREG24-027-266A897E8E17EC89",
+        "precio_mensual_uyu": 85000,
+        "precio_fecha": "2026-08-10T03:00:00.000Z",
+        "precio_incluye": [
+          "Alojamiento",
+          "Alimentacion",
+          "Apoyo cotidiano"
+        ],
+        "precio_fuente_url": null,
+        "precio_es_demo": true
+      }
+    ],
+    "unlocatedElepem": [],
+    "normalizedSource": [],
+    "demoPublicProfiles": [],
+    "isolatedDemoFacilities": [
+      {
+        "id": "DEMO-ELEPEM-001",
+        "monthly_price_from_uyu": 78000,
+        "price_as_of": "2026-08-10T03:00:00.000Z",
+        "price_includes": [
+          "Alojamiento",
+          "Cuatro comidas",
+          "Actividades grupales",
+          "Lavanderia basica"
+        ]
+      }
+    ]
+  }
+}

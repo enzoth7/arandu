@@ -18,10 +18,10 @@ export function facilityDisplayCategory(facility: Facility): FacilityDisplayCate
 
 export function facilityDisplayLabel(facility: Facility) {
   const category = facilityDisplayCategory(facility);
-  if (category === "habilitado") return "HabilitaciÃ³n MSP";
+  if (category === "habilitado") return "Habilitación MSP";
   if (category === "mides") return "Certificado social MIDES";
-  if (category === "demo") return "DemostraciÃ³n";
-  return "SituaciÃ³n no confirmada";
+  if (category === "demo") return "Referencia Arandú";
+  return "Situación no confirmada";
 }
 
 export function facilityHaystack(facility: Facility) {

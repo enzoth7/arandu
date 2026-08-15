@@ -4,7 +4,7 @@ import { useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Building2, Check, Copy, LogOut, Menu, ShieldAlert } from "lucide-react";
+import { Building2, LogOut, Menu } from "lucide-react";
 import {
   homeFor,
   navItemsFor,
@@ -24,23 +24,12 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
   const router = useRouter();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [contactCopied, setContactCopied] = useState(false);
   const isInstitutional = portal !== "public";
 
   const signOut = () => {
     void fetch("/api/institutional/session", { method: "DELETE" }).catch(() => undefined);
     router.push("/");
     router.refresh();
-  };
-
-  const copyContact = async () => {
-    try {
-      await navigator.clipboard.writeText("contacto@arandu.com");
-      setContactCopied(true);
-      window.setTimeout(() => setContactCopied(false), 1800);
-    } catch {
-      setContactCopied(false);
-    }
   };
 
   return <main className={`site ${isInstitutional ? "organizationSite" : "publicSite"}`}>
@@ -97,22 +86,11 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
             <span>Información para elegir</span>
           </div>
           <nav className="aranduFooterLinks" aria-label="Enlaces del pie">
-            <Link href="/fuentes">Datos y fuentes</Link>
             <Link href="/terminos">Términos y condiciones</Link>
             <Link href="/privacidad">Privacidad</Link>
             <Link href="/acceso-institucional">Acceso institucional</Link>
           </nav>
-          <div className="aranduFooterContact">
-            <a href="mailto:contacto@arandu.com">contacto@arandu.com</a>
-            <button type="button" onClick={copyContact} aria-label="Copiar correo de contacto" title="Copiar correo">
-              {contactCopied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
-            </button>
-          </div>
         </div>}
-        <div className="aranduFooterDemo" role="note">
-          <ShieldAlert size={18} aria-hidden="true" />
-          <span><strong>PROTOTIPO ACADÉMICO</strong> · Usa sólo datos de demostración.</span>
-        </div>
       </footer>
     </div>
   </main>;
