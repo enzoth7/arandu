@@ -3,6 +3,14 @@
 
 import { useEffect, useState } from "react";
 import { AlertTriangle, CheckCircle2, ChevronRight, EyeOff, FileText, Image as ImageIcon, RefreshCw, Send, ShieldAlert } from "lucide-react";
+import {
+  EXPERIENCE_DIMENSIONS,
+  EXPERIENCE_QUESTIONS,
+  EXPERIENCE_SCALE_OPTIONS,
+  PARTICIPATION_OPTIONS,
+  RELATIONSHIP_OPTIONS,
+  RESPONDENT_OPTIONS,
+} from "../../../lib/experience-questionnaire.mjs";
 import type { IntakeKind } from "../../../lib/institutional-types";
 import { Modal } from "../Modal";
 
@@ -12,14 +20,14 @@ type Triage = {
   safeContactRecorded: boolean;
   relatedCasesSearched: boolean;
   personWillRecorded: boolean;
-  priority: "Alta" | "Media" | "Baja";
+  priority: "Alta" | "Media" | "Baja" | "Por evaluar";
   scope: string;
   route: string;
 };
 type InboxReport = {
   id: string; case_code: string; entry_type: IntakeKind; current_status: string; priority: string; demo_facility_id: string | null; report_payload: Record<string, unknown>; created_at: string;
   facility: { id: number; key: string; name: string; locality: string; department: string } | null;
-  publication: Publication | null; contacts: Array<{ phone?: string; email?: string }>;
+  publication: Publication | null; contacts: Array<{ name?: string; phone?: string; email?: string }>;
   attachments: Array<{ id: string; file_name: string; mime_type: string; purpose: string }>;
   documentReview: { decision: "inadequate" | "clear"; reason: string; createdAt: string } | null;
   events: Array<{ event_data?: { triage?: Partial<Triage> } }>;
@@ -32,12 +40,79 @@ const KIND_LABELS: Record<IntakeKind, string> = { concern: "Preocupación", expe
 const STATUS_LABELS: Record<string, string> = { new: "Nueva", received: "Recibida", in_review: "En revisión", triage: "Requiere atención", contact: "En seguimiento", referred: "Derivada", resolved: "Resuelta", closed: "Cerrada" };
 const DESTINATION_LABELS: Record<string, string> = { aggregate: "Sólo revisión estatal privada", private_review: "Sólo revisión estatal privada", private_facility: "Envío privado al ELEPEM", consider_anonymized: "Publicación anonimizada en la ficha" };
 const ANSWER_LABELS: Record<string, string> = { yes: "Sí", partial: "En parte", no: "No", unknown: "No pudo evaluarlo", prefer_not_to_answer: "Prefirió no responder" };
+const RELATIONSHIP_LABELS = Object.fromEntries(RELATIONSHIP_OPTIONS.map((option) => [option.value, option.label]));
+const RESPONDENT_LABELS = Object.fromEntries(RESPONDENT_OPTIONS.map((option) => [option.value, option.label]));
+const PARTICIPATION_LABELS = Object.fromEntries(PARTICIPATION_OPTIONS.map((option) => [option.value, option.label]));
+const PRIVACY_LABELS: Record<string, string> = { anonymous: "Anónima", confidential: "Confidencial", registered_identity: "Con identidad registrada" };
+const CATEGORY_LABELS: Record<string, string> = { outstanding: "Sobresaliente", good: "Bueno", requires_improvement: "Requiere mejoras", inadequate: "Inadecuado" };
 
 function textValue(value: unknown) { return typeof value === "string" ? value.trim() : ""; }
+function triagePriority(value: unknown): Triage["priority"] | null { return value === "Alta" || value === "Media" || value === "Baja" || value === "Por evaluar" ? value : null; }
+function recordValue(value: unknown): Record<string, unknown> { return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {}; }
+function isV5Experience(report: InboxReport) { return report.entry_type === "experience" && report.report_payload.version === 5; }
 function reportSummary(report: InboxReport) { return textValue(report.report_payload.narrative) || (report.entry_type === "experience" ? "Experiencia estructurada sin relato adicional." : report.entry_type === "facility_change" ? textValue(report.report_payload.evidenceNote) || "Solicitud de actualización de ficha." : "Preocupación sin relato adicional."); }
 function facilityLabel(report: InboxReport) { return report.facility ? `${report.facility.name} · ${report.facility.locality} · ${report.facility.department}` : "Sin ELEPEM vinculado"; }
-function publicationDraft(report: InboxReport): PublicationDraft { return { publicBody: report.publication?.publicBody || reportSummary(report), publicRelationship: report.publication?.publicRelationship || textValue(report.report_payload.relationship), publicPeriod: report.publication?.publicPeriod || textValue(report.report_payload.period) }; }
-function canPublishExperience(report: InboxReport) { return report.report_payload.requestedDestination === "consider_anonymized" && report.report_payload.publicationConsent === true; }
+function publicationDraft(report: InboxReport): PublicationDraft {
+  if (isV5Experience(report)) {
+    return {
+      publicBody: report.publication?.publicBody || "",
+      publicRelationship: report.publication?.publicRelationship || "",
+      publicPeriod: "",
+    };
+  }
+  return { publicBody: report.publication?.publicBody || reportSummary(report), publicRelationship: report.publication?.publicRelationship || textValue(report.report_payload.relationship), publicPeriod: report.publication?.publicPeriod || textValue(report.report_payload.period) };
+}
+function canPublishExperience(report: InboxReport) {
+  return (!isV5Experience(report) || report.report_payload.privacyMode === "anonymous")
+    && report.report_payload.requestedDestination === "consider_anonymized"
+    && report.report_payload.publicationConsent === true;
+}
+
+function answerLabel(scale: "frequency" | "fulfillment", value: unknown) {
+  return EXPERIENCE_SCALE_OPTIONS[scale].find((option) => option.value === value)?.label || "Sin respuesta";
+}
+
+function ExperienceInformation({ report }: { report: InboxReport }) {
+  if (!isV5Experience(report)) {
+    return <><h3>Experiencia recibida</h3><dl className="stateExperienceSummary"><div><dt>Vínculo</dt><dd>{textValue(report.report_payload.relationship) || "No informado"}</dd></div><div><dt>Período</dt><dd>{textValue(report.report_payload.period) || "No informado"}</dd></div><div><dt>Destino solicitado</dt><dd>{DESTINATION_LABELS[textValue(report.report_payload.requestedDestination)] || "Sólo revisión estatal privada"}</dd></div></dl><p className="stateInboxNarrative">{reportSummary(report)}</p><div className="stateExperienceAnswers">{Object.entries(recordValue(report.report_payload.answers)).map(([key, answer]) => <div key={key}><span>{key}</span><strong>{ANSWER_LABELS[textValue(answer)] || "Sin respuesta"}</strong></div>)}</div></>;
+  }
+
+  const answers = recordValue(report.report_payload.answers);
+  const results = recordValue(report.report_payload.dimensionResults);
+  const futureAuthorizations = recordValue(report.report_payload.futureAuthorizations);
+  const relationship = textValue(report.report_payload.relationship);
+  const relationshipOther = textValue(report.report_payload.relationshipOther);
+  const directWording = textValue(report.report_payload.respondentType) === "current_resident";
+
+  return <>
+    <h3>Experiencia recibida</h3>
+    <div className="stateExperienceSummary"><dl>
+        <div><dt>Vínculo</dt><dd>{RELATIONSHIP_LABELS[relationship] || "No informado"}{relationship === "other" && relationshipOther ? ` ${relationshipOther}` : ""}</dd></div>
+        <div><dt>Quién respondió</dt><dd>{RESPONDENT_LABELS[textValue(report.report_payload.respondentType)] || "No informado"}</dd></div>
+        <div><dt>Participación de la persona residente</dt><dd>{PARTICIPATION_LABELS[textValue(report.report_payload.residentParticipation)] || "No informado"}</dd></div>
+        <div><dt>Privacidad</dt><dd>{PRIVACY_LABELS[textValue(report.report_payload.privacyMode)] || "No informada"}</dd></div>
+        <div><dt>Destino solicitado</dt><dd>{DESTINATION_LABELS[textValue(report.report_payload.requestedDestination)] || "Sólo revisión estatal privada"}</dd></div>
+    </dl></div>
+    <h4>Relato privado</h4>
+    <p className="stateInboxNarrative">{reportSummary(report)}</p>
+    <h4>Respuestas y resultados privados</h4>
+    <div>
+      {EXPERIENCE_DIMENSIONS.map((dimension) => {
+        const result = recordValue(results[dimension.id]);
+        const resultSummary = typeof result.average === "number"
+          ? `${result.average.toFixed(2)} · ${CATEGORY_LABELS[textValue(result.category)] || "Sin categoría"}`
+          : "Sin información suficiente";
+        return <section className="stateExperienceSummary" key={dimension.id} aria-label={dimension.title}>
+          <h4>{dimension.title}</h4>
+          <p><strong>Resultado interno:</strong> {resultSummary} · {typeof result.scoredCount === "number" ? result.scoredCount : 0} puntuadas · {typeof result.excludedCount === "number" ? result.excludedCount : 0} excluidas.</p>
+          <div className="stateExperienceAnswers">{EXPERIENCE_QUESTIONS.filter((question) => question.dimensionId === dimension.id).map((question) => <div key={question.id}><span>{question.number}. {directWording ? question.directText : question.representativeText}</span><strong>{answerLabel(question.scale, answers[question.id])}</strong></div>)}</div>
+        </section>;
+      })}
+    </div>
+    <h4>Autorizaciones futuras privadas</h4>
+    <div className="stateExperienceSummary"><dl><div><dt>Mostrar nombre público en el futuro</dt><dd>{futureAuthorizations.publicName === true ? "Autorizado" : "No autorizado"}</dd></div><div><dt>Compartir contacto con el ELEPEM</dt><dd>{futureAuthorizations.shareContactWithFacility === true ? "Autorizado" : "No autorizado"}</dd></div></dl></div>
+  </>;
+}
 function triageFor(report: InboxReport): Triage {
   const saved = [...(report.events || [])].reverse().find((event) => event.event_data?.triage)?.event_data?.triage;
   return {
@@ -45,7 +120,7 @@ function triageFor(report: InboxReport): Triage {
     safeContactRecorded: saved?.safeContactRecorded === true,
     relatedCasesSearched: saved?.relatedCasesSearched === true,
     personWillRecorded: saved?.personWillRecorded === true,
-    priority: saved?.priority === "Alta" || saved?.priority === "Media" ? saved.priority : report.priority === "Alta" || report.priority === "Media" ? report.priority : "Baja",
+    priority: triagePriority(saved?.priority) || triagePriority(report.priority) || "Por evaluar",
     scope: textValue(saved?.scope),
     route: textValue(saved?.route),
   };
@@ -95,11 +170,11 @@ export function StateInbox() {
           <header><div><small>{selected.case_code} · {new Date(selected.created_at).toLocaleString("es-UY")}</small><h2>{facilityLabel(selected)}</h2></div><div className="stateInboxHeaderBadges"><span className={`stateInboxKind stateInboxKind-${selected.entry_type}`}>{KIND_LABELS[selected.entry_type]}</span><span className="sourceBadge sourceBadge-gray">{STATUS_LABELS[selected.current_status] || selected.current_status}</span></div></header>
           <div className="stateInboxDetailTabs" role="tablist" aria-label="Detalle del expediente"><button type="button" role="tab" aria-selected={detailTab === "information"} className={detailTab === "information" ? "active" : ""} onClick={() => setDetailTab("information")}>Información</button><button type="button" role="tab" aria-selected={detailTab === "actions"} className={detailTab === "actions" ? "active" : ""} onClick={() => setDetailTab("actions")}>Acciones</button></div>
           {detailTab === "information" ? <section className="stateInboxInformation" aria-label="Información del expediente">
-            {selected.entry_type === "experience" ? <><h3>Experiencia recibida</h3><dl className="stateExperienceSummary"><div><dt>Vínculo</dt><dd>{textValue(selected.report_payload.relationship) || "No informado"}</dd></div><div><dt>Período</dt><dd>{textValue(selected.report_payload.period) || "No informado"}</dd></div><div><dt>Destino solicitado</dt><dd>{DESTINATION_LABELS[textValue(selected.report_payload.requestedDestination)] || "Sólo revisión estatal privada"}</dd></div></dl><p className="stateInboxNarrative">{reportSummary(selected)}</p><div className="stateExperienceAnswers">{Object.entries(selected.report_payload.answers || {}).map(([key, answer]) => <div key={key}><span>{key}</span><strong>{ANSWER_LABELS[textValue(answer)] || "Sin respuesta"}</strong></div>)}</div></> : <><p className="stateInboxNarrative">{reportSummary(selected)}</p>{selected.entry_type === "facility_change" && selected.report_payload.removeCurrentPhoto === true && <p className="stateInboxNarrative"><strong>Foto actual:</strong> se solicitó su retiro. Seguirá publicada hasta que el Estado revise y resuelva el expediente.</p>}</>}
-            {selected.contacts.length > 0 && <section className="stateInboxPrivateData"><h3>Contacto privado</h3><p>{[selected.contacts[0]?.phone, selected.contacts[0]?.email].filter(Boolean).join(" · ")}</p></section>}
+            {selected.entry_type === "experience" ? <ExperienceInformation report={selected} /> : <><p className="stateInboxNarrative">{reportSummary(selected)}</p>{selected.entry_type === "facility_change" && selected.report_payload.removeCurrentPhoto === true && <p className="stateInboxNarrative"><strong>Foto actual:</strong> se solicitó su retiro. Seguirá publicada hasta que el Estado revise y resuelva el expediente.</p>}</>}
+            {selected.contacts.length > 0 && <section className="stateInboxPrivateData"><h3>Contacto privado</h3><p>{[selected.contacts[0]?.name, selected.contacts[0]?.phone, selected.contacts[0]?.email].filter(Boolean).join(" · ")}</p></section>}
             {selected.attachments.length > 0 && <section className="stateInboxPrivateData"><h3>Adjuntos privados</h3><ul className="stateAttachmentList">{selected.attachments.map((attachment) => <li key={attachment.id}>{attachment.mime_type.startsWith("image/") ? <img src={`/api/institutional/attachments/${attachment.id}`} alt={`Adjunto privado: ${attachment.file_name}`} /> : <FileText size={18} aria-hidden="true" />}<a href={`/api/institutional/attachments/${attachment.id}`} target="_blank" rel="noreferrer">{attachment.file_name}</a>{attachment.mime_type.startsWith("image/") && <ImageIcon size={15} aria-hidden="true" />}</li>)}</ul></section>}
           </section> : <section className="stateInboxActions" aria-label="Acciones de revisión">
-            <div className="stateTriagePanel"><h3>1. Revisar seguridad y alcance</h3><label className="reportCheckbox"><input type="checkbox" checked={selectedTriage?.immediateDangerReviewed || false} onChange={(event) => updateTriage("immediateDangerReviewed", event.target.checked)} /><span>Se revisó si existe peligro inmediato</span></label><label className="reportCheckbox"><input type="checkbox" checked={selectedTriage?.safeContactRecorded || false} onChange={(event) => updateTriage("safeContactRecorded", event.target.checked)} /><span>Se registró una forma de contacto seguro</span></label><label className="reportCheckbox"><input type="checkbox" checked={selectedTriage?.relatedCasesSearched || false} onChange={(event) => updateTriage("relatedCasesSearched", event.target.checked)} /><span>Se buscaron entradas o casos relacionados</span></label><label className="reportCheckbox"><input type="checkbox" checked={selectedTriage?.personWillRecorded || false} onChange={(event) => updateTriage("personWillRecorded", event.target.checked)} /><span>Se registró la voluntad de la persona o la posibilidad de contactarla</span></label><div className="reportFieldGrid"><label className="reportField"><span>Nivel de urgencia</span><select value={selectedTriage?.priority || "Baja"} onChange={(event) => updateTriage("priority", event.target.value as Triage["priority"])}><option value="Alta">Alta</option><option value="Media">Media</option><option value="Baja">Baja</option></select></label><label className="reportField"><span>¿Está dentro del alcance del servicio?</span><select value={selectedTriage?.scope || ""} onChange={(event) => updateTriage("scope", event.target.value)}><option value="">Pendiente de determinar</option><option value="Sí">Sí</option><option value="No">No</option></select></label><label className="reportField"><span>Ruta principal sugerida</span><select value={selectedTriage?.route || ""} onChange={(event) => updateTriage("route", event.target.value)}><option value="">Pendiente de determinar</option><option>Equipo especializado / Inmayores</option><option>Dirección Departamental de Salud</option><option>ELEPEM, comunicación privada</option><option>Otro circuito institucional</option></select></label></div><label className="reportField stateInboxNote"><span>Nota de triaje</span><textarea value={note[selected.id] || ""} onChange={(event) => setNote((current) => ({ ...current, [selected.id]: event.target.value }))} maxLength={4000} placeholder="Distinguir hechos comunicados, información faltante y decisión de recepción." /></label><button type="button" className="reportContinue" disabled={busyId === selected.id} onClick={() => void saveTriage()}>Guardar revisión</button></div>
+            <div className="stateTriagePanel"><h3>1. Revisar seguridad y alcance</h3><label className="reportCheckbox"><input type="checkbox" checked={selectedTriage?.immediateDangerReviewed || false} onChange={(event) => updateTriage("immediateDangerReviewed", event.target.checked)} /><span>Se revisó si existe peligro inmediato</span></label><label className="reportCheckbox"><input type="checkbox" checked={selectedTriage?.safeContactRecorded || false} onChange={(event) => updateTriage("safeContactRecorded", event.target.checked)} /><span>Se registró una forma de contacto seguro</span></label><label className="reportCheckbox"><input type="checkbox" checked={selectedTriage?.relatedCasesSearched || false} onChange={(event) => updateTriage("relatedCasesSearched", event.target.checked)} /><span>Se buscaron entradas o casos relacionados</span></label><label className="reportCheckbox"><input type="checkbox" checked={selectedTriage?.personWillRecorded || false} onChange={(event) => updateTriage("personWillRecorded", event.target.checked)} /><span>Se registró la voluntad de la persona o la posibilidad de contactarla</span></label><div className="reportFieldGrid"><label className="reportField"><span>Nivel de urgencia</span><select value={selectedTriage?.priority || "Por evaluar"} onChange={(event) => updateTriage("priority", event.target.value as Triage["priority"])}><option value="Por evaluar">Por evaluar</option><option value="Alta">Alta</option><option value="Media">Media</option><option value="Baja">Baja</option></select></label><label className="reportField"><span>¿Está dentro del alcance del servicio?</span><select value={selectedTriage?.scope || ""} onChange={(event) => updateTriage("scope", event.target.value)}><option value="">Pendiente de determinar</option><option value="Sí">Sí</option><option value="No">No</option></select></label><label className="reportField"><span>Ruta principal sugerida</span><select value={selectedTriage?.route || ""} onChange={(event) => updateTriage("route", event.target.value)}><option value="">Pendiente de determinar</option><option>Equipo especializado / Inmayores</option><option>Dirección Departamental de Salud</option><option>ELEPEM, comunicación privada</option><option>Otro circuito institucional</option></select></label></div><label className="reportField stateInboxNote"><span>Nota de triaje</span><textarea value={note[selected.id] || ""} onChange={(event) => setNote((current) => ({ ...current, [selected.id]: event.target.value }))} maxLength={4000} placeholder="Distinguir hechos comunicados, información faltante y decisión de recepción." /></label><button type="button" className="reportContinue" disabled={busyId === selected.id} onClick={() => void saveTriage()}>Guardar revisión</button></div>
             <section className="stateInboxDecision">
               <h3>Acciones específicas</h3>
               <div className="institutionalCardActions">
@@ -128,7 +203,7 @@ export function StateInbox() {
               </div>
             </section>
             {selected.facility && <section className="stateDocumentStatus"><h3>Estado documental interno</h3><p>Este estado no se muestra al público y no representa una evaluación de calidad o seguridad.</p>{selected.documentReview?.decision === "inadequate" && <p className="stateInternalStatus"><strong>Inadecuado interno vigente.</strong> {selected.documentReview.reason}</p>}<label className="reportField"><span>Fundamento</span><textarea value={documentReasons[selected.id] || ""} onChange={(event) => setDocumentReasons((current) => ({ ...current, [selected.id]: event.target.value }))} minLength={10} maxLength={4000} /></label><div className="institutionalCardActions"><button type="button" className="reportBack" disabled={busyId === selected.id} onClick={() => void saveDocumentStatus("inadequate")}>Marcar Inadecuado</button><button type="button" className="reportBack" disabled={busyId === selected.id} onClick={() => void saveDocumentStatus("clear")}>Restablecer automático</button></div></section>}
-            {showPublicationEditor && selectedDraft && <section className="institutionalPublicationEditor"><h3>Preparar publicación</h3><p>Revisá que el texto no incluya datos identificatorios.</p><label className="reportField"><span>Texto que verá el público</span><textarea value={selectedDraft.publicBody} onChange={(event) => updateDraft(selected.id, "publicBody", event.target.value)} minLength={10} maxLength={4000} /></label><div className="reportFieldGrid"><label className="reportField"><span>Vínculo</span><input value={selectedDraft.publicRelationship} onChange={(event) => updateDraft(selected.id, "publicRelationship", event.target.value)} maxLength={120} /></label><label className="reportField"><span>Período</span><input value={selectedDraft.publicPeriod} onChange={(event) => updateDraft(selected.id, "publicPeriod", event.target.value)} maxLength={120} /></label></div><button type="button" className="reportContinue statePublishButton" disabled={busyId === selected.id || selectedDraft.publicBody.trim().length < 10} onClick={() => setPendingAction({ report: selected, action: "publish", title: "¿Publicar experiencia?", description: "El texto moderado aparecerá en la ficha pública." })}><Send size={17} />Confirmar publicación</button></section>}
+            {showPublicationEditor && selectedDraft && <section className="institutionalPublicationEditor"><h3>Preparar publicación</h3><p>Escribí una versión nueva, anonimizada y sin datos de contacto ni puntajes internos.</p><label className="reportField"><span>Texto que verá el público</span><textarea value={selectedDraft.publicBody} onChange={(event) => updateDraft(selected.id, "publicBody", event.target.value)} minLength={10} maxLength={4000} /></label><div className="reportFieldGrid"><label className="reportField"><span>Vínculo</span><input value={selectedDraft.publicRelationship} onChange={(event) => updateDraft(selected.id, "publicRelationship", event.target.value)} maxLength={120} /></label>{!isV5Experience(selected) && <label className="reportField"><span>Período</span><input value={selectedDraft.publicPeriod} onChange={(event) => updateDraft(selected.id, "publicPeriod", event.target.value)} maxLength={120} /></label>}</div><button type="button" className="reportContinue statePublishButton" disabled={busyId === selected.id || selectedDraft.publicBody.trim().length < 10} onClick={() => setPendingAction({ report: selected, action: "publish", title: "¿Publicar experiencia?", description: "El texto moderado aparecerá en la ficha pública." })}><Send size={17} />Confirmar publicación</button></section>}
             {selected.entry_type === "experience" && selected.publication?.status === "published" && <button type="button" className="reportBack" disabled={busyId === selected.id} onClick={() => setPendingAction({ report: selected, action: "withdraw", title: "¿Retirar publicación?", description: "La experiencia dejará de aparecer en la ficha pública." })}><EyeOff size={17} />Retirar publicación</button>}
           </section>}
         </article>}

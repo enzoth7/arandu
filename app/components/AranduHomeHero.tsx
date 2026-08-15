@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpen, CalendarDays, Eye, ListChecks } from "lucide-react";
+import { BookOpen } from "lucide-react";
 
 export function AranduHomeHero() {
   return <>
@@ -29,13 +29,6 @@ export function AranduHomeHero() {
         />
       </div>
     </section>
-    <p className="aranduHeroCredit">Fotografía: Daniela Hernández.</p>
-
-    <div className="aranduTrustStrip" aria-label="Principios del registro">
-      <span><Eye size={20} aria-hidden="true" /><strong>Fuentes visibles</strong></span>
-      <span><CalendarDays size={20} aria-hidden="true" /><strong>Datos con fecha</strong></span>
-      <span><ListChecks size={20} aria-hidden="true" /><strong>Criterios de revisión</strong></span>
-      <Link href="/fuentes">Cómo usamos los datos</Link>
-    </div>
+    <p className="aranduHeroCredit">Fotografía: © Daniela Hernández.</p>
   </>;
 }

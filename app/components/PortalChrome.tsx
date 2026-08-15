@@ -12,6 +12,7 @@ import {
   pathFor,
   type Portal,
 } from "./navigation";
+import { AcademicPrototypeNotice } from "./AcademicPrototypeNotice";
 
 // Cabecera compartida por el producto público y el portal de organización.
 //
@@ -75,6 +76,7 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
     </header>
 
     <div className="shell">
+      {portal === "public" && <AcademicPrototypeNotice />}
       {children}
       <footer className="aranduFooter">
         {portal === "public" && <div className="aranduFooterContent">

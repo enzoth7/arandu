@@ -3,7 +3,27 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { demoIntakeEnabled, parseExperienceSubmission, parseFacilityChangeSubmission } from "../../lib/demo-intake.mjs";
 
-const validAnswers = { daily_life: "yes", communication: "partial", participation: "no", environment: "unknown", contact: "prefer_not_to_answer" };
+const validAnswers = { q01: "always", q05: "yes_completely", q30: "unable_to_evaluate" };
+
+function validExperience(overrides = {}) {
+  return {
+    version: 5,
+    facilityId: "REAL-123",
+    privacyMode: "anonymous",
+    contact: null,
+    relationship: "family_referent_friend_neighbor",
+    relationshipOther: null,
+    respondentType: "family_or_close_person",
+    residentParticipation: "jointly_discussed",
+    narrative: "Una experiencia concreta para la revisión privada.",
+    answers: validAnswers,
+    requestedDestination: "private_review",
+    publicationConsent: false,
+    futureAuthorizations: { publicName: false, shareContactWithFacility: false },
+    consent: true,
+    ...overrides,
+  };
+}
 
 test("la recepción demo requiere las dos banderas", () => {
   assert.equal(demoIntakeEnabled({ DEMO_MODE: "true", DEMO_INTAKE_ENABLED: "true" }), true);
@@ -11,46 +31,96 @@ test("la recepción demo requiere las dos banderas", () => {
   assert.equal(demoIntakeEnabled({}), false);
 });
 
-test("la experiencia sólo exige ELEPEM y consentimiento y conserva el período por años", () => {
-  const parsed = parseExperienceSubmission({ facilityId: "REAL-123", relationship: "Familiar", periodStartYear: "2022", periodEndYear: "2024", answers: validAnswers, requestedDestination: "private_review", publicationConsent: false, privacy: "Confidencial", consent: true, contact: { email: "persona@example.com" } });
+test("la experiencia v5 guarda el cuestionario y los puntajes calculados por el servidor sin PII", () => {
+  const parsed = parseExperienceSubmission(validExperience({
+    privacyMode: "confidential",
+    contact: { fullName: " Persona ", email: "PERSONA@example.com", phone: "" },
+  }));
   assert.equal(parsed?.payload.facilityId, "REAL-123");
-  assert.equal(parsed?.payload.version, 4);
+  assert.equal(parsed?.payload.version, 5);
+  assert.equal(parsed?.payload.questionnaireVersion, "vcr1-30");
+  assert.equal(parsed?.payload.scoringVersion, "vcr1-dimensions-1");
+  assert.equal(parsed?.payload.privacyNoticeVersion, "vcr1-2026-08-15");
   assert.equal(parsed?.payload.publicationConsent, false);
   assert.equal(parsed?.payload.publication, "never_automatic");
-  assert.equal(parsed?.payload.period, "De 2022 a 2024");
-  assert.equal(parsed?.payload.privacy, "Confidencial");
+  assert.equal(parsed?.payload.privacyMode, "confidential");
+  assert.equal(parsed?.payload.dimensionResults.autonomy.average, 4);
+  assert.equal(parsed?.payload.dimensionResults.contract.excludedCount, 1);
+  assert.equal("contact" in (parsed?.payload || {}), false);
+  assert.equal("period" in (parsed?.payload || {}), false);
+  assert.equal(parsed?.contact?.name, "Persona");
   assert.equal(parsed?.contact?.email, "persona@example.com");
-  const sparse = parseExperienceSubmission({ facilityId: "REAL-123", consent: true });
-  assert.equal(sparse?.payload.requestedDestination, "private_review");
-  assert.equal(sparse?.payload.privacy, "Anónima");
-  assert.equal(sparse?.contact, null);
-  assert.equal(sparse?.payload.period, null);
-  assert.equal(parseExperienceSubmission({ facilityId: "REAL-123", privacy: "Anónima", contact: { email: "persona@example.com" }, consent: true })?.contact, null);
-  assert.equal(parseExperienceSubmission({ facilityId: "REAL-123", periodStartYear: "2025", periodEndYear: "2022", consent: true }), null);
-  assert.equal(parseExperienceSubmission({ facilityId: "", consent: true }), null);
-  assert.equal(parseExperienceSubmission({ facilityId: "REAL-123", consent: false }), null);
-  assert.equal(parseExperienceSubmission({ facilityId: "REAL-123", requestedDestination: "consider_anonymized", publicationConsent: false, consent: true })?.payload.requestedDestination, "private_review");
 });
 
-test("experiencia y preocupación ofrecen relato, voz y archivos privados en el primer paso", async () => {
-  const [experience, concern, sharedBlock, privateAttachments, attachmentRoute] = await Promise.all([
+test("el contrato v5 rechaza aliases, versiones del cliente y respuestas desconocidas", () => {
+  const withoutNarrative = validExperience();
+  delete withoutNarrative.narrative;
+  const withoutContact = validExperience();
+  delete withoutContact.contact;
+  assert.equal(parseExperienceSubmission(withoutNarrative), null);
+  assert.equal(parseExperienceSubmission(withoutContact), null);
+  assert.equal(parseExperienceSubmission(validExperience({ version: 4 })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ privacy: "Anónima" })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ participation: "direct" })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ period: "2022" })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ questionnaireVersion: "vcr1-30" })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ answers: { q31: "always" } })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ answers: { q01: "yes_completely" } })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ answers: {}, narrative: "   " })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ relationship: "other", relationshipOther: null })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ relationshipOther: "No corresponde" })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ relationship: "other", relationshipOther: "Referente legal" }))?.payload.relationshipOther, "Referente legal");
+});
+
+test("privacidad, destino, contacto y autorizaciones futuras se validan sin fallback", () => {
+  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "Anónima" })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ contact: { email: "persona@example.com" } })), null);
+  const anonymousWithContact = parseExperienceSubmission(validExperience({ contact: { fullName: "Persona", phone: null, email: "persona@example.com" } }));
+  assert.equal(anonymousWithContact?.contact, null);
+  assert.equal("contact" in (anonymousWithContact?.payload || {}), false);
+  assert.equal(parseExperienceSubmission(validExperience({ requestedDestination: "consider_anonymized", publicationConsent: false })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ requestedDestination: "consider_anonymized", publicationConsent: true }))?.payload.publicationConsent, true);
+  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "confidential", contact: null, requestedDestination: "consider_anonymized", publicationConsent: true })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "confidential", contact: null, publicationConsent: true })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "confidential", contact: null, futureAuthorizations: { publicName: true, shareContactWithFacility: false } })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "confidential", contact: { fullName: null, email: "persona@example.com" } })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "registered_identity", contact: { fullName: null, phone: null, email: "persona@example.com" }, futureAuthorizations: { publicName: true, shareContactWithFacility: false } })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "registered_identity", contact: null, futureAuthorizations: { publicName: false, shareContactWithFacility: true } })), null);
+  const registered = parseExperienceSubmission(validExperience({
+    privacyMode: "registered_identity",
+    contact: { fullName: "Persona", phone: "+598 99 123 456", email: null },
+    futureAuthorizations: { publicName: true, shareContactWithFacility: true },
+  }));
+  assert.deepEqual(registered?.payload.futureAuthorizations, { publicName: true, shareContactWithFacility: true });
+  assert.deepEqual(registered?.contact, { name: "Persona", phone: "+598 99 123 456", email: null });
+});
+
+test("la experiencia conserva adjuntos sin grabador y la preocupación conserva relato y voz", async () => {
+  const [experience, experienceStyles, concern, sharedBlock, privateAttachments, attachmentRoute] = await Promise.all([
     readFile(new URL("../../app/components/ExperienceForm.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../../app/components/ExperienceForm.module.css", import.meta.url), "utf8"),
     readFile(new URL("../../app/components/IntakeReportForm.tsx", import.meta.url), "utf8"),
     readFile(new URL("../../app/components/PrivacyContactBlock.tsx", import.meta.url), "utf8"),
     readFile(new URL("../../app/components/PrivateAttachmentFields.tsx", import.meta.url), "utf8"),
     readFile(new URL("../../app/api/intake-reports/[caseCode]/attachments/route.ts", import.meta.url), "utf8"),
   ]);
-  assert.match(experience, /<PrivacyContactBlock/);
   assert.match(experience, /Sólo revisión estatal privada/);
   assert.doesNotMatch(experience, /Resumen agregado/);
   assert.match(concern, /<PrivacyContactBlock/);
+  assert.match(experience, /Anónima/);
+  assert.match(experience, /Confidencial/);
+  assert.match(experience, /Con identidad registrada/);
   assert.match(sharedBlock, /Anónima/);
   assert.match(sharedBlock, /Confidencial/);
   assert.match(sharedBlock, /Con identidad registrada/);
-  assert.match(experience, /\{step === 1[\s\S]*<PrivateAttachmentFields[\s\S]*\{step === 2/);
-  assert.match(experience, /\{step === 1[\s\S]*Contá brevemente qué pasó[\s\S]*\{step === 2/);
-  assert.match(concern, /\{step === 1[\s\S]*<PrivateAttachmentFields[\s\S]*\{step === 2/);
-  assert.match(concern, /\{step === 1[\s\S]*Contá brevemente qué está pasando[\s\S]*\{step === 2/);
+  assert.match(experience, /<PrivateAttachmentFields/);
+  assert.match(experience, /allowRecording=\{false\}/);
+  assert.match(experience, /catch \{\s*failed\.push\(file\.name\);/);
+  assert.match(experience, /result\.uploadToken[\s\S]*await uploadFiles[\s\S]*files\.map\(\(file\) => file\.name\)/);
+  assert.match(experience, /Contá brevemente tu experiencia/);
+  assert.match(concern, /<PrivateAttachmentFields/);
+  assert.match(concern, /Contá brevemente qué está pasando/);
+  assert.doesNotMatch(concern, /allowRecording=\{false\}/);
   assert.match(privateAttachments, /privateNarrativeComposer/);
   assert.match(privateAttachments, /TOCÁ/);
   assert.match(privateAttachments, /Adjuntar archivo/);
@@ -58,8 +128,35 @@ test("experiencia y preocupación ofrecen relato, voz y archivos privados en el 
   assert.doesNotMatch(privateAttachments, /Archivos privados \(opcionales\)|Podés adjuntar imágenes, audios o documentos para la revisión\./);
   assert.match(privateAttachments, /navigator\.mediaDevices\.getUserMedia/);
   assert.match(privateAttachments, /new MediaRecorder/);
+  assert.match(experienceStyles, /reportFilePicker\):focus-within/);
   assert.doesNotMatch(experience, /accept="image\/jpeg|Imágenes privadas|sólo admiten imágenes privadas/);
   assert.doesNotMatch(attachmentRoute, /entry_type === "experience" && cleanType\.startsWith\("audio\/"\)/);
+});
+
+test("el formulario vCR1 usa nueve pasos, adaptación segura y un borrador sin datos sensibles", async () => {
+  const source = await readFile(new URL("../../app/components/ExperienceForm.tsx", import.meta.url), "utf8");
+  assert.match(source, /Tu experiencia puede ayudar a otras personas\. Este cuestionario busca conocer cómo es la vida cotidiana en este establecimiento desde la perspectiva de las personas residentes y de quienes las acompañan\. No incluyas nombres, diagnósticos, fotografías ni otros datos que permitan identificar a una persona\./);
+  assert.match(source, /step >= 3 && step <= 8/);
+  assert.match(source, /Fase \{currentPhase\} de 4/);
+  assert.match(source, /Bloque \$\{currentDimension\.order\} de 6/);
+  assert.match(source, /return value === "current_resident";/);
+  assert.match(source, /next === "anonymous"\) setContact\(EMPTY_CONTACT\)/);
+  assert.match(source, /!validInitialFacilityId && restored\.facilityId/);
+  assert.match(source, /Borrar borrador/);
+  assert.match(source, /El borrador guardado no era válido y se descartó/);
+  assert.match(source, /aria-describedby=\{errors\.respondentType/);
+  assert.match(source, /aria-describedby=\{errors\.residentParticipation/);
+  assert.match(source, /aria-describedby=\{errors\.consent/);
+  assert.doesNotMatch(source, /Período aproximado|periodStartYear|periodEndYear/);
+
+  const draftStart = source.indexOf("const draftSnapshot = useMemo");
+  const draftEnd = source.indexOf("useEffect(() =>", draftStart);
+  assert.ok(draftStart >= 0 && draftEnd > draftStart);
+  const draftSource = source.slice(draftStart, draftEnd);
+  assert.match(draftSource, /facilityId/);
+  assert.match(draftSource, /residentParticipation/);
+  assert.match(draftSource, /answers/);
+  assert.doesNotMatch(draftSource, /narrative|relationshipOther|contact|files|requestedDestination|publicationConsent|futureAuthorizations|consent/);
 });
 
 test("el cambio ELEPEM no exige fecha y limita fotos privadas", async () => {
@@ -155,16 +252,17 @@ test("publicar acepta el texto moderado y completa el flujo en una sola accion",
   const workflow = await readFile(new URL("../../lib/experience-publication-db.ts", import.meta.url), "utf8");
   assert.match(route, /parseExperiencePreview/);
   assert.match(route, /publishExperiencePublication\(\{[\s\S]*preview/);
-  assert.match(workflow, /if \(!input\.preview\)[\s\S]*facility_experience_publications/);
+  assert.match(workflow, /if \(!preview\)[\s\S]*facility_experience_publications/);
   assert.match(workflow, /SET status = 'published'/);
 });
 
-test("las experiencias demo usan la referencia aislada tras el corte ELEPEM", async () => {
+test("las experiencias usan exactamente una referencia real o demo tras el corte ELEPEM", async () => {
   const workflow = await readFile(new URL("../../lib/experience-publication-db.ts", import.meta.url), "utf8");
   assert.match(workflow, /SELECT id, entry_type, is_demo, facility_id::text, demo_facility_id/);
   assert.match(workflow, /report_id, facility_id, demo_facility_id/);
-  assert.match(workflow, /facility_id IS NULL AND demo_facility_id = \$2/);
-  assert.doesNotMatch(workflow, /WHERE report_id = \$1 AND facility_id = \$2/);
+  assert.match(workflow, /Boolean\(report\.facility_id\) === Boolean\(report\.demo_facility_id\)/);
+  assert.match(workflow, /facility_id IS NOT DISTINCT FROM \$2::bigint/);
+  assert.match(workflow, /demo_facility_id IS NOT DISTINCT FROM \$3/);
 });
 
 test("la bandeja presenta experiencias legibles sin JSON ni historial tecnico", async () => {
@@ -173,6 +271,17 @@ test("la bandeja presenta experiencias legibles sin JSON ni historial tecnico", 
   assert.match(source, /Experiencia recibida/);
   assert.match(source, /Confirmar publicación/);
   assert.doesNotMatch(source, /Historial append-only|<pre>/);
+});
+
+test("la bandeja v5 separa resultados y autorizaciones privadas de la publicacion moderada", async () => {
+  const source = await readFile(new URL("../../app/components/institutional/StateInbox.tsx", import.meta.url), "utf8");
+  assert.match(source, /EXPERIENCE_DIMENSIONS\.map/);
+  assert.match(source, /Respuestas y resultados privados/);
+  assert.match(source, /Autorizaciones futuras privadas/);
+  assert.match(source, /contacts\[0\]\?\.name/);
+  assert.match(source, /report\.report_payload\.privacyMode === "anonymous"/);
+  assert.match(source, /publicBody: report\.publication\?\.publicBody \|\| ""/);
+  assert.match(source, /!isV5Experience\(selected\)[\s\S]*Período/);
 });
 
 test("la bandeja unifica entradas y etiqueta cada tipo", async () => {

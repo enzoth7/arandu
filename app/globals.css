@@ -1,31 +1,31 @@
 :root {
-  --bg: #f7f3ea;
-  --surface: #fffdfc;
-  --surface2: #f2f5ef;
-  --text: #20312e;
-  --muted: #596b65;
-  --line: #d8e0d8;
-  --navy: #153f3b;
-  --navy2: #0e332f;
-  --blue: #3a747a;
-  --blue2: #285f64;
+  --bg: #f4f9ff;
+  --surface: #ffffff;
+  --surface2: #edf6ff;
+  --text: #17324f;
+  --muted: #536a82;
+  --line: #cbddef;
+  --navy: #123b67;
+  --navy2: #0a2d52;
+  --blue: #1769aa;
+  --blue2: #0f4f87;
   --green: #087443;
   --amber: #8a4b08;
   --cyan: #0891b2;
   --status-gray: #64748b;
   --red: #b42318;
   --violet: #6941c6;
-  --shadow: 0 14px 36px rgba(31, 55, 47, .09);
-  --radius: 18px;
+  --shadow: 0 6px 20px rgba(18, 59, 103, .07);
+  --radius: 14px;
   --greenbg: #ebfbf2;
   --amberbg: #fff7e5;
   --cyanbg: #ecfeff;
   --status-gray-bg: #f1f5f9;
   --redbg: #fff0ef;
   --violetbg: #f5f1ff;
-  --bluebg: #edf4ff;
+  --bluebg: #e8f3ff;
   --focus: #d69e2e;
-  --font-title: var(--font-merriweather), Georgia, "Times New Roman", serif;
+  --font-title: var(--font-merriweather-sans), Arial, sans-serif;
   --font-subtitle: var(--font-merriweather-sans), Arial, sans-serif;
   --font-text: var(--font-merriweather-sans), Arial, sans-serif;
 
@@ -63,12 +63,13 @@ body {
   color: var(--text);
 }
 
-:where(h1, h2, .typeTitle) {
+:where(h1, h2, h3, h4, h5, h6, .typeTitle, .typeSubtitle) {
   font-family: var(--font-title);
   font-optical-sizing: auto;
+  font-weight: 800;
 }
 
-:where(h3, h4, h5, h6, .typeSubtitle, .lead) {
+:where(.lead) {
   font-family: var(--font-subtitle);
 }
 
@@ -92,7 +93,7 @@ button {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  background: radial-gradient(circle at 75% -20%, #dfe9de 0, transparent 28rem), var(--bg);
+  background: radial-gradient(circle at 82% -15%, #dceeff 0, transparent 30rem), var(--bg);
   color: var(--text);
   transition: background .2s, color .2s;
 }
@@ -594,10 +595,10 @@ button {
 /* Cards & Content */
 .card, .info {
   background: var(--surface);
-  border: 1px solid #d5dee9;
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 21px;
-  box-shadow: 0 12px 32px rgba(20,35,55,.07);
+  box-shadow: var(--shadow);
 }
 
 .hero {
@@ -4053,7 +4054,7 @@ textarea {
   padding: 8px 11px;
   border: 1px solid #d6bbfb;
   border-radius: 999px;
-  background: rgba(255, 253, 252, .94);
+  background: rgba(255, 255, 255, .94);
   color: #53389e;
   box-shadow: 0 5px 16px rgba(83, 56, 158, .16);
   font-size: .74rem;
@@ -4350,7 +4351,7 @@ textarea {
 .registryMapLayout,
 .registryMapLayout.hasUnlocatedPanel {
   width: 100%;
-  grid-template-columns: minmax(240px, 290px) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(240px, 290px) minmax(320px, 2fr) minmax(420px, 3fr);
   gap: 16px;
   margin: 18px 0 0;
   transform: none;
@@ -4519,10 +4520,10 @@ textarea {
   height: 20px;
   margin-top: -8px;
   appearance: none;
-  border: 3px solid #fffdfc;
+  border: 3px solid #fff;
   border-radius: 50%;
-  background: #2f7376;
-  box-shadow: 0 1px 5px rgba(21, 63, 59, .28);
+  background: var(--blue);
+  box-shadow: 0 1px 5px rgba(23, 105, 170, .24);
   pointer-events: auto;
 }
 
@@ -4534,15 +4535,15 @@ textarea {
 .registryPriceTrack input[type="range"]::-moz-range-thumb {
   width: 16px;
   height: 16px;
-  border: 3px solid #fffdfc;
+  border: 3px solid #fff;
   border-radius: 50%;
-  background: #2f7376;
-  box-shadow: 0 1px 5px rgba(21, 63, 59, .28);
+  background: var(--blue);
+  box-shadow: 0 1px 5px rgba(23, 105, 170, .24);
   pointer-events: auto;
 }
 
 .registryPriceTrack input[type="range"]:focus-visible {
-  outline: 3px solid rgba(58, 116, 122, .28);
+  outline: 3px solid rgba(23, 105, 170, .24);
   outline-offset: 4px;
   border-radius: 8px;
 }
@@ -4616,7 +4617,7 @@ textarea {
 @media (max-width: 1180px) {
   .registryMapLayout,
   .registryMapLayout.hasUnlocatedPanel {
-    grid-template-columns: minmax(220px, 260px) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(220px, 260px) minmax(280px, 2fr) minmax(360px, 3fr);
   }
   .registryMapLayout-list,
   .registryMapLayout-map {
@@ -5999,16 +6000,16 @@ textarea {
   gap: 16px;
   padding: 12px 18px;
   border-radius: 16px;
-  background: #e6fcf5;
-  border: 1.5px solid #99f6e4;
-  color: #0f766e;
-  box-shadow: 0 4px 14px rgba(15, 118, 110, .06);
+  background: var(--bluebg);
+  border: 1.5px solid #a9c5df;
+  color: var(--blue2);
+  box-shadow: 0 4px 14px rgba(23, 105, 170, .06);
 }
 
 .personDecidesInlineCard .personDecidesCopy strong {
   display: block;
   font-size: 0.98rem;
-  color: #087c70;
+  color: var(--blue2);
   margin-bottom: 2px;
 }
 
@@ -6016,7 +6017,7 @@ textarea {
   margin: 0;
   font-size: 0.8rem;
   line-height: 1.35;
-  color: #115e59;
+  color: #36536f;
 }
 
 .personDecidesInlineCard .inlineBtn {
@@ -6036,15 +6037,15 @@ textarea {
   margin-top: auto;
   padding: 18px;
   border-radius: 16px;
-  background: #e6fcf5;
-  border: 1.5px solid #99f6e4;
-  color: #0f766e;
+  background: var(--bluebg);
+  border: 1.5px solid #a9c5df;
+  color: var(--blue2);
 }
 
 .personDecidesCard strong {
   display: block;
   font-size: 1.05rem;
-  color: #087c70;
+  color: var(--blue2);
   margin-bottom: 6px;
 }
 
@@ -6052,7 +6053,7 @@ textarea {
   margin: 0 0 14px;
   font-size: .84rem;
   line-height: 1.45;
-  color: #115e59;
+  color: #36536f;
 }
 
 .btnTurquoisePrimary {
@@ -6060,34 +6061,34 @@ textarea {
   padding: 11px;
   border: 0;
   border-radius: 10px;
-  background: #087c70;
+  background: var(--blue);
   color: #fff;
   font-weight: 850;
   font-size: .88rem;
   margin-bottom: 8px;
   transition: all .16s ease;
-  box-shadow: 0 4px 12px rgba(8, 124, 112, .2);
+  box-shadow: 0 3px 10px rgba(23, 105, 170, .14);
 }
 
 .btnTurquoisePrimary:hover {
-  background: #066359;
+  background: var(--blue2);
   transform: translateY(-1px);
 }
 
 .btnTurquoiseSecondary {
   width: 100%;
   padding: 10px;
-  border: 1.5px solid #087c70;
+  border: 1.5px solid #a9c5df;
   border-radius: 10px;
   background: #fff;
-  color: #087c70;
+  color: var(--blue2);
   font-weight: 850;
   font-size: .84rem;
   transition: all .16s ease;
 }
 
 .btnTurquoiseSecondary:hover {
-  background: #e6fcf5;
+  background: #edf6ff;
 }
 
 /* Modal Guía Elegir un Lugar para Vivir */
@@ -6142,19 +6143,19 @@ textarea {
   flex: 1;
   height: 10px;
   border-radius: 999px;
-  background: #ccfbf1;
+  background: #dbeeff;
   overflow: hidden;
 }
 
 .formProgressBarFill {
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #0d9488, #087c70);
+  background: var(--blue);
   transition: width 0.3s ease;
 }
 
 .formProgressText {
-  color: #0f766e;
+  color: var(--blue2);
   font-size: 0.82rem;
   font-weight: 850;
   white-space: nowrap;
@@ -6163,8 +6164,8 @@ textarea {
 .choiceModalHeader {
   position: relative;
   padding: 28px 28px 20px;
-  background: linear-gradient(135deg, #f0fdfa 0%, #fff 80%, #ccfbf1 100%);
-  border-bottom: 1px solid #ccfbf1;
+  background: #f2f8ff;
+  border-bottom: 1px solid var(--line);
 }
 
 .choiceModalCloseBtn {
@@ -6191,7 +6192,7 @@ textarea {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #087c70;
+  color: var(--blue2);
   font-size: .78rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -6201,12 +6202,12 @@ textarea {
 
 .choiceModalTitleBox h2 {
   margin: 0 0 6px;
-  color: #134e4a;
+  color: var(--navy);
   font-size: clamp(1.4rem, 2.5vw, 1.85rem);
 }
 
 .choiceModalTitleBox p {
-  color: #115e59;
+  color: #36536f;
   font-size: .9rem;
   line-height: 1.5;
   margin-bottom: 14px;
@@ -6223,8 +6224,8 @@ textarea {
   padding: 4px 10px;
   border-radius: 999px;
   background: #fff;
-  border: 1px solid #99f6e4;
-  color: #0f766e;
+  border: 1px solid #a9c5df;
+  color: var(--blue2);
   font-size: .74rem;
   font-weight: 800;
 }
@@ -6237,7 +6238,7 @@ textarea {
   font-size: .78rem;
   color: #64748b;
   padding-top: 10px;
-  border-top: 1px solid #ccfbf1;
+  border-top: 1px solid var(--line);
 }
 
 .choiceResetBtn {
@@ -6246,7 +6247,7 @@ textarea {
   gap: 5px;
   border: 0;
   background: transparent;
-  color: #087c70;
+  color: var(--blue2);
   font-weight: 800;
   font-size: .78rem;
 }
@@ -6275,16 +6276,16 @@ textarea {
 }
 
 .choiceStepBtn.active {
-  border-color: #087c70;
-  background: #087c70;
+  border-color: var(--blue);
+  background: var(--blue);
   color: #fff;
-  box-shadow: 0 4px 12px rgba(8, 124, 112, .22);
+  box-shadow: 0 3px 10px rgba(23, 105, 170, .14);
 }
 
 .choiceStepBtn.done {
-  border-color: #99f6e4;
-  background: #e6fcf5;
-  color: #0f766e;
+  border-color: #a9c5df;
+  background: var(--bluebg);
+  color: var(--blue2);
 }
 
 .choiceStepBtn .stepNum {
@@ -6308,8 +6309,8 @@ textarea {
   display: inline-block;
   padding: 3px 10px;
   border-radius: 999px;
-  background: #ccfbf1;
-  color: #0f766e;
+  background: var(--bluebg);
+  color: var(--blue2);
   font-size: .74rem;
   font-weight: 850;
   margin-bottom: 8px;
@@ -6317,7 +6318,7 @@ textarea {
 
 .stepHeader h3 {
   margin: 0 0 6px;
-  color: #134e4a;
+  color: var(--navy);
   font-size: 1.35rem;
 }
 
@@ -6354,14 +6355,14 @@ textarea {
 }
 
 .actorCard:hover {
-  border-color: #99f6e4;
-  background: #f0fdfa;
+  border-color: #a9c5df;
+  background: #f2f8ff;
 }
 
 .actorCard.selected {
-  border-color: #087c70;
-  background: #e6fcf5;
-  box-shadow: 0 6px 18px rgba(8, 124, 112, .15);
+  border-color: var(--blue);
+  background: var(--bluebg);
+  box-shadow: 0 4px 14px rgba(23, 105, 170, .1);
 }
 
 .actorNumber {
@@ -6371,19 +6372,19 @@ textarea {
   place-items: center;
   border-radius: 10px;
   background: #f1f5f9;
-  color: #0f766e;
+  color: var(--blue2);
   font-weight: 900;
   font-size: .9rem;
   margin-bottom: 12px;
 }
 
 .actorCard.selected .actorNumber {
-  background: #087c70;
+  background: var(--blue);
   color: #fff;
 }
 
 .actorCard strong {
-  color: #134e4a;
+  color: var(--navy);
   font-size: 1rem;
   margin-bottom: 6px;
 }
@@ -6451,13 +6452,13 @@ textarea {
 }
 
 .prefCard:hover {
-  border-color: #99f6e4;
-  background: #f0fdfa;
+  border-color: #a9c5df;
+  background: #f2f8ff;
 }
 
 .prefCard.selected {
-  border-color: #087c70;
-  background: #e6fcf5;
+  border-color: var(--blue);
+  background: var(--bluebg);
 }
 
 .prefIcon {
@@ -6472,7 +6473,7 @@ textarea {
 
 .prefCopy strong {
   display: block;
-  color: #134e4a;
+  color: var(--navy);
   font-size: .92rem;
   margin-bottom: 3px;
 }
@@ -6491,14 +6492,14 @@ textarea {
   place-items: center;
   border: 1.5px solid #cbd5e1;
   border-radius: 6px;
-  color: #087c70;
+  color: var(--blue2);
   background: #fff;
   flex: 0 0 auto;
 }
 
 .prefCard.selected .prefCheck {
-  border-color: #087c70;
-  background: #087c70;
+  border-color: var(--blue);
+  background: var(--blue);
   color: #fff;
 }
 
@@ -6533,8 +6534,8 @@ textarea {
 }
 
 .facilityPickCard.selected {
-  border-color: #087c70;
-  background: #e6fcf5;
+  border-color: var(--blue);
+  background: var(--bluebg);
 }
 
 .pickCheck {
@@ -6544,19 +6545,19 @@ textarea {
   place-items: center;
   border: 1.5px solid #cbd5e1;
   border-radius: 5px;
-  color: #087c70;
+  color: var(--blue2);
   flex: 0 0 auto;
 }
 
 .facilityPickCard.selected .pickCheck {
-  border-color: #087c70;
-  background: #087c70;
+  border-color: var(--blue);
+  background: var(--blue);
   color: #fff;
 }
 
 .facilityPickCard strong {
   display: block;
-  color: #134e4a;
+  color: var(--navy);
   font-size: .88rem;
 }
 
@@ -6593,8 +6594,8 @@ textarea {
   display: inline-block;
   padding: 2px 8px;
   border-radius: 999px;
-  background: #ccfbf1;
-  color: #0f766e;
+  background: var(--bluebg);
+  color: var(--blue2);
   font-size: .72rem;
   font-weight: 850;
   margin-bottom: 6px;
@@ -6602,7 +6603,7 @@ textarea {
 
 .questionItem h4 {
   margin: 0 0 4px;
-  color: #134e4a;
+  color: var(--navy);
   font-size: 1rem;
 }
 
@@ -6652,19 +6653,19 @@ textarea {
   gap: 16px;
   padding: 22px;
   border-radius: 16px;
-  background: #f0fdfa;
-  border: 1px solid #99f6e4;
+  background: #f2f8ff;
+  border: 1px solid #a9c5df;
 }
 
 .summarySection h4 {
   margin: 0 0 6px;
-  color: #0f766e;
+  color: var(--blue2);
   font-size: .95rem;
 }
 
 .summarySection p {
   margin: 0;
-  color: #115e59;
+  color: #36536f;
   font-size: .88rem;
 }
 
@@ -6678,8 +6679,8 @@ textarea {
   padding: 4px 10px;
   border-radius: 999px;
   background: #fff;
-  border: 1px solid #99f6e4;
-  color: #0f766e;
+  border: 1px solid #a9c5df;
+  color: var(--blue2);
   font-size: .8rem;
   font-weight: 800;
 }
@@ -6698,7 +6699,7 @@ textarea {
   padding: 10px 16px;
   border: 0;
   border-radius: 10px;
-  background: #087c70;
+  background: var(--blue);
   color: #fff;
   font-weight: 850;
   font-size: .86rem;
@@ -6709,10 +6710,10 @@ textarea {
   align-items: center;
   gap: 6px;
   padding: 10px 16px;
-  border: 1.5px solid #087c70;
+  border: 1.5px solid #a9c5df;
   border-radius: 10px;
   background: #fff;
-  color: #087c70;
+  color: var(--blue2);
   font-weight: 850;
   font-size: .86rem;
 }
@@ -6748,14 +6749,14 @@ textarea {
   padding: 9px 18px;
   border: 0;
   border-radius: 10px;
-  background: #087c70;
+  background: var(--blue);
   color: #fff;
   font-weight: 850;
   font-size: .86rem;
 }
 
 .stepNextBtn:hover {
-  background: #066359;
+  background: var(--blue2);
 }
 
 /* Vista de página dedicada: /guia */
@@ -6780,7 +6781,7 @@ textarea {
   border-radius: 999px;
   background: #fff;
   border: 1px solid #cbd5e1;
-  color: #0f766e;
+  color: var(--blue2);
   font-weight: 800;
   font-size: .88rem;
   text-decoration: none;
@@ -6789,8 +6790,8 @@ textarea {
 }
 
 .formViewBackLink:hover {
-  background: #e6fcf5;
-  border-color: #99f6e4;
+  background: #edf6ff;
+  border-color: var(--blue);
 }
 
 .formViewPortalTag {
@@ -8179,7 +8180,7 @@ select:not(:disabled) {
 
 .top {
   border-bottom: 1px solid #dfe6df;
-  background: rgba(255, 253, 252, .96);
+  background: rgba(255, 255, 255, .96);
   color: var(--text);
   box-shadow: 0 6px 24px rgba(31, 55, 47, .08);
   backdrop-filter: blur(16px);
@@ -8325,7 +8326,7 @@ select:not(:disabled) {
   border: 1px solid #d8e0d8;
   background:
     radial-gradient(circle at 18% 12%, rgba(234, 244, 235, .96), transparent 31rem),
-    #fffdfc;
+    #fff;
   box-shadow: 0 24px 60px rgba(28, 55, 46, .12);
   animation: aranduHeroEnter .65s cubic-bezier(.16, 1, .3, 1) both;
 }
@@ -8358,7 +8359,7 @@ select:not(:disabled) {
   width: clamp(360px, 34vw, 640px);
   content: "";
   pointer-events: none;
-  background: linear-gradient(90deg, #fffdfc 0 29%, rgba(255, 253, 252, .97) 52%, rgba(255, 253, 252, .66) 76%, rgba(255, 253, 252, 0) 100%);
+  background: linear-gradient(90deg, #fff 0 29%, rgba(255, 255, 255, .97) 52%, rgba(255, 255, 255, .66) 76%, rgba(255, 255, 255, 0) 100%);
 }
 
 .aranduHeroVisual {
@@ -8374,7 +8375,7 @@ select:not(:disabled) {
   inset: 0;
   content: "";
   pointer-events: none;
-  background: linear-gradient(90deg, rgba(255, 253, 252, .24), transparent 28%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, .24), transparent 28%);
 }
 
 .aranduHeroImage {
@@ -8473,49 +8474,12 @@ select:not(:disabled) {
 }
 
 .aranduHeroActions .aranduHeroSecondary {
-  background: #fffdfc;
+  background: #fff;
 }
 
 .aranduHeroActions a:focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 3px;
-}
-
-.aranduTrustStrip {
-  width: min(1280px, calc(100% - 34px));
-  min-height: 80px;
-  margin: 16px auto 34px;
-  padding: 18px 24px;
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, auto) 1fr;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  border: 1px solid #d8e0d8;
-  border-radius: 18px;
-  background: #fffdfc;
-  box-shadow: 0 12px 30px rgba(30, 56, 48, .08);
-  color: var(--navy);
-  animation: aranduTrustEnter .55s .18s cubic-bezier(.16, 1, .3, 1) both;
-}
-
-.aranduTrustStrip span {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  white-space: nowrap;
-}
-
-.aranduTrustStrip svg {
-  color: var(--blue);
-}
-
-.aranduTrustStrip a {
-  justify-self: end;
-  color: var(--blue2);
-  font-size: .86rem;
-  font-weight: 800;
 }
 
 .publicSite .registryIntro {
@@ -8549,7 +8513,7 @@ select:not(:disabled) {
 
 .publicSite .registrySearchBox:focus-within {
   border-color: var(--blue);
-  box-shadow: 0 0 0 4px rgba(58, 116, 122, .14);
+  box-shadow: 0 0 0 4px rgba(23, 105, 170, .14);
 }
 
 .publicSite .card,
@@ -8622,11 +8586,6 @@ select:not(:disabled) {
   to { opacity: 1; transform: scale(1.015); }
 }
 
-@keyframes aranduTrustEnter {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 @media (max-width: 1180px) {
   .topin { display: flex; justify-content: space-between; }
   .tools .menuToggle { display: inline-flex; }
@@ -8641,13 +8600,11 @@ select:not(:disabled) {
     flex-direction: column;
     align-items: stretch;
     border-top: 1px solid #dfe6df;
-    background: #fffdfc;
+    background: #fff;
     box-shadow: 0 16px 26px rgba(31, 55, 47, .12);
   }
   .nav.open a { width: 100%; }
   .publicSite .nav a.nav-preocupacion { margin-left: 0; }
-  .aranduTrustStrip { grid-template-columns: repeat(3, 1fr); }
-  .aranduTrustStrip a { grid-column: 1 / -1; justify-self: center; }
 }
 
 @media (max-width: 760px) {
@@ -8672,7 +8629,7 @@ select:not(:disabled) {
     min-height: min(100vw, 430px);
   }
   .aranduHeroVisual::after {
-    background: linear-gradient(0deg, rgba(255, 253, 252, .22), transparent 28%);
+    background: linear-gradient(0deg, rgba(255, 255, 255, .22), transparent 28%);
   }
   .aranduHeroImage {
     object-position: center 52%;
@@ -8687,15 +8644,6 @@ select:not(:disabled) {
   .aranduHero p { margin-top: 14px; }
   .aranduHeroActions { width: 100%; margin-top: 24px; }
   .aranduHeroActions a { flex: 1 1 190px; }
-  .aranduTrustStrip {
-    width: calc(100% - 20px);
-    margin-bottom: 26px;
-    padding: 18px;
-    grid-template-columns: 1fr;
-    gap: 13px;
-  }
-  .aranduTrustStrip span { white-space: normal; }
-  .aranduTrustStrip a { grid-column: auto; justify-self: start; }
   .aranduFooterContent {
     grid-template-columns: 1fr;
     gap: 18px;
@@ -8708,8 +8656,7 @@ select:not(:disabled) {
 
 @media (prefers-reduced-motion: reduce) {
   .aranduHero,
-  .aranduHeroImage,
-  .aranduTrustStrip {
+  .aranduHeroImage {
     animation: none !important;
     transform: none !important;
   }
@@ -9009,9 +8956,9 @@ select:not(:disabled) {
   gap: 13px;
   margin-top: 22px;
   padding: 18px;
-  border: 1px solid #d5e2dc;
+  border: 1px solid var(--line);
   border-radius: 15px;
-  background: #fbfdfb;
+  background: #f7fbff;
 }
 .experienceImages h2,
 .experienceImages p,
@@ -9310,4 +9257,254 @@ select:not(:disabled) {
   .concernAttachmentPreview img { width: 48px; height: 42px; }
   .facilityEvidencePicker { width: 100%; }
   .stateInboxDetailTabs button { flex: 1; }
+}
+
+/* ==========================================================================
+   vCR1 · sistema visual blanco/celeste y controles azules
+   Los estados institucionales conservan sus colores semánticos.
+   ========================================================================== */
+
+.top {
+  border-bottom-color: var(--line);
+  background: rgba(255, 255, 255, .97);
+  box-shadow: 0 2px 10px rgba(18, 59, 103, .06);
+}
+
+.nav a,
+.publicSite .nav a,
+.nav button,
+.publicSite .nav button {
+  color: #36536f;
+}
+
+.nav a:hover,
+.publicSite .nav a:hover,
+.nav button:hover,
+.publicSite .nav button:hover,
+.tools .institutionalAccess:hover,
+.tools .menuToggle:hover {
+  background: #edf6ff;
+  color: var(--navy);
+}
+
+.nav a.active,
+.publicSite .nav a.active,
+.nav button.active,
+.publicSite .nav button.active {
+  background: #deedfc;
+  color: var(--navy);
+}
+
+.publicSite .nav a.nav-preocupacion,
+.publicSite .nav a.nav-preocupacion:hover,
+.publicSite .nav a.nav-preocupacion.active {
+  background: var(--blue);
+  color: #fff;
+}
+
+.tools .institutionalAccess,
+.tools .menuToggle,
+.tools button.profileReset {
+  border-color: #b9cee2;
+}
+
+.shell,
+.publicSite .shell {
+  background: transparent;
+}
+
+.card,
+.info,
+.publicSite .card,
+.publicSite .info,
+.facilityBookingCard {
+  border-color: var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.aranduDemoBanner {
+  border-color: #78a9d6;
+  background: #eaf4ff;
+  color: #173f68;
+  box-shadow: 0 3px 12px rgba(18, 59, 103, .06);
+}
+
+.aranduDemoBanner svg,
+.aranduDemoBanner strong {
+  color: var(--blue2);
+}
+
+.aranduHero {
+  border-color: var(--line);
+  background:
+    radial-gradient(circle at 18% 12%, rgba(222, 239, 255, .96), transparent 31rem),
+    #fff;
+  box-shadow: 0 8px 28px rgba(18, 59, 103, .08);
+}
+
+.aranduHero::before {
+  background: linear-gradient(90deg, #fff 0 29%, rgba(255, 255, 255, .97) 52%, rgba(255, 255, 255, .66) 76%, rgba(255, 255, 255, 0) 100%);
+}
+
+.aranduHeroVisual {
+  background: #d9e9f7;
+}
+
+.aranduHeroVisual::after {
+  background: linear-gradient(90deg, rgba(255, 255, 255, .24), transparent 28%);
+}
+
+.aranduHeroActions a,
+.facilityProfileActions a,
+.reportBack,
+.reportContinue {
+  border-radius: 12px;
+}
+
+.aranduHeroActions a {
+  border-color: #a9c5df;
+}
+
+.aranduHeroActions a:hover {
+  border-color: var(--blue);
+  background: #edf6ff;
+}
+
+.aranduHeroActions .aranduHeroPrimary,
+.aranduHeroActions .aranduHeroPrimary:hover,
+.facilityBookingAction,
+.facilityProfileActions a:first-child,
+.btnTurquoisePrimary,
+.reportContinue {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(23, 105, 170, .14);
+}
+
+.aranduHeroActions .aranduHeroPrimary:hover,
+.facilityBookingAction:hover,
+.btnTurquoisePrimary:hover,
+.reportContinue:hover:not(:disabled) {
+  background: var(--blue2);
+  box-shadow: 0 4px 12px rgba(15, 79, 135, .16);
+}
+
+.aranduHeroActions .aranduHeroSecondary,
+.btnTurquoiseSecondary,
+.reportBack {
+  border-color: #a9c5df;
+  background: #fff;
+  color: var(--blue2);
+}
+
+.btnTurquoiseSecondary:hover,
+.reportBack:hover:not(:disabled) {
+  border-color: var(--blue);
+  background: #edf6ff;
+  color: var(--blue2);
+}
+
+.publicSite .registryIntro,
+.registryFiltersPanel,
+.registryResults,
+.leafletRegistryMap,
+.streetMapLoading {
+  border-color: var(--line);
+  box-shadow: 0 4px 16px rgba(18, 59, 103, .06);
+}
+
+.registryFiltersPanel,
+.registryResults {
+  background: #fff;
+}
+
+.registryFiltersPanel .registryToolbar select,
+.registrySearchBox,
+.registryPriceRange {
+  border-color: #b9cee2;
+  background: #fff;
+}
+
+.registryPriceRange {
+  background: #f2f8ff;
+}
+
+.registryViewSwitcher button {
+  min-height: 44px;
+  border-color: #a9c5df;
+  background: #fff;
+  color: var(--blue2);
+}
+
+.registryViewSwitcher button:hover {
+  border-color: var(--blue);
+  background: #edf6ff;
+  color: var(--blue2);
+}
+
+.registryViewSwitcher button.active {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: #fff;
+}
+
+.facilityCard,
+.facilityBookingCard {
+  box-shadow: none;
+}
+
+.facilityCard:hover,
+.facilityCard.selected,
+.facilityCard.isOpen,
+.facilityBookingCard:hover {
+  box-shadow: 0 4px 14px rgba(18, 59, 103, .07);
+}
+
+.mapFacilityTooltipStatus {
+  display: inline-flex;
+  width: max-content;
+  max-width: 100%;
+  padding: 3px 7px;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  color: var(--status-gray);
+  background: var(--status-gray-bg);
+  font-size: .66rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.mapFacilityTooltipStatus-habilitado {
+  color: var(--green);
+  background: var(--greenbg);
+}
+
+.mapFacilityTooltipStatus-mides {
+  color: var(--amber);
+  background: var(--amberbg);
+}
+
+.mapFacilityTooltipStatus-demo {
+  color: var(--violet);
+  background: var(--violetbg);
+}
+
+.aranduFooter {
+  border-top-color: var(--line);
+}
+
+@media (max-width: 1180px) {
+  .nav.open {
+    border-top-color: var(--line);
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(18, 59, 103, .08);
+  }
+}
+
+@media (max-width: 760px) {
+  .aranduHeroVisual::after {
+    background: linear-gradient(0deg, rgba(255, 255, 255, .22), transparent 28%);
+  }
 }

@@ -10,7 +10,7 @@ export async function insertDemoIntake(input: {
   demoFacilityId?: string | null;
   facilityId?: number | null;
   payloadVersion?: 2 | 3;
-  priority?: "Alta" | "Media" | "Baja";
+  priority?: "Alta" | "Media" | "Baja" | "Por evaluar";
   department?: string | null;
   payload: Record<string, unknown>;
   contact?: Contact;

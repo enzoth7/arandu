@@ -143,6 +143,7 @@ export function PrivateAttachmentFields({
   onFilesChange,
   onRecordedAudioChange,
   onMessage,
+  allowRecording = true,
 }: {
   children: ReactNode;
   files: File[];
@@ -150,8 +151,9 @@ export function PrivateAttachmentFields({
   onFilesChange: (files: File[]) => void;
   onRecordedAudioChange: (file: File | null) => void;
   onMessage: (message: string) => void;
+  allowRecording?: boolean;
 }) {
-  const totalFiles = files.length + (recordedAudio ? 1 : 0);
+  const totalFiles = files.length + (allowRecording && recordedAudio ? 1 : 0);
 
   function addFiles(selectedFiles: FileList | null) {
     if (!selectedFiles) return;
@@ -174,8 +176,8 @@ export function PrivateAttachmentFields({
   }
 
   return <div className="privateEvidenceFields">
-    <div className="privateNarrativeComposer">{children}<AudioRecorder audioFile={recordedAudio} onAudioRecorded={saveRecording} onAudioCleared={() => onRecordedAudioChange(null)} /></div>
-    <div className="privateFileControls"><label className="reportFilePicker"><input type="file" accept={FILE_ACCEPT} multiple onChange={(event) => { addFiles(event.target.files); event.target.value = ""; }} /><Paperclip size={18} aria-hidden="true" />Adjuntar archivo</label><small>Hasta 5 archivos privados en total, incluido el audio.</small></div>
+    <div className="privateNarrativeComposer">{children}{allowRecording && <AudioRecorder audioFile={recordedAudio} onAudioRecorded={saveRecording} onAudioCleared={() => onRecordedAudioChange(null)} />}</div>
+    <div className="privateFileControls"><label className="reportFilePicker"><input type="file" accept={FILE_ACCEPT} multiple onChange={(event) => { addFiles(event.target.files); event.target.value = ""; }} /><Paperclip size={18} aria-hidden="true" />Adjuntar archivo</label><small>{allowRecording ? "Hasta 5 archivos privados en total, incluido el audio." : "Hasta 5 archivos privados de hasta 10 MB cada uno."}</small></div>
     {files.length > 0 && <ul className="privateAttachmentList">{files.map((file, index) => <PrivateFilePreview file={file} key={`${file.name}-${file.lastModified}-${index}`} onRemove={() => onFilesChange(files.filter((_, currentIndex) => currentIndex !== index))} />)}</ul>}
   </div>;
 }

@@ -16,7 +16,7 @@
     "test:unified-registry": "node --test scripts/tests/unified-elepem-registry.test.mjs scripts/tests/elepem-data-source.test.mjs",
     "test:unified-registry:local": "node --test scripts/tests/unified-elepem-registry-local.test.mjs",
     "test:flat-registry": "node --test scripts/tests/flat-elepem-registry.test.mjs scripts/tests/facility-search.test.mjs scripts/tests/map-rendering.test.mjs",
-    "test:institutional": "node --test scripts/tests/institutional-demo.test.mjs scripts/tests/institutional-session.test.mjs scripts/tests/experience-publications.test.mjs",
+    "test:institutional": "node --test scripts/tests/experience-questionnaire.test.mjs scripts/tests/institutional-demo.test.mjs scripts/tests/institutional-session.test.mjs scripts/tests/experience-publications.test.mjs",
     "demo:reset": "node --env-file=.env scripts/reset-demo-intake.mjs --confirm-demo-only",
     "db:elepem:backup": "node --env-file=.env scripts/backup-flat-elepem-cutover.mjs",
     "db:elepem:verify": "node --env-file=.env scripts/verify-flat-elepem.mjs",

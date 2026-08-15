@@ -6,7 +6,6 @@ import { consolidateFacilities } from "./facility-presentation";
 import UruguayRegistry from "./UruguayRegistry";
 import type { Facility } from "./map-types";
 import { AranduHomeHero } from "./AranduHomeHero";
-import { ShieldAlert } from "lucide-react";
 
 /**
  * Registro del portal de personas: sólo el padrón público.
@@ -27,10 +26,6 @@ export function PublicRegistry({
   const consolidated = useMemo(() => consolidateFacilities(facilities), [facilities]);
 
   return <>
-    <div className="aranduDemoBanner" role="note">
-      <ShieldAlert size={24} aria-hidden="true" />
-      <p><strong>PROTOTIPO ACADÉMICO</strong> · Usa solo datos de demostración. Las comunicaciones se guardan para que el equipo las vea en su bandeja, pero no se envían a ningún organismo ni representan un servicio oficial.</p>
-    </div>
     <AranduHomeHero />
     <UruguayRegistry
       facilities={consolidated}
@@ -38,6 +33,7 @@ export function PublicRegistry({
       loading={loading}
       error={error}
       showChoiceCta
+      persistNavigationState
     />
   </>;
 }

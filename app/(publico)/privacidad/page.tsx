@@ -9,7 +9,7 @@ export default function PrivacidadPage() {
   return <section className="card legalPage">
     <p className="eyebrow">Arandú</p>
     <h1>Privacidad</h1>
-    <p>En este entorno de demostración se usan datos ficticios. No se envían comunicaciones a organismos ni se publica información automáticamente.</p>
+    <p>El padrón consultable se construye con datos públicos reales. Los elementos identificados como demostración son ficticios. Las comunicaciones se guardan para revisión interna, no se envían automáticamente a organismos ni se publican sin revisión humana.</p>
     <p>Las decisiones sobre información pública requieren revisión humana y trazabilidad de la fuente.</p>
   </section>;
 }

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { demoIntakeEnabled, DEMO_FACILITY_ID_PATTERN } from "../../../lib/demo-intake.mjs";
 import { insertDemoIntake } from "../../../lib/demo-intake-db";
-import { buildReportPayload, isRecord, MAX_INTAKE_REQUEST_BYTES } from "../../../lib/intake-report.mjs";
+import { buildReportPayload, isRecord, MAX_INTAKE_REQUEST_BYTES, PUBLIC_CONCERN_INITIAL_PRIORITY } from "../../../lib/intake-report.mjs";
 import { demoFacilityExists, resolvePublicFacilityReference } from "../../../lib/facility-registry";
 
 export const runtime = "nodejs";
@@ -67,17 +67,13 @@ export async function POST(request: Request) {
   const contact = contactEmail || contactPhone || reporterName
     ? { name: typeof reporterName === "string" ? reporterName : null, phone: typeof contactPhone === "string" ? contactPhone : null, email: typeof contactEmail === "string" ? contactEmail : null }
     : null;
-  const priority = payload.preliminaryPriority === "Alta" || payload.preliminaryPriority === "Media" || payload.preliminaryPriority === "Baja"
-    ? payload.preliminaryPriority
-    : "Baja";
-
   try {
     const result = await insertDemoIntake({
       kind: "concern",
       submittedActor: "public",
       demoFacilityId,
       facilityId: resolvedFacility?.id || null,
-      priority,
+      priority: PUBLIC_CONCERN_INITIAL_PRIORITY,
       department: resolvedFacility?.department || (typeof location.department === "string" ? location.department : null),
       payload: { ...content, version: 2, publication: "never_automatic" },
       contact,

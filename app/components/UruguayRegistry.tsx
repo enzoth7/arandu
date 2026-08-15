@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { ChevronDown, ChevronUp, CircleHelp, Image as ImageIcon, Map as MapIcon, RotateCcw, Search, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,11 +14,22 @@ import {
 import { canonicalDepartment } from "../../lib/uruguay.mjs";
 import { useFacilityFilters } from "../hooks/useFacilityFilters";
 import { QUALITY_RATING_LABELS, type Facility, type FacilityQualityRating, type FacilityStatus } from "./map-types";
+import {
+  PUBLIC_REGISTRY_STATE_KEY,
+  PUBLIC_REGISTRY_STATE_VERSION,
+  parsePublicRegistryState,
+} from "../../lib/public-registry-state.mjs";
+import type { RegistryMapViewport } from "./StreetMap";
 
 const StreetMap = dynamic(() => import("./StreetMap"), {
   ssr: false,
   loading: () => <div className="streetMapLoading">Preparando el mapa con calles…</div>,
 });
+
+const RESTORE_SCROLL_MAX_ATTEMPTS = 30;
+const RESTORE_SCROLL_RETRY_MS = 100;
+const RESTORE_SCROLL_STABLE_PASSES = 2;
+const RESTORE_SCROLL_TOLERANCE_PX = 1;
 
 function formatMonthlyPrice(value: number) {
   return `UYU ${value.toLocaleString("es-UY")}`;
@@ -37,6 +48,8 @@ type UruguayRegistryProps = {
   /** Filtro por estado de tratamiento; sólo tiene sentido en organización. */
   /** Tarjeta «La persona decide»; sólo en el portal de personas. */
   showChoiceCta?: boolean;
+  /** Conserva el contexto al salir de la portada y volver desde una ficha o formulario. */
+  persistNavigationState?: boolean;
 };
 
 type RegistryView = "list" | "map" | "mixed";
@@ -48,6 +61,7 @@ export default function UruguayRegistry({
   error = "",
   notices,
   showChoiceCta = false,
+  persistNavigationState = false,
 }: UruguayRegistryProps) {
   const registryFacilities = useMemo(
     () => facilities.filter((facility) => !facility.isDemo),
@@ -87,8 +101,28 @@ export default function UruguayRegistry({
   const [detailId, setDetailId] = useState<string | null>(null);
   const [activeKpiHelp, setActiveKpiHelp] = useState<string | null>(null);
   const [registryView, setRegistryView] = useState<RegistryView>("mixed");
+  const [navigationRestored, setNavigationRestored] = useState(!persistNavigationState);
+  const [restoringNavigation, setRestoringNavigation] = useState(persistNavigationState);
   const mapColumnRef = useRef<HTMLDivElement | null>(null);
+  const resultsScrollRef = useRef<HTMLDivElement | null>(null);
   const directFacilityHandled = useRef(false);
+  const navigationRestoreHandled = useRef(false);
+  const restoredScrollRef = useRef<{ windowY: number; resultsY: number } | null>(null);
+  const mapViewportRef = useRef<RegistryMapViewport | null>(null);
+  const lastWindowScrollYRef = useRef(0);
+  const navigationWindowYRef = useRef<number | null>(null);
+  const lastResultsScrollYRef = useRef(0);
+  const persistenceReadyRef = useRef(!persistNavigationState);
+  const latestNavigationStateRef = useRef({
+    filters: { query, department, monthlyPriceRange, status, qualityRating },
+    registryView,
+    selectedId,
+  });
+  latestNavigationStateRef.current = {
+    filters: { query, department, monthlyPriceRange, status, qualityRating },
+    registryView,
+    selectedId,
+  };
 
   const resultFacilities = visible;
   const mapFacilities = visible;
@@ -110,6 +144,94 @@ export default function UruguayRegistry({
   const monthlyPriceEnd = monthlyPriceBounds && monthlyPriceRange && monthlyPriceSpread > 0
     ? ((monthlyPriceRange.max - monthlyPriceBounds.min) / monthlyPriceSpread) * 100
     : 100;
+
+  const saveNavigationState = useCallback((windowYOverride?: number) => {
+    if (!persistNavigationState || !persistenceReadyRef.current) return;
+    const windowY = Math.max(
+      0,
+      typeof windowYOverride === "number" && Number.isFinite(windowYOverride)
+        ? windowYOverride
+        : navigationWindowYRef.current ?? lastWindowScrollYRef.current,
+    );
+    const resultsY = Math.max(
+      0,
+      resultsScrollRef.current?.scrollTop ?? lastResultsScrollYRef.current,
+    );
+    lastWindowScrollYRef.current = windowY;
+    lastResultsScrollYRef.current = resultsY;
+    try {
+      window.localStorage.setItem(PUBLIC_REGISTRY_STATE_KEY, JSON.stringify({
+        version: PUBLIC_REGISTRY_STATE_VERSION,
+        savedAt: Date.now(),
+        ...latestNavigationStateRef.current,
+        scroll: {
+          windowY,
+          resultsY,
+        },
+        mapViewport: mapViewportRef.current,
+      }));
+    } catch {
+      // La persistencia es progresiva: nunca bloquea el mapa ni los filtros.
+    }
+  }, [persistNavigationState]);
+
+  const bindResultsScroll = useCallback((node: HTMLDivElement | null) => {
+    const previousNode = resultsScrollRef.current;
+    if (previousNode && previousNode !== node) {
+      lastResultsScrollYRef.current = Math.max(0, previousNode.scrollTop);
+    }
+    resultsScrollRef.current = node;
+    if (node && lastResultsScrollYRef.current > 0) {
+      node.scrollTop = lastResultsScrollYRef.current;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (navigationRestoreHandled.current) return;
+    navigationRestoreHandled.current = true;
+
+    if (!persistNavigationState) {
+      persistenceReadyRef.current = true;
+      setNavigationRestored(true);
+      setRestoringNavigation(false);
+      return;
+    }
+
+    let restored = null;
+    try {
+      restored = parsePublicRegistryState(window.localStorage.getItem(PUBLIC_REGISTRY_STATE_KEY));
+      if (!restored) window.localStorage.removeItem(PUBLIC_REGISTRY_STATE_KEY);
+    } catch {
+      // El registro sigue funcionando si el navegador bloquea el almacenamiento.
+    }
+
+    if (restored) {
+      setQuery(restored.filters.query);
+      setDepartment(restored.filters.department);
+      setMonthlyPriceRange(restored.filters.monthlyPriceRange);
+      setStatus(restored.filters.status);
+      setQualityRating(restored.filters.qualityRating);
+      setRegistryView(restored.registryView);
+      setSelectedId(restored.selectedId);
+      restoredScrollRef.current = restored.scroll;
+      lastWindowScrollYRef.current = restored.scroll.windowY;
+      lastResultsScrollYRef.current = restored.scroll.resultsY;
+      mapViewportRef.current = restored.mapViewport;
+    } else {
+      lastWindowScrollYRef.current = Math.max(0, window.scrollY);
+      persistenceReadyRef.current = true;
+      setRestoringNavigation(false);
+    }
+    setNavigationRestored(true);
+  }, [
+    persistNavigationState,
+    setDepartment,
+    setMonthlyPriceRange,
+    setQualityRating,
+    setQuery,
+    setStatus,
+  ]);
+
   useEffect(() => {
     if (directFacilityHandled.current || allFacilities.length === 0) return;
     directFacilityHandled.current = true;
@@ -121,15 +243,208 @@ export default function UruguayRegistry({
   }, [allFacilities]);
 
   useEffect(() => {
+    if (loading || !navigationRestored || restoringNavigation) return;
     if (selectedId && !mapFacilities.some((facility) => facility.id === selectedId)) {
       setSelectedId(null);
     }
-  }, [mapFacilities, selectedId]);
+  }, [loading, mapFacilities, navigationRestored, restoringNavigation, selectedId]);
+
+  useEffect(() => {
+    saveNavigationState();
+  }, [
+    department,
+    monthlyPriceRange,
+    navigationRestored,
+    qualityRating,
+    query,
+    registryView,
+    restoringNavigation,
+    saveNavigationState,
+    selectedId,
+    status,
+  ]);
+
+  useEffect(() => {
+    if (!persistNavigationState || !navigationRestored) return;
+    let frame = 0;
+    let navigationResetTimer = 0;
+    const resultsNode = resultsScrollRef.current;
+    const scheduleSave = () => {
+      if (navigationWindowYRef.current === null) {
+        lastWindowScrollYRef.current = Math.max(0, window.scrollY);
+      }
+      if (resultsNode) {
+        lastResultsScrollYRef.current = Math.max(0, resultsNode.scrollTop);
+      }
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(saveNavigationState);
+    };
+    const saveLastPosition = () => {
+      saveNavigationState(navigationWindowYRef.current ?? lastWindowScrollYRef.current);
+    };
+    const saveWhenHidden = () => {
+      if (document.visibilityState === "hidden") saveLastPosition();
+    };
+    const captureInternalNavigation = (event: MouseEvent) => {
+      if (
+        event.button !== 0
+        || event.metaKey
+        || event.ctrlKey
+        || event.shiftKey
+        || event.altKey
+      ) return;
+
+      const target = event.target instanceof Element ? event.target : null;
+      const anchor = target?.closest<HTMLAnchorElement>("a[href]");
+      if (!anchor || anchor.hasAttribute("download")) return;
+      const browsingContext = anchor.target.trim().toLowerCase();
+      if (browsingContext && browsingContext !== "_self") return;
+
+      let destination: URL;
+      try {
+        destination = new URL(anchor.href, window.location.href);
+      } catch {
+        return;
+      }
+      const current = new URL(window.location.href);
+      if (destination.origin !== current.origin) return;
+      if (destination.pathname === current.pathname && destination.search === current.search) return;
+
+      const windowY = Math.max(0, window.scrollY);
+      navigationWindowYRef.current = windowY;
+      lastWindowScrollYRef.current = windowY;
+      saveNavigationState(windowY);
+
+      // Si un manejador cancela la navegación, la vista sigue montada. El
+      // resguardo se libera más tarde sin alterar el click ni su destino.
+      window.clearTimeout(navigationResetTimer);
+      navigationResetTimer = window.setTimeout(() => {
+        navigationWindowYRef.current = null;
+        lastWindowScrollYRef.current = Math.max(0, window.scrollY);
+        saveNavigationState(lastWindowScrollYRef.current);
+      }, 30_000);
+    };
+    window.addEventListener("scroll", scheduleSave, { passive: true });
+    window.addEventListener("pagehide", saveLastPosition);
+    window.addEventListener("beforeunload", saveLastPosition);
+    document.addEventListener("click", captureInternalNavigation, true);
+    document.addEventListener("visibilitychange", saveWhenHidden);
+    resultsNode?.addEventListener("scroll", scheduleSave, { passive: true });
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(navigationResetTimer);
+      window.removeEventListener("scroll", scheduleSave);
+      window.removeEventListener("pagehide", saveLastPosition);
+      window.removeEventListener("beforeunload", saveLastPosition);
+      document.removeEventListener("click", captureInternalNavigation, true);
+      document.removeEventListener("visibilitychange", saveWhenHidden);
+      resultsNode?.removeEventListener("scroll", scheduleSave);
+      if (resultsNode) {
+        lastResultsScrollYRef.current = Math.max(0, resultsNode.scrollTop);
+      }
+      // Next.js puede desmontar esta vista sin emitir `pagehide`; el cleanup
+      // cierra esa ventana y conserva el último scroll antes de navegar.
+      saveLastPosition();
+    };
+  }, [navigationRestored, persistNavigationState, registryView, saveNavigationState]);
+
+  useEffect(() => {
+    if (!navigationRestored || !restoringNavigation || loading) return;
+    const scroll = restoredScrollRef.current;
+    if (!scroll) {
+      persistenceReadyRef.current = true;
+      setRestoringNavigation(false);
+      return;
+    }
+
+    let applyFrame = 0;
+    let verifyFrame = 0;
+    let retryTimer = 0;
+    let attempts = 0;
+    let stablePasses = 0;
+    let previousLayoutSignature = "";
+    let finished = false;
+
+    const finishRestore = () => {
+      if (finished) return;
+      finished = true;
+      window.cancelAnimationFrame(applyFrame);
+      window.cancelAnimationFrame(verifyFrame);
+      window.clearTimeout(retryTimer);
+      lastWindowScrollYRef.current = Math.max(0, window.scrollY);
+      lastResultsScrollYRef.current = Math.max(
+        0,
+        resultsScrollRef.current?.scrollTop ?? scroll.resultsY,
+      );
+      restoredScrollRef.current = null;
+      persistenceReadyRef.current = true;
+      setRestoringNavigation(false);
+      saveNavigationState(lastWindowScrollYRef.current);
+    };
+
+    const applyScroll = () => {
+      if (finished) return;
+      attempts += 1;
+      const resultsNode = resultsScrollRef.current;
+      if (resultsNode) resultsNode.scrollTop = scroll.resultsY;
+      window.scrollTo({ top: scroll.windowY, left: 0, behavior: "auto" });
+
+      verifyFrame = window.requestAnimationFrame(() => {
+        if (finished) return;
+        const currentResultsNode = resultsScrollRef.current;
+        const windowReached = Math.abs(window.scrollY - scroll.windowY) <= RESTORE_SCROLL_TOLERANCE_PX;
+        const resultsReached = !currentResultsNode
+          || Math.abs(currentResultsNode.scrollTop - scroll.resultsY) <= RESTORE_SCROLL_TOLERANCE_PX;
+        const layoutSignature = [
+          document.documentElement.scrollHeight,
+          document.body?.scrollHeight ?? 0,
+          currentResultsNode?.scrollHeight ?? 0,
+          currentResultsNode?.clientHeight ?? 0,
+        ].join(":");
+        const reachedAndStable = windowReached
+          && resultsReached
+          && layoutSignature === previousLayoutSignature;
+        stablePasses = reachedAndStable
+          ? stablePasses + 1
+          : windowReached && resultsReached ? 1 : 0;
+        previousLayoutSignature = layoutSignature;
+
+        if (
+          stablePasses >= RESTORE_SCROLL_STABLE_PASSES
+          || attempts >= RESTORE_SCROLL_MAX_ATTEMPTS
+        ) {
+          finishRestore();
+          return;
+        }
+        retryTimer = window.setTimeout(() => {
+          applyFrame = window.requestAnimationFrame(applyScroll);
+        }, RESTORE_SCROLL_RETRY_MS);
+      });
+    };
+
+    applyFrame = window.requestAnimationFrame(applyScroll);
+    return () => {
+      finished = true;
+      window.cancelAnimationFrame(applyFrame);
+      window.cancelAnimationFrame(verifyFrame);
+      window.clearTimeout(retryTimer);
+    };
+  }, [loading, navigationRestored, registryView, restoringNavigation, resultFacilities.length, saveNavigationState]);
 
   function resetFilters() {
     reset();
     setSelectedId(null);
     setDetailId(null);
+    restoredScrollRef.current = null;
+    lastResultsScrollYRef.current = 0;
+    mapViewportRef.current = null;
+    if (persistNavigationState) {
+      try {
+        window.localStorage.removeItem(PUBLIC_REGISTRY_STATE_KEY);
+      } catch {
+        // El reinicio visual no depende del almacenamiento.
+      }
+    }
   }
 
   function openFacilityDetails(facilityId: string) {
@@ -149,7 +464,7 @@ export default function UruguayRegistry({
         <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-gray ${status === "verificar" ? "selected" : ""}`} help="No se encontró una situación actualizada en las fuentes públicas consultadas. Requiere verificación institucional; no significa que el establecimiento sea irregular." helpId="unconfirmed" label="Situación no confirmada" onActivate={() => setStatus(status === "verificar" ? "" : "verificar")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.unconfirmed} />
       </div>
       <p className="registryOverlapNote">
-        <strong>Habilitación MSP</strong> y <strong>certificado MIDES</strong> son datos distintos.
+        Algunos residenciales están incluidos tanto en la lista de Habilitados como en la de Certificados.
       </p>
       <div className="registrySearchHeaderRow">
         <div className="registrySearchFirst">
@@ -284,23 +599,30 @@ export default function UruguayRegistry({
         </div>
       </aside>
       {registryView !== "list" && <div className="registryMapColumn" ref={mapColumnRef}>
-        <StreetMap
+        {navigationRestored ? <StreetMap
           facilities={mapFacilities}
           selectedId={selected?.id ?? null}
           onSelect={setSelectedId}
           onOpenDetails={openFacilityDetails}
-        />
+          initialViewport={mapViewportRef.current}
+          restoreSelectionWithoutFlying={Boolean(mapViewportRef.current && selected)}
+          onViewportChange={(viewport) => {
+            mapViewportRef.current = viewport;
+            saveNavigationState();
+          }}
+        /> : <div className="streetMapLoading" role="status">Restaurando el mapa…</div>}
       </div>}
 
       {registryView !== "map" && <aside className="card registryResults">
         <div className="resultsHead"><h2>ELEPEM encontrados</h2><output className="resultCount">{resultFacilities.length}</output></div>
 
-        <div className="registryResultsScroll">
+        <div className="registryResultsScroll" ref={bindResultsScroll}>
           {resultFacilities.map((facility) => (
             <FacilityAccordionCard
               facility={facility}
               isSelected={selected?.id === facility.id}
               isListView={registryView === "list"}
+              suppressAutoScroll={restoringNavigation}
               onSelect={setSelectedId}
               onViewMore={(selectedFacility) => {
                 openFacilityDetails(selectedFacility.id);
@@ -406,22 +728,28 @@ function FacilityAccordionCard({
   facility,
   isSelected,
   isListView,
+  suppressAutoScroll,
   onSelect,
   onViewMore,
 }: {
   facility: Facility;
   isSelected: boolean;
   isListView: boolean;
+  suppressAutoScroll: boolean;
   onSelect: (id: string) => void;
   onViewMore: (facility: Facility) => void;
 }) {
   const [isOpen, setIsOpen] = useState(isSelected);
   const cardRef = useRef<HTMLElement | null>(null);
+  const suppressAutoScrollRef = useRef(suppressAutoScroll);
+  suppressAutoScrollRef.current = suppressAutoScroll;
 
   useEffect(() => {
     if (isSelected) {
       setIsOpen(true);
-      cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      if (!suppressAutoScrollRef.current) {
+        cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
     }
   }, [isSelected]);
 

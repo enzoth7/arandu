@@ -5,6 +5,7 @@ import {
   evidenceSignatureMatches,
   newCaseCode,
   newUploadToken,
+  PUBLIC_CONCERN_INITIAL_PRIORITY,
   sameSecret,
 } from "../../lib/intake-report.mjs";
 import { integrationSignature, verifyN8nIntakeRequest } from "../../lib/n8n-intake-auth.mjs";
@@ -34,6 +35,7 @@ test("normaliza un expediente de WhatsApp sandbox con versión 2", () => {
   assert.equal(payload.source, "whatsapp_sandbox");
   assert.equal(payload.isSandbox, true);
   assert.equal(payload.setting, "En un residencial / ELEPEM");
+  assert.equal(payload.preliminaryPriority, "Media");
 });
 
 test("rechaza anonimato y casos fuera de ELEPEM en WhatsApp", () => {
@@ -54,6 +56,8 @@ test("el contrato web exige consentimiento y un ELEPEM del padrón", () => {
   assert.ok(payload);
   assert.equal(payload.version, 1);
   assert.equal(payload.source, "web");
+  assert.equal("preliminaryPriority" in payload, false);
+  assert.equal(PUBLIC_CONCERN_INITIAL_PRIORITY, "Por evaluar");
   assert.equal(buildReportPayload({ ...webReport, consent: false }), null);
   assert.equal(buildReportPayload({ ...webReport, facility: { name: "Sin identificador" } }), null);
 });

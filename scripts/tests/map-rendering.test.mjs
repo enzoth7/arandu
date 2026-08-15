@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import {
+  PUBLIC_REGISTRY_STATE_MAX_AGE_MS,
+  parsePublicRegistryState,
+} from "../../lib/public-registry-state.mjs";
 
 const streetMapPath = new URL("../../app/components/StreetMap.tsx", import.meta.url);
 const leafletHookPath = new URL("../../app/hooks/useLeafletMap.ts", import.meta.url);
@@ -49,12 +53,15 @@ test("los puntos comparten canvas y los precios se ven desde el encuadre naciona
   assert.match(mapSource, /onOpenDetailsRef\.current\?\.\(facility\.id\)/);
 });
 
-test("el mapa usa una ficha interactiva y reparte mapa y lista en mitades", async () => {
+test("el mapa muestra el estado institucional y reparte mapa/lista 40/60", async () => {
   const [source, styles] = await Promise.all([
     readFile(streetMapPath, "utf8"),
     readFile(globalStylesPath, "utf8"),
   ]);
   assert.match(source, /facilityTooltipContent/);
+  assert.match(source, /Habilitación final MSP/);
+  assert.match(source, /Certificado social MIDES/);
+  assert.match(source, /Situación no confirmada/);
   assert.match(source, /Sin calificación disponible/);
   assert.match(source, /image\.loading = "lazy"/);
   assert.match(source, /visibleMarker\.on\("focus"/);
@@ -62,8 +69,134 @@ test("el mapa usa una ficha interactiva y reparte mapa y lista en mitades", asyn
   assert.doesNotMatch(source, /mapPriceMarkerRating|ratingMarkup/);
   assert.match(source, /html: `<span class="\$\{markerClass\}">\$\{label\}<\/span>`/);
   assert.doesNotMatch(source, /\$\{facility\.isDemo \? " · DEMO"/);
-  assert.match(styles, /grid-template-columns: minmax\(240px, 290px\) minmax\(0, 1fr\) minmax\(0, 1fr\)/);
+  assert.match(styles, /grid-template-columns: minmax\(240px, 290px\) minmax\(320px, 2fr\) minmax\(420px, 3fr\)/);
   assert.match(styles, /\.mapFacilityTooltipCard/);
+  assert.match(styles, /\.mapFacilityTooltipStatus/);
+});
+
+test("el registro conserva filtros, scroll, selección y viewport con un snapshot versionado", async () => {
+  const now = Date.UTC(2026, 7, 15, 12, 0, 0);
+  const snapshot = {
+    version: 1,
+    savedAt: now - 1_000,
+    filters: {
+      query: "costa",
+      department: "Montevideo",
+      monthlyPriceRange: { min: 50_000, max: 90_000 },
+      status: "habilitado",
+      qualityRating: "good",
+    },
+    registryView: "mixed",
+    selectedId: "ELP-0001",
+    scroll: { windowY: 720, resultsY: 430 },
+    mapViewport: { center: [-34.9, -56.2], zoom: 13 },
+  };
+
+  assert.deepEqual(parsePublicRegistryState(JSON.stringify(snapshot), now), snapshot);
+  assert.equal(parsePublicRegistryState(JSON.stringify({ ...snapshot, version: 2 }), now), null);
+  assert.equal(parsePublicRegistryState(JSON.stringify({
+    ...snapshot,
+    savedAt: now - PUBLIC_REGISTRY_STATE_MAX_AGE_MS - 1,
+  }), now), null);
+  assert.deepEqual(parsePublicRegistryState(JSON.stringify({
+    ...snapshot,
+    mapViewport: { center: [-120, -56.2], zoom: 13 },
+  }), now), { ...snapshot, mapViewport: null });
+
+  assert.deepEqual(parsePublicRegistryState(JSON.stringify({
+    version: 1,
+    savedAt: now - 2_000,
+    filters: {
+      query: "costa",
+      department: "Montevideo",
+      monthlyPriceRange: { min: 90_000, max: 50_000 },
+      status: "estado-retirado",
+      qualityRating: "valor-transitorio",
+    },
+    registryView: "grid",
+    selectedId: { id: "ELP-0001" },
+    scroll: { windowY: -120, resultsY: "430" },
+    mapViewport: { center: [-34.9, -56.2], zoom: 99 },
+  }), now), {
+    version: 1,
+    savedAt: now - 2_000,
+    filters: {
+      query: "costa",
+      department: "Montevideo",
+      monthlyPriceRange: null,
+      status: "",
+      qualityRating: "",
+    },
+    registryView: "mixed",
+    selectedId: null,
+    scroll: { windowY: 0, resultsY: 0 },
+    mapViewport: null,
+  });
+
+  assert.deepEqual(parsePublicRegistryState(JSON.stringify({
+    version: 1,
+    savedAt: now - 3_000,
+    filters: { query: "serena", department: "Canelones" },
+  }), now), {
+    version: 1,
+    savedAt: now - 3_000,
+    filters: {
+      query: "serena",
+      department: "Canelones",
+      monthlyPriceRange: null,
+      status: "",
+      qualityRating: "",
+    },
+    registryView: "mixed",
+    selectedId: null,
+    scroll: { windowY: 0, resultsY: 0 },
+    mapViewport: null,
+  });
+
+  const registrySource = await readFile(registryPath, "utf8");
+  assert.match(registrySource, /PUBLIC_REGISTRY_STATE_KEY/);
+  assert.match(registrySource, /resultsScrollRef/);
+  assert.match(registrySource, /lastResultsScrollYRef/);
+  assert.match(registrySource, /mapViewportRef/);
+  assert.match(registrySource, /persistenceReadyRef/);
+  assert.match(registrySource, /visibilitychange/);
+  assert.match(registrySource, /suppressAutoScroll=\{restoringNavigation\}/);
+  assert.match(registrySource, /Algunos residenciales están incluidos tanto en la lista de Habilitados como en la de Certificados\./);
+});
+
+test("el registro captura windowY antes de una navegación interna de Next", async () => {
+  const source = await readFile(registryPath, "utf8");
+
+  assert.match(source, /lastWindowScrollYRef/);
+  assert.match(source, /navigationWindowYRef/);
+  assert.match(source, /document\.addEventListener\("click", captureInternalNavigation, true\)/);
+  assert.match(source, /event\.button !== 0[\s\S]*event\.metaKey[\s\S]*event\.ctrlKey[\s\S]*event\.shiftKey[\s\S]*event\.altKey/);
+  assert.match(source, /anchor\.hasAttribute\("download"\)/);
+  assert.match(source, /browsingContext && browsingContext !== "_self"/);
+  assert.match(source, /destination\.origin !== current\.origin/);
+  assert.match(source, /destination\.pathname === current\.pathname && destination\.search === current\.search/);
+  assert.match(source, /navigationWindowYRef\.current = windowY;[\s\S]*saveNavigationState\(windowY\)/);
+  assert.match(source, /window\.addEventListener\("beforeunload", saveLastPosition\)/);
+  assert.match(source, /saveNavigationState\(navigationWindowYRef\.current \?\? lastWindowScrollYRef\.current\)/);
+  assert.match(source, /document\.removeEventListener\("click", captureInternalNavigation, true\)/);
+});
+
+test("la restauración reintenta ambos scrolls hasta estabilizar el layout", async () => {
+  const source = await readFile(registryPath, "utf8");
+
+  assert.match(source, /RESTORE_SCROLL_MAX_ATTEMPTS = 30/);
+  assert.match(source, /RESTORE_SCROLL_RETRY_MS = 100/);
+  assert.match(source, /RESTORE_SCROLL_STABLE_PASSES = 2/);
+  assert.match(source, /resultsNode\.scrollTop = scroll\.resultsY/);
+  assert.match(source, /window\.scrollTo\(\{ top: scroll\.windowY, left: 0, behavior: "auto" \}\)/);
+  assert.match(source, /document\.documentElement\.scrollHeight/);
+  assert.match(source, /currentResultsNode\?\.scrollHeight/);
+  assert.match(source, /stablePasses >= RESTORE_SCROLL_STABLE_PASSES/);
+  assert.match(source, /attempts >= RESTORE_SCROLL_MAX_ATTEMPTS/);
+  assert.match(source, /persistenceReadyRef\.current = true;[\s\S]*setRestoringNavigation\(false\);[\s\S]*saveNavigationState\(lastWindowScrollYRef\.current\)/);
+  assert.match(source, /window\.clearTimeout\(retryTimer\)/);
+  assert.match(source, /window\.cancelAnimationFrame\(applyFrame\)/);
+  assert.match(source, /window\.cancelAnimationFrame\(verifyFrame\)/);
 });
 
 test("la capa pública conserva Casa Costa Serena como referencia violeta con clasificación Bueno", async () => {

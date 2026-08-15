@@ -4,20 +4,6 @@ import { Analytics } from "@vercel/analytics/next";
 import "leaflet/dist/leaflet.css";
 import "./globals.css";
 
-const merriweather = localFont({
-  src: [
-    {
-      path: "../public/Tipografías/web/Merriweather-Latin-Variable.woff2",
-      style: "normal",
-      weight: "300 900",
-    },
-  ],
-  display: "swap",
-  variable: "--font-merriweather",
-  fallback: ["Georgia", "Times New Roman", "serif"],
-  adjustFontFallback: "Times New Roman",
-});
-
 const merriweatherSans = localFont({
   src: [
     {
@@ -58,13 +44,13 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#153f3b",
+  themeColor: "#123b67",
   colorScheme: "light",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={`${merriweather.variable} ${merriweatherSans.variable}`}>
+    <html lang="es" className={merriweatherSans.variable}>
       <body>
         {children}
         <Analytics />

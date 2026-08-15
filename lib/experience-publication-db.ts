@@ -22,6 +22,11 @@ type PublicationRow = {
   published_at: Date | string | null;
 };
 
+type EligibleReportRow = ReportRow & (
+  | { facility_id: string; demo_facility_id: null }
+  | { facility_id: null; demo_facility_id: string }
+);
+
 export class ExperiencePublicationWorkflowError extends Error {
   constructor(
     public readonly status: 400 | 404 | 409,
@@ -47,7 +52,7 @@ function publicationSummary(row: PublicationRow): ExperiencePublicationSummary {
 async function loadEligibleReport(
   client: PoolClient,
   reportId: string,
-): Promise<ReportRow & { facility_id: null; demo_facility_id: string }> {
+): Promise<EligibleReportRow> {
   const result = await client.query<ReportRow>(
     `SELECT id, entry_type, is_demo, facility_id::text, demo_facility_id,
             payload_version, report_payload
@@ -63,11 +68,16 @@ async function loadEligibleReport(
   if (!report.is_demo || report.entry_type !== "experience") {
     throw new ExperiencePublicationWorkflowError(400, "not_demo_experience", "El expediente no es una experiencia de demostracion.");
   }
-  if (report.facility_id || !report.demo_facility_id) {
-    throw new ExperiencePublicationWorkflowError(409, "facility_not_resolved", "La experiencia todavia no esta vinculada al ELEPEM de demostracion.");
+  if (Boolean(report.facility_id) === Boolean(report.demo_facility_id)) {
+    throw new ExperiencePublicationWorkflowError(409, "facility_not_resolved", "La experiencia no tiene un unico ELEPEM vinculado.");
   }
+  const reportPayloadVersion = Number(report.report_payload?.version);
+  const privacyAllowsPublication = reportPayloadVersion === 5
+    ? report.report_payload?.privacyMode === "anonymous"
+    : reportPayloadVersion === 4;
   if (
     report.payload_version !== 3
+    || !privacyAllowsPublication
     || report.report_payload?.requestedDestination !== "consider_anonymized"
     || report.report_payload?.publicationConsent !== true
   ) {
@@ -77,7 +87,13 @@ async function loadEligibleReport(
       "La persona no autorizo una publicacion anonimizada en la ficha.",
     );
   }
-  return report as ReportRow & { facility_id: null; demo_facility_id: string };
+  return report as EligibleReportRow;
+}
+
+function previewForReport(report: EligibleReportRow, preview: ExperiencePreviewInput): ExperiencePreviewInput {
+  return Number(report.report_payload?.version) === 5
+    ? { ...preview, publicPeriod: null }
+    : preview;
 }
 
 async function recordStateEvent(client: PoolClient, input: {
@@ -129,11 +145,12 @@ export async function saveExperiencePublicationPreview(input: {
   return withSupabaseTransaction(async (client) => {
     const reviewer = reviewerIdentifier(input.reviewer);
     const report = await loadEligibleReport(client, input.reportId);
+    const preview = previewForReport(report, input.preview);
     const result = await client.query<PublicationRow>(
       `INSERT INTO elepem_core.facility_experience_publications AS publication (
          report_id, facility_id, demo_facility_id, public_body, public_relationship, public_period,
          reviewer_identifier, status, previewed_at
-       ) VALUES ($1, NULL, $2, $3, $4, $5, $6, 'draft', now())
+       ) VALUES ($1, $2::bigint, $3, $4, $5, $6, $7, 'draft', now())
        ON CONFLICT (report_id) DO UPDATE SET
          public_body = EXCLUDED.public_body,
          public_relationship = EXCLUDED.public_relationship,
@@ -144,10 +161,11 @@ export async function saveExperiencePublicationPreview(input: {
        RETURNING id, status, public_body, public_relationship, public_period, published_at`,
       [
         report.id,
+        report.facility_id,
         report.demo_facility_id,
-        input.preview.publicBody,
-        input.preview.publicRelationship,
-        input.preview.publicPeriod,
+        preview.publicBody,
+        preview.publicRelationship,
+        preview.publicPeriod,
         reviewer,
       ],
     );
@@ -174,7 +192,7 @@ export async function saveExperiencePublicationPreview(input: {
       facilityId: report.facility_id,
       demoFacilityId: report.demo_facility_id,
       decision: "experience_public_preview_saved",
-      preview: input.preview,
+      preview,
     });
     return publicationSummary(publication);
   });
@@ -188,30 +206,34 @@ export async function publishExperiencePublication(input: {
   return withSupabaseTransaction(async (client) => {
     const reviewer = reviewerIdentifier(input.reviewer);
     const report = await loadEligibleReport(client, input.reportId);
+    const preview = input.preview ? previewForReport(report, input.preview) : undefined;
     const existing = await client.query<PublicationRow>(
       `SELECT id, status, public_body, public_relationship, public_period, published_at
        FROM elepem_core.facility_experience_publications
-       WHERE report_id = $1 AND facility_id IS NULL AND demo_facility_id = $2
+       WHERE report_id = $1
+         AND facility_id IS NOT DISTINCT FROM $2::bigint
+         AND demo_facility_id IS NOT DISTINCT FROM $3
        FOR UPDATE`,
-      [report.id, report.demo_facility_id],
+      [report.id, report.facility_id, report.demo_facility_id],
     );
     let publication = existing.rows[0];
     if (!publication) {
-      if (!input.preview) {
+      if (!preview) {
         throw new ExperiencePublicationWorkflowError(409, "preview_required", "Falta el texto moderado que se publicará.");
       }
       const inserted = await client.query<PublicationRow>(
         `INSERT INTO elepem_core.facility_experience_publications (
            report_id, facility_id, demo_facility_id, public_body, public_relationship, public_period,
            reviewer_identifier, status, previewed_at
-         ) VALUES ($1, NULL, $2, $3, $4, $5, $6, 'draft', now())
+         ) VALUES ($1, $2::bigint, $3, $4, $5, $6, $7, 'draft', now())
          RETURNING id, status, public_body, public_relationship, public_period, published_at`,
         [
           report.id,
+          report.facility_id,
           report.demo_facility_id,
-          input.preview.publicBody,
-          input.preview.publicRelationship,
-          input.preview.publicPeriod,
+          preview.publicBody,
+          preview.publicRelationship,
+          preview.publicPeriod,
           reviewer,
         ],
       );
@@ -223,7 +245,7 @@ export async function publishExperiencePublication(input: {
     if (publication.status !== "draft") {
       throw new ExperiencePublicationWorkflowError(409, "publication_withdrawn", "Una experiencia retirada no puede volver a publicarse automaticamente.");
     }
-    if (input.preview) {
+    if (preview) {
       const refreshed = await client.query<PublicationRow>(
         `UPDATE elepem_core.facility_experience_publications
          SET public_body = $2, public_relationship = $3, public_period = $4,
@@ -232,9 +254,9 @@ export async function publishExperiencePublication(input: {
          RETURNING id, status, public_body, public_relationship, public_period, published_at`,
         [
           publication.id,
-          input.preview.publicBody,
-          input.preview.publicRelationship,
-          input.preview.publicPeriod,
+          preview.publicBody,
+          preview.publicRelationship,
+          preview.publicPeriod,
           reviewer,
         ],
       );
@@ -267,7 +289,7 @@ export async function publishExperiencePublication(input: {
       facilityId: report.facility_id,
       demoFacilityId: report.demo_facility_id,
       decision: "experience_published",
-      preview: input.preview,
+      preview,
     });
     return { publication: publicationSummary(published), alreadyPublished: false };
   });
@@ -285,9 +307,11 @@ export async function withdrawExperiencePublication(input: {
     const existing = await client.query<PublicationRow>(
       `SELECT id, status, public_body, public_relationship, public_period, published_at
        FROM elepem_core.facility_experience_publications
-       WHERE report_id = $1 AND facility_id IS NULL AND demo_facility_id = $2
+       WHERE report_id = $1
+         AND facility_id IS NOT DISTINCT FROM $2::bigint
+         AND demo_facility_id IS NOT DISTINCT FROM $3
        FOR UPDATE`,
-      [report.id, report.demo_facility_id],
+      [report.id, report.facility_id, report.demo_facility_id],
     );
     const publication = existing.rows[0];
     if (!publication) {

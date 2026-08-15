@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import {
   decodeExperienceCursor,
@@ -46,4 +47,23 @@ test("el tamano de pagina usa 5 por defecto y un maximo de 20", () => {
   assert.equal(parseExperiencePageLimit("20"), 20);
   assert.equal(parseExperiencePageLimit("0"), null);
   assert.equal(parseExperiencePageLimit("21"), null);
+});
+
+test("la moderacion usa el propietario real o demo sin mezclar expedientes", async () => {
+  const source = await readFile(new URL("../../lib/experience-publication-db.ts", import.meta.url), "utf8");
+  assert.match(source, /Boolean\(report\.facility_id\) === Boolean\(report\.demo_facility_id\)/);
+  assert.match(source, /facility_id IS NOT DISTINCT FROM \$2::bigint/);
+  assert.match(source, /demo_facility_id IS NOT DISTINCT FROM \$3/);
+  assert.match(source, /VALUES \(\$1, \$2::bigint, \$3,/);
+  assert.doesNotMatch(source, /facility_id IS NULL AND demo_facility_id = \$2/);
+  assert.match(source, /!report\.is_demo \|\| report\.entry_type !== "experience"/);
+});
+
+test("v5 solo publica experiencias anonimas y nunca conserva periodo publico", async () => {
+  const source = await readFile(new URL("../../lib/experience-publication-db.ts", import.meta.url), "utf8");
+  assert.match(source, /reportPayloadVersion === 5[\s\S]*privacyMode === "anonymous"/);
+  assert.match(source, /reportPayloadVersion === 4/);
+  assert.match(source, /version\) === 5[\s\S]*publicPeriod: null/);
+  assert.match(source, /requestedDestination !== "consider_anonymized"/);
+  assert.match(source, /publicationConsent !== true/);
 });

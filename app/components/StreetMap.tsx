@@ -15,6 +15,11 @@ import { QUALITY_RATING_LABELS, type Facility } from "./map-types";
 const FIT_OPTIONS = { padding: [28, 28] as [number, number], maxZoom: 14 };
 const SELECTED_ZOOM = 16;
 
+export type RegistryMapViewport = {
+  center: [number, number];
+  zoom: number;
+};
+
 const MARKER_COLOR_VARIABLES: Record<string, string> = {
   habilitado: "--facility-habilitado",
   mides: "--facility-mides",
@@ -88,6 +93,15 @@ function facilityTooltipContent(facility: Facility) {
   copy.className = "mapFacilityTooltipCopy";
   const name = document.createElement("strong");
   name.textContent = facility.name;
+  const institutionalStatus = document.createElement("span");
+  const category = facility.isDemo ? "demo" : facilityDisplayCategory(facility);
+  institutionalStatus.className = `mapFacilityTooltipStatus mapFacilityTooltipStatus-${category}`;
+  institutionalStatus.textContent = facility.isDemo
+    ? "Ejemplo"
+    : [
+        facility.mspFinal ? "Habilitación final MSP" : "",
+        facility.midesSocial ? "Certificado social MIDES" : "",
+      ].filter(Boolean).join(" · ") || "Situación no confirmada";
   const rating = document.createElement("span");
   rating.className = facility.qualityRating
     ? `mapFacilityTooltipRating mapFacilityTooltipRating-${facility.qualityRating}`
@@ -97,7 +111,7 @@ function facilityTooltipContent(facility: Facility) {
     : "Sin calificación disponible";
   const address = document.createElement("small");
   address.textContent = facility.address || "Dirección no informada";
-  copy.append(name, rating, address);
+  copy.append(name, institutionalStatus, rating, address);
   card.append(media, copy);
   return card;
 }
@@ -137,13 +151,19 @@ export default function StreetMap({
   selectedId,
   onSelect,
   onOpenDetails,
+  initialViewport = null,
+  onViewportChange,
+  restoreSelectionWithoutFlying = false,
 }: {
   facilities: Facility[];
   selectedId: string | null;
   onSelect: (id: string) => void;
   onOpenDetails?: (id: string) => void;
+  initialViewport?: RegistryMapViewport | null;
+  onViewportChange?: (viewport: RegistryMapViewport) => void;
+  restoreSelectionWithoutFlying?: boolean;
 }) {
-  const { containerRef, mapRef, markersRef } = useLeafletMap(URUGUAY_VIEW);
+  const { containerRef, mapRef, markersRef } = useLeafletMap(initialViewport ?? URUGUAY_VIEW);
   const mappedFacilities = useMemo(
     () => facilities.filter((facility) => (
       Number.isFinite(facility.lat)
@@ -161,17 +181,25 @@ export default function StreetMap({
   const renderedMarkersRef = useRef(new Map<string, RenderedMarker>());
   const onSelectRef = useRef(onSelect);
   const onOpenDetailsRef = useRef(onOpenDetails);
+  const onViewportChangeRef = useRef(onViewportChange);
   const selectedIdRef = useRef(selectedId);
+  const skipInitialFitRef = useRef(Boolean(initialViewport));
+  const skipInitialSelectionFlyRef = useRef(restoreSelectionWithoutFlying);
   const [viewportRevision, setViewportRevision] = useState(0);
   onSelectRef.current = onSelect;
   onOpenDetailsRef.current = onOpenDetails;
+  onViewportChangeRef.current = onViewportChange;
   selectedIdRef.current = selectedId;
 
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
     let timer: number | undefined;
-    const syncViewport = () => setViewportRevision((value) => value + 1);
+    const syncViewport = () => {
+      setViewportRevision((value) => value + 1);
+      const center = map.getCenter();
+      onViewportChangeRef.current?.({ center: [center.lat, center.lng], zoom: map.getZoom() });
+    };
     const scheduleSync = () => {
       window.clearTimeout(timer);
       timer = window.setTimeout(syncViewport, 60);
@@ -249,6 +277,11 @@ export default function StreetMap({
     if (!map) return;
     const key = pointsKey(mappedFacilities);
     const bounds = pointBounds(mappedFacilities);
+    if (skipInitialFitRef.current) {
+      skipInitialFitRef.current = false;
+      fittedKeyRef.current = key;
+      return;
+    }
     if (bounds && key !== fittedKeyRef.current) {
       fittedKeyRef.current = key;
       map.fitBounds(bounds, FIT_OPTIONS);
@@ -256,6 +289,10 @@ export default function StreetMap({
   }, [mapRef, mappedFacilities]);
 
   useEffect(() => {
+    if (skipInitialSelectionFlyRef.current) {
+      skipInitialSelectionFlyRef.current = false;
+      return;
+    }
     flyToPoint(mapRef.current, mappedFacilities, selectedId, SELECTED_ZOOM);
   }, [mapRef, mappedFacilities, selectedId]);
 

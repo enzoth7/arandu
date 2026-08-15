@@ -1,3 +1,5 @@
+import type { ExperienceReportPayload, ExperienceSubmissionInput } from "./demo-intake.mjs";
+
 export type InstitutionalRole = "state" | "facility";
 export type IntakeKind = "concern" | "experience" | "facility_change";
 export type SubmittedActor = "public" | "system" | "state" | "facility";
@@ -19,17 +21,8 @@ export type DemoFacilityProfile = {
   priceIncludes: string[];
 };
 
-export type ExperienceSubmission = {
-  facilityId: string;
-  relationship: string;
-  period: string;
-  answers: Record<string, "yes" | "partial" | "no" | "unknown" | "prefer_not_to_answer">;
-  narrative?: string;
-  requestedDestination: "private_review" | "private_facility" | "consider_anonymized";
-  publicationConsent: boolean;
-  contact?: { name?: string; phone?: string; email?: string };
-  consent: boolean;
-};
+export type ExperienceSubmission = ExperienceSubmissionInput;
+export type StoredExperiencePayload = ExperienceReportPayload;
 
 export type FacilityChangeSet = {
   facilityId: DemoFacilityProfile["id"];

@@ -4,6 +4,7 @@ export const MAX_EVIDENCE_FILE_BYTES: number;
 export const MAX_EVIDENCE_FILES: number;
 export const CASE_CODE_PATTERN: RegExp;
 export const UPLOAD_TOKEN_PATTERN: RegExp;
+export const PUBLIC_CONCERN_INITIAL_PRIORITY: "Por evaluar";
 export const ALLOWED_EVIDENCE_MIME_TYPES: Set<string>;
 export const EVIDENCE_EXTENSIONS: Record<string, string>;
 export function isRecord(value: unknown): value is JsonRecord;
