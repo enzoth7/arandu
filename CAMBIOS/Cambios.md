@@ -1,10 +1,3 @@
-## INSTITUCIONAL ESTADO
-
-- una bandeja sola, con la etiqueta preocupaciones, experiencias, solicitudes de cambio
-- copiar exactamente lo que hay en el prototipo de mas cerca
-- que sea facil de entender el publicar o no
-
-
 
 ---------------------
 

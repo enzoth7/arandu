@@ -29,7 +29,7 @@ export function PublicRegistry({
   return <>
     <div className="aranduDemoBanner" role="note">
       <ShieldAlert size={24} aria-hidden="true" />
-      <p><strong>PROTOTIPO ACADÉMICO</strong> · Usá sólo datos de demostración. Las comunicaciones se guardan para que el equipo las vea en su bandeja, pero no se envían a ningún organismo ni representan un servicio oficial.</p>
+      <p><strong>PROTOTIPO ACADÉMICO</strong> · Usa solo datos de demostración. Las comunicaciones se guardan para que el equipo las vea en su bandeja, pero no se envían a ningún organismo ni representan un servicio oficial.</p>
     </div>
     <AranduHomeHero />
     <UruguayRegistry
