@@ -8520,7 +8520,7 @@ select:not(:disabled) {
 
 .aranduFooterContent {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 28px;
   padding: 24px 8px;
