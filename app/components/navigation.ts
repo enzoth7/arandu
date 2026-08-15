@@ -62,6 +62,7 @@ export const publicNavItems: readonly NavItem[] = [
   { view: "experiencia", label: "Experiencias" },
   { view: "preocupacion", label: "Tengo una preocupación" },
   { view: "seguimiento", label: "Seguimiento" },
+  { view: "fuentes", label: "Fuentes" },
 ];
 
 export const organizationNavItems: readonly NavItem[] = [
