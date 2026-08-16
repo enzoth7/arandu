@@ -212,7 +212,9 @@ test("las fotos ELEPEM sólo se publican tras aprobación estatal explícita", a
   assert.match(decisionRoute, /rights_metadata->>'rightsConfirmed' = 'true'/);
   assert.doesNotMatch(publicPhotoRoute, /institutionalSessionOrError/);
   assert.match(publicPhotoRoute, /facility_change_publication_photos/);
+  assert.match(publicPhotoRoute, /publication_batch_id/);
   assert.match(publicPhotoRoute, /rightsConfirmed/);
+  assert.match(decisionRoute, /facility_change_publications/);
   assert.match(inbox, /Aprobar y publicar fotos/);
 });
 

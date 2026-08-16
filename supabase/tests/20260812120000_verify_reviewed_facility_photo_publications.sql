@@ -20,5 +20,16 @@ begin
   ) then
     raise exception 'facility_change_publication_photos must force RLS';
   end if;
+  if not exists (
+    select 1
+    from information_schema.columns
+    where table_schema = 'public'
+      and table_name = 'facility_change_publications'
+      and column_name = 'publication_batch_id'
+      and data_type = 'uuid'
+      and is_nullable = 'NO'
+  ) then
+    raise exception 'facility_change_publications.publication_batch_id must be a required uuid';
+  end if;
 end;
 $$;

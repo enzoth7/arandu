@@ -190,16 +190,22 @@ export async function loadPublicFacilities(): Promise<{ facilities: Facility[]; 
     from public.elepem as registry
     left join lateral (
       select
-        publication.remove_current_photo,
-        coalesce((
-          select array_agg(photo.id::text order by photo.position)
-          from public.facility_change_publication_photos as photo
-          where photo.publication_id = publication.id
-        ), '{}')::text[] as photo_ids
+        coalesce(bool_or(publication.remove_current_photo), false) as remove_current_photo,
+        coalesce(array_agg(
+          photo.id::text
+          order by report.created_at, publication.report_id, photo.position
+        ) filter (where photo.id is not null), '{}')::text[] as photo_ids
       from public.facility_change_publications as publication
+      join public.intake_reports as report on report.id = publication.report_id
+      left join public.facility_change_publication_photos as photo on photo.publication_id = publication.id
       where publication.facility_id = registry.id
-      order by publication.published_at desc, publication.id desc
-      limit 1
+        and publication.publication_batch_id = (
+          select latest.publication_batch_id
+          from public.facility_change_publications as latest
+          where latest.facility_id = registry.id
+          order by latest.published_at desc, latest.id desc
+          limit 1
+        )
     ) as approved_photos on true
     order by registry.departamento, registry.nombre, registry.codigo
   `);
@@ -246,16 +252,22 @@ export async function loadAssignedFacilityProfiles(
     from arandu_demo.facilities as facility
     left join lateral (
       select
-        publication.remove_current_photo,
-        coalesce((
-          select array_agg(photo.id::text order by photo.position)
-          from public.facility_change_publication_photos as photo
-          where photo.publication_id = publication.id
-        ), '{}')::text[] as photo_ids
+        coalesce(bool_or(publication.remove_current_photo), false) as remove_current_photo,
+        coalesce(array_agg(
+          photo.id::text
+          order by report.created_at, publication.report_id, photo.position
+        ) filter (where photo.id is not null), '{}')::text[] as photo_ids
       from public.facility_change_publications as publication
+      join public.intake_reports as report on report.id = publication.report_id
+      left join public.facility_change_publication_photos as photo on photo.publication_id = publication.id
       where publication.demo_facility_id = facility.id
-      order by publication.published_at desc, publication.id desc
-      limit 1
+        and publication.publication_batch_id = (
+          select latest.publication_batch_id
+          from public.facility_change_publications as latest
+          where latest.demo_facility_id = facility.id
+          order by latest.published_at desc, latest.id desc
+          limit 1
+        )
     ) as approved_photos on true
     where facility.id = any($1::text[]) and facility.active and facility.is_test
     order by facility.name
@@ -380,16 +392,22 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
       from arandu_demo.facilities as facility
       left join lateral (
         select
-          publication.remove_current_photo,
-          coalesce((
-            select array_agg(photo.id::text order by photo.position)
-            from public.facility_change_publication_photos as photo
-            where photo.publication_id = publication.id
-          ), '{}')::text[] as photo_ids
+          coalesce(bool_or(publication.remove_current_photo), false) as remove_current_photo,
+          coalesce(array_agg(
+            photo.id::text
+            order by report.created_at, publication.report_id, photo.position
+          ) filter (where photo.id is not null), '{}')::text[] as photo_ids
         from public.facility_change_publications as publication
+        join public.intake_reports as report on report.id = publication.report_id
+        left join public.facility_change_publication_photos as photo on photo.publication_id = publication.id
         where publication.demo_facility_id = facility.id
-        order by publication.published_at desc, publication.id desc
-        limit 1
+          and publication.publication_batch_id = (
+            select latest.publication_batch_id
+            from public.facility_change_publications as latest
+            where latest.demo_facility_id = facility.id
+            order by latest.published_at desc, latest.id desc
+            limit 1
+          )
       ) as approved_photos on true
       where facility.active and facility.is_test and facility.id = 'DEMO-ELEPEM-001'
       order by facility.id

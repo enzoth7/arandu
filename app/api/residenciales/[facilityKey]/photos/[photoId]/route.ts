@@ -33,8 +33,8 @@ export async function GET(
        AND attachment.purpose = 'facility_photo'
        AND attachment.mime_type LIKE 'image/%'
        AND attachment.rights_metadata->>'rightsConfirmed' = 'true'
-       AND publication.id = (
-         SELECT latest.id
+       AND publication.publication_batch_id = (
+         SELECT latest.publication_batch_id
          FROM public.facility_change_publications AS latest
          WHERE latest.facility_id IS NOT DISTINCT FROM publication.facility_id
            AND latest.demo_facility_id IS NOT DISTINCT FROM publication.demo_facility_id
