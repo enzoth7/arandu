@@ -24,7 +24,9 @@
     "db:elepem:import": "node --env-file=.env scripts/import-flat-elepem.mjs --apply"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.112.3",
     "@vercel/analytics": "^2.0.1",
+    "dotenv": "^17.4.2",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.468.0",
     "next": "^15.1.0",

@@ -1,0 +1,1642 @@
+{
+  "operation_id": "audit-description-price-spreadsheet-2026-08-17",
+  "generated_at": "2026-08-17T18:54:01.420Z",
+  "mode": "read_only_audit",
+  "source_workbook": "Cambios/17-8/Copy of DESCRIPCIONES_59_TODO_JUNTO_EDITABLE.xlsx",
+  "matching_rule": "codigo exacto; source_record_id conservado para verificación secundaria",
+  "summary": {
+    "source_rows_approved": 58,
+    "exact_code_matches": 58,
+    "not_found": 0,
+    "ambiguous_code": 0,
+    "descriptions_proposed": 16,
+    "prices_declared": 4,
+    "prices_proposed": 0
+  },
+  "rows": [
+    {
+      "source_row": 2,
+      "source_record_id": "239",
+      "codigo": "FAC-LEGACY-ELP-0273-AC38A7DF4D54866F",
+      "source_name": "Abras",
+      "source_location": "Montevideo · Montevideo · Gral. Enrique Martínez 2269",
+      "description_length": 375,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 239,
+          "codigo": "FAC-LEGACY-ELP-0273-AC38A7DF4D54866F",
+          "legacy_id": "ELP-0273",
+          "nombre": "Abras",
+          "location": "Montevideo · Montevideo · Gral. Enrique Martínez 2269",
+          "description_length": 375,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 3,
+      "source_record_id": "240",
+      "codigo": "FAC-LEGACY-ELP-0274-58EC6EB5835F0A9C",
+      "source_name": "Abuela Chachi",
+      "source_location": "Montevideo · Montevideo · Marconi 1500",
+      "description_length": 320,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 240,
+          "codigo": "FAC-LEGACY-ELP-0274-58EC6EB5835F0A9C",
+          "legacy_id": "ELP-0274",
+          "nombre": "Abuela Chachi",
+          "location": "Montevideo · Montevideo · MARCONI 1500",
+          "description_length": 383,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 4,
+      "source_record_id": "610",
+      "codigo": "FAC-LEGACY-MSP24-043-F296BAA525093376",
+      "source_name": "Aguas de Reposo",
+      "source_location": "Montevideo · Montevideo · Avenida Italia 6527",
+      "description_length": 322,
+      "declared_price_text": "Desde $38.000 por mes",
+      "declared_price_uyu": 38000,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 610,
+          "codigo": "FAC-LEGACY-MSP24-043-F296BAA525093376",
+          "legacy_id": "MSP24-043",
+          "nombre": "Aguas de Reposo",
+          "location": "Montevideo · Montevideo · Avenida Italia 6527",
+          "description_length": 322,
+          "has_description": true,
+          "current_price_uyu": 38000,
+          "current_price_date": "2026-08-16T03:00:00.000Z",
+          "current_price_source_url": "https://www.redresidenciales.uy/residencial_hotel/montevideo/carrasco/carrasco/residencial-aguas-de-reposo/"
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 5,
+      "source_record_id": "605",
+      "codigo": "FAC-LEGACY-MSP24-038-EF27E2634E365AAF",
+      "source_name": "Altos del Centro",
+      "source_location": "Montevideo · Montevideo · Yí 1363",
+      "description_length": 407,
+      "declared_price_text": "Desde $50.000 por mes",
+      "declared_price_uyu": 50000,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 605,
+          "codigo": "FAC-LEGACY-MSP24-038-EF27E2634E365AAF",
+          "legacy_id": "MSP24-038",
+          "nombre": "Altos del Centro",
+          "location": "Montevideo · Montevideo · Yí 1363",
+          "description_length": 407,
+          "has_description": true,
+          "current_price_uyu": 50000,
+          "current_price_date": "2026-08-16T03:00:00.000Z",
+          "current_price_source_url": "https://www.redresidenciales.uy/residencial_hotel/residencial-en-centro/"
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 6,
+      "source_record_id": "186",
+      "codigo": "FAC-LEGACY-ELP-0209-81AF5CF9D42A5749",
+      "source_name": "Artemisa",
+      "source_location": "Maldonado · Punta del Este · José Enrique Rodó s/n",
+      "description_length": 343,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 186,
+          "codigo": "FAC-LEGACY-ELP-0209-81AF5CF9D42A5749",
+          "legacy_id": "ELP-0209",
+          "nombre": "Artemisa",
+          "location": "Maldonado · Punta del Este · RODO S/N",
+          "description_length": 343,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 7,
+      "source_record_id": "24",
+      "codigo": "FAC-LEGACY-ELP-0007-0F0B0EE287155CBB",
+      "source_name": "Biltmore",
+      "source_location": "Canelones · Santa Lucía · Batlle y Ordóñez 74",
+      "description_length": 486,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 24,
+          "codigo": "FAC-LEGACY-ELP-0007-0F0B0EE287155CBB",
+          "legacy_id": "ELP-0007",
+          "nombre": "Biltmore",
+          "location": "Canelones · Santa Lucía · Batlle Y Ordoñez 74",
+          "description_length": 486,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 8,
+      "source_record_id": "269",
+      "codigo": "FAC-LEGACY-ELP-0323-0AE0F719E394692C",
+      "source_name": "Buenos Tiempos",
+      "source_location": "Montevideo · Montevideo · Dr. Antonio Anzalone 6263",
+      "description_length": 445,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 269,
+          "codigo": "FAC-LEGACY-ELP-0323-0AE0F719E394692C",
+          "legacy_id": "ELP-0323",
+          "nombre": "Buenos Tiempos",
+          "location": "Montevideo · Montevideo · Dr. Anzalone 6263",
+          "description_length": 445,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 9,
+      "source_record_id": "725",
+      "codigo": "FAC-LEGACY-MSP24-158-20EB90AA4AC20624",
+      "source_name": "Carrasco Home",
+      "source_location": "Montevideo · Montevideo · Av. Gral. Rivera 7110",
+      "description_length": 377,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 725,
+          "codigo": "FAC-LEGACY-MSP24-158-20EB90AA4AC20624",
+          "legacy_id": "MSP24-158",
+          "nombre": "Carrasco Home",
+          "location": "Montevideo · Montevideo · Avda. General Rivera 7110",
+          "description_length": 434,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 10,
+      "source_record_id": "189",
+      "codigo": "FAC-LEGACY-ELP-0212-9B6A5E20CD141BF7",
+      "source_name": "Casa del Sol",
+      "source_location": "Maldonado · Punta del Este · Mercedes s/n, padrón 2751",
+      "description_length": 435,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 189,
+          "codigo": "FAC-LEGACY-ELP-0212-9B6A5E20CD141BF7",
+          "legacy_id": "ELP-0212",
+          "nombre": "Casa del Sol",
+          "location": "Maldonado · Punta del Este · Mercedes s/n padrón 2751",
+          "description_length": 435,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 11,
+      "source_record_id": "406",
+      "codigo": "FAC-LEGACY-ELP-0582-93D22D7B7E424AB9",
+      "source_name": "Casa Garzón",
+      "source_location": "Montevideo · Montevideo · Av. Garzón 1640 entre Casavalle y Aparicio Saravia",
+      "description_length": 356,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 406,
+          "codigo": "FAC-LEGACY-ELP-0582-93D22D7B7E424AB9",
+          "legacy_id": "ELP-0582",
+          "nombre": "Residencial Casa Garzón",
+          "location": "Montevideo · Montevideo · Garzón 1640 entre Casavalle y Aparicio Saravia",
+          "description_length": 418,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 12,
+      "source_record_id": "798",
+      "codigo": "FAC-LEGACY-MSPREG24-025-F762A2AD9BFF55D8",
+      "source_name": "Casa Provenza",
+      "source_location": "Paysandú · Paysandú · Soriano 1117",
+      "description_length": 259,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 798,
+          "codigo": "FAC-LEGACY-MSPREG24-025-F762A2AD9BFF55D8",
+          "legacy_id": "MSPREG24-025",
+          "nombre": "Casa Provenza",
+          "location": "Paysandú · Paysandú · Soriano 1117",
+          "description_length": 357,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 13,
+      "source_record_id": "3",
+      "codigo": "FAC-LEGACY-APP-2DF21A762FE0740B-B9925C90285AB83E",
+      "source_name": "Casa Ravello",
+      "source_location": "Paysandú · Paysandú · Leandro Gómez 1288",
+      "description_length": 297,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 3,
+          "codigo": "FAC-LEGACY-APP-2DF21A762FE0740B-B9925C90285AB83E",
+          "legacy_id": "APP-2DF21A762FE0740B",
+          "nombre": "Casa Ravello",
+          "location": "Paysandú · Paysandú · Gral. Leandro Gomez 1288, 60000 Paysandú, Departamento de Paysandú",
+          "description_length": 297,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 14,
+      "source_record_id": "277",
+      "codigo": "FAC-LEGACY-ELP-0339-553455CD6DDCA934",
+      "source_name": "Casona Carrasco",
+      "source_location": "Montevideo · Montevideo · Beyrouth 1428",
+      "description_length": 360,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 277,
+          "codigo": "FAC-LEGACY-ELP-0339-553455CD6DDCA934",
+          "legacy_id": "ELP-0339",
+          "nombre": "Casona Carrasco",
+          "location": "Montevideo · Montevideo · Beyroutht 1428",
+          "description_length": 461,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 15,
+      "source_record_id": "28",
+      "codigo": "FAC-LEGACY-ELP-0011-6028818C56BC9219",
+      "source_name": "Centro Vital",
+      "source_location": "Canelones · Solymar · Av. Giannattasio esq. Artigas, M44 S3",
+      "description_length": 427,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 28,
+          "codigo": "FAC-LEGACY-ELP-0011-6028818C56BC9219",
+          "legacy_id": "ELP-0011",
+          "nombre": "Centro Vital",
+          "location": "Canelones · Solymar · Av. Gianatassio Esq. Artigas M 44 S 3",
+          "description_length": 427,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 16,
+      "source_record_id": "708",
+      "codigo": "FAC-LEGACY-MSP24-141-17E9A43582091406",
+      "source_name": "Corazón de Oro",
+      "source_location": "Montevideo · Montevideo · Margarita 5707",
+      "description_length": 349,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 708,
+          "codigo": "FAC-LEGACY-MSP24-141-17E9A43582091406",
+          "legacy_id": "MSP24-141",
+          "nombre": "Corazon de Oro",
+          "location": "Montevideo · Montevideo · Margarita 5707",
+          "description_length": 419,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 17,
+      "source_record_id": "732",
+      "codigo": "FAC-LEGACY-MSP24-165-FE59DF82200AF31F",
+      "source_name": "Dolce Primavera",
+      "source_location": "Montevideo · Montevideo · Balastiqui 1517, Punta Gorda",
+      "description_length": 455,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 732,
+          "codigo": "FAC-LEGACY-MSP24-165-FE59DF82200AF31F",
+          "legacy_id": "MSP24-165",
+          "nombre": "Dolce Primavera",
+          "location": "Montevideo · Montevideo · Balastiqui 1517. Punta Gorda",
+          "description_length": 455,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 18,
+      "source_record_id": "558",
+      "codigo": "FAC-LEGACY-ELP-0801-A058CF6EC130D243",
+      "source_name": "Doña Blanca",
+      "source_location": "Tacuarembó · Paso de los Toros · Wilson Ferreira 454",
+      "description_length": 395,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 558,
+          "codigo": "FAC-LEGACY-ELP-0801-A058CF6EC130D243",
+          "legacy_id": "ELP-0801",
+          "nombre": "Residencial Doña Blanca",
+          "location": "Tacuarembó · Paso de los Toros · Wilson Ferreira 454",
+          "description_length": 395,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 19,
+      "source_record_id": "641",
+      "codigo": "FAC-LEGACY-MSP24-074-1F6A59DB4CB83E73",
+      "source_name": "Doña María",
+      "source_location": "Montevideo · Montevideo · Humachiri 4126",
+      "description_length": 327,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 641,
+          "codigo": "FAC-LEGACY-MSP24-074-1F6A59DB4CB83E73",
+          "legacy_id": "MSP24-074",
+          "nombre": "Doña Maria",
+          "location": "Montevideo · Montevideo · Humachiri 4126",
+          "description_length": 327,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 20,
+      "source_record_id": "418",
+      "codigo": "FAC-LEGACY-ELP-0596-D422B9C035B4D1C5",
+      "source_name": "El Retorno",
+      "source_location": "Montevideo · Montevideo · Coronel Raíz 1634-1636",
+      "description_length": 451,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 418,
+          "codigo": "FAC-LEGACY-ELP-0596-D422B9C035B4D1C5",
+          "legacy_id": "ELP-0596",
+          "nombre": "Residencial El Retorno",
+          "location": "Montevideo · Montevideo · Coronel Raiz 1834",
+          "description_length": 451,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 21,
+      "source_record_id": "320",
+      "codigo": "FAC-LEGACY-ELP-0423-48663F84E3D7A49E",
+      "source_name": "Historias de Vida",
+      "source_location": "Montevideo · Montevideo · Juan M. Pérez 2785",
+      "description_length": 457,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 320,
+          "codigo": "FAC-LEGACY-ELP-0423-48663F84E3D7A49E",
+          "legacy_id": "ELP-0423",
+          "nombre": "Historias de Vida",
+          "location": "Montevideo · Montevideo · Juan M. Perez 2785",
+          "description_length": 457,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 22,
+      "source_record_id": "327",
+      "codigo": "FAC-LEGACY-ELP-0434-28966724F4B62110",
+      "source_name": "Hogar Esperanza",
+      "source_location": "Montevideo · Montevideo · José Llupes 4365",
+      "description_length": 421,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 327,
+          "codigo": "FAC-LEGACY-ELP-0434-28966724F4B62110",
+          "legacy_id": "ELP-0434",
+          "nombre": "Hogar Esperanza",
+          "location": "Montevideo · Montevideo · LLUPES 4365",
+          "description_length": 421,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 23,
+      "source_record_id": "622",
+      "codigo": "FAC-LEGACY-MSP24-055-E621D275C1BBB860",
+      "source_name": "Hogar Marsella",
+      "source_location": "Montevideo · Montevideo · Joaquín Núñez 3082",
+      "description_length": 437,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 622,
+          "codigo": "FAC-LEGACY-MSP24-055-E621D275C1BBB860",
+          "legacy_id": "MSP24-055",
+          "nombre": "Hogar Marsella",
+          "location": "Montevideo · Montevideo · Joaquín Nuñez 3082",
+          "description_length": 437,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 24,
+      "source_record_id": "1028",
+      "codigo": "FAC-CANDIDATE-133",
+      "source_name": "Indigo",
+      "source_location": "Montevideo · Montevideo · Av. Rivera 3218",
+      "description_length": 410,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 1028,
+          "codigo": "FAC-CANDIDATE-133",
+          "legacy_id": null,
+          "nombre": "Residencial Indigo",
+          "location": "Montevideo · Montevideo · rivera 3218",
+          "description_length": 410,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 25,
+      "source_record_id": "52",
+      "codigo": "FAC-LEGACY-ELP-0041-000D6554FD4258D3",
+      "source_name": "Jacarandá",
+      "source_location": "Canelones · Costa / Shangrilá · Av. Giannattasio km 20, M4 S3",
+      "description_length": 315,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 52,
+          "codigo": "FAC-LEGACY-ELP-0041-000D6554FD4258D3",
+          "legacy_id": "ELP-0041",
+          "nombre": "Jacaranda",
+          "location": "Canelones · Costa · AV. Giannattasio km 20 M 4 S 3",
+          "description_length": 315,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 26,
+      "source_record_id": "1030",
+      "codigo": "FAC-CANDIDATE-135",
+      "source_name": "Jardín del Sol",
+      "source_location": "Montevideo · Montevideo · Gral. Pagola 2042",
+      "description_length": 400,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 1030,
+          "codigo": "FAC-CANDIDATE-135",
+          "legacy_id": null,
+          "nombre": "Residencial Jardin del Sol",
+          "location": "Montevideo · Montevideo · gral pagola 2042",
+          "description_length": 400,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 27,
+      "source_record_id": "680",
+      "codigo": "FAC-LEGACY-MSP24-113-9E135D5A88992368",
+      "source_name": "La Belle Epoque",
+      "source_location": "Montevideo · Montevideo · Hugo de los Santos Recarte 1284/86",
+      "description_length": 407,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 680,
+          "codigo": "FAC-LEGACY-MSP24-113-9E135D5A88992368",
+          "legacy_id": "MSP24-113",
+          "nombre": "La Belle Epoque",
+          "location": "Montevideo · Montevideo · Hugo de los Santos Recarte 1284",
+          "description_length": 469,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 28,
+      "source_record_id": "328",
+      "codigo": "FAC-LEGACY-ELP-0437-C3267606B15A6749",
+      "source_name": "La Capilla",
+      "source_location": "Montevideo · Montevideo · Plutarco 4009",
+      "description_length": 392,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 328,
+          "codigo": "FAC-LEGACY-ELP-0437-C3267606B15A6749",
+          "legacy_id": "ELP-0437",
+          "nombre": "La Capilla",
+          "location": "Montevideo · Montevideo · Plutarco 4009",
+          "description_length": 392,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 29,
+      "source_record_id": "54",
+      "codigo": "FAC-LEGACY-ELP-0045-E127E8EEBDBB3250",
+      "source_name": "La Carolina",
+      "source_location": "Canelones · Colonia Nicolich · Gustavo Nicolich, manzana 105, solar 3",
+      "description_length": 405,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 54,
+          "codigo": "FAC-LEGACY-ELP-0045-E127E8EEBDBB3250",
+          "legacy_id": "ELP-0045",
+          "nombre": "La Carolina",
+          "location": "Canelones · Canelones Ciudad de La · GUSTAVO NICOLICH, MANZANA 105 , SOLAR 3, COLONIA NICOLICH",
+          "description_length": 469,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 31,
+      "source_record_id": "730",
+      "codigo": "FAC-LEGACY-MSP24-163-E9E75F95BD0A8370",
+      "source_name": "La Terraza",
+      "source_location": "Montevideo · Montevideo · Ellauri 728",
+      "description_length": 508,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 730,
+          "codigo": "FAC-LEGACY-MSP24-163-E9E75F95BD0A8370",
+          "legacy_id": "MSP24-163",
+          "nombre": "La Terraza",
+          "location": "Montevideo · Montevideo · Ellauri 728",
+          "description_length": 508,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 32,
+      "source_record_id": "648",
+      "codigo": "FAC-LEGACY-MSP24-081-8371836BFC6FD057",
+      "source_name": "Las Cuatro Estaciones",
+      "source_location": "Montevideo · Montevideo · República de El Salvador 2968",
+      "description_length": 372,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 648,
+          "codigo": "FAC-LEGACY-MSP24-081-8371836BFC6FD057",
+          "legacy_id": "MSP24-081",
+          "nombre": "Las Cuatro Estaciones",
+          "location": "Montevideo · Montevideo · República De El Salvador 2968",
+          "description_length": 440,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 33,
+      "source_record_id": "165",
+      "codigo": "FAC-LEGACY-ELP-0186-330C8BF29F107603",
+      "source_name": "Las Hortensias",
+      "source_location": "Florida · Florida · Barreiro 157",
+      "description_length": 403,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 165,
+          "codigo": "FAC-LEGACY-ELP-0186-330C8BF29F107603",
+          "legacy_id": "ELP-0186",
+          "nombre": "Las Hortensias",
+          "location": "Florida · Florida · Barreiro 517",
+          "description_length": 403,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 34,
+      "source_record_id": "204",
+      "codigo": "FAC-LEGACY-ELP-0235-24E77431FF337D93",
+      "source_name": "Los Olivos",
+      "source_location": "Maldonado · Punta del Este · Santiago de Chile entre Covadonga y Selva Negra, parada 12 de la Mansa",
+      "description_length": 509,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 204,
+          "codigo": "FAC-LEGACY-ELP-0235-24E77431FF337D93",
+          "legacy_id": "ELP-0235",
+          "nombre": "Los Olivos",
+          "location": "Maldonado · Punta del Este · Santiago de Chile p.12",
+          "description_length": 509,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 35,
+      "source_record_id": "64",
+      "codigo": "FAC-LEGACY-ELP-0056-F35989C075D724E7",
+      "source_name": "Luz del Sol",
+      "source_location": "Canelones · Lagomar · Luz del Sol, M58 S5",
+      "description_length": 420,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 64,
+          "codigo": "FAC-LEGACY-ELP-0056-F35989C075D724E7",
+          "legacy_id": "ELP-0056",
+          "nombre": "Luz del Sol",
+          "location": "Canelones · Lagomar · Luz Del Sol M58 S5",
+          "description_length": 420,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 36,
+      "source_record_id": "1034",
+      "codigo": "FAC-CANDIDATE-139",
+      "source_name": "Manantiales",
+      "source_location": "Montevideo · Montevideo · Cagancha 2314",
+      "description_length": 462,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 1034,
+          "codigo": "FAC-CANDIDATE-139",
+          "legacy_id": null,
+          "nombre": "Residencial Manantiales",
+          "location": "Montevideo · Montevideo · cagancha 2314",
+          "description_length": 462,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 37,
+      "source_record_id": "578",
+      "codigo": "FAC-LEGACY-MSP24-011-690FB5E8DE8BD869",
+      "source_name": "Manas Home",
+      "source_location": "Montevideo · Montevideo · Millington Drake 1993",
+      "description_length": 505,
+      "declared_price_text": "Desde $65.000 por mes",
+      "declared_price_uyu": 65000,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 578,
+          "codigo": "FAC-LEGACY-MSP24-011-690FB5E8DE8BD869",
+          "legacy_id": "MSP24-011",
+          "nombre": "Manas Home",
+          "location": "Montevideo · Montevideo · Millington Drake 1993",
+          "description_length": 505,
+          "has_description": true,
+          "current_price_uyu": 65000,
+          "current_price_date": "2026-08-16T03:00:00.000Z",
+          "current_price_source_url": "https://www.redresidenciales.uy/residencial_hotel/carrasco/residencial-manas-casa-asistida/"
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 38,
+      "source_record_id": "699",
+      "codigo": "FAC-LEGACY-MSP24-132-A5E4A5B062506CC2",
+      "source_name": "Mi Jazmín",
+      "source_location": "Montevideo · Montevideo · Av. Italia 4444",
+      "description_length": 341,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 699,
+          "codigo": "FAC-LEGACY-MSP24-132-A5E4A5B062506CC2",
+          "legacy_id": "MSP24-132",
+          "nombre": "Mi Jazmin",
+          "location": "Montevideo · Montevideo · Av. Italia 4444",
+          "description_length": 443,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 39,
+      "source_record_id": "653",
+      "codigo": "FAC-LEGACY-MSP24-086-5EDD21227DF5C42D",
+      "source_name": "Mis Nietos",
+      "source_location": "Montevideo · Montevideo · Bulevar Artigas 4251",
+      "description_length": 374,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 653,
+          "codigo": "FAC-LEGACY-MSP24-086-5EDD21227DF5C42D",
+          "legacy_id": "MSP24-086",
+          "nombre": "Mis Nietos",
+          "location": "Montevideo · Montevideo · Bulevar Artigas 4251",
+          "description_length": 442,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 40,
+      "source_record_id": "442",
+      "codigo": "FAC-LEGACY-ELP-0625-2C4120F281E273B7",
+      "source_name": "Nirvana",
+      "source_location": "Montevideo · Montevideo · Joaquín Artigas 3939",
+      "description_length": 365,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 442,
+          "codigo": "FAC-LEGACY-ELP-0625-2C4120F281E273B7",
+          "legacy_id": "ELP-0625",
+          "nombre": "Residencial Nirvana",
+          "location": "Montevideo · Montevideo · Joaquín Artigas 3939",
+          "description_length": 455,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 41,
+      "source_record_id": "375",
+      "codigo": "FAC-LEGACY-ELP-0539-765EF7D5E260DF1D",
+      "source_name": "Nápoles",
+      "source_location": "Montevideo · Montevideo · Av. Italia 6363 esq. Córcega",
+      "description_length": 386,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 375,
+          "codigo": "FAC-LEGACY-ELP-0539-765EF7D5E260DF1D",
+          "legacy_id": "ELP-0539",
+          "nombre": "Napoles",
+          "location": "Montevideo · Montevideo · Av. Italia 6363",
+          "description_length": 448,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 42,
+      "source_record_id": "448",
+      "codigo": "FAC-LEGACY-ELP-0631-BA3F5F2D66A2079E",
+      "source_name": "Our Place",
+      "source_location": "Montevideo · Montevideo · Bvar. Batlle y Ordóñez 2141",
+      "description_length": 494,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 448,
+          "codigo": "FAC-LEGACY-ELP-0631-BA3F5F2D66A2079E",
+          "legacy_id": "ELP-0631",
+          "nombre": "Residencial Our Place",
+          "location": "Montevideo · Montevideo · Bvar Batlle y Ordoñez 2141",
+          "description_length": 494,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 43,
+      "source_record_id": "387",
+      "codigo": "FAC-LEGACY-ELP-0555-BB4202A284A223D2",
+      "source_name": "Palas Atenea Pocitos",
+      "source_location": "Montevideo · Montevideo · Bulevar España 2488",
+      "description_length": 347,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 387,
+          "codigo": "FAC-LEGACY-ELP-0555-BB4202A284A223D2",
+          "legacy_id": "ELP-0555",
+          "nombre": "Palas Atenea (Pocitos)",
+          "location": "Montevideo · Montevideo · Bv. España 2488",
+          "description_length": 347,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 44,
+      "source_record_id": "666",
+      "codigo": "FAC-LEGACY-MSP24-099-85E0EA134D40834A",
+      "source_name": "Polo House",
+      "source_location": "Montevideo · Montevideo · Orleans 2504",
+      "description_length": 451,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 666,
+          "codigo": "FAC-LEGACY-MSP24-099-85E0EA134D40834A",
+          "legacy_id": "MSP24-099",
+          "nombre": "Polo House",
+          "location": "Montevideo · Montevideo · Orleans 2504",
+          "description_length": 451,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 45,
+      "source_record_id": "76",
+      "codigo": "FAC-LEGACY-ELP-0070-386F31ED04B70FF0",
+      "source_name": "Puentecasa",
+      "source_location": "Canelones · Atlántida · Calle 22 entre Calle 5 y Av. Artigas",
+      "description_length": 452,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 76,
+          "codigo": "FAC-LEGACY-ELP-0070-386F31ED04B70FF0",
+          "legacy_id": "ELP-0070",
+          "nombre": "Residencia Puentecasa",
+          "location": "Canelones · Atlántida · Calle 22 entre Calle 5 y Av. Artigas - Atlántida",
+          "description_length": 452,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 46,
+      "source_record_id": "259",
+      "codigo": "FAC-LEGACY-ELP-0304-E2871F1B4D5762FB",
+      "source_name": "Residencial Apart Hotel",
+      "source_location": "Montevideo · Montevideo · Mateo Vidal 3328",
+      "description_length": 337,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 259,
+          "codigo": "FAC-LEGACY-ELP-0304-E2871F1B4D5762FB",
+          "legacy_id": "ELP-0304",
+          "nombre": "Residencial Apart Hotel",
+          "location": "Montevideo · Montevideo · Mateo Vidal 3328",
+          "description_length": 337,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 47,
+      "source_record_id": "591",
+      "codigo": "FAC-LEGACY-MSP24-024-5E4A932D83C06AB9",
+      "source_name": "Residencial Nahuel",
+      "source_location": "Montevideo · Montevideo · Hermanos Ruiz 3495",
+      "description_length": 376,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 591,
+          "codigo": "FAC-LEGACY-MSP24-024-5E4A932D83C06AB9",
+          "legacy_id": "MSP24-024",
+          "nombre": "Residencial Nahuel",
+          "location": "Montevideo · Montevideo · Hermanos Ruiz 3495",
+          "description_length": 376,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 48,
+      "source_record_id": "1035",
+      "codigo": "FAC-CANDIDATE-141",
+      "source_name": "Residencial Pontevedra",
+      "source_location": "Montevideo · Montevideo · Blandengues 1915",
+      "description_length": 286,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 1035,
+          "codigo": "FAC-CANDIDATE-141",
+          "legacy_id": null,
+          "nombre": "Residencial Pontevedra",
+          "location": "Montevideo · Montevideo · blandengues 1915",
+          "description_length": 286,
+          "has_description": true,
+          "current_price_uyu": 29000,
+          "current_price_date": "2026-08-16T03:00:00.000Z",
+          "current_price_source_url": "https://www.redresidenciales.uy/residencial-hotel/montevideo/reducto/residencial-pontevedra/"
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 49,
+      "source_record_id": "95",
+      "codigo": "FAC-LEGACY-ELP-0090-F7F06503E5098D4A",
+      "source_name": "Residencial Solymar",
+      "source_location": "Canelones · Solymar · Rocha entre General Gestido y Achiras",
+      "description_length": 296,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 95,
+          "codigo": "FAC-LEGACY-ELP-0090-F7F06503E5098D4A",
+          "legacy_id": "ELP-0090",
+          "nombre": "Solymar",
+          "location": "Canelones · Solymar Sur · ROCHA ENTRE GRAL GESTIDO Y ACHIRAS",
+          "description_length": 296,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 50,
+      "source_record_id": "470",
+      "codigo": "FAC-LEGACY-ELP-0667-3C4D19F402F6FE2D",
+      "source_name": "Residencial Zuich",
+      "source_location": "Montevideo · Montevideo · Av. Luis Alberto de Herrera 3943",
+      "description_length": 395,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 470,
+          "codigo": "FAC-LEGACY-ELP-0667-3C4D19F402F6FE2D",
+          "legacy_id": "ELP-0667",
+          "nombre": "Zuich",
+          "location": "Montevideo · Montevideo · Av. Luis Alberte de Herrera 3943",
+          "description_length": 457,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 51,
+      "source_record_id": "695",
+      "codigo": "FAC-LEGACY-MSP24-128-0077C3F2BA4412D2",
+      "source_name": "Saniguet",
+      "source_location": "Montevideo · Montevideo · Av. Millán 3260",
+      "description_length": 344,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 695,
+          "codigo": "FAC-LEGACY-MSP24-128-0077C3F2BA4412D2",
+          "legacy_id": "MSP24-128",
+          "nombre": "Saniguet",
+          "location": "Montevideo · Montevideo · Av. Millán 3260",
+          "description_length": 412,
+          "has_description": true,
+          "current_price_uyu": 60000,
+          "current_price_date": "2025-06-12T03:00:00.000Z",
+          "current_price_source_url": "https://app.vitalencecare.com/VitalenceJavaEnvironment/servlet/com.vitalence.buscarcuartos"
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 52,
+      "source_record_id": "608",
+      "codigo": "FAC-LEGACY-MSP24-041-25544A83B648E4BA",
+      "source_name": "Santa Bernardita",
+      "source_location": "Montevideo · Montevideo · 19 de Abril 1140",
+      "description_length": 349,
+      "declared_price_text": "Desde $55.000 por mes",
+      "declared_price_uyu": 55000,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 608,
+          "codigo": "FAC-LEGACY-MSP24-041-25544A83B648E4BA",
+          "legacy_id": "MSP24-041",
+          "nombre": "Santa Bernardita",
+          "location": "Montevideo · Montevideo · 19 De Abril 1140",
+          "description_length": 349,
+          "has_description": true,
+          "current_price_uyu": 55000,
+          "current_price_date": "2026-08-16T03:00:00.000Z",
+          "current_price_source_url": "https://www.redresidenciales.uy/residencial_hotel/montevideo/prado/prado/santa-bernardita-0/"
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 53,
+      "source_record_id": "634",
+      "codigo": "FAC-LEGACY-MSP24-067-11D2A9934CD5D0EC",
+      "source_name": "Seraan",
+      "source_location": "Montevideo · Montevideo · Av. Millán 3346",
+      "description_length": 329,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 634,
+          "codigo": "FAC-LEGACY-MSP24-067-11D2A9934CD5D0EC",
+          "legacy_id": "MSP24-067",
+          "nombre": "Seraan",
+          "location": "Montevideo · Montevideo · Cooperativa De Trabajo De Producción De Servicios De Atención De Adultos, Ancianos",
+          "description_length": 329,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 54,
+      "source_record_id": "592",
+      "codigo": "FAC-LEGACY-MSP24-025-2F4C08E530CFFDE6",
+      "source_name": "Solaz",
+      "source_location": "Montevideo · Montevideo · Minas 1072",
+      "description_length": 378,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 592,
+          "codigo": "FAC-LEGACY-MSP24-025-2F4C08E530CFFDE6",
+          "legacy_id": "MSP24-025",
+          "nombre": "Residencial Solaz",
+          "location": "Montevideo · Montevideo · Minas 1072",
+          "description_length": 378,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 55,
+      "source_record_id": "627",
+      "codigo": "FAC-LEGACY-MSP24-060-2F6A9CE7CDDDE4F2",
+      "source_name": "Sueños Compartidos",
+      "source_location": "Montevideo · Montevideo · Dalmiro Costa 4685",
+      "description_length": 360,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 627,
+          "codigo": "FAC-LEGACY-MSP24-060-2F6A9CE7CDDDE4F2",
+          "legacy_id": "MSP24-060",
+          "nombre": "Sueños Compartidos",
+          "location": "Montevideo · Montevideo · Dalmiro Costa 4685",
+          "description_length": 360,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 56,
+      "source_record_id": "461",
+      "codigo": "FAC-LEGACY-ELP-0652-61C73CB02C567F5F",
+      "source_name": "Sweet Home",
+      "source_location": "Montevideo · Montevideo · Av. Juan Bautista Alberdi 6250",
+      "description_length": 429,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 461,
+          "codigo": "FAC-LEGACY-ELP-0652-61C73CB02C567F5F",
+          "legacy_id": "ELP-0652",
+          "nombre": "Sweet Home",
+          "location": "Montevideo · Montevideo · Av. Juan Bautista Alberdi 6250",
+          "description_length": 475,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": true,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 57,
+      "source_record_id": "779",
+      "codigo": "FAC-LEGACY-MSPREG24-005-A5DDB0ACEAFFF7A0",
+      "source_name": "Tempus",
+      "source_location": "Montevideo · Montevideo · General Santander 1680",
+      "description_length": 448,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 779,
+          "codigo": "FAC-LEGACY-MSPREG24-005-A5DDB0ACEAFFF7A0",
+          "legacy_id": "MSPREG24-005",
+          "nombre": "Centro Residencial Tempus",
+          "location": "Montevideo · Montevideo · General Santander 1680",
+          "description_length": 448,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 58,
+      "source_record_id": "661",
+      "codigo": "FAC-LEGACY-MSP24-094-C05D562E40AF2EDC",
+      "source_name": "The Green Home",
+      "source_location": "Montevideo · Montevideo · Avenida Bolivia 2436",
+      "description_length": 493,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 661,
+          "codigo": "FAC-LEGACY-MSP24-094-C05D562E40AF2EDC",
+          "legacy_id": "MSP24-094",
+          "nombre": "The Green Home",
+          "location": "Montevideo · Montevideo · Avda Bolivia 2436",
+          "description_length": 493,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 59,
+      "source_record_id": "489",
+      "codigo": "FAC-LEGACY-ELP-0699-2AF5C4249501D7D2",
+      "source_name": "Tilos de Abril",
+      "source_location": "Montevideo · Montevideo · 6 de Abril 1374",
+      "description_length": 455,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 489,
+          "codigo": "FAC-LEGACY-ELP-0699-2AF5C4249501D7D2",
+          "legacy_id": "ELP-0699",
+          "nombre": "Tilos de Abril",
+          "location": "Montevideo · Montevideo · 6 De Abril 1374",
+          "description_length": 455,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    },
+    {
+      "source_row": 60,
+      "source_record_id": "1004",
+      "codigo": "FAC-CANDIDATE-163",
+      "source_name": "Villa Azul",
+      "source_location": "Montevideo · Montevideo · Garibaldi 2584",
+      "description_length": 329,
+      "declared_price_text": "Precio no informado",
+      "declared_price_uyu": null,
+      "match_status": "exact_code",
+      "live_matches": [
+        {
+          "tabla": "elepem",
+          "id": 1004,
+          "codigo": "FAC-CANDIDATE-163",
+          "legacy_id": null,
+          "nombre": "Villa Azul",
+          "location": "Montevideo · Montevideo · garibaldi 2584",
+          "description_length": 329,
+          "has_description": true,
+          "current_price_uyu": null,
+          "current_price_date": null,
+          "current_price_source_url": null
+        }
+      ],
+      "proposed_description_update": false,
+      "proposed_price_update": false
+    }
+  ]
+}

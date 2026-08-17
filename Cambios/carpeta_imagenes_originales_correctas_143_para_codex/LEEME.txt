@@ -1,0 +1,14 @@
+CARPETA DE IMÁGENES ORIGINALES CORRECTAS
+
+Registros esperados: 143
+Imágenes descargadas y validadas: 143
+Fallos: 0
+SHA-256 únicos: 143
+Grupos de duplicados binarios: 0
+
+USO
+- Usar imageId como clave estable.
+- No relacionar archivos por orden alfabético ni por posición en una lista.
+- manifest_local_sin_urls.json contiene rutas locales, no URLs.
+- No usar imagenes_pendientes_derechos_143.zip: quedó mezclado.
+- No subir a Supabase hasta revisar CONTROL_DESCARGA.csv.

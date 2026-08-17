@@ -1,0 +1,1273 @@
+{
+  "operation_id": "merge-user-confirmed-duplicates-2026-08-17-round-2",
+  "generated_at": "2026-08-17T18:34:54.902Z",
+  "project_ref": "itolluaivfoxnaohbsdk",
+  "apply_requested": true,
+  "before_counts": {
+    "elepem": 935,
+    "elepem_sin_ubicacion": 116
+  },
+  "expected_after_counts": {
+    "elepem": 930,
+    "elepem_sin_ubicacion": 116
+  },
+  "relation_counts_for_sources": [
+    {
+      "relation": "public.facility_change_publications",
+      "count": 0
+    },
+    {
+      "relation": "public.intake_reports",
+      "count": 0
+    },
+    {
+      "relation": "public.facility_document_status_reviews",
+      "count": 0
+    },
+    {
+      "relation": "elepem_core.facility_experience_publications",
+      "count": 0
+    }
+  ],
+  "unlocated_matches": [],
+  "merges": [
+    {
+      "target": {
+        "id": 648,
+        "codigo": "FAC-LEGACY-MSP24-081-8371836BFC6FD057",
+        "legacy_id": "MSP24-081",
+        "nombre": "Las Cuatro Estaciones",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "República De El Salvador 2968",
+        "lat": -34.8921269,
+        "lng": -56.1476992,
+        "precision_ubicacion": "calle",
+        "source_count": 5,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "source": {
+        "id": 832,
+        "codigo": "FAC-OFFICIAL-ELP-0364-7D544B4397B0BEDE",
+        "legacy_id": null,
+        "nombre": "Cuatro Estaciones",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "República del Salvador 2968",
+        "lat": -34.8939753,
+        "lng": -56.1794975,
+        "precision_ubicacion": "referencial",
+        "source_count": 3,
+        "msp_habilitado": false,
+        "mides_certificado": false
+      },
+      "final_name": "Las Cuatro Estaciones",
+      "alternative_names": [
+        "Cuatro Estaciones"
+      ],
+      "final_location": {
+        "id": 648,
+        "codigo": "FAC-LEGACY-MSP24-081-8371836BFC6FD057",
+        "legacy_id": "MSP24-081",
+        "nombre": "Las Cuatro Estaciones",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "República De El Salvador 2968",
+        "lat": -34.8921269,
+        "lng": -56.1476992,
+        "precision_ubicacion": "calle",
+        "source_count": 5,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "final_status": "habilitacion_msp",
+      "source_count": 8,
+      "phone_count": 1,
+      "email_count": 1
+    },
+    {
+      "target": {
+        "id": 735,
+        "codigo": "FAC-LEGACY-MSP24-168-417BC7C33AFFB8F6",
+        "legacy_id": "MSP24-168",
+        "nombre": "Residencial Primavera",
+        "nombres_alternativos": [
+          "Primavera I"
+        ],
+        "departamento": "Canelones",
+        "localidad": "Las Piedras",
+        "direccion": "Avda Artigas  365 Las Piedras",
+        "lat": -34.7266138,
+        "lng": -56.2076878,
+        "precision_ubicacion": "puerta",
+        "source_count": 5,
+        "msp_habilitado": true,
+        "mides_certificado": false
+      },
+      "source": {
+        "id": 73,
+        "codigo": "FAC-LEGACY-ELP-0066-0571A6D622ACA084",
+        "legacy_id": "ELP-0066",
+        "nombre": "Primavera",
+        "nombres_alternativos": [],
+        "departamento": "Canelones",
+        "localidad": "Las Piedras",
+        "direccion": "BVAR. ARTIGAS 365",
+        "lat": -34.7320782,
+        "lng": -56.0311454,
+        "precision_ubicacion": "calle",
+        "source_count": 3,
+        "msp_habilitado": false,
+        "mides_certificado": false
+      },
+      "final_name": "Residencial Primavera",
+      "alternative_names": [
+        "Primavera I",
+        "Primavera"
+      ],
+      "final_location": {
+        "id": 735,
+        "codigo": "FAC-LEGACY-MSP24-168-417BC7C33AFFB8F6",
+        "legacy_id": "MSP24-168",
+        "nombre": "Residencial Primavera",
+        "nombres_alternativos": [
+          "Primavera I"
+        ],
+        "departamento": "Canelones",
+        "localidad": "Las Piedras",
+        "direccion": "Avda Artigas  365 Las Piedras",
+        "lat": -34.7266138,
+        "lng": -56.2076878,
+        "precision_ubicacion": "puerta",
+        "source_count": 5,
+        "msp_habilitado": true,
+        "mides_certificado": false
+      },
+      "final_status": "habilitacion_msp",
+      "source_count": 8,
+      "phone_count": 1,
+      "email_count": 1
+    },
+    {
+      "target": {
+        "id": 654,
+        "codigo": "FAC-LEGACY-MSP24-087-9C51F0B196BA6EDB",
+        "legacy_id": "MSP24-087",
+        "nombre": "Piebu",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "Fernández Crespo 1768",
+        "lat": -34.8981936,
+        "lng": -56.178242,
+        "precision_ubicacion": "puerta",
+        "source_count": 3,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "source": {
+        "id": 844,
+        "codigo": "FAC-OFFICIAL-ELP-0431-26F03489CB04E92C",
+        "legacy_id": null,
+        "nombre": "Hogar de Ancianos Piebu",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "Fernandez Crespo 1768/70",
+        "lat": -34.8981936,
+        "lng": -56.178242,
+        "precision_ubicacion": "referencial",
+        "source_count": 3,
+        "msp_habilitado": false,
+        "mides_certificado": false
+      },
+      "final_name": "Piebu",
+      "alternative_names": [
+        "Hogar de Ancianos Piebu"
+      ],
+      "final_location": {
+        "id": 654,
+        "codigo": "FAC-LEGACY-MSP24-087-9C51F0B196BA6EDB",
+        "legacy_id": "MSP24-087",
+        "nombre": "Piebu",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "Fernández Crespo 1768",
+        "lat": -34.8981936,
+        "lng": -56.178242,
+        "precision_ubicacion": "puerta",
+        "source_count": 3,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "final_status": "habilitacion_msp",
+      "source_count": 6,
+      "phone_count": 1,
+      "email_count": 1
+    },
+    {
+      "target": {
+        "id": 682,
+        "codigo": "FAC-LEGACY-MSP24-115-2656DC80B95FB56C",
+        "legacy_id": "MSP24-115",
+        "nombre": "Marías Belen",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "José Enrique Rodó 1874",
+        "lat": -34.9040993,
+        "lng": -56.1757093,
+        "precision_ubicacion": "puerta",
+        "source_count": 3,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "source": {
+        "id": 862,
+        "codigo": "FAC-OFFICIAL-ELP-0517-90D06DEEAD600953",
+        "legacy_id": null,
+        "nombre": "María Belën",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "Rodó 1874",
+        "lat": -34.9040993,
+        "lng": -56.1757093,
+        "precision_ubicacion": "referencial",
+        "source_count": 4,
+        "msp_habilitado": false,
+        "mides_certificado": false
+      },
+      "final_name": "María Belén",
+      "alternative_names": [
+        "Marías Belen"
+      ],
+      "final_location": {
+        "id": 682,
+        "codigo": "FAC-LEGACY-MSP24-115-2656DC80B95FB56C",
+        "legacy_id": "MSP24-115",
+        "nombre": "Marías Belen",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "José Enrique Rodó 1874",
+        "lat": -34.9040993,
+        "lng": -56.1757093,
+        "precision_ubicacion": "puerta",
+        "source_count": 3,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "final_status": "habilitacion_msp",
+      "source_count": 7,
+      "phone_count": 1,
+      "email_count": 1
+    },
+    {
+      "target": {
+        "id": 761,
+        "codigo": "FAC-LEGACY-MSP24-194-D458D1A0B878D49B",
+        "legacy_id": "MSP24-194",
+        "nombre": "Hogar Enrique Chaplín",
+        "nombres_alternativos": [],
+        "departamento": "Paysandú",
+        "localidad": "Nuevo Paysandu",
+        "direccion": "Avda Enrique Chaplín N° 728",
+        "lat": -32.3243949,
+        "lng": -58.0593943,
+        "precision_ubicacion": "puerta",
+        "source_count": 3,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "source": {
+        "id": 891,
+        "codigo": "FAC-OFFICIAL-ELP-0717-4C9F5EDFAD399FF2",
+        "legacy_id": null,
+        "nombre": "Hogar Ancianos Enrique Chaplin",
+        "nombres_alternativos": [
+          "Hogar De Ancianos Enrique Chaplin"
+        ],
+        "departamento": "Paysandú",
+        "localidad": "Paysandú",
+        "direccion": "Avda E. Chaplin 728",
+        "lat": -32.3243949,
+        "lng": -58.0593943,
+        "precision_ubicacion": "referencial",
+        "source_count": 3,
+        "msp_habilitado": false,
+        "mides_certificado": false
+      },
+      "final_name": "Hogar Enrique Chaplín",
+      "alternative_names": [
+        "Hogar De Ancianos Enrique Chaplin",
+        "Hogar Ancianos Enrique Chaplin"
+      ],
+      "final_location": {
+        "id": 761,
+        "codigo": "FAC-LEGACY-MSP24-194-D458D1A0B878D49B",
+        "legacy_id": "MSP24-194",
+        "nombre": "Hogar Enrique Chaplín",
+        "nombres_alternativos": [],
+        "departamento": "Paysandú",
+        "localidad": "Nuevo Paysandu",
+        "direccion": "Avda Enrique Chaplín N° 728",
+        "lat": -32.3243949,
+        "lng": -58.0593943,
+        "precision_ubicacion": "puerta",
+        "source_count": 3,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "final_status": "habilitacion_msp",
+      "source_count": 6,
+      "phone_count": 1,
+      "email_count": 1
+    }
+  ],
+  "rows": [
+    {
+      "id": "73",
+      "codigo": "FAC-LEGACY-ELP-0066-0571A6D622ACA084",
+      "legacy_id": "ELP-0066",
+      "nombre": "Primavera",
+      "nombres_alternativos": [],
+      "departamento": "Canelones",
+      "localidad": "Las Piedras",
+      "direccion": "BVAR. ARTIGAS 365",
+      "lat": -34.7320782,
+      "lng": -56.0311454,
+      "precision_ubicacion": "calle",
+      "precision_etiqueta": "puerta más cercana en la misma calle",
+      "telefonos": [],
+      "emails": [],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": false,
+      "msp_fuente_url": null,
+      "msp_fecha": null,
+      "mides_certificado": false,
+      "mides_fuente_url": null,
+      "mides_fecha": null,
+      "situacion": "situacion_no_confirmada",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "otros_ids": [
+        "ELP-0066"
+      ],
+      "otros_ids_urls": [
+        ""
+      ],
+      "fuentes_referencias": [
+        "MSPR-120-2022",
+        "public.residenciales:ELP-0066",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0066:src_001"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion,estado_administrativo"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:45:06.899Z",
+      "id_num": 73
+    },
+    {
+      "id": "648",
+      "codigo": "FAC-LEGACY-MSP24-081-8371836BFC6FD057",
+      "legacy_id": "MSP24-081",
+      "nombre": "Las Cuatro Estaciones",
+      "nombres_alternativos": [],
+      "departamento": "Montevideo",
+      "localidad": "Montevideo",
+      "direccion": "República De El Salvador 2968",
+      "lat": -34.8921269,
+      "lng": -56.1476992,
+      "precision_ubicacion": "calle",
+      "precision_etiqueta": "Ubicación aproximada sobre la calle",
+      "telefonos": [],
+      "emails": [],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": true,
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_fecha": "2026-06-30T03:00:00.000Z",
+      "mides_certificado": true,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "mides_fecha": "2026-01-31T03:00:00.000Z",
+      "situacion": "habilitacion_msp",
+      "descripcion": "El establecimiento declara habitaciones individuales y compartidas con baño privado, una casa de dos plantas, calefacción y un sistema central de llamadores. Entre los servicios informados se incluyen dirección médica, alimentación supervisada, fisioterapia, estimulación cognitiva, actividades artísticas, música, gimnasia, lavandería, preparación de medicación y paseos. Las modalidades de estadía no se detallan con suficiente precisión.",
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [],
+      "otros_ids": [],
+      "otros_ids_urls": [],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-081",
+        "CAMBIOS-ENRIQ-CBE744E3B3318E9B",
+        "CAMBIOS-ENRIQ-DFE37F6B05BAF496"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://inforesidenciales.com.uy/las-cuatro-estaciones/"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "directory"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Fuente oficial",
+        "Info Residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-01-31T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z",
+        null,
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        null,
+        null
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "descripcion",
+        "descripcion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T23:16:03.788Z",
+      "id_num": 648
+    },
+    {
+      "id": "654",
+      "codigo": "FAC-LEGACY-MSP24-087-9C51F0B196BA6EDB",
+      "legacy_id": "MSP24-087",
+      "nombre": "Piebu",
+      "nombres_alternativos": [],
+      "departamento": "Montevideo",
+      "localidad": "Montevideo",
+      "direccion": "Fernández Crespo 1768",
+      "lat": -34.8981936,
+      "lng": -56.178242,
+      "precision_ubicacion": "puerta",
+      "precision_etiqueta": "Coincidencia estimada a nivel de puerta",
+      "telefonos": [],
+      "emails": [],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": true,
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_fecha": "2026-06-30T03:00:00.000Z",
+      "mides_certificado": true,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "mides_fecha": "2026-01-31T03:00:00.000Z",
+      "situacion": "habilitacion_msp",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [],
+      "otros_ids": [],
+      "otros_ids_urls": [],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-087"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-01-31T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-15T01:42:28.065Z",
+      "id_num": 654
+    },
+    {
+      "id": "682",
+      "codigo": "FAC-LEGACY-MSP24-115-2656DC80B95FB56C",
+      "legacy_id": "MSP24-115",
+      "nombre": "Marías Belen",
+      "nombres_alternativos": [],
+      "departamento": "Montevideo",
+      "localidad": "Montevideo",
+      "direccion": "José Enrique Rodó 1874",
+      "lat": -34.9040993,
+      "lng": -56.1757093,
+      "precision_ubicacion": "puerta",
+      "precision_etiqueta": "Coincidencia estimada a nivel de puerta",
+      "telefonos": [],
+      "emails": [],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": true,
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_fecha": "2026-06-30T03:00:00.000Z",
+      "mides_certificado": true,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "mides_fecha": "2026-01-31T03:00:00.000Z",
+      "situacion": "habilitacion_msp",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [],
+      "otros_ids": [],
+      "otros_ids_urls": [],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-115"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-01-31T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 682
+    },
+    {
+      "id": "735",
+      "codigo": "FAC-LEGACY-MSP24-168-417BC7C33AFFB8F6",
+      "legacy_id": "MSP24-168",
+      "nombre": "Residencial Primavera",
+      "nombres_alternativos": [
+        "Primavera I"
+      ],
+      "departamento": "Canelones",
+      "localidad": "Las Piedras",
+      "direccion": "Avda Artigas  365 Las Piedras",
+      "lat": -34.7266138,
+      "lng": -56.2076878,
+      "precision_ubicacion": "puerta",
+      "precision_etiqueta": "Coincidencia estimada a nivel de puerta",
+      "telefonos": [
+        "098632348"
+      ],
+      "emails": [
+        "katiapiria@hotmail.com"
+      ],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": true,
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_fecha": "2026-06-30T03:00:00.000Z",
+      "mides_certificado": false,
+      "mides_fuente_url": null,
+      "mides_fecha": null,
+      "situacion": "habilitacion_msp",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "otros_ids": [
+        "ELP-0067"
+      ],
+      "otros_ids_urls": [
+        ""
+      ],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MSPF-002",
+        "public.residenciales:MSP24-168",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-168:src_001",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-168:src_002"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "ELEPEM habilitados a junio de 2026",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "ELEPEM habilitados a junio de 2026",
+        "MSP (vínculo existente en Supabase)"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-13T23:53:20.498Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,departamento,localidad,direccion,estado_administrativo"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 735
+    },
+    {
+      "id": "761",
+      "codigo": "FAC-LEGACY-MSP24-194-D458D1A0B878D49B",
+      "legacy_id": "MSP24-194",
+      "nombre": "Hogar Enrique Chaplín",
+      "nombres_alternativos": [],
+      "departamento": "Paysandú",
+      "localidad": "Nuevo Paysandu",
+      "direccion": "Avda Enrique Chaplín N° 728",
+      "lat": -32.3243949,
+      "lng": -58.0593943,
+      "precision_ubicacion": "puerta",
+      "precision_etiqueta": "Coincidencia estimada a nivel de puerta",
+      "telefonos": [],
+      "emails": [],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": true,
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_fecha": "2026-06-30T03:00:00.000Z",
+      "mides_certificado": true,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "mides_fecha": "2026-01-31T03:00:00.000Z",
+      "situacion": "habilitacion_msp",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [],
+      "otros_ids": [],
+      "otros_ids_urls": [],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-194"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-01-31T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 761
+    },
+    {
+      "id": "832",
+      "codigo": "FAC-OFFICIAL-ELP-0364-7D544B4397B0BEDE",
+      "legacy_id": null,
+      "nombre": "Cuatro Estaciones",
+      "nombres_alternativos": [],
+      "departamento": "Montevideo",
+      "localidad": "Montevideo",
+      "direccion": "República del Salvador 2968",
+      "lat": -34.8939753,
+      "lng": -56.1794975,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "centroide de calle",
+      "telefonos": [
+        "24879453"
+      ],
+      "emails": [
+        "laoficina720@adinet.com.uy"
+      ],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": false,
+      "msp_fuente_url": null,
+      "msp_fecha": null,
+      "mides_certificado": false,
+      "mides_fuente_url": null,
+      "mides_fecha": null,
+      "situacion": "situacion_no_confirmada",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "otros_ids": [
+        "ELP-0364"
+      ],
+      "otros_ids_urls": [
+        ""
+      ],
+      "fuentes_referencias": [
+        "MIDES-118",
+        "MSPF-066",
+        "MSPR-052-2018"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 832
+    },
+    {
+      "id": "844",
+      "codigo": "FAC-OFFICIAL-ELP-0431-26F03489CB04E92C",
+      "legacy_id": null,
+      "nombre": "Hogar de Ancianos Piebu",
+      "nombres_alternativos": [],
+      "departamento": "Montevideo",
+      "localidad": "Montevideo",
+      "direccion": "Fernandez Crespo 1768/70",
+      "lat": -34.8981936,
+      "lng": -56.178242,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "calle y puerta exacta",
+      "telefonos": [
+        "24097678 / 4098744"
+      ],
+      "emails": [
+        "piebu@vera.com.uy"
+      ],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": false,
+      "msp_fuente_url": null,
+      "msp_fecha": null,
+      "mides_certificado": false,
+      "mides_fuente_url": null,
+      "mides_fecha": null,
+      "situacion": "situacion_no_confirmada",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "otros_ids": [
+        "ELP-0431"
+      ],
+      "otros_ids_urls": [
+        ""
+      ],
+      "fuentes_referencias": [
+        "MIDES-133",
+        "MSPF-071",
+        "MSPR-133-2019"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 844
+    },
+    {
+      "id": "862",
+      "codigo": "FAC-OFFICIAL-ELP-0517-90D06DEEAD600953",
+      "legacy_id": null,
+      "nombre": "María Belën",
+      "nombres_alternativos": [],
+      "departamento": "Montevideo",
+      "localidad": "Montevideo",
+      "direccion": "Rodó 1874",
+      "lat": -34.9040993,
+      "lng": -56.1757093,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "calle y puerta exacta",
+      "telefonos": [
+        "24022173 / 24021874"
+      ],
+      "emails": [
+        "residencialmariabelen@gmail.com"
+      ],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": false,
+      "msp_fuente_url": null,
+      "msp_fecha": null,
+      "mides_certificado": false,
+      "mides_fuente_url": null,
+      "mides_fecha": null,
+      "situacion": "situacion_no_confirmada",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "otros_ids": [
+        "ELP-0517"
+      ],
+      "otros_ids_urls": [
+        ""
+      ],
+      "fuentes_referencias": [
+        "MIDES-186",
+        "MSPF-101",
+        "MSPR-078-2018",
+        "MSPR-126-2020"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 862
+    },
+    {
+      "id": "891",
+      "codigo": "FAC-OFFICIAL-ELP-0717-4C9F5EDFAD399FF2",
+      "legacy_id": null,
+      "nombre": "Hogar Ancianos Enrique Chaplin",
+      "nombres_alternativos": [
+        "Hogar De Ancianos Enrique Chaplin"
+      ],
+      "departamento": "Paysandú",
+      "localidad": "Paysandú",
+      "direccion": "Avda E. Chaplin 728",
+      "lat": -32.3243949,
+      "lng": -58.0593943,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "calle y puerta exacta",
+      "telefonos": [
+        "47225074"
+      ],
+      "emails": [
+        "hogarchaplinpaysandu@adinet.com.uy"
+      ],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": false,
+      "msp_fuente_url": null,
+      "msp_fecha": null,
+      "mides_certificado": false,
+      "mides_fuente_url": null,
+      "mides_fecha": null,
+      "situacion": "situacion_no_confirmada",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [
+        "official",
+        "official"
+      ],
+      "otros_ids": [
+        "ELP-0717",
+        "ELP-0718"
+      ],
+      "otros_ids_urls": [
+        "",
+        ""
+      ],
+      "fuentes_referencias": [
+        "MIDES-256",
+        "MSPF-198",
+        "MSPR-073-2021"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/paysandu-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_fechas": [
+        "2026-01-12T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 891
+    }
+  ]
+}

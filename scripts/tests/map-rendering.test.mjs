@@ -84,17 +84,19 @@ test("el mapa muestra el estado institucional y reparte mapa/lista 50/50", async
   assert.match(styles, /\.mapFacilityTooltipStatus/);
 });
 
-test("la portada extiende la foto bajo el blanco y oculta su borde con una transición continua", async () => {
+test("la portada mantiene las personas nítidas y amplía la foto para ocultar bordes", async () => {
   const [hero, styles] = await Promise.all([
     readFile(homeHeroPath, "utf8"),
     readFile(globalStylesPath, "utf8"),
   ]);
   assert.match(hero, /src="\/Hero\.webp"/);
-  assert.match(styles, /\.aranduHeroVisual \{[\s\S]{0,260}position: absolute;[\s\S]{0,220}inset: 0 0 0 24%/);
-  assert.match(styles, /\.aranduHero::before \{[\s\S]{0,260}width: 72%/);
-  assert.match(styles, /#fff 0 46%/);
+  assert.match(styles, /\.aranduHeroVisual \{[\s\S]{0,220}position: absolute;[\s\S]{0,160}inset: 0;/);
+  assert.doesNotMatch(styles, /\.aranduHeroVisual::before/);
+  assert.match(styles, /\.aranduHeroImage \{[\s\S]{0,220}object-fit: contain;[\s\S]{0,100}object-position: right center;[\s\S]{0,100}transform: scale\(1\.12\);[\s\S]{0,100}filter: none;[\s\S]{0,100}opacity: 1/);
+  assert.match(styles, /\.aranduHero::before \{[\s\S]{0,260}width: 74%/);
+  assert.match(styles, /#fff 0 42%/);
   assert.match(styles, /transparent 100%/);
-  assert.match(styles, /@media \(max-width: 760px\)[\s\S]*\.aranduHeroVisual \{[\s\S]{0,100}position: relative/);
+  assert.match(styles, /@media \(max-width: 760px\)[\s\S]*\.aranduHeroVisual \{[\s\S]{0,180}position: relative;[\s\S]{0,180}aspect-ratio: 1400 \/ 935/);
 });
 
 test("el aviso académico aparece en el acceso institucional y en todos sus portales", async () => {
