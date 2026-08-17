@@ -12,10 +12,11 @@ export const DEMO_FACILITY_ID_PATTERN: RegExp;
 export const EXPERIENCE_ANSWER_VALUES: Set<string>;
 export const EXPERIENCE_PRIVACY_VALUES: Set<string>;
 export const EXPERIENCE_PAYLOAD_VERSION: 5;
-export const EXPERIENCE_PRIVACY_NOTICE_VERSION: "vcr1-2026-08-15";
+export const EXPERIENCE_PRIVACY_NOTICE_VERSION: "vcr1-2026-08-17";
 
 export type ExperienceFutureAuthorizations = {
   publicName: boolean;
+  sendToFacility: boolean;
   shareContactWithFacility: boolean;
 };
 
@@ -46,7 +47,7 @@ export type ExperienceReportPayload = {
   version: 5;
   questionnaireVersion: "vcr1-30";
   scoringVersion: "vcr1-dimensions-1";
-  privacyNoticeVersion: "vcr1-2026-08-15";
+  privacyNoticeVersion: "vcr1-2026-08-17";
   submittedAt: string;
   facilityId: string;
   relationship: RelationshipValue;

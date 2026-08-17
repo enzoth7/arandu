@@ -143,7 +143,7 @@ test("el registro conserva filtros, scroll, selección y viewport con un snapsho
       department: "Montevideo",
       monthlyPriceRange: { min: 50_000, max: 90_000 },
       status: "habilitado",
-      qualityRating: "good",
+      qualityRating: "unrated",
       priceOrder: "asc",
       photoAvailability: "with",
     },
@@ -293,10 +293,12 @@ test("el panel recupera los filtros originales y usa clasificación desplegable"
   assert.doesNotMatch(source, /registryQualityLegend/);
   assert.match(qualitySelect, /role="listbox"/);
   assert.match(qualitySelect, /role="option"/);
-  assert.match(qualitySelect, /registryQualityDot-\$\{option\.value\}/);
+  assert.match(qualitySelect, /value: "unrated", label: "Sin calificar"/);
+  assert.match(qualitySelect, /value === "outstanding" && <Star/);
+  assert.match(qualitySelect, /registryQualityDot-\$\{value\}/);
   assert.match(qualitySelect, /event\.key === "Escape"/);
   assert.match(qualitySelect, /"ArrowDown", "ArrowUp", "Home", "End"/);
-  assert.match(source, /<b>Orden por precio<\/b>[\s\S]*Precio: menor a mayor[\s\S]*Precio: mayor a menor/);
+  assert.match(source, /<b>Ordenar por:<\/b>[\s\S]*Precio: menor a mayor[\s\S]*Precio: mayor a menor/);
   assert.match(source, /<b>Fotografías<\/b>[\s\S]*value=\{photoAvailability\}/);
   assert.match(source, /aria-label="Precio mensual mínimo"/);
   assert.match(source, /aria-label="Precio mensual máximo"/);

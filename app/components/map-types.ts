@@ -1,5 +1,6 @@
 export type FacilityStatus = "habilitado" | "mides" | "verificar" | "app";
 export type FacilityQualityRating = "outstanding" | "good" | "requires_improvement" | "inadequate";
+export type FacilityQualityFilter = "" | FacilityQualityRating | "unrated";
 
 export const QUALITY_RATING_LABELS: Record<FacilityQualityRating, string> = {
   outstanding: "Sobresaliente",

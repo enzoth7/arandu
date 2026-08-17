@@ -63,8 +63,7 @@ function publicationDraft(report: InboxReport): PublicationDraft {
   return { publicBody: report.publication?.publicBody || reportSummary(report), publicRelationship: report.publication?.publicRelationship || textValue(report.report_payload.relationship), publicPeriod: report.publication?.publicPeriod || textValue(report.report_payload.period) };
 }
 function canPublishExperience(report: InboxReport) {
-  return (!isV5Experience(report) || report.report_payload.privacyMode === "anonymous")
-    && report.report_payload.requestedDestination === "consider_anonymized"
+  return report.report_payload.requestedDestination === "consider_anonymized"
     && report.report_payload.publicationConsent === true;
 }
 
@@ -109,8 +108,8 @@ function ExperienceInformation({ report }: { report: InboxReport }) {
         </section>;
       })}
     </div>
-    <h4>Autorizaciones futuras privadas</h4>
-    <div className="stateExperienceSummary"><dl><div><dt>Mostrar nombre público en el futuro</dt><dd>{futureAuthorizations.publicName === true ? "Autorizado" : "No autorizado"}</dd></div><div><dt>Compartir contacto con el ELEPEM</dt><dd>{futureAuthorizations.shareContactWithFacility === true ? "Autorizado" : "No autorizado"}</dd></div></dl></div>
+    <h4>Autorizaciones privadas</h4>
+    <div className="stateExperienceSummary"><dl><div><dt>Enviar copia al ELEPEM</dt><dd>{futureAuthorizations.sendToFacility === true ? "Solicitado" : "No solicitado"}</dd></div><div><dt>Compartir contacto con el ELEPEM</dt><dd>{futureAuthorizations.shareContactWithFacility === true ? "Autorizado" : "No autorizado"}</dd></div>{futureAuthorizations.publicName === true && <div><dt>Mostrar nombre público en el futuro</dt><dd>Autorizado en un formulario anterior</dd></div>}</dl></div>
   </>;
 }
 function triageFor(report: InboxReport): Triage {

@@ -72,12 +72,10 @@ async function loadEligibleReport(
     throw new ExperiencePublicationWorkflowError(409, "facility_not_resolved", "La experiencia no tiene un unico ELEPEM vinculado.");
   }
   const reportPayloadVersion = Number(report.report_payload?.version);
-  const privacyAllowsPublication = reportPayloadVersion === 5
-    ? report.report_payload?.privacyMode === "anonymous"
-    : reportPayloadVersion === 4;
+  const payloadAllowsPublication = reportPayloadVersion === 5 || reportPayloadVersion === 4;
   if (
     report.payload_version !== 3
-    || !privacyAllowsPublication
+    || !payloadAllowsPublication
     || report.report_payload?.requestedDestination !== "consider_anonymized"
     || report.report_payload?.publicationConsent !== true
   ) {

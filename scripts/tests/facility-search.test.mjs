@@ -73,7 +73,7 @@ test("los criterios vacíos no filtran", () => {
   assert.equal(filterFacilities(list, criteria(), haystackFor).length, 2);
 });
 
-test("los cuatro filtros de clasificación reflejan el único demo público", () => {
+test("los filtros de clasificación incluyen los ELEPEM sin calificar", () => {
   const list = [
     facility({ id: "demo-bueno", isDemo: true, qualityRating: "good" }),
     facility({ id: "real-sin-clasificar", mspFinal: true }),
@@ -86,10 +86,12 @@ test("los cuatro filtros de clasificación reflejan el único demo público", ()
     haystackFor,
   );
   const inadequate = filterFacilities(list, criteria({ qualityRating: "inadequate" }), haystackFor);
+  const unrated = filterFacilities(list, criteria({ qualityRating: "unrated" }), haystackFor);
   assert.deepEqual(good.map((f) => f.id), ["demo-bueno"]);
   assert.deepEqual(outstanding, []);
   assert.deepEqual(requiresImprovement, []);
   assert.deepEqual(inadequate, []);
+  assert.deepEqual(unrated.map((f) => f.id), ["real-sin-clasificar"]);
 });
 
 test("el rango de precio usa importes mensuales publicados y no infiere los faltantes", () => {

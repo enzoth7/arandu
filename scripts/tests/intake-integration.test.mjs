@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import {
   buildReportPayload,
@@ -10,6 +11,9 @@ import {
 } from "../../lib/intake-report.mjs";
 import { integrationSignature, verifyN8nIntakeRequest } from "../../lib/n8n-intake-auth.mjs";
 import { chatwootSignature, verifyChatwootWebhook } from "../../lib/chatwoot-webhook-auth.mjs";
+
+const concernFormPath = new URL("../../app/components/IntakeReportForm.tsx", import.meta.url);
+const privacyContactPath = new URL("../../app/components/PrivacyContactBlock.tsx", import.meta.url);
 
 const sandboxReport = {
   setting: "En un residencial / ELEPEM",
@@ -60,6 +64,39 @@ test("el contrato web exige consentimiento y un ELEPEM del padrón", () => {
   assert.equal(PUBLIC_CONCERN_INITIAL_PRIORITY, "Por evaluar");
   assert.equal(buildReportPayload({ ...webReport, consent: false }), null);
   assert.equal(buildReportPayload({ ...webReport, facility: { name: "Sin identificador" } }), null);
+});
+
+test("el contacto de una preocupación pide sólo vínculo, nombre, teléfono y correo", async () => {
+  const [formSource, privacySource] = await Promise.all([
+    readFile(concernFormPath, "utf8"),
+    readFile(privacyContactPath, "utf8"),
+  ]);
+  assert.match(privacySource, /Relación con la persona o los hechos/);
+  assert.match(privacySource, />Nombre<\/span>/);
+  assert.match(privacySource, />Teléfono<\/span>/);
+  assert.match(privacySource, />Correo electrónico<\/span>/);
+  assert.doesNotMatch(privacySource, /alias|Horario o condición segura|Medio seguro de contacto/i);
+  assert.doesNotMatch(privacySource, /Recibirás un código para consultar el estado/);
+  assert.match(formSource, /reporter: relationship \|\| "No indicado"/);
+  assert.match(formSource, /reporterName: privacy === "Anónima" \? "" : contact\.name/);
+  assert.match(formSource, /\["Situación", "Lugar", "Contacto", "Enviar"\]/);
+});
+
+test("el contrato conserva nombre, vínculo y contacto confidencial", () => {
+  const payload = buildReportPayload({
+    ...sandboxReport,
+    reporter: "Familiar",
+    reporterName: "Persona ficticia",
+    privacy: "Confidencial",
+    contactEmail: "persona@example.com",
+    location: { department: "Montevideo", reference: "ELEPEM ficticio · Montevideo" },
+    facility: { id: "REAL-123", name: "ELEPEM ficticio" },
+    consent: true,
+  });
+  assert.equal(payload?.reporter, "Familiar");
+  assert.equal(payload?.reporterName, "Persona ficticia");
+  assert.equal(payload?.contactPhone, "099 000 000");
+  assert.equal(payload?.contactEmail, "persona@example.com");
 });
 
 test("genera código y token con formatos estables", () => {

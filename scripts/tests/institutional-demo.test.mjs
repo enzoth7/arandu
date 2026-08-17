@@ -19,7 +19,7 @@ function validExperience(overrides = {}) {
     answers: validAnswers,
     requestedDestination: "private_review",
     publicationConsent: false,
-    futureAuthorizations: { publicName: false, shareContactWithFacility: false },
+    futureAuthorizations: { publicName: false, sendToFacility: false, shareContactWithFacility: false },
     consent: true,
     ...overrides,
   };
@@ -40,7 +40,7 @@ test("la experiencia v5 guarda el cuestionario y los puntajes calculados por el 
   assert.equal(parsed?.payload.version, 5);
   assert.equal(parsed?.payload.questionnaireVersion, "vcr1-30");
   assert.equal(parsed?.payload.scoringVersion, "vcr1-dimensions-1");
-  assert.equal(parsed?.payload.privacyNoticeVersion, "vcr1-2026-08-15");
+  assert.equal(parsed?.payload.privacyNoticeVersion, "vcr1-2026-08-17");
   assert.equal(parsed?.payload.publicationConsent, false);
   assert.equal(parsed?.payload.publication, "never_automatic");
   assert.equal(parsed?.payload.privacyMode, "confidential");
@@ -72,7 +72,7 @@ test("el contrato v5 rechaza aliases, versiones del cliente y respuestas descono
   assert.equal(parseExperienceSubmission(validExperience({ relationship: "other", relationshipOther: "Referente legal" }))?.payload.relationshipOther, "Referente legal");
 });
 
-test("privacidad, destino, contacto y autorizaciones futuras se validan sin fallback", () => {
+test("destino, contacto y autorizaciones de envío se validan sin fallback", () => {
   assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "Anónima" })), null);
   assert.equal(parseExperienceSubmission(validExperience({ contact: { email: "persona@example.com" } })), null);
   const anonymousWithContact = parseExperienceSubmission(validExperience({ contact: { fullName: "Persona", phone: null, email: "persona@example.com" } }));
@@ -80,18 +80,19 @@ test("privacidad, destino, contacto y autorizaciones futuras se validan sin fall
   assert.equal("contact" in (anonymousWithContact?.payload || {}), false);
   assert.equal(parseExperienceSubmission(validExperience({ requestedDestination: "consider_anonymized", publicationConsent: false })), null);
   assert.equal(parseExperienceSubmission(validExperience({ requestedDestination: "consider_anonymized", publicationConsent: true }))?.payload.publicationConsent, true);
-  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "confidential", contact: null, requestedDestination: "consider_anonymized", publicationConsent: true })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "confidential", contact: null, requestedDestination: "consider_anonymized", publicationConsent: true }))?.payload.publicationConsent, true);
   assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "confidential", contact: null, publicationConsent: true })), null);
-  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "confidential", contact: null, futureAuthorizations: { publicName: true, shareContactWithFacility: false } })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "confidential", contact: null, futureAuthorizations: { publicName: true, sendToFacility: false, shareContactWithFacility: false } })), null);
   assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "confidential", contact: { fullName: null, email: "persona@example.com" } })), null);
-  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "registered_identity", contact: { fullName: null, phone: null, email: "persona@example.com" }, futureAuthorizations: { publicName: true, shareContactWithFacility: false } })), null);
-  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "registered_identity", contact: null, futureAuthorizations: { publicName: false, shareContactWithFacility: true } })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "registered_identity", contact: { fullName: null, phone: null, email: "persona@example.com" }, futureAuthorizations: { publicName: true, sendToFacility: false, shareContactWithFacility: false } })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "registered_identity", contact: null, futureAuthorizations: { publicName: false, sendToFacility: true, shareContactWithFacility: true } })), null);
+  assert.equal(parseExperienceSubmission(validExperience({ privacyMode: "confidential", contact: { fullName: "Persona", phone: null, email: null }, futureAuthorizations: { publicName: false, sendToFacility: false, shareContactWithFacility: true } })), null);
   const registered = parseExperienceSubmission(validExperience({
     privacyMode: "registered_identity",
     contact: { fullName: "Persona", phone: "+598 99 123 456", email: null },
-    futureAuthorizations: { publicName: true, shareContactWithFacility: true },
+    futureAuthorizations: { publicName: true, sendToFacility: true, shareContactWithFacility: true },
   }));
-  assert.deepEqual(registered?.payload.futureAuthorizations, { publicName: true, shareContactWithFacility: true });
+  assert.deepEqual(registered?.payload.futureAuthorizations, { publicName: true, sendToFacility: true, shareContactWithFacility: true });
   assert.deepEqual(registered?.contact, { name: "Persona", phone: "+598 99 123 456", email: null });
 });
 
@@ -104,12 +105,14 @@ test("la experiencia conserva adjuntos sin grabador y la preocupación conserva 
     readFile(new URL("../../app/components/PrivateAttachmentFields.tsx", import.meta.url), "utf8"),
     readFile(new URL("../../app/api/intake-reports/[caseCode]/attachments/route.ts", import.meta.url), "utf8"),
   ]);
-  assert.match(experience, /Sólo revisión estatal privada/);
+  assert.match(experience, /Publicarla de forma anónima/);
+  assert.match(experience, /Mantenerla privada/);
+  assert.match(experience, /Datos de contacto opcionales/);
+  assert.match(experience, /Envío directo al ELEPEM/);
+  assert.match(experience, /sendToFacility/);
   assert.doesNotMatch(experience, /Resumen agregado/);
   assert.match(concern, /<PrivacyContactBlock/);
-  assert.match(experience, /Anónima/);
-  assert.match(experience, /Confidencial/);
-  assert.match(experience, /Con identidad registrada/);
+  assert.doesNotMatch(experience, />Anónima<|>Confidencial<|>Con identidad registrada</);
   assert.match(sharedBlock, /Anónima/);
   assert.match(sharedBlock, /Confidencial/);
   assert.match(sharedBlock, /Con identidad registrada/);
@@ -133,14 +136,14 @@ test("la experiencia conserva adjuntos sin grabador y la preocupación conserva 
   assert.doesNotMatch(attachmentRoute, /entry_type === "experience" && cleanType\.startsWith\("audio\/"\)/);
 });
 
-test("el formulario vCR1 usa nueve pasos, adaptación segura y un borrador sin datos sensibles", async () => {
+test("el formulario vCR1 mantiene el recorrido sin mostrar contadores y usa un borrador sin datos sensibles", async () => {
   const source = await readFile(new URL("../../app/components/ExperienceForm.tsx", import.meta.url), "utf8");
   assert.match(source, /Tu experiencia puede ayudar a otras personas\. Este cuestionario busca conocer cómo es la vida cotidiana en este establecimiento desde la perspectiva de las personas residentes y de quienes las acompañan\. No incluyas nombres, diagnósticos, fotografías ni otros datos que permitan identificar a una persona\./);
   assert.match(source, /step >= 3 && step <= 8/);
-  assert.match(source, /Fase \{currentPhase\} de 4/);
+  assert.doesNotMatch(source, /Fase \{currentPhase\} de 4|Paso \{step\} de \{TOTAL_STEPS\}|% del recorrido|Bandeja privada · revisión humana/);
   assert.match(source, /Bloque \$\{currentDimension\.order\} de 6/);
   assert.match(source, /return value === "current_resident";/);
-  assert.match(source, /next === "anonymous"\) setContact\(EMPTY_CONTACT\)/);
+  assert.match(source, /Publicarla de forma anónima/);
   assert.match(source, /!validInitialFacilityId && restored\.facilityId/);
   assert.match(source, /Borrar borrador/);
   assert.match(source, /El borrador guardado no era válido y se descartó/);
@@ -279,9 +282,9 @@ test("la bandeja v5 separa resultados y autorizaciones privadas de la publicacio
   const source = await readFile(new URL("../../app/components/institutional/StateInbox.tsx", import.meta.url), "utf8");
   assert.match(source, /EXPERIENCE_DIMENSIONS\.map/);
   assert.match(source, /Respuestas y resultados privados/);
-  assert.match(source, /Autorizaciones futuras privadas/);
+  assert.match(source, /Autorizaciones privadas/);
   assert.match(source, /contacts\[0\]\?\.name/);
-  assert.match(source, /report\.report_payload\.privacyMode === "anonymous"/);
+  assert.match(source, /futureAuthorizations\.sendToFacility === true/);
   assert.match(source, /publicBody: report\.publication\?\.publicBody \|\| ""/);
   assert.match(source, /!isV5Experience\(selected\)[\s\S]*Período/);
 });

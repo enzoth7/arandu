@@ -1,10 +1,15 @@
 "use client";
 
-import { Check, ChevronDown } from "lucide-react";
+import { Check, ChevronDown, Star } from "lucide-react";
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
-import { QUALITY_RATING_LABELS, type FacilityQualityRating } from "./map-types";
+import {
+  QUALITY_RATING_LABELS,
+  type FacilityQualityFilter,
+  type FacilityQualityRating,
+} from "./map-types";
 
-type QualityRatingValue = "" | FacilityQualityRating;
+type QualityRatingValue = FacilityQualityFilter;
+type RatedOrUnratedValue = Exclude<QualityRatingValue, "">;
 
 type QualityRatingSelectProps = {
   labelledBy: string;
@@ -16,7 +21,16 @@ const OPTIONS: Array<{ value: QualityRatingValue; label: string }> = [
   { value: "", label: "Todas" },
   ...(Object.entries(QUALITY_RATING_LABELS) as Array<[FacilityQualityRating, string]>)
     .map(([value, label]) => ({ value, label })),
+  { value: "unrated", label: "Sin calificar" },
 ];
+
+function QualityRatingMarker({ value }: { value: RatedOrUnratedValue }) {
+  return (
+    <i className={`registryQualityDot registryQualityDot-${value}`} aria-hidden="true">
+      {value === "outstanding" && <Star size={9} strokeWidth={2.4} fill="currentColor" />}
+    </i>
+  );
+}
 
 export function QualityRatingSelect({ labelledBy, value, onChange }: QualityRatingSelectProps) {
   const listboxId = useId();
@@ -99,7 +113,7 @@ export function QualityRatingSelect({ labelledBy, value, onChange }: QualityRati
         onKeyDown={handleTriggerKeyDown}
       >
         <span>
-          {selected.value && <i className={`registryQualityDot registryQualityDot-${selected.value}`} aria-hidden="true" />}
+          {selected.value && <QualityRatingMarker value={selected.value} />}
           {selected.label}
         </span>
         <ChevronDown size={18} aria-hidden="true" />
@@ -122,7 +136,7 @@ export function QualityRatingSelect({ labelledBy, value, onChange }: QualityRati
               onKeyDown={(event) => handleOptionKeyDown(event, index)}
             >
               <span>
-                {option.value && <i className={`registryQualityDot registryQualityDot-${option.value}`} aria-hidden="true" />}
+                {option.value && <QualityRatingMarker value={option.value} />}
                 {option.label}
               </span>
               {option.value === value && <Check size={17} aria-hidden="true" />}

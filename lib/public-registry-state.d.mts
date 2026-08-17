@@ -1,6 +1,6 @@
 export type PublicRegistryView = "list" | "map" | "mixed";
 export type PublicRegistryStatus = "" | "habilitado" | "mides" | "verificar";
-export type PublicRegistryQualityRating = "" | "outstanding" | "good" | "requires_improvement" | "inadequate";
+export type PublicRegistryQualityRating = "" | "outstanding" | "good" | "requires_improvement" | "inadequate" | "unrated";
 export type PublicRegistryPriceOrder = "" | "asc" | "desc";
 export type PublicRegistryPhotoAvailability = "" | "with" | "without";
 

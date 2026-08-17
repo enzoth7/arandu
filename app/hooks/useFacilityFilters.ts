@@ -10,7 +10,7 @@ import {
 } from "../../lib/facility-search.mjs";
 import { facilityHaystack } from "../components/facility-presentation";
 import { canonicalDepartment, foldText } from "../../lib/uruguay.mjs";
-import type { Facility, FacilityQualityRating, FacilityStatus } from "../components/map-types";
+import type { Facility, FacilityQualityFilter, FacilityStatus } from "../components/map-types";
 
 export type MonthlyPriceRange = { min: number; max: number };
 export type PriceOrder = "" | "asc" | "desc";
@@ -21,7 +21,7 @@ export function useFacilityFilters(facilities: Facility[]) {
   const [department, setDepartment] = useState("");
   const [monthlyPriceRange, setMonthlyPriceRange] = useState<MonthlyPriceRange | null>(null);
   const [status, setStatus] = useState<"" | FacilityStatus>("");
-  const [qualityRating, setQualityRating] = useState<"" | FacilityQualityRating>("");
+  const [qualityRating, setQualityRating] = useState<FacilityQualityFilter>("");
   const [priceOrder, setPriceOrder] = useState<PriceOrder>("");
   const [photoAvailability, setPhotoAvailability] = useState<PhotoAvailability>("");
 

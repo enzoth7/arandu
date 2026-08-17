@@ -295,6 +295,10 @@
   gap: 12px;
 }
 
+.sharingGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .choiceCard,
 .compactChoice,
 .inlineChoice,
@@ -312,6 +316,32 @@
   border-radius: 14px;
   background: #fff;
   transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+}
+
+.sharingCard {
+  min-height: 122px;
+}
+
+.sharingCard strong {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.sharingCard strong svg {
+  flex: 0 0 auto;
+  color: var(--blue2);
+}
+
+.sharingCard strong em {
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: var(--bluebg);
+  color: var(--blue2);
+  font-size: .65rem;
+  font-style: normal;
+  font-weight: 850;
 }
 
 .choiceCard:hover,
@@ -430,6 +460,18 @@
   accent-color: var(--blue);
 }
 
+.checkRow span strong,
+.checkRow span small {
+  display: block;
+}
+
+.checkRow span small {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: .76rem;
+  font-weight: 600;
+}
+
 .fieldGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -522,6 +564,32 @@
   border: 1px solid #c9d8ef;
   border-radius: 10px;
   background: #fff;
+}
+
+.sharingSection {
+  background: #f5f6f5;
+}
+
+.sharingSection .subsectionHeader {
+  margin-bottom: 15px;
+}
+
+.nestedCheckRow {
+  margin-left: 26px;
+}
+
+.sharingSafetyNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 14px !important;
+  color: var(--muted) !important;
+  font-size: .78rem !important;
+}
+
+.sharingSafetyNote svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
 }
 
 .inlineChoiceGrid {
@@ -958,6 +1026,7 @@
 
 @media (max-width: 900px) {
   .choiceGrid,
+  .sharingGrid,
   .fieldGrid,
   .scoreGrid {
     grid-template-columns: 1fr;
@@ -1018,6 +1087,10 @@
   .scoreSection,
   .sources {
     padding: 15px;
+  }
+
+  .nestedCheckRow {
+    margin-left: 0;
   }
 
   .questionMeta,

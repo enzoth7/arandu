@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CheckCircle2, LockKeyhole, Save, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, CircleCheck, ContactRound, LockKeyhole, Save, Send, ShieldCheck } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import {
   EXPERIENCE_DIMENSIONS,
@@ -16,7 +16,6 @@ import {
   type ExperienceAnswerValue,
   type ExperienceCategory,
   type ExperienceDimension,
-  type ExperiencePrivacyMode,
   type ExperienceQuestionId,
   type ParticipationValue,
   type RelationshipValue,
@@ -33,8 +32,7 @@ export type ExperienceFacilityOption = {
   department: string;
 };
 
-type PrivacySelection = ExperiencePrivacyMode | "";
-type RequestedDestination = "private_review" | "consider_anonymized";
+type SharingChoice = "publish_anonymously" | "private";
 type Contact = { fullName: string; phone: string; email: string };
 type AnswerMap = Partial<Record<ExperienceQuestionId, ExperienceAnswerValue>>;
 type FormErrors = Record<string, string>;
@@ -43,25 +41,22 @@ const INTRO_TEXT = "Tu experiencia puede ayudar a otras personas. Este cuestiona
 const DRAFT_STORAGE_KEY = `arandu:experience-draft:v${EXPERIENCE_DRAFT_VERSION}`;
 const EMPTY_CONTACT: Contact = { fullName: "", phone: "", email: "" };
 
-const PRIVACY_OPTIONS: ReadonlyArray<{
-  value: ExperiencePrivacyMode;
+const SHARING_OPTIONS: ReadonlyArray<{
+  value: SharingChoice;
   title: string;
   description: string;
+  recommended?: boolean;
 }> = [
   {
-    value: "anonymous",
-    title: "Anónima",
-    description: "No pedimos ni enviamos datos de contacto. Podés solicitar que se considere una versión anonimizada después de la revisión.",
+    value: "publish_anonymously",
+    title: "Publicarla de forma anónima",
+    description: "Después de revisarla, podrá aparecer en la ficha pública del ELEPEM sin tu nombre ni tus datos personales.",
+    recommended: true,
   },
   {
-    value: "confidential",
-    title: "Confidencial",
-    description: "El equipo conserva tus datos de forma privada para contacto y seguimiento. No los comparte con el ELEPEM ni los publica.",
-  },
-  {
-    value: "registered_identity",
-    title: "Con identidad registrada",
-    description: "El equipo registra los datos que decidas aportar. Cualquier autorización adicional queda sujeta a revisión y nunca se ejecuta automáticamente.",
+    value: "private",
+    title: "Mantenerla privada",
+    description: "No aparecerá públicamente. Quedará únicamente en la bandeja del equipo para su revisión y seguimiento.",
   },
 ];
 
@@ -86,7 +81,7 @@ const RESPONDENT_AUTOFILL: Partial<Record<RelationshipValue, RespondentValue>> =
 };
 
 const STEP_LABELS = [
-  "Privacidad",
+  "Compartir",
   "Contexto",
   ...EXPERIENCE_DIMENSIONS.map((dimension) => dimension.title),
   "Revisión",
@@ -97,17 +92,13 @@ function optionLabel<TValue extends string>(options: readonly { value: TValue; l
   return options.find((option) => option.value === value)?.label || "Sin indicar";
 }
 
-function privacyLabel(value: PrivacySelection) {
-  return PRIVACY_OPTIONS.find((option) => option.value === value)?.title || "Sin elegir";
-}
-
 function isDirectRespondent(value: RespondentValue | "") {
   return value === "current_resident";
 }
 
 function firstErrorStep(errors: FormErrors) {
-  if (["privacyMode", "publicationConsent", "publicName", "shareContact", "phone", "email"].some((key) => errors[key])) return 1;
-  if (["facilityId", "relationship", "relationshipOther", "respondentType", "residentParticipation"].some((key) => errors[key])) return 2;
+  if (["shareContact", "phone", "email"].some((key) => errors[key])) return 1;
+  if (["facilityId", "relationship", "relationshipOther"].some((key) => errors[key])) return 2;
   return 9;
 }
 
@@ -129,7 +120,6 @@ function QuestionBlock({
 
   return <div className={styles.questionBlock}>
     <div className={styles.blockStatus} aria-live="polite">
-      <span>{answered} de {questions.length} respondidas en este bloque</span>
       <span>Las preguntas son opcionales</span>
     </div>
     <div className={styles.questionList}>
@@ -141,7 +131,6 @@ function QuestionBlock({
             <span className={styles.questionNumber}>Pregunta {question.number} de 30</span>
             <span className={styles.questionText}>{questionText}</span>
           </legend>
-          <span className={styles.scaleHint}>{question.scale === "frequency" ? "Respondé según la frecuencia" : "Respondé según el grado de cumplimiento"}</span>
           <div className={styles.answerGrid}>
             {options.map((option) => <label className={`${styles.answerOption} ${answers[question.id] === option.value ? styles.selected : ""}`} key={option.value}>
               <input
@@ -155,7 +144,6 @@ function QuestionBlock({
             </label>)}
           </div>
           <div className={styles.questionMeta}>
-            <small>Fuente: {question.sourceIds.map((sourceId) => SOURCE_LABELS[sourceId]).join(" · ")}</small>
             {answers[question.id] && <button type="button" onClick={() => onClear(question.id)}>Quitar respuesta</button>}
           </div>
         </fieldset>;
@@ -177,11 +165,10 @@ export function ExperienceForm({
   const validInitialFacilityId = initialFacility?.id || "";
 
   const [step, setStep] = useState(1);
-  const [privacyMode, setPrivacyMode] = useState<PrivacySelection>("");
+  const [sharingChoice, setSharingChoice] = useState<SharingChoice>("publish_anonymously");
   const [contact, setContact] = useState<Contact>(EMPTY_CONTACT);
-  const [requestedDestination, setRequestedDestination] = useState<RequestedDestination>("private_review");
-  const [publicationConsent, setPublicationConsent] = useState(false);
-  const [futureAuthorizations, setFutureAuthorizations] = useState({ publicName: false, shareContactWithFacility: false });
+  const [sendToFacility, setSendToFacility] = useState(false);
+  const [shareContactWithFacility, setShareContactWithFacility] = useState(false);
   const [department, setDepartment] = useState(initialFacility?.department || "");
   const [facilityId, setFacilityId] = useState(validInitialFacilityId);
   const [relationship, setRelationship] = useState<RelationshipValue | "">("");
@@ -218,19 +205,17 @@ export function ExperienceForm({
   const directVersion = isDirectRespondent(respondentType);
   const scorePreview = useMemo(() => scoreExperienceAnswers(answers), [answers]);
   const currentDimension = step >= 3 && step <= 8 ? EXPERIENCE_DIMENSIONS[step - 3] : null;
-  const currentPhase = step === 1 ? 1 : step === 2 ? 2 : step <= 8 ? 3 : 4;
 
   const draftSnapshot = useMemo(() => ({
     version: EXPERIENCE_DRAFT_VERSION,
     savedAt: new Date().toISOString(),
     step,
     facilityId: facilityId || undefined,
-    privacyMode: privacyMode || undefined,
     relationship: relationship || undefined,
     respondentType: respondentType || undefined,
     residentParticipation: residentParticipation || undefined,
     answers,
-  }), [answers, facilityId, privacyMode, relationship, respondentType, residentParticipation, step]);
+  }), [answers, facilityId, relationship, respondentType, residentParticipation, step]);
 
   useEffect(() => {
     if (draftInitializedRef.current) return;
@@ -254,7 +239,6 @@ export function ExperienceForm({
       }
       if (restored) {
         setStep(Math.min(TOTAL_STEPS, Math.max(1, restored.step || 1)));
-        setPrivacyMode(restored.privacyMode || "");
         setRelationship(restored.relationship || "");
         setRespondentType(restored.respondentType || "");
         setResidentParticipation(restored.residentParticipation || "");
@@ -317,41 +301,21 @@ export function ExperienceForm({
     }
   }
 
-  function changePrivacy(next: ExperiencePrivacyMode) {
-    setPrivacyMode(next);
-    if (next === "anonymous") setContact(EMPTY_CONTACT);
-    if (next !== "anonymous") {
-      setRequestedDestination("private_review");
-      setPublicationConsent(false);
-    }
-    if (next !== "registered_identity") {
-      setFutureAuthorizations({ publicName: false, shareContactWithFacility: false });
-    }
-    setErrors({});
-  }
-
   function changeRelationship(next: RelationshipValue | "") {
     setRelationship(next);
     if (next !== "other") setRelationshipOther("");
     if (!respondentEditedRef.current) setRespondentType(next ? RESPONDENT_AUTOFILL[next] || "" : "");
   }
 
-  function validatePrivacy() {
+  function validateSharing() {
     const nextErrors: FormErrors = {};
-    if (!privacyMode) nextErrors.privacyMode = "Elegí una modalidad de privacidad.";
-    if (privacyMode === "anonymous" && requestedDestination === "consider_anonymized" && !publicationConsent) {
-      nextErrors.publicationConsent = "Confirmá la autorización para solicitar una versión anonimizada.";
-    }
-    if (privacyMode !== "anonymous" && contact.phone.trim() && !/^[+()0-9\s.-]{6,24}$/.test(contact.phone.trim())) {
+    if (contact.phone.trim() && !/^[+()0-9\s.-]{6,24}$/.test(contact.phone.trim())) {
       nextErrors.phone = "Revisá el teléfono ingresado.";
     }
-    if (privacyMode !== "anonymous" && contact.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email.trim())) {
+    if (contact.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email.trim())) {
       nextErrors.email = "Revisá el correo electrónico ingresado.";
     }
-    if (privacyMode === "registered_identity" && futureAuthorizations.publicName && !contact.fullName.trim()) {
-      nextErrors.publicName = "Ingresá el nombre completo para autorizar que pueda considerarse su publicación.";
-    }
-    if (privacyMode === "registered_identity" && futureAuthorizations.shareContactWithFacility && !Object.values(contact).some((value) => value.trim())) {
+    if (shareContactWithFacility && !Object.values(contact).some((value) => value.trim())) {
       nextErrors.shareContact = "Ingresá al menos un dato de contacto para autorizar que pueda compartirse.";
     }
     return nextErrors;
@@ -362,8 +326,6 @@ export function ExperienceForm({
     if (!facilityId) nextErrors.facilityId = "Elegí el ELEPEM al que corresponde la experiencia.";
     if (!relationship) nextErrors.relationship = "Indicá tu vínculo con el establecimiento.";
     if (relationship === "other" && !relationshipOther.trim()) nextErrors.relationshipOther = "Indicá cuál es el otro vínculo.";
-    if (!respondentType) nextErrors.respondentType = "Indicá quién está respondiendo.";
-    if (!residentParticipation) nextErrors.residentParticipation = "Indicá cómo participó la persona residente.";
     return nextErrors;
   }
 
@@ -375,7 +337,7 @@ export function ExperienceForm({
   }
 
   function goNext() {
-    const stepErrors = step === 1 ? validatePrivacy() : step === 2 ? validateContext() : {};
+    const stepErrors = step === 1 ? validateSharing() : step === 2 ? validateContext() : {};
     if (Object.keys(stepErrors).length > 0) {
       setErrors(stepErrors);
       return;
@@ -387,12 +349,6 @@ export function ExperienceForm({
   function goBack() {
     setErrors({});
     setStep((current) => Math.max(1, current - 1));
-  }
-
-  function goToStep(targetStep: number) {
-    if (submitting) return;
-    setErrors({});
-    setStep(Math.min(TOTAL_STEPS, Math.max(1, targetStep)));
   }
 
   function setAnswer(questionId: ExperienceQuestionId, answer: ExperienceAnswerValue) {
@@ -437,13 +393,13 @@ export function ExperienceForm({
       goNext();
       return;
     }
-    const allErrors = { ...validatePrivacy(), ...validateContext(), ...validateReview() };
+    const allErrors = { ...validateSharing(), ...validateContext(), ...validateReview() };
     if (Object.keys(allErrors).length > 0) {
       setErrors(allErrors);
       setStep(firstErrorStep(allErrors));
       return;
     }
-    if (!enabled || !privacyMode || !relationship || !respondentType || !residentParticipation) return;
+    if (!enabled || !relationship) return;
 
     setSubmitting(true);
     setMessage("");
@@ -454,23 +410,21 @@ export function ExperienceForm({
         body: JSON.stringify({
           version: 5,
           facilityId,
-          privacyMode,
-          contact: privacyMode === "anonymous" ? null : {
+          privacyMode: "confidential",
+          contact: {
             fullName: contact.fullName.trim() || null,
             phone: contact.phone.trim() || null,
             email: contact.email.trim() || null,
           },
           relationship,
           relationshipOther: relationship === "other" ? relationshipOther.trim() : null,
-          respondentType,
-          residentParticipation,
+          respondentType: respondentType || "prefer_not_to_say",
+          residentParticipation: residentParticipation || "prefer_not_to_answer",
           narrative: narrative.trim() || null,
           answers,
-          requestedDestination: privacyMode === "anonymous" ? requestedDestination : "private_review",
-          publicationConsent: privacyMode === "anonymous" && requestedDestination === "consider_anonymized" && publicationConsent,
-          futureAuthorizations: privacyMode === "registered_identity"
-            ? futureAuthorizations
-            : { publicName: false, shareContactWithFacility: false },
+          requestedDestination: sharingChoice === "publish_anonymously" ? "consider_anonymized" : "private_review",
+          publicationConsent: sharingChoice === "publish_anonymously",
+          futureAuthorizations: { publicName: false, sendToFacility, shareContactWithFacility },
           consent: true,
         }),
       });
@@ -503,7 +457,7 @@ export function ExperienceForm({
   </section>;
 
   const stepDescription = step === 1
-    ? "Elegí primero cómo querés que el equipo trate tus datos. No hay ninguna opción preseleccionada."
+    ? "Elegí cómo querés compartirla, qué datos de contacto aportar y si autorizás el envío de una copia al ELEPEM."
     : step === 2
       ? "Identificá el establecimiento y contanos desde qué vínculo se completa la experiencia."
       : currentDimension
@@ -514,7 +468,6 @@ export function ExperienceForm({
     <header className={styles.hero}>
       <div className={styles.heroIcon}><ShieldCheck size={26} aria-hidden="true" /></div>
       <div>
-        <span className={styles.eyebrow}>Bandeja privada · revisión humana</span>
         <h1>Compartí tu experiencia en un ELEPEM</h1>
         <p>{INTRO_TEXT}</p>
       </div>
@@ -522,46 +475,25 @@ export function ExperienceForm({
 
     {!enabled && <p className={styles.notice} role="status">La recepción de experiencias está temporalmente desactivada. Podés recorrer el formulario, pero no enviarlo.</p>}
 
-    <div className={styles.progressPanel}>
-      <div className={styles.progressSummary}>
-        <strong>Paso {step} de {TOTAL_STEPS} <span className={styles.phaseBadge}>Fase {currentPhase} de 4</span></strong>
-        <span>{Math.round((step / TOTAL_STEPS) * 100)} % del recorrido</span>
-      </div>
-      <div
-        className={styles.progressTrack}
-        role="progressbar"
-        aria-label="Progreso del formulario"
-        aria-valuemin={1}
-        aria-valuemax={TOTAL_STEPS}
-        aria-valuenow={step}
-        aria-valuetext={`Paso ${step} de ${TOTAL_STEPS}: ${STEP_LABELS[step - 1]}`}
-      >
-        <span style={{ width: `${(step / TOTAL_STEPS) * 100}%` }} />
-      </div>
-      <ol className={styles.stepList} aria-label="Etapas del formulario">
+    <nav aria-label="Progreso" className={styles.progressPanel}>
+      <ol className={styles.stepList}>
         {STEP_LABELS.map((label, index) => {
           const number = index + 1;
-          return <li className={number === step ? styles.currentStep : undefined} key={label}>
-            <button
-              type="button"
-              className={styles.stepButton}
-              aria-current={number === step ? "step" : undefined}
-              aria-label={`Ir al paso ${number} de ${TOTAL_STEPS}: ${label}`}
-              disabled={submitting}
-              onClick={() => goToStep(number)}
-            >
+          const isCurrent = step === number;
+          const isComplete = step > number;
+          return <li key={number} className={`${isCurrent ? styles.currentStep : ""} ${isComplete ? styles.completeStep : ""}`}>
+            <button type="button" className={styles.stepButton} onClick={() => { setErrors({}); setStep(number); }} disabled={submitting}>
               <span>{number}</span>
               <small>{label}</small>
             </button>
           </li>;
         })}
       </ol>
-    </div>
+    </nav>
 
     <form className={styles.form} onSubmit={(event) => void submit(event)} noValidate>
       <div className={styles.stage}>
         <header className={styles.stageHeader}>
-          <span>Paso {step} de {TOTAL_STEPS}</span>
           <h2 id="experience-step-title" tabIndex={-1} ref={stepHeadingRef}>{STEP_LABELS[step - 1]}</h2>
           <p>{stepDescription}</p>
         </header>
@@ -572,59 +504,51 @@ export function ExperienceForm({
         </div>}
 
         {step === 1 && <div className={styles.privacyStep}>
-          <fieldset className={styles.choiceFieldset} aria-invalid={Boolean(errors.privacyMode)} aria-describedby={errors.privacyMode ? "privacy-error" : undefined}>
+          <fieldset className={styles.choiceFieldset}>
             <legend>¿Cómo querés compartir tu experiencia?</legend>
-            <div className={styles.choiceGrid}>
-              {PRIVACY_OPTIONS.map((option) => <label className={`${styles.choiceCard} ${privacyMode === option.value ? styles.selected : ""}`} key={option.value}>
-                <input type="radio" name="privacyMode" value={option.value} checked={privacyMode === option.value} onChange={() => changePrivacy(option.value)} />
-                <span><strong>{option.title}</strong><small>{option.description}</small></span>
+            <div className={`${styles.choiceGrid} ${styles.sharingGrid}`}>
+              {SHARING_OPTIONS.map((option) => <label className={`${styles.choiceCard} ${styles.sharingCard} ${sharingChoice === option.value ? styles.selected : ""}`} key={option.value}>
+                <input type="radio" name="sharingChoice" value={option.value} checked={sharingChoice === option.value} onChange={() => setSharingChoice(option.value)} />
+                <span>
+                  <strong>
+                    {option.value === "publish_anonymously" ? <CircleCheck size={18} aria-hidden="true" /> : <LockKeyhole size={18} aria-hidden="true" />}
+                    {option.title}
+                    {option.recommended && <em>Recomendado</em>}
+                  </strong>
+                  <small>{option.description}</small>
+                </span>
               </label>)}
             </div>
-            {errors.privacyMode && <small className={styles.fieldError} id="privacy-error">{errors.privacyMode}</small>}
           </fieldset>
 
-          {privacyMode === "anonymous" && <section className={styles.subsection} aria-labelledby="anonymous-destination-title">
+          <section className={`${styles.subsection} ${styles.sharingSection}`} aria-labelledby="contact-title">
             <div className={styles.subsectionHeader}>
-              <LockKeyhole size={21} aria-hidden="true" />
-              <div><h3 id="anonymous-destination-title">Destino de la experiencia anónima</h3><p>Nada se publica automáticamente. La decisión final siempre requiere moderación humana.</p></div>
-            </div>
-            <div className={styles.compactChoices}>
-              <label className={`${styles.compactChoice} ${requestedDestination === "private_review" ? styles.selected : ""}`}>
-                <input type="radio" name="requestedDestination" value="private_review" checked={requestedDestination === "private_review"} onChange={() => { setRequestedDestination("private_review"); setPublicationConsent(false); }} />
-                <span><strong>Sólo revisión estatal privada</strong><small>La experiencia queda únicamente en la bandeja privada.</small></span>
-              </label>
-              <label className={`${styles.compactChoice} ${requestedDestination === "consider_anonymized" ? styles.selected : ""}`}>
-                <input type="radio" name="requestedDestination" value="consider_anonymized" checked={requestedDestination === "consider_anonymized"} onChange={() => setRequestedDestination("consider_anonymized")} />
-                <span><strong>Considerar una versión anonimizada</strong><small>El equipo podrá preparar una versión moderada sin datos identificatorios.</small></span>
-              </label>
-            </div>
-            {requestedDestination === "consider_anonymized" && <label className={styles.checkRow}>
-              <input type="checkbox" checked={publicationConsent} aria-invalid={Boolean(errors.publicationConsent)} aria-describedby={errors.publicationConsent ? "publication-consent-error" : undefined} onChange={(event) => setPublicationConsent(event.target.checked)} />
-              <span>Autorizo que, después de la revisión humana, pueda considerarse la publicación de una versión anonimizada y moderada.</span>
-            </label>}
-            {errors.publicationConsent && <small className={styles.fieldError} id="publication-consent-error">{errors.publicationConsent}</small>}
-          </section>}
-
-          {(privacyMode === "confidential" || privacyMode === "registered_identity") && <section className={styles.subsection} aria-labelledby="contact-title">
-            <div className={styles.subsectionHeader}>
-              <LockKeyhole size={21} aria-hidden="true" />
-              <div><h3 id="contact-title">Datos de contacto opcionales</h3><p>Podés completar ninguno, uno o varios. No se guardan en el borrador del navegador.</p></div>
+              <ContactRound size={21} aria-hidden="true" />
+              <div><h3 id="contact-title">Datos de contacto opcionales</h3><p>Podés completar ninguno, uno o varios. No se publicarán.</p></div>
             </div>
             <div className={styles.fieldGrid}>
-              <label className={styles.field}><span>Nombre y apellido completo <small>Opcional</small></span><input autoComplete="name" maxLength={160} value={contact.fullName} onChange={(event) => setContact((current) => ({ ...current, fullName: event.target.value }))} /></label>
-              <label className={styles.field}><span>Celular / Teléfono <small>Opcional</small></span><input type="tel" autoComplete="tel" maxLength={24} aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? "contact-phone-error" : undefined} value={contact.phone} onChange={(event) => setContact((current) => ({ ...current, phone: event.target.value }))} />{errors.phone && <small className={styles.fieldError} id="contact-phone-error">{errors.phone}</small>}</label>
+              <label className={styles.field}><span>Nombre y apellido <small>Opcional</small></span><input autoComplete="name" maxLength={160} value={contact.fullName} onChange={(event) => setContact((current) => ({ ...current, fullName: event.target.value }))} /></label>
+              <label className={styles.field}><span>Celular o teléfono <small>Opcional</small></span><input type="tel" autoComplete="tel" maxLength={24} aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? "contact-phone-error" : undefined} value={contact.phone} onChange={(event) => setContact((current) => ({ ...current, phone: event.target.value }))} />{errors.phone && <small className={styles.fieldError} id="contact-phone-error">{errors.phone}</small>}</label>
               <label className={styles.field}><span>Correo electrónico <small>Opcional</small></span><input type="email" autoComplete="email" maxLength={254} aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "contact-email-error" : undefined} value={contact.email} onChange={(event) => setContact((current) => ({ ...current, email: event.target.value }))} />{errors.email && <small className={styles.fieldError} id="contact-email-error">{errors.email}</small>}</label>
             </div>
-          </section>}
+          </section>
 
-          {privacyMode === "registered_identity" && <section className={styles.authorizationBox} aria-labelledby="future-authorizations-title">
-            <h3 id="future-authorizations-title">Autorizaciones para revisión futura</h3>
-            <p>Estas opciones sólo registran tu voluntad para que el equipo la evalúe. No publican tu nombre ni envían tus datos al ELEPEM automáticamente.</p>
-            <label className={styles.checkRow}><input type="checkbox" checked={futureAuthorizations.publicName} aria-invalid={Boolean(errors.publicName)} aria-describedby={errors.publicName ? "public-name-authorization-error" : undefined} onChange={(event) => setFutureAuthorizations((current) => ({ ...current, publicName: event.target.checked }))} /><span>Autorizo que pueda evaluarse la publicación de mi nombre.</span></label>
-            {errors.publicName && <small className={styles.fieldError} id="public-name-authorization-error">{errors.publicName}</small>}
-            <label className={styles.checkRow}><input type="checkbox" checked={futureAuthorizations.shareContactWithFacility} aria-invalid={Boolean(errors.shareContact)} aria-describedby={errors.shareContact ? "share-contact-authorization-error" : undefined} onChange={(event) => setFutureAuthorizations((current) => ({ ...current, shareContactWithFacility: event.target.checked }))} /><span>Autorizo que pueda evaluarse compartir mis datos con el ELEPEM.</span></label>
+          <section className={`${styles.authorizationBox} ${styles.sharingSection}`} aria-labelledby="facility-sharing-title">
+            <div className={styles.subsectionHeader}>
+              <Send size={21} aria-hidden="true" />
+              <div><h3 id="facility-sharing-title">Envío directo al ELEPEM</h3><p>Esta decisión es independiente de que la experiencia sea pública o privada.</p></div>
+            </div>
+            <label className={styles.checkRow}>
+              <input type="checkbox" checked={sendToFacility} onChange={(event) => { setSendToFacility(event.target.checked); if (!event.target.checked) setShareContactWithFacility(false); }} />
+              <span><strong>Enviar también una copia con mensaje privado al ELEPEM</strong><small>El ELEPEM recibirá la experiencia revisada. Tus datos personales sólo se compartirán si lo autorizás.</small></span>
+            </label>
+            {sendToFacility && <label className={`${styles.checkRow} ${styles.nestedCheckRow}`}>
+              <input type="checkbox" checked={shareContactWithFacility} aria-invalid={Boolean(errors.shareContact)} aria-describedby={errors.shareContact ? "share-contact-authorization-error" : undefined} onChange={(event) => setShareContactWithFacility(event.target.checked)} />
+              <span><strong>Compartir también mis datos de contacto con el ELEPEM</strong><small>El ELEPEM podrá usar los datos que completaste para responderte directamente.</small></span>
+            </label>}
             {errors.shareContact && <small className={styles.fieldError} id="share-contact-authorization-error">{errors.shareContact}</small>}
-          </section>}
+            <p className={styles.sharingSafetyNote}><ShieldCheck size={17} aria-hidden="true" />Si no autorizás compartir tus datos, el ELEPEM recibirá el mensaje sin tu nombre, teléfono ni correo electrónico.</p>
+          </section>
         </div>}
 
         {step === 2 && <div className={styles.contextStep}>
@@ -640,19 +564,6 @@ export function ExperienceForm({
           <label className={styles.field}><span>Tu vínculo con el establecimiento</span><select value={relationship} aria-invalid={Boolean(errors.relationship)} aria-describedby={errors.relationship ? "relationship-error" : undefined} onChange={(event) => changeRelationship(event.target.value as RelationshipValue | "")}><option value="">Elegí una opción</option>{RELATIONSHIP_OPTIONS.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}</select>{errors.relationship && <small className={styles.fieldError} id="relationship-error">{errors.relationship}</small>}</label>
           {relationship === "other" && <label className={styles.field}><span>Indicá el otro vínculo</span><input maxLength={160} value={relationshipOther} aria-invalid={Boolean(errors.relationshipOther)} aria-describedby={errors.relationshipOther ? "relationship-other-error" : undefined} onChange={(event) => setRelationshipOther(event.target.value)} />{errors.relationshipOther && <small className={styles.fieldError} id="relationship-other-error">{errors.relationshipOther}</small>}</label>}
 
-          <fieldset className={styles.choiceFieldset} aria-invalid={Boolean(errors.respondentType)} aria-describedby={errors.respondentType ? "respondent-type-error" : undefined}>
-            <legend>¿Quién está respondiendo?</legend>
-            <p className={styles.fieldHelp}>Sugerimos una opción según el vínculo, pero podés cambiarla. Tu elección no será sobrescrita.</p>
-            <div className={styles.inlineChoiceGrid}>{RESPONDENT_OPTIONS.map((option) => <label className={`${styles.inlineChoice} ${respondentType === option.value ? styles.selected : ""}`} key={option.value}><input type="radio" name="respondentType" value={option.value} checked={respondentType === option.value} onChange={() => { respondentEditedRef.current = true; setRespondentType(option.value); }} /><span>{option.label}</span></label>)}</div>
-            {errors.respondentType && <small className={styles.fieldError} id="respondent-type-error">{errors.respondentType}</small>}
-          </fieldset>
-
-          <fieldset className={styles.choiceFieldset} aria-invalid={Boolean(errors.residentParticipation)} aria-describedby={errors.residentParticipation ? "resident-participation-error" : undefined}>
-            <legend>¿La persona residente participó en esta evaluación?</legend>
-            <div className={styles.inlineChoiceGrid}>{PARTICIPATION_OPTIONS.map((option) => <label className={`${styles.inlineChoice} ${residentParticipation === option.value ? styles.selected : ""}`} key={option.value}><input type="radio" name="residentParticipation" value={option.value} checked={residentParticipation === option.value} onChange={() => setResidentParticipation(option.value)} /><span>{option.label}</span></label>)}</div>
-            {errors.residentParticipation && <small className={styles.fieldError} id="resident-participation-error">{errors.residentParticipation}</small>}
-          </fieldset>
-
           <PrivateAttachmentFields files={files} recordedAudio={null} onFilesChange={setFiles} onRecordedAudioChange={() => undefined} onMessage={setMessage} allowRecording={false}>
             <label className={`${styles.field} ${styles.narrativeField}`}><span>Contá brevemente tu experiencia con este establecimiento. <small>Opcional · {narrative.length.toLocaleString("es-UY")} / 6.000</small></span><textarea maxLength={6000} rows={7} value={narrative} onChange={(event) => setNarrative(event.target.value)} aria-describedby="experience-narrative-help" /><small className={styles.fieldHelp} id="experience-narrative-help">No incluyas datos que permitan identificar a una persona residente. El relato y los archivos no se guardan en el borrador del navegador.</small></label>
           </PrivateAttachmentFields>
@@ -666,13 +577,11 @@ export function ExperienceForm({
             <h3 id="review-summary-title">Resumen del envío</h3>
             <dl className={styles.summaryGrid}>
               <div><dt>ELEPEM</dt><dd>{selectedFacility ? `${selectedFacility.name} · ${selectedFacility.locality} · ${selectedFacility.department}` : "Sin elegir"}</dd></div>
-              <div><dt>Privacidad</dt><dd>{privacyLabel(privacyMode)}</dd></div>
-              <div><dt>Contacto privado</dt><dd>{privacyMode === "anonymous" ? "No se enviarán datos de contacto" : [contact.fullName, contact.phone, contact.email].filter((value) => value.trim()).join(" · ") || "No aportado"}</dd></div>
-              <div><dt>Destino</dt><dd>{privacyMode === "anonymous" && requestedDestination === "consider_anonymized" ? "Considerar versión anonimizada" : "Revisión estatal privada"}</dd></div>
-              <div><dt>Autorizaciones futuras</dt><dd>{privacyMode === "registered_identity" ? [futureAuthorizations.publicName ? "Evaluar publicación del nombre" : "No publicar nombre", futureAuthorizations.shareContactWithFacility ? "Evaluar compartir contacto" : "No compartir contacto"].join(" · ") : "No corresponden"}</dd></div>
+              <div><dt>Cómo se comparte</dt><dd>{sharingChoice === "publish_anonymously" ? "Publicación anónima después de la revisión" : "Sólo revisión privada"}</dd></div>
+              <div><dt>Contacto privado</dt><dd>{[contact.fullName, contact.phone, contact.email].filter((value) => value.trim()).join(" · ") || "No aportado"}</dd></div>
+              <div><dt>Envío al ELEPEM</dt><dd>{sendToFacility ? "Solicitado después de la revisión" : "No solicitado"}</dd></div>
+              <div><dt>Contacto con el ELEPEM</dt><dd>{sendToFacility && shareContactWithFacility ? "Autorizado" : "No autorizado"}</dd></div>
               <div><dt>Vínculo</dt><dd>{optionLabel(RELATIONSHIP_OPTIONS, relationship)}{relationship === "other" && relationshipOther ? `: ${relationshipOther}` : ""}</dd></div>
-              <div><dt>Quién responde</dt><dd>{optionLabel(RESPONDENT_OPTIONS, respondentType)}</dd></div>
-              <div><dt>Participación</dt><dd>{optionLabel(PARTICIPATION_OPTIONS, residentParticipation)}</dd></div>
               <div><dt>Cuestionario</dt><dd>{answeredCount} de 30 preguntas respondidas</dd></div>
               <div><dt>Relato y adjuntos</dt><dd>{narrative.trim() ? "Relato incluido" : "Sin relato"} · {files.length ? `${files.length} archivo(s)` : "Sin archivos"}</dd></div>
             </dl>
@@ -687,12 +596,12 @@ export function ExperienceForm({
           </section>
 
           <section className={styles.sources} aria-labelledby="experience-sources-title">
-            <h3 id="experience-sources-title">Fuentes y alcance</h3>
+            <h3 id="experience-sources-title">Fuentes</h3>
             <p>Las preguntas se trazan a la guía del Sistema de Cuidados, al documento de buenas prácticas del Movimiento ELEPEM y, cuando se indica, a una decisión metodológica de Arandú.</p>
             <div><a href="https://www.gub.uy/ministerio-desarrollo-social/comunicacion/publicaciones/elegir-centro-larga-estadia-tener-cuenta-folleto" target="_blank" rel="noreferrer">Sistema de Cuidados · Elegir un centro de larga estadía</a><a href="https://www.movimientoelepem.org.uy/documentos/otros-documentos/" target="_blank" rel="noreferrer">Movimiento ELEPEM · Documentos de buenas prácticas</a></div>
           </section>
 
-          <label className={`${styles.checkRow} ${styles.finalConsent}`}><input type="checkbox" checked={consent} aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? "final-consent-error" : undefined} onChange={(event) => setConsent(event.target.checked)} /><span>Confirmo que la información es correcta y acepto su revisión privada. Entiendo que nada se publica ni se comparte automáticamente.</span></label>
+          <label className={`${styles.checkRow} ${styles.finalConsent}`}><input type="checkbox" checked={consent} aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? "final-consent-error" : undefined} onChange={(event) => setConsent(event.target.checked)} /><span>Confirmo que la información es correcta y autorizo que se procese según las opciones elegidas. La publicación y el envío al ELEPEM se realizarán únicamente después de la revisión correspondiente.</span></label>
           {errors.consent && <small className={styles.fieldError} id="final-consent-error">{errors.consent}</small>}
           {errors.content && <small className={styles.fieldError}>{errors.content}</small>}
           {message && <p className={styles.submitError} role="alert">{message}</p>}

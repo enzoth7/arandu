@@ -1,4 +1,4 @@
-import type { Facility, FacilityQualityRating, FacilityStatus } from "../app/components/map-types";
+import type { Facility, FacilityQualityFilter, FacilityStatus } from "../app/components/map-types";
 
 export type SortOrder = "name" | "department" | "stage";
 
@@ -9,7 +9,7 @@ export type FacilitySearchCriteria = {
   monthlyPriceMin?: number | null;
   monthlyPriceMax?: number | null;
   status?: "" | FacilityStatus;
-  qualityRating?: "" | FacilityQualityRating;
+  qualityRating?: FacilityQualityFilter;
   photoAvailability?: "" | "with" | "without";
   canonicalDepartmentOf?: (value: string) => string;
 };

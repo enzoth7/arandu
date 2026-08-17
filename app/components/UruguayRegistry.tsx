@@ -650,7 +650,7 @@ export default function UruguayRegistry({
           </div>
 
           <label>
-            <b>Orden por precio</b>
+            <b>Ordenar por:</b>
             <select value={priceOrder} onChange={(event) => setPriceOrder(event.target.value as PriceOrder)}>
               <option value="">Orden alfabético</option>
               <option value="asc">Precio: menor a mayor</option>

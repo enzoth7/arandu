@@ -59,9 +59,10 @@ test("la moderacion usa el propietario real o demo sin mezclar expedientes", asy
   assert.match(source, /!report\.is_demo \|\| report\.entry_type !== "experience"/);
 });
 
-test("v5 solo publica experiencias anonimas y nunca conserva periodo publico", async () => {
+test("v5 publica sólo con autorización anónima explícita y nunca conserva periodo público", async () => {
   const source = await readFile(new URL("../../lib/experience-publication-db.ts", import.meta.url), "utf8");
-  assert.match(source, /reportPayloadVersion === 5[\s\S]*privacyMode === "anonymous"/);
+  assert.match(source, /reportPayloadVersion === 5 \|\| reportPayloadVersion === 4/);
+  assert.doesNotMatch(source, /privacyMode === "anonymous"/);
   assert.match(source, /reportPayloadVersion === 4/);
   assert.match(source, /version\) === 5[\s\S]*publicPeriod: null/);
   assert.match(source, /requestedDestination !== "consider_anonymized"/);
