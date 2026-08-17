@@ -222,7 +222,10 @@ test("la capa pública conserva Casa Costa Serena como referencia violeta con cl
   assert.match(source, /id = 'DEMO-ELEPEM-001'/);
   assert.match(source, /qualityRating: "good"/);
   assert.match(source, /where publication\.demo_facility_id = facility\.id/);
-  assert.match(source, /const approvedPhotoUrls = Array\.isArray\(row\.approved_photo_ids\)/);
+  assert.match(source, /const approvedPhotoUrls = Array\.isArray\(row\.approved_photo_paths\)/);
+  assert.match(source, /left join storage\.objects as storage_object/);
+  assert.match(source, /filter \(where storage_object\.id is not null\)/);
+  assert.match(source, /storage\/v1\/object\/public\/\$\{FACILITY_PHOTO_BUCKET\}/);
   assert.match(source, /photoUrl: photoUrls\[0\] \|\| undefined/);
   assert.match(source, /precisionLabel: "Ubicación aproximada"/);
   assert.match(source, /sourceLabel: "Arandú"/);
@@ -336,6 +339,9 @@ test("la ficha usa un carrusel accesible y abre las fotos en un visor ampliado",
   assert.match(carousel, /aria-current=\{photo\.index === activeIndex/);
   assert.match(carousel, /className="facilityPhotoLightbox"/);
   assert.match(carousel, /aria-label="Cerrar imagen ampliada"/);
+  assert.match(carousel, /const omitFailedPhoto = useCallback/);
+  assert.match(carousel, /onError=\{\(\) => omitFailedPhoto\(activePhoto\)\}/);
+  assert.match(carousel, /normalizedPhotos\.filter\(\(url\) => !failedPhotoUrls\.has\(url\)\)/);
   assert.match(carousel, /onClose=\{\(event\) => \{[\s\S]{0,100}event\.stopPropagation\(\)/);
   assert.match(styles, /\.facilityCarouselThumbnails \{[\s\S]{0,180}grid-template-columns: repeat\(5/);
   assert.doesNotMatch(styles, /\.facilityCarouselThumbnails \{[\s\S]{0,300}overflow-x:\s*auto/);

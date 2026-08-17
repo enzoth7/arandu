@@ -1,0 +1,16 @@
+{
+  "operation_id": "make-intake-evidence-public-2026-08-16",
+  "completed_at": "2026-08-17T01:10:47.859Z",
+  "project_ref": "itolluaivfoxnaohbsdk",
+  "bucket_id": "intake-evidence",
+  "public_before": false,
+  "public_after": true,
+  "objects_modified": 0,
+  "verification": {
+    "existing_object_without_auth_status": 200,
+    "existing_object_content_type": "image/jpeg",
+    "deleted_object_without_auth_status": 400,
+    "deleted_object_content_type": "application/json; charset=utf-8"
+  },
+  "backup": "data/discovery/backups/storage_intake_evidence_before_public_2026-08-16.json"
+}

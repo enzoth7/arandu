@@ -1,0 +1,32 @@
+{
+  "operation_id": "photo-gallery-deleted-object-refactor-2026-08-16",
+  "verified_at": "2026-08-17T01:22:16.637Z",
+  "production_url": "https://aranduy.vercel.app",
+  "deployment_url": "https://arandu-k61patfdu-enzo-thomes-projects.vercel.app",
+  "checks": {
+    "public_facility_api_status": 200,
+    "parallel_public_api_checks": "10/10 returned 200",
+    "public_facility_count": 944,
+    "solymar_photo_references_before": 14,
+    "solymar_existing_photos_after": 10,
+    "solymar_legacy_proxy_references_after": 0,
+    "solymar_public_storage_references_after": 10,
+    "solymar_images_http_checked": 10,
+    "solymar_images_http_200": 10,
+    "deleted_solymar_objects_not_restored": 4,
+    "bucket_public": true,
+    "objects_modified_by_bucket_change": 0,
+    "vercel_transaction_pooler_port": 6543,
+    "vercel_pool_max_per_instance": 1
+  },
+  "validation": {
+    "map_tests": "16 passed",
+    "institutional_tests": "40 passed",
+    "connection_tests": "2 passed",
+    "lint": "0 errors; 1 unrelated pre-existing warning",
+    "production_build": "passed; 40/40 pages generated without EMAXCONNSESSION",
+    "git_diff_check": "passed"
+  },
+  "storage_backup": "data/discovery/backups/storage_intake_evidence_before_public_2026-08-16.json",
+  "storage_result": "data/discovery/storage_intake_evidence_public_result_2026-08-16.json"
+}

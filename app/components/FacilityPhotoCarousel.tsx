@@ -21,7 +21,13 @@ function normalizedPhotoUrls(photoUrls: string[]) {
 }
 
 export function FacilityPhotoCarousel({ facilityName, photoUrls }: FacilityPhotoCarouselProps) {
-  const photos = useMemo(() => normalizedPhotoUrls(photoUrls), [photoUrls]);
+  const normalizedPhotos = useMemo(() => normalizedPhotoUrls(photoUrls), [photoUrls]);
+  const photoSetKey = normalizedPhotos.join("\u0000");
+  const [failedPhotoUrls, setFailedPhotoUrls] = useState<Set<string>>(() => new Set());
+  const photos = useMemo(
+    () => normalizedPhotos.filter((url) => !failedPhotoUrls.has(url)),
+    [failedPhotoUrls, normalizedPhotos],
+  );
   const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const lightboxRef = useRef<HTMLDialogElement | null>(null);
@@ -30,9 +36,19 @@ export function FacilityPhotoCarousel({ facilityName, photoUrls }: FacilityPhoto
   const activePhoto = photos[activeIndex] || photos[0];
 
   useEffect(() => {
+    setFailedPhotoUrls(new Set());
     setActiveIndex(0);
     setLightboxOpen(false);
-  }, [facilityName, photos]);
+  }, [facilityName, photoSetKey]);
+
+  useEffect(() => {
+    if (photoCount === 0) {
+      setActiveIndex(0);
+      setLightboxOpen(false);
+      return;
+    }
+    if (activeIndex >= photoCount) setActiveIndex(photoCount - 1);
+  }, [activeIndex, photoCount]);
 
   useEffect(() => {
     const dialog = lightboxRef.current;
@@ -57,6 +73,15 @@ export function FacilityPhotoCarousel({ facilityName, photoUrls }: FacilityPhoto
   const closeLightbox = useCallback(() => {
     setLightboxOpen(false);
     window.requestAnimationFrame(() => returnFocusRef.current?.focus());
+  }, []);
+
+  const omitFailedPhoto = useCallback((url: string) => {
+    setFailedPhotoUrls((current) => {
+      if (current.has(url)) return current;
+      const next = new Set(current);
+      next.add(url);
+      return next;
+    });
   }, []);
 
   const visibleThumbnails = useMemo(() => {
@@ -115,6 +140,7 @@ export function FacilityPhotoCarousel({ facilityName, photoUrls }: FacilityPhoto
             height={640}
             sizes="(max-width: 900px) calc(100vw - 48px), 560px"
             unoptimized
+            onError={() => omitFailedPhoto(activePhoto)}
           />
           <span className="facilityCarouselExpand" aria-hidden="true"><Maximize2 size={18} />Ampliar</span>
         </button>
@@ -153,6 +179,7 @@ export function FacilityPhotoCarousel({ facilityName, photoUrls }: FacilityPhoto
                 height={120}
                 sizes="110px"
                 unoptimized
+                onError={() => omitFailedPhoto(photo.url)}
               />
               <span>{photo.index + 1}</span>
             </button>
@@ -198,6 +225,7 @@ export function FacilityPhotoCarousel({ facilityName, photoUrls }: FacilityPhoto
               height={1200}
               sizes="96vw"
               unoptimized
+              onError={() => omitFailedPhoto(activePhoto)}
             />
             {photoCount > 1 && (
               <button type="button" className="isNext" onClick={showNext} aria-label="Ver foto siguiente">

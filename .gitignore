@@ -19,3 +19,6 @@ n8n/credentials.md
 .DS_Store
 Thumbs.db
 *.tsbuildinfo
+
+.vercel
+.env*.local

@@ -1,0 +1,21 @@
+{
+  "operation_id": "make-intake-evidence-public-2026-08-16",
+  "captured_at": "2026-08-17T01:10:15.373Z",
+  "project_ref": "itolluaivfoxnaohbsdk",
+  "bucket": {
+    "id": "intake-evidence",
+    "name": "intake-evidence",
+    "public": false,
+    "file_size_limit": 10485760,
+    "allowed_mime_types": null
+  },
+  "content_audit": {
+    "object_count": 243,
+    "total_bytes": 40140453,
+    "non_image_count": 0,
+    "referenced_object_count": 243,
+    "unreferenced_object_count": 0,
+    "facility_photo_purpose_count": 243
+  },
+  "reason": "Respaldo previo a exponer directamente las fotografías públicas autorizadas y eliminar la dependencia de una consulta Postgres por imagen."
+}

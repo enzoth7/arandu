@@ -36,11 +36,26 @@ type FlatElepemRow = Record<string, unknown> & {
   fuentes_fechas: Array<string | null>;
   fuentes_consultadas_at: Array<string | Date | null>;
   fuentes_campos_respaldados: string[];
-  approved_photo_ids: string[] | null;
+  approved_photo_paths: string[] | null;
   approved_remove_current_photo: boolean | null;
   created_at: string | Date;
   updated_at: string | Date;
 };
+
+const FACILITY_PHOTO_BUCKET = "intake-evidence";
+
+function publicStoragePhotoUrl(value: unknown) {
+  if (typeof value !== "string" || !value.trim()) return "";
+  const supabaseUrl = String(
+    process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "",
+  ).replace(/\/+$/, "");
+  if (!supabaseUrl) return "";
+  const encodedPath = value
+    .split("/")
+    .map((segment) => encodeURIComponent(segment))
+    .join("/");
+  return `${supabaseUrl}/storage/v1/object/public/${FACILITY_PHOTO_BUCKET}/${encodedPath}`;
+}
 
 function safePublicUrl(value: unknown) {
   if (typeof value !== "string" || !value.trim()) return "";
@@ -100,8 +115,8 @@ function statusShort(row: FlatElepemRow) {
 
 function toFacility(row: FlatElepemRow): Facility {
   const links = sourceLinks(row);
-  const approvedPhotoUrls = Array.isArray(row.approved_photo_ids)
-    ? row.approved_photo_ids.map((photoId) => `/api/residenciales/${encodeURIComponent(row.codigo)}/photos/${encodeURIComponent(photoId)}`)
+  const approvedPhotoUrls = Array.isArray(row.approved_photo_paths)
+    ? row.approved_photo_paths.map(publicStoragePhotoUrl).filter(Boolean)
     : [];
   const photoUrls = [
     ...approvedPhotoUrls,
@@ -183,7 +198,7 @@ export async function loadPublicFacilities(): Promise<{ facilities: Facility[]; 
       registry.fuentes_fechas,
       registry.fuentes_consultadas_at,
       registry.fuentes_campos_respaldados,
-      approved_photos.photo_ids as approved_photo_ids,
+      approved_photos.photo_paths as approved_photo_paths,
       approved_photos.remove_current_photo as approved_remove_current_photo,
       registry.created_at,
       registry.updated_at
@@ -192,12 +207,21 @@ export async function loadPublicFacilities(): Promise<{ facilities: Facility[]; 
       select
         coalesce(bool_or(publication.remove_current_photo), false) as remove_current_photo,
         coalesce(array_agg(
-          photo.id::text
+          attachment.object_path
           order by report.created_at, publication.report_id, photo.position
-        ) filter (where photo.id is not null), '{}')::text[] as photo_ids
+        ) filter (where storage_object.id is not null), '{}')::text[] as photo_paths
       from public.facility_change_publications as publication
       join public.intake_reports as report on report.id = publication.report_id
       left join public.facility_change_publication_photos as photo on photo.publication_id = publication.id
+      left join public.intake_report_attachments as attachment
+        on attachment.id = photo.attachment_id
+       and attachment.bucket_id = 'intake-evidence'
+       and attachment.purpose = 'facility_photo'
+       and attachment.mime_type like 'image/%'
+       and attachment.rights_metadata->>'rightsConfirmed' = 'true'
+      left join storage.objects as storage_object
+        on storage_object.bucket_id = attachment.bucket_id
+       and storage_object.name = attachment.object_path
       where publication.facility_id = registry.id
         and publication.publication_batch_id = (
           select latest.publication_batch_id
@@ -225,7 +249,7 @@ export async function loadAssignedFacilityProfiles(
     description: string;
     image_url: string;
     image_alt: string;
-    approved_photo_ids: string[] | null;
+    approved_photo_paths: string[] | null;
     approved_remove_current_photo: boolean | null;
     phone: string;
     email: string;
@@ -242,7 +266,7 @@ export async function loadAssignedFacilityProfiles(
       facility.description,
       facility.image_url,
       facility.image_alt,
-      approved_photos.photo_ids as approved_photo_ids,
+      approved_photos.photo_paths as approved_photo_paths,
       approved_photos.remove_current_photo as approved_remove_current_photo,
       facility.phone,
       facility.email,
@@ -254,12 +278,21 @@ export async function loadAssignedFacilityProfiles(
       select
         coalesce(bool_or(publication.remove_current_photo), false) as remove_current_photo,
         coalesce(array_agg(
-          photo.id::text
+          attachment.object_path
           order by report.created_at, publication.report_id, photo.position
-        ) filter (where photo.id is not null), '{}')::text[] as photo_ids
+        ) filter (where storage_object.id is not null), '{}')::text[] as photo_paths
       from public.facility_change_publications as publication
       join public.intake_reports as report on report.id = publication.report_id
       left join public.facility_change_publication_photos as photo on photo.publication_id = publication.id
+      left join public.intake_report_attachments as attachment
+        on attachment.id = photo.attachment_id
+       and attachment.bucket_id = 'intake-evidence'
+       and attachment.purpose = 'facility_photo'
+       and attachment.mime_type like 'image/%'
+       and attachment.rights_metadata->>'rightsConfirmed' = 'true'
+      left join storage.objects as storage_object
+        on storage_object.bucket_id = attachment.bucket_id
+       and storage_object.name = attachment.object_path
       where publication.demo_facility_id = facility.id
         and publication.publication_batch_id = (
           select latest.publication_batch_id
@@ -273,8 +306,8 @@ export async function loadAssignedFacilityProfiles(
     order by facility.name
   `, [[...facilityKeys]]);
   return rows.map((row) => {
-    const approvedUrls = Array.isArray(row.approved_photo_ids)
-      ? row.approved_photo_ids.map((photoId) => `/api/residenciales/${encodeURIComponent(row.id)}/photos/${encodeURIComponent(photoId)}`)
+    const approvedUrls = Array.isArray(row.approved_photo_paths)
+      ? row.approved_photo_paths.map(publicStoragePhotoUrl).filter(Boolean)
       : [];
     const imageUrls = [...approvedUrls, ...(!row.approved_remove_current_photo ? [row.image_url] : [])];
     return {
@@ -371,7 +404,7 @@ type DemoMapFacilityRow = {
   price_as_of: string | null;
   price_includes: string[];
   image_url: string;
-  approved_photo_ids: string[] | null;
+  approved_photo_paths: string[] | null;
   approved_remove_current_photo: boolean | null;
   created_at: string | Date;
   updated_at: string | Date;
@@ -386,7 +419,7 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
         facility.address, facility.description, facility.phone, facility.email,
         facility.lat, facility.lng, facility.monthly_price_from_uyu,
         facility.price_as_of, facility.price_includes, facility.image_url,
-        approved_photos.photo_ids as approved_photo_ids,
+        approved_photos.photo_paths as approved_photo_paths,
         approved_photos.remove_current_photo as approved_remove_current_photo,
         facility.created_at, facility.updated_at
       from arandu_demo.facilities as facility
@@ -394,12 +427,21 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
         select
           coalesce(bool_or(publication.remove_current_photo), false) as remove_current_photo,
           coalesce(array_agg(
-            photo.id::text
+            attachment.object_path
             order by report.created_at, publication.report_id, photo.position
-          ) filter (where photo.id is not null), '{}')::text[] as photo_ids
+          ) filter (where storage_object.id is not null), '{}')::text[] as photo_paths
         from public.facility_change_publications as publication
         join public.intake_reports as report on report.id = publication.report_id
         left join public.facility_change_publication_photos as photo on photo.publication_id = publication.id
+        left join public.intake_report_attachments as attachment
+          on attachment.id = photo.attachment_id
+         and attachment.bucket_id = 'intake-evidence'
+         and attachment.purpose = 'facility_photo'
+         and attachment.mime_type like 'image/%'
+         and attachment.rights_metadata->>'rightsConfirmed' = 'true'
+        left join storage.objects as storage_object
+          on storage_object.bucket_id = attachment.bucket_id
+         and storage_object.name = attachment.object_path
         where publication.demo_facility_id = facility.id
           and publication.publication_batch_id = (
             select latest.publication_batch_id
@@ -417,8 +459,8 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
       .replace(/Demostraci[oó]n/gi, "de la Costa")
       .trim();
     return rows.map((row) => {
-      const approvedPhotoUrls = Array.isArray(row.approved_photo_ids)
-        ? row.approved_photo_ids.map((photoId) => `/api/residenciales/${encodeURIComponent(row.id)}/photos/${encodeURIComponent(photoId)}`)
+      const approvedPhotoUrls = Array.isArray(row.approved_photo_paths)
+        ? row.approved_photo_paths.map(publicStoragePhotoUrl).filter(Boolean)
         : [];
       const photoUrls = [
         ...approvedPhotoUrls,
