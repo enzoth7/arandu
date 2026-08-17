@@ -15,10 +15,9 @@ type ResidencialesResponse = {
  * primera pintura ya trae datos y no hay cascada cliente → API → base. Si el
  * servidor pudo resolverlo, no se vuelve a pedir en el cliente.
  *
- * La petición de respaldo usa la caché por defecto en lugar de `no-store`: la
- * ruta ya publica `s-maxage=300, stale-while-revalidate=3600`, y forzar
- * `no-store` anulaba ese encabezado y provocaba una ida completa a la base en
- * cada montaje (medido entre 1,4 y 1,9 s).
+ * La petición de respaldo también se hace sin caché: una modificación manual
+ * en Supabase debe verse al recargar, tanto en la portada como en los flujos
+ * que no recibieron datos iniciales del servidor.
  */
 export function useResidenciales(initialFacilities: Facility[] = []) {
   const hasInitial = initialFacilities.length > 0;
@@ -32,7 +31,7 @@ export function useResidenciales(initialFacilities: Facility[] = []) {
 
     async function load() {
       try {
-        const response = await fetch("/api/residenciales", { signal: controller.signal });
+        const response = await fetch("/api/residenciales", { cache: "no-store", signal: controller.signal });
         let data: ResidencialesResponse;
         try {
           data = await response.json() as ResidencialesResponse;

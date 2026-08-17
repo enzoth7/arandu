@@ -76,7 +76,7 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
     </header>
 
     <div className="shell">
-      {portal === "public" && <AcademicPrototypeNotice />}
+      <AcademicPrototypeNotice />
       {children}
       <footer className="aranduFooter">
         {portal === "public" && <div className="aranduFooterContent">
@@ -88,8 +88,6 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
             <span>Información para elegir</span>
           </div>
           <nav className="aranduFooterLinks" aria-label="Enlaces del pie">
-            <Link href="/terminos">Términos y condiciones</Link>
-            <Link href="/privacidad">Privacidad</Link>
             <Link href="/acceso-institucional">Acceso institucional</Link>
           </nav>
         </div>}

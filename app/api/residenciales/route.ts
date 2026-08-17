@@ -11,7 +11,7 @@ export async function GET() {
       { facilities },
       {
         headers: {
-          "Cache-Control": "public, s-maxage=300, stale-while-revalidate=3600",
+          "Cache-Control": "no-store, max-age=0",
           "X-ELEPEM-Data-Source": dataSource,
         },
       },

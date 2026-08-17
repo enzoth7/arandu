@@ -11,4 +11,5 @@ supabase/
 !.env.example
 .git/
 .next/
+.next-*/
 node_modules/

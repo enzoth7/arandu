@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Building2, Landmark, LockKeyhole, UserRound } from "lucide-react";
 import type { InstitutionalRole } from "../../lib/institutional-types";
+import { AcademicPrototypeNotice } from "./AcademicPrototypeNotice";
 
 export function InstitutionalAccess({ initialRole = null }: { initialRole?: InstitutionalRole | null }) {
   const router = useRouter();
@@ -37,7 +38,9 @@ export function InstitutionalAccess({ initialRole = null }: { initialRole?: Inst
   }
 
   return <main className="accessGate">
-    <div className={`accessGatePanel ${role ? "isLogin" : ""}`}>
+    <div className="accessGateContent">
+      <AcademicPrototypeNotice />
+      <div className={`accessGatePanel ${role ? "isLogin" : ""}`}>
       <Image src="/arandu-mark.svg" alt="Arandú" className="accessGateLogo isOrganization" width={160} height={160} priority />
       <h1>Acceso institucional</h1>
       <p className="accessGateLead">Elegí el tipo de portal. Las credenciales demo y los permisos están separados por rol.</p>
@@ -58,6 +61,7 @@ export function InstitutionalAccess({ initialRole = null }: { initialRole?: Inst
         <button className="accessLoginBack" type="button" onClick={() => { setRole(null); setError(""); setPassword(""); }}><ArrowLeft size={17} />Elegir otro rol</button>
       </form>}
       <Link className="accessLoginBack" href="/"><ArrowLeft size={17} />Volver al sitio público</Link>
+      </div>
     </div>
   </main>;
 }

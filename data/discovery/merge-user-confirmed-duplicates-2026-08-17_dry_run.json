@@ -1,0 +1,134 @@
+{
+  "operation_id": "merge-user-confirmed-duplicates-2026-08-17",
+  "generated_at": "2026-08-17T04:10:19.102Z",
+  "project_ref": "itolluaivfoxnaohbsdk",
+  "apply_requested": true,
+  "before_count": 937,
+  "expected_after_count": 935,
+  "relation_counts_for_sources": [
+    {
+      "relation": "public.facility_change_publications",
+      "count": 0
+    },
+    {
+      "relation": "public.intake_reports",
+      "count": 0
+    },
+    {
+      "relation": "public.facility_document_status_reviews",
+      "count": 0
+    },
+    {
+      "relation": "elepem_core.facility_experience_publications",
+      "count": 0
+    }
+  ],
+  "merges": [
+    {
+      "target": {
+        "id": 809,
+        "codigo": "FAC-OFFICIAL-ELP-0116-A5139C290958E3E3",
+        "nombre": "Hogar de Ancianos de la Sociedad de Auxilio Frauenverein",
+        "nombres_alternativos": [],
+        "departamento": "Colonia",
+        "localidad": "Nueva Helvecia",
+        "direccion": "German Imhoff 904",
+        "lat": -34.2928416,
+        "lng": -57.2325232,
+        "precision_ubicacion": "referencial",
+        "source_count": 4,
+        "msp_habilitado": false,
+        "mides_certificado": false
+      },
+      "source": {
+        "id": 747,
+        "codigo": "FAC-LEGACY-MSP24-180-44F328CE4EEAC11B",
+        "nombre": "Hogar de Ancianos de Nueva Helvecia",
+        "nombres_alternativos": [],
+        "departamento": "Colonia",
+        "localidad": "Nueva Helvecia",
+        "direccion": "Avda. Germán Imhoff 904",
+        "lat": -34.2929528,
+        "lng": -57.2323766,
+        "precision_ubicacion": "calle",
+        "source_count": 3,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "final_name": "Hogar de Ancianos de la Sociedad de Auxilio Frauenverein",
+      "alternative_names": [
+        "Hogar de Ancianos de Nueva Helvecia"
+      ],
+      "final_location": {
+        "id": 747,
+        "codigo": "FAC-LEGACY-MSP24-180-44F328CE4EEAC11B",
+        "nombre": "Hogar de Ancianos de Nueva Helvecia",
+        "nombres_alternativos": [],
+        "departamento": "Colonia",
+        "localidad": "Nueva Helvecia",
+        "direccion": "Avda. Germán Imhoff 904",
+        "lat": -34.2929528,
+        "lng": -57.2323766,
+        "precision_ubicacion": "calle",
+        "source_count": 3,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "final_status": "habilitacion_msp",
+      "source_count": 7
+    },
+    {
+      "target": {
+        "id": 849,
+        "codigo": "FAC-OFFICIAL-ELP-0442-B7375C29520652FF",
+        "nombre": "Hogar Montpellier",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "Luis Alberto de Herrera 1112",
+        "lat": -34.9074134,
+        "lng": -56.1360827,
+        "precision_ubicacion": "referencial",
+        "source_count": 3,
+        "msp_habilitado": false,
+        "mides_certificado": false
+      },
+      "source": {
+        "id": 660,
+        "codigo": "FAC-LEGACY-MSP24-093-A21C6ADBDD8C5FFC",
+        "nombre": "Montpellier",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "Avda. Luis Alberto De Herrera 1112",
+        "lat": -34.9074134,
+        "lng": -56.1360827,
+        "precision_ubicacion": "puerta",
+        "source_count": 3,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "final_name": "Hogar Montpellier",
+      "alternative_names": [
+        "Montpellier"
+      ],
+      "final_location": {
+        "id": 660,
+        "codigo": "FAC-LEGACY-MSP24-093-A21C6ADBDD8C5FFC",
+        "nombre": "Montpellier",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "Avda. Luis Alberto De Herrera 1112",
+        "lat": -34.9074134,
+        "lng": -56.1360827,
+        "precision_ubicacion": "puerta",
+        "source_count": 3,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "final_status": "habilitacion_msp",
+      "source_count": 6
+    }
+  ]
+}

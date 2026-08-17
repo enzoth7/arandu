@@ -108,6 +108,17 @@ button {
   color: var(--text);
 }
 
+.accessGateContent {
+  width: min(1280px, 100%);
+  display: grid;
+  gap: 18px;
+}
+
+.accessGateContent .aranduDemoBanner {
+  width: 100%;
+  margin-bottom: 0;
+}
+
 .accessGateLoading img {
   width: 92px;
   height: 92px;
@@ -117,6 +128,7 @@ button {
 
 .accessGatePanel {
   width: min(760px, 100%);
+  margin-inline: auto;
   text-align: center;
 }
 

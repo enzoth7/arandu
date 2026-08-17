@@ -5,9 +5,7 @@ export function AcademicPrototypeNotice() {
     <aside className="aranduDemoBanner" aria-label="Aviso sobre el prototipo académico">
       <ShieldAlert size={24} aria-hidden="true" />
       <p>
-        <strong>PROTOTIPO ACADÉMICO</strong> · El padrón consultable se construye con datos públicos reales.
-        Los puntos y contenidos identificados como demostración son ficticios. Las comunicaciones se guardan para
-        revisión interna, no se envían automáticamente a organismos y no constituyen un servicio oficial.
+        <strong>PROTOTIPO ACADÉMICO</strong> · Usá sólo datos de demostración. Las comunicaciones se guardan para que el equipo las vea en su bandeja, pero no se envían a ningún organismo ni representan un servicio oficial.
       </p>
     </aside>
   );

@@ -8,9 +8,9 @@ export const metadata: Metadata = {
     "Buscá y consultá información sobre establecimientos de larga estadía para personas mayores (ELEPEM) en Uruguay, con la fuente y la fecha de cada dato.",
 };
 
-// El padrón cambia poco: se revalida cada 5 minutos, igual que el s-maxage que
-// publica /api/residenciales.
-export const revalidate = 300;
+// El padrón se administra directamente desde Supabase. Cada recarga pública
+// consulta el estado actual, sin depender de una ventana de revalidación.
+export const dynamic = "force-dynamic";
 
 export default async function BuscarElepemPage() {
   const demoMode = process.env.DEMO_MODE === "true";

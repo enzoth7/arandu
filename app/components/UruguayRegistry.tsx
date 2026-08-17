@@ -564,7 +564,7 @@ export default function UruguayRegistry({
       {error && <div className="notice registryDataStatus registryDataError" role="alert">{error}</div>}
       {notices}
       <div className="registryQuickSummary" aria-label="Resumen y filtros rápidos">
-        <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-blue ${!status ? "selected" : ""}`} help="Total de ELEPEM contemplados en los indicadores institucionales." helpId="all" label="Todos" onActivate={() => setStatus("")} onToggleHelp={setActiveKpiHelp} value={kpiScope.length} />
+        <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-blue ${!status ? "selected" : ""}`} help="Se pudieron georreferenciar estos residenciales a partir de fuentes públicas. Se estima que en Uruguay existen entre 1.400 y 1.500 residenciales en total." helpId="all" label="Todos" onActivate={() => setStatus("")} onToggleHelp={setActiveKpiHelp} value={kpiScope.length} />
         <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-green ${status === "habilitado" ? "selected" : ""}`} help="Establecimientos con habilitación final del MSP a junio de 2026." helpId="msp-final" label="Habilitados MSP" onActivate={() => setStatus(status === "habilitado" ? "" : "habilitado")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.habilitado} />
         <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-amber ${status === "mides" ? "selected" : ""}`} help="Establecimientos que se encuentran en proceso de habilitación (definido por el Decreto 356/016) y que obtuvieron el certificado social por parte del Mides." helpId="mides" label="Certificados Social MIDES" onActivate={() => setStatus(status === "mides" ? "" : "mides")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.mides} />
         <RegistryKpi activeHelp={activeKpiHelp} className={`statCard-gray ${status === "verificar" ? "selected" : ""}`} help="No se encontró una situación actualizada en las fuentes públicas consultadas. Requiere verificación institucional; no significa que el establecimiento sea irregular." helpId="unconfirmed" label="Situación no confirmada" onActivate={() => setStatus(status === "verificar" ? "" : "verificar")} onToggleHelp={setActiveKpiHelp} value={summaryTotals.unconfirmed} />
@@ -602,7 +602,7 @@ export default function UruguayRegistry({
     </section>
 
     <div className="registryViewSwitcher" role="group" aria-label="Vista del padrón">
-      <span>Ver el padrón como</span>
+      <span>Elegir vista</span>
       <button type="button" className={registryView === "list" ? "active" : ""} aria-pressed={registryView === "list"} onClick={() => setRegistryView("list")}>Lista</button>
       <button type="button" className={registryView === "map" ? "active" : ""} aria-pressed={registryView === "map"} onClick={() => setRegistryView("map")}><MapIcon size={16} aria-hidden="true" />Mapa</button>
       <button type="button" className={registryView === "mixed" ? "active" : ""} aria-pressed={registryView === "mixed"} onClick={() => setRegistryView("mixed")}>Mixta</button>

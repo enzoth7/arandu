@@ -12,7 +12,12 @@ const isDevelopment = process.env.NODE_ENV === "development";
 // - teselas y atribución de OpenStreetMap para los dos mapas Leaflet;
 // - Supabase (REST, Edge Functions y Storage) para altas y evidencia;
 // - Vercel Analytics.
-const supabaseOrigin = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://*.supabase.co";
+const supabaseUrl = new URL(
+  process.env.NEXT_PUBLIC_SUPABASE_URL
+    || process.env.SUPABASE_URL
+    || "https://itolluaivfoxnaohbsdk.supabase.co",
+);
+const supabaseOrigin = supabaseUrl.origin;
 
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -53,6 +58,17 @@ const nextConfig = {
   distDir: process.env.ARANDU_NEXT_DIST_DIR || ".next",
   outputFileTracingRoot: projectRoot,
   poweredByHeader: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: supabaseUrl.protocol.slice(0, -1),
+        hostname: supabaseUrl.hostname,
+        port: supabaseUrl.port,
+        pathname: "/storage/v1/object/public/intake-evidence/**",
+        search: "",
+      },
+    ],
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

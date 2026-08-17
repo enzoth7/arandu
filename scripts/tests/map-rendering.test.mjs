@@ -18,6 +18,11 @@ const residencialesFormPath = new URL("../../app/components/ResidencialesFormVie
 const homeHeroPath = new URL("../../app/components/AranduHomeHero.tsx", import.meta.url);
 const qualityRatingSelectPath = new URL("../../app/components/QualityRatingSelect.tsx", import.meta.url);
 const nextConfigPath = new URL("../../next.config.mjs", import.meta.url);
+const portalChromePath = new URL("../../app/components/PortalChrome.tsx", import.meta.url);
+const institutionalAccessPath = new URL("../../app/components/InstitutionalAccess.tsx", import.meta.url);
+const publicRegistryPagePath = new URL("../../app/(publico)/page.tsx", import.meta.url);
+const residencialesApiPath = new URL("../../app/api/residenciales/route.ts", import.meta.url);
+const residencialesHookPath = new URL("../../app/hooks/useResidenciales.ts", import.meta.url);
 
 test("las etiquetas públicas del registro conservan los tildes UTF-8", async () => {
   const [presentation, registryLoader] = await Promise.all([
@@ -90,6 +95,28 @@ test("la portada extiende la foto bajo el blanco y oculta su borde con una trans
   assert.match(styles, /#fff 0 46%/);
   assert.match(styles, /transparent 100%/);
   assert.match(styles, /@media \(max-width: 760px\)[\s\S]*\.aranduHeroVisual \{[\s\S]{0,100}position: relative/);
+});
+
+test("el aviso académico aparece en el acceso institucional y en todos sus portales", async () => {
+  const [portalChrome, institutionalAccess] = await Promise.all([
+    readFile(portalChromePath, "utf8"),
+    readFile(institutionalAccessPath, "utf8"),
+  ]);
+  assert.match(portalChrome, /<AcademicPrototypeNotice \/>/);
+  assert.doesNotMatch(portalChrome, /portal === "public" && <AcademicPrototypeNotice/);
+  assert.match(institutionalAccess, /<main className="accessGate">[\s\S]*<AcademicPrototypeNotice \/>/);
+});
+
+test("el padrón público consulta Supabase sin una ventana de caché", async () => {
+  const [page, api, hook] = await Promise.all([
+    readFile(publicRegistryPagePath, "utf8"),
+    readFile(residencialesApiPath, "utf8"),
+    readFile(residencialesHookPath, "utf8"),
+  ]);
+  assert.match(page, /export const dynamic = "force-dynamic"/);
+  assert.doesNotMatch(page, /export const revalidate = 300/);
+  assert.match(api, /"Cache-Control": "no-store, max-age=0"/);
+  assert.match(hook, /fetch\("\/api\/residenciales", \{ cache: "no-store", signal: controller\.signal \}\)/);
 });
 
 test("las listas muestran las denominaciones institucionales completas", async () => {
@@ -285,6 +312,9 @@ test("la política de contenido permite las fotografías públicas de Supabase",
   const config = await readFile(nextConfigPath, "utf8");
   assert.match(config, /img-src 'self' data: blob: \$\{supabaseOrigin\} https:\/\/\*\.supabase\.co/);
   assert.match(config, /connect-src 'self' \$\{supabaseOrigin\} https:\/\/\*\.supabase\.co/);
+  assert.match(config, /images:\s*\{[\s\S]*remotePatterns:\s*\[[\s\S]*hostname: supabaseUrl\.hostname/);
+  assert.match(config, /pathname: "\/storage\/v1\/object\/public\/intake-evidence\/\*\*"/);
+  assert.match(config, /search: ""/);
 });
 
 test("la ficha permite salir y muestra precio y clasificación sin etiquetas de prueba", async () => {

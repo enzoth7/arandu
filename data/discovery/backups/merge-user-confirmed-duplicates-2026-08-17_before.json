@@ -1,0 +1,504 @@
+{
+  "operation_id": "merge-user-confirmed-duplicates-2026-08-17",
+  "generated_at": "2026-08-17T04:10:19.102Z",
+  "project_ref": "itolluaivfoxnaohbsdk",
+  "apply_requested": true,
+  "before_count": 937,
+  "expected_after_count": 935,
+  "relation_counts_for_sources": [
+    {
+      "relation": "public.facility_change_publications",
+      "count": 0
+    },
+    {
+      "relation": "public.intake_reports",
+      "count": 0
+    },
+    {
+      "relation": "public.facility_document_status_reviews",
+      "count": 0
+    },
+    {
+      "relation": "elepem_core.facility_experience_publications",
+      "count": 0
+    }
+  ],
+  "merges": [
+    {
+      "target": {
+        "id": 809,
+        "codigo": "FAC-OFFICIAL-ELP-0116-A5139C290958E3E3",
+        "nombre": "Hogar de Ancianos de la Sociedad de Auxilio Frauenverein",
+        "nombres_alternativos": [],
+        "departamento": "Colonia",
+        "localidad": "Nueva Helvecia",
+        "direccion": "German Imhoff 904",
+        "lat": -34.2928416,
+        "lng": -57.2325232,
+        "precision_ubicacion": "referencial",
+        "source_count": 4,
+        "msp_habilitado": false,
+        "mides_certificado": false
+      },
+      "source": {
+        "id": 747,
+        "codigo": "FAC-LEGACY-MSP24-180-44F328CE4EEAC11B",
+        "nombre": "Hogar de Ancianos de Nueva Helvecia",
+        "nombres_alternativos": [],
+        "departamento": "Colonia",
+        "localidad": "Nueva Helvecia",
+        "direccion": "Avda. Germán Imhoff 904",
+        "lat": -34.2929528,
+        "lng": -57.2323766,
+        "precision_ubicacion": "calle",
+        "source_count": 3,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "final_name": "Hogar de Ancianos de la Sociedad de Auxilio Frauenverein",
+      "alternative_names": [
+        "Hogar de Ancianos de Nueva Helvecia"
+      ],
+      "final_location": {
+        "id": 747,
+        "codigo": "FAC-LEGACY-MSP24-180-44F328CE4EEAC11B",
+        "nombre": "Hogar de Ancianos de Nueva Helvecia",
+        "nombres_alternativos": [],
+        "departamento": "Colonia",
+        "localidad": "Nueva Helvecia",
+        "direccion": "Avda. Germán Imhoff 904",
+        "lat": -34.2929528,
+        "lng": -57.2323766,
+        "precision_ubicacion": "calle",
+        "source_count": 3,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "final_status": "habilitacion_msp",
+      "source_count": 7
+    },
+    {
+      "target": {
+        "id": 849,
+        "codigo": "FAC-OFFICIAL-ELP-0442-B7375C29520652FF",
+        "nombre": "Hogar Montpellier",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "Luis Alberto de Herrera 1112",
+        "lat": -34.9074134,
+        "lng": -56.1360827,
+        "precision_ubicacion": "referencial",
+        "source_count": 3,
+        "msp_habilitado": false,
+        "mides_certificado": false
+      },
+      "source": {
+        "id": 660,
+        "codigo": "FAC-LEGACY-MSP24-093-A21C6ADBDD8C5FFC",
+        "nombre": "Montpellier",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "Avda. Luis Alberto De Herrera 1112",
+        "lat": -34.9074134,
+        "lng": -56.1360827,
+        "precision_ubicacion": "puerta",
+        "source_count": 3,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "final_name": "Hogar Montpellier",
+      "alternative_names": [
+        "Montpellier"
+      ],
+      "final_location": {
+        "id": 660,
+        "codigo": "FAC-LEGACY-MSP24-093-A21C6ADBDD8C5FFC",
+        "nombre": "Montpellier",
+        "nombres_alternativos": [],
+        "departamento": "Montevideo",
+        "localidad": "Montevideo",
+        "direccion": "Avda. Luis Alberto De Herrera 1112",
+        "lat": -34.9074134,
+        "lng": -56.1360827,
+        "precision_ubicacion": "puerta",
+        "source_count": 3,
+        "msp_habilitado": true,
+        "mides_certificado": true
+      },
+      "final_status": "habilitacion_msp",
+      "source_count": 6
+    }
+  ],
+  "rows": [
+    {
+      "id": "660",
+      "codigo": "FAC-LEGACY-MSP24-093-A21C6ADBDD8C5FFC",
+      "legacy_id": "MSP24-093",
+      "nombre": "Montpellier",
+      "nombres_alternativos": [],
+      "departamento": "Montevideo",
+      "localidad": "Montevideo",
+      "direccion": "Avda. Luis Alberto De Herrera 1112",
+      "lat": -34.9074134,
+      "lng": -56.1360827,
+      "precision_ubicacion": "puerta",
+      "precision_etiqueta": "Coincidencia estimada a nivel de puerta",
+      "telefonos": [],
+      "emails": [],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": true,
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_fecha": "2026-06-30T03:00:00.000Z",
+      "mides_certificado": true,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "mides_fecha": "2026-01-31T03:00:00.000Z",
+      "situacion": "habilitacion_msp",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [],
+      "otros_ids": [],
+      "otros_ids_urls": [],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-093"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-01-31T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-15T01:42:28.065Z",
+      "id_num": 660
+    },
+    {
+      "id": "747",
+      "codigo": "FAC-LEGACY-MSP24-180-44F328CE4EEAC11B",
+      "legacy_id": "MSP24-180",
+      "nombre": "Hogar de Ancianos de Nueva Helvecia",
+      "nombres_alternativos": [],
+      "departamento": "Colonia",
+      "localidad": "Nueva Helvecia",
+      "direccion": "Avda. Germán Imhoff 904",
+      "lat": -34.2929528,
+      "lng": -57.2323766,
+      "precision_ubicacion": "calle",
+      "precision_etiqueta": "Ubicación aproximada sobre la calle",
+      "telefonos": [],
+      "emails": [],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": true,
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_fecha": "2026-06-30T03:00:00.000Z",
+      "mides_certificado": true,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "mides_fecha": "2026-01-31T03:00:00.000Z",
+      "situacion": "habilitacion_msp",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [],
+      "otros_ids": [],
+      "otros_ids_urls": [],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-180"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-01-31T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 747
+    },
+    {
+      "id": "809",
+      "codigo": "FAC-OFFICIAL-ELP-0116-A5139C290958E3E3",
+      "legacy_id": null,
+      "nombre": "Hogar de Ancianos de la Sociedad de Auxilio Frauenverein",
+      "nombres_alternativos": [],
+      "departamento": "Colonia",
+      "localidad": "Nueva Helvecia",
+      "direccion": "German Imhoff 904",
+      "lat": -34.2928416,
+      "lng": -57.2325232,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "puerta más cercana en la misma calle",
+      "telefonos": [
+        "45544158"
+      ],
+      "emails": [
+        "hogarfrau@gmail.com"
+      ],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [
+        "SOCIEDAD DE AUXILIOS FRAUENVEREIN"
+      ],
+      "operadores_tipos": [
+        "license_holder"
+      ],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": false,
+      "msp_fuente_url": null,
+      "msp_fecha": null,
+      "mides_certificado": false,
+      "mides_fuente_url": null,
+      "mides_fecha": null,
+      "situacion": "situacion_no_confirmada",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "otros_ids": [
+        "ELP-0116"
+      ],
+      "otros_ids_urls": [
+        ""
+      ],
+      "fuentes_referencias": [
+        "MIDES-033",
+        "MSPF-013",
+        "MSPR-013-2019",
+        "PACP-036"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/colonia-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/sistema-cuidados/comunicacion/comunicados/programa-apoyo-cuidado-permanente-pacp"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Registro de Proveedores del PACP"
+      ],
+      "fuentes_fechas": [
+        "2026-01-12T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2023-08-11T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 809
+    },
+    {
+      "id": "849",
+      "codigo": "FAC-OFFICIAL-ELP-0442-B7375C29520652FF",
+      "legacy_id": null,
+      "nombre": "Hogar Montpellier",
+      "nombres_alternativos": [],
+      "departamento": "Montevideo",
+      "localidad": "Montevideo",
+      "direccion": "Luis Alberto de Herrera 1112",
+      "lat": -34.9074134,
+      "lng": -56.1360827,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "calle y puerta exacta",
+      "telefonos": [],
+      "emails": [
+        "hogarmomtpellier@gmail.com"
+      ],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": false,
+      "msp_fuente_url": null,
+      "msp_fecha": null,
+      "mides_certificado": false,
+      "mides_fuente_url": null,
+      "mides_fecha": null,
+      "situacion": "situacion_no_confirmada",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [
+        "official",
+        "official"
+      ],
+      "otros_ids": [
+        "ELP-0441",
+        "ELP-0442"
+      ],
+      "otros_ids_urls": [
+        "",
+        ""
+      ],
+      "fuentes_referencias": [
+        "MIDES-134",
+        "MSPF-078",
+        "MSPR-080-2020"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 849
+    }
+  ]
+}
