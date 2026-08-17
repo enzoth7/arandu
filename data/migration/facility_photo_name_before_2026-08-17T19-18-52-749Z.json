@@ -1,0 +1,1651 @@
+{
+  "projectRef": "itolluaivfoxnaohbsdk",
+  "capturedAt": "2026-08-17T19:18:52.750Z",
+  "migrationSha256": "0a017504f44d73681a2fc72bb3450f67ae3fdf5e077fb26ddc6d78d91f82b967",
+  "before": {
+    "columns": [
+      {
+        "table_name": "facility_change_publication_photos",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "facility_change_publication_photos",
+        "column_name": "publication_id",
+        "data_type": "uuid",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "facility_change_publication_photos",
+        "column_name": "attachment_id",
+        "data_type": "uuid",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "facility_change_publication_photos",
+        "column_name": "position",
+        "data_type": "integer",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "facility_change_publication_photos",
+        "column_name": "public_bucket_id",
+        "data_type": "text",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "facility_change_publication_photos",
+        "column_name": "public_object_path",
+        "data_type": "text",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "facility_change_publication_photos",
+        "column_name": "public_sha256_hex",
+        "data_type": "text",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "intake_report_attachments",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "intake_report_attachments",
+        "column_name": "report_id",
+        "data_type": "uuid",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "intake_report_attachments",
+        "column_name": "bucket_id",
+        "data_type": "text",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "intake_report_attachments",
+        "column_name": "object_path",
+        "data_type": "text",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "intake_report_attachments",
+        "column_name": "file_name",
+        "data_type": "text",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "intake_report_attachments",
+        "column_name": "mime_type",
+        "data_type": "text",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "intake_report_attachments",
+        "column_name": "size_bytes",
+        "data_type": "bigint",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "intake_report_attachments",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "intake_report_attachments",
+        "column_name": "purpose",
+        "data_type": "text",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "intake_report_attachments",
+        "column_name": "rights_metadata",
+        "data_type": "jsonb",
+        "is_nullable": "NO"
+      },
+      {
+        "table_name": "intake_report_attachments",
+        "column_name": "sha256_hex",
+        "data_type": "text",
+        "is_nullable": "YES"
+      },
+      {
+        "table_name": "intake_report_attachments",
+        "column_name": "source_channel",
+        "data_type": "text",
+        "is_nullable": "YES"
+      },
+      {
+        "table_name": "intake_report_attachments",
+        "column_name": "source_message_id",
+        "data_type": "text",
+        "is_nullable": "YES"
+      },
+      {
+        "table_name": "intake_report_attachments",
+        "column_name": "validation_status",
+        "data_type": "text",
+        "is_nullable": "NO"
+      }
+    ],
+    "attachments": [
+      {
+        "id": "00b0ae0d-be32-4122-934f-8d5e0e266895",
+        "report_id": "adb2fb63-7c9b-4e30-b371-49517e08a16e",
+        "facility_id": "461",
+        "expected_facility_name": "Sweet Home"
+      },
+      {
+        "id": "0591864c-207f-419d-bb03-2f40e4176f3c",
+        "report_id": "b1671159-f970-4531-9850-ce2889e7be89",
+        "facility_id": "578",
+        "expected_facility_name": "Manas Home"
+      },
+      {
+        "id": "0a2c8fad-fe9e-4486-827c-4806e482c269",
+        "report_id": "05eaf8e1-4ab7-44f4-99e0-78e59e697fbf",
+        "facility_id": "186",
+        "expected_facility_name": "Artemisa"
+      },
+      {
+        "id": "0db29e97-4a87-49ab-872d-855acdb8d443",
+        "report_id": "3d63afe8-a77e-4580-88ba-48bc962a94a8",
+        "facility_id": "1035",
+        "expected_facility_name": "Residencial Pontevedra"
+      },
+      {
+        "id": "0efe8c7b-bebf-4bc9-bda3-c49c3a12f316",
+        "report_id": "cd1d5912-1e93-47a9-ab63-235a0ffa17fb",
+        "facility_id": "591",
+        "expected_facility_name": "Residencial Nahuel"
+      },
+      {
+        "id": "0f0c4dc8-a5f3-4e29-9263-1ca6e6c5a568",
+        "report_id": "1f2f2915-85db-4c87-a7b8-59270c9ddedd",
+        "facility_id": "578",
+        "expected_facility_name": "Manas Home"
+      },
+      {
+        "id": "10c54e77-4518-4995-bdae-6afd19d6ad62",
+        "report_id": "eebd9968-f057-4ec2-8b3f-67df5cd17ad9",
+        "facility_id": "610",
+        "expected_facility_name": "Aguas de Reposo"
+      },
+      {
+        "id": "15496064-0765-441f-8242-0ded36ae682d",
+        "report_id": "a0ee05cf-a8c8-47b7-81e2-e7bee4ccd7c0",
+        "facility_id": "680",
+        "expected_facility_name": "La Belle Epoque"
+      },
+      {
+        "id": "174cc5fc-3ad9-4a08-b344-efdf98bf9175",
+        "report_id": "45272b2a-8d66-4b7f-9b24-3d071a05020e",
+        "facility_id": "95",
+        "expected_facility_name": "Solymar"
+      },
+      {
+        "id": "1aa649bf-2715-4c8c-bb36-6b005e62a478",
+        "report_id": "2f376762-8f29-4299-bccb-96d6960fd578",
+        "facility_id": "610",
+        "expected_facility_name": "Aguas de Reposo"
+      },
+      {
+        "id": "1ce5ac3a-d505-450e-b333-56e98e7c2047",
+        "report_id": "b1671159-f970-4531-9850-ce2889e7be89",
+        "facility_id": "578",
+        "expected_facility_name": "Manas Home"
+      },
+      {
+        "id": "1d75b275-3c95-47ad-94aa-7a7b2b16ca19",
+        "report_id": "68dff7c7-1462-422c-b068-b14cd60c9798",
+        "facility_id": "277",
+        "expected_facility_name": "Casona Carrasco"
+      },
+      {
+        "id": "1ddf499b-fc53-485d-80b4-921ff32e50c5",
+        "report_id": "a62d448e-09fa-4d21-8d68-192b61375bc0",
+        "facility_id": "725",
+        "expected_facility_name": "Carrasco Home"
+      },
+      {
+        "id": "21196a63-f5a7-499d-b500-387fe070f071",
+        "report_id": "6864ddef-c4b1-4cec-bb96-d76e1a5b5d20",
+        "facility_id": "52",
+        "expected_facility_name": "Jacaranda"
+      },
+      {
+        "id": "2154bac5-d6b5-405c-8fde-caaddcfc7cbe",
+        "report_id": "a032f12c-d20c-45ce-b1c5-8aca71ee5b08",
+        "facility_id": "683",
+        "expected_facility_name": "La Rosaleda"
+      },
+      {
+        "id": "233a59a4-1adb-43d9-a281-d141abe403df",
+        "report_id": "e87447ec-0d58-421a-9115-ecbf2e49828c",
+        "facility_id": "608",
+        "expected_facility_name": "Santa Bernardita"
+      },
+      {
+        "id": "234e3184-0b10-4348-ba77-60f371d15f3e",
+        "report_id": "3f40390b-2f63-422c-adcb-e40a26950f97",
+        "facility_id": "1034",
+        "expected_facility_name": "Residencial Manantiales"
+      },
+      {
+        "id": "26c5874a-055b-491b-b041-eccc33d8bfdc",
+        "report_id": "0e5c0ecd-016a-4cbd-adac-d27480a59a99",
+        "facility_id": "387",
+        "expected_facility_name": "Palas Atenea (Pocitos)"
+      },
+      {
+        "id": "28b025fd-edb2-4d3b-b0fa-42445ade4a32",
+        "report_id": "07438940-d1b9-4920-bed6-5a363d4569c8",
+        "facility_id": "634",
+        "expected_facility_name": "Seraan"
+      },
+      {
+        "id": "2baba49c-8f99-41a4-8ba3-7745776000b3",
+        "report_id": "95ef6e40-441e-419b-b85a-9471019a656b",
+        "facility_id": "661",
+        "expected_facility_name": "The Green Home"
+      },
+      {
+        "id": "2dc5538e-1a8c-4f5f-b199-2ccefb41c6b0",
+        "report_id": "862e60de-3068-407c-8c9e-238e560b6b7d",
+        "facility_id": "605",
+        "expected_facility_name": "Altos del Centro"
+      },
+      {
+        "id": "2e03a167-630a-4157-b5b3-5a0184315d33",
+        "report_id": "cde4f5f4-c524-4e66-89cd-feeec92bf121",
+        "facility_id": "608",
+        "expected_facility_name": "Santa Bernardita"
+      },
+      {
+        "id": "2ed2b0d8-46ad-4461-9791-8245336bb116",
+        "report_id": "7e02b4ad-7eb1-4250-995b-302b2421f0d8",
+        "facility_id": "76",
+        "expected_facility_name": "Residencia Puentecasa"
+      },
+      {
+        "id": "2ee42887-a983-4ef8-abaf-2704435a1c4c",
+        "report_id": "5fa9b977-498f-44f9-b343-10968dd6c343",
+        "facility_id": "3",
+        "expected_facility_name": "Casa Ravello"
+      },
+      {
+        "id": "3069e98c-20a6-4e76-a04b-bb8f42dcdf31",
+        "report_id": "e558f7a4-0035-4d56-8b95-ef689b238a8c",
+        "facility_id": "730",
+        "expected_facility_name": "La Terraza"
+      },
+      {
+        "id": "30fbfab6-f158-4333-b50e-ccce15a3093a",
+        "report_id": "d23ab2b2-7516-4abc-acaf-7e9ea8cb1f74",
+        "facility_id": "641",
+        "expected_facility_name": "Doña Maria"
+      },
+      {
+        "id": "3163ad64-273c-4a2a-9ea7-26026f5f3029",
+        "report_id": "05eaf8e1-4ab7-44f4-99e0-78e59e697fbf",
+        "facility_id": "186",
+        "expected_facility_name": "Artemisa"
+      },
+      {
+        "id": "329d2fe2-27c9-45ba-8dcb-732abb90c99c",
+        "report_id": "89e90aa8-688b-4c86-9f50-4427f8f4e33e",
+        "facility_id": "461",
+        "expected_facility_name": "Sweet Home"
+      },
+      {
+        "id": "33231735-8905-4c9c-8701-b86ba7d6f46c",
+        "report_id": "f3433a56-4f5b-44b2-b67f-174f5763425f",
+        "facility_id": "661",
+        "expected_facility_name": "The Green Home"
+      },
+      {
+        "id": "3535b04d-66d9-408d-a455-86f6be382486",
+        "report_id": "0436defe-7173-4763-9e91-2850ea23e684",
+        "facility_id": "95",
+        "expected_facility_name": "Solymar"
+      },
+      {
+        "id": "3711d804-5c76-44fa-816c-a503230b5d92",
+        "report_id": "4fa72335-2bfb-4d96-bb74-85d9bd708d71",
+        "facility_id": "666",
+        "expected_facility_name": "Polo House"
+      },
+      {
+        "id": "386e891e-aaa9-4d1b-98ba-ba65bd497799",
+        "report_id": "48d646dd-01f5-4c6b-b1ff-b9d0ace4d5f9",
+        "facility_id": "489",
+        "expected_facility_name": "Tilos de Abril"
+      },
+      {
+        "id": "389a46e7-5401-467d-a9b2-ee5604723d01",
+        "report_id": "346cf51f-286c-4ee5-9dd8-d52d13ea1257",
+        "facility_id": "627",
+        "expected_facility_name": "Sueños Compartidos"
+      },
+      {
+        "id": "38d8bcf1-f33e-491b-b096-44f09f7a70fe",
+        "report_id": "572cc43c-9d9d-4a07-984d-9684bead99ba",
+        "facility_id": "683",
+        "expected_facility_name": "La Rosaleda"
+      },
+      {
+        "id": "3999b0ac-4617-45fe-a350-bdbdbf38a993",
+        "report_id": "0e5c0ecd-016a-4cbd-adac-d27480a59a99",
+        "facility_id": "387",
+        "expected_facility_name": "Palas Atenea (Pocitos)"
+      },
+      {
+        "id": "3b54ad0f-3b40-4763-a8a5-c7b6b12d86d0",
+        "report_id": "c931c3b1-0f7d-4e4a-ae78-7d02e764b735",
+        "facility_id": "730",
+        "expected_facility_name": "La Terraza"
+      },
+      {
+        "id": "3b6e451c-f8aa-4c3d-909b-bf4d28ee1753",
+        "report_id": "c48948af-8a51-42f0-b68c-9f92172932a0",
+        "facility_id": "442",
+        "expected_facility_name": "Residencial Nirvana"
+      },
+      {
+        "id": "40b00e7e-f043-441b-9804-ab58272617eb",
+        "report_id": "9efffe12-073b-4617-b0f4-e6ae80357934",
+        "facility_id": "592",
+        "expected_facility_name": "Residencial Solaz"
+      },
+      {
+        "id": "40d271aa-0947-42d2-b044-37d8d4d464d7",
+        "report_id": "207562fb-dcdf-48fa-abeb-bc7865a5b35f",
+        "facility_id": "708",
+        "expected_facility_name": "Corazon de Oro"
+      },
+      {
+        "id": "412642bd-18fb-4f24-bc1c-ff44a3413a46",
+        "report_id": "39e00f93-299a-4e7a-a048-57115429f96d",
+        "facility_id": "277",
+        "expected_facility_name": "Casona Carrasco"
+      },
+      {
+        "id": "41f57ed3-af88-41c2-b9cb-17690ad9d777",
+        "report_id": "cd1d5912-1e93-47a9-ab63-235a0ffa17fb",
+        "facility_id": "591",
+        "expected_facility_name": "Residencial Nahuel"
+      },
+      {
+        "id": "44cc0039-93d1-4405-930a-af5a7246c3cc",
+        "report_id": "386ea202-99e0-40b2-9c8a-ec3993581f42",
+        "facility_id": "442",
+        "expected_facility_name": "Residencial Nirvana"
+      },
+      {
+        "id": "4694d905-e720-4ee6-976c-63fbf98c2e6d",
+        "report_id": "5c9d3013-98f6-4d12-b6ec-82c5ea717727",
+        "facility_id": "259",
+        "expected_facility_name": "Residencial Apart Hotel"
+      },
+      {
+        "id": "475ed7ef-06f9-4981-bd40-03f8a253ad07",
+        "report_id": "2f376762-8f29-4299-bccb-96d6960fd578",
+        "facility_id": "610",
+        "expected_facility_name": "Aguas de Reposo"
+      },
+      {
+        "id": "477866ff-b6e9-419b-91b4-669a83203143",
+        "report_id": "8d9fd1a5-2125-4393-9589-c102981b9462",
+        "facility_id": "239",
+        "expected_facility_name": "Abras"
+      },
+      {
+        "id": "47cf43fc-2990-4528-a977-33bd83fa25ce",
+        "report_id": "474cae4f-78f3-437c-a8dc-f5c1eab017e4",
+        "facility_id": "3",
+        "expected_facility_name": "Casa Ravello"
+      },
+      {
+        "id": "4ab2f52b-840b-4339-830e-aa5959af54fc",
+        "report_id": "49d000bb-902e-47f4-b55e-7be500d55257",
+        "facility_id": "732",
+        "expected_facility_name": "Dolce Primavera"
+      },
+      {
+        "id": "4c901b1a-24d1-4d9b-b4d6-63fe71fdd160",
+        "report_id": "4d284ce0-03b2-410d-a15b-fa4404106ec0",
+        "facility_id": "592",
+        "expected_facility_name": "Residencial Solaz"
+      },
+      {
+        "id": "4f442a0d-135f-4acd-9558-d1dac39e4162",
+        "report_id": "4e81f6e1-a781-4469-8de1-c6c117d2a86d",
+        "facility_id": "24",
+        "expected_facility_name": "Biltmore"
+      },
+      {
+        "id": "51306b5f-e556-4e27-9aa0-28bd677b9803",
+        "report_id": "7e4c75b8-6c6b-4ff5-82d8-5deac7eb3f3e",
+        "facility_id": "470",
+        "expected_facility_name": "Zuich"
+      },
+      {
+        "id": "52afc5f1-780b-4d78-b253-3da8059689c5",
+        "report_id": "0436defe-7173-4763-9e91-2850ea23e684",
+        "facility_id": "95",
+        "expected_facility_name": "Solymar"
+      },
+      {
+        "id": "548620a5-2f28-4f8f-800e-9e07326d3eb2",
+        "report_id": "b95db40c-473c-4fac-b9b6-b1008db48721",
+        "facility_id": "653",
+        "expected_facility_name": "Mis Nietos"
+      },
+      {
+        "id": "554c6da0-a9c0-44ce-a88f-c0a8211b50e4",
+        "report_id": "a3cc747e-92c7-46c1-8e27-9ea9b797f5cf",
+        "facility_id": "1004",
+        "expected_facility_name": "Villa Azul"
+      },
+      {
+        "id": "57fe66c5-c335-41aa-9f41-0cebcc85aab1",
+        "report_id": "ff4ece9d-fd68-4ba3-adc1-cd83f9ab4367",
+        "facility_id": "64",
+        "expected_facility_name": "Luz del Sol"
+      },
+      {
+        "id": "5ba6d001-f225-4516-b454-8c27f3b6b5a2",
+        "report_id": "00db48fc-129e-4904-96b6-2a91447eb4ba",
+        "facility_id": "708",
+        "expected_facility_name": "Corazon de Oro"
+      },
+      {
+        "id": "63033e6d-13c8-4d0a-9b3b-0a5c9b0e6f30",
+        "report_id": "b9a167ce-1e1a-4df1-a9ae-08c2d6e22aa8",
+        "facility_id": "622",
+        "expected_facility_name": "Hogar Marsella"
+      },
+      {
+        "id": "65efd736-5722-493a-831f-65f437b60eab",
+        "report_id": "034100d1-c588-47c5-b91d-7c2f04e56870",
+        "facility_id": "186",
+        "expected_facility_name": "Artemisa"
+      },
+      {
+        "id": "6670517d-5e36-44b1-a751-fcff433a5a79",
+        "report_id": "2f376762-8f29-4299-bccb-96d6960fd578",
+        "facility_id": "610",
+        "expected_facility_name": "Aguas de Reposo"
+      },
+      {
+        "id": "66d40811-2d8e-4378-8f26-225152a19087",
+        "report_id": "b1671159-f970-4531-9850-ce2889e7be89",
+        "facility_id": "578",
+        "expected_facility_name": "Manas Home"
+      },
+      {
+        "id": "6785b5f0-0510-4528-9c36-d24134aabc28",
+        "report_id": "bcd03484-9629-45f3-a8c3-ada813f6a174",
+        "facility_id": "189",
+        "expected_facility_name": "Casa del Sol"
+      },
+      {
+        "id": "69dc17ec-c661-46a7-b877-600bdc541812",
+        "report_id": "a92e9eeb-7026-4865-b95a-5aad482f60da",
+        "facility_id": "52",
+        "expected_facility_name": "Jacaranda"
+      },
+      {
+        "id": "69e7726d-ad78-485e-ac3d-5e9b46ef8721",
+        "report_id": "82bf9936-0b3a-4109-8a62-e8990554503a",
+        "facility_id": "375",
+        "expected_facility_name": "Napoles"
+      },
+      {
+        "id": "6c666bac-6c61-4f6e-9d8c-82c12f056a78",
+        "report_id": "703f0194-37ae-4acb-b82e-046a8fbb35b9",
+        "facility_id": "327",
+        "expected_facility_name": "Hogar Esperanza"
+      },
+      {
+        "id": "6ed0e2b7-0134-4521-b735-645df7e28778",
+        "report_id": "c6fdd34b-c392-4e15-a02b-0c2ebcd5b5c1",
+        "facility_id": "387",
+        "expected_facility_name": "Palas Atenea (Pocitos)"
+      },
+      {
+        "id": "6fdefe22-2bf6-4af5-81aa-daeb8a579cf9",
+        "report_id": "39983929-24bf-4f02-9909-edc4d3ac3e75",
+        "facility_id": "448",
+        "expected_facility_name": "Residencial Our Place"
+      },
+      {
+        "id": "71eb0e79-99b0-4617-8d6d-f3fa2cb02999",
+        "report_id": "18726a3e-426f-4790-8cd6-59ebe80ca497",
+        "facility_id": "204",
+        "expected_facility_name": "Los Olivos"
+      },
+      {
+        "id": "76ed1e47-72c8-4228-98f4-5a3f2220f0e1",
+        "report_id": "1f2f2915-85db-4c87-a7b8-59270c9ddedd",
+        "facility_id": "578",
+        "expected_facility_name": "Manas Home"
+      },
+      {
+        "id": "780e9ef6-8edd-4637-b9c6-47dd24a1eee6",
+        "report_id": "a1367f42-ff05-4d13-8f9f-e9f97f656d13",
+        "facility_id": "239",
+        "expected_facility_name": "Abras"
+      },
+      {
+        "id": "7845cd58-b063-4919-9719-6b8d7c3f0d42",
+        "report_id": "e1dcfc9a-e10c-4d5d-a0ab-663ff110da6e",
+        "facility_id": "269",
+        "expected_facility_name": "Buenos Tiempos"
+      },
+      {
+        "id": "79bde468-9f6b-4c23-b6bc-7f1470beabaa",
+        "report_id": "0567f5b0-0070-4f2f-bc00-14232e5dddd8",
+        "facility_id": "732",
+        "expected_facility_name": "Dolce Primavera"
+      },
+      {
+        "id": "79ef6d84-3af1-4724-be66-465fb874bfbd",
+        "report_id": "f3259d4e-2212-43ea-93dc-7d831cf40517",
+        "facility_id": "24",
+        "expected_facility_name": "Biltmore"
+      },
+      {
+        "id": "7ae94e58-e224-482f-a383-294138f7b0c2",
+        "report_id": "112f47e6-f90a-4a78-a96a-45d0c3ae119b",
+        "facility_id": "189",
+        "expected_facility_name": "Casa del Sol"
+      },
+      {
+        "id": "7c67ccd1-df4b-424d-a2f6-2cbb71525b7c",
+        "report_id": "5fa9b977-498f-44f9-b343-10968dd6c343",
+        "facility_id": "3",
+        "expected_facility_name": "Casa Ravello"
+      },
+      {
+        "id": "7da1a503-f3eb-434b-b138-23b41a347070",
+        "report_id": "034100d1-c588-47c5-b91d-7c2f04e56870",
+        "facility_id": "186",
+        "expected_facility_name": "Artemisa"
+      },
+      {
+        "id": "7f0716df-7657-41f1-96bd-ae698e28ffeb",
+        "report_id": "b5aa1f2e-2b98-4e9f-b9c4-d7e55a56072e",
+        "facility_id": "28",
+        "expected_facility_name": "Centro Vital"
+      },
+      {
+        "id": "806aeece-b053-46e4-9e71-8c3eaf8d01c9",
+        "report_id": "1cda2c6a-5577-41ac-ae65-ffa808b43d55",
+        "facility_id": "653",
+        "expected_facility_name": "Mis Nietos"
+      },
+      {
+        "id": "807da4b3-fd38-4e98-a803-0a69a29f59b3",
+        "report_id": "f34a0e4d-9105-4426-9403-62bd0db8925b",
+        "facility_id": "1035",
+        "expected_facility_name": "Residencial Pontevedra"
+      },
+      {
+        "id": "815124bd-399b-4865-92da-4d0bed8988d2",
+        "report_id": "474cae4f-78f3-437c-a8dc-f5c1eab017e4",
+        "facility_id": "3",
+        "expected_facility_name": "Casa Ravello"
+      },
+      {
+        "id": "84a6ff5c-2ca4-4d7d-a7eb-8af645f075ce",
+        "report_id": "faa6b598-f121-42fb-996b-aa65a0ff8b88",
+        "facility_id": "634",
+        "expected_facility_name": "Seraan"
+      },
+      {
+        "id": "87897b16-3e2e-4422-b755-6689cfb53506",
+        "report_id": "04ff7e8c-ec7e-4678-8772-5b5cdba49f8b",
+        "facility_id": "1030",
+        "expected_facility_name": "Residencial Jardin del Sol"
+      },
+      {
+        "id": "88735bbe-822e-44fc-953e-32f32bde3993",
+        "report_id": "5c9d3013-98f6-4d12-b6ec-82c5ea717727",
+        "facility_id": "259",
+        "expected_facility_name": "Residencial Apart Hotel"
+      },
+      {
+        "id": "89684190-4ae9-4d95-886a-d5d200f22750",
+        "report_id": "9efffe12-073b-4617-b0f4-e6ae80357934",
+        "facility_id": "592",
+        "expected_facility_name": "Residencial Solaz"
+      },
+      {
+        "id": "89bb4c09-bb24-4aed-a0cd-fa7c62813b1b",
+        "report_id": "94effffb-72de-4628-a36e-c31a07a84442",
+        "facility_id": "648",
+        "expected_facility_name": "Las Cuatro Estaciones"
+      },
+      {
+        "id": "89f6ded5-55f0-478e-ad3f-f05d5ed6a9b0",
+        "report_id": "826d5776-e238-432e-9596-f8d6cab8f307",
+        "facility_id": "699",
+        "expected_facility_name": "Mi Jazmin"
+      },
+      {
+        "id": "8a42c85c-c56b-41e6-b2a8-c36dbb06dff6",
+        "report_id": "9efffe12-073b-4617-b0f4-e6ae80357934",
+        "facility_id": "592",
+        "expected_facility_name": "Residencial Solaz"
+      },
+      {
+        "id": "8aa8d5b0-45a5-4d92-b57d-6e67e208d42b",
+        "report_id": "4fa72335-2bfb-4d96-bb74-85d9bd708d71",
+        "facility_id": "666",
+        "expected_facility_name": "Polo House"
+      },
+      {
+        "id": "8c07c8a6-677b-4725-b8ec-9a2fa2365b9e",
+        "report_id": "06e6e77f-f3be-4852-a187-e2bed272d49c",
+        "facility_id": "1028",
+        "expected_facility_name": "Residencial Indigo"
+      },
+      {
+        "id": "8c55f754-a147-478a-bdd7-10167ad1b9c0",
+        "report_id": "c6fdd34b-c392-4e15-a02b-0c2ebcd5b5c1",
+        "facility_id": "387",
+        "expected_facility_name": "Palas Atenea (Pocitos)"
+      },
+      {
+        "id": "8cbe9b74-6cbb-4065-a275-bb4a6aeee6b2",
+        "report_id": "02d381c2-e929-49f2-a408-f98b07c2c0ca",
+        "facility_id": "406",
+        "expected_facility_name": "Residencial Casa Garzón"
+      },
+      {
+        "id": "8cf52c86-b483-4dec-95d7-2676cf57d87e",
+        "report_id": "339a5366-76ce-4f0f-8e8e-160b831ae9ae",
+        "facility_id": "76",
+        "expected_facility_name": "Residencia Puentecasa"
+      },
+      {
+        "id": "8dbfc865-b671-4a5f-aef2-d5668a845b80",
+        "report_id": "9cfda8fb-bd47-414f-bfe4-235164c574d3",
+        "facility_id": "648",
+        "expected_facility_name": "Las Cuatro Estaciones"
+      },
+      {
+        "id": "8e89d224-8964-449b-ad84-2917873b33d5",
+        "report_id": "dd69c6db-e11d-4dbe-bb4c-14a297844f70",
+        "facility_id": "627",
+        "expected_facility_name": "Sueños Compartidos"
+      },
+      {
+        "id": "9223aec0-ef8c-4097-8925-10741d94a7dd",
+        "report_id": "a51a7066-c38b-4d50-b321-789959ebff66",
+        "facility_id": "328",
+        "expected_facility_name": "La Capilla"
+      },
+      {
+        "id": "93c401f0-e17f-4d55-b4c5-7c9dc93dfd31",
+        "report_id": "5509e951-0c6f-4dfa-8f27-5c02e5cdca6e",
+        "facility_id": "328",
+        "expected_facility_name": "La Capilla"
+      },
+      {
+        "id": "94169b98-e5b1-4004-ba89-9bd62e0f9714",
+        "report_id": "67533892-ea17-438a-88eb-24840d8412c5",
+        "facility_id": "779",
+        "expected_facility_name": "Centro Residencial Tempus"
+      },
+      {
+        "id": "94d1f4ff-b5c9-4d39-b410-86330eeffd96",
+        "report_id": "c016836a-ceae-4219-b147-19d77006a768",
+        "facility_id": "375",
+        "expected_facility_name": "Napoles"
+      },
+      {
+        "id": "95932cc6-9d73-4234-947e-f2aa28af7e78",
+        "report_id": "0f555621-ce88-4474-be4f-1a4f0e0c900d",
+        "facility_id": "641",
+        "expected_facility_name": "Doña Maria"
+      },
+      {
+        "id": "95dea6fa-ec23-4556-80c8-b3eb313dffca",
+        "report_id": "bdcc1d7c-cabf-4bc2-96ec-d9ad4c3d198e",
+        "facility_id": "695",
+        "expected_facility_name": "Saniguet"
+      },
+      {
+        "id": "973aa70a-6ef4-4aab-8a8f-0c4a28840068",
+        "report_id": "fb32bd15-363f-4999-803a-0ab5e43f109d",
+        "facility_id": "558",
+        "expected_facility_name": "Residencial Doña Blanca"
+      },
+      {
+        "id": "98194ef0-ad05-4fd9-92d7-f39262659b6e",
+        "report_id": "c9dd4213-09e2-4915-a637-0fb2fe7a218a",
+        "facility_id": "489",
+        "expected_facility_name": "Tilos de Abril"
+      },
+      {
+        "id": "9dd64a35-399b-4a35-baf9-eb8cf5262646",
+        "report_id": "f34a0e4d-9105-4426-9403-62bd0db8925b",
+        "facility_id": "1035",
+        "expected_facility_name": "Residencial Pontevedra"
+      },
+      {
+        "id": "a07752ae-6dc1-46d8-b700-aa58e9942e58",
+        "report_id": "d41552e4-44f0-47ef-9d67-a6a3e07e604c",
+        "facility_id": "470",
+        "expected_facility_name": "Zuich"
+      },
+      {
+        "id": "a28fa79c-6eb5-4045-b500-81efb059636e",
+        "report_id": "95ef6e40-441e-419b-b85a-9471019a656b",
+        "facility_id": "661",
+        "expected_facility_name": "The Green Home"
+      },
+      {
+        "id": "a2e78d3b-eac2-41d6-9d07-38d30b97cf81",
+        "report_id": "0567f5b0-0070-4f2f-bc00-14232e5dddd8",
+        "facility_id": "732",
+        "expected_facility_name": "Dolce Primavera"
+      },
+      {
+        "id": "a34ad773-63c2-4d2f-982d-ad3b1a609c5e",
+        "report_id": "e87447ec-0d58-421a-9115-ecbf2e49828c",
+        "facility_id": "608",
+        "expected_facility_name": "Santa Bernardita"
+      },
+      {
+        "id": "a4037ceb-ebbc-4127-8300-5f5d37f36a9c",
+        "report_id": "49d000bb-902e-47f4-b55e-7be500d55257",
+        "facility_id": "732",
+        "expected_facility_name": "Dolce Primavera"
+      },
+      {
+        "id": "ab014618-aee3-4472-acd8-9f775098a4ed",
+        "report_id": "16cb7dcc-1cc8-4b0e-bf87-c1846297e0ad",
+        "facility_id": "320",
+        "expected_facility_name": "Historias de Vida"
+      },
+      {
+        "id": "af9cab77-778a-433e-aec0-6915d623bc4f",
+        "report_id": "eebd9968-f057-4ec2-8b3f-67df5cd17ad9",
+        "facility_id": "610",
+        "expected_facility_name": "Aguas de Reposo"
+      },
+      {
+        "id": "b0abc10d-1862-4fd0-836e-17a0dae10065",
+        "report_id": "eebd9968-f057-4ec2-8b3f-67df5cd17ad9",
+        "facility_id": "610",
+        "expected_facility_name": "Aguas de Reposo"
+      },
+      {
+        "id": "b0fa681d-3af4-4842-bf5f-ca3e5b45b000",
+        "report_id": "e03b87aa-9de9-4661-a7e3-18516d576950",
+        "facility_id": "605",
+        "expected_facility_name": "Altos del Centro"
+      },
+      {
+        "id": "b1b7c6d0-51c5-452f-935b-8786f4d0d091",
+        "report_id": "4cf4bedb-1bc6-4293-a0b7-cc8a650889fd",
+        "facility_id": "666",
+        "expected_facility_name": "Polo House"
+      },
+      {
+        "id": "b201a0fb-368d-473f-bb05-d30533a6933a",
+        "report_id": "47d643a4-a099-4130-bae3-ec0239bf79ec",
+        "facility_id": "64",
+        "expected_facility_name": "Luz del Sol"
+      },
+      {
+        "id": "b38d6366-88b7-4f92-b3dd-6f597ee63e57",
+        "report_id": "1f2f2915-85db-4c87-a7b8-59270c9ddedd",
+        "facility_id": "578",
+        "expected_facility_name": "Manas Home"
+      },
+      {
+        "id": "b45a2923-938d-4bad-89a0-6abc15a93958",
+        "report_id": "dd69c6db-e11d-4dbe-bb4c-14a297844f70",
+        "facility_id": "627",
+        "expected_facility_name": "Sueños Compartidos"
+      },
+      {
+        "id": "b5cf25d9-946e-4ab9-b4c5-3c7bbcd870f0",
+        "report_id": "a111ab66-8bcd-4c42-8a9d-adbabe0a99ae",
+        "facility_id": "28",
+        "expected_facility_name": "Centro Vital"
+      },
+      {
+        "id": "b5e0897f-666f-4ce1-873f-37bf542eeefe",
+        "report_id": "a76ce5d4-1917-4e41-8d65-f2a1900d3e50",
+        "facility_id": "558",
+        "expected_facility_name": "Residencial Doña Blanca"
+      },
+      {
+        "id": "bfdde90e-effa-4e24-82e2-98b0f3d32de6",
+        "report_id": "688c717c-7393-4025-8028-859b3bf9292e",
+        "facility_id": "204",
+        "expected_facility_name": "Los Olivos"
+      },
+      {
+        "id": "c4b12d42-9984-4a95-abdd-fed2b6570737",
+        "report_id": "4cf4bedb-1bc6-4293-a0b7-cc8a650889fd",
+        "facility_id": "666",
+        "expected_facility_name": "Polo House"
+      },
+      {
+        "id": "c4ed27b6-e7d2-4c94-b566-2994b2278bea",
+        "report_id": "3aad14d2-de7e-4315-bb91-3216e94b5cc8",
+        "facility_id": "269",
+        "expected_facility_name": "Buenos Tiempos"
+      },
+      {
+        "id": "c72aa4c6-1f1f-4c7b-a079-5cb3ce4c5e8b",
+        "report_id": "b4ad087d-a3f2-44da-b2ac-448732837c19",
+        "facility_id": "1028",
+        "expected_facility_name": "Residencial Indigo"
+      },
+      {
+        "id": "c79982d7-3222-4118-877f-0ae718a76885",
+        "report_id": "bbc67803-0ece-430a-9b6f-4e5c2302bd98",
+        "facility_id": "1034",
+        "expected_facility_name": "Residencial Manantiales"
+      },
+      {
+        "id": "c87fc738-e7e5-4e8c-94f5-f19113651a81",
+        "report_id": "bef02b33-eb95-4f92-ba28-45424280abad",
+        "facility_id": "798",
+        "expected_facility_name": "Casa Provenza"
+      },
+      {
+        "id": "c999f9b7-2999-4b66-9e4a-b0b8c6903890",
+        "report_id": "e87447ec-0d58-421a-9115-ecbf2e49828c",
+        "facility_id": "608",
+        "expected_facility_name": "Santa Bernardita"
+      },
+      {
+        "id": "c9e6dd8d-d6aa-44f0-acd5-d55443aae6cd",
+        "report_id": "a92e9eeb-7026-4865-b95a-5aad482f60da",
+        "facility_id": "52",
+        "expected_facility_name": "Jacaranda"
+      },
+      {
+        "id": "ca9d5400-e1a6-40a2-9d76-0fd8683c1834",
+        "report_id": "4cf4bedb-1bc6-4293-a0b7-cc8a650889fd",
+        "facility_id": "666",
+        "expected_facility_name": "Polo House"
+      },
+      {
+        "id": "ccf7efb4-7ea7-47a0-b12b-a1b8239bf21e",
+        "report_id": "e790c2e8-85d4-4544-8a98-1e77ea54ab9e",
+        "facility_id": "327",
+        "expected_facility_name": "Hogar Esperanza"
+      },
+      {
+        "id": "d0a1cbb2-a0b3-4076-8daf-18dbeed75378",
+        "report_id": "0f555621-ce88-4474-be4f-1a4f0e0c900d",
+        "facility_id": "641",
+        "expected_facility_name": "Doña Maria"
+      },
+      {
+        "id": "d23f951a-531d-48be-a80f-364d45663934",
+        "report_id": "4d284ce0-03b2-410d-a15b-fa4404106ec0",
+        "facility_id": "592",
+        "expected_facility_name": "Residencial Solaz"
+      },
+      {
+        "id": "d3d44e7c-f975-444a-9f71-f780760dca6d",
+        "report_id": "fb48f24d-9fff-44cc-924f-8c4243427d9d",
+        "facility_id": "779",
+        "expected_facility_name": "Centro Residencial Tempus"
+      },
+      {
+        "id": "d491b272-7ea1-4c9b-844c-50154b83eafd",
+        "report_id": "c18e53f3-2d36-4dbe-8c25-732367200ad3",
+        "facility_id": "406",
+        "expected_facility_name": "Residencial Casa Garzón"
+      },
+      {
+        "id": "d6762fea-5e3d-402d-b0e2-0831cd4f49e2",
+        "report_id": "6864ddef-c4b1-4cec-bb96-d76e1a5b5d20",
+        "facility_id": "52",
+        "expected_facility_name": "Jacaranda"
+      },
+      {
+        "id": "d7b3fdc0-82a2-4c63-a473-1f2130fb335a",
+        "report_id": "be534300-a8eb-448f-9d97-cf27884d7bf6",
+        "facility_id": "418",
+        "expected_facility_name": "Residencial El Retorno"
+      },
+      {
+        "id": "d7f52b34-cac5-43dd-9ff2-d17a052d0655",
+        "report_id": "d23ab2b2-7516-4abc-acaf-7e9ea8cb1f74",
+        "facility_id": "641",
+        "expected_facility_name": "Doña Maria"
+      },
+      {
+        "id": "d8aca1b3-835a-4b81-88a1-675ed1123f8f",
+        "report_id": "35c3cbdc-31c2-4a1c-a8e0-3c5b01915fa3",
+        "facility_id": "1004",
+        "expected_facility_name": "Villa Azul"
+      },
+      {
+        "id": "d8c6a4c9-4a37-43af-ab7d-105c67aa6ee3",
+        "report_id": "67522770-a75f-4860-9fdf-2c80827c5f84",
+        "facility_id": "448",
+        "expected_facility_name": "Residencial Our Place"
+      },
+      {
+        "id": "d8ed1b09-f8b7-4723-ad6e-8333ef3dfd5e",
+        "report_id": "842c8739-95c2-41c1-a862-366d5835b9c8",
+        "facility_id": "240",
+        "expected_facility_name": "Abuela Chachi"
+      },
+      {
+        "id": "dacb37b5-da87-4be5-b53b-019f3a83a753",
+        "report_id": "68b77465-037e-4c9a-91cb-ad9969c06856",
+        "facility_id": "54",
+        "expected_facility_name": "La Carolina"
+      },
+      {
+        "id": "db5bd087-a711-410e-ac5a-d485e97c3aa0",
+        "report_id": "49d000bb-902e-47f4-b55e-7be500d55257",
+        "facility_id": "732",
+        "expected_facility_name": "Dolce Primavera"
+      },
+      {
+        "id": "dc778833-7d8e-4253-8378-44ddeb104fa2",
+        "report_id": "346cf51f-286c-4ee5-9dd8-d52d13ea1257",
+        "facility_id": "627",
+        "expected_facility_name": "Sueños Compartidos"
+      },
+      {
+        "id": "dc9dfe07-1ff6-4f76-a986-453fbaca6d66",
+        "report_id": "05eaf8e1-4ab7-44f4-99e0-78e59e697fbf",
+        "facility_id": "186",
+        "expected_facility_name": "Artemisa"
+      },
+      {
+        "id": "de06863b-4424-49f7-a8ad-19288340ce27",
+        "report_id": "738af038-c64c-473b-bb18-945e5da830f8",
+        "facility_id": "240",
+        "expected_facility_name": "Abuela Chachi"
+      },
+      {
+        "id": "df4dfc26-7ab8-4563-9389-089eebb84667",
+        "report_id": "cde4f5f4-c524-4e66-89cd-feeec92bf121",
+        "facility_id": "608",
+        "expected_facility_name": "Santa Bernardita"
+      },
+      {
+        "id": "e0a0a67a-2ef6-4abd-96e5-487ab95393f2",
+        "report_id": "977f3d4c-9d1d-42cd-89be-e911dcf94dc3",
+        "facility_id": "622",
+        "expected_facility_name": "Hogar Marsella"
+      },
+      {
+        "id": "e401cbfb-909c-45d0-9ed3-df2fa3134633",
+        "report_id": "3d63afe8-a77e-4580-88ba-48bc962a94a8",
+        "facility_id": "1035",
+        "expected_facility_name": "Residencial Pontevedra"
+      },
+      {
+        "id": "e45102c9-184c-425e-b923-39d5399e46c6",
+        "report_id": "034100d1-c588-47c5-b91d-7c2f04e56870",
+        "facility_id": "186",
+        "expected_facility_name": "Artemisa"
+      },
+      {
+        "id": "e4daec2f-7ca3-49c4-872b-db410d3da1ff",
+        "report_id": "eb281993-2ae1-40db-838d-98390afdf416",
+        "facility_id": "725",
+        "expected_facility_name": "Carrasco Home"
+      },
+      {
+        "id": "e4ed0a6c-cb0a-41a1-95f3-bd9d308abe91",
+        "report_id": "f3433a56-4f5b-44b2-b67f-174f5763425f",
+        "facility_id": "661",
+        "expected_facility_name": "The Green Home"
+      },
+      {
+        "id": "e5d1f24f-d5da-4b3d-941c-9a52a15f65e8",
+        "report_id": "7b379b77-e1a2-4776-9a42-413e013d0f04",
+        "facility_id": "259",
+        "expected_facility_name": "Residencial Apart Hotel"
+      },
+      {
+        "id": "e5e04233-9707-4e58-ad61-14a649a3a767",
+        "report_id": "480c5bc9-40fb-4618-9eb3-e32251a35fc7",
+        "facility_id": "699",
+        "expected_facility_name": "Mi Jazmin"
+      },
+      {
+        "id": "e63ef794-627f-4e29-aecc-0246eb68fbc6",
+        "report_id": "bfc84559-a01c-490f-b7e8-7fd04796661f",
+        "facility_id": "418",
+        "expected_facility_name": "Residencial El Retorno"
+      },
+      {
+        "id": "e89f3015-958f-4ef7-b373-d18237020535",
+        "report_id": "ddce8d2e-b458-43e4-9c52-c3ac759bc70c",
+        "facility_id": "695",
+        "expected_facility_name": "Saniguet"
+      },
+      {
+        "id": "e97bc792-966c-4479-9119-582611f1f066",
+        "report_id": "4fa72335-2bfb-4d96-bb74-85d9bd708d71",
+        "facility_id": "666",
+        "expected_facility_name": "Polo House"
+      },
+      {
+        "id": "e9bc1371-b99b-485e-9d93-094dfa400449",
+        "report_id": "95ef6e40-441e-419b-b85a-9471019a656b",
+        "facility_id": "661",
+        "expected_facility_name": "The Green Home"
+      },
+      {
+        "id": "ea516428-29c3-4243-91b7-147fc81cf3c0",
+        "report_id": "df6ebe95-be4b-4d5a-be1e-dc9d108ce698",
+        "facility_id": "680",
+        "expected_facility_name": "La Belle Epoque"
+      },
+      {
+        "id": "eaebe924-a32f-45dc-ad4c-be37eb1df9bc",
+        "report_id": "45272b2a-8d66-4b7f-9b24-3d071a05020e",
+        "facility_id": "95",
+        "expected_facility_name": "Solymar"
+      },
+      {
+        "id": "eb70b76f-5a6d-4e58-92fa-3ac89220b4ef",
+        "report_id": "862e60de-3068-407c-8c9e-238e560b6b7d",
+        "facility_id": "605",
+        "expected_facility_name": "Altos del Centro"
+      },
+      {
+        "id": "ebba0781-2836-4fc4-a10f-603d769fc5e5",
+        "report_id": "01558950-ad10-4441-960d-89debcc9edc7",
+        "facility_id": "54",
+        "expected_facility_name": "La Carolina"
+      },
+      {
+        "id": "ec1c6526-e2ab-48c6-953f-a49443a7f0b6",
+        "report_id": "0567f5b0-0070-4f2f-bc00-14232e5dddd8",
+        "facility_id": "732",
+        "expected_facility_name": "Dolce Primavera"
+      },
+      {
+        "id": "eebf4658-dad0-42bd-aa63-8330f145867b",
+        "report_id": "dcb3eda7-b330-4c88-bbdc-e19333e80c13",
+        "facility_id": "798",
+        "expected_facility_name": "Casa Provenza"
+      },
+      {
+        "id": "eec60983-c1ef-4afb-8317-f364c3894d01",
+        "report_id": "4d284ce0-03b2-410d-a15b-fa4404106ec0",
+        "facility_id": "592",
+        "expected_facility_name": "Residencial Solaz"
+      },
+      {
+        "id": "eedcb49f-669d-4ca8-a175-a94556569707",
+        "report_id": "f3433a56-4f5b-44b2-b67f-174f5763425f",
+        "facility_id": "661",
+        "expected_facility_name": "The Green Home"
+      },
+      {
+        "id": "f039bc06-4e1e-4ea6-ad8f-b0024bc0ba29",
+        "report_id": "cde4f5f4-c524-4e66-89cd-feeec92bf121",
+        "facility_id": "608",
+        "expected_facility_name": "Santa Bernardita"
+      },
+      {
+        "id": "f533f853-0c65-43f6-9651-84d0479b9ce2",
+        "report_id": "7b379b77-e1a2-4776-9a42-413e013d0f04",
+        "facility_id": "259",
+        "expected_facility_name": "Residencial Apart Hotel"
+      },
+      {
+        "id": "f78c3150-bb65-45e1-81b1-da10814ea51c",
+        "report_id": "f0afa3c6-5b66-4f11-a8a8-dea6c7e8a53e",
+        "facility_id": "591",
+        "expected_facility_name": "Residencial Nahuel"
+      },
+      {
+        "id": "f912d6d0-4d9f-4813-b2ee-850cdb7c42c9",
+        "report_id": "f0afa3c6-5b66-4f11-a8a8-dea6c7e8a53e",
+        "facility_id": "591",
+        "expected_facility_name": "Residencial Nahuel"
+      },
+      {
+        "id": "fad13707-7a51-4e68-bb04-7572a4828cf4",
+        "report_id": "e03b87aa-9de9-4661-a7e3-18516d576950",
+        "facility_id": "605",
+        "expected_facility_name": "Altos del Centro"
+      },
+      {
+        "id": "fafd7689-48e1-4543-a0e9-35bcb3046056",
+        "report_id": "175af728-5544-4e0b-b904-2b20fcbc46aa",
+        "facility_id": "1030",
+        "expected_facility_name": "Residencial Jardin del Sol"
+      },
+      {
+        "id": "fed92ded-75d6-49de-8ccd-90525bfb0c2a",
+        "report_id": "ee9e9faa-4910-4521-adc7-b6bd3482c36d",
+        "facility_id": "320",
+        "expected_facility_name": "Historias de Vida"
+      }
+    ],
+    "photos": [
+      {
+        "id": "06b26ccb-b032-4278-ab71-59b17ecf10ff",
+        "publication_id": "26ae3742-f11b-4b09-a637-2f5a41459aca",
+        "facility_id": "1035",
+        "expected_facility_name": "Residencial Pontevedra"
+      },
+      {
+        "id": "087fa175-25eb-4700-bacf-f8c91a127425",
+        "publication_id": "4d81083d-33d6-4e6e-902b-080fdd40663e",
+        "facility_id": "186",
+        "expected_facility_name": "Artemisa"
+      },
+      {
+        "id": "09eae72a-a372-4177-b738-1e955e048d93",
+        "publication_id": "c9fe1a60-d442-4fe4-bc00-318977ff234c",
+        "facility_id": "725",
+        "expected_facility_name": "Carrasco Home"
+      },
+      {
+        "id": "0b811582-1afe-4277-9272-8088836c677c",
+        "publication_id": "0bfd9178-8c46-4499-9fdb-d4c4afad9141",
+        "facility_id": "189",
+        "expected_facility_name": "Casa del Sol"
+      },
+      {
+        "id": "0e77513d-300f-4584-b440-659132108109",
+        "publication_id": "b83bb4d3-a61c-4bfb-b3b5-929830e8cdd3",
+        "facility_id": "591",
+        "expected_facility_name": "Residencial Nahuel"
+      },
+      {
+        "id": "1394a446-4863-42c2-921b-498cae4ee49e",
+        "publication_id": "49c01a96-6030-461c-9e58-d9443d11bd7a",
+        "facility_id": "259",
+        "expected_facility_name": "Residencial Apart Hotel"
+      },
+      {
+        "id": "14fdfd29-5fa7-441e-aa8d-d01c2c40c31f",
+        "publication_id": "8237db90-f1a2-49bc-a932-1e285241cab0",
+        "facility_id": "779",
+        "expected_facility_name": "Centro Residencial Tempus"
+      },
+      {
+        "id": "16f297d3-7880-44c0-b6b7-6353f2567ef6",
+        "publication_id": "b9bbadd4-2e38-48bd-8f22-5b8bf0e1348f",
+        "facility_id": "406",
+        "expected_facility_name": "Residencial Casa Garzón"
+      },
+      {
+        "id": "1b0d705b-491b-4f48-a225-5fb4c5ac62fa",
+        "publication_id": "d1c37e3d-edf1-45cc-9d3a-8144d49070e0",
+        "facility_id": "666",
+        "expected_facility_name": "Polo House"
+      },
+      {
+        "id": "21392494-478c-4fc6-9898-7d99ced9e9c5",
+        "publication_id": "d8d261fb-5572-4425-aae3-56ac8cc44168",
+        "facility_id": "661",
+        "expected_facility_name": "The Green Home"
+      },
+      {
+        "id": "2726ed12-c1da-47d2-ab42-f4156d91ed5e",
+        "publication_id": "e01bda99-b2bf-486c-9eb8-9182740e1e23",
+        "facility_id": "592",
+        "expected_facility_name": "Residencial Solaz"
+      },
+      {
+        "id": "27dda91a-158a-465e-8aa3-485e96c7fa78",
+        "publication_id": "dacd7704-2f27-481a-b15f-b03f9b192ea7",
+        "facility_id": "1034",
+        "expected_facility_name": "Residencial Manantiales"
+      },
+      {
+        "id": "28114075-d207-406f-89c7-6bd7c514ce40",
+        "publication_id": "d5d58165-27d8-412b-92a4-ae0021e06d2a",
+        "facility_id": "641",
+        "expected_facility_name": "Doña Maria"
+      },
+      {
+        "id": "2a91d1ca-e3db-4064-b1ff-16e8b024f5d2",
+        "publication_id": "255d5bfd-d444-45cd-9b4b-9dc956540918",
+        "facility_id": "1028",
+        "expected_facility_name": "Residencial Indigo"
+      },
+      {
+        "id": "2bf27769-1a85-4b96-80d6-00086984b3b7",
+        "publication_id": "1a358e78-11e6-40e3-b169-fd23cf1bd41a",
+        "facility_id": "52",
+        "expected_facility_name": "Jacaranda"
+      },
+      {
+        "id": "2c98b3b1-9e88-4e71-896d-5ddba952f1cf",
+        "publication_id": "281aa0a8-b44a-4d95-8d2d-9b9c0a5cdf14",
+        "facility_id": "375",
+        "expected_facility_name": "Napoles"
+      },
+      {
+        "id": "30640228-8321-4231-a721-6f77e37bf9b6",
+        "publication_id": "d1c37e3d-edf1-45cc-9d3a-8144d49070e0",
+        "facility_id": "666",
+        "expected_facility_name": "Polo House"
+      },
+      {
+        "id": "31962cfc-c887-43ca-b8b1-c1c53e65e2d9",
+        "publication_id": "09bcb744-767d-41f4-aa3c-e74ae76c70ea",
+        "facility_id": "328",
+        "expected_facility_name": "La Capilla"
+      },
+      {
+        "id": "345abd45-cd1d-4df4-9abf-3e093ac567f1",
+        "publication_id": "4d81083d-33d6-4e6e-902b-080fdd40663e",
+        "facility_id": "186",
+        "expected_facility_name": "Artemisa"
+      },
+      {
+        "id": "36809769-af99-4b79-b559-7b5418d690b5",
+        "publication_id": "d7eef7cc-da35-45c2-93e3-9391726fc62c",
+        "facility_id": "76",
+        "expected_facility_name": "Residencia Puentecasa"
+      },
+      {
+        "id": "381d2bd5-81f3-4a52-9055-c0105bb3d837",
+        "publication_id": "a5322daa-d255-4889-a86e-c9874d71eb33",
+        "facility_id": "448",
+        "expected_facility_name": "Residencial Our Place"
+      },
+      {
+        "id": "3c3631d9-35b4-400f-972a-83772b4e8e1c",
+        "publication_id": "6ed60473-12d0-46e2-8325-91de5a2f1405",
+        "facility_id": "708",
+        "expected_facility_name": "Corazon de Oro"
+      },
+      {
+        "id": "3ce6cb2d-b0ea-49c2-8e65-3312a6233ec3",
+        "publication_id": "5c74e224-c9b6-4bbb-8374-31f595cfff7e",
+        "facility_id": "95",
+        "expected_facility_name": "Solymar"
+      },
+      {
+        "id": "3edf6350-e6dc-4e83-a371-04c75e320202",
+        "publication_id": "d3058288-ea2d-45fb-b105-ca63e6fa9dee",
+        "facility_id": "798",
+        "expected_facility_name": "Casa Provenza"
+      },
+      {
+        "id": "43e9b4d9-04c3-4feb-8713-81e8c24b2c7c",
+        "publication_id": "18483eff-7385-4385-8418-29b7cdd993e5",
+        "facility_id": "605",
+        "expected_facility_name": "Altos del Centro"
+      },
+      {
+        "id": "4e17ee79-8363-4a2b-8de9-e6153ddfc0bc",
+        "publication_id": "4b5d3f36-febb-43f5-87e9-45a99f9cef2f",
+        "facility_id": "578",
+        "expected_facility_name": "Manas Home"
+      },
+      {
+        "id": "4e27d7ef-051c-4283-a3d2-96077376fc00",
+        "publication_id": "e19caec5-68a7-457e-aa27-3109075ad86f",
+        "facility_id": "54",
+        "expected_facility_name": "La Carolina"
+      },
+      {
+        "id": "4e4123fe-3e14-4235-8759-9655cc734091",
+        "publication_id": "2c457b2d-2a5e-4e28-bea0-4b327971bc38",
+        "facility_id": "627",
+        "expected_facility_name": "Sueños Compartidos"
+      },
+      {
+        "id": "4f5e10a2-5f43-41f9-9192-9f8ad7f9efdd",
+        "publication_id": "1f6d3d09-c737-4cd0-86e2-6da2606448ce",
+        "facility_id": "3",
+        "expected_facility_name": "Casa Ravello"
+      },
+      {
+        "id": "503889c0-f579-479a-befd-ceec90b712df",
+        "publication_id": "7b451680-4e34-4e58-8fc3-28ccc7bc265e",
+        "facility_id": "418",
+        "expected_facility_name": "Residencial El Retorno"
+      },
+      {
+        "id": "520ed19c-a142-4ac5-8a83-f0e86115a446",
+        "publication_id": "53272884-f935-4ed3-acf2-259fc653d248",
+        "facility_id": "204",
+        "expected_facility_name": "Los Olivos"
+      },
+      {
+        "id": "550b32d7-b66d-4d7f-a219-d816e0e9f1ea",
+        "publication_id": "addc8e3b-a5e6-414e-ad2d-c45087c53fdf",
+        "facility_id": "732",
+        "expected_facility_name": "Dolce Primavera"
+      },
+      {
+        "id": "56c5fa82-0146-4fe5-88e0-6fd5b7144f55",
+        "publication_id": "0f865303-e2b9-41d2-bafa-5e86fd81b4fc",
+        "facility_id": "327",
+        "expected_facility_name": "Hogar Esperanza"
+      },
+      {
+        "id": "5949b2a7-53aa-46e0-8d29-77f864fad2d7",
+        "publication_id": "d5d58165-27d8-412b-92a4-ae0021e06d2a",
+        "facility_id": "641",
+        "expected_facility_name": "Doña Maria"
+      },
+      {
+        "id": "5bea83cb-27c3-411e-a74e-6577fae5f64d",
+        "publication_id": "d4f8ded5-b306-4876-b343-1e3107cb0eb5",
+        "facility_id": "1030",
+        "expected_facility_name": "Residencial Jardin del Sol"
+      },
+      {
+        "id": "5ef6088a-a0dd-45b3-a5a5-eaf149151e44",
+        "publication_id": "d8d261fb-5572-4425-aae3-56ac8cc44168",
+        "facility_id": "661",
+        "expected_facility_name": "The Green Home"
+      },
+      {
+        "id": "644b7c4d-4b7b-4ae9-99cc-b6738f50ee00",
+        "publication_id": "f6bda3cc-fc89-40a1-9e0d-398c623c8bc0",
+        "facility_id": "24",
+        "expected_facility_name": "Biltmore"
+      },
+      {
+        "id": "64d953b1-e301-4046-bedf-e3cf84697ba0",
+        "publication_id": "83f8e339-b98b-46c3-9989-6b0881cf0197",
+        "facility_id": "699",
+        "expected_facility_name": "Mi Jazmin"
+      },
+      {
+        "id": "66a971b7-684a-4ab3-9fd3-600131d86886",
+        "publication_id": "cfe3ea2e-c8e9-4205-a5d8-be30544ad585",
+        "facility_id": "461",
+        "expected_facility_name": "Sweet Home"
+      },
+      {
+        "id": "6c27be1b-fdaf-4d92-90d1-9fb9d3a16faf",
+        "publication_id": "26ae3742-f11b-4b09-a637-2f5a41459aca",
+        "facility_id": "1035",
+        "expected_facility_name": "Residencial Pontevedra"
+      },
+      {
+        "id": "6c765421-0ff2-4614-8c44-e854cba16767",
+        "publication_id": "2c457b2d-2a5e-4e28-bea0-4b327971bc38",
+        "facility_id": "627",
+        "expected_facility_name": "Sueños Compartidos"
+      },
+      {
+        "id": "717ebfcd-d531-4ed4-9c71-72278398ccf7",
+        "publication_id": "9b183dee-0510-48fc-9e68-4d0bf1014430",
+        "facility_id": "648",
+        "expected_facility_name": "Las Cuatro Estaciones"
+      },
+      {
+        "id": "75090a67-f9fa-46e1-8cbd-e36fb20beb36",
+        "publication_id": "4b5d3f36-febb-43f5-87e9-45a99f9cef2f",
+        "facility_id": "578",
+        "expected_facility_name": "Manas Home"
+      },
+      {
+        "id": "7729884e-4c29-49de-97c3-154f915d074c",
+        "publication_id": "d260ceaf-7e4d-477f-ba4b-d334ee4ff128",
+        "facility_id": "387",
+        "expected_facility_name": "Palas Atenea (Pocitos)"
+      },
+      {
+        "id": "7bd5808c-5c75-495e-bc73-8b494619688b",
+        "publication_id": "d1c37e3d-edf1-45cc-9d3a-8144d49070e0",
+        "facility_id": "666",
+        "expected_facility_name": "Polo House"
+      },
+      {
+        "id": "7d47ba5e-8ea3-4bd5-8592-f13ea2135687",
+        "publication_id": "941345a8-8356-43de-b576-09adf20317bb",
+        "facility_id": "610",
+        "expected_facility_name": "Aguas de Reposo"
+      },
+      {
+        "id": "7d7a788d-d4d6-4273-979d-bd67a67b11b6",
+        "publication_id": "81b7e238-179a-4be8-bd16-5a71f166d91a",
+        "facility_id": "240",
+        "expected_facility_name": "Abuela Chachi"
+      },
+      {
+        "id": "85498932-6573-495c-9cbf-2de30a3f13db",
+        "publication_id": "1a358e78-11e6-40e3-b169-fd23cf1bd41a",
+        "facility_id": "52",
+        "expected_facility_name": "Jacaranda"
+      },
+      {
+        "id": "8cf10c1a-2c5e-4a25-916a-998de6d90b98",
+        "publication_id": "6be17afe-790b-4e2b-823d-23c9b0243bcc",
+        "facility_id": "558",
+        "expected_facility_name": "Residencial Doña Blanca"
+      },
+      {
+        "id": "90728f0f-091b-413f-95e9-eccddcfed292",
+        "publication_id": "255aa1eb-a18f-4a34-9021-9996b3886f2c",
+        "facility_id": "64",
+        "expected_facility_name": "Luz del Sol"
+      },
+      {
+        "id": "939348fa-b008-4cfe-badf-e5fd7da70f88",
+        "publication_id": "2cf7aa18-60c7-4edf-a5ad-9d76d0417e74",
+        "facility_id": "1004",
+        "expected_facility_name": "Villa Azul"
+      },
+      {
+        "id": "950e850b-7ba7-4b34-b342-ab367dc6f3ab",
+        "publication_id": "4d81083d-33d6-4e6e-902b-080fdd40663e",
+        "facility_id": "186",
+        "expected_facility_name": "Artemisa"
+      },
+      {
+        "id": "955e78ec-c417-4881-a8d6-0f9e942e563c",
+        "publication_id": "5cb03d54-b12e-4b52-b63f-b738771cbcb8",
+        "facility_id": "680",
+        "expected_facility_name": "La Belle Epoque"
+      },
+      {
+        "id": "97d0f66e-446b-41ff-8442-25b0ca16cdc4",
+        "publication_id": "509fef32-38da-48c4-98fb-b902bccaacc9",
+        "facility_id": "683",
+        "expected_facility_name": "La Rosaleda"
+      },
+      {
+        "id": "9897afe0-22cd-4ea4-a7a9-f74aa88ac3d6",
+        "publication_id": "4b5d3f36-febb-43f5-87e9-45a99f9cef2f",
+        "facility_id": "578",
+        "expected_facility_name": "Manas Home"
+      },
+      {
+        "id": "a0a6e4c8-e3cf-4c18-8f2f-9a9a7eeaf93f",
+        "publication_id": "716b2047-a86b-41ee-8e91-949950a90231",
+        "facility_id": "442",
+        "expected_facility_name": "Residencial Nirvana"
+      },
+      {
+        "id": "a1e22ab2-79e4-4ab6-afb3-6258c0747e59",
+        "publication_id": "0626db9e-93a7-4a93-9a4f-5400382f3d1b",
+        "facility_id": "634",
+        "expected_facility_name": "Seraan"
+      },
+      {
+        "id": "a1e79bee-77f3-4a65-b823-368e7bfc61bc",
+        "publication_id": "36aa09e7-6963-40d5-9fce-b21ad9a98434",
+        "facility_id": "622",
+        "expected_facility_name": "Hogar Marsella"
+      },
+      {
+        "id": "a4731312-9c53-4983-bed0-7d59f057abc6",
+        "publication_id": "5c74e224-c9b6-4bbb-8374-31f595cfff7e",
+        "facility_id": "95",
+        "expected_facility_name": "Solymar"
+      },
+      {
+        "id": "a84e415c-68c1-458e-a1f9-28d85144ee70",
+        "publication_id": "d8d261fb-5572-4425-aae3-56ac8cc44168",
+        "facility_id": "661",
+        "expected_facility_name": "The Green Home"
+      },
+      {
+        "id": "a9a9dc35-5fab-4034-851a-0b0b65e11c72",
+        "publication_id": "07d9d12c-fb4b-44d1-8a30-ec31b5e0df40",
+        "facility_id": "653",
+        "expected_facility_name": "Mis Nietos"
+      },
+      {
+        "id": "ab3683e5-c7cb-496e-8117-9dccb319b659",
+        "publication_id": "17052545-6d79-4d09-a13b-c3836a64c9ef",
+        "facility_id": "470",
+        "expected_facility_name": "Zuich"
+      },
+      {
+        "id": "ad7f1faf-3276-4912-b82e-b1283311d532",
+        "publication_id": "819c0d51-632f-4365-8682-7cc9644c4d95",
+        "facility_id": "320",
+        "expected_facility_name": "Historias de Vida"
+      },
+      {
+        "id": "af6a0094-d023-4dfd-83a3-ce0db74f05cf",
+        "publication_id": "49c01a96-6030-461c-9e58-d9443d11bd7a",
+        "facility_id": "259",
+        "expected_facility_name": "Residencial Apart Hotel"
+      },
+      {
+        "id": "b6a49142-355f-4e32-a7e3-94bb6e346cc7",
+        "publication_id": "e01bda99-b2bf-486c-9eb8-9182740e1e23",
+        "facility_id": "592",
+        "expected_facility_name": "Residencial Solaz"
+      },
+      {
+        "id": "bf8399e0-2e2e-44eb-8fab-8ab7cfcec089",
+        "publication_id": "18483eff-7385-4385-8418-29b7cdd993e5",
+        "facility_id": "605",
+        "expected_facility_name": "Altos del Centro"
+      },
+      {
+        "id": "c1d37e0c-9475-4d64-b927-e9084abc05e8",
+        "publication_id": "641b7760-487b-4ed6-b8f9-17711d8d38a0",
+        "facility_id": "608",
+        "expected_facility_name": "Santa Bernardita"
+      },
+      {
+        "id": "c5f748f9-9aca-4794-8a35-09d0dc798ebf",
+        "publication_id": "c9a7a5b0-c178-49ab-a192-f2f4df5a87d4",
+        "facility_id": "277",
+        "expected_facility_name": "Casona Carrasco"
+      },
+      {
+        "id": "c7e3722d-d3f7-46e4-82fd-f8c6a85235dc",
+        "publication_id": "941345a8-8356-43de-b576-09adf20317bb",
+        "facility_id": "610",
+        "expected_facility_name": "Aguas de Reposo"
+      },
+      {
+        "id": "cdee1da9-0d72-490a-925b-49da092b6a6c",
+        "publication_id": "641b7760-487b-4ed6-b8f9-17711d8d38a0",
+        "facility_id": "608",
+        "expected_facility_name": "Santa Bernardita"
+      },
+      {
+        "id": "d32517bf-da9d-4389-9b53-d8a64169cc6f",
+        "publication_id": "1f6d3d09-c737-4cd0-86e2-6da2606448ce",
+        "facility_id": "3",
+        "expected_facility_name": "Casa Ravello"
+      },
+      {
+        "id": "dac23cde-5060-41eb-ae39-2e83017db9e2",
+        "publication_id": "94161be8-afc0-4cb7-bdf7-3f7df944321d",
+        "facility_id": "695",
+        "expected_facility_name": "Saniguet"
+      },
+      {
+        "id": "dc5e1a9c-2239-4019-a587-56a2d96d2eb4",
+        "publication_id": "fc45fad8-2efb-4251-a023-014461b6821b",
+        "facility_id": "239",
+        "expected_facility_name": "Abras"
+      },
+      {
+        "id": "e22d6c4b-9365-4529-ae3e-9ea628f687e9",
+        "publication_id": "460ab7af-654b-4b01-a2fb-c6fd3b809751",
+        "facility_id": "269",
+        "expected_facility_name": "Buenos Tiempos"
+      },
+      {
+        "id": "e4d465e2-c54e-4681-8f8b-6442d0f00486",
+        "publication_id": "d96e8cba-01d0-46b5-a6b5-1cf1c9a011ce",
+        "facility_id": "28",
+        "expected_facility_name": "Centro Vital"
+      },
+      {
+        "id": "e6932661-c9cb-449e-a740-68e3a5f5b20d",
+        "publication_id": "addc8e3b-a5e6-414e-ad2d-c45087c53fdf",
+        "facility_id": "732",
+        "expected_facility_name": "Dolce Primavera"
+      },
+      {
+        "id": "e6ac4663-850b-44a8-9561-59332870474e",
+        "publication_id": "941345a8-8356-43de-b576-09adf20317bb",
+        "facility_id": "610",
+        "expected_facility_name": "Aguas de Reposo"
+      },
+      {
+        "id": "e88f326f-8a9d-4020-92b4-f06e376752d7",
+        "publication_id": "b83bb4d3-a61c-4bfb-b3b5-929830e8cdd3",
+        "facility_id": "591",
+        "expected_facility_name": "Residencial Nahuel"
+      },
+      {
+        "id": "eb5a5c63-58d4-4ad7-8aa1-f7d1b40c9173",
+        "publication_id": "e01bda99-b2bf-486c-9eb8-9182740e1e23",
+        "facility_id": "592",
+        "expected_facility_name": "Residencial Solaz"
+      },
+      {
+        "id": "f73fa070-b428-411a-a329-35ad729e324f",
+        "publication_id": "641b7760-487b-4ed6-b8f9-17711d8d38a0",
+        "facility_id": "608",
+        "expected_facility_name": "Santa Bernardita"
+      },
+      {
+        "id": "f75cbb4d-db08-4f96-bd92-7c98f28844ac",
+        "publication_id": "d260ceaf-7e4d-477f-ba4b-d334ee4ff128",
+        "facility_id": "387",
+        "expected_facility_name": "Palas Atenea (Pocitos)"
+      },
+      {
+        "id": "fa4f5643-e167-4c43-8c4c-440ebfe2b6b9",
+        "publication_id": "b3213bfa-0c52-45a9-9c57-cc59879c0145",
+        "facility_id": "730",
+        "expected_facility_name": "La Terraza"
+      },
+      {
+        "id": "faa7a355-e3db-4106-b2d3-0fccddf461f5",
+        "publication_id": "fa7dd580-3d1d-4f7c-b070-d2e88181aabb",
+        "facility_id": "489",
+        "expected_facility_name": "Tilos de Abril"
+      },
+      {
+        "id": "fead72cf-41f9-462f-85fd-a771b6be9793",
+        "publication_id": "addc8e3b-a5e6-414e-ad2d-c45087c53fdf",
+        "facility_id": "732",
+        "expected_facility_name": "Dolce Primavera"
+      }
+    ]
+  }
+}

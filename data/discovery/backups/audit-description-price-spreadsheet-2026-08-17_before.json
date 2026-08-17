@@ -1,7 +1,7 @@
 {
   "operation_id": "audit-description-price-spreadsheet-2026-08-17",
   "generated_at": "2026-08-17T18:58:22.268Z",
-  "mode": "applied",
+  "mode": "backup_before_apply",
   "source_workbook": "Cambios/17-8/Copy of DESCRIPCIONES_59_TODO_JUNTO_EDITABLE.xlsx",
   "matching_rule": "codigo exacto; source_record_id conservado para verificación secundaria",
   "summary": {
@@ -1769,8 +1769,134 @@
       "next_description_length": 429
     }
   ],
-  "completed_at": "2026-08-17T18:58:23.762Z",
-  "descriptions_updated": 16,
-  "prices_updated": 0,
-  "backup": "data/discovery/backups/audit-description-price-spreadsheet-2026-08-17_before.json"
+  "description_updates": [
+    {
+      "id": 240,
+      "codigo": "FAC-LEGACY-ELP-0274-58EC6EB5835F0A9C",
+      "source_record_id": "240",
+      "nombre": "Abuela Chachi",
+      "previous_description": "El establecimiento declara habitaciones individuales y compartidas, calefacción, espacios verdes, iluminación natural y lavandería. Entre los servicios informados se incluyen dirección médica, enfermería, alimentación supervisada, atención psicológica, peluquería, pedicura, actividades lúdicas y estimulación cognitiva. No describe una modalidad de estadía con suficiente precisión.",
+      "next_description": "El establecimiento declara habitaciones individuales y compartidas, calefacción, espacios verdes, iluminación natural y lavandería. Entre los servicios informados se incluyen dirección médica, enfermería, alimentación supervisada, atención psicológica, peluquería, pedicura, actividades lúdicas y estimulación cognitiva."
+    },
+    {
+      "id": 725,
+      "codigo": "FAC-LEGACY-MSP24-158-20EB90AA4AC20624",
+      "source_record_id": "725",
+      "nombre": "Carrasco Home",
+      "previous_description": "El establecimiento declara una casa de una planta con diez plazas, habitaciones individuales y compartidas, baños privados y adaptados, llamadores, jardín, barbacoa, climatización, Wi‑Fi, televisión y espacios comunes. Entre los servicios informados se incluyen dirección geriátrica, enfermería, nutrición, fisioterapia, estimulación, actividades, música, podología y estética. Las modalidades de estadía no se detallan con precisión.",
+      "next_description": "El establecimiento declara una casa de una planta con diez plazas, habitaciones individuales y compartidas, baños privados y adaptados, llamadores, jardín, barbacoa, climatización, Wi‑Fi, televisión y espacios comunes. Entre los servicios informados se incluyen dirección geriátrica, enfermería, nutrición, fisioterapia, estimulación, actividades, música, podología y estética."
+    },
+    {
+      "id": 406,
+      "codigo": "FAC-LEGACY-ELP-0582-93D22D7B7E424AB9",
+      "source_record_id": "406",
+      "nombre": "Casa Garzón",
+      "previous_description": "El establecimiento declara habitaciones individuales y compartidas, baños adaptados, espacios verdes, iluminación natural, climatización, Wi‑Fi, televisión y sistema de llamada. Entre los servicios informados se incluyen dirección médica, nutrición, psicología, actividades cognitivas, gimnasia, lavandería y servicios opcionales de peluquería y podología. No explica una modalidad de estadía con suficiente precisión.",
+      "next_description": "El establecimiento declara habitaciones individuales y compartidas, baños adaptados, espacios verdes, iluminación natural, climatización, Wi‑Fi, televisión y sistema de llamada. Entre los servicios informados se incluyen dirección médica, nutrición, psicología, actividades cognitivas, gimnasia, lavandería y servicios opcionales de peluquería y podología."
+    },
+    {
+      "id": 798,
+      "codigo": "FAC-LEGACY-MSPREG24-025-F762A2AD9BFF55D8",
+      "source_record_id": "798",
+      "nombre": "Casa Provenza",
+      "previous_description": "El establecimiento declara habitaciones, espacios comunes, jardín y Wi‑Fi, junto con atención durante las 24 horas, alimentación supervisada, fisioterapia, emergencia móvil, asistencia social, podología, peluquería, música y talleres recreativos y cognitivos. La modalidad de estadía no está explicada con suficiente precisión para convertirla en un filtro.",
+      "next_description": "El establecimiento declara habitaciones, espacios comunes, jardín y Wi‑Fi, junto con atención durante las 24 horas, alimentación supervisada, fisioterapia, emergencia móvil, asistencia social, podología, peluquería, música y talleres recreativos y cognitivos."
+    },
+    {
+      "id": 277,
+      "codigo": "FAC-LEGACY-ELP-0339-553455CD6DDCA934",
+      "source_record_id": "277",
+      "nombre": "Casona Carrasco",
+      "previous_description": "El establecimiento declara habitaciones individuales y compartidas, espacios verdes, ambientes luminosos y aire acondicionado. Entre los servicios informados se incluyen dirección médica, enfermería, alimentación y nutrición, fisioterapia y rehabilitación, psicología, psiquiatría, neurorehabilitación, podología, estética, actividades y gestión de medicación. No se identificó una modalidad de alojamiento suficientemente explícita para utilizarla como filtro.",
+      "next_description": "El establecimiento declara habitaciones individuales y compartidas, espacios verdes, ambientes luminosos y aire acondicionado. Entre los servicios informados se incluyen dirección médica, enfermería, alimentación y nutrición, fisioterapia y rehabilitación, psicología, psiquiatría, neurorehabilitación, podología, estética, actividades y gestión de medicación."
+    },
+    {
+      "id": 708,
+      "codigo": "FAC-LEGACY-MSP24-141-17E9A43582091406",
+      "source_record_id": "708",
+      "nombre": "Corazón de Oro",
+      "previous_description": "El establecimiento declara habitaciones, sala de estar, patio exterior, climatización, Wi‑Fi y televisión. Entre los servicios informados se incluyen dirección médica, enfermería, alimentación adaptada, fisioterapia, podología, peluquería, estimulación cognitiva, música, baile, manualidades, actividades físicas y gestión de consultas y medicación. Las modalidades de estadía no se explicitan con suficiente precisión.",
+      "next_description": "El establecimiento declara habitaciones, sala de estar, patio exterior, climatización, Wi‑Fi y televisión. Entre los servicios informados se incluyen dirección médica, enfermería, alimentación adaptada, fisioterapia, podología, peluquería, estimulación cognitiva, música, baile, manualidades, actividades físicas y gestión de consultas y medicación."
+    },
+    {
+      "id": 680,
+      "codigo": "FAC-LEGACY-MSP24-113-9E135D5A88992368",
+      "source_record_id": "680",
+      "nombre": "La Belle Epoque",
+      "previous_description": "El establecimiento declara habitaciones individuales y compartidas, baños adaptados, jardines y patios, calefacción central y losa radiante, Wi‑Fi, televisión, cámaras en espacios comunes y sistema de llamada inalámbrico. Entre los servicios informados se incluyen dirección geriátrica, enfermería, nutrición, fisioterapia, psicogerontología, lavandería, actividades, música, ejercicio, peluquería y huerta. No detalla una modalidad de estadía con precisión suficiente.",
+      "next_description": "El establecimiento declara habitaciones individuales y compartidas, baños adaptados, jardines y patios, calefacción central y losa radiante, Wi‑Fi, televisión, cámaras en espacios comunes y sistema de llamada inalámbrico. Entre los servicios informados se incluyen dirección geriátrica, enfermería, nutrición, fisioterapia, psicogerontología, lavandería, actividades, música, ejercicio, peluquería y huerta."
+    },
+    {
+      "id": 54,
+      "codigo": "FAC-LEGACY-ELP-0045-E127E8EEBDBB3250",
+      "source_record_id": "54",
+      "nombre": "La Carolina",
+      "previous_description": "El establecimiento declara baños adaptados, espacios verdes, iluminación natural, aire acondicionado, Wi‑Fi, televisión y espacios comunes. Entre los servicios informados se incluyen dirección médica, enfermería, nutrición, psicología, fisioterapia, podología, peluquería, talleres cognitivos, música, actividades y atención durante las 24 horas. Indica atención a personas con distintos niveles de apoyo, pero no define una modalidad de estadía utilizable como filtro.",
+      "next_description": "El establecimiento declara baños adaptados, espacios verdes, iluminación natural, aire acondicionado, Wi‑Fi, televisión y espacios comunes. Entre los servicios informados se incluyen dirección médica, enfermería, nutrición, psicología, fisioterapia, podología, peluquería, talleres cognitivos, música, actividades y atención durante las 24 horas. Ofrece atención a personas con distintos niveles de apoyo."
+    },
+    {
+      "id": 648,
+      "codigo": "FAC-LEGACY-MSP24-081-8371836BFC6FD057",
+      "source_record_id": "648",
+      "nombre": "Las Cuatro Estaciones",
+      "previous_description": "El establecimiento declara habitaciones individuales y compartidas con baño privado, una casa de dos plantas, calefacción y un sistema central de llamadores. Entre los servicios informados se incluyen dirección médica, alimentación supervisada, fisioterapia, estimulación cognitiva, actividades artísticas, música, gimnasia, lavandería, preparación de medicación y paseos. Las modalidades de estadía no se detallan con suficiente precisión.",
+      "next_description": "El establecimiento declara habitaciones individuales y compartidas con baño privado, una casa de dos plantas, calefacción y un sistema central de llamadores. Entre los servicios informados se incluyen dirección médica, alimentación supervisada, fisioterapia, estimulación cognitiva, actividades artísticas, música, gimnasia, lavandería, preparación de medicación y paseos."
+    },
+    {
+      "id": 699,
+      "codigo": "FAC-LEGACY-MSP24-132-A5E4A5B062506CC2",
+      "source_record_id": "699",
+      "nombre": "Mi Jazmín",
+      "previous_description": "El establecimiento declara habitaciones individuales y compartidas y televisión por cable. Entre los servicios informados se incluyen dirección técnica, alimentación balanceada, fisioterapia grupal, actividades recreativas y cognitivas, lavandería, servicio religioso y servicios opcionales de peluquería, podología, odontología y cadetería. La referencia a recuperación y acompañamiento se conserva como enfoque, no como modalidad de estadía.",
+      "next_description": "El establecimiento declara habitaciones individuales y compartidas y televisión por cable. Entre los servicios informados se incluyen dirección técnica, alimentación balanceada, fisioterapia grupal, actividades recreativas y cognitivas, lavandería, servicio religioso y servicios opcionales de peluquería, podología, odontología y cadetería."
+    },
+    {
+      "id": 653,
+      "codigo": "FAC-LEGACY-MSP24-086-5EDD21227DF5C42D",
+      "source_record_id": "653",
+      "nombre": "Mis Nietos",
+      "previous_description": "El establecimiento declara dos plantas con habitaciones individuales y compartidas con baño privado, silla salvaescaleras, calefacción central, Wi‑Fi, televisión, cámaras en espacios comunes, terraza y jardín. Entre los servicios informados se incluyen dirección médica, nutrición, fisioterapia, podología, peluquería, estimulación cognitiva, música, gimnasia y actividades. Las modalidades de estadía no se detallan con suficiente precisión.",
+      "next_description": "El establecimiento declara dos plantas con habitaciones individuales y compartidas con baño privado, silla salvaescaleras, calefacción central, Wi‑Fi, televisión, cámaras en espacios comunes, terraza y jardín. Entre los servicios informados se incluyen dirección médica, nutrición, fisioterapia, podología, peluquería, estimulación cognitiva, música, gimnasia y actividades."
+    },
+    {
+      "id": 442,
+      "codigo": "FAC-LEGACY-ELP-0625-2C4120F281E273B7",
+      "source_record_id": "442",
+      "nombre": "Nirvana",
+      "previous_description": "El establecimiento declara habitaciones individuales y compartidas, aire acondicionado, fondo y espacios verdes. Entre los servicios informados se incluyen dirección geriátrica, psicología, alimentación adaptada, estimulación cognitiva, actividades, entretenimiento digital, lavandería, podología, manicuría, gestión de medicación y asistencia durante las 24 horas. No explica una modalidad de estadía con suficiente precisión para utilizarla como filtro.",
+      "next_description": "El establecimiento declara habitaciones individuales y compartidas, aire acondicionado, fondo y espacios verdes. Entre los servicios informados se incluyen dirección geriátrica, psicología, alimentación adaptada, estimulación cognitiva, actividades, entretenimiento digital, lavandería, podología, manicuría, gestión de medicación y asistencia durante las 24 horas."
+    },
+    {
+      "id": 375,
+      "codigo": "FAC-LEGACY-ELP-0539-765EF7D5E260DF1D",
+      "source_record_id": "375",
+      "nombre": "Nápoles",
+      "previous_description": "El establecimiento declara habitaciones individuales con baño privado y habitaciones compartidas, climatización, Wi‑Fi, televisión, espacios verdes, estacionamiento, sala de estar y comedor. Entre los servicios informados se incluyen dirección médica, enfermería, nutrición, psicología, asistencia social, fisioterapia, odontología, estética, actividades, música, gimnasia y lavandería. No explica una modalidad de estadía con suficiente precisión.",
+      "next_description": "El establecimiento declara habitaciones individuales con baño privado y habitaciones compartidas, climatización, Wi‑Fi, televisión, espacios verdes, estacionamiento, sala de estar y comedor. Entre los servicios informados se incluyen dirección médica, enfermería, nutrición, psicología, asistencia social, fisioterapia, odontología, estética, actividades, música, gimnasia y lavandería."
+    },
+    {
+      "id": 470,
+      "codigo": "FAC-LEGACY-ELP-0667-3C4D19F402F6FE2D",
+      "source_record_id": "470",
+      "nombre": "Residencial Zuich",
+      "previous_description": "El establecimiento declara diez habitaciones individuales y compartidas, camas articuladas hidráulicas, colchones neumáticos, andadores, bastones, calefacción central, Wi‑Fi y televisión. Entre los servicios informados se incluyen dirección médica, enfermería, nutrición, fisioterapia, psicología, podología, peluquería, talleres de memoria, musicoterapia, gimnasia, lavandería y apoyo pastoral. No explica una modalidad de estadía con suficiente precisión.",
+      "next_description": "El establecimiento declara diez habitaciones individuales y compartidas, camas articuladas hidráulicas, colchones neumáticos, andadores, bastones, calefacción central, Wi‑Fi y televisión. Entre los servicios informados se incluyen dirección médica, enfermería, nutrición, fisioterapia, psicología, podología, peluquería, talleres de memoria, musicoterapia, gimnasia, lavandería y apoyo pastoral."
+    },
+    {
+      "id": 695,
+      "codigo": "FAC-LEGACY-MSP24-128-0077C3F2BA4412D2",
+      "source_record_id": "695",
+      "nombre": "Saniguet",
+      "previous_description": "El establecimiento declara habitaciones individuales y compartidas, calefacción, espacios verdes, Wi‑Fi, televisión, piscina y gimnasio. Entre los servicios informados se incluyen dirección médica, enfermería, alimentación supervisada, fisioterapia, talleres, música, actividades cognitivas, lavandería, estética y administración de medicación. Las modalidades de estadía no se detallan con suficiente precisión.",
+      "next_description": "El establecimiento declara habitaciones individuales y compartidas, calefacción, espacios verdes, Wi‑Fi, televisión, piscina y gimnasio. Entre los servicios informados se incluyen dirección médica, enfermería, alimentación supervisada, fisioterapia, talleres, música, actividades cognitivas, lavandería, estética y administración de medicación."
+    },
+    {
+      "id": 461,
+      "codigo": "FAC-LEGACY-ELP-0652-61C73CB02C567F5F",
+      "source_record_id": "461",
+      "nombre": "Sweet Home",
+      "previous_description": "El establecimiento declara trece habitaciones individuales y dos compartidas, ocho baños con medidas de seguridad, dos plantas con silla salvaescaleras, espacios exteriores, climatización, Wi‑Fi, televisión y áreas comunes. Entre los servicios informados se incluyen enfermería, dirección geriátrica, nutrición, fisioterapia, psicología, odontología, podología, estética, estimulación, actividades y administración de medicación. Las modalidades no se detallan con precisión.",
+      "next_description": "El establecimiento declara trece habitaciones individuales y dos compartidas, ocho baños con medidas de seguridad, dos plantas con silla salvaescaleras, espacios exteriores, climatización, Wi‑Fi, televisión y áreas comunes. Entre los servicios informados se incluyen enfermería, dirección geriátrica, nutrición, fisioterapia, psicología, odontología, podología, estética, estimulación, actividades y administración de medicación."
+    }
+  ]
 }

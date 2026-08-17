@@ -1,0 +1,31 @@
+{
+  "applied": true,
+  "projectRef": "itolluaivfoxnaohbsdk",
+  "migration": "C:\\Orchestrator\\Agente Fullstack\\Projects\\arandu\\supabase\\migrations\\20260817193000_add_facility_name_to_intake_photos.sql",
+  "migrationSha256": "0a017504f44d73681a2fc72bb3450f67ae3fdf5e077fb26ddc6d78d91f82b967",
+  "backupPath": "C:\\Orchestrator\\Agente Fullstack\\Projects\\arandu\\data\\migration\\facility_photo_name_before_2026-08-17T19-19-08-208Z.json",
+  "before": {
+    "attachments": 168,
+    "photos": 84,
+    "namedAttachments": 168,
+    "namedPhotos": 84
+  },
+  "after": {
+    "attachmentNames": 168,
+    "photoNames": 84
+  },
+  "columnsAfter": [
+    {
+      "table_name": "facility_change_publication_photos",
+      "column_name": "facility_name",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "intake_report_attachments",
+      "column_name": "facility_name",
+      "data_type": "text",
+      "is_nullable": "YES"
+    }
+  ]
+}

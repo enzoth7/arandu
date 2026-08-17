@@ -8677,6 +8677,147 @@ select:not(:disabled) {
   background: var(--bluebg);
 }
 
+.facilityRequestCard {
+  display: grid;
+  gap: 20px;
+}
+
+.facilityRequestCard h2 {
+  margin: 5px 0 0;
+}
+
+.facilityRequestEyebrow,
+.facilityRequestSectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.facilityRequestEyebrow {
+  margin: 0;
+  color: var(--ink2);
+  font-size: .88rem;
+  font-weight: 700;
+}
+
+.facilityRequestStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 1px solid #bed8c6;
+  border-radius: 999px;
+  background: #edf8ef;
+  color: #17663a;
+  font-size: .88rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.facilityRequestStatus.is-contact {
+  border-color: #efd19a;
+  background: #fff8e8;
+  color: #8a5b00;
+}
+
+.facilityRequestStatus.is-closed {
+  border-color: var(--line);
+  background: var(--surface2);
+  color: var(--ink2);
+}
+
+.facilityRequestChanges {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface2);
+}
+
+.facilityRequestSectionTitle {
+  color: var(--navy);
+}
+
+.facilityRequestSectionTitle h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.facilityRequestChanges dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 24px;
+  margin: 14px 0 0;
+}
+
+.facilityRequestChanges dl > div {
+  display: grid;
+  gap: 3px;
+}
+
+.facilityRequestChanges dt,
+.facilityRequestTimeline time {
+  color: var(--ink2);
+  font-size: .83rem;
+  font-weight: 700;
+}
+
+.facilityRequestChanges dd {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 750;
+  overflow-wrap: anywhere;
+}
+
+.facilityRequestChanges > p {
+  margin: 12px 0 0;
+}
+
+.facilityRequestTimeline ol {
+  display: grid;
+  gap: 14px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.facilityRequestTimeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: 10px;
+  margin: 0;
+}
+
+.facilityRequestTimeline li:not(:last-child)::before {
+  position: absolute;
+  top: 16px;
+  bottom: -14px;
+  left: 7px;
+  width: 2px;
+  background: var(--line);
+  content: "";
+}
+
+.facilityRequestTimelineMarker {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  border: 4px solid var(--bluebg);
+  border-radius: 50%;
+  background: var(--blue);
+  z-index: 1;
+}
+
+.facilityRequestTimeline strong,
+.facilityRequestTimeline p,
+.facilityRequestTimeline time {
+  display: block;
+}
+
+.facilityRequestTimeline p {
+  margin: 3px 0;
+}
+
 @media (max-width: 760px) {
   .institutionalPageHeader,
   .institutionalInboxCard > header,
@@ -8904,7 +9045,7 @@ select:not(:disabled) {
   z-index: 1;
   object-fit: contain;
   object-position: right center;
-  transform: scale(1.12);
+  transform: translateX(-1.5%) scale(1.12);
   filter: none;
   opacity: 1;
 }
