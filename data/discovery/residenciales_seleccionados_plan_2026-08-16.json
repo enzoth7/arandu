@@ -1,0 +1,188 @@
+{
+  "operation_date": "2026-08-16",
+  "project_id": "itolluaivfoxnaohbsdk",
+  "authorization": "Explicit user instruction to add the named residential facilities and merge Residencial Senescentis II / Senescentis II.",
+  "scope": {
+    "selected_candidates": 14,
+    "insert_new": 12,
+    "enrich_existing": 2,
+    "merge_duplicate_group": 1,
+    "colonia_62_included": false
+  },
+  "routing": "Candidates without verified usable coordinates go to public.elepem_sin_ubicacion.",
+  "candidates": [
+    {
+      "candidate_key": "canelones:san-jose-de-carrasco:residencial-san-antonio",
+      "name": "Residencial San Antonio",
+      "department": "Canelones",
+      "locality": "San José de Carrasco",
+      "address": "19 de Abril 155 esquina Buchental, San José de Carrasco",
+      "destination": "public.elepem_sin_ubicacion",
+      "action": "insert",
+      "existing_id": null,
+      "prospective_code": "FAC-WEB-D9BCBA10BF"
+    },
+    {
+      "candidate_key": "canelones:lomas-de-solymar:hogar-residencial-las-margaritas",
+      "name": "Hogar Residencial Las Margaritas",
+      "department": "Canelones",
+      "locality": "Lomas de Solymar",
+      "address": "Rambla M104 S5, Lomas de Solymar",
+      "destination": "public.elepem_sin_ubicacion",
+      "action": "insert",
+      "existing_id": null,
+      "prospective_code": "FAC-WEB-CB1E9DAC72"
+    },
+    {
+      "candidate_key": "canelones:las-toscas:residencial-el-parque",
+      "name": "Residencial El Parque",
+      "department": "Canelones",
+      "locality": "Las Toscas",
+      "address": "Calle F y Calle 14, Las Toscas",
+      "destination": "public.elepem_sin_ubicacion",
+      "action": "merge_sources_into_existing",
+      "existing_id": 1130,
+      "prospective_code": null
+    },
+    {
+      "candidate_key": "canelones:estacion-atlantida:residencial-bea",
+      "name": "Residencial Bea",
+      "department": "Canelones",
+      "locality": "Estación Atlántida",
+      "address": "Ruta 11 km 163.500, Estación Atlántida",
+      "destination": "public.elepem_sin_ubicacion",
+      "action": "insert",
+      "existing_id": null,
+      "prospective_code": "FAC-WEB-507F07BED8"
+    },
+    {
+      "candidate_key": "canelones:costa-azul:hogar-mis-abuelos",
+      "name": "Hogar Mis Abuelos",
+      "department": "Canelones",
+      "locality": "Costa Azul",
+      "address": "Independencia entre 25 de Agosto y Delmira Agustini, Costa Azul",
+      "destination": "public.elepem_sin_ubicacion",
+      "action": "insert",
+      "existing_id": null,
+      "prospective_code": "FAC-WEB-3F5C76069A"
+    },
+    {
+      "candidate_key": "canelones:parque-del-plata:casa-hogar-tercera-edad",
+      "name": "Casa Hogar Tercera Edad",
+      "department": "Canelones",
+      "locality": "Parque del Plata",
+      "address": "Parque del Plata; dirección exacta no publicada",
+      "destination": "public.elepem_sin_ubicacion",
+      "action": "insert",
+      "existing_id": null,
+      "prospective_code": "FAC-WEB-0E0358F2A3"
+    },
+    {
+      "candidate_key": "canelones:atlantida:senior-living",
+      "name": "Senior Living",
+      "department": "Canelones",
+      "locality": "Atlántida",
+      "address": "Calle 22 entre Calle 1 y Calle 11, Atlántida",
+      "destination": "public.elepem_sin_ubicacion",
+      "action": "insert",
+      "existing_id": null,
+      "prospective_code": "FAC-WEB-C8D4F92660"
+    },
+    {
+      "candidate_key": "canelones:lomas-de-solymar:senescentis-iii",
+      "name": "Senescentis III",
+      "department": "Canelones",
+      "locality": "Lomas de Solymar",
+      "address": "Stella Maris M37 S9 esquina Virazón, Lomas de Solymar",
+      "destination": "public.elepem_sin_ubicacion",
+      "action": "insert",
+      "existing_id": null,
+      "prospective_code": "FAC-WEB-6EB79DFB90"
+    },
+    {
+      "candidate_key": "canelones:atlantida:lares-de-atlantida",
+      "name": "Lares de Atlántida",
+      "department": "Canelones",
+      "locality": "Atlántida",
+      "address": "Calle 5 entre calles 4 y 6, M42 S3, Atlántida",
+      "destination": "public.elepem_sin_ubicacion",
+      "action": "insert",
+      "existing_id": null,
+      "prospective_code": "FAC-WEB-1AA76AB7B6"
+    },
+    {
+      "candidate_key": "canelones:el-pinar:residencial-nazaret",
+      "name": "Residencial Nazaret",
+      "department": "Canelones",
+      "locality": "El Pinar",
+      "address": "Carlos Gardel 175, El Pinar / Ciudad de la Costa",
+      "destination": "public.elepem_sin_ubicacion",
+      "action": "insert",
+      "existing_id": null,
+      "prospective_code": "FAC-WEB-4D12835469"
+    },
+    {
+      "candidate_key": "canelones:ruta-12:granja-residencial-la-esperanza",
+      "name": "Granja Residencial \"La Esperanza\"",
+      "department": "Canelones",
+      "locality": "San Ramón / Tala",
+      "address": "Ruta Nacional 12 km 94",
+      "destination": "public.elepem_sin_ubicacion",
+      "action": "insert",
+      "existing_id": null,
+      "prospective_code": "FAC-WEB-A9932C0D02"
+    },
+    {
+      "candidate_key": "canelones:sauce:hogar-cielito",
+      "name": "Hogar Cielito",
+      "department": "Canelones",
+      "locality": "Sauce",
+      "address": "Barrio Libertador, Sauce",
+      "destination": "public.elepem_sin_ubicacion",
+      "action": "merge_sources_into_existing",
+      "existing_id": 1134,
+      "prospective_code": null
+    },
+    {
+      "candidate_key": "montevideo:teagarden:av-lezica-5855",
+      "name": "Residencial TeaGarden — Av. Lezica 5855",
+      "department": "Montevideo",
+      "locality": "Montevideo",
+      "address": "Av. Lezica 5855",
+      "destination": "public.elepem_sin_ubicacion",
+      "action": "insert",
+      "existing_id": null,
+      "prospective_code": "FAC-WEB-BCE40A8C39"
+    },
+    {
+      "candidate_key": "montevideo:teagarden:lanus-5699",
+      "name": "Residencial TeaGarden — Lanús 5699",
+      "department": "Montevideo",
+      "locality": "Montevideo",
+      "address": "Lanús 5699",
+      "destination": "public.elepem_sin_ubicacion",
+      "action": "insert",
+      "existing_id": null,
+      "prospective_code": "FAC-WEB-96977DA16B"
+    }
+  ],
+  "duplicate_merge": {
+    "survivor_id": 97,
+    "deleted_id": 92,
+    "reason": "Same official facility and address; survivor retains current MIDES record, price evidence, photos and dependent publications.",
+    "preserve": [
+      "alternate name",
+      "duplicate codigo",
+      "duplicate legacy_id",
+      "all source rows"
+    ],
+    "foreign_references_to_move": true
+  },
+  "checks": {
+    "live_counts_before": {
+      "elepem": 945,
+      "elepem_sin_ubicacion": 104
+    },
+    "prospective_code_collisions": []
+  }
+}

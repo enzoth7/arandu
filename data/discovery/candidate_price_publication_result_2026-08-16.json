@@ -1,0 +1,509 @@
+{
+  "operation": "authorized_price_and_candidate_publication",
+  "project_id": "itolluaivfoxnaohbsdk",
+  "operation_date": "2026-08-16",
+  "schema_changed": false,
+  "new_database_objects": 0,
+  "sources": {
+    "canelones_sha256": "5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1",
+    "cecilia_sha256": "ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0"
+  },
+  "artifacts": {
+    "plan": "data/discovery/candidate_price_publication_plan_2026-08-16.json",
+    "plan_sha256": "C2D88B2D88536BB5973EF5D99AC8B703FEEB1B98B8F9BBE830EEA77B381AFCC4",
+    "backup": "data/discovery/backups/candidate_price_publication_2026-08-16_before.json",
+    "backup_sha256": "F6B5EBC56CCB2A7B4ABB121265187D1DF53C12EFD2678FB1D84767C1EE52FACA"
+  },
+  "outcome": {
+    "prices_total_visible": 21,
+    "prices_added_with_workflow_date_2026_08_16": 17,
+    "prices_previously_present_preserved": 4,
+    "geolocated_candidates_inserted": 20,
+    "geolocated_duplicates_excluded": 14,
+    "unlocated_candidates_inserted": 16,
+    "unlocated_candidates_already_present_excluded": 6,
+    "candidates_processed": 56
+  },
+  "duplicate_candidate_ids": {
+    "geolocated": [
+      "WEB-9B6116FF00",
+      "WEB-8C8BF63875",
+      "WEB-5FA200D5E4",
+      "WEB-E810BA9F60",
+      "WEB-D15D892F56",
+      "WEB-B4B56A78B4",
+      "WEB-3B394470B1",
+      "WEB-5C6B80D8CC",
+      "WEB-BD057900CE",
+      "WEB-C729C8F8D7",
+      "WEB-419073D4F7",
+      "WEB-F8A28EFF42",
+      "WEB-AB0299884E",
+      "WEB-E2A6A37A50"
+    ],
+    "without_coordinates": [
+      "WEB-506DF0EC0B",
+      "WEB-3CD22AD103",
+      "WEB-790C2A8E53",
+      "WEB-841830BF64",
+      "WEB-2BC23D6D50",
+      "WEB-CB672739C0"
+    ]
+  },
+  "verification": {
+    "counts_after": {
+      "elepem": 1039,
+      "priced_elepem": 21,
+      "elepem_sin_ubicacion": 99
+    },
+    "prices_exact": 21,
+    "geolocated_exact": 20,
+    "unlocated_exact": 16,
+    "pending_price_changes": 0,
+    "pending_candidate_inserts": 0,
+    "source_alignment_issues": 0,
+    "duplicate_source_reference_rows": 0,
+    "duplicate_candidate_keys_created": 0,
+    "new_rows_mojibake_fields": 0,
+    "schema_fingerprint_before": "5aea652fbb3098df5ac2a7609bf202f8",
+    "schema_fingerprint_after": "5aea652fbb3098df5ac2a7609bf202f8"
+  },
+  "rows": {
+    "counts": {
+      "elepem": 1039,
+      "priced_elepem": 21,
+      "elepem_sin_ubicacion": 99
+    },
+    "prices": [
+      {
+        "id": 23,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-ELP-0006-6E3F1CFA89335BAF",
+        "nombre": "Altos del Pinar",
+        "amount_uyu": 35000,
+        "source_url": "https://www.elpais.com.uy/informacion/residencias-vip-nuevas-tendencias-para-3%C2%AA-edad"
+      },
+      {
+        "id": 57,
+        "date": "2026-05-03",
+        "codigo": "FAC-LEGACY-ELP-0048-2D20813D86F4F23D",
+        "nombre": "La Estancia Hotel Residencial",
+        "amount_uyu": 85000,
+        "source_url": "https://somosuruguay.com.uy/sociedad/la-estancia-hotel-residencial-una-propuesta-busca-transformar-forma-cuidar-adultos-mayores-n2843/amp"
+      },
+      {
+        "id": 97,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-ELP-0092-659F60900D60E0E8",
+        "nombre": "Senescentis Ii",
+        "amount_uyu": 42500,
+        "source_url": "https://www.redresidenciales.uy/residencial-hotel/canelones/ciudad-de-la-costa/senescentis-residencial/"
+      },
+      {
+        "id": 199,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-ELP-0225-1E6FEE63E2AC3E6B",
+        "nombre": "LA CANDELARIA",
+        "amount_uyu": 80000,
+        "source_url": "https://infonegocios.biz/nota-principal/en-la-mansa-se-agita-la-candelaria-un-residencial-para-potenciar-el-tiempo-de-familia"
+      },
+      {
+        "id": 286,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-ELP-0350-1A44EC6E54F3F2D9",
+        "nombre": "Moirú",
+        "amount_uyu": 45000,
+        "source_url": "https://infonegocios.biz/nota-principal/moiru-quiere-romper-el-paradigma-va-por-mas-locales"
+      },
+      {
+        "id": 323,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-ELP-0427-C438EEBBD66E1884",
+        "nombre": "Hogar Amelia Ruano De Schiaffino",
+        "amount_uyu": 35000,
+        "source_url": "https://www.elobservador.com.uy/nota/residenciales-un-negocio-que-crece-con-tarifas-de-35-000-a-120-000-al-mes-201972132159"
+      },
+      {
+        "id": 333,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-ELP-0448-898D6DD9A7C54857",
+        "nombre": "Hotel Continental",
+        "amount_uyu": 35000,
+        "source_url": "https://www.elpais.com.uy/negocios/finanzas/hoteles-para-jubilados-otra-opcion-al-manejar-el-retiro"
+      },
+      {
+        "id": 346,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-ELP-0479-2A28F8D0ADC27059",
+        "nombre": "LAR - CENTRO",
+        "amount_uyu": 120000,
+        "source_url": "https://www.elobservador.com.uy/nota/residenciales-un-negocio-que-crece-con-tarifas-de-35-000-a-120-000-al-mes-201972132159"
+      },
+      {
+        "id": 425,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-ELP-0606-F6306003DF5F90F8",
+        "nombre": "Residencial Humana",
+        "amount_uyu": 125000,
+        "source_url": "https://infonegocios.biz/un-dia-en/humana-con-su-directora-maria-methol"
+      },
+      {
+        "id": 578,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-MSP24-011-690FB5E8DE8BD869",
+        "nombre": "Manas Home",
+        "amount_uyu": 65000,
+        "source_url": "https://www.redresidenciales.uy/residencial_hotel/carrasco/residencial-manas-casa-asistida/"
+      },
+      {
+        "id": 605,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-MSP24-038-EF27E2634E365AAF",
+        "nombre": "Altos Del Centro",
+        "amount_uyu": 50000,
+        "source_url": "https://www.redresidenciales.uy/residencial_hotel/residencial-en-centro/"
+      },
+      {
+        "id": 608,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-MSP24-041-25544A83B648E4BA",
+        "nombre": "Santa Bernardita",
+        "amount_uyu": 55000,
+        "source_url": "https://www.redresidenciales.uy/residencial_hotel/montevideo/prado/prado/santa-bernardita-0/"
+      },
+      {
+        "id": 610,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-MSP24-043-F296BAA525093376",
+        "nombre": "Aguas De Reposo",
+        "amount_uyu": 38000,
+        "source_url": "https://www.redresidenciales.uy/residencial_hotel/montevideo/carrasco/carrasco/residencial-aguas-de-reposo/"
+      },
+      {
+        "id": 611,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-MSP24-044-83322A666C272E22",
+        "nombre": "Red Bienestar",
+        "amount_uyu": 38000,
+        "source_url": "https://www.elobservador.com.uy/nota/residenciales-un-negocio-que-crece-con-tarifas-de-35-000-a-120-000-al-mes-201972132159"
+      },
+      {
+        "id": 628,
+        "date": "2025-04-01",
+        "codigo": "FAC-LEGACY-MSP24-061-31302148B63DA6AC",
+        "nombre": "Altos Del Parque",
+        "amount_uyu": 100000,
+        "source_url": "https://app.vitalencecare.com/VitalenceJavaEnvironment/servlet/com.vitalence.buscarcuartos"
+      },
+      {
+        "id": 639,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-MSP24-072-811E25FC964E9DA9",
+        "nombre": "Los Alpes",
+        "amount_uyu": 40000,
+        "source_url": "https://www.elobservador.com.uy/nota/residenciales-un-negocio-que-crece-con-tarifas-de-35-000-a-120-000-al-mes-201972132159"
+      },
+      {
+        "id": 678,
+        "date": "2026-08-16",
+        "codigo": "FAC-LEGACY-MSP24-111-D0D05002AAEC40A3",
+        "nombre": "La Maison Senior Apartaments",
+        "amount_uyu": 201070,
+        "source_url": "https://www.elpais.com.uy/negocios/finanzas/hoteles-para-jubilados-otra-opcion-al-manejar-el-retiro"
+      },
+      {
+        "id": 695,
+        "date": "2025-06-12",
+        "codigo": "FAC-LEGACY-MSP24-128-0077C3F2BA4412D2",
+        "nombre": "Saniguet",
+        "amount_uyu": 60000,
+        "source_url": "https://app.vitalencecare.com/VitalenceJavaEnvironment/servlet/com.vitalence.buscarcuartos"
+      },
+      {
+        "id": 728,
+        "date": "2025-06-13",
+        "codigo": "FAC-LEGACY-MSP24-161-7F284E6E017823E0",
+        "nombre": "Altos del Parque",
+        "amount_uyu": 100000,
+        "source_url": "https://app.vitalencecare.com/VitalenceJavaEnvironment/servlet/com.vitalence.buscarcuartos"
+      },
+      {
+        "id": 1035,
+        "date": "2026-08-16",
+        "codigo": "FAC-CANDIDATE-141",
+        "nombre": "residencial pontevedra",
+        "amount_uyu": 29000,
+        "source_url": "https://www.redresidenciales.uy/residencial-hotel/montevideo/reducto/residencial-pontevedra/"
+      },
+      {
+        "id": 1084,
+        "date": "2026-08-16",
+        "codigo": "FAC-CANDIDATE-171",
+        "nombre": "alamos montevideo",
+        "amount_uyu": 95000,
+        "source_url": "https://infonegocios.biz/enfoque/llega-el-nuevo-residencial-alamos-un-centro-de-primer-nivel-para-adultos-mayores"
+      }
+    ],
+    "unlocated": [
+      {
+        "id": 1123,
+        "codigo": "FAC-WEB-26EB87E2DD",
+        "nombre": "Residencial Las Calandrias",
+        "candidate_id": "WEB-26EB87E2DD"
+      },
+      {
+        "id": 1124,
+        "codigo": "FAC-WEB-D719237F2B",
+        "nombre": "El Hogar",
+        "candidate_id": "WEB-D719237F2B"
+      },
+      {
+        "id": 1125,
+        "codigo": "FAC-WEB-D8BA8ED85B",
+        "nombre": "Kairos 1",
+        "candidate_id": "WEB-D8BA8ED85B"
+      },
+      {
+        "id": 1126,
+        "codigo": "FAC-WEB-04BAA81D89",
+        "nombre": "Kairos 2",
+        "candidate_id": "WEB-04BAA81D89"
+      },
+      {
+        "id": 1127,
+        "codigo": "FAC-WEB-71EDB2071B",
+        "nombre": "La Macarena",
+        "candidate_id": "WEB-71EDB2071B"
+      },
+      {
+        "id": 1128,
+        "codigo": "FAC-WEB-B2CAA47A0A",
+        "nombre": "La oliva",
+        "candidate_id": "WEB-B2CAA47A0A"
+      },
+      {
+        "id": 1129,
+        "codigo": "FAC-WEB-CAD740E554",
+        "nombre": "Altos de la Paz",
+        "candidate_id": "WEB-CAD740E554"
+      },
+      {
+        "id": 1130,
+        "codigo": "FAC-WEB-E6DA09D530",
+        "nombre": "Residencial El Parque",
+        "candidate_id": "WEB-E6DA09D530"
+      },
+      {
+        "id": 1131,
+        "codigo": "FAC-WEB-4FF89C9223",
+        "nombre": "RESIDENCIAL EN LAS PIEDRAS",
+        "candidate_id": "WEB-4FF89C9223"
+      },
+      {
+        "id": 1132,
+        "codigo": "FAC-WEB-52075E418C",
+        "nombre": "ALTA GRACIA",
+        "candidate_id": "WEB-52075E418C"
+      },
+      {
+        "id": 1133,
+        "codigo": "FAC-WEB-138B7F5E2C",
+        "nombre": "HOGAR CERVIERI",
+        "candidate_id": "WEB-138B7F5E2C"
+      },
+      {
+        "id": 1134,
+        "codigo": "FAC-WEB-FB70955484",
+        "nombre": "HOGAR CIELITO",
+        "candidate_id": "WEB-FB70955484"
+      },
+      {
+        "id": 1135,
+        "codigo": "FAC-WEB-94620C345A",
+        "nombre": "RESIDENCIAL DE ANCIANOS SALINAS",
+        "candidate_id": "WEB-94620C345A"
+      },
+      {
+        "id": 1136,
+        "codigo": "FAC-WEB-A303D7574F",
+        "nombre": "LA CASA DE MAMA",
+        "candidate_id": "WEB-A303D7574F"
+      },
+      {
+        "id": 1137,
+        "codigo": "FAC-WEB-6F997C0C8F",
+        "nombre": "HOGAR LA FAMILIA",
+        "candidate_id": "WEB-6F997C0C8F"
+      },
+      {
+        "id": 1138,
+        "codigo": "FAC-WEB-A9759E666B",
+        "nombre": "RESIDENCIAL SAN BAUTISTA",
+        "candidate_id": "WEB-A9759E666B"
+      }
+    ],
+    "geolocated": [
+      {
+        "id": 1121,
+        "lat": -34.6506,
+        "lng": -56.0652,
+        "codigo": "FAC-WEB-285B84CD01",
+        "nombre": "RESIDENCIAL ESPERANZA",
+        "candidate_id": "WEB-285B84CD01"
+      },
+      {
+        "id": 1122,
+        "lat": -34.6485,
+        "lng": -56.0599,
+        "codigo": "FAC-WEB-DA9201D1A8",
+        "nombre": "RESIDENCIAL ESPERANZA",
+        "candidate_id": "WEB-DA9201D1A8"
+      },
+      {
+        "id": 1123,
+        "lat": -34.7645,
+        "lng": -55.7232,
+        "codigo": "FAC-WEB-324D0DCA05",
+        "nombre": "EUBLANA RESIDENCIAL",
+        "candidate_id": "WEB-324D0DCA05"
+      },
+      {
+        "id": 1124,
+        "lat": -34.7522,
+        "lng": -55.7133,
+        "codigo": "FAC-WEB-F90C6D1CBA",
+        "nombre": "GENESIS HOGAR FEMENINO",
+        "candidate_id": "WEB-F90C6D1CBA"
+      },
+      {
+        "id": 1125,
+        "lat": -34.7622,
+        "lng": -55.7309,
+        "codigo": "FAC-WEB-B343C7CB80",
+        "nombre": "RESIDENCIAL HILOS PLATEADOS",
+        "candidate_id": "WEB-B343C7CB80"
+      },
+      {
+        "id": 1126,
+        "lat": -34.7784,
+        "lng": -55.759,
+        "codigo": "FAC-WEB-C37BF3D7E6",
+        "nombre": "HOSTERIA LUZ MARINA",
+        "candidate_id": "WEB-C37BF3D7E6"
+      },
+      {
+        "id": 1127,
+        "lat": -34.792,
+        "lng": -55.8644,
+        "codigo": "FAC-WEB-588E92AABA",
+        "nombre": "RESIDENCIAL JACARANDÁ",
+        "candidate_id": "WEB-588E92AABA"
+      },
+      {
+        "id": 1128,
+        "lat": -34.726,
+        "lng": -56.2191,
+        "codigo": "FAC-WEB-AC237D6F94",
+        "nombre": "RESIDENCIAL LA FAMILIA",
+        "candidate_id": "WEB-AC237D6F94"
+      },
+      {
+        "id": 1129,
+        "lat": -34.7149,
+        "lng": -55.9636,
+        "codigo": "FAC-WEB-89E8F0B809",
+        "nombre": "RESIDENCIAL LO DE MAMÁ",
+        "candidate_id": "WEB-89E8F0B809"
+      },
+      {
+        "id": 1130,
+        "lat": -34.6851,
+        "lng": -55.7104,
+        "codigo": "FAC-WEB-280005A351",
+        "nombre": "LOS AÑOS DORADOS",
+        "candidate_id": "WEB-280005A351"
+      },
+      {
+        "id": 1131,
+        "lat": -34.7075,
+        "lng": -56.2158,
+        "codigo": "FAC-WEB-C5873075B7",
+        "nombre": "HOGAR RESIDENCIAL Mª CRISTINA",
+        "candidate_id": "WEB-C5873075B7"
+      },
+      {
+        "id": 1132,
+        "lat": -34.7807,
+        "lng": -55.8527,
+        "codigo": "FAC-WEB-6C184E58FB",
+        "nombre": "HOGAR MI SUEÑO",
+        "candidate_id": "WEB-6C184E58FB"
+      },
+      {
+        "id": 1133,
+        "lat": -34.7812,
+        "lng": -55.8409,
+        "codigo": "FAC-WEB-D1F1A2877A",
+        "nombre": "NUESTRO HOGAR",
+        "candidate_id": "WEB-D1F1A2877A"
+      },
+      {
+        "id": 1134,
+        "lat": -34.7724,
+        "lng": -55.7663,
+        "codigo": "FAC-WEB-E406F39AA5",
+        "nombre": "Residencial Nuevo Vivir",
+        "candidate_id": "WEB-E406F39AA5"
+      },
+      {
+        "id": 1135,
+        "lat": -34.7213,
+        "lng": -55.9601,
+        "codigo": "FAC-WEB-6CCA000AFF",
+        "nombre": "RESIDENCIAL RENACER",
+        "candidate_id": "WEB-6CCA000AFF"
+      },
+      {
+        "id": 1136,
+        "lat": -34.773,
+        "lng": -55.8386,
+        "codigo": "FAC-WEB-00AE588DB0",
+        "nombre": "RESIDENCIA SALINAS",
+        "candidate_id": "WEB-00AE588DB0"
+      },
+      {
+        "id": 1137,
+        "lat": -34.3398,
+        "lng": -55.7711,
+        "codigo": "FAC-WEB-1327E582DF",
+        "nombre": "SAN CONO",
+        "candidate_id": "WEB-1327E582DF"
+      },
+      {
+        "id": 1138,
+        "lat": -34.8576,
+        "lng": -56.0053,
+        "codigo": "FAC-WEB-14ADFF357C",
+        "nombre": "RESIDENCIAL SHANGRILA",
+        "candidate_id": "WEB-14ADFF357C"
+      },
+      {
+        "id": 1139,
+        "lat": -34.7247,
+        "lng": -56.2282,
+        "codigo": "FAC-WEB-E4CF604A63",
+        "nombre": "RESIDENCIAL VIATA DEMNA",
+        "candidate_id": "WEB-E4CF604A63"
+      },
+      {
+        "id": 1140,
+        "lat": -34.8022,
+        "lng": -55.9131,
+        "codigo": "FAC-WEB-8BED0E6C1B",
+        "nombre": "RESIDENCIAL ZAFIROS",
+        "candidate_id": "WEB-8BED0E6C1B"
+      }
+    ],
+    "verified_at": "2026-08-16T20:45:55.546065+00:00"
+  }
+}

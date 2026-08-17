@@ -1,0 +1,242 @@
+{
+  "target": {
+    "events": 24,
+    "photos": 144,
+    "batches": 15,
+    "reports": 24,
+    "publications": 24,
+    "resolved_reports": 24,
+    "route_resolvable": 144,
+    "unpublished_target_attachments": 0,
+    "reports_without_existing_facility": 0
+  },
+  "storage": {
+    "bucket_public": false,
+    "target_objects": 144,
+    "object_policy_count": 0
+  },
+  "security": {
+    "publication_rls_forced": true,
+    "publication_photos_rls_forced": true
+  },
+  "facilities": [
+    {
+      "codigo": "FAC-LEGACY-ELP-0006-6E3F1CFA89335BAF",
+      "nombre": "Altos del Pinar",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 23,
+      "photo_count": 12,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000023",
+      "all_no_unconsented_people": true
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0007-0F0B0EE287155CBB",
+      "nombre": "Biltmore",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 24,
+      "photo_count": 11,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000024",
+      "all_no_unconsented_people": true
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0008-9602786A674FE8FA",
+      "nombre": "Bonsejour La Costa",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 25,
+      "photo_count": 12,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000025",
+      "all_no_unconsented_people": true
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0011-6028818C56BC9219",
+      "nombre": "Centro Vital",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 28,
+      "photo_count": 12,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000028",
+      "all_no_unconsented_people": true
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0015-41ED01B6D4DF92CA",
+      "nombre": "El Es Mi Paz",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 32,
+      "photo_count": 6,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000032",
+      "all_no_unconsented_people": true
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0041-000D6554FD4258D3",
+      "nombre": "JACARANDA",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 52,
+      "photo_count": 9,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000052",
+      "all_no_unconsented_people": true
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0045-E127E8EEBDBB3250",
+      "nombre": "LA CAROLINA",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 54,
+      "photo_count": 11,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000054",
+      "all_no_unconsented_people": true
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0048-2D20813D86F4F23D",
+      "nombre": "La Estancia Hotel Residencial",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 57,
+      "photo_count": 4,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000057",
+      "all_no_unconsented_people": true
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-170-B1591D79C0ADFBE3",
+      "nombre": "La Rochelle",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 737,
+      "photo_count": 12,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000737",
+      "all_no_unconsented_people": true
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0056-F35989C075D724E7",
+      "nombre": "Luz Del Sol",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 64,
+      "photo_count": 10,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000064",
+      "all_no_unconsented_people": true
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0068-1A770D97D4059AEA",
+      "nombre": "PROCURA RESIDENCIAL EX BELLA ESTDIA",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 74,
+      "photo_count": 1,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000074",
+      "all_no_unconsented_people": true
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0070-386F31ED04B70FF0",
+      "nombre": "Residencia Puentecasa",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 76,
+      "photo_count": 12,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000076",
+      "all_no_unconsented_people": true
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0092-659F60900D60E0E8",
+      "nombre": "Senescentis Ii",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 97,
+      "photo_count": 8,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000097",
+      "all_no_unconsented_people": true
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-167-AC35210625FE2694",
+      "nombre": "Seniority Magna",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 734,
+      "photo_count": 12,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000734",
+      "all_no_unconsented_people": true
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0090-F7F06503E5098D4A",
+      "nombre": "SOLYMAR",
+      "all_rights": true,
+      "all_privacy": true,
+      "facility_id": 95,
+      "photo_count": 12,
+      "all_objects_present": true,
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000095",
+      "all_no_unconsented_people": true
+    }
+  ],
+  "verified_at": "2026-08-16T07:58:51.791352+00:00",
+  "operation_id": "approve-existing-elepem-photos-2026-08-16",
+  "altos_del_pinar": {
+    "codigo": "FAC-LEGACY-ELP-0006-6E3F1CFA89335BAF",
+    "nombre": "Altos del Pinar",
+    "all_rights": true,
+    "all_privacy": true,
+    "facility_id": 23,
+    "photo_count": 12,
+    "all_objects_present": true,
+    "publication_batch_id": "a1160816-0000-5000-8000-000000000023",
+    "all_no_unconsented_people": true
+  },
+  "schema_fingerprint": "ad7906b3b8f01d82974cc254e5daec6c",
+  "canonical_elepem_count": 1019,
+  "global_publication_counts": {
+    "photos": 147,
+    "publications": 25
+  },
+  "canonical_elepem_fingerprint": "0961d66d33caa4fba62a2b9aefb97514",
+  "excluded_candidates": {
+    "records": 56,
+    "photos": 265,
+    "source": "data/discovery/photo_review_plan_2026-08-16.json",
+    "included_target_reports_without_existing_facility": 0
+  },
+  "production": {
+    "url": "https://aranduy.vercel.app",
+    "commit": "89cd601",
+    "checked_at": "2026-08-16T19:11:04.1958299Z",
+    "facilities": 15,
+    "expected_photos": 144,
+    "visible_photos": 144,
+    "altos_del_pinar_photos": 12,
+    "sample_route_per_facility": 15,
+    "sample_routes_http_200": 15,
+    "sample_content_types": [
+      "image/jpeg",
+      "image/png"
+    ]
+  },
+  "assertions": {
+    "canonical_registry_unchanged": true,
+    "exact_target_counts": true,
+    "exact_facility_projection": true,
+    "all_rights_and_storage": true,
+    "altos_del_pinar_has_12": true,
+    "bucket_remains_private": true,
+    "no_storage_object_policies": true,
+    "candidates_excluded": true,
+    "rls_forced": true,
+    "production_visible": true
+  }
+}

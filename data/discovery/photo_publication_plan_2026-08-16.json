@@ -1,0 +1,363 @@
+{
+  "operation_id": "approve-existing-elepem-photos-2026-08-16",
+  "authorized_at": "2026-08-16",
+  "authorization": "El usuario ordenó aprobar todas las fotos de todos los ELEPEM y previamente declaró autoridad de licencia, ausencia de personas sin consentimiento y autorización de envío a revisión privada.",
+  "scope": {
+    "existing_facilities": 15,
+    "intake_reports": 24,
+    "photo_attachments": 144,
+    "candidate_photos_included": 0,
+    "canonical_elepem_writes": 0,
+    "storage_bucket_visibility_change": false
+  },
+  "preconditions": {
+    "all_reports_facility_change": true,
+    "all_reports_existing_facility": true,
+    "all_attachments_facility_photo": true,
+    "all_rights_confirmed": true,
+    "all_privacy_confirmed": true,
+    "all_no_people_without_consent": true,
+    "all_storage_objects_present": true,
+    "no_existing_target_publications": true
+  },
+  "reviewer": "propietario-autorizado:2026-08-16",
+  "facilities": [
+    {
+      "facility_id": 23,
+      "facility_code": "FAC-LEGACY-ELP-0006-6E3F1CFA89335BAF",
+      "facility_name": "Altos del Pinar",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000023",
+      "report_ids": [
+        "69bd02ee-f78f-5d14-99f5-78dd95677a99",
+        "ffec0e87-f02c-5f91-baa3-c1ff8058a9b6"
+      ],
+      "attachment_ids": [
+        "b2651922-7136-5fb9-aa82-614fe7eca5ae",
+        "da13ac65-76d7-50d8-ae55-1b94614d1db0",
+        "32174077-9236-5b2f-bf2b-e7e1b3350122",
+        "499b01db-f2ac-58d2-9683-a7c306d1deac",
+        "5c67736a-ee96-5919-b1fd-8b104addf39c",
+        "74eae6f5-8bd4-55f1-b7b6-e06962c57901",
+        "8b1d3433-7b97-5da0-94fd-49ced02b76b6",
+        "ba762a4d-0c7d-58b4-9dd7-82f54a4d4b1e",
+        "becf93fb-8455-5ed2-969b-c5691e3964d3",
+        "bfeaee1f-8b4a-549e-8bae-b6e83b388abe",
+        "e8043974-8a94-55ff-93d0-a51affffa568",
+        "e985010a-8da4-5c0f-8280-10e0aac7591b"
+      ],
+      "photo_count": 12
+    },
+    {
+      "facility_id": 24,
+      "facility_code": "FAC-LEGACY-ELP-0007-0F0B0EE287155CBB",
+      "facility_name": "Biltmore",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000024",
+      "report_ids": [
+        "2e770a1c-5bf3-5b5f-af91-00ed579a1fa7",
+        "5bc7b545-e75b-53a2-af96-8b788f587599"
+      ],
+      "attachment_ids": [
+        "11140e8e-22f9-5667-8aa3-ed9bc889d32d",
+        "2e367254-a0eb-54cb-ad69-34a6d09e7dcd",
+        "875222aa-f36b-5f17-88ed-c1f8e6c73e03",
+        "8a876f1d-369d-5586-bf3d-d1f992396020",
+        "9e77c31d-393b-57db-b9ee-0ab76ffb8a73",
+        "a64cb7a1-c573-52ee-9311-bedc228a3855",
+        "bbce87b9-ce24-535e-bf7f-61dccf5eb6f4",
+        "c365d756-e8ee-52f6-966a-517f8633318c",
+        "c77e5c67-e4ee-56ec-8342-8d0cf2ef90a2",
+        "ce99d914-d3ef-5cd0-bf8b-7f655f4dde0f",
+        "e2e26c72-2ae4-5b8b-b5e8-648b172e6025"
+      ],
+      "photo_count": 11
+    },
+    {
+      "facility_id": 25,
+      "facility_code": "FAC-LEGACY-ELP-0008-9602786A674FE8FA",
+      "facility_name": "Bonsejour La Costa",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000025",
+      "report_ids": [
+        "2e561166-c58a-5940-a3b4-383d073af366",
+        "f9eb341b-b15e-5d1e-a49c-4dd1a6631663"
+      ],
+      "attachment_ids": [
+        "be6070e5-2fd4-5dd2-9a68-aec033b7aa71",
+        "f67b64bc-be7a-5c62-9ae2-5c691b835d41",
+        "19803cbd-7e83-56b9-9751-c9afe7e0bbb4",
+        "3bca5666-29fc-53b3-8733-7f1d20f4f136",
+        "6e1e43c6-b02e-5d50-be21-a435445ee531",
+        "a2e1b762-8df2-5e6c-9dec-4c8e86a8a262",
+        "b9479bf5-3d12-5980-9ffc-c1653b8e687b",
+        "c632d073-fdc7-5d83-876f-177af5804ae8",
+        "e33aaff4-cf49-5250-89c3-4e74c58a7572",
+        "e478d0d2-8c1e-5d17-a5d9-4f1064be997c",
+        "f8f34de3-a55d-596a-bd97-81fefc3a3f78",
+        "fc725643-1bf6-586a-9e2b-5a129c25e09b"
+      ],
+      "photo_count": 12
+    },
+    {
+      "facility_id": 28,
+      "facility_code": "FAC-LEGACY-ELP-0011-6028818C56BC9219",
+      "facility_name": "Centro Vital",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000028",
+      "report_ids": [
+        "0933951e-e2c1-54a4-b2eb-bafb78869c2f",
+        "99423392-de30-5019-850d-5eaa8a640f8f"
+      ],
+      "attachment_ids": [
+        "29830450-591b-514b-982a-de7fa36dc618",
+        "46bf3f2c-e6b1-5c35-b7fd-54eed8766739",
+        "4f0deecc-82e1-5238-ae76-2fa2458b9bf6",
+        "507ba379-a4c1-56a4-922e-aa6348ee9851",
+        "5a469f13-801d-5133-9724-022a36423ac2",
+        "73bf9ecc-f883-5999-8a97-d6ba31949bd8",
+        "bbb56058-cb8d-5904-ac0f-a2bee16167c9",
+        "e7c5bdac-791d-5db5-900c-5f382d59a3e3",
+        "ea617056-5607-5e6c-b276-2c58fb02690d",
+        "ec48f90d-bfc2-5d0d-9524-4fda2c79bee9",
+        "1f1d57a1-9c8d-57dd-a25f-24c89307f2c0",
+        "3ed46a9c-e1e7-5241-8c89-4351a35a4eb2"
+      ],
+      "photo_count": 12
+    },
+    {
+      "facility_id": 32,
+      "facility_code": "FAC-LEGACY-ELP-0015-41ED01B6D4DF92CA",
+      "facility_name": "El Es Mi Paz",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000032",
+      "report_ids": [
+        "2e48c9d8-1305-5d4e-b34d-2b1b6a0a3ac9"
+      ],
+      "attachment_ids": [
+        "2ebe0046-b3fc-5f3e-86cc-9bbce0eda7a7",
+        "5a8a4c9d-c7f8-5acd-af58-efb0397eb60c",
+        "660cbec3-e7a5-5adb-8166-2d76a47546ec",
+        "68e6d23f-5c0d-5e79-a1da-b6e8785f061b",
+        "d6c64702-b27a-5252-bc68-c4ed1ecbc3ba",
+        "fed050ca-d43f-54e8-9ce3-4a0bca85fe90"
+      ],
+      "photo_count": 6
+    },
+    {
+      "facility_id": 52,
+      "facility_code": "FAC-LEGACY-ELP-0041-000D6554FD4258D3",
+      "facility_name": "JACARANDA",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000052",
+      "report_ids": [
+        "294a3e8d-458c-59d5-8e3c-e9fcd1f83230"
+      ],
+      "attachment_ids": [
+        "0679aba4-04dc-53a3-b87c-e8847a5017f7",
+        "3fa99d15-ce4c-5aa4-a881-8c0c1e7c67ff",
+        "49c966de-6915-5572-9185-14b743baea69",
+        "4e4236bc-bdf4-5054-897d-24df3bb87e71",
+        "50a9bf1e-220f-57ba-a8a3-b2f7c3a4d94c",
+        "55c8e01a-7765-5d40-aeec-8a9b6a3c2cba",
+        "6e5f35c3-a293-529a-a54c-079a885ccfda",
+        "d9c9573c-c5af-5e7f-ad20-1de25a343d31",
+        "e6fcb10a-3380-50fe-901b-eff0bdd9e8af"
+      ],
+      "photo_count": 9
+    },
+    {
+      "facility_id": 54,
+      "facility_code": "FAC-LEGACY-ELP-0045-E127E8EEBDBB3250",
+      "facility_name": "LA CAROLINA",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000054",
+      "report_ids": [
+        "159cddc1-41b4-5ec3-984c-717efae978a3",
+        "9c1be26c-49c1-5e62-beed-d29ca63c3a0b"
+      ],
+      "attachment_ids": [
+        "9a836a0e-9193-50ed-a028-61c8a579e768",
+        "40637b92-c3fc-5d6f-8478-2cf4b48527ed",
+        "50942a62-ce69-5529-8b1b-170d0961768e",
+        "5a54e27d-66db-55da-9a3f-30655fd3aabf",
+        "6c040037-78aa-5907-94e4-27ebf59c1213",
+        "76d064ef-fa4c-5de1-bdf5-b238dc192388",
+        "89f36de1-e1ce-5e72-90f1-6ff27fbd55e6",
+        "afb006e4-ac6e-5a4f-b160-51e61544d1aa",
+        "c2349fc5-dbae-5a05-a9af-2092031769f9",
+        "c7587c67-00a7-51db-97ad-ef3b6c894465",
+        "c8586fc1-7fd9-5241-88da-9351c3d31413"
+      ],
+      "photo_count": 11
+    },
+    {
+      "facility_id": 57,
+      "facility_code": "FAC-LEGACY-ELP-0048-2D20813D86F4F23D",
+      "facility_name": "La Estancia Hotel Residencial",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000057",
+      "report_ids": [
+        "b8e19f1d-fffb-53ca-9a59-adddcf6d8b40"
+      ],
+      "attachment_ids": [
+        "06791a1a-8356-5922-8be2-db4573fe4f35",
+        "20fdbbf3-879c-5b9e-aa12-dfbbc524b18f",
+        "356693de-1bf4-56e8-bb8d-a4877bed64dd",
+        "52596960-f359-5c06-b975-787d8fd1f173"
+      ],
+      "photo_count": 4
+    },
+    {
+      "facility_id": 737,
+      "facility_code": "FAC-LEGACY-MSP24-170-B1591D79C0ADFBE3",
+      "facility_name": "La Rochelle",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000737",
+      "report_ids": [
+        "b152cce1-7fd1-551a-a03f-fb97b7663613",
+        "f7cf3a12-01ce-5ccb-a1cd-0fbf49f4fe14"
+      ],
+      "attachment_ids": [
+        "517b5c44-396e-530b-aa19-9777c9c94c26",
+        "5d74fcb2-a692-57c3-9180-a56bc796ec8f",
+        "7708f3a7-8044-5d25-9124-1aedff32fc47",
+        "aea3e58f-5f7a-5d91-85a5-eafb3d5b28f0",
+        "bccb0012-afda-5482-a5cf-37b4d44e3cf0",
+        "bfbea654-7f52-5a65-8f5c-3fa692b983aa",
+        "cc6e0703-01a7-5a47-b656-12202b928aac",
+        "d2c123f6-4d34-56c4-90e4-14715c192c0a",
+        "dab10eec-c229-53db-a55f-600472e70d94",
+        "dff28ba6-ec08-5052-bb1b-9dd0ea0a576d",
+        "2ed06df0-39d7-5f05-b4ab-5be0832bcc1c",
+        "81023671-d5d0-5657-9c5f-f58753b8b9b4"
+      ],
+      "photo_count": 12
+    },
+    {
+      "facility_id": 64,
+      "facility_code": "FAC-LEGACY-ELP-0056-F35989C075D724E7",
+      "facility_name": "Luz Del Sol",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000064",
+      "report_ids": [
+        "0762f5d1-db50-5edd-9ddf-b4b34f7a31a6"
+      ],
+      "attachment_ids": [
+        "06e73d2d-7b1d-5f5d-9ea5-9b1059176381",
+        "18a68ded-cba0-5991-898d-c34554f7bf37",
+        "2360b88e-ec16-5951-beaf-f9a9d1bc5df0",
+        "26d9c6e9-6cbe-5079-96d4-458b74dd2acb",
+        "27a92095-4c48-50c0-a89b-53733d3e24dc",
+        "46fac68e-8cbc-50ae-9056-4aa5ac45c84a",
+        "a40c9fef-7fc6-575c-9dce-90a35a60623a",
+        "aafe68ed-2405-55af-b591-8842f3852450",
+        "c3cd2250-98f9-5144-808e-5ee1707ce3f7",
+        "ee6ac84a-2ed8-5bb4-b488-4dd6b5d33c72"
+      ],
+      "photo_count": 10
+    },
+    {
+      "facility_id": 74,
+      "facility_code": "FAC-LEGACY-ELP-0068-1A770D97D4059AEA",
+      "facility_name": "PROCURA RESIDENCIAL EX BELLA ESTDIA",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000074",
+      "report_ids": [
+        "958a294f-354a-5277-85ca-549cfd75c797"
+      ],
+      "attachment_ids": [
+        "6f23b34c-e529-5ad5-ade1-c36ec9155acd"
+      ],
+      "photo_count": 1
+    },
+    {
+      "facility_id": 76,
+      "facility_code": "FAC-LEGACY-ELP-0070-386F31ED04B70FF0",
+      "facility_name": "Residencia Puentecasa",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000076",
+      "report_ids": [
+        "8c377605-13e0-59a3-8e81-834ec09d2da3",
+        "c74d0756-96ad-5e98-8f58-248b9775ae81"
+      ],
+      "attachment_ids": [
+        "c2c6361b-bc85-55b1-861a-2b06d6bb0642",
+        "e9cff927-806d-55f9-80ba-effedd85a9e6",
+        "0a57e72f-8378-5902-96ba-b3b10f73f883",
+        "359eb344-c60f-5e5c-9086-00ec5f498970",
+        "61585691-18d8-5937-ab2e-ad2bf8ae13f3",
+        "67016b98-517f-5188-b8fe-9a6bfe43d050",
+        "8b3be1f8-daa1-50c4-9358-efaecbc307de",
+        "9b955265-7be9-5d1c-9bf6-a2540c3f7d8a",
+        "ae1dfdf6-d9f4-55b3-acc8-3be17f313033",
+        "b06f17d1-005e-524e-a50a-1410006e51c2",
+        "bdfa963e-0a50-577f-b6f5-ebf6d421dfa4",
+        "d625bdf5-d5f5-5e7a-ab22-8da74a3320a2"
+      ],
+      "photo_count": 12
+    },
+    {
+      "facility_id": 97,
+      "facility_code": "FAC-LEGACY-ELP-0092-659F60900D60E0E8",
+      "facility_name": "Senescentis Ii",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000097",
+      "report_ids": [
+        "f13d47df-ea05-5b1a-a748-87e13e506e67"
+      ],
+      "attachment_ids": [
+        "19e6594e-4251-5857-a4d4-c15283f86fcf",
+        "4e3f93be-7fc4-5d9c-a71d-6105f1f5c042",
+        "55c56a86-ea19-5007-8821-02ab7dc7518f",
+        "7d792cea-334c-5828-9f70-64ef8a6621f2",
+        "a675f350-e1c0-5a65-aa1f-cd9649bbcae5",
+        "a7bf1f80-c0d3-5640-b113-b9539c96eb38",
+        "aed2ca57-6841-55b6-af3c-71a56be8920a",
+        "df9a2813-b101-5aa1-b3c7-fb3f61516f22"
+      ],
+      "photo_count": 8
+    },
+    {
+      "facility_id": 734,
+      "facility_code": "FAC-LEGACY-MSP24-167-AC35210625FE2694",
+      "facility_name": "Seniority Magna",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000734",
+      "report_ids": [
+        "4de7292a-3869-54c7-883a-a91de0ecb290",
+        "94b500a8-0216-5661-abd7-1e199d661186"
+      ],
+      "attachment_ids": [
+        "0c4a3e48-9f70-54ad-b48b-e90feb5d9136",
+        "111bd711-2ecd-50af-bdb4-bedaafdef73c",
+        "350d71d2-3f44-5253-9892-eb4e578ac0f8",
+        "35cd8e18-57e3-51e4-ace1-5ca344835083",
+        "56a56902-20a3-518c-9913-531cca7137ec",
+        "6959d94c-79b5-5927-9fff-694b1a01bdcd",
+        "85813684-1324-5654-a3c9-6955b841d2c3",
+        "b1df84cf-028e-5b6a-a9a4-5d7c9ecb247e",
+        "c6a00e2f-ff00-51d9-8863-419fccff8baa",
+        "f6821099-964e-5ae9-a0bc-4f3ffbf2fd7c",
+        "d8eb9236-f306-5c90-8d50-3626e335b7a2",
+        "d938ba62-2b54-5cf7-b23b-6ad0dad25c5e"
+      ],
+      "photo_count": 12
+    },
+    {
+      "facility_id": 95,
+      "facility_code": "FAC-LEGACY-ELP-0090-F7F06503E5098D4A",
+      "facility_name": "SOLYMAR",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000095",
+      "report_ids": [
+        "6aec48e9-9b54-5f2d-8561-60fa2accb9ea",
+        "cc3f1a87-f9ad-5952-ad11-8a8752c37204"
+      ],
+      "attachment_ids": [
+        "284cbfe8-b2e3-5fd2-82ab-e4f86767b9ff",
+        "286aa810-2985-5838-80c9-31e438df95e7",
+        "29954c01-ae9d-5565-a85c-35ce4f7d71e5",
+        "340238b9-971f-5361-acd6-e581ade94d85",
+        "48af6ab4-61dd-5f38-8b76-3330a9e9c6fc",
+        "918da7a6-8170-56e2-80fc-0d72cecd2a7b",
+        "acc81165-5577-5e6c-9823-dc32bbe4e0cd",
+        "c9f1b3e2-f887-50bd-9a08-7f0fa3f9ac76",
+        "dc89987f-1776-5d78-b1b9-d8255f118778",
+        "f93928f9-22cc-5439-98ea-c181549531eb",
+        "0f84e38e-22b3-5a2a-b12f-77fb30866474",
+        "d16b696e-c9a4-52ed-976a-0c00ac94d66b"
+      ],
+      "photo_count": 12
+    }
+  ],
+  "source_backup": "data/discovery/backups/photo_publication_2026-08-16_before.json",
+  "schema_change": "Add publication_batch_id to group multiple explicitly approved intake reports for one facility.",
+  "publication_mode": "append-only grouped public projection; private storage remains private; server route serves only approved attachment ids"
+}
+

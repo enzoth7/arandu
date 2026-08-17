@@ -2,9 +2,10 @@
 
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { ChevronDown, ChevronUp, CircleHelp, Image as ImageIcon, Map as MapIcon, RotateCcw, Search, X } from "lucide-react";
+import { ChevronDown, ChevronUp, CircleHelp, Globe2, Image as ImageIcon, Mail, Map as MapIcon, Phone, RotateCcw, Search, Share2, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { FacilityPhotoCarousel } from "./FacilityPhotoCarousel";
 import { FacilityExperiences } from "./FacilityExperiences";
 import {
   facilityDisplayCategory,
@@ -33,6 +34,98 @@ const RESTORE_SCROLL_TOLERANCE_PX = 1;
 
 function formatMonthlyPrice(value: number) {
   return `UYU ${value.toLocaleString("es-UY")}`;
+}
+
+type ContactChannelKind = "phone" | "email" | "website" | "instagram" | "facebook";
+
+type ContactChannel = {
+  kind: ContactChannelKind;
+  label: string;
+  value: string;
+  href: string;
+};
+
+function uniqueContactValues(...sources: Array<readonly string[] | string | undefined>) {
+  const values: string[] = [];
+  const known = new Set<string>();
+  for (const source of sources) {
+    const items = Array.isArray(source) ? source : [source];
+    for (const item of items) {
+      if (typeof item !== "string") continue;
+      const value = item.trim();
+      const key = value.toLocaleLowerCase("es-UY");
+      if (!value || known.has(key)) continue;
+      known.add(key);
+      values.push(value);
+    }
+  }
+  return values;
+}
+
+function publicContactUrl(value: string) {
+  try {
+    const url = new URL(value);
+    return ["http:", "https:"].includes(url.protocol) ? url.toString() : null;
+  } catch {
+    return null;
+  }
+}
+
+function FacilityContactIcon({ kind }: { kind: ContactChannelKind }) {
+  const props = { "aria-hidden": true, size: 20, strokeWidth: 2 } as const;
+  if (kind === "phone") return <Phone {...props} />;
+  if (kind === "email") return <Mail {...props} />;
+  if (kind === "website") return <Globe2 {...props} />;
+  return <Share2 {...props} />;
+}
+
+function FacilityContactChannels({ facility }: { facility: Facility }) {
+  const channels: ContactChannel[] = [];
+
+  for (const value of uniqueContactValues(facility.contactPhones, facility.contactPhone)) {
+    if (/^[+()0-9\s.-]{6,32}$/.test(value)) {
+      channels.push({ kind: "phone", label: "Teléfono", value, href: `tel:${value.replace(/[()\s.-]/g, "")}` });
+    }
+  }
+  for (const value of uniqueContactValues(facility.contactEmails, facility.contactEmail)) {
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      channels.push({ kind: "email", label: "Correo electrónico", value, href: `mailto:${encodeURIComponent(value)}` });
+    }
+  }
+  for (const [kind, label, values] of [
+    ["website", "Sitio web", facility.websites],
+    ["instagram", "Instagram", facility.instagramUrls],
+    ["facebook", "Facebook", facility.facebookUrls],
+  ] as const) {
+    for (const value of uniqueContactValues(values)) {
+      const href = publicContactUrl(value);
+      if (href) channels.push({ kind, label, value, href });
+    }
+  }
+
+  if (!channels.length) return null;
+
+  return <section className="facilityProfileContactChannels" aria-labelledby="facility-contact-channels-title">
+    <div className="facilityProfileContactHeading">
+      <h3 id="facility-contact-channels-title">Medios de contacto</h3>
+      <p>Información pública disponible del residencial.</p>
+    </div>
+    <ul className="facilityContactChannelList">
+      {channels.map((channel) => {
+        const isExternal = ["website", "instagram", "facebook"].includes(channel.kind);
+        return <li key={`${channel.kind}:${channel.href}`}>
+          <a
+            href={channel.href}
+            aria-label={`${channel.label}: ${channel.value}`}
+            {...(isExternal ? { target: "_blank", rel: "noreferrer" } : {})}
+          >
+            <span className="facilityContactChannelIcon"><FacilityContactIcon kind={channel.kind} /></span>
+            <span><small>{channel.label}</small><strong>{channel.value}</strong></span>
+          </a>
+        </li>;
+      })}
+    </ul>
+  </section>;
 }
 
 // El registro es presentacional: recibe las fichas ya consolidadas y no sabe de
@@ -645,14 +738,7 @@ export default function UruguayRegistry({
     </div>
 
     {detailedFacility && (
-      <div
-        className="facilityDialogLayer"
-        onMouseDown={(event) => {
-          if (event.target === event.currentTarget) setDetailId(null);
-        }}
-      >
-        <FacilityMapDialog facility={detailedFacility} onClose={() => setDetailId(null)} />
-      </div>
+      <FacilityMapDialog facility={detailedFacility} onClose={() => setDetailId(null)} />
     )}
 
   </>;
@@ -702,8 +788,8 @@ function badgeTone(facility: Facility) {
 
 function FacilityMembershipBadges({ facility, showQuality = true }: { facility: Facility; showQuality?: boolean }) {
   const badges = [
-    facility.mspFinal && { label: "Habilitado", tone: "green" },
-    facility.midesSocial && { label: "Certificado", tone: "amber" },
+    facility.mspFinal && { label: "Habilitado MSP", tone: "green" },
+    facility.midesSocial && { label: "Certificado Social MIDES", tone: "amber" },
   ].filter(Boolean) as { label: string; tone: string }[];
   const primaryBadge = isVerificationFacility(facility);
 
@@ -718,9 +804,10 @@ function FacilityMembershipBadges({ facility, showQuality = true }: { facility: 
 }
 
 function FacilityQualityBadge({ facility }: { facility: Facility }) {
-  if (!facility.qualityRating) return null;
-  return <span className={`qualityRatingBadge qualityRatingBadge-${facility.qualityRating}`}>
-    {QUALITY_RATING_LABELS[facility.qualityRating]}
+  const rating = facility.qualityRating ?? "unrated";
+  const label = facility.qualityRating ? QUALITY_RATING_LABELS[facility.qualityRating] : "Sin calificar";
+  return <span className={`qualityRatingBadge qualityRatingBadge-${rating}`}>
+    {label}
   </span>;
 }
 
@@ -774,17 +861,19 @@ function FacilityAccordionCard({
         <div className="facilityAccordionTitle">
           <strong>{facility.name}</strong>
           <span className="facilityLocation">{facility.locality} · {canonicalDepartment(facility.department)}</span>
-          <FacilityMembershipBadges facility={facility} />
+          <FacilityMembershipBadges facility={facility} showQuality={false} />
+        </div>
+        <span className="facilityCompactAside">
           {typeof facility.monthlyPriceUyu === "number" && facility.monthlyPriceUyu > 0 && (
             <span
               className="facilityCompactPrice"
               aria-label={`Precio mensual: ${formatMonthlyPrice(facility.monthlyPriceUyu)}`}
             >
-              <small>Precio mensual</small>
               <b>{formatMonthlyPrice(facility.monthlyPriceUyu)}</b>
             </span>
           )}
-        </div>
+          <FacilityQualityBadge facility={facility} />
+        </span>
         <span className="facilityAccordionChevron">
           {isOpen ? <ChevronUp size={18}/> : <ChevronDown size={18}/>}
         </span>
@@ -813,19 +902,21 @@ function FacilityListCard({ facility, onViewMore }: { facility: Facility; onView
     <div className="facilityBookingContent">
       <h3>{facility.name}</h3>
       <p className="facilityBookingLocation">{facility.locality} · {canonicalDepartment(facility.department)}</p>
-      <FacilityMembershipBadges facility={facility} />
+      <FacilityMembershipBadges facility={facility} showQuality={false} />
       <div className="facilityBookingFacts">
         {facility.address && <span>{facility.address}</span>}
       </div>
       {facility.description && <p className="facilityBookingDescription">{facility.description}</p>}
-      {facility.sourceLabel && <p className="facilityBookingSource">Fuente: {facility.sourceLabel}</p>}
     </div>
     <div className="facilityBookingAside">
       <div className="facilityBookingAsideFooter">
-        {hasPublicPrice && <div className="facilityBookingPrice">
-          <small>Precio mensual</small>
+        {hasPublicPrice && <div
+          className="facilityBookingPrice"
+          aria-label={`Precio mensual: ${formatMonthlyPrice(facility.monthlyPriceUyu as number)}`}
+        >
           <strong>{formatMonthlyPrice(facility.monthlyPriceUyu as number)}</strong>
         </div>}
+        <FacilityQualityBadge facility={facility} />
         <button type="button" className="facilityBookingAction" onClick={() => onViewMore(facility)}>Ver ficha</button>
       </div>
     </div>
@@ -833,26 +924,31 @@ function FacilityListCard({ facility, onViewMore }: { facility: Facility; onView
 }
 
 function FacilityMapDialog({ facility, onClose }: { facility: Facility; onClose: () => void }) {
-  const dialogRef = useRef<HTMLElement | null>(null);
-  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
-  useEffect(() => {
-    const previouslyFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    closeButtonRef.current?.focus();
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", closeOnEscape);
-    return () => {
-      window.removeEventListener("keydown", closeOnEscape);
-      document.body.style.overflow = previousOverflow;
-      previouslyFocused?.focus();
-    };
-  }, [onClose]);
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
+  const photoUrls = useMemo(() => facility.photoUrls?.length
+    ? facility.photoUrls
+    : facility.photoUrl
+      ? [facility.photoUrl]
+      : [], [facility.photoUrl, facility.photoUrls]);
 
-  return <section ref={dialogRef} tabIndex={-1} className="facilityMapDialog" role="dialog" aria-modal="true" aria-labelledby="facility-map-dialog-title">
-    <div className="facilityMapDialogHeader">
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (dialog && !dialog.open) dialog.showModal();
+  }, []);
+
+  return <dialog
+    ref={dialogRef}
+    className="facilityMapDialog"
+    aria-labelledby="facility-map-dialog-title"
+    onClose={(event) => {
+      if (event.target === event.currentTarget) onClose();
+    }}
+    onMouseDown={(event) => {
+      if (event.target === event.currentTarget) onClose();
+    }}
+  >
+    <div className="facilityMapDialogSurface">
+    <header className="facilityMapDialogHeader">
       <div>
         <h2 id="facility-map-dialog-title">{facility.name}</h2>
         <p className="facilityMapDialogLocation">
@@ -863,51 +959,38 @@ function FacilityMapDialog({ facility, onClose }: { facility: Facility; onClose:
           <span>{canonicalDepartment(facility.department)}</span>
         </p>
       </div>
-      <button ref={closeButtonRef} type="button" className="facilityDialogClose" aria-label="Cerrar ficha" title="Cerrar ficha" onClick={onClose}><X size={22} aria-hidden="true" /></button>
-    </div>
+      <button type="button" className="facilityDialogClose" aria-label="Cerrar ficha" title="Cerrar ficha" onClick={onClose}><X size={22} aria-hidden="true" /></button>
+    </header>
+    <div className="facilityMapDialogContent">
     <div className="facilityProfileLead">
       <div className="facilityProfileMedia">
-        {(facility.photoUrls?.length || facility.photoUrl)
-          ? <div className="facilityProfileGallery">
-              <Image
-                src={(facility.photoUrls?.length ? facility.photoUrls[0] : facility.photoUrl) as string}
-                alt={`Vista principal del ELEPEM ${facility.name}`}
-                width={720}
-                height={420}
-                unoptimized
-              />
-              {(facility.photoUrls?.length || 0) > 1 && <div className="facilityProfileThumbnails" aria-label="Más fotos públicas">
-                {facility.photoUrls?.slice(1).map((photoUrl, index) => (
-                  <Image
-                    src={photoUrl}
-                    alt={`Vista ${index + 2} del ELEPEM ${facility.name}`}
-                    width={240}
-                    height={150}
-                    unoptimized
-                    key={photoUrl}
-                  />
-                ))}
-              </div>}
-            </div>
+        {photoUrls.length
+          ? <FacilityPhotoCarousel facilityName={facility.name} photoUrls={photoUrls} />
           : <div className="facilityProfilePhotoMissing">Foto no informada</div>}
+      </div>
+      <div className="facilityProfileSummary">
+        <FacilityMembershipBadges facility={facility} showQuality={false} />
+        <h3>Información del ELEPEM</h3>
+        <p>{facility.description || "Todavía no hay una descripción pública verificada de la vida cotidiana en este ELEPEM."}</p>
         <div className="facilityProfilePrice">
+          <span>Precio mensual</span>
           <strong>{facility.monthlyPriceUyu
             ? `Desde $ ${facility.monthlyPriceUyu.toLocaleString("es-UY")}`
             : "No informado"}</strong>
-          <span>Precio mensual</span>
           <FacilityQualityBadge facility={facility} />
         </div>
-      </div>
-      <div>
-        <FacilityMembershipBadges facility={facility} showQuality={false} />
-        <p>{facility.description || "Todavía no hay una descripción pública verificada de la vida cotidiana en este ELEPEM."}</p>
+        <div className="facilityProfileActions">
+          <Link href={`/experiencia?elepem=${encodeURIComponent(facility.id)}`}>Dejar una experiencia</Link>
+          <Link href={`/preocupacion?elepem=${encodeURIComponent(facility.id)}`}>Contar una preocupación</Link>
+        </div>
       </div>
     </div>
 
-    <div className="facilityProfileActions">
-      <Link href={`/experiencia?elepem=${encodeURIComponent(facility.id)}`}>Dejar una experiencia</Link>
-      <Link href={`/preocupacion?elepem=${encodeURIComponent(facility.id)}`}>Contar una preocupación</Link>
+    <FacilityContactChannels facility={facility} />
+    <div className="facilityProfileExperiences">
+      <FacilityExperiences facilityId={facility.id} />
     </div>
-    <FacilityExperiences facilityId={facility.id} />
-  </section>;
+    </div>
+    </div>
+  </dialog>;
 }

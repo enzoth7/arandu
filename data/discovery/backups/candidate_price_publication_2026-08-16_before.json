@@ -1,0 +1,1876 @@
+{
+  "created_at": "2026-08-16T20:42:47.123637+00:00",
+  "project_id": "itolluaivfoxnaohbsdk",
+  "counts_before": {
+    "elepem": 1019,
+    "priced_elepem": 4,
+    "elepem_sin_ubicacion": 83
+  },
+  "operation_date": "2026-08-16",
+  "price_rows_before": [
+    {
+      "id": 23,
+      "lat": -34.7936815,
+      "lng": -55.5066344,
+      "codigo": "FAC-LEGACY-ELP-0006-6E3F1CFA89335BAF",
+      "emails": [
+        "admaltosdelpinar@hotmail.com",
+        "info@altosdelpinar.com.uy"
+      ],
+      "nombre": "Altos del Pinar",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Rambla Costanera M244 S2 - El Pinar",
+      "legacy_id": "ELP-0006",
+      "localidad": "El Pinar",
+      "msp_fecha": null,
+      "otros_ids": [
+        "ELP-0006"
+      ],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [
+        "+59826967222",
+        "+59895572136"
+      ],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [
+        "https://www.altosdelpinar.com.uy/"
+      ],
+      "updated_at": "2026-08-16T07:12:30.796058+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Canelones",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://inforesidenciales.com.uy/altosdelpinar/",
+        "https://www.altosdelpinar.com.uy/"
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "public_directory",
+        "facility_website"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04",
+        null,
+        "2026-08-11",
+        null
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "puerta más cercana en la misma calle",
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "inforesidenciales",
+        "official_website"
+      ],
+      "fuentes_referencias": [
+        "MSPR-035-2018",
+        "public.residenciales:ELP-0006",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0006:src_001",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0006:src_002",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0006:src_003"
+      ],
+      "precision_ubicacion": "calle",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-13T23:53:20.879867+00:00",
+        "2026-08-13T23:53:21.352957+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,direccion,contactos",
+        "nombre,direccion,contactos"
+      ]
+    },
+    {
+      "id": 97,
+      "lat": -34.769625,
+      "lng": -55.8752835,
+      "codigo": "FAC-LEGACY-ELP-0092-659F60900D60E0E8",
+      "emails": [],
+      "nombre": "Senescentis Ii",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Av. Pérez Butler M257 S2",
+      "legacy_id": "ELP-0092",
+      "localidad": "El Pinar",
+      "msp_fecha": null,
+      "otros_ids": [
+        "ELP-0092"
+      ],
+      "situacion": "certificado_social_mides",
+      "telefonos": [
+        "098725165 / 26816645"
+      ],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-16T20:26:44.044425+00:00",
+      "descripcion": null,
+      "mides_fecha": "2024-07-15",
+      "departamento": "Canelones",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.redresidenciales.uy/residencial-hotel/canelones/ciudad-de-la-costa/senescentis-residencial/"
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "public_directory"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15",
+        "2024-07-15",
+        "2026-08-04",
+        "2024-07-15",
+        null,
+        null,
+        "2020-05-27"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": true,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "centroide de calle",
+      "fuentes_proveedores": [
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Página departamental de Certificado Social",
+        "MIDES",
+        "MIDES (vínculo existente en Supabase)",
+        "redresidenciales"
+      ],
+      "fuentes_referencias": [
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-017",
+        "public.residenciales:ELP-0092",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0092:src_001",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0092:src_002",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0092:src_003",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0092:src_004"
+      ],
+      "precision_ubicacion": "calle",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-13T23:53:20.498218+00:00",
+        "2026-08-13T23:53:20.890883+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,direccion,contactos"
+      ]
+    },
+    {
+      "id": 199,
+      "lat": -34.9346457,
+      "lng": -54.9395137,
+      "codigo": "FAC-LEGACY-ELP-0225-1E6FEE63E2AC3E6B",
+      "emails": [],
+      "nombre": "LA CANDELARIA",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "MARTINIANO CHIOSSI Y FORT WAYNE",
+      "legacy_id": "ELP-0225",
+      "localidad": "PTA DEL ESTE",
+      "msp_fecha": null,
+      "otros_ids": [
+        "ELP-0225"
+      ],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-10T21:42:29.880335+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Maldonado",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        null,
+        null,
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "centroide de calle",
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "MSPR-050-2020",
+        "MSPR-072-2022",
+        "public.residenciales:ELP-0225"
+      ],
+      "precision_ubicacion": "calle",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 286,
+      "lat": -34.8690924,
+      "lng": -56.2021064,
+      "codigo": "FAC-LEGACY-ELP-0350-1A44EC6E54F3F2D9",
+      "emails": [
+        "centromoiru@gmail.com"
+      ],
+      "nombre": "Moirú",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Juan Carlos Blanco 3362",
+      "legacy_id": "ELP-0350",
+      "localidad": "Montevideo",
+      "msp_fecha": "2026-06-30",
+      "otros_ids": [
+        "ELP-0350"
+      ],
+      "situacion": "habilitacion_msp",
+      "telefonos": [
+        "23563421 – 099876084"
+      ],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-15T01:42:28.065095+00:00",
+      "descripcion": null,
+      "mides_fecha": "2026-06-30",
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30",
+        "2026-06-30",
+        "2024-07-15",
+        "2026-06-30",
+        null,
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_habilitado": true,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": true,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "calle y puerta exacta",
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-164",
+        "MSPF-172",
+        "MSPR-042-2021",
+        "public.residenciales:ELP-0350"
+      ],
+      "precision_ubicacion": "puerta",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 323,
+      "lat": -34.8504458,
+      "lng": -56.1912713,
+      "codigo": "FAC-LEGACY-ELP-0427-C438EEBBD66E1884",
+      "emails": [],
+      "nombre": "Hogar Amelia Ruano De Schiaffino",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Pedro Trapani 1197",
+      "legacy_id": "ELP-0427",
+      "localidad": "Montevideo",
+      "msp_fecha": null,
+      "otros_ids": [
+        "ELP-0427"
+      ],
+      "situacion": "certificado_social_mides",
+      "telefonos": [
+        "23361686 - 23361241 - 23364016"
+      ],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-15T01:42:28.065095+00:00",
+      "descripcion": null,
+      "mides_fecha": "2024-07-15",
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15",
+        "2024-07-15",
+        null,
+        null,
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": true,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "calle y puerta exacta",
+      "fuentes_proveedores": [
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-173",
+        "MSPR-009-2022",
+        "MSPR-072-2019",
+        "public.residenciales:ELP-0427"
+      ],
+      "precision_ubicacion": "puerta",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 333,
+      "lat": -34.9057215,
+      "lng": -56.1926315,
+      "codigo": "FAC-LEGACY-ELP-0448-898D6DD9A7C54857",
+      "emails": [],
+      "nombre": "Hotel Continental",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Paraguay 1372",
+      "legacy_id": "ELP-0448",
+      "localidad": "Montevideo",
+      "msp_fecha": null,
+      "otros_ids": [
+        "ELP-0448"
+      ],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-10T21:42:29.880335+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "puerta más cercana en la misma calle",
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "MSPR-011-2018",
+        "public.residenciales:ELP-0448"
+      ],
+      "precision_ubicacion": "calle",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 346,
+      "lat": -34.8958721,
+      "lng": -56.1229759,
+      "codigo": "FAC-LEGACY-ELP-0479-2A28F8D0ADC27059",
+      "emails": [],
+      "nombre": "LAR - CENTRO",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Juan M. Espinosa 1480",
+      "legacy_id": "ELP-0479",
+      "localidad": "Montevideo",
+      "msp_fecha": null,
+      "otros_ids": [
+        "ELP-0479"
+      ],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-10T21:42:29.880335+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "calle y puerta exacta",
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "MSPR-026-2018",
+        "public.residenciales:ELP-0479"
+      ],
+      "precision_ubicacion": "puerta",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 425,
+      "lat": -34.9087884,
+      "lng": -56.1699833,
+      "codigo": "FAC-LEGACY-ELP-0606-F6306003DF5F90F8",
+      "emails": [],
+      "nombre": "Residencial Humana",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Bv. España 2128",
+      "legacy_id": "ELP-0606",
+      "localidad": "Montevideo",
+      "msp_fecha": null,
+      "otros_ids": [
+        "ELP-0606"
+      ],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-10T21:42:29.880335+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "calle y puerta exacta",
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "MSPR-080-2019",
+        "public.residenciales:ELP-0606"
+      ],
+      "precision_ubicacion": "puerta",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 578,
+      "lat": -34.8801949,
+      "lng": -56.0589104,
+      "codigo": "FAC-LEGACY-MSP24-011-690FB5E8DE8BD869",
+      "emails": [],
+      "nombre": "Manas Home",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Millington Drake 1993",
+      "legacy_id": "MSP24-011",
+      "localidad": "Montevideo",
+      "msp_fecha": null,
+      "otros_ids": [
+        "ELP-0515"
+      ],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-10T21:42:29.880335+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "Coincidencia estimada a nivel de puerta",
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "MSPR-006-2018",
+        "public.residenciales:MSP24-011"
+      ],
+      "precision_ubicacion": "puerta",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 605,
+      "lat": -34.9055324,
+      "lng": -56.1892409,
+      "codigo": "FAC-LEGACY-MSP24-038-EF27E2634E365AAF",
+      "emails": [
+        "ryaltoscentro@gmail.com"
+      ],
+      "nombre": "Altos Del Centro",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Yí 1363",
+      "legacy_id": "MSP24-038",
+      "localidad": "Montevideo",
+      "msp_fecha": "2026-06-30",
+      "otros_ids": [
+        "ELP-0295"
+      ],
+      "situacion": "habilitacion_msp",
+      "telefonos": [
+        "29046771"
+      ],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-15T01:42:28.065095+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30",
+        "2026-06-30",
+        null,
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_habilitado": true,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "Coincidencia estimada a nivel de puerta",
+      "fuentes_proveedores": [
+        "MSP",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MSPF-033",
+        "MSPR-049-2018",
+        "public.residenciales:MSP24-038"
+      ],
+      "precision_ubicacion": "puerta",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 608,
+      "lat": -34.8619278,
+      "lng": -56.1998736,
+      "codigo": "FAC-LEGACY-MSP24-041-25544A83B648E4BA",
+      "emails": [
+        "acevo@gmail.com"
+      ],
+      "nombre": "Santa Bernardita",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "19 De Abril 1140",
+      "legacy_id": "MSP24-041",
+      "localidad": "Montevideo",
+      "msp_fecha": "2026-06-30",
+      "otros_ids": [
+        "ELP-0681"
+      ],
+      "situacion": "habilitacion_msp",
+      "telefonos": [
+        "23367885"
+      ],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-15T01:42:28.065095+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30",
+        "2026-06-30",
+        null,
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_habilitado": true,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "Coincidencia estimada a nivel de puerta",
+      "fuentes_proveedores": [
+        "MSP",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MSPF-034",
+        "MSPR-082-2018",
+        "public.residenciales:MSP24-041"
+      ],
+      "precision_ubicacion": "puerta",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 610,
+      "lat": -34.8777443,
+      "lng": -56.0668672,
+      "codigo": "FAC-LEGACY-MSP24-043-F296BAA525093376",
+      "emails": [
+        "aguasdereposo2019@gmail.com"
+      ],
+      "nombre": "Aguas De Reposo",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Avenida Italia 6527",
+      "legacy_id": "MSP24-043",
+      "localidad": "Montevideo",
+      "msp_fecha": "2026-06-30",
+      "otros_ids": [
+        "ELP-0280"
+      ],
+      "situacion": "habilitacion_msp",
+      "telefonos": [
+        "26040203",
+        "26040203 – 099732263"
+      ],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-15T01:42:28.065095+00:00",
+      "descripcion": null,
+      "mides_fecha": "2026-06-30",
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/sistema-cuidados/comunicacion/comunicados/programa-apoyo-cuidado-permanente-pacp",
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30",
+        "2026-06-30",
+        "2024-07-15",
+        "2026-06-30",
+        null,
+        null,
+        "2023-08-11",
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_habilitado": true,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "operadores_tipos": [
+        "license_holder"
+      ],
+      "otras_redes_urls": [],
+      "mides_certificado": true,
+      "precio_fuente_url": null,
+      "operadores_nombres": [
+        "MICA RESIDENCIALES LTDA."
+      ],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "Coincidencia estimada a nivel de puerta",
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Registro de Proveedores del PACP",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-107",
+        "MSPF-037",
+        "MSPR-059-2018",
+        "MSPR-130-2019",
+        "PACP-001",
+        "public.residenciales:MSP24-043"
+      ],
+      "precision_ubicacion": "puerta",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 611,
+      "lat": -34.8917132,
+      "lng": -56.1127413,
+      "codigo": "FAC-LEGACY-MSP24-044-83322A666C272E22",
+      "emails": [],
+      "nombre": "Red Bienestar",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Avda Rivera 4589",
+      "legacy_id": "MSP24-044",
+      "localidad": "Montevideo",
+      "msp_fecha": "2026-06-30",
+      "otros_ids": [],
+      "situacion": "habilitacion_msp",
+      "telefonos": [],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-15T01:42:28.065095+00:00",
+      "descripcion": null,
+      "mides_fecha": "2026-01-31",
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30",
+        "2026-01-31",
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_habilitado": true,
+      "otros_ids_urls": [],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": true,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "Coincidencia estimada a nivel de puerta",
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-044"
+      ],
+      "precision_ubicacion": "puerta",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 639,
+      "lat": -34.8981293,
+      "lng": -56.1783299,
+      "codigo": "FAC-LEGACY-MSP24-072-811E25FC964E9DA9",
+      "emails": [
+        "info@losalpes.com.uy"
+      ],
+      "nombre": "Los Alpes",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Fernández Crespo 1776",
+      "legacy_id": "MSP24-072",
+      "localidad": "Montevideo",
+      "msp_fecha": "2026-06-30",
+      "otros_ids": [
+        "ELP-0507"
+      ],
+      "situacion": "habilitacion_msp",
+      "telefonos": [
+        "24000596"
+      ],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-15T01:42:28.065095+00:00",
+      "descripcion": null,
+      "mides_fecha": "2026-06-30",
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30",
+        "2026-06-30",
+        "2024-07-15",
+        "2026-06-30",
+        null,
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_habilitado": true,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": true,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "Coincidencia estimada a nivel de puerta",
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-115",
+        "MSPF-059",
+        "MSPR-056-2020",
+        "public.residenciales:MSP24-072"
+      ],
+      "precision_ubicacion": "puerta",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 678,
+      "lat": -34.9067951,
+      "lng": -56.1417313,
+      "codigo": "FAC-LEGACY-MSP24-111-D0D05002AAEC40A3",
+      "emails": [],
+      "nombre": "La Maison Senior Apartaments",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "26 de Marzo N° 3322",
+      "legacy_id": "MSP24-111",
+      "localidad": "Montevideo",
+      "msp_fecha": "2026-06-30",
+      "otros_ids": [],
+      "situacion": "habilitacion_msp",
+      "telefonos": [],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-15T01:42:28.065095+00:00",
+      "descripcion": null,
+      "mides_fecha": "2026-01-31",
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30",
+        "2026-01-31",
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_habilitado": true,
+      "otros_ids_urls": [],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": true,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "Coincidencia estimada a nivel de puerta",
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-111"
+      ],
+      "precision_ubicacion": "puerta",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-10T21:42:29.880335+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 1035,
+      "lat": -34.88484143342,
+      "lng": -56.1781575235267,
+      "codigo": "FAC-CANDIDATE-141",
+      "emails": [],
+      "nombre": "residencial pontevedra",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "blandengues 1915",
+      "legacy_id": null,
+      "localidad": "montevideo",
+      "msp_fecha": null,
+      "otros_ids": [],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "created_at": "2026-08-04T18:10:55.092746+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-10T21:42:29.880335+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://direcciones.ide.uy/api/v0/geocode/BusquedaDireccion?calle=Blandengues+1915&departamento=Montevideo&localidad=Montevideo",
+        "https://aderama.org.uy/socios-2026/",
+        "https://www.redresidenciales.uy/residencial-hotel/montevideo/reducto/residencial-pontevedra/",
+        "https://moovitapp.com/index/es-419/transporte_p%C3%BAblico-Residencial_Pontevedra_cuidado_al_Adulto_Mayor_3era_Edad_casa_de_Salud-Montevideo-site_178363867-1672"
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "other",
+        "public_directory",
+        "public_directory",
+        "public_directory"
+      ],
+      "fuentes_fechas": [
+        "2026-08-04",
+        null,
+        "2026-08-04",
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "Coordenada heredada; pendiente de revision individual",
+      "fuentes_proveedores": [
+        "Fuente privada existente: other",
+        "Fuente privada existente: public_directory",
+        "Fuente privada existente: public_directory",
+        "Fuente privada existente: public_directory"
+      ],
+      "fuentes_referencias": [
+        "ide-uy:1103aa3e9ad2cc2683b29566",
+        "montevideo:residencial-pontevedra:blandengues-1915:1:41702283e3e1",
+        "montevideo:residencial-pontevedra:blandengues-1915:2:f4839149949d",
+        "montevideo:residencial-pontevedra:blandengues-1915:3:47ae801c9b9c"
+      ],
+      "precision_ubicacion": "referencial",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [],
+      "fuentes_consultadas_at": [
+        "2026-08-04T18:16:54.037+00:00",
+        "2026-08-04T00:00:00+00:00",
+        "2026-08-04T00:00:00+00:00",
+        "2026-08-04T00:00:00+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion"
+      ]
+    },
+    {
+      "id": 1084,
+      "lat": -34.9167539229802,
+      "lng": -56.1617914502657,
+      "codigo": "FAC-CANDIDATE-171",
+      "emails": [],
+      "nombre": "alamos montevideo",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "ibiray 2398",
+      "legacy_id": null,
+      "localidad": "montevideo",
+      "msp_fecha": null,
+      "otros_ids": [],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "created_at": "2026-08-04T18:10:55.092746+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-10T22:38:42.345287+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://direcciones.ide.uy/api/v0/geocode/BusquedaDireccion?calle=ibiray+2398&departamento=montevideo&localidad=montevideo",
+        "https://aderama.org.uy/socios-2026/"
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "other",
+        "public_directory"
+      ],
+      "fuentes_fechas": [
+        "2026-08-06",
+        null
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "Coordenada heredada; pendiente de revision individual",
+      "fuentes_proveedores": [
+        "other",
+        "Fuente privada existente: public_directory"
+      ],
+      "fuentes_referencias": [
+        "ide-uy:e6698cb45f831d05873e3556",
+        "montevideo:alamos-montevideo:ibiray-2398:1:41702283e3e1"
+      ],
+      "precision_ubicacion": "referencial",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [],
+      "fuentes_consultadas_at": [
+        "2026-08-06T02:16:00+00:00",
+        "2026-08-04T00:00:00+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion"
+      ]
+    }
+  ],
+  "schema_fingerprint": "5aea652fbb3098df5ac2a7609bf202f8",
+  "new_keys_absent_before": [
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-00AE588DB0",
+      "legacy_id": "WEB-00AE588DB0",
+      "candidate_id": "WEB-00AE588DB0"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-1327E582DF",
+      "legacy_id": "WEB-1327E582DF",
+      "candidate_id": "WEB-1327E582DF"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-14ADFF357C",
+      "legacy_id": "WEB-14ADFF357C",
+      "candidate_id": "WEB-14ADFF357C"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-280005A351",
+      "legacy_id": "WEB-280005A351",
+      "candidate_id": "WEB-280005A351"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-285B84CD01",
+      "legacy_id": "WEB-285B84CD01",
+      "candidate_id": "WEB-285B84CD01"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-324D0DCA05",
+      "legacy_id": "WEB-324D0DCA05",
+      "candidate_id": "WEB-324D0DCA05"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-588E92AABA",
+      "legacy_id": "WEB-588E92AABA",
+      "candidate_id": "WEB-588E92AABA"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-6C184E58FB",
+      "legacy_id": "WEB-6C184E58FB",
+      "candidate_id": "WEB-6C184E58FB"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-6CCA000AFF",
+      "legacy_id": "WEB-6CCA000AFF",
+      "candidate_id": "WEB-6CCA000AFF"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-89E8F0B809",
+      "legacy_id": "WEB-89E8F0B809",
+      "candidate_id": "WEB-89E8F0B809"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-8BED0E6C1B",
+      "legacy_id": "WEB-8BED0E6C1B",
+      "candidate_id": "WEB-8BED0E6C1B"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-AC237D6F94",
+      "legacy_id": "WEB-AC237D6F94",
+      "candidate_id": "WEB-AC237D6F94"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-B343C7CB80",
+      "legacy_id": "WEB-B343C7CB80",
+      "candidate_id": "WEB-B343C7CB80"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-C37BF3D7E6",
+      "legacy_id": "WEB-C37BF3D7E6",
+      "candidate_id": "WEB-C37BF3D7E6"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-C5873075B7",
+      "legacy_id": "WEB-C5873075B7",
+      "candidate_id": "WEB-C5873075B7"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-D1F1A2877A",
+      "legacy_id": "WEB-D1F1A2877A",
+      "candidate_id": "WEB-D1F1A2877A"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-DA9201D1A8",
+      "legacy_id": "WEB-DA9201D1A8",
+      "candidate_id": "WEB-DA9201D1A8"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-E406F39AA5",
+      "legacy_id": "WEB-E406F39AA5",
+      "candidate_id": "WEB-E406F39AA5"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-E4CF604A63",
+      "legacy_id": "WEB-E4CF604A63",
+      "candidate_id": "WEB-E4CF604A63"
+    },
+    {
+      "action": "insert_geolocated",
+      "codigo": "FAC-WEB-F90C6D1CBA",
+      "legacy_id": "WEB-F90C6D1CBA",
+      "candidate_id": "WEB-F90C6D1CBA"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-04BAA81D89",
+      "legacy_id": "WEB-04BAA81D89",
+      "candidate_id": "WEB-04BAA81D89"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-138B7F5E2C",
+      "legacy_id": "WEB-138B7F5E2C",
+      "candidate_id": "WEB-138B7F5E2C"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-26EB87E2DD",
+      "legacy_id": "WEB-26EB87E2DD",
+      "candidate_id": "WEB-26EB87E2DD"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-4FF89C9223",
+      "legacy_id": "WEB-4FF89C9223",
+      "candidate_id": "WEB-4FF89C9223"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-52075E418C",
+      "legacy_id": "WEB-52075E418C",
+      "candidate_id": "WEB-52075E418C"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-6F997C0C8F",
+      "legacy_id": "WEB-6F997C0C8F",
+      "candidate_id": "WEB-6F997C0C8F"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-71EDB2071B",
+      "legacy_id": "WEB-71EDB2071B",
+      "candidate_id": "WEB-71EDB2071B"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-94620C345A",
+      "legacy_id": "WEB-94620C345A",
+      "candidate_id": "WEB-94620C345A"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-A303D7574F",
+      "legacy_id": "WEB-A303D7574F",
+      "candidate_id": "WEB-A303D7574F"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-A9759E666B",
+      "legacy_id": "WEB-A9759E666B",
+      "candidate_id": "WEB-A9759E666B"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-B2CAA47A0A",
+      "legacy_id": "WEB-B2CAA47A0A",
+      "candidate_id": "WEB-B2CAA47A0A"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-CAD740E554",
+      "legacy_id": "WEB-CAD740E554",
+      "candidate_id": "WEB-CAD740E554"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-D719237F2B",
+      "legacy_id": "WEB-D719237F2B",
+      "candidate_id": "WEB-D719237F2B"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-D8BA8ED85B",
+      "legacy_id": "WEB-D8BA8ED85B",
+      "candidate_id": "WEB-D8BA8ED85B"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-E6DA09D530",
+      "legacy_id": "WEB-E6DA09D530",
+      "candidate_id": "WEB-E6DA09D530"
+    },
+    {
+      "action": "insert_unlocated",
+      "codigo": "FAC-WEB-FB70955484",
+      "legacy_id": "WEB-FB70955484",
+      "candidate_id": "WEB-FB70955484"
+    }
+  ]
+}

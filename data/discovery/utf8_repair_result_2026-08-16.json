@@ -1,0 +1,39 @@
+{
+  "artifact_version": 1,
+  "project_id": "itolluaivfoxnaohbsdk",
+  "applied_at": "2026-08-16T20:26:44.044425+00:00",
+  "backup": {
+    "path": "data/discovery/backups/utf8_repair_2026-08-16_before.json",
+    "sha256": "A0A4C1B20D15E50CFD6299940CCAAAB45E5366F036AEACC5C3AEB4D4FDB0A007"
+  },
+  "repair": {
+    "relation": "public.elepem",
+    "affected_rows": 20,
+    "corrected_source_provider_entries": 39,
+    "corrected_price_include_entries": 4,
+    "corrected_contact_url_entries": 1,
+    "remaining_bad_package_source_entries": 0,
+    "remaining_bad_price_include_entries": 0,
+    "remaining_mojibake_fields_in_public_elepem": 0,
+    "source_matrix_alignment_issues": 0,
+    "canonical_prices_before": 4,
+    "canonical_prices_after": 4,
+    "elepem_before": 1019,
+    "elepem_after": 1019,
+    "schema_changes": 0
+  },
+  "price_follow_up": {
+    "requested_visible_prices": 17,
+    "canonical_writes": 0,
+    "reason": "precio_fecha representa la fecha atribuible a la fuente; sustituirla por la fecha de carga convertiría 11 valores históricos y 6 valores sin fecha en precios aparentemente actuales"
+  },
+  "candidate_follow_up": {
+    "package_candidates": 56,
+    "with_lat_lng": 34,
+    "without_lat_lng": 22,
+    "with_probable_or_possible_existing_match": 14,
+    "georeferenced_but_unmatched": 20,
+    "public_inserts": 0,
+    "reason": "las coordenadas del paquete no incluyen revisión de precisión suficiente y 14 casos georreferenciados ya presentan riesgo de duplicar filas existentes; el plan exige deduplicación y revisión humana antes de publicar"
+  }
+}

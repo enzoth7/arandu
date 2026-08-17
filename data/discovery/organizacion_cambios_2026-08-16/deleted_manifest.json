@@ -1,0 +1,208 @@
+{
+    "version":  1,
+    "generated_at":  "2026-08-16T22:06:32.0194742Z",
+    "deletion_policy":  "Solo descarte explícito autorizado por el usuario.",
+    "irreversible":  true,
+    "entries":  [
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/03_lote_nuevo_11_residenciales/casa-andreoni/01_principal.webp",
+                        "sha256":  "b066e7533b3375bd00654734862e76d794614e90c6a63534cae4d5014589fab8",
+                        "size_bytes":  88394,
+                        "record_key":  "IMG-0144",
+                        "reason":  "La imagen incluye una pantalla de televisión con contenido de noticias; no se puede garantizar que no muestre personas.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/03_lote_nuevo_11_residenciales/casa-andreoni/02_complementaria.webp",
+                        "sha256":  "0fe75ae6e8c74d26d0fc4a6fce704b1dc468aecd366544ac8459056b7fa67157",
+                        "size_bytes":  30206,
+                        "record_key":  "IMG-0145",
+                        "reason":  "Es una ilustración o cartel de Casa del Sol, no una fotografía clara de un espacio físico.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/03_lote_nuevo_11_residenciales/casa-andreoni/03_complementaria.webp",
+                        "sha256":  "94fd21ad4fbdef488bc25e947f53e6215e1756454904689461427669aef85fec",
+                        "size_bytes":  26794,
+                        "record_key":  "IMG-0146",
+                        "reason":  "Muestra esencialmente el mismo ambiente de estar que la imagen conservada, desde otro ángulo.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/03_lote_nuevo_11_residenciales/casa-andreoni/04_complementaria.webp",
+                        "sha256":  "16c22c1ce1937da42911d1f970c951f89ff4297eb595396a833e5c4ff6ff2a63",
+                        "size_bytes":  25814,
+                        "record_key":  "IMG-0147",
+                        "reason":  "No se pudo confirmar que sea una fotografía clara y aislada de un espacio físico; parece una pieza promocional.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/03_lote_nuevo_11_residenciales/casa-andreoni/05_complementaria.webp",
+                        "sha256":  "936c3bb430086cfb71cbd8294dd6fbbeb5c46c563fbfc62c3321e1fbcf83bfc2",
+                        "size_bytes":  40872,
+                        "record_key":  "IMG-0148",
+                        "reason":  "La imagen se centra en un cartel con información comercial o precios, no en un espacio físico.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/03_lote_nuevo_11_residenciales/casa-andreoni/06_complementaria.webp",
+                        "sha256":  "953686f62b1634e23331dbc99deff3cf8196b572d8f5bdc297eb77b2bad12fda",
+                        "size_bytes":  41300,
+                        "record_key":  "IMG-0149",
+                        "reason":  "La descripción visual sugiere que podría aparecer una persona; se retira ante la duda.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/03_lote_nuevo_11_residenciales/casa-andreoni/07_complementaria.webp",
+                        "sha256":  "2bdad386a2eb13d27fbd70da4f266b8a0efd9b25d7f53fcc3e648b06ec88d3dd",
+                        "size_bytes":  22192,
+                        "record_key":  "IMG-0150",
+                        "reason":  "La imagen no pudo ser revisada porque el servidor devolvió una pantalla de verificación.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/03_lote_nuevo_11_residenciales/basilea-suites/01_principal.webp",
+                        "sha256":  "d683d070f6cc9f01e64de4af7fab5a45da4913fe516ab5bd3d804308c6261383",
+                        "size_bytes":  362160,
+                        "record_key":  "IMG-0151",
+                        "reason":  "Es una segunda imagen de dormitorio y contiene pósteres u objetos en pared; se conserva la alternativa más limpia.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/03_lote_nuevo_11_residenciales/basilea-suites/02_complementaria.webp",
+                        "sha256":  "0261624ec996fd7407735eeace4014b47d54e502604895dcc31228653034dd94",
+                        "size_bytes":  56314,
+                        "record_key":  "IMG-0152",
+                        "reason":  "La fachada parece un edificio religioso y no permite confirmar con suficiente seguridad que corresponda al residencial.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/03_lote_nuevo_11_residenciales/basilea-suites/03_complementaria.webp",
+                        "sha256":  "bb4dbe3f77dc96ed24b366ebeaef781717248a629cdc895b8333f6067da0835d",
+                        "size_bytes":  74338,
+                        "record_key":  "IMG-0153",
+                        "reason":  "La descripción visual no permite confirmar con suficiente seguridad que sea únicamente un espacio físico vacío.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/03_lote_nuevo_11_residenciales/basilea-suites/04_complementaria.webp",
+                        "sha256":  "7b6b988ef238f3f544e360b347314c205a0e987ca8a649d22d951902775d71ff",
+                        "size_bytes":  104310,
+                        "record_key":  "IMG-0154",
+                        "reason":  "La imagen muestra a una mujer y no cumple el criterio de mostrar exclusivamente espacios físicos.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/03_lote_nuevo_11_residenciales/basilea-suites/05_complementaria.webp",
+                        "sha256":  "eba41ee7865e999711c27c091cce5302525a08fe15ba264ae805af83d465041f",
+                        "size_bytes":  50850,
+                        "record_key":  "IMG-0155",
+                        "reason":  "Es otra vista genérica de sala, muy similar a la imagen interior conservada de la misma ficha.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/04_historicas_reemplazadas_prototipo/belleville/01_principal.webp",
+                        "sha256":  "2a78aa0b42cd8045f04bd5d13d5dc6370173e4b29895932ed6a5c3b4eeedc114",
+                        "size_bytes":  220736,
+                        "record_key":  "IMG-0156",
+                        "reason":  "Imagen seleccionada en una versión previa y luego reemplazada o retirada de la selección final.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/04_historicas_reemplazadas_prototipo/la-capilla/01_principal.webp",
+                        "sha256":  "a207b24b58651dec97d4af0230b4a48d41769686f8c7ea28ec6b006b58412dd4",
+                        "size_bytes":  180698,
+                        "record_key":  "IMG-0157",
+                        "reason":  "Imagen seleccionada en una versión previa y luego reemplazada o retirada de la selección final.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/04_historicas_reemplazadas_prototipo/las-hortensias/01_principal.webp",
+                        "sha256":  "bf53a8178504792762acc6db385763962339e97a167734cc1c22128e8d8ba220",
+                        "size_bytes":  43440,
+                        "record_key":  "IMG-0158",
+                        "reason":  "Imagen seleccionada en una versión previa y luego reemplazada o retirada de la selección final.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "zip_image_entry",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip::imagenes/04_historicas_reemplazadas_prototipo/mis-nietos/01_principal.webp",
+                        "sha256":  "de78fe7977c02bea0ffb921e65487c6129b2b099ea5fa9da5b29e83fcbe6a51a",
+                        "size_bytes":  195350,
+                        "record_key":  "IMG-0159",
+                        "reason":  "Imagen seleccionada en una versión previa y luego reemplazada o retirada de la selección final.",
+                        "disposition":  "deleted_from_operational_package",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "sql_file",
+                        "source_path":  "Cambios/Precios residenciales/arandu_precios_final_staging.sql",
+                        "sha256":  "e83ce82252a02b082aac626192bcb76cb60542561e34c4d77d57d61a7f77d4ce",
+                        "size_bytes":  126763,
+                        "record_key":  "arandu_precios_final_staging.sql",
+                        "reason":  "Crea el esquema staging_arandu; incompatible con la prohibición de crear tablas o esquemas sin autorización.",
+                        "disposition":  "deleted",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "candidate_record",
+                        "source_path":  "Cambios/Residenciales/arandu_candidatos_nuevos_staging_85.json",
+                        "sha256":  "7bcaf249174b3f84ac05e67e2ce479b7a55bf2834efb1e72f9c38914be00c1f3",
+                        "size_bytes":  0,
+                        "record_key":  "colonia:playa-britopolis:monrepos",
+                        "reason":  "operational_status=closed_definitive; excluido de todos los derivados operativos.",
+                        "disposition":  "excluded_from_operational_derivatives",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "manifest_file",
+                        "source_path":  "Cambios/Imagenes/NO_SUBIR_imagenes_historicas_16.json",
+                        "sha256":  "3902fdf30d4c42fa94df06c110b9292b36799cf086c9be4ccf46b73796a8fe2c",
+                        "size_bytes":  41896,
+                        "record_key":  "NO_SUBIR_imagenes_historicas_16.json",
+                        "reason":  "Manifiesto consumido en deleted_manifest.json; se elimina junto con el contenedor mixto reemplazado.",
+                        "disposition":  "deleted_after_manifest",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    },
+                    {
+                        "kind":  "mixed_container_file",
+                        "source_path":  "Cambios/Imagenes/mascerca_imagenes_completas_159.zip",
+                        "sha256":  "78799e43e64493acf8dedbab48d5d7fcde6564772355e5c34c99c36f447fc412",
+                        "size_bytes":  17742350,
+                        "record_key":  "mascerca_imagenes_completas_159.zip",
+                        "reason":  "Contenedor mixto reemplazado por un ZIP limpio con las 143 imágenes conservables.",
+                        "disposition":  "deleted_after_verified_repack",
+                        "deleted_at":  "2026-08-16T22:06:32.0194742Z"
+                    }
+                ]
+}

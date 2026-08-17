@@ -1,0 +1,35 @@
+{
+    "version":  1,
+    "completed_at":  "2026-08-16T22:06:32.0868465Z",
+    "original_files_reconciled":  19,
+    "supabase_writes":  0,
+    "base_de_datos_unchanged":  true,
+    "base_de_datos_fingerprint":  {
+                                      "file_count":  458,
+                                      "total_bytes":  102524287,
+                                      "metadata_sha256":  "3b546cf99b3277aec125d613a65349cce281e4a61c1bd357aee91ecdebd606b0"
+                                  },
+    "enriched_merge_candidates":  59,
+    "prices_archived":  21,
+    "unmatched_price_leads_preserved":  5,
+    "clean_images":  143,
+    "rejected_images_deleted":  16,
+    "retained_images_with_duplicate_hash":  1,
+    "pending_candidates":  84,
+    "closed_candidates_excluded":  1,
+    "normalized_corrections":  143,
+    "explicit_sql_files_deleted":  1,
+    "clean_images_zip_sha256":  "d8d5a4c641f5e3f322e43ffe9677a987b0eff6e30ba10ad0075986aaecdafefd",
+    "post_verification":  {
+                              "supabase_checked_at":  "2026-08-16T22:10:52.374619Z",
+                              "supabase_counts_unchanged":  true,
+                              "supabase_schema_fingerprint_unchanged":  true,
+                              "csv_files_validated_with_artifact_tool":  4,
+                              "moved_file_hash_mismatches":  0,
+                              "rejected_images_present_in_clean_zip":  0,
+                              "secret_scan_clean":  true,
+                              "mojibake_scan_clean":  true,
+                              "lint_passed":  true,
+                              "build_passed":  true
+                          }
+}

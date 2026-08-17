@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "project_id": "itolluaivfoxnaohbsdk",
+  "applied_at": "2026-08-16T07:35:01.067674+00:00",
+  "verified_at": "2026-08-16T07:35:47.044070+00:00",
+  "schema_fingerprint_before": "cf4f85eeb7701063ba86cfe3ef3be198",
+  "schema_fingerprint_after": "cf4f85eeb7701063ba86cfe3ef3be198",
+  "source": {
+    "path": "Cambios/ScrapingCecilia/arandu_precios_evidencia_final.csv",
+    "sha256": "4B8C7B7EC212D7F895C7B40EDFE385E57D7A10F747E399330810B16D225B34CB",
+    "research_cutoff": "2026-08-14"
+  },
+  "semantics": {
+    "received_on": "2026-08-16",
+    "source_date": null,
+    "source_date_status": "not_visible",
+    "public_price_eligible": false,
+    "canonical_write": false
+  },
+  "counts": {
+    "reports_inserted": 6,
+    "reports_verified": 6,
+    "events_verified": 6,
+    "canonical_price_writes": 0,
+    "new_publications": 0,
+    "idempotent_pending_inserts": 0,
+    "elepem_after": 1019,
+    "intake_reports_after": 42,
+    "canonical_prices_after": 4,
+    "facility_change_publications_after": 1,
+    "facility_change_publication_photos_after": 3
+  },
+  "private_access": {
+    "rls_enabled": true,
+    "anon_select_privilege": false,
+    "authenticated_select_privilege": false,
+    "select_policy_count": 0
+  },
+  "reports": [
+    {
+      "id": "72817060-3d02-4d03-95ae-4da5e066164e",
+      "case_code": "AM-20260816-07344077",
+      "facility_id": 610,
+      "source_record_id": "BASE-008"
+    },
+    {
+      "id": "a78a2c8a-a198-4778-bd0b-0022390649db",
+      "case_code": "AM-20260816-4E3757CC",
+      "facility_id": 97,
+      "source_record_id": "BASE-010"
+    },
+    {
+      "id": "b20aa48d-d108-4644-98f5-5c8479b8f35c",
+      "case_code": "AM-20260816-6AD89EE4",
+      "facility_id": 608,
+      "source_record_id": "BASE-007"
+    },
+    {
+      "id": "b9dcfa64-b021-415e-a117-3ca800e976da",
+      "case_code": "AM-20260816-937BFB3F",
+      "facility_id": 578,
+      "source_record_id": "BASE-009"
+    },
+    {
+      "id": "e2a66c82-7543-48ae-b47f-fdfed753a08f",
+      "case_code": "AM-20260816-9BF2F095",
+      "facility_id": 1035,
+      "source_record_id": "BASE-011"
+    },
+    {
+      "id": "89708381-1cd8-4895-ae22-b1ebf644de2b",
+      "case_code": "AM-20260816-DC13E90F",
+      "facility_id": 605,
+      "source_record_id": "BASE-006"
+    }
+  ]
+}

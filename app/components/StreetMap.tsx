@@ -93,15 +93,24 @@ function facilityTooltipContent(facility: Facility) {
   copy.className = "mapFacilityTooltipCopy";
   const name = document.createElement("strong");
   name.textContent = facility.name;
-  const institutionalStatus = document.createElement("span");
+  const institutionalStatuses = document.createElement("span");
+  institutionalStatuses.className = "mapFacilityTooltipStatuses";
   const category = facility.isDemo ? "demo" : facilityDisplayCategory(facility);
-  institutionalStatus.className = `mapFacilityTooltipStatus mapFacilityTooltipStatus-${category}`;
-  institutionalStatus.textContent = facility.isDemo
-    ? "Ejemplo"
-    : [
-        facility.mspFinal ? "Habilitación final MSP" : "",
-        facility.midesSocial ? "Certificado social MIDES" : "",
-      ].filter(Boolean).join(" · ") || "Situación no confirmada";
+  const appendInstitutionalStatus = (label: string, tone: string) => {
+    const badge = document.createElement("span");
+    badge.className = `mapFacilityTooltipStatus mapFacilityTooltipStatus-${tone}`;
+    badge.textContent = label;
+    institutionalStatuses.append(badge);
+  };
+  if (facility.isDemo) {
+    appendInstitutionalStatus("Ejemplo", "demo");
+  } else {
+    if (facility.mspFinal) appendInstitutionalStatus("Habilitado MSP", "habilitado");
+    if (facility.midesSocial) appendInstitutionalStatus("Certificado Social MIDES", "mides");
+    if (!facility.mspFinal && !facility.midesSocial) {
+      appendInstitutionalStatus("Situación no confirmada", category);
+    }
+  }
   const rating = document.createElement("span");
   rating.className = facility.qualityRating
     ? `mapFacilityTooltipRating mapFacilityTooltipRating-${facility.qualityRating}`
@@ -111,7 +120,7 @@ function facilityTooltipContent(facility: Facility) {
     : "Sin calificación disponible";
   const address = document.createElement("small");
   address.textContent = facility.address || "Dirección no informada";
-  copy.append(name, institutionalStatus, rating, address);
+  copy.append(name, institutionalStatuses, rating, address);
   card.append(media, copy);
   return card;
 }

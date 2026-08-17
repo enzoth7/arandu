@@ -1,0 +1,3627 @@
+{
+  "operationId": "organized-cambios-publication-2026-08-16",
+  "createdAt": "2026-08-16T23:15:28.124Z",
+  "projectRef": "itolluaivfoxnaohbsdk",
+  "bucket": {
+    "id": "intake-evidence",
+    "name": "intake-evidence",
+    "public": false,
+    "file_size_limit": "10485760",
+    "allowed_mime_types": null,
+    "object_count": 147
+  },
+  "descriptionRows": [
+    {
+      "codigo": "FAC-CANDIDATE-133",
+      "nombre": "Residencial Indigo",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "ide-uy:8c652d44b758fa9dfa842dab",
+        "montevideo:residencial-indigo:av-rivera-3218:1:41702283e3e1",
+        "montevideo:residencial-indigo:av-rivera-3218:2:007659e0482b",
+        "montevideo:residencial-indigo:av-rivera-3218:3:053db13779bd"
+      ],
+      "fuentes_urls": [
+        "https://direcciones.ide.uy/api/v0/geocode/BusquedaDireccion?calle=Av.+Rivera+3218&departamento=Montevideo&localidad=Montevideo",
+        "https://aderama.org.uy/socios-2026/",
+        "https://www.instagram.com/reel/DKLRc6xpCLl/",
+        "https://www.instagram.com/reel/CyuNSAUMQFu/"
+      ],
+      "fuentes_tipos": [
+        "other",
+        "public_directory",
+        "social_public_url",
+        "social_public_url"
+      ],
+      "fuentes_proveedores": [
+        "Fuente privada existente: other",
+        "Fuente privada existente: public_directory",
+        "Fuente privada existente: social_public_url",
+        "Fuente privada existente: social_public_url"
+      ],
+      "fuentes_fechas": [
+        "2026-08-04T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T18:16:49.722Z",
+        "2026-08-04T00:00:00.000Z",
+        "2026-08-04T00:00:00.000Z",
+        "2026-08-04T00:00:00.000Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion",
+        "red_social_publica",
+        "red_social_publica"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-CANDIDATE-135",
+      "nombre": "Residencial Jardin del Sol",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "ide-uy:d00dc7c7306a04a5614dec82",
+        "montevideo:residencial-jardin-del-sol:general-pagola-2042:1:41702283e3e1",
+        "montevideo:residencial-jardin-del-sol:general-pagola-2042:2:e90b01911d80",
+        "montevideo:residencial-jardin-del-sol:general-pagola-2042:3:af0882fab6e9"
+      ],
+      "fuentes_urls": [
+        "https://direcciones.ide.uy/api/v0/geocode/BusquedaDireccion?calle=General+Pagola+2042&departamento=Montevideo&localidad=Montevideo",
+        "https://aderama.org.uy/socios-2026/",
+        "https://inforesidenciales.com.uy/jardin-del-sol/",
+        "https://www.facebook.com/p/Residencial-Jard%C3%ADn-del-Sol-100095207817049/"
+      ],
+      "fuentes_tipos": [
+        "other",
+        "public_directory",
+        "other",
+        "social_public_url"
+      ],
+      "fuentes_proveedores": [
+        "Fuente privada existente: other",
+        "Fuente privada existente: public_directory",
+        "Fuente privada existente: other",
+        "Fuente privada existente: social_public_url"
+      ],
+      "fuentes_fechas": [
+        "2026-08-04T03:00:00.000Z",
+        null,
+        "2023-09-08T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T18:16:50.821Z",
+        "2026-08-04T00:00:00.000Z",
+        "2026-08-04T00:00:00.000Z",
+        "2026-08-04T00:00:00.000Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "red_social_publica"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-CANDIDATE-139",
+      "nombre": "Residencial Manantiales",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "ide-uy:5d090c41d949d915d4aeeb47",
+        "montevideo:residencial-manantiales:cagancha-2314:1:41702283e3e1",
+        "montevideo:residencial-manantiales:cagancha-2314:2:5bf850777f2e",
+        "montevideo:residencial-manantiales:cagancha-2314:3:aa88b920c054"
+      ],
+      "fuentes_urls": [
+        "https://direcciones.ide.uy/api/v0/geocode/BusquedaDireccion?calle=Cagancha+2314&departamento=Montevideo&localidad=Montevideo",
+        "https://aderama.org.uy/socios-2026/",
+        "https://inforesidenciales.com.uy/manantiales/",
+        "https://www.instagram.com/residencialmanantialesuy/"
+      ],
+      "fuentes_tipos": [
+        "other",
+        "public_directory",
+        "other",
+        "social_public_url"
+      ],
+      "fuentes_proveedores": [
+        "Fuente privada existente: other",
+        "Fuente privada existente: public_directory",
+        "Fuente privada existente: other",
+        "Fuente privada existente: social_public_url"
+      ],
+      "fuentes_fechas": [
+        "2026-08-04T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T18:16:53.069Z",
+        "2026-08-04T00:00:00.000Z",
+        "2026-08-04T00:00:00.000Z",
+        "2026-08-04T00:00:00.000Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "red_social_publica"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-CANDIDATE-141",
+      "nombre": "Residencial Pontevedra",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "ide-uy:1103aa3e9ad2cc2683b29566",
+        "montevideo:residencial-pontevedra:blandengues-1915:1:41702283e3e1",
+        "montevideo:residencial-pontevedra:blandengues-1915:2:f4839149949d",
+        "montevideo:residencial-pontevedra:blandengues-1915:3:47ae801c9b9c",
+        "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-011"
+      ],
+      "fuentes_urls": [
+        "https://direcciones.ide.uy/api/v0/geocode/BusquedaDireccion?calle=Blandengues+1915&departamento=Montevideo&localidad=Montevideo",
+        "https://aderama.org.uy/socios-2026/",
+        "https://www.redresidenciales.uy/residencial-hotel/montevideo/reducto/residencial-pontevedra/",
+        "https://moovitapp.com/index/es-419/transporte_p%C3%BAblico-Residencial_Pontevedra_cuidado_al_Adulto_Mayor_3era_Edad_casa_de_Salud-Montevideo-site_178363867-1672",
+        "https://www.redresidenciales.uy/residencial-hotel/montevideo/reducto/residencial-pontevedra/"
+      ],
+      "fuentes_tipos": [
+        "other",
+        "public_directory",
+        "public_directory",
+        "public_directory",
+        "public_directory"
+      ],
+      "fuentes_proveedores": [
+        "Fuente privada existente: other",
+        "Fuente privada existente: public_directory",
+        "Fuente privada existente: public_directory",
+        "Fuente privada existente: public_directory",
+        "Red de Residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-08-04T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T18:16:54.037Z",
+        "2026-08-04T00:00:00.000Z",
+        "2026-08-04T00:00:00.000Z",
+        "2026-08-04T00:00:00.000Z",
+        "2026-08-16T20:43:56.247Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "precio_mensual_uyu,precio_fuente_url"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-CANDIDATE-163",
+      "nombre": "Villa Azul",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "ide-uy:364c3065b00c2666156ebecb",
+        "montevideo:villa-azul:garibaldi-2584:1:41702283e3e1"
+      ],
+      "fuentes_urls": [
+        "https://direcciones.ide.uy/api/v0/geocode/BusquedaDireccion?calle=garibaldi+2584&departamento=montevideo&localidad=montevideo",
+        "https://aderama.org.uy/socios-2026/"
+      ],
+      "fuentes_tipos": [
+        "other",
+        "public_directory"
+      ],
+      "fuentes_proveedores": [
+        "other",
+        "Fuente privada existente: public_directory"
+      ],
+      "fuentes_fechas": [
+        "2026-08-06T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-06T03:05:00.000Z",
+        "2026-08-04T00:00:00.000Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-APP-2DF21A762FE0740B-B9925C90285AB83E",
+      "nombre": "Casa Ravello",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "public.residenciales:APP-2DF21A762FE0740B"
+      ],
+      "fuentes_urls": [
+        ""
+      ],
+      "fuentes_tipos": [
+        "public_directory"
+      ],
+      "fuentes_proveedores": [
+        "Mapas públicos importados desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0007-0F0B0EE287155CBB",
+      "nombre": "Biltmore",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-007",
+        "MSPR-093-2018",
+        "public.residenciales:ELP-0007",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0007:src_001",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0007:src_002",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0007:src_003",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0007:src_004",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0007:src_005"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://inforesidenciales.com.uy/centro-residencial-biltmore/"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "public_directory"
+      ],
+      "fuentes_proveedores": [
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Página departamental de Certificado Social",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "MIDES",
+        "MIDES (vínculo existente en Supabase)",
+        "inforesidenciales"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        null,
+        null,
+        null,
+        "2026-08-10T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-13T23:53:20.499Z",
+        "2026-08-13T23:53:20.879Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,direccion,contactos"
+      ],
+      "updated_at": "2026-08-16T22:45:06.899Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0011-6028818C56BC9219",
+      "nombre": "Centro Vital",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-012",
+        "public.residenciales:ELP-0011",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0011:src_001",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0011:src_002",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0011:src_003",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0011:src_004",
+        "MSPR-028-2022",
+        "public.residenciales:ELP-0012",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0012:src_001"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://inforesidenciales.com.uy/centro-vital/",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "public_directory",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Página departamental de Certificado Social",
+        "MIDES",
+        "MIDES (vínculo existente en Supabase)",
+        "inforesidenciales",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        null,
+        null,
+        "2026-07-29T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-13T23:53:20.499Z",
+        "2026-08-13T23:53:20.879Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,direccion,contactos",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion,estado_administrativo"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0041-000D6554FD4258D3",
+      "nombre": "Jacaranda",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-002-2023",
+        "MSPR-052-2023",
+        "public.residenciales:ELP-0041",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0041:src_001",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0041:src_002"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://inforesidenciales.com.uy/residencial-y-centro-diurno-jacaranda/"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "public_directory"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "inforesidenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        null,
+        "2026-08-04T03:00:00.000Z",
+        null,
+        "2026-07-06T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-13T23:53:20.784Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,direccion,contactos"
+      ],
+      "updated_at": "2026-08-16T22:45:06.899Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0045-E127E8EEBDBB3250",
+      "nombre": "La Carolina",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-027-2022",
+        "public.residenciales:ELP-0045",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0045:src_001",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0045:src_002"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://inforesidenciales.com.uy/la-carolina/"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "public_directory"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "inforesidenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z",
+        null,
+        "2026-07-29T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-13T23:53:20.879Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,direccion,contactos"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0056-F35989C075D724E7",
+      "nombre": "Luz del Sol",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-018",
+        "MSPR-026-2022",
+        "public.residenciales:ELP-0056",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0056:src_001",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0056:src_002",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0056:src_003",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0056:src_004",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0056:src_005"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://inforesidenciales.com.uy/luz-del-sol/"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "public_directory"
+      ],
+      "fuentes_proveedores": [
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Página departamental de Certificado Social",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "MIDES",
+        "MIDES (vínculo existente en Supabase)",
+        "inforesidenciales"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        null,
+        null,
+        null,
+        "2026-08-01T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-13T23:53:20.498Z",
+        "2026-08-13T23:53:20.879Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,direccion,contactos"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0070-386F31ED04B70FF0",
+      "nombre": "Residencia Puentecasa",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-025-2018",
+        "public.residenciales:ELP-0070",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0070:src_001",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0070:src_002",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0070:src_003",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0070:src_004"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://inforesidenciales.com.uy/puentecasa/",
+        "https://1122.com.uy/local/residencial-puente-casa-en-atlantida/LOC798610001",
+        "https://www.residencialvillapuente.com/"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "public_directory",
+        "public_directory",
+        "facility_website"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "inforesidenciales",
+        "guia_1122",
+        "official_website"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z",
+        null,
+        "2026-07-20T03:00:00.000Z",
+        null,
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-13T23:53:20.834Z",
+        "2026-08-13T23:53:21.219Z",
+        "2026-08-13T23:53:21.352Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,direccion,contactos",
+        "nombre,direccion,contactos",
+        "nombre,direccion,contactos"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0090-F7F06503E5098D4A",
+      "nombre": "Solymar",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-097-2022",
+        "MSPR-148-2019",
+        "public.residenciales:ELP-0090",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0090:src_001",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0090:src_002"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://inforesidenciales.com.uy/residencial-solymar/"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "public_directory"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "inforesidenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        null,
+        "2026-08-04T03:00:00.000Z",
+        null,
+        "2026-07-09T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-13T23:53:20.800Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion,estado_administrativo",
+        "nombre,direccion,contactos"
+      ],
+      "updated_at": "2026-08-16T22:45:06.899Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0186-330C8BF29F107603",
+      "nombre": "Las Hortensias",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-048",
+        "MSPR-047-2023",
+        "public.residenciales:ELP-0186"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/florida-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0209-81AF5CF9D42A5749",
+      "nombre": "Artemisa",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-001-2022",
+        "public.residenciales:ELP-0209"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:45:06.899Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0212-9B6A5E20CD141BF7",
+      "nombre": "Casa del Sol",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-005-2018",
+        "MSPR-150-2019",
+        "public.residenciales:ELP-0212"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0235-24E77431FF337D93",
+      "nombre": "Los Olivos",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-072-2023",
+        "public.residenciales:ELP-0235"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0273-AC38A7DF4D54866F",
+      "nombre": "Abras",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-229",
+        "MSPR-034-2022",
+        "public.residenciales:ELP-0273"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-15T01:42:28.065Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0274-58EC6EB5835F0A9C",
+      "nombre": "Abuela Chachi",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-049-2022",
+        "public.residenciales:ELP-0274"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0304-E2871F1B4D5762FB",
+      "nombre": "Residencial Apart Hotel",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-238",
+        "MSPF-152",
+        "MSPR-013-2023",
+        "public.residenciales:ELP-0304"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0323-0AE0F719E394692C",
+      "nombre": "Buenos Tiempos",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-196",
+        "MSPR-086-2022",
+        "MSPR-143-2022",
+        "public.residenciales:ELP-0323"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        null,
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0339-553455CD6DDCA934",
+      "nombre": "Casona Carrasco",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MSPF-162",
+        "MSPR-073-2023",
+        "public.residenciales:ELP-0339"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0423-48663F84E3D7A49E",
+      "nombre": "Historias de Vida",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-193",
+        "MSPF-178",
+        "MSPR-076-2021",
+        "public.residenciales:ELP-0423",
+        "node/13130842101"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://www.openstreetmap.org/node/13130842101"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "openstreetmap"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Fuente privada existente: openstreetmap"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-02T04:58:16.218Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0434-28966724F4B62110",
+      "nombre": "Hogar Esperanza",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-146-2022",
+        "public.residenciales:ELP-0434"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0437-C3267606B15A6749",
+      "nombre": "La Capilla",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MSPF-156",
+        "MSPR-033-2020",
+        "MSPR-069-2023",
+        "public.residenciales:ELP-0437"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0539-765EF7D5E260DF1D",
+      "nombre": "Napoles",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-028-2023",
+        "public.residenciales:ELP-0539"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:45:06.899Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0555-BB4202A284A223D2",
+      "nombre": "Palas Atenea (Pocitos)",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-088",
+        "MSPR-011-2017",
+        "public.residenciales:ELP-0555"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0582-93D22D7B7E424AB9",
+      "nombre": "Residencial Casa Garzón",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MSPF-176",
+        "MSPR-096-2020",
+        "public.residenciales:ELP-0582"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0596-D422B9C035B4D1C5",
+      "nombre": "Residencial El Retorno",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-018-2021",
+        "public.residenciales:ELP-0596"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0625-2C4120F281E273B7",
+      "nombre": "Residencial Nirvana",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-079-2019",
+        "public.residenciales:ELP-0625"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0631-BA3F5F2D66A2079E",
+      "nombre": "Residencial Our Place",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-016-2021",
+        "public.residenciales:ELP-0631"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0652-61C73CB02C567F5F",
+      "nombre": "Sweet Home",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-084",
+        "MSPR-041-2020",
+        "MSPR-045-2021",
+        "public.residenciales:ELP-0652"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        null,
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0667-3C4D19F402F6FE2D",
+      "nombre": "Zuich",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-037-2023",
+        "MSPR-112-2021",
+        "public.residenciales:ELP-0667"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:45:06.899Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0699-2AF5C4249501D7D2",
+      "nombre": "Tilos de Abril",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-240",
+        "MIDES-247",
+        "MSPR-014-2023",
+        "public.residenciales:ELP-0699"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "Página departamental de Certificado Social",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-ELP-0801-A058CF6EC130D243",
+      "nombre": "Residencial Doña Blanca",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-014-2020",
+        "public.residenciales:ELP-0801",
+        "tacuarembo:known:dona-blanca:1:4a40fd3a0ea2",
+        "tacuarembo:known:dona-blanca:2:41702283e3e1"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://documentos.diputados.gub.uy/docs/L49/Original/03519.pdf",
+        "https://aderama.org.uy/socios-2026/"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "other",
+        "public_directory"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "other",
+        "public_directory"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z",
+        "2020-05-22T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T00:00:00.000Z",
+        "2026-08-04T00:00:00.000Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-011-690FB5E8DE8BD869",
+      "nombre": "Manas Home",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-006-2018",
+        "public.residenciales:MSP24-011",
+        "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-009"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://www.redresidenciales.uy/residencial_hotel/carrasco/residencial-manas-casa-asistida/"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "public_directory"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Red de Residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-16T20:43:56.247Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "precio_mensual_uyu,precio_fuente_url"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-024-5E4A932D83C06AB9",
+      "nombre": "Residencial Nahuel",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-060-2019",
+        "public.residenciales:MSP24-024"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-025-2F4C08E530CFFDE6",
+      "nombre": "Residencial Solaz",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSPR-109-2018",
+        "public.residenciales:MSP24-025"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-038-EF27E2634E365AAF",
+      "nombre": "Altos del Centro",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MSPF-033",
+        "MSPR-049-2018",
+        "public.residenciales:MSP24-038",
+        "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-006"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://www.redresidenciales.uy/residencial_hotel/residencial-en-centro/"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "public_directory"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Red de Residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-16T20:43:56.247Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "precio_mensual_uyu,precio_fuente_url"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-041-25544A83B648E4BA",
+      "nombre": "Santa Bernardita",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MSPF-034",
+        "MSPR-082-2018",
+        "public.residenciales:MSP24-041",
+        "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-007"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://www.redresidenciales.uy/residencial_hotel/montevideo/prado/prado/santa-bernardita-0/"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "public_directory"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Red de Residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-16T20:43:56.247Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "precio_mensual_uyu,precio_fuente_url"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-043-F296BAA525093376",
+      "nombre": "Aguas de Reposo",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-107",
+        "MSPF-037",
+        "MSPR-059-2018",
+        "MSPR-130-2019",
+        "PACP-001",
+        "public.residenciales:MSP24-043",
+        "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-008"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/sistema-cuidados/comunicacion/comunicados/programa-apoyo-cuidado-permanente-pacp",
+        "",
+        "https://www.redresidenciales.uy/residencial_hotel/montevideo/carrasco/carrasco/residencial-aguas-de-reposo/"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "public_directory"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Registro de Proveedores del PACP",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Red de Residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        null,
+        "2023-08-11T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-16T20:43:56.247Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "precio_mensual_uyu,precio_fuente_url"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-055-E621D275C1BBB860",
+      "nombre": "Hogar Marsella",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MSPF-184",
+        "MSPR-070-2019",
+        "public.residenciales:MSP24-055"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-060-2F6A9CE7CDDDE4F2",
+      "nombre": "Sueños Compartidos",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MSPF-051",
+        "MSPR-061-2019",
+        "public.residenciales:MSP24-060"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-067-11D2A9934CD5D0EC",
+      "nombre": "Seraan",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MSPF-057",
+        "MSPR-012-2018",
+        "public.residenciales:MSP24-067"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-15T01:42:28.065Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-074-1F6A59DB4CB83E73",
+      "nombre": "Doña Maria",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-096",
+        "MSPF-063",
+        "MSPR-202-2019",
+        "PACP-025",
+        "public.residenciales:MSP24-074"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/sistema-cuidados/comunicacion/comunicados/programa-apoyo-cuidado-permanente-pacp",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Registro de Proveedores del PACP",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2023-08-11T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-081-8371836BFC6FD057",
+      "nombre": "Las Cuatro Estaciones",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-081"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-01-31T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-086-5EDD21227DF5C42D",
+      "nombre": "Mis Nietos",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-067",
+        "MSPF-069",
+        "MSPR-028-2019",
+        "MSPR-060-2018",
+        "PACP-020",
+        "public.residenciales:MSP24-086"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "https://www.gub.uy/sistema-cuidados/comunicacion/comunicados/programa-apoyo-cuidado-permanente-pacp",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Registro de Proveedores del PACP",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        null,
+        "2023-08-11T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-094-C05D562E40AF2EDC",
+      "nombre": "The Green Home",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-094",
+        "MIDES-143",
+        "MSPF-076",
+        "MSPR-115-2018"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-01-31T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-099-85E0EA134D40834A",
+      "nombre": "Polo House",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-126",
+        "MSPF-084",
+        "MSPR-120-2020",
+        "public.residenciales:MSP24-099"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-113-9E135D5A88992368",
+      "nombre": "La Belle Epoque",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-113",
+        "MIDES-156",
+        "MSPF-098",
+        "MSPR-032-2021"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-01-31T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-116-4E3543F7B42116F8",
+      "nombre": "La Rosaleda",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-116",
+        "MIDES-064",
+        "MSPF-103",
+        "MSPR-026-2019"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-01-31T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-128-0077C3F2BA4412D2",
+      "nombre": "Saniguet",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-128",
+        "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-003",
+        "MIDES-185",
+        "MSPF-104",
+        "MSPR-009-2018"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "",
+        "https://app.vitalencecare.com/VitalenceJavaEnvironment/servlet/com.vitalence.buscarcuartos",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "public_directory",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Vitalence",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-01-31T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z",
+        "2025-06-12T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-16T07:06:44.277Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "precio_mensual_uyu,precio_fecha,precio_fuente_url,precio_incluye",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion"
+      ],
+      "updated_at": "2026-08-16T22:31:17.780Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-132-A5E4A5B062506CC2",
+      "nombre": "Mi Jazmin",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-132",
+        "MIDES-187",
+        "MSPF-114",
+        "MSPR-023-2021"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-01-31T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-141-17E9A43582091406",
+      "nombre": "Corazon de Oro",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-148",
+        "MSPF-124",
+        "MSPR-059-2021",
+        "public.residenciales:MSP24-141"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-158-20EB90AA4AC20624",
+      "nombre": "Carrasco Home",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-158",
+        "MIDES-225",
+        "MSPF-140",
+        "MSPR-050-2022"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-01-31T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-163-E9E75F95BD0A8370",
+      "nombre": "La Terraza",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-224",
+        "MSPF-142",
+        "MSPR-045-2022",
+        "public.residenciales:MSP24-163"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSP24-165-FE59DF82200AF31F",
+      "nombre": "Dolce Primavera",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-237",
+        "MSPF-146",
+        "MSPR-124-2022",
+        "public.residenciales:MSP24-165"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/montevideo-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSPREG24-005-A5DDB0ACEAFFF7A0",
+      "nombre": "Centro Residencial Tempus",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "public.residenciales:MSPREG24-005"
+      ],
+      "fuentes_urls": [
+        ""
+      ],
+      "fuentes_tipos": [
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    },
+    {
+      "codigo": "FAC-LEGACY-MSPREG24-025-F762A2AD9BFF55D8",
+      "nombre": "Casa Provenza",
+      "descripcion": null,
+      "fuentes_referencias": [
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-259",
+        "public.residenciales:MSPREG24-025"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/paysandu-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-01-12T03:00:00.000Z",
+        "2026-01-12T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "updated_at": "2026-08-16T22:53:52.174Z"
+    }
+  ],
+  "affectedFacilities": [
+    {
+      "id": "3",
+      "codigo": "FAC-LEGACY-APP-2DF21A762FE0740B-B9925C90285AB83E",
+      "nombre": "Casa Ravello",
+      "departamento": "Paysandú",
+      "localidad": "Paysandú"
+    },
+    {
+      "id": "17",
+      "codigo": "FAC-LEGACY-APP-FF7E9EE3A025744E-CFB30C99582DB984",
+      "nombre": "Santa Lucia Residencial del Adulto Mayor",
+      "departamento": "Paysandú",
+      "localidad": "Paysandú"
+    },
+    {
+      "id": "24",
+      "codigo": "FAC-LEGACY-ELP-0007-0F0B0EE287155CBB",
+      "nombre": "Biltmore",
+      "departamento": "Canelones",
+      "localidad": "Santa Lucía"
+    },
+    {
+      "id": "28",
+      "codigo": "FAC-LEGACY-ELP-0011-6028818C56BC9219",
+      "nombre": "Centro Vital",
+      "departamento": "Canelones",
+      "localidad": "Solymar"
+    },
+    {
+      "id": "52",
+      "codigo": "FAC-LEGACY-ELP-0041-000D6554FD4258D3",
+      "nombre": "Jacaranda",
+      "departamento": "Canelones",
+      "localidad": "Costa"
+    },
+    {
+      "id": "54",
+      "codigo": "FAC-LEGACY-ELP-0045-E127E8EEBDBB3250",
+      "nombre": "La Carolina",
+      "departamento": "Canelones",
+      "localidad": "Canelones Ciudad de La"
+    },
+    {
+      "id": "57",
+      "codigo": "FAC-LEGACY-ELP-0048-2D20813D86F4F23D",
+      "nombre": "La Estancia Hotel Residencial",
+      "departamento": "Canelones",
+      "localidad": "Canelones"
+    },
+    {
+      "id": "64",
+      "codigo": "FAC-LEGACY-ELP-0056-F35989C075D724E7",
+      "nombre": "Luz del Sol",
+      "departamento": "Canelones",
+      "localidad": "Lagomar"
+    },
+    {
+      "id": "76",
+      "codigo": "FAC-LEGACY-ELP-0070-386F31ED04B70FF0",
+      "nombre": "Residencia Puentecasa",
+      "departamento": "Canelones",
+      "localidad": "Atlántida"
+    },
+    {
+      "id": "95",
+      "codigo": "FAC-LEGACY-ELP-0090-F7F06503E5098D4A",
+      "nombre": "Solymar",
+      "departamento": "Canelones",
+      "localidad": "Solymar Sur"
+    },
+    {
+      "id": "97",
+      "codigo": "FAC-LEGACY-ELP-0092-659F60900D60E0E8",
+      "nombre": "Senescentis II",
+      "departamento": "Canelones",
+      "localidad": "El Pinar"
+    },
+    {
+      "id": "186",
+      "codigo": "FAC-LEGACY-ELP-0209-81AF5CF9D42A5749",
+      "nombre": "Artemisa",
+      "departamento": "Maldonado",
+      "localidad": "Punta del Este"
+    },
+    {
+      "id": "189",
+      "codigo": "FAC-LEGACY-ELP-0212-9B6A5E20CD141BF7",
+      "nombre": "Casa del Sol",
+      "departamento": "Maldonado",
+      "localidad": "Punta del Este"
+    },
+    {
+      "id": "204",
+      "codigo": "FAC-LEGACY-ELP-0235-24E77431FF337D93",
+      "nombre": "Los Olivos",
+      "departamento": "Maldonado",
+      "localidad": "Punta del Este"
+    },
+    {
+      "id": "210",
+      "codigo": "FAC-LEGACY-ELP-0242-15E425BFB56D3260",
+      "nombre": "Residencial Adonis",
+      "departamento": "Maldonado",
+      "localidad": "Maldonado"
+    },
+    {
+      "id": "239",
+      "codigo": "FAC-LEGACY-ELP-0273-AC38A7DF4D54866F",
+      "nombre": "Abras",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "240",
+      "codigo": "FAC-LEGACY-ELP-0274-58EC6EB5835F0A9C",
+      "nombre": "Abuela Chachi",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "259",
+      "codigo": "FAC-LEGACY-ELP-0304-E2871F1B4D5762FB",
+      "nombre": "Residencial Apart Hotel",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "269",
+      "codigo": "FAC-LEGACY-ELP-0323-0AE0F719E394692C",
+      "nombre": "Buenos Tiempos",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "277",
+      "codigo": "FAC-LEGACY-ELP-0339-553455CD6DDCA934",
+      "nombre": "Casona Carrasco",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "320",
+      "codigo": "FAC-LEGACY-ELP-0423-48663F84E3D7A49E",
+      "nombre": "Historias de Vida",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "327",
+      "codigo": "FAC-LEGACY-ELP-0434-28966724F4B62110",
+      "nombre": "Hogar Esperanza",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "328",
+      "codigo": "FAC-LEGACY-ELP-0437-C3267606B15A6749",
+      "nombre": "La Capilla",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "375",
+      "codigo": "FAC-LEGACY-ELP-0539-765EF7D5E260DF1D",
+      "nombre": "Napoles",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "387",
+      "codigo": "FAC-LEGACY-ELP-0555-BB4202A284A223D2",
+      "nombre": "Palas Atenea (Pocitos)",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "406",
+      "codigo": "FAC-LEGACY-ELP-0582-93D22D7B7E424AB9",
+      "nombre": "Residencial Casa Garzón",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "418",
+      "codigo": "FAC-LEGACY-ELP-0596-D422B9C035B4D1C5",
+      "nombre": "Residencial El Retorno",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "442",
+      "codigo": "FAC-LEGACY-ELP-0625-2C4120F281E273B7",
+      "nombre": "Residencial Nirvana",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "448",
+      "codigo": "FAC-LEGACY-ELP-0631-BA3F5F2D66A2079E",
+      "nombre": "Residencial Our Place",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "461",
+      "codigo": "FAC-LEGACY-ELP-0652-61C73CB02C567F5F",
+      "nombre": "Sweet Home",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "470",
+      "codigo": "FAC-LEGACY-ELP-0667-3C4D19F402F6FE2D",
+      "nombre": "Zuich",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "489",
+      "codigo": "FAC-LEGACY-ELP-0699-2AF5C4249501D7D2",
+      "nombre": "Tilos de Abril",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "523",
+      "codigo": "FAC-LEGACY-ELP-0754-05196AF01BB5CE6B",
+      "nombre": "Talabi",
+      "departamento": "Salto",
+      "localidad": "Salto"
+    },
+    {
+      "id": "558",
+      "codigo": "FAC-LEGACY-ELP-0801-A058CF6EC130D243",
+      "nombre": "Residencial Doña Blanca",
+      "departamento": "Tacuarembó",
+      "localidad": "Paso de los Toros"
+    },
+    {
+      "id": "578",
+      "codigo": "FAC-LEGACY-MSP24-011-690FB5E8DE8BD869",
+      "nombre": "Manas Home",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "591",
+      "codigo": "FAC-LEGACY-MSP24-024-5E4A932D83C06AB9",
+      "nombre": "Residencial Nahuel",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "592",
+      "codigo": "FAC-LEGACY-MSP24-025-2F4C08E530CFFDE6",
+      "nombre": "Residencial Solaz",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "605",
+      "codigo": "FAC-LEGACY-MSP24-038-EF27E2634E365AAF",
+      "nombre": "Altos del Centro",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "608",
+      "codigo": "FAC-LEGACY-MSP24-041-25544A83B648E4BA",
+      "nombre": "Santa Bernardita",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "610",
+      "codigo": "FAC-LEGACY-MSP24-043-F296BAA525093376",
+      "nombre": "Aguas de Reposo",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "622",
+      "codigo": "FAC-LEGACY-MSP24-055-E621D275C1BBB860",
+      "nombre": "Hogar Marsella",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "627",
+      "codigo": "FAC-LEGACY-MSP24-060-2F6A9CE7CDDDE4F2",
+      "nombre": "Sueños Compartidos",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "634",
+      "codigo": "FAC-LEGACY-MSP24-067-11D2A9934CD5D0EC",
+      "nombre": "Seraan",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "641",
+      "codigo": "FAC-LEGACY-MSP24-074-1F6A59DB4CB83E73",
+      "nombre": "Doña Maria",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "648",
+      "codigo": "FAC-LEGACY-MSP24-081-8371836BFC6FD057",
+      "nombre": "Las Cuatro Estaciones",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "653",
+      "codigo": "FAC-LEGACY-MSP24-086-5EDD21227DF5C42D",
+      "nombre": "Mis Nietos",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "659",
+      "codigo": "FAC-LEGACY-MSP24-092-5736EEE98A7F1D02",
+      "nombre": "Casa Andreoni",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "661",
+      "codigo": "FAC-LEGACY-MSP24-094-C05D562E40AF2EDC",
+      "nombre": "The Green Home",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "666",
+      "codigo": "FAC-LEGACY-MSP24-099-85E0EA134D40834A",
+      "nombre": "Polo House",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "680",
+      "codigo": "FAC-LEGACY-MSP24-113-9E135D5A88992368",
+      "nombre": "La Belle Epoque",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "683",
+      "codigo": "FAC-LEGACY-MSP24-116-4E3543F7B42116F8",
+      "nombre": "La Rosaleda",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "695",
+      "codigo": "FAC-LEGACY-MSP24-128-0077C3F2BA4412D2",
+      "nombre": "Saniguet",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "699",
+      "codigo": "FAC-LEGACY-MSP24-132-A5E4A5B062506CC2",
+      "nombre": "Mi Jazmin",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "708",
+      "codigo": "FAC-LEGACY-MSP24-141-17E9A43582091406",
+      "nombre": "Corazon de Oro",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "712",
+      "codigo": "FAC-LEGACY-MSP24-145-48D24F7C9B1A2EE7",
+      "nombre": "Basilea Suite",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "725",
+      "codigo": "FAC-LEGACY-MSP24-158-20EB90AA4AC20624",
+      "nombre": "Carrasco Home",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "730",
+      "codigo": "FAC-LEGACY-MSP24-163-E9E75F95BD0A8370",
+      "nombre": "La Terraza",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "732",
+      "codigo": "FAC-LEGACY-MSP24-165-FE59DF82200AF31F",
+      "nombre": "Dolce Primavera",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "734",
+      "codigo": "FAC-LEGACY-MSP24-167-AC35210625FE2694",
+      "nombre": "Seniority Magna",
+      "departamento": "Canelones",
+      "localidad": "Barros Blancos"
+    },
+    {
+      "id": "760",
+      "codigo": "FAC-LEGACY-MSP24-193-F1045A47FC4F30A5",
+      "nombre": "Carpe Diem",
+      "departamento": "Paysandú",
+      "localidad": "Paysandú"
+    },
+    {
+      "id": "765",
+      "codigo": "FAC-LEGACY-MSP24-198-3594CDE104903FA4",
+      "nombre": "Residencial Sol",
+      "departamento": "Salto",
+      "localidad": "Salto"
+    },
+    {
+      "id": "779",
+      "codigo": "FAC-LEGACY-MSPREG24-005-A5DDB0ACEAFFF7A0",
+      "nombre": "Centro Residencial Tempus",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "798",
+      "codigo": "FAC-LEGACY-MSPREG24-025-F762A2AD9BFF55D8",
+      "nombre": "Casa Provenza",
+      "departamento": "Paysandú",
+      "localidad": "Paysandú"
+    },
+    {
+      "id": "1004",
+      "codigo": "FAC-CANDIDATE-163",
+      "nombre": "Villa Azul",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "1028",
+      "codigo": "FAC-CANDIDATE-133",
+      "nombre": "Residencial Indigo",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "1030",
+      "codigo": "FAC-CANDIDATE-135",
+      "nombre": "Residencial Jardin del Sol",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "1034",
+      "codigo": "FAC-CANDIDATE-139",
+      "nombre": "Residencial Manantiales",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    },
+    {
+      "id": "1035",
+      "codigo": "FAC-CANDIDATE-141",
+      "nombre": "Residencial Pontevedra",
+      "departamento": "Montevideo",
+      "localidad": "Montevideo"
+    }
+  ],
+  "priorLatestPublications": [
+    {
+      "id": "55e98f77-15a6-4ac7-9070-b909930c3eea",
+      "report_id": "5bc7b545-e75b-53a2-af96-8b788f587599",
+      "facility_id": "24",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000024",
+      "published_at": "2026-08-16T07:55:48.000Z"
+    },
+    {
+      "id": "caf0f8fa-62d3-4281-9a1a-569008c96eb4",
+      "report_id": "0933951e-e2c1-54a4-b2eb-bafb78869c2f",
+      "facility_id": "28",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000028",
+      "published_at": "2026-08-16T07:55:48.000Z"
+    },
+    {
+      "id": "7641aa22-ba40-4002-9f9f-0ff1657cf4a6",
+      "report_id": "294a3e8d-458c-59d5-8e3c-e9fcd1f83230",
+      "facility_id": "52",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000052",
+      "published_at": "2026-08-16T07:55:48.000Z"
+    },
+    {
+      "id": "fbaaaa1b-b816-427f-96e8-63d99e3f56df",
+      "report_id": "159cddc1-41b4-5ec3-984c-717efae978a3",
+      "facility_id": "54",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000054",
+      "published_at": "2026-08-16T07:55:48.000Z"
+    },
+    {
+      "id": "06c0b7c2-414a-485b-a3fd-8617bf975791",
+      "report_id": "b8e19f1d-fffb-53ca-9a59-adddcf6d8b40",
+      "facility_id": "57",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000057",
+      "published_at": "2026-08-16T07:55:48.000Z"
+    },
+    {
+      "id": "18f2daf8-08f0-472b-8748-84af52fa159e",
+      "report_id": "0762f5d1-db50-5edd-9ddf-b4b34f7a31a6",
+      "facility_id": "64",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000064",
+      "published_at": "2026-08-16T07:55:48.000Z"
+    },
+    {
+      "id": "863f66ce-1b58-4c4d-96c6-5538d4a7f237",
+      "report_id": "c74d0756-96ad-5e98-8f58-248b9775ae81",
+      "facility_id": "76",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000076",
+      "published_at": "2026-08-16T07:55:48.000Z"
+    },
+    {
+      "id": "82532f5b-2cb3-45f6-a439-c05cd5246f16",
+      "report_id": "6aec48e9-9b54-5f2d-8561-60fa2accb9ea",
+      "facility_id": "95",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000095",
+      "published_at": "2026-08-16T07:55:48.000Z"
+    },
+    {
+      "id": "de30620c-02b5-44c3-b092-f5df0c92479c",
+      "report_id": "f13d47df-ea05-5b1a-a748-87e13e506e67",
+      "facility_id": "97",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000097",
+      "published_at": "2026-08-16T07:55:48.000Z"
+    },
+    {
+      "id": "2f332968-d97a-4ee8-9af9-04c6e9c8b7c3",
+      "report_id": "4de7292a-3869-54c7-883a-a91de0ecb290",
+      "facility_id": "734",
+      "publication_batch_id": "a1160816-0000-5000-8000-000000000734",
+      "published_at": "2026-08-16T07:55:48.000Z"
+    }
+  ],
+  "preexistingTargetObjects": [],
+  "sourceHashes": {
+    "imageManifest": "f44bfb47502db30734bf487ce1b3c337aa8fca736f8e9f76b2a0255bf3ad3672",
+    "imageZip": "d8d5a4c641f5e3f322e43ffe9677a987b0eff6e30ba10ad0075986aaecdafefd",
+    "descriptionBatch": "c36a5836f156000e5ff244cc3271cc733d86232d6b292aaa5258d1031eca1bb7"
+  }
+}

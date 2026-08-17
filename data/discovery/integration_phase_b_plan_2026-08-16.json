@@ -1,0 +1,3178 @@
+{
+  "artifact_version": 1,
+  "created_at": "2026-08-16T07:06:44.277467Z",
+  "project_id": "itolluaivfoxnaohbsdk",
+  "backup_sha256": "c9d519f66d514529bbe5e620a439b104e59987d0bf367489e592d6e2068e64bd",
+  "schema_fingerprint": "22523fffba79518e72f67190cf133623",
+  "expected": {
+    "rows": 90,
+    "sources": 178,
+    "contacts": 53,
+    "prices": 4,
+    "candidates": 0,
+    "photos": 0
+  },
+  "rows": [
+    {
+      "id": 20,
+      "codigo": "FAC-LEGACY-ELP-0003-5438DDD8DB3C4B14",
+      "legacy_id": "ELP-0003",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0003:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 21,
+      "codigo": "FAC-LEGACY-ELP-0004-EEC62519E36ECC62",
+      "legacy_id": "ELP-0004",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0004:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0004:src_002",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0004:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0004:src_004",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.499220Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 22,
+      "codigo": "FAC-LEGACY-ELP-0005-83AF34105B0A7FBD",
+      "legacy_id": "ELP-0005",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0005:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 23,
+      "codigo": "FAC-LEGACY-ELP-0006-6E3F1CFA89335BAF",
+      "legacy_id": "ELP-0006",
+      "contacts": {
+        "telefonos": [
+          "+59826967222",
+          "+59895572136"
+        ],
+        "emails": [
+          "admaltosdelpinar@hotmail.com",
+          "info@altosdelpinar.com.uy"
+        ],
+        "sitios_web": [
+          "https://www.altosdelpinar.com.uy/"
+        ],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0006:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0006:src_002",
+          "url": "https://inforesidenciales.com.uy/altosdelpinar/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "date": "2026-08-11",
+          "consulted_at": "2026-08-13T23:53:20.879867Z",
+          "fields": "nombre,direccion,contactos"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0006:src_003",
+          "url": "https://www.altosdelpinar.com.uy/",
+          "type": "facility_website",
+          "provider": "official_website",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:21.352957Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 24,
+      "codigo": "FAC-LEGACY-ELP-0007-0F0B0EE287155CBB",
+      "legacy_id": "ELP-0007",
+      "contacts": {
+        "telefonos": [
+          "+59897304574"
+        ],
+        "emails": [
+          "sanchezdie@hotmail.com"
+        ],
+        "sitios_web": [
+          "http://residencialbiltmore.com.uy"
+        ],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0007:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0007:src_002",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0007:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0007:src_004",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.499220Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0007:src_005",
+          "url": "https://inforesidenciales.com.uy/centro-residencial-biltmore/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "date": "2026-08-10",
+          "consulted_at": "2026-08-13T23:53:20.879867Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 25,
+      "codigo": "FAC-LEGACY-ELP-0008-9602786A674FE8FA",
+      "legacy_id": "ELP-0008",
+      "contacts": {
+        "telefonos": [
+          "+59826001772",
+          "+59891034918",
+          "+59892004620",
+          "+59894753004",
+          "+59899210870"
+        ],
+        "emails": [
+          "bonsejour@bonsejour.uy",
+          "info@bonsejour.com.uy",
+          "info@bonsejour.uy"
+        ],
+        "sitios_web": [
+          "https://www.bonsejour.uy/bonsejour-ciudad-de-la-costa"
+        ],
+        "instagram_urls": [
+          "https://instagram.com/bonsejour.residencial/"
+        ],
+        "facebook_urls": [
+          "https://facebook.com/BonSejour-Hotel-Residencial-104270191678206"
+        ],
+        "otras_redes_urls": [
+          "https://wa.me/+59899210870"
+        ]
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0008:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0008:src_002",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0008:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0008:src_004",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.499220Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0008:src_005",
+          "url": "https://inforesidenciales.com.uy/bon-sejour-2/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "date": "2026-07-11",
+          "consulted_at": "2026-08-13T23:53:20.812716Z",
+          "fields": "nombre,direccion,contactos"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0008:src_006",
+          "url": "https://www.bonsejour.uy/bonsejour-ciudad-de-la-costa",
+          "type": "facility_website",
+          "provider": "official_website",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:21.352957Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 26,
+      "codigo": "FAC-LEGACY-ELP-0009-166B9B54E03ED552",
+      "legacy_id": "ELP-0009",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0009:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 27,
+      "codigo": "FAC-LEGACY-ELP-0010-5DDDBBACB37040F9",
+      "legacy_id": "ELP-0010",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0010:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0010:src_002",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0010:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0010:src_004",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.498218Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 28,
+      "codigo": "FAC-LEGACY-ELP-0011-6028818C56BC9219",
+      "legacy_id": "ELP-0011",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0011:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0011:src_002",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0011:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.499220Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0011:src_004",
+          "url": "https://inforesidenciales.com.uy/centro-vital/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "date": "2026-07-29",
+          "consulted_at": "2026-08-13T23:53:20.879867Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 29,
+      "codigo": "FAC-LEGACY-ELP-0012-2B56D298C2316A63",
+      "legacy_id": "ELP-0012",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0012:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 30,
+      "codigo": "FAC-LEGACY-ELP-0013-F1F2959AF364BC6E",
+      "legacy_id": "ELP-0013",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0013:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 31,
+      "codigo": "FAC-LEGACY-ELP-0014-FCC4CB2004959928",
+      "legacy_id": "ELP-0014",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0014:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 32,
+      "codigo": "FAC-LEGACY-ELP-0015-41ED01B6D4DF92CA",
+      "legacy_id": "ELP-0015",
+      "contacts": {
+        "telefonos": [
+          "+59895023228"
+        ],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": [
+          "https://wa.me/59895023228?text=Desde%20Guía Móvil 1122"
+        ]
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0015:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0015:src_002",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0015:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0015:src_004",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.499220Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0015:src_005",
+          "url": "https://www.redresidenciales.uy/residencial_hotel/canelones/progreso/residencial-en-progreso-el-es-mi-paz/",
+          "type": "public_directory",
+          "provider": "redresidenciales",
+          "date": "2021-07-15",
+          "consulted_at": "2026-08-13T23:53:20.905941Z",
+          "fields": "nombre,direccion,contactos"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0015:src_006",
+          "url": "https://1122.com.uy/local/residencial-progreso/LOC848600001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:21.219699Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 33,
+      "codigo": "FAC-LEGACY-ELP-0016-68CDC0BDDE9D0387",
+      "legacy_id": "ELP-0016",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0016:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 34,
+      "codigo": "FAC-LEGACY-ELP-0019-E46AE17AFFE94467",
+      "legacy_id": "ELP-0019",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0019:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0019:src_002",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0019:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0019:src_004",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.498218Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 35,
+      "codigo": "FAC-LEGACY-ELP-0020-80BCF604D11FEDF4",
+      "legacy_id": "ELP-0020",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0020:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0020:src_002",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0020:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.499220Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 36,
+      "codigo": "FAC-LEGACY-ELP-0021-EF916F2CAE37CB6A",
+      "legacy_id": "ELP-0021",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0021:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 37,
+      "codigo": "FAC-LEGACY-ELP-0024-38EB901A3CF2C124",
+      "legacy_id": "ELP-0024",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0024:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 38,
+      "codigo": "FAC-LEGACY-ELP-0025-592730C516D57E24",
+      "legacy_id": "ELP-0025",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0025:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 39,
+      "codigo": "FAC-LEGACY-ELP-0026-8F51A84180D3CF80",
+      "legacy_id": "ELP-0026",
+      "contacts": {
+        "telefonos": [
+          "+59843727341",
+          "+59899027729",
+          "+59899694858"
+        ],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0026:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0026:src_002",
+          "url": "https://1122.com.uy/local/gracias-a-dios/LOC534490001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:21.114719Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 40,
+      "codigo": "FAC-LEGACY-ELP-0027-9B25D8427C84C022",
+      "legacy_id": "ELP-0027",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0027:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 41,
+      "codigo": "FAC-LEGACY-ELP-0028-348FD93CBE1D2C61",
+      "legacy_id": "ELP-0028",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0028:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+          "type": "official",
+          "provider": "ELEPEM habilitados a junio de 2026",
+          "date": "2026-06-30",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0028:src_002",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0028:src_003",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0028:src_004",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0028:src_005",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+          "type": "official",
+          "provider": "MSP (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.499220Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 42,
+      "codigo": "FAC-LEGACY-ELP-0029-E2EEF787A24FD67A",
+      "legacy_id": "ELP-0029",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0029:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0029:src_002",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0029:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.499220Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 43,
+      "codigo": "FAC-LEGACY-ELP-0030-A980DAC78CAD2AC0",
+      "legacy_id": "ELP-0030",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0030:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 44,
+      "codigo": "FAC-LEGACY-ELP-0031-ED0F0B9FFDDC8075",
+      "legacy_id": "ELP-0031",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0031:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 45,
+      "codigo": "FAC-LEGACY-ELP-0032-6739A3CA551578D4",
+      "legacy_id": "ELP-0032",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0032:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0032:src_002",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0032:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0032:src_004",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.498218Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 46,
+      "codigo": "FAC-LEGACY-ELP-0033-37E55E3B86BDED85",
+      "legacy_id": "ELP-0033",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0033:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0033:src_002",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 47,
+      "codigo": "FAC-LEGACY-ELP-0034-2C131A7206EBDB7D",
+      "legacy_id": "ELP-0034",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0034:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 48,
+      "codigo": "FAC-LEGACY-ELP-0036-804A5D43730D5EE0",
+      "legacy_id": "ELP-0036",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0036:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0036:src_002",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0036:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0036:src_004",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.499220Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 49,
+      "codigo": "FAC-LEGACY-ELP-0038-CD01F108CA02F2EC",
+      "legacy_id": "ELP-0038",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0038:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0038:src_002",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0038:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0038:src_004",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.499220Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 50,
+      "codigo": "FAC-LEGACY-ELP-0039-E46F458A1FA5EE79",
+      "legacy_id": "ELP-0039",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0039:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 51,
+      "codigo": "FAC-LEGACY-ELP-0040-EF52A5740A8B7D53",
+      "legacy_id": "ELP-0040",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0040:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 52,
+      "codigo": "FAC-LEGACY-ELP-0041-000D6554FD4258D3",
+      "legacy_id": "ELP-0041",
+      "contacts": {
+        "telefonos": [
+          "+59898361050",
+          "+59899365009"
+        ],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0041:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0041:src_002",
+          "url": "https://inforesidenciales.com.uy/residencial-y-centro-diurno-jacaranda/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "date": "2026-07-06",
+          "consulted_at": "2026-08-13T23:53:20.784809Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 53,
+      "codigo": "FAC-LEGACY-ELP-0042-DF71EAC0626E40F7",
+      "legacy_id": "ELP-0042",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0042:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 54,
+      "codigo": "FAC-LEGACY-ELP-0045-E127E8EEBDBB3250",
+      "legacy_id": "ELP-0045",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0045:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0045:src_002",
+          "url": "https://inforesidenciales.com.uy/la-carolina/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "date": "2026-07-29",
+          "consulted_at": "2026-08-13T23:53:20.879867Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 55,
+      "codigo": "FAC-LEGACY-ELP-0046-CA86CB19F6FD69E8",
+      "legacy_id": "ELP-0046",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0046:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 56,
+      "codigo": "FAC-LEGACY-ELP-0047-C5A21E35C1EFBEED",
+      "legacy_id": "ELP-0047",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0047:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 57,
+      "codigo": "FAC-LEGACY-ELP-0048-2D20813D86F4F23D",
+      "legacy_id": "ELP-0048",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [
+          "https://laestanciaresidencial.com/"
+        ],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0048:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0048:src_002",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0048:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0048:src_004",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.498218Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0048:src_005",
+          "url": "https://laestanciaresidencial.com/",
+          "type": "facility_website",
+          "provider": "official_website",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:21.352957Z",
+          "fields": "nombre,direccion,contactos"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0048:src_006",
+          "url": "https://www.forbesuruguay.com/lifestyle/la-estancia-innovador-hotel-residencial-personas-mayores-n63389/amp",
+          "type": "news",
+          "provider": "www.forbesuruguay.com",
+          "date": "2024-10-01",
+          "consulted_at": "2026-08-13T23:53:21.631194Z",
+          "fields": "nombre,direccion,contactos"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0048:src_007",
+          "url": "https://www.busqueda.com.uy/b-content/la-estancia-hotel-residencial-una-propuesta-innovadorapara-las-personas-mayores-que-apuesta-seguir-creciendo-n5397327",
+          "type": "news",
+          "provider": "www.busqueda.com.uy",
+          "date": "2025-03-27",
+          "consulted_at": "2026-08-13T23:53:21.632192Z",
+          "fields": "nombre,direccion,contactos"
+        },
+        {
+          "reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-001",
+          "url": "https://somosuruguay.com.uy/sociedad/la-estancia-hotel-residencial-una-propuesta-busca-transformar-forma-cuidar-adultos-mayores-n2843/amp",
+          "type": "news",
+          "provider": "Somos Uruguay",
+          "date": "2026-05-03",
+          "consulted_at": "2026-08-16T07:06:44.277467Z",
+          "fields": "precio_mensual_uyu,precio_fecha,precio_fuente_url,precio_incluye"
+        }
+      ],
+      "price": {
+        "amount": 85000,
+        "date": "2026-05-03",
+        "includes": [
+          "Alimentación",
+          "lavandería",
+          "enfermería",
+          "atención médica",
+          "prestaciones exigidas a un ELEPEM habilitado"
+        ],
+        "url": "https://somosuruguay.com.uy/sociedad/la-estancia-hotel-residencial-una-propuesta-busca-transformar-forma-cuidar-adultos-mayores-n2843/amp",
+        "is_demo": false
+      }
+    },
+    {
+      "id": 58,
+      "codigo": "FAC-LEGACY-ELP-0049-69E6FC51CD807CAE",
+      "legacy_id": "ELP-0049",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0049:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 59,
+      "codigo": "FAC-LEGACY-ELP-0050-C5982492DEEC827C",
+      "legacy_id": "ELP-0050",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0050:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 60,
+      "codigo": "FAC-LEGACY-ELP-0051-4610FB1E2D8F1473",
+      "legacy_id": "ELP-0051",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0051:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0051:src_002",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0051:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0051:src_004",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.499220Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 61,
+      "codigo": "FAC-LEGACY-ELP-0053-18C7E07265E470E1",
+      "legacy_id": "ELP-0053",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0053:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 62,
+      "codigo": "FAC-LEGACY-ELP-0054-236FC8BD762F8822",
+      "legacy_id": "ELP-0054",
+      "contacts": {
+        "telefonos": [
+          "+59826982021"
+        ],
+        "emails": [],
+        "sitios_web": [
+          "http://www.latacuararesidencial.com.uy"
+        ],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0054:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0054:src_002",
+          "url": "https://1122.com.uy/local/residencial-la-tacuara/LOC742330001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:21.157888Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 63,
+      "codigo": "FAC-LEGACY-ELP-0055-35E9A3FBB6509030",
+      "legacy_id": "ELP-0055",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0055:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 64,
+      "codigo": "FAC-LEGACY-ELP-0056-F35989C075D724E7",
+      "legacy_id": "ELP-0056",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0056:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0056:src_002",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0056:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0056:src_004",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.498218Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0056:src_005",
+          "url": "https://inforesidenciales.com.uy/luz-del-sol/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "date": "2026-08-01",
+          "consulted_at": "2026-08-13T23:53:20.879867Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 65,
+      "codigo": "FAC-LEGACY-ELP-0058-04FCAE3D89A54217",
+      "legacy_id": "ELP-0058",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0058:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 66,
+      "codigo": "FAC-LEGACY-ELP-0059-AD3543D4D2CD9395",
+      "legacy_id": "ELP-0059",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0059:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 67,
+      "codigo": "FAC-LEGACY-ELP-0060-E5ECCF9A47D4EF81",
+      "legacy_id": "ELP-0060",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0060:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 68,
+      "codigo": "FAC-LEGACY-ELP-0061-832704BFDD4B4794",
+      "legacy_id": "ELP-0061",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0061:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 69,
+      "codigo": "FAC-LEGACY-ELP-0062-06DC857CD9C15044",
+      "legacy_id": "ELP-0062",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0062:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 70,
+      "codigo": "FAC-LEGACY-ELP-0063-9F05930A7FA976C4",
+      "legacy_id": "ELP-0063",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0063:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 71,
+      "codigo": "FAC-LEGACY-ELP-0064-1BEC0DD0F246B044",
+      "legacy_id": "ELP-0064",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0064:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0064:src_002",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0064:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.499220Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 72,
+      "codigo": "FAC-LEGACY-ELP-0065-5BCFE471BF09053C",
+      "legacy_id": "ELP-0065",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0065:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 73,
+      "codigo": "FAC-LEGACY-ELP-0066-0571A6D622ACA084",
+      "legacy_id": "ELP-0066",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0066:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 74,
+      "codigo": "FAC-LEGACY-ELP-0068-1A770D97D4059AEA",
+      "legacy_id": "ELP-0068",
+      "contacts": {
+        "telefonos": [
+          "+59826817832"
+        ],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0068:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0068:src_002",
+          "url": "https://1122.com.uy/local/bella-estadia/LOC710020001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.944577Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 75,
+      "codigo": "FAC-LEGACY-ELP-0069-F9333523C753C566",
+      "legacy_id": "ELP-0069",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0069:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0069:src_002",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0069:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0069:src_004",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.498218Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 76,
+      "codigo": "FAC-LEGACY-ELP-0070-386F31ED04B70FF0",
+      "legacy_id": "ELP-0070",
+      "contacts": {
+        "telefonos": [
+          "+59843717818",
+          "+59898576861",
+          "+59899974902"
+        ],
+        "emails": [
+          "geriatricopuentecasa@gmail.com"
+        ],
+        "sitios_web": [
+          "https://www.residencialpuentecasa.com",
+          "https://www.residencialvillapuente.com/"
+        ],
+        "instagram_urls": [
+          "https://www.instagram.com/residencialpuentecasa/"
+        ],
+        "facebook_urls": [],
+        "otras_redes_urls": [
+          "https://wa.me/59899974902"
+        ]
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0070:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0070:src_002",
+          "url": "https://inforesidenciales.com.uy/puentecasa/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "date": "2026-07-20",
+          "consulted_at": "2026-08-13T23:53:20.834070Z",
+          "fields": "nombre,direccion,contactos"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0070:src_003",
+          "url": "https://1122.com.uy/local/residencial-puente-casa-en-atlantida/LOC798610001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:21.219699Z",
+          "fields": "nombre,direccion,contactos"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0070:src_004",
+          "url": "https://www.residencialvillapuente.com/",
+          "type": "facility_website",
+          "provider": "official_website",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:21.352957Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 77,
+      "codigo": "FAC-LEGACY-ELP-0071-34450F5EC982C3C1",
+      "legacy_id": "ELP-0071",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0071:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 78,
+      "codigo": "FAC-LEGACY-ELP-0072-36CD754A5EC67680",
+      "legacy_id": "ELP-0072",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0072:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 79,
+      "codigo": "FAC-LEGACY-ELP-0073-FCA2E4DB4C105B4C",
+      "legacy_id": "ELP-0073",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0073:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 80,
+      "codigo": "FAC-LEGACY-ELP-0074-9ABE55D723D4CB2E",
+      "legacy_id": "ELP-0074",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0074:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 81,
+      "codigo": "FAC-LEGACY-ELP-0075-D24E0B7334363D22",
+      "legacy_id": "ELP-0075",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0075:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 82,
+      "codigo": "FAC-LEGACY-ELP-0076-3EB23407EF8DCC79",
+      "legacy_id": "ELP-0076",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0076:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 83,
+      "codigo": "FAC-LEGACY-ELP-0077-97ED84EC84AA7ED5",
+      "legacy_id": "ELP-0077",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0077:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 84,
+      "codigo": "FAC-LEGACY-ELP-0078-FDF35F91FD850AFD",
+      "legacy_id": "ELP-0078",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0078:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 85,
+      "codigo": "FAC-LEGACY-ELP-0079-C37C4FB92BE9BE58",
+      "legacy_id": "ELP-0079",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0079:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 86,
+      "codigo": "FAC-LEGACY-ELP-0080-053C6EFDF115C782",
+      "legacy_id": "ELP-0080",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0080:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 87,
+      "codigo": "FAC-LEGACY-ELP-0081-A6FEBBAA5B82A032",
+      "legacy_id": "ELP-0081",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0081:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 88,
+      "codigo": "FAC-LEGACY-ELP-0082-E1FF8E3E82044750",
+      "legacy_id": "ELP-0082",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0082:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 89,
+      "codigo": "FAC-LEGACY-ELP-0083-E08F6830376576C0",
+      "legacy_id": "ELP-0083",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0083:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 90,
+      "codigo": "FAC-LEGACY-ELP-0084-A8FD3CB4EF514F8E",
+      "legacy_id": "ELP-0084",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0084:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 91,
+      "codigo": "FAC-LEGACY-ELP-0086-0211EE004313F86B",
+      "legacy_id": "ELP-0086",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0086:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 92,
+      "codigo": "FAC-LEGACY-ELP-0087-B01460CB368D2247",
+      "legacy_id": "ELP-0087",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0087:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 93,
+      "codigo": "FAC-LEGACY-ELP-0088-B7FCAAEF19E8FF32",
+      "legacy_id": "ELP-0088",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0088:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 94,
+      "codigo": "FAC-LEGACY-ELP-0089-B035726733B56B8B",
+      "legacy_id": "ELP-0089",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0089:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 95,
+      "codigo": "FAC-LEGACY-ELP-0090-F7F06503E5098D4A",
+      "legacy_id": "ELP-0090",
+      "contacts": {
+        "telefonos": [
+          "+59826958570",
+          "+59826965758",
+          "+59899125907"
+        ],
+        "emails": [
+          "residencialsolymaruy@gmail.com"
+        ],
+        "sitios_web": [],
+        "instagram_urls": [
+          "https://www.instagram.com/residencialsolymar/"
+        ],
+        "facebook_urls": [
+          "https://www.facebook.com/ResidencialSolymar"
+        ],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0090:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0090:src_002",
+          "url": "https://inforesidenciales.com.uy/residencial-solymar/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "date": "2026-07-09",
+          "consulted_at": "2026-08-13T23:53:20.800041Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 96,
+      "codigo": "FAC-LEGACY-ELP-0091-83847C93A376C0F4",
+      "legacy_id": "ELP-0091",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0091:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 97,
+      "codigo": "FAC-LEGACY-ELP-0092-659F60900D60E0E8",
+      "legacy_id": "ELP-0092",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0092:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "Página departamental de Certificado Social",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0092:src_002",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0092:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.498218Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0092:src_004",
+          "url": "https://www.redresidenciales.uy/residencial-hotel/canelones/ciudad-de-la-costa/senescentis-residencial/",
+          "type": "public_directory",
+          "provider": "redresidenciales",
+          "date": "2020-05-27",
+          "consulted_at": "2026-08-13T23:53:20.890883Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 98,
+      "codigo": "FAC-LEGACY-ELP-0094-4A330A3829F82596",
+      "legacy_id": "ELP-0094",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0094:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 99,
+      "codigo": "FAC-LEGACY-ELP-0096-C9BAF4690DC19E1B",
+      "legacy_id": "ELP-0096",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0096:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 100,
+      "codigo": "FAC-LEGACY-ELP-0097-EB91C9983B560C55",
+      "legacy_id": "ELP-0097",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0097:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+          "type": "official",
+          "provider": "Certificados de registro MSP emitidos 2017-marzo 2024",
+          "date": null,
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 628,
+      "codigo": "FAC-LEGACY-MSP24-061-31302148B63DA6AC",
+      "legacy_id": "MSP24-061",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-004",
+          "url": "https://app.vitalencecare.com/VitalenceJavaEnvironment/servlet/com.vitalence.buscarcuartos",
+          "type": "public_directory",
+          "provider": "Vitalence",
+          "date": "2025-04-01",
+          "consulted_at": "2026-08-16T07:06:44.277467Z",
+          "fields": "precio_mensual_uyu,precio_fecha,precio_fuente_url,precio_incluye"
+        }
+      ],
+      "price": {
+        "amount": 100000,
+        "date": "2025-04-01",
+        "includes": [],
+        "url": "https://app.vitalencecare.com/VitalenceJavaEnvironment/servlet/com.vitalence.buscarcuartos",
+        "is_demo": false
+      }
+    },
+    {
+      "id": 695,
+      "codigo": "FAC-LEGACY-MSP24-128-0077C3F2BA4412D2",
+      "legacy_id": "MSP24-128",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-003",
+          "url": "https://app.vitalencecare.com/VitalenceJavaEnvironment/servlet/com.vitalence.buscarcuartos",
+          "type": "public_directory",
+          "provider": "Vitalence",
+          "date": "2025-06-12",
+          "consulted_at": "2026-08-16T07:06:44.277467Z",
+          "fields": "precio_mensual_uyu,precio_fecha,precio_fuente_url,precio_incluye"
+        }
+      ],
+      "price": {
+        "amount": 60000,
+        "date": "2025-06-12",
+        "includes": [],
+        "url": "https://app.vitalencecare.com/VitalenceJavaEnvironment/servlet/com.vitalence.buscarcuartos",
+        "is_demo": false
+      }
+    },
+    {
+      "id": 728,
+      "codigo": "FAC-LEGACY-MSP24-161-7F284E6E017823E0",
+      "legacy_id": "MSP24-161",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-005",
+          "url": "https://app.vitalencecare.com/VitalenceJavaEnvironment/servlet/com.vitalence.buscarcuartos",
+          "type": "public_directory",
+          "provider": "Vitalence",
+          "date": "2025-06-13",
+          "consulted_at": "2026-08-16T07:06:44.277467Z",
+          "fields": "precio_mensual_uyu,precio_fecha,precio_fuente_url,precio_incluye"
+        }
+      ],
+      "price": {
+        "amount": 100000,
+        "date": "2025-06-13",
+        "includes": [],
+        "url": "https://app.vitalencecare.com/VitalenceJavaEnvironment/servlet/com.vitalence.buscarcuartos",
+        "is_demo": false
+      }
+    },
+    {
+      "id": 733,
+      "codigo": "FAC-LEGACY-MSP24-166-385A3FED68F2D9DF",
+      "legacy_id": "MSP24-166",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-166:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+          "type": "official",
+          "provider": "MSP",
+          "date": "2026-06-30",
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-166:src_002",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-166:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "mides_certificado_social_2024",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-13T23:53:20.669632Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 734,
+      "codigo": "FAC-LEGACY-MSP24-167-AC35210625FE2694",
+      "legacy_id": "MSP24-167",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [
+          "https://residencialmagnaseniority.com/landing-consultas/"
+        ],
+        "instagram_urls": [],
+        "facebook_urls": [
+          "https://www.facebook.com/senioritymagna"
+        ],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-167:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+          "type": "official",
+          "provider": "MSP",
+          "date": "2026-06-30",
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-167:src_002",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-167:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "mides_certificado_social_2024",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-13T23:53:20.600451Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-167:src_004",
+          "url": "https://residencialmagnaseniority.com/landing-consultas/",
+          "type": "facility_website",
+          "provider": "official_website",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:21.352957Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 735,
+      "codigo": "FAC-LEGACY-MSP24-168-417BC7C33AFFB8F6",
+      "legacy_id": "MSP24-168",
+      "contacts": {
+        "telefonos": [],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-168:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+          "type": "official",
+          "provider": "ELEPEM habilitados a junio de 2026",
+          "date": "2026-06-30",
+          "consulted_at": "2026-08-04T21:41:38.875+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-168:src_002",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+          "type": "official",
+          "provider": "MSP (vínculo existente en Supabase)",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:20.498218Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 736,
+      "codigo": "FAC-LEGACY-MSP24-169-E9DA0C1CBF11911B",
+      "legacy_id": "MSP24-169",
+      "contacts": {
+        "telefonos": [
+          "+59891478410"
+        ],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-169:src_001",
+          "url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+          "type": "official",
+          "provider": "MSP",
+          "date": "2026-06-30",
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-169:src_002",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-169:src_003",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "mides_certificado_social_2024",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-13T23:53:20.537056Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 737,
+      "codigo": "FAC-LEGACY-MSP24-170-B1591D79C0ADFBE3",
+      "legacy_id": "MSP24-170",
+      "contacts": {
+        "telefonos": [
+          "+59899751800"
+        ],
+        "emails": [
+          "zmipeixoto@gmail.com"
+        ],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [
+          "https://www.facebook.com/Residencial-La-Rochelle-152642101462387/"
+        ],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-170:src_001",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "MIDES",
+          "date": null,
+          "consulted_at": "2026-08-10T21:42:29.880335+00:00",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-170:src_002",
+          "url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/canelones-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+          "type": "official",
+          "provider": "mides_certificado_social_2024",
+          "date": "2024-07-15",
+          "consulted_at": "2026-08-13T23:53:20.719346Z",
+          "fields": "nombre,departamento,localidad,direccion,estado_administrativo"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-170:src_003",
+          "url": "https://inforesidenciales.com.uy/la-rochelle/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "date": "2026-08-11",
+          "consulted_at": "2026-08-13T23:53:20.879867Z",
+          "fields": "nombre,direccion,contactos"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSP24-170:src_004",
+          "url": "https://1122.com.uy/local/residencial-la-rochelle/LOC358070001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:21.146647Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    },
+    {
+      "id": 785,
+      "codigo": "FAC-LEGACY-MSPREG24-012-F1E0950A9E83CD40",
+      "legacy_id": "MSPREG24-012",
+      "contacts": {
+        "telefonos": [
+          "+59843753861",
+          "+59895055590"
+        ],
+        "emails": [],
+        "sitios_web": [],
+        "instagram_urls": [],
+        "facebook_urls": [],
+        "otras_redes_urls": []
+      },
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:MSPREG24-012:src_001",
+          "url": "https://1122.com.uy/local/solana-residencial/LOC355810001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "date": null,
+          "consulted_at": "2026-08-13T23:53:21.302214Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ],
+      "price": null
+    }
+  ]
+}

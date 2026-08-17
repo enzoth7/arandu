@@ -1,0 +1,30 @@
+{
+  "operation_date": "2026-08-16",
+  "project_id": "itolluaivfoxnaohbsdk",
+  "table": "public.elepem",
+  "authorization": "human-reviewed duplicate list supplied by user",
+  "groups_merged": 85,
+  "records_before_in_groups": 173,
+  "surviving_records": 85,
+  "duplicate_rows_deleted": 88,
+  "elepem_count_before": 1038,
+  "elepem_count_after": 950,
+  "foreign_references_moved": {
+    "public.intake_reports": 0,
+    "public.facility_change_publications": 0,
+    "public.facility_document_status_reviews": 0,
+    "elepem_core.facility_experience_publications": 0
+  },
+  "verification": {
+    "groups_with_exactly_one_survivor": 85,
+    "source_array_alignment_failures": 0,
+    "identifier_array_alignment_failures": 0,
+    "foreign_references_to_deleted_ids": 0
+  },
+  "backup": "data/discovery/backups/elepem_human_review_merge_batch_2026-08-16_before.json",
+  "notes": [
+    "All names, aliases, public contact arrays, provider identifiers, source references and aligned source metadata were combined.",
+    "Survivors were selected by usable geolocation precision, source coverage and field completeness.",
+    "No additional high-confidence exact duplicate remained in public.elepem after this batch."
+  ]
+}

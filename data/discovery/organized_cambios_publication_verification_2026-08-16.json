@@ -1,0 +1,30 @@
+{
+  "operation_id": "organized-cambios-publication-2026-08-16",
+  "verified_at": "2026-08-16T23:18:39.4555936Z",
+  "project_ref": "itolluaivfoxnaohbsdk",
+  "images": {
+    "storage_objects": 143,
+    "attachment_rows": 143,
+    "publication_photo_rows": 143,
+    "reports": 68,
+    "facilities": 68,
+    "sample_public_route": {
+      "status": 200,
+      "content_type": "image/webp",
+      "bytes": 74828
+    }
+  },
+  "descriptions_and_sources": {
+    "rows": 59,
+    "exact_descriptions": 59,
+    "all_source_urls_present": 59,
+    "aligned_source_matrices": 59,
+    "source_urls_appended": 91
+  },
+  "storage": {
+    "bucket": "intake-evidence",
+    "public": false,
+    "objects_after": 290
+  },
+  "schema_changes": 0
+}

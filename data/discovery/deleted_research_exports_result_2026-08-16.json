@@ -1,0 +1,17 @@
+{
+  "operation_id": "delete-research-exports-2026-08-16",
+  "completed_at": "2026-08-16T23:26:40.6696739Z",
+  "project_ref": "itolluaivfoxnaohbsdk",
+  "bucket_deleted": true,
+  "objects_deleted": 5,
+  "bytes_deleted": 51940091,
+  "manifest": "data/discovery/deleted_research_exports_manifest_2026-08-16.json",
+  "verification": {
+    "research_exports_exists": false,
+    "intake_evidence_exists": true,
+    "intake_evidence_public": false,
+    "imported_photo_objects_intact": 143,
+    "pdf_exists": true,
+    "pdf_public": true
+  }
+}

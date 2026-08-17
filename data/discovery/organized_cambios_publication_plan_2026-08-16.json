@@ -1,0 +1,40 @@
+{
+  "operationId": "organized-cambios-publication-2026-08-16",
+  "generatedAt": "2026-08-16T23:15:28.131Z",
+  "apply": true,
+  "projectRef": "itolluaivfoxnaohbsdk",
+  "images": {
+    "total": 143,
+    "facilities": 68,
+    "newObjects": 143,
+    "preexistingObjects": 0,
+    "duplicateHashGroups": [
+      {
+        "hash": "e5b3e2e007cbedd9f3faf1c479873b7d3d6f1cb9dc2d5abcbc4873799d063595",
+        "imageIds": [
+          "IMG-0021",
+          "IMG-0088"
+        ]
+      }
+    ]
+  },
+  "descriptions": {
+    "total": 59,
+    "descriptionsToSet": 59,
+    "sourcesToAppend": 91
+  },
+  "publication": {
+    "reports": 68,
+    "publications": 68,
+    "photoRows": 143,
+    "existingBatchesExtended": 10,
+    "newBatches": 58
+  },
+  "storageBucketRemainsPrivate": true,
+  "schemaChanges": 0,
+  "sourceHashes": {
+    "imageManifest": "f44bfb47502db30734bf487ce1b3c337aa8fca736f8e9f76b2a0255bf3ad3672",
+    "imageZip": "d8d5a4c641f5e3f322e43ffe9677a987b0eff6e30ba10ad0075986aaecdafefd",
+    "descriptionBatch": "c36a5836f156000e5ff244cc3271cc733d86232d6b292aaa5258d1031eca1bb7"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "created_at": "2026-08-16T19:46:23.2777417-03:00",
+  "project_id": "itolluaivfoxnaohbsdk",
+  "operation": "normalize_elepem_names_and_localities_and_move_invalid_unconfirmed_names",
+  "backup": {
+    "path": "data/discovery/backups/elepem_name_locality_normalization_2026-08-16_before.json",
+    "bytes": 192638,
+    "sha256": "5C0C05D3260E3A56A62DBFF4082141B18E4180B0FA9DA385D02325A6B00E901E"
+  },
+  "transaction_result": {
+    "elepem_normalized": 871,
+    "elepem_sin_ubicacion_normalized": 99,
+    "moved_inserted": 5,
+    "moved_deleted_from_elepem": 5
+  },
+  "moved_records": [
+    {
+      "old_elepem_id": 10,
+      "new_elepem_sin_ubicacion_id": 1139,
+      "codigo": "FAC-LEGACY-APP-AE19CF518004596D-1BDB9D014E61092B",
+      "nombre": "Ayacucho 1040",
+      "localidad": "Paysandú"
+    },
+    {
+      "old_elepem_id": 20,
+      "new_elepem_sin_ubicacion_id": 1140,
+      "codigo": "FAC-LEGACY-ELP-0003-5438DDD8DB3C4B14",
+      "nombre": "Establecimiento sin nombre publicado (034/2018)",
+      "localidad": "Canelones"
+    },
+    {
+      "old_elepem_id": 485,
+      "new_elepem_sin_ubicacion_id": 1141,
+      "codigo": "FAC-LEGACY-ELP-0688-335424AA200C241C",
+      "nombre": "Sin nombre",
+      "localidad": "Montevideo"
+    },
+    {
+      "old_elepem_id": 1082,
+      "new_elepem_sin_ubicacion_id": 1142,
+      "codigo": "FAC-CANDIDATE-369",
+      "nombre": "Hogar de ancianos pista osm maciel 505",
+      "localidad": "Durazno"
+    },
+    {
+      "old_elepem_id": 1119,
+      "new_elepem_sin_ubicacion_id": 1143,
+      "codigo": "FAC-CANDIDATE-407",
+      "nombre": "Residencial sin nombre ramon ortiz 315",
+      "localidad": "Treinta y Tres"
+    }
+  ],
+  "counts_after": {
+    "elepem": 945,
+    "elepem_sin_ubicacion": 104
+  },
+  "verification": {
+    "old_source_ids_remaining": 0,
+    "moved_codes_present_in_target": 5,
+    "pending_name_changes": 0,
+    "pending_locality_changes": 0,
+    "rare_symbols_in_names": 0,
+    "rare_symbols_in_localities": 0,
+    "noncanonical_montevideo_values": 0,
+    "invalid_moved_array_alignments": 0,
+    "foreign_key_references_to_old_ids": {
+      "public.intake_reports": 0,
+      "public.facility_change_publications": 0,
+      "public.facility_document_status_reviews": 0,
+      "elepem_core.facility_experience_publications": 0
+    },
+    "idempotent": true
+  }
+}

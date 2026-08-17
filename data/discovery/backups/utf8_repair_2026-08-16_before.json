@@ -1,0 +1,71 @@
+{
+  "artifact_version": 1,
+  "created_at": "2026-08-16T20:25:13.424209+00:00",
+  "project_id": "itolluaivfoxnaohbsdk",
+  "relation": "public.elepem",
+  "reason": "Backup lógico anterior a la reparación condicionada de mojibake introducido por la integración 2026-08-16.",
+  "source_backups": [
+    "data/discovery/backups/integration_phase_b_2026-08-16_before.json",
+    "data/discovery/integration_phase_b_plan_2026-08-16.json",
+    "Cambios/ScrapingCecilia/arandu_precios_evidencia_final.csv"
+  ],
+  "scope": {
+    "source_provider_entries": 39,
+    "price_include_entries": 4,
+    "contact_url_entries": 1,
+    "affected_rows": 20,
+    "affected_ids": [21, 24, 25, 27, 28, 32, 34, 35, 41, 42, 45, 48, 49, 57, 60, 64, 71, 75, 97, 735],
+    "affected_codes": [
+      "FAC-LEGACY-ELP-0004-EEC62519E36ECC62",
+      "FAC-LEGACY-ELP-0007-0F0B0EE287155CBB",
+      "FAC-LEGACY-ELP-0008-9602786A674FE8FA",
+      "FAC-LEGACY-ELP-0010-5DDDBBACB37040F9",
+      "FAC-LEGACY-ELP-0011-6028818C56BC9219",
+      "FAC-LEGACY-ELP-0015-41ED01B6D4DF92CA",
+      "FAC-LEGACY-ELP-0019-E46AE17AFFE94467",
+      "FAC-LEGACY-ELP-0020-80BCF604D11FEDF4",
+      "FAC-LEGACY-ELP-0028-348FD93CBE1D2C61",
+      "FAC-LEGACY-ELP-0029-E2EEF787A24FD67A",
+      "FAC-LEGACY-ELP-0032-6739A3CA551578D4",
+      "FAC-LEGACY-ELP-0036-804A5D43730D5EE0",
+      "FAC-LEGACY-ELP-0038-CD01F108CA02F2EC",
+      "FAC-LEGACY-ELP-0048-2D20813D86F4F23D",
+      "FAC-LEGACY-ELP-0051-4610FB1E2D8F1473",
+      "FAC-LEGACY-ELP-0056-F35989C075D724E7",
+      "FAC-LEGACY-ELP-0064-1BEC0DD0F246B044",
+      "FAC-LEGACY-ELP-0069-F9333523C753C566",
+      "FAC-LEGACY-ELP-0092-659F60900D60E0E8",
+      "FAC-LEGACY-MSP24-168-417BC7C33AFFB8F6"
+    ]
+  },
+  "source_provider_before_counts": {
+    "PÃ¡gina departamental de Certificado Social": 19,
+    "MIDES (vÃ­nculo existente en Supabase)": 18,
+    "MSP (vÃ­nculo existente en Supabase)": 2
+  },
+  "la_estancia_before": {
+    "id": 57,
+    "codigo": "FAC-LEGACY-ELP-0048-2D20813D86F4F23D",
+    "precio_incluye": [
+      "AlimentaciÃ³n",
+      "lavanderÃ­a",
+      "enfermerÃ­a",
+      "atenciÃ³n mÃ©dica",
+      "prestaciones exigidas a un ELEPEM habilitado"
+    ],
+    "updated_at": "2026-08-16T07:12:30.796058+00:00"
+  },
+  "contact_url_before": {
+    "id": 32,
+    "codigo": "FAC-LEGACY-ELP-0015-41ED01B6D4DF92CA",
+    "value": "https://wa.me/59895023228?text=Desde%20GuÃ­a MÃ³vil 1122"
+  },
+  "rollback": {
+    "note": "Las sustituciones son uno-a-uno y están condicionadas por referencia de paquete y valor exacto; este manifiesto conserva los tokens anteriores necesarios para revertirlas.",
+    "source_provider_after_to_before": {
+      "Página departamental de Certificado Social": "PÃ¡gina departamental de Certificado Social",
+      "MIDES (vínculo existente en Supabase)": "MIDES (vÃ­nculo existente en Supabase)",
+      "MSP (vínculo existente en Supabase)": "MSP (vÃ­nculo existente en Supabase)"
+    }
+  }
+}

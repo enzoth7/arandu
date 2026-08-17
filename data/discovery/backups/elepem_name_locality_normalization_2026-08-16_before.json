@@ -1,0 +1,7236 @@
+{
+  "operation": "normalize names and localities and move invalid-name unconfirmed records",
+  "project_id": "itolluaivfoxnaohbsdk",
+  "counts_before": {
+    "elepem": 950,
+    "elepem_sin_ubicacion": 99
+  },
+  "move_source_ids": [
+    10,
+    20,
+    485,
+    1082,
+    1119
+  ],
+  "backup_created_at": "2026-08-16T22:43:44.017576+00:00",
+  "moved_rows_before": [
+    {
+      "id": 10,
+      "lat": -32.3113565,
+      "lng": -58.0839002,
+      "codigo": "FAC-LEGACY-APP-AE19CF518004596D-1BDB9D014E61092B",
+      "emails": [],
+      "nombre": "Ayacucho 1040",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Continuacion Ayacucho 1040, 60000 Paysandú, Departamento de Paysandú",
+      "legacy_id": "APP-AE19CF518004596D",
+      "localidad": "Paysandú",
+      "msp_fecha": null,
+      "otros_ids": [],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-10T21:42:29.880335+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Paysandú",
+      "fuentes_urls": [
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "public_directory"
+      ],
+      "fuentes_fechas": [
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "Coordenadas de Google Maps vía SerpApi; requieren verificación",
+      "fuentes_proveedores": [
+        "Mapas públicos importados desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "public.residenciales:APP-AE19CF518004596D"
+      ],
+      "precision_ubicacion": "puerta",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 20,
+      "lat": -34.5229708,
+      "lng": -56.2782224,
+      "codigo": "FAC-LEGACY-ELP-0003-5438DDD8DB3C4B14",
+      "emails": [],
+      "nombre": "Establecimiento sin nombre publicado (034/2018)",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Tolentino González 218 / Ciudad de Canelones",
+      "legacy_id": "ELP-0003",
+      "localidad": "Canelones",
+      "msp_fecha": null,
+      "otros_ids": [
+        "ELP-0003"
+      ],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-16T07:12:30.796058+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Canelones",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04",
+        null
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "calle y puerta exacta",
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_referencias": [
+        "MSPR-034-2018",
+        "public.residenciales:ELP-0003",
+        "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:ELP-0003:src_001"
+      ],
+      "precision_ubicacion": "puerta",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion,estado_administrativo"
+      ]
+    },
+    {
+      "id": 485,
+      "lat": -34.8577975,
+      "lng": -56.2143058,
+      "codigo": "FAC-LEGACY-ELP-0688-335424AA200C241C",
+      "emails": [],
+      "nombre": "Sin nombre",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "Santa Lucía 4012 - Mdeo",
+      "legacy_id": "ELP-0688",
+      "localidad": "Montevideo",
+      "msp_fecha": null,
+      "otros_ids": [
+        "ELP-0688"
+      ],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-10T21:42:29.880335+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Montevideo",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "calle y puerta exacta",
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_referencias": [
+        "MSPR-077-2018",
+        "public.residenciales:ELP-0688"
+      ],
+      "precision_ubicacion": "puerta",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 1082,
+      "lat": -33.3879521221369,
+      "lng": -56.5144393270714,
+      "codigo": "FAC-CANDIDATE-369",
+      "emails": [],
+      "nombre": "hogar de ancianos pista osm maciel 505",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "francisco antonio maciel 505",
+      "legacy_id": null,
+      "localidad": "durazno",
+      "msp_fecha": null,
+      "otros_ids": [],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "created_at": "2026-08-05T01:06:09.789874+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-10T22:38:42.345287+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Durazno",
+      "fuentes_urls": [
+        "https://www.openstreetmap.org/node/6865063054",
+        "https://www.gub.uy/ministerio-interior/comunicacion/noticias/pcop-acompano-actividades-dia-abuelos-hogares-adultos-mayores",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/durazno-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://direcciones.ide.uy/api/v0/geocode/BusquedaDireccion?calle=francisco+antonio+maciel+505&departamento=durazno&localidad=durazno"
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "openstreetmap",
+        "news",
+        "official",
+        "other"
+      ],
+      "fuentes_fechas": [
+        "2026-08-02",
+        "2026-06-22",
+        "2024-07-15",
+        "2026-08-06"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "Coordenada heredada; pendiente de revision individual",
+      "fuentes_proveedores": [
+        "openstreetmap",
+        "news",
+        "official",
+        "other"
+      ],
+      "fuentes_referencias": [
+        "durazno:hogar-de-ancianos:maciel-505-osm:1:42f93dd59ffe",
+        "durazno:hogar-de-ancianos:maciel-505-osm:2:143233b50ce6",
+        "durazno:hogar-de-ancianos:maciel-505-osm:3:779f67f71091",
+        "ide-uy:e21aa724d774a9356f54d24b"
+      ],
+      "precision_ubicacion": "referencial",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [],
+      "fuentes_consultadas_at": [
+        "2026-08-04T00:00:00+00:00",
+        "2026-08-04T00:00:00+00:00",
+        "2026-08-04T00:00:00+00:00",
+        "2026-08-06T02:16:00+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ]
+    },
+    {
+      "id": 1119,
+      "lat": -33.2350327088082,
+      "lng": -54.367122232652,
+      "codigo": "FAC-CANDIDATE-407",
+      "emails": [],
+      "nombre": "residencial sin nombre ramon ortiz 315",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "ramon ortiz 315",
+      "legacy_id": null,
+      "localidad": "treinta y tres",
+      "msp_fecha": null,
+      "otros_ids": [],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "created_at": "2026-08-05T01:48:52.330516+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-10T22:38:42.345287+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Treinta y Tres",
+      "fuentes_urls": [
+        "https://direcciones.ide.uy/api/v0/geocode/BusquedaDireccion?calle=ramon+ortiz+315&departamento=treinta+y+tres&localidad=treinta+y+tres",
+        "https://www.gub.uy/ministerio-desarrollo-social/sites/ministerio-desarrollo-social/files/2019-06/respuesta-a-pedido-de-informacion%5B1%5D_3.pdf"
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "other",
+        "official"
+      ],
+      "fuentes_fechas": [
+        "2026-08-06",
+        null
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "Coordenada heredada; pendiente de revision individual",
+      "fuentes_proveedores": [
+        "other",
+        "official"
+      ],
+      "fuentes_referencias": [
+        "ide-uy:cb323f7b9bb80f2c4c2e3217",
+        "treinta-y-tres:sin-nombre-ramon-ortiz-315:ramon-ortiz-315:1:ccfd6263ef43"
+      ],
+      "precision_ubicacion": "referencial",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [],
+      "fuentes_consultadas_at": [
+        "2026-08-06T03:26:00+00:00",
+        "2026-08-04T00:00:00+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion"
+      ]
+    }
+  ],
+  "foreign_references_before": {
+    "intake_reports": 0,
+    "facility_change_publications": 0,
+    "facility_document_status_reviews": 0,
+    "facility_experience_publications": 0
+  },
+  "normalization_rows_before": [
+    {
+      "id": 1,
+      "table": "elepem",
+      "nombre": "Casa Hogar Cuidando Con Amor",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 2,
+      "table": "elepem",
+      "nombre": "casa mia",
+      "localidad": "Nuevo Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 3,
+      "table": "elepem",
+      "nombre": "Casa Ravello",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 4,
+      "table": "elepem",
+      "nombre": "Residencia Hogar Norma",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 5,
+      "table": "elepem",
+      "nombre": "CASA BETEL",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 6,
+      "table": "elepem",
+      "nombre": "Casa para el cuidado del adulto mayor Nova Aurora",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 8,
+      "table": "elepem",
+      "nombre": "Residencia De Ancianos \"angelus\"",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 9,
+      "table": "elepem",
+      "nombre": "El Jardín de Cronos",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 11,
+      "table": "elepem",
+      "nombre": "Lifelux Paysandú",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 13,
+      "table": "elepem",
+      "nombre": "Recidencial La Chacra De Los Abuelos",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 14,
+      "table": "elepem",
+      "nombre": "casa de salud Cianciarulo",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 15,
+      "table": "elepem",
+      "nombre": "Residencial Colibrí de Adultos y Adultos mayores",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 16,
+      "table": "elepem",
+      "nombre": "Residencia Lore&Car",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 18,
+      "table": "elepem",
+      "nombre": "Elida Moreira De Zambiazzo",
+      "localidad": "Bella Unión",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 19,
+      "table": "elepem",
+      "nombre": "Hogar Don Martín",
+      "localidad": "Baltasar Brum",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 22,
+      "table": "elepem",
+      "nombre": "ALONSO HOGAR DE ANCIANOS DRA. ROCIO STECIANO ALONSO",
+      "localidad": "SAUCE",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 23,
+      "table": "elepem",
+      "nombre": "Altos del Pinar",
+      "localidad": "El Pinar",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 24,
+      "table": "elepem",
+      "nombre": "Biltmore",
+      "localidad": "Santa Lucia",
+      "updated_at": "2026-08-16T20:26:44.044425+00:00"
+    },
+    {
+      "id": 25,
+      "table": "elepem",
+      "nombre": "Bonsejour La Costa",
+      "localidad": "Solymar",
+      "updated_at": "2026-08-16T20:26:44.044425+00:00"
+    },
+    {
+      "id": 26,
+      "table": "elepem",
+      "nombre": "Calidad de Vida",
+      "localidad": "18 de Mayo",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 27,
+      "table": "elepem",
+      "nombre": "La Casona",
+      "localidad": "Los Cerrillos",
+      "updated_at": "2026-08-16T20:26:44.044425+00:00"
+    },
+    {
+      "id": 28,
+      "table": "elepem",
+      "nombre": "Centro Vital",
+      "localidad": "Solymar",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 30,
+      "table": "elepem",
+      "nombre": "Dra Teresita",
+      "localidad": "balneario EL",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 31,
+      "table": "elepem",
+      "nombre": "El Bosque",
+      "localidad": "Parque del Plata",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 32,
+      "table": "elepem",
+      "nombre": "El Es Mi Paz",
+      "localidad": "Progreso",
+      "updated_at": "2026-08-16T20:28:13.265496+00:00"
+    },
+    {
+      "id": 33,
+      "table": "elepem",
+      "nombre": "El Hogar",
+      "localidad": "Solymar",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 34,
+      "table": "elepem",
+      "nombre": "El Otoñal",
+      "localidad": "Las Piedras",
+      "updated_at": "2026-08-16T20:26:44.044425+00:00"
+    },
+    {
+      "id": 35,
+      "table": "elepem",
+      "nombre": "El Renacer",
+      "localidad": "Solymar",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 37,
+      "table": "elepem",
+      "nombre": "Establecimiento Astenkeph",
+      "localidad": "Canelones",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 39,
+      "table": "elepem",
+      "nombre": "GRACIAS A DIOS",
+      "localidad": "ATLANTIDA",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 40,
+      "table": "elepem",
+      "nombre": "Graciela Hernández",
+      "localidad": "Dr. Francisco Soca",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 41,
+      "table": "elepem",
+      "nombre": "Hogar Ana Arriola De Ado",
+      "localidad": "San Jacinto",
+      "updated_at": "2026-08-16T20:26:44.044425+00:00"
+    },
+    {
+      "id": 42,
+      "table": "elepem",
+      "nombre": "Hogar Ana Maria Y Beatriz Izquierdo",
+      "localidad": "Shangrila",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 44,
+      "table": "elepem",
+      "nombre": "HOGAR DE ANCIANOS DRA. ROCIO STECIANO",
+      "localidad": "SAUCE",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 45,
+      "table": "elepem",
+      "nombre": "Hogar Intergeneracional De Pando",
+      "localidad": "Pando",
+      "updated_at": "2026-08-16T20:26:44.044425+00:00"
+    },
+    {
+      "id": 46,
+      "table": "elepem",
+      "nombre": "HOGAR De Ancianos PUGA SORIA",
+      "localidad": "LOS CERRILLOS KM 24 GIANNATASIO",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 47,
+      "table": "elepem",
+      "nombre": "Hogar de Ancianos San Antonio",
+      "localidad": "Canelones Rural",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 48,
+      "table": "elepem",
+      "nombre": "Hogar Maranata",
+      "localidad": "Progreso",
+      "updated_at": "2026-08-16T20:26:44.044425+00:00"
+    },
+    {
+      "id": 49,
+      "table": "elepem",
+      "nombre": "Hogar Máximo Cenoz Hita",
+      "localidad": "Santa Lucia",
+      "updated_at": "2026-08-16T20:26:44.044425+00:00"
+    },
+    {
+      "id": 50,
+      "table": "elepem",
+      "nombre": "Residencial La Familia",
+      "localidad": "Migues",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 51,
+      "table": "elepem",
+      "nombre": "Hogar Tapia",
+      "localidad": "Parque del Plata",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 52,
+      "table": "elepem",
+      "nombre": "JACARANDA",
+      "localidad": "COSTA",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 53,
+      "table": "elepem",
+      "nombre": "LA AURORA",
+      "localidad": "EL PINAR",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 54,
+      "table": "elepem",
+      "nombre": "LA CAROLINA",
+      "localidad": "CANELONES CIUDAD DE LA",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 55,
+      "table": "elepem",
+      "nombre": "LA CASA NARANJA",
+      "localidad": "COSTA",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 56,
+      "table": "elepem",
+      "nombre": "LA ESPERANZA",
+      "localidad": "Los Cerrillos",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 57,
+      "table": "elepem",
+      "nombre": "La Estancia Hotel Residencial",
+      "localidad": "Canelones",
+      "updated_at": "2026-08-16T20:26:44.044425+00:00"
+    },
+    {
+      "id": 58,
+      "table": "elepem",
+      "nombre": "La Familia",
+      "localidad": "Pando",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 59,
+      "table": "elepem",
+      "nombre": "La Posada",
+      "localidad": "Lagomar",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 60,
+      "table": "elepem",
+      "nombre": "La Quinta",
+      "localidad": "San Jacinto",
+      "updated_at": "2026-08-16T20:26:44.044425+00:00"
+    },
+    {
+      "id": 61,
+      "table": "elepem",
+      "nombre": "LA SOÑADA",
+      "localidad": "COSTA- SOLYMAR",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 62,
+      "table": "elepem",
+      "nombre": "La Tacuara",
+      "localidad": "Solymar",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 63,
+      "table": "elepem",
+      "nombre": "LOS LAGOS",
+      "localidad": "SOLYMAR",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 64,
+      "table": "elepem",
+      "nombre": "Luz Del Sol",
+      "localidad": "Lagomar",
+      "updated_at": "2026-08-16T20:26:44.044425+00:00"
+    },
+    {
+      "id": 65,
+      "table": "elepem",
+      "nombre": "MALLET",
+      "localidad": "BARROS BLANCOS",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 66,
+      "table": "elepem",
+      "nombre": "Mi Lugar",
+      "localidad": "San Luis",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 67,
+      "table": "elepem",
+      "nombre": "Mi Sueño",
+      "localidad": "Barra de Carrasco",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 68,
+      "table": "elepem",
+      "nombre": "MIS CONSENTIDOS",
+      "localidad": "SUR",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 69,
+      "table": "elepem",
+      "nombre": "NOA",
+      "localidad": "LAS PIEDRAS",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 70,
+      "table": "elepem",
+      "nombre": "NUEVO AMANECER",
+      "localidad": "La Floresta",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 73,
+      "table": "elepem",
+      "nombre": "PRIMAVERA",
+      "localidad": "LAS PIEDRAS",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 74,
+      "table": "elepem",
+      "nombre": "PROCURA RESIDENCIAL EX BELLA ESTDIA",
+      "localidad": "CANELONES",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 75,
+      "table": "elepem",
+      "nombre": "Residencial Del Lago",
+      "localidad": "Barra De Carrasco",
+      "updated_at": "2026-08-16T20:26:44.044425+00:00"
+    },
+    {
+      "id": 76,
+      "table": "elepem",
+      "nombre": "Residencia Puentecasa",
+      "localidad": "Atlantida",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 77,
+      "table": "elepem",
+      "nombre": "Residencial Brasil",
+      "localidad": "Lucia",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 78,
+      "table": "elepem",
+      "nombre": "Residencial El Gaucho",
+      "localidad": "Tala",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 79,
+      "table": "elepem",
+      "nombre": "Residencial El Ibirapitá",
+      "localidad": "Atlantida",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 80,
+      "table": "elepem",
+      "nombre": "Residencial Solís",
+      "localidad": "Parque del Plata",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 81,
+      "table": "elepem",
+      "nombre": "Residencial En Flia",
+      "localidad": "Ciudad De La Paz",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 82,
+      "table": "elepem",
+      "nombre": "Residencial Estrella",
+      "localidad": "Canelones Rural",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 83,
+      "table": "elepem",
+      "nombre": "Residencial Hogar San Vicente de Paul",
+      "localidad": "Las Piedras",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 84,
+      "table": "elepem",
+      "nombre": "Residencial Jardines de Neptunia",
+      "localidad": "Canelones",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 86,
+      "table": "elepem",
+      "nombre": "Residencial Las Tres Marías",
+      "localidad": "Atlantida",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 87,
+      "table": "elepem",
+      "nombre": "Residencial Margarita Susana Rodriguez Llull",
+      "localidad": "Barros Blancos",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 88,
+      "table": "elepem",
+      "nombre": "Residencial Maria Bacelar",
+      "localidad": "Lagomar",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 89,
+      "table": "elepem",
+      "nombre": "Residencial Mi Sueño",
+      "localidad": "San Jacinto",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 90,
+      "table": "elepem",
+      "nombre": "Residencial Olimpo",
+      "localidad": "Canelones",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 91,
+      "table": "elepem",
+      "nombre": "Residencial Romanela",
+      "localidad": "Canelones Rural",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 92,
+      "table": "elepem",
+      "nombre": "Residencial Senescentis II",
+      "localidad": "El Pinar",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 93,
+      "table": "elepem",
+      "nombre": "Residencial Sol y Aire",
+      "localidad": "Canelones Rural",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 94,
+      "table": "elepem",
+      "nombre": "Residencial Sol y Aire",
+      "localidad": "Dr. Francisco Soca",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 95,
+      "table": "elepem",
+      "nombre": "SOLYMAR",
+      "localidad": "SOLYMAR SUR",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 96,
+      "table": "elepem",
+      "nombre": "SAN CONO",
+      "localidad": "SAN RAMON",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 97,
+      "table": "elepem",
+      "nombre": "Senescentis Ii",
+      "localidad": "El Pinar",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 98,
+      "table": "elepem",
+      "nombre": "SOL DE ATLÀNTIDA",
+      "localidad": "ATLANTIDA",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 99,
+      "table": "elepem",
+      "nombre": "Solange Alejandra Amaya",
+      "localidad": "San Ramon",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 100,
+      "table": "elepem",
+      "nombre": "Taita Guazú",
+      "localidad": "Los Cerrillos",
+      "updated_at": "2026-08-16T07:12:30.796058+00:00"
+    },
+    {
+      "id": 101,
+      "table": "elepem",
+      "nombre": "DULCE HOGAR",
+      "localidad": "Melo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 102,
+      "table": "elepem",
+      "nombre": "DULCE HOGAR ANEXO",
+      "localidad": "Melo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 103,
+      "table": "elepem",
+      "nombre": "Hogar De Ancianos Y Obras Sociales De Rio Branco",
+      "localidad": "Rio Branco",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 104,
+      "table": "elepem",
+      "nombre": "Residencial Abuela María",
+      "localidad": "Melo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 105,
+      "table": "elepem",
+      "nombre": "Árbol de la Vida",
+      "localidad": "Juan Lacaze",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 107,
+      "table": "elepem",
+      "nombre": "Brisas Del Plata",
+      "localidad": "Valdense",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 109,
+      "table": "elepem",
+      "nombre": "Corazón cariñoso",
+      "localidad": "Ombues de Lavalle",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 110,
+      "table": "elepem",
+      "nombre": "Don Àngel",
+      "localidad": "Colonia",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 111,
+      "table": "elepem",
+      "nombre": "Hogar De Ancianos De Ombues De Lavalle",
+      "localidad": "Ombues De Lavalle",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 112,
+      "table": "elepem",
+      "nombre": "Hogar de Ancianos Cardona, Florencio Sánchez y zonas vecinas",
+      "localidad": "Colonia Rural",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 113,
+      "table": "elepem",
+      "nombre": "Hogar Juan",
+      "localidad": "Colonia del Sacramento",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 114,
+      "table": "elepem",
+      "nombre": "Hogar Tarariras",
+      "localidad": "Tarariras",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 115,
+      "table": "elepem",
+      "nombre": "Institución Porbienestar social del anciano de Rosario",
+      "localidad": "Colonia Rural",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 116,
+      "table": "elepem",
+      "nombre": "INSTITUTO PRO-BIENESTAR SOCIAL DEL ANCIANO DE ROSARIO",
+      "localidad": "Rosario",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 117,
+      "table": "elepem",
+      "nombre": "La Armonia",
+      "localidad": "Carmelo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 118,
+      "table": "elepem",
+      "nombre": "LA MILAGROSA",
+      "localidad": "SACRAMENTO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 119,
+      "table": "elepem",
+      "nombre": "LAS ABUELAS",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 120,
+      "table": "elepem",
+      "nombre": "Los Abuelos",
+      "localidad": "Nueva Palmira",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 121,
+      "table": "elepem",
+      "nombre": "LUZ O SAN BENITO",
+      "localidad": "SACRAMENTO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 122,
+      "table": "elepem",
+      "nombre": "Mi Hogarcito",
+      "localidad": "Valdense",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 123,
+      "table": "elepem",
+      "nombre": "MIS SOLES",
+      "localidad": "COLONIA",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 124,
+      "table": "elepem",
+      "nombre": "Mis Soles",
+      "localidad": "Colonia",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 125,
+      "table": "elepem",
+      "nombre": "Residencial Adriana Alvarez",
+      "localidad": "Sacramento",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 126,
+      "table": "elepem",
+      "nombre": "Residencial Rivera",
+      "localidad": "Sacramento",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 127,
+      "table": "elepem",
+      "nombre": "Residencial Sacramento",
+      "localidad": "Colonia",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 128,
+      "table": "elepem",
+      "nombre": "Ruben Alfredo Castillo Roqueta",
+      "localidad": "Colonia del Sacramento",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 133,
+      "table": "elepem",
+      "nombre": "BLANCA LILA",
+      "localidad": "DURAZNO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 134,
+      "table": "elepem",
+      "nombre": "Comision Pro Ayuda Al Anciano De Durazno",
+      "localidad": "Durazno",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 135,
+      "table": "elepem",
+      "nombre": "Green House",
+      "localidad": "Durazno",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 136,
+      "table": "elepem",
+      "nombre": "Hogar de Ancianos Sarandi del Yi",
+      "localidad": "Sarandi del Yi",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 137,
+      "table": "elepem",
+      "nombre": "Hostal La Vida Es Bella",
+      "localidad": "Durazno",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 138,
+      "table": "elepem",
+      "nombre": "Residencial Años Dorados",
+      "localidad": "Durazno Rural",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 139,
+      "table": "elepem",
+      "nombre": "Residencial Dulce Hogar",
+      "localidad": "Sarandi del Yi",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 140,
+      "table": "elepem",
+      "nombre": "Residencial El Hogar del Adulto",
+      "localidad": "Durazno",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 141,
+      "table": "elepem",
+      "nombre": "Residencial Felicia Santa Bernardina SAS",
+      "localidad": "Durazno",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 142,
+      "table": "elepem",
+      "nombre": "Residencial Hogar Luz del Sol",
+      "localidad": "Sarandi del Yi",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 143,
+      "table": "elepem",
+      "nombre": "Residencial Jardines del Yi",
+      "localidad": "Sarandi del Yi",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 144,
+      "table": "elepem",
+      "nombre": "Residencial La Pensión",
+      "localidad": "Sarandí del Yi",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 145,
+      "table": "elepem",
+      "nombre": "Residencial Reina de las Flores",
+      "localidad": "Durazno",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 146,
+      "table": "elepem",
+      "nombre": "Residencial Sagrado Corazón",
+      "localidad": "Durazno Rural",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 147,
+      "table": "elepem",
+      "nombre": "Residencial San Cayetano",
+      "localidad": "Durazno",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 148,
+      "table": "elepem",
+      "nombre": "Residencial Sueño Dorado",
+      "localidad": "Durazno",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 149,
+      "table": "elepem",
+      "nombre": "Residencial Tea Garden",
+      "localidad": "Durazno",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 150,
+      "table": "elepem",
+      "nombre": "Residencial Tu Segundo Hogar",
+      "localidad": "Durazno Rural",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 151,
+      "table": "elepem",
+      "nombre": "Residencial Casa Hogar",
+      "localidad": "Trinidad",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 152,
+      "table": "elepem",
+      "nombre": "Residencial San José",
+      "localidad": "Trinidad",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 153,
+      "table": "elepem",
+      "nombre": "Residencial Sol de Otoño",
+      "localidad": "Trinidad",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 154,
+      "table": "elepem",
+      "nombre": "Residencial Tea Garden",
+      "localidad": "Trinidad",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 155,
+      "table": "elepem",
+      "nombre": "Residencial WANA",
+      "localidad": "Ciudad De Trinidad",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 157,
+      "table": "elepem",
+      "nombre": "Aquellos Años",
+      "localidad": "Florida",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 158,
+      "table": "elepem",
+      "nombre": "BUEN PASAR",
+      "localidad": "SARANDI GRANDE",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 159,
+      "table": "elepem",
+      "nombre": "DOÑA CHOLA",
+      "localidad": "FLORIDA",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 160,
+      "table": "elepem",
+      "nombre": "EL CEIBO",
+      "localidad": "FRAY MARCOS",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 161,
+      "table": "elepem",
+      "nombre": "Residencial Guazù Roga",
+      "localidad": "Florida",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 162,
+      "table": "elepem",
+      "nombre": "Hogar de Ancianos- Florida",
+      "localidad": "Florida",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 163,
+      "table": "elepem",
+      "nombre": "Hogar de ancianos San Vicente Pallotti",
+      "localidad": "Florida",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 164,
+      "table": "elepem",
+      "nombre": "Hostal Las Hortensias",
+      "localidad": "Florida",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 165,
+      "table": "elepem",
+      "nombre": "Las Hortensias",
+      "localidad": "Florida",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 166,
+      "table": "elepem",
+      "nombre": "LO DE ESTELA 2",
+      "localidad": "Sarandi Grande",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 167,
+      "table": "elepem",
+      "nombre": "Los Tulipanes",
+      "localidad": "Sarandí Grande",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 168,
+      "table": "elepem",
+      "nombre": "MI SUEÑO",
+      "localidad": "FLORIDA",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 169,
+      "table": "elepem",
+      "nombre": "NUESTRO CAMINO",
+      "localidad": "FRAY MARCOS",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 170,
+      "table": "elepem",
+      "nombre": "NUEVO AMANECER",
+      "localidad": "Sarandi Grande",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 171,
+      "table": "elepem",
+      "nombre": "Residencial La Milagrosa",
+      "localidad": "Florida",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 172,
+      "table": "elepem",
+      "nombre": "Residencial Rincon de Luz",
+      "localidad": "Florida",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 173,
+      "table": "elepem",
+      "nombre": "Residencial Sarandí",
+      "localidad": "Sarandi Grande",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 174,
+      "table": "elepem",
+      "nombre": "San Antonio",
+      "localidad": "Florida",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 175,
+      "table": "elepem",
+      "nombre": "SAN EXPEDITO",
+      "localidad": "FLORIDA",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 176,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL Cristal",
+      "localidad": "Minas",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 177,
+      "table": "elepem",
+      "nombre": "Hogar de Ancianos Solís de Mataojo",
+      "localidad": "Solis de Mataojo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 178,
+      "table": "elepem",
+      "nombre": "Institución Pro Bienestar Social Del Anciano De José Pedro Varela",
+      "localidad": "José Pedro Varela",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 179,
+      "table": "elepem",
+      "nombre": "LOS GALLITOS",
+      "localidad": "MINAS",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 180,
+      "table": "elepem",
+      "nombre": "MI REFUGIO",
+      "localidad": "MINAS",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 181,
+      "table": "elepem",
+      "nombre": "NOA",
+      "localidad": "MINAS CIUDAD DE LA",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 182,
+      "table": "elepem",
+      "nombre": "Residencial Casa Grande",
+      "localidad": "Minas",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 183,
+      "table": "elepem",
+      "nombre": "Residencial Hogar I",
+      "localidad": "Minas",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 184,
+      "table": "elepem",
+      "nombre": "Residencial Hogar II",
+      "localidad": "Minas",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 185,
+      "table": "elepem",
+      "nombre": "5 SOLES",
+      "localidad": "MALDONADO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 186,
+      "table": "elepem",
+      "nombre": "ARTEMISA",
+      "localidad": "Pta del Este",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 188,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL AZAHARES",
+      "localidad": "San Carlos",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 189,
+      "table": "elepem",
+      "nombre": "Casa del Sol",
+      "localidad": "Punta del Este",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 190,
+      "table": "elepem",
+      "nombre": "Casa di Reposo da Giuliana",
+      "localidad": "Bella Vista",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 191,
+      "table": "elepem",
+      "nombre": "EL ALBA",
+      "localidad": "Pta del Este",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 192,
+      "table": "elepem",
+      "nombre": "El Porvenir",
+      "localidad": "Maldonado",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 193,
+      "table": "elepem",
+      "nombre": "En Familia",
+      "localidad": "Pan de Azucar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 194,
+      "table": "elepem",
+      "nombre": "Fundación Pro-Bienestar Social del Anciano de Aiguá",
+      "localidad": "Aigua",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 195,
+      "table": "elepem",
+      "nombre": "Gines Cairo Medina",
+      "localidad": "Maldonado Rural",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 196,
+      "table": "elepem",
+      "nombre": "Hogar Q.F. Eva Gonzalez",
+      "localidad": "Pan De Azucar",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 197,
+      "table": "elepem",
+      "nombre": "HOSTERÌA URUGUAY",
+      "localidad": "PIRIAPOLIS",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 199,
+      "table": "elepem",
+      "nombre": "LA CANDELARIA",
+      "localidad": "PTA DEL ESTE",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 200,
+      "table": "elepem",
+      "nombre": "La Milonga",
+      "localidad": "San Carlos",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 201,
+      "table": "elepem",
+      "nombre": "La Villetta",
+      "localidad": "Punta del Este",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 202,
+      "table": "elepem",
+      "nombre": "LOS GIRASOLES",
+      "localidad": "Punta Del Este",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 203,
+      "table": "elepem",
+      "nombre": "Los Juncos",
+      "localidad": "Maldonado",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 204,
+      "table": "elepem",
+      "nombre": "LOS OLIVOS",
+      "localidad": "Punta Del Este",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 205,
+      "table": "elepem",
+      "nombre": "Los Paraisos",
+      "localidad": "San carlos",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 206,
+      "table": "elepem",
+      "nombre": "MARIA MERCEDES UN NUEVO AMANECER",
+      "localidad": "Maldonado",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 207,
+      "table": "elepem",
+      "nombre": "MIS ABUELOS",
+      "localidad": "SAN CARLOS",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 208,
+      "table": "elepem",
+      "nombre": "Renacer",
+      "localidad": "Pan De Azucar",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 209,
+      "table": "elepem",
+      "nombre": "Residencial Adamar",
+      "localidad": "Piriapolis",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 210,
+      "table": "elepem",
+      "nombre": "Residencial Adonis",
+      "localidad": "Maldonado",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 211,
+      "table": "elepem",
+      "nombre": "Residencial Amigos del Padre Pio",
+      "localidad": "Playa Verde",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 212,
+      "table": "elepem",
+      "nombre": "Residencial Anlor",
+      "localidad": "Maldonado",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 213,
+      "table": "elepem",
+      "nombre": "Residencial Casa de Mar",
+      "localidad": "Maldonado",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 214,
+      "table": "elepem",
+      "nombre": "Residencial Centro de Cuidados Alamos",
+      "localidad": "Punta Del Este",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 215,
+      "table": "elepem",
+      "nombre": "Residencial En Familia",
+      "localidad": "Maldonado Rural",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 216,
+      "table": "elepem",
+      "nombre": "Residencial En flia 2",
+      "localidad": "Maldonado",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 217,
+      "table": "elepem",
+      "nombre": "Residencial Guadalupe",
+      "localidad": "Maldonado",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 218,
+      "table": "elepem",
+      "nombre": "Residencial Hogar Santa María",
+      "localidad": "San Carlos",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 219,
+      "table": "elepem",
+      "nombre": "Residencial La Esmeralda",
+      "localidad": "Punta del Este",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 220,
+      "table": "elepem",
+      "nombre": "Residencial La Esperanza",
+      "localidad": "Punta Del Este",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 221,
+      "table": "elepem",
+      "nombre": "Residencial Mi Segunda Flia",
+      "localidad": "Punta Del Este",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 222,
+      "table": "elepem",
+      "nombre": "Residencial Miramar",
+      "localidad": "Piriápolis",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 223,
+      "table": "elepem",
+      "nombre": "Residencial Nouvelles Maison",
+      "localidad": "Punta Del Este",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 224,
+      "table": "elepem",
+      "nombre": "Residencial Nuestros Años Felices",
+      "localidad": "Maldonado",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 225,
+      "table": "elepem",
+      "nombre": "Residencial Nuevo Amanecer",
+      "localidad": "Maldonado",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 227,
+      "table": "elepem",
+      "nombre": "Residencial San Expedito",
+      "localidad": "San Carlos",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 228,
+      "table": "elepem",
+      "nombre": "Residencial San Expedito",
+      "localidad": "Maldonado",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 229,
+      "table": "elepem",
+      "nombre": "Residencial SAS",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 230,
+      "table": "elepem",
+      "nombre": "Residencial Señoras",
+      "localidad": "San Carlos",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 231,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL SEÑORAS Y SEÑORES",
+      "localidad": "San Carlos",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 232,
+      "table": "elepem",
+      "nombre": "Residencial VER BEL",
+      "localidad": "Piriapolis",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 233,
+      "table": "elepem",
+      "nombre": "Residencial Villa Paz",
+      "localidad": "Punta del Este",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 234,
+      "table": "elepem",
+      "nombre": "Residencial VITA BELLA",
+      "localidad": "Maldonado",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 235,
+      "table": "elepem",
+      "nombre": "RIMAES",
+      "localidad": "PIRIAPOLIS CIUDAD DE LA",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 236,
+      "table": "elepem",
+      "nombre": "SAN MIGUEL",
+      "localidad": "MALDONADO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 237,
+      "table": "elepem",
+      "nombre": "Segunda Familia",
+      "localidad": "Maldonado",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 238,
+      "table": "elepem",
+      "nombre": "TOURMALINE",
+      "localidad": "PIRIAPOLIS",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 240,
+      "table": "elepem",
+      "nombre": "ABUELA CHACHI",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 241,
+      "table": "elepem",
+      "nombre": "Abuela Dominga",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 242,
+      "table": "elepem",
+      "nombre": "Abuela Julia II",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 243,
+      "table": "elepem",
+      "nombre": "Abuela Lala",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 244,
+      "table": "elepem",
+      "nombre": "Acompaña Residenciales",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 245,
+      "table": "elepem",
+      "nombre": "AIRES DE CARRASCO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 246,
+      "table": "elepem",
+      "nombre": "Aires Del Parque",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 247,
+      "table": "elepem",
+      "nombre": "Aires del Prado",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 248,
+      "table": "elepem",
+      "nombre": "Aitana SA",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 249,
+      "table": "elepem",
+      "nombre": "Residencial Albas de Otoño",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 253,
+      "table": "elepem",
+      "nombre": "Altos de Bulevard",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 254,
+      "table": "elepem",
+      "nombre": "Altos De La Paz",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 255,
+      "table": "elepem",
+      "nombre": "Altos de Ponce",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 257,
+      "table": "elepem",
+      "nombre": "Años Luz",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 258,
+      "table": "elepem",
+      "nombre": "Años Luz SRL",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 259,
+      "table": "elepem",
+      "nombre": "Residencial Apart Hotel",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 260,
+      "table": "elepem",
+      "nombre": "Árbol De La Vida",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 261,
+      "table": "elepem",
+      "nombre": "AUDAM",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 263,
+      "table": "elepem",
+      "nombre": "Babel Residel Boutique",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 264,
+      "table": "elepem",
+      "nombre": "BEL-AIR",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 266,
+      "table": "elepem",
+      "nombre": "Bonsejour (Paal Familia Srl)",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 267,
+      "table": "elepem",
+      "nombre": "Residencial Boulevard",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 268,
+      "table": "elepem",
+      "nombre": "BRISAS DEL SOL",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 269,
+      "table": "elepem",
+      "nombre": "Buenos Tiempos",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 270,
+      "table": "elepem",
+      "nombre": "Casa Azul",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 272,
+      "table": "elepem",
+      "nombre": "CASA DEL SOL",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 273,
+      "table": "elepem",
+      "nombre": "Casa del Sol",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 274,
+      "table": "elepem",
+      "nombre": "CASA DI RIPOSO ITALIANA",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 275,
+      "table": "elepem",
+      "nombre": "Casa Flora",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 276,
+      "table": "elepem",
+      "nombre": "CASA LOS TILOS",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 277,
+      "table": "elepem",
+      "nombre": "Casona Carrasco",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 278,
+      "table": "elepem",
+      "nombre": "CAYETANO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 281,
+      "table": "elepem",
+      "nombre": "CENTRO DEL ADULTO MAYOR",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 282,
+      "table": "elepem",
+      "nombre": "Centro Del Adulto Mayor Agraciada (Clamerica SA)",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 283,
+      "table": "elepem",
+      "nombre": "Centro Del Adulto Mayor Central",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 284,
+      "table": "elepem",
+      "nombre": "CENTRO DEL ADULTO MAYOR",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 285,
+      "table": "elepem",
+      "nombre": "CENTRO DEL ADULTO MAYOR",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 287,
+      "table": "elepem",
+      "nombre": "CHEZ MOI",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 288,
+      "table": "elepem",
+      "nombre": "CIRCULO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 289,
+      "table": "elepem",
+      "nombre": "Círculo Católico",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 290,
+      "table": "elepem",
+      "nombre": "Claro de Luna",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 291,
+      "table": "elepem",
+      "nombre": "CLUB DE ABUELOS DEL PRADO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 292,
+      "table": "elepem",
+      "nombre": "CORAZON DE ORO II",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 293,
+      "table": "elepem",
+      "nombre": "Costa del Sol",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 295,
+      "table": "elepem",
+      "nombre": "De Los Pocitos",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 296,
+      "table": "elepem",
+      "nombre": "DEL PRADO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 297,
+      "table": "elepem",
+      "nombre": "Dolce Vita",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 298,
+      "table": "elepem",
+      "nombre": "Doña Cata",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 299,
+      "table": "elepem",
+      "nombre": "DR. LUIS PIÑEYRO DEL CAMPO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 301,
+      "table": "elepem",
+      "nombre": "EDÈN CERRO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 302,
+      "table": "elepem",
+      "nombre": "EL ABUELO EN SU CASA",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 303,
+      "table": "elepem",
+      "nombre": "EL ATARDECER",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 304,
+      "table": "elepem",
+      "nombre": "EL COLIBRÌ",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 305,
+      "table": "elepem",
+      "nombre": "El Despertar",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 306,
+      "table": "elepem",
+      "nombre": "El Jardín de los Abuelos",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 307,
+      "table": "elepem",
+      "nombre": "EL REENCUENTRO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 308,
+      "table": "elepem",
+      "nombre": "Residencial Empatía",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 309,
+      "table": "elepem",
+      "nombre": "EMPATÍA II",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 310,
+      "table": "elepem",
+      "nombre": "En Compañia II",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 311,
+      "table": "elepem",
+      "nombre": "EN FLIA",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 312,
+      "table": "elepem",
+      "nombre": "Estancia Alberdi",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 313,
+      "table": "elepem",
+      "nombre": "Estilo de Vida",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 314,
+      "table": "elepem",
+      "nombre": "French House",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 315,
+      "table": "elepem",
+      "nombre": "French House Residencia Uriarte",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 316,
+      "table": "elepem",
+      "nombre": "Fundación Luis Manuel Calleja",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 317,
+      "table": "elepem",
+      "nombre": "Garden House",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 318,
+      "table": "elepem",
+      "nombre": "Gladys Godoy",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 319,
+      "table": "elepem",
+      "nombre": "Hebert Leiva",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 320,
+      "table": "elepem",
+      "nombre": "Historias de Vida",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 321,
+      "table": "elepem",
+      "nombre": "HOGAR ABUELAS DEL CERRO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 322,
+      "table": "elepem",
+      "nombre": "Hogar Alemán",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 323,
+      "table": "elepem",
+      "nombre": "Hogar Amelia Ruano De Schiaffino",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 324,
+      "table": "elepem",
+      "nombre": "Hogar Cocoon",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 325,
+      "table": "elepem",
+      "nombre": "HOGAR DE ABUELOS",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 326,
+      "table": "elepem",
+      "nombre": "Hogar Español",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 327,
+      "table": "elepem",
+      "nombre": "HOGAR ESPERANZA",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 328,
+      "table": "elepem",
+      "nombre": "La Capilla",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 329,
+      "table": "elepem",
+      "nombre": "Hogar Nazareth",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 330,
+      "table": "elepem",
+      "nombre": "Hogar Nazareth",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 331,
+      "table": "elepem",
+      "nombre": "Hogar Nazareth",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 332,
+      "table": "elepem",
+      "nombre": "Hogar Renacer",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 333,
+      "table": "elepem",
+      "nombre": "Hotel Continental",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 334,
+      "table": "elepem",
+      "nombre": "Hotel Residencial San Antonio",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 335,
+      "table": "elepem",
+      "nombre": "Jorge Darío Pérez",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 336,
+      "table": "elepem",
+      "nombre": "KIMARA",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 337,
+      "table": "elepem",
+      "nombre": "La Casa de los Abuelos",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 338,
+      "table": "elepem",
+      "nombre": "LA CASA RITA",
+      "localidad": "MONTEVIDEO COLONIA DEL",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 339,
+      "table": "elepem",
+      "nombre": "La Familia",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 340,
+      "table": "elepem",
+      "nombre": "La Familia",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 341,
+      "table": "elepem",
+      "nombre": "La Serena",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 342,
+      "table": "elepem",
+      "nombre": "La Serena",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 343,
+      "table": "elepem",
+      "nombre": "La Serenita Srl",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 344,
+      "table": "elepem",
+      "nombre": "LA SYESTITA",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 345,
+      "table": "elepem",
+      "nombre": "Laguna Dorada",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 346,
+      "table": "elepem",
+      "nombre": "LAR - CENTRO",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 347,
+      "table": "elepem",
+      "nombre": "Las Calas",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 348,
+      "table": "elepem",
+      "nombre": "LAS CUMBRES",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 349,
+      "table": "elepem",
+      "nombre": "LAS FLORES",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 350,
+      "table": "elepem",
+      "nombre": "Las Flores",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 351,
+      "table": "elepem",
+      "nombre": "Las Gardenias",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 352,
+      "table": "elepem",
+      "nombre": "Las Julietas",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 353,
+      "table": "elepem",
+      "nombre": "Las Olas",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 355,
+      "table": "elepem",
+      "nombre": "LE PARC",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 356,
+      "table": "elepem",
+      "nombre": "Le Refuge",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 357,
+      "table": "elepem",
+      "nombre": "LE SOLEIL",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 358,
+      "table": "elepem",
+      "nombre": "Les Sens",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 360,
+      "table": "elepem",
+      "nombre": "Lo de Antonio",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 361,
+      "table": "elepem",
+      "nombre": "LOS MILAGROS DE MARIA ANGELICA",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 362,
+      "table": "elepem",
+      "nombre": "Madre Paulina",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 363,
+      "table": "elepem",
+      "nombre": "MARIA",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 364,
+      "table": "elepem",
+      "nombre": "María Mercedes",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 365,
+      "table": "elepem",
+      "nombre": "MARIA Y JOSÉ",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 366,
+      "table": "elepem",
+      "nombre": "MEDITERRÀNEO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 367,
+      "table": "elepem",
+      "nombre": "MEMORY HOUSE",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 368,
+      "table": "elepem",
+      "nombre": "Mi Casa",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 369,
+      "table": "elepem",
+      "nombre": "Mi Encanto",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 370,
+      "table": "elepem",
+      "nombre": "MI LUGAR",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 371,
+      "table": "elepem",
+      "nombre": "Mi Rinconcito",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 372,
+      "table": "elepem",
+      "nombre": "MIS ABUELOS",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 373,
+      "table": "elepem",
+      "nombre": "MIS ABUELOS",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 375,
+      "table": "elepem",
+      "nombre": "NAPOLES",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 376,
+      "table": "elepem",
+      "nombre": "New Home",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 377,
+      "table": "elepem",
+      "nombre": "NEW HOME",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 378,
+      "table": "elepem",
+      "nombre": "Nonna Elsa",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 379,
+      "table": "elepem",
+      "nombre": "Nuestro Hogar",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 380,
+      "table": "elepem",
+      "nombre": "NUEVA VIDA",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 381,
+      "table": "elepem",
+      "nombre": "Nuevo Amanecer",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 382,
+      "table": "elepem",
+      "nombre": "Nuevo Rimac",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 383,
+      "table": "elepem",
+      "nombre": "NUEVOS COMIENZOS",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 384,
+      "table": "elepem",
+      "nombre": "NUEVOS MOMENTOS",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 385,
+      "table": "elepem",
+      "nombre": "ORENSE",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 386,
+      "table": "elepem",
+      "nombre": "Pájaros Pintados",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 387,
+      "table": "elepem",
+      "nombre": "Palas Atenea (Pocitos)",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 388,
+      "table": "elepem",
+      "nombre": "PERLITA “S",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 389,
+      "table": "elepem",
+      "nombre": "Procura Residencial",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 390,
+      "table": "elepem",
+      "nombre": "REENCUENTRO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 391,
+      "table": "elepem",
+      "nombre": "Residencia Santa Barbara SRL",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 392,
+      "table": "elepem",
+      "nombre": "Residencial Abuela Angelina",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 393,
+      "table": "elepem",
+      "nombre": "Residencial Age II SRL",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 394,
+      "table": "elepem",
+      "nombre": "Residencial Aiyelen",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 395,
+      "table": "elepem",
+      "nombre": "Residencial Alamos",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 396,
+      "table": "elepem",
+      "nombre": "Residencial Almendro en Flor",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 397,
+      "table": "elepem",
+      "nombre": "Residencial Altos de Rosell",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 398,
+      "table": "elepem",
+      "nombre": "Residencial Asociación Uuguaya del A. Mayor",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 399,
+      "table": "elepem",
+      "nombre": "Residencial Belén",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 400,
+      "table": "elepem",
+      "nombre": "Residencial Brenda",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 401,
+      "table": "elepem",
+      "nombre": "Residencial Calor Humano I",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 402,
+      "table": "elepem",
+      "nombre": "Residencial Calor Humano II",
+      "localidad": "Montevideo Colonia del",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 403,
+      "table": "elepem",
+      "nombre": "Residencial Camino Real",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 404,
+      "table": "elepem",
+      "nombre": "Residencial Casa Colibri",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 405,
+      "table": "elepem",
+      "nombre": "Residencial Casa Delia",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 406,
+      "table": "elepem",
+      "nombre": "Residencial Casa Garzón",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 407,
+      "table": "elepem",
+      "nombre": "Residencial Cecilia",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 408,
+      "table": "elepem",
+      "nombre": "Residencial Centro Abrazarte",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 409,
+      "table": "elepem",
+      "nombre": "Residencial Centro Arrels",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 410,
+      "table": "elepem",
+      "nombre": "Residencial Cumbres del Prado",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 411,
+      "table": "elepem",
+      "nombre": "Residencial Diamante",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 412,
+      "table": "elepem",
+      "nombre": "Residencial Dolce Vita",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 413,
+      "table": "elepem",
+      "nombre": "Residencial Dolce Vita",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 414,
+      "table": "elepem",
+      "nombre": "Residencial Don Carlos",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 415,
+      "table": "elepem",
+      "nombre": "Residencial Doña Angelita",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 416,
+      "table": "elepem",
+      "nombre": "Residencial Doña Isabel",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 417,
+      "table": "elepem",
+      "nombre": "Residencial El Encanto",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 418,
+      "table": "elepem",
+      "nombre": "Residencial El Retorno",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 419,
+      "table": "elepem",
+      "nombre": "Residencial Entre Amigos",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 420,
+      "table": "elepem",
+      "nombre": "Residencial Erika",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 421,
+      "table": "elepem",
+      "nombre": "Residencial Gala",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 422,
+      "table": "elepem",
+      "nombre": "Residencial Habitus",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 423,
+      "table": "elepem",
+      "nombre": "Residencial Hogar Esperanza",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 424,
+      "table": "elepem",
+      "nombre": "Residencial Hogar Plenitud",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 425,
+      "table": "elepem",
+      "nombre": "Residencial Humana",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 426,
+      "table": "elepem",
+      "nombre": "Residencial Jardines del Prado",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 427,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL JESUS",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 428,
+      "table": "elepem",
+      "nombre": "Residencial La Flia",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 429,
+      "table": "elepem",
+      "nombre": "Residencial Le Sens",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 430,
+      "table": "elepem",
+      "nombre": "Residencial Life",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 431,
+      "table": "elepem",
+      "nombre": "Residencial Los Angeles 2",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 432,
+      "table": "elepem",
+      "nombre": "Residencial Los Hermanos",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 433,
+      "table": "elepem",
+      "nombre": "Residencial Luna D Argento",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 434,
+      "table": "elepem",
+      "nombre": "Residencial Luz de Luna",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 435,
+      "table": "elepem",
+      "nombre": "Residencial Madrid",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 436,
+      "table": "elepem",
+      "nombre": "Residencial Mamina",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 437,
+      "table": "elepem",
+      "nombre": "Residencial Margarita",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 438,
+      "table": "elepem",
+      "nombre": "Residencial Memory House",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 439,
+      "table": "elepem",
+      "nombre": "Residencial MGACOSTA SRL",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 440,
+      "table": "elepem",
+      "nombre": "Residencial Mi Lourdes",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 441,
+      "table": "elepem",
+      "nombre": "Residencial Mi Sueño",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 442,
+      "table": "elepem",
+      "nombre": "Residencial Nirvana",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 443,
+      "table": "elepem",
+      "nombre": "Residencial Nonna Bianca",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 444,
+      "table": "elepem",
+      "nombre": "Residencial Nuestra Familia",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 445,
+      "table": "elepem",
+      "nombre": "Residencial Nuestro Sueño",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 446,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL NUEVA LUNA",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 447,
+      "table": "elepem",
+      "nombre": "Residencial Oasis",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 448,
+      "table": "elepem",
+      "nombre": "Residencial Our Place",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 449,
+      "table": "elepem",
+      "nombre": "Residencial Platino",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 450,
+      "table": "elepem",
+      "nombre": "Residencial Plenilunio",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 451,
+      "table": "elepem",
+      "nombre": "Residencial Portones",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 452,
+      "table": "elepem",
+      "nombre": "Residencial Renacer",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 453,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL RIMAC",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 454,
+      "table": "elepem",
+      "nombre": "Rincón de Luz",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 455,
+      "table": "elepem",
+      "nombre": "Residencial Rincon de luz",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 456,
+      "table": "elepem",
+      "nombre": "Residencial San Isidro Labrador",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 457,
+      "table": "elepem",
+      "nombre": "Segunda Juventud IV",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 458,
+      "table": "elepem",
+      "nombre": "Residencial Sol de Otoño 1",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 459,
+      "table": "elepem",
+      "nombre": "Residencial Sol de Otoño II",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 460,
+      "table": "elepem",
+      "nombre": "Residencial Sol de Otoño III",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 461,
+      "table": "elepem",
+      "nombre": "Sweet Home",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 462,
+      "table": "elepem",
+      "nombre": "Residencial Teagarden",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 463,
+      "table": "elepem",
+      "nombre": "Residencial Versalles",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 464,
+      "table": "elepem",
+      "nombre": "Residencial VIDA Residencial El Remanso",
+      "localidad": "Montevideo Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 465,
+      "table": "elepem",
+      "nombre": "Residencial Villa Angelita",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 466,
+      "table": "elepem",
+      "nombre": "Residencial Villa Dolores",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 467,
+      "table": "elepem",
+      "nombre": "Residencial Villa Rosana",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 468,
+      "table": "elepem",
+      "nombre": "Residencial Vital HOUSE",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 469,
+      "table": "elepem",
+      "nombre": "Residencial Zar Shalom",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 470,
+      "table": "elepem",
+      "nombre": "ZUICH",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 471,
+      "table": "elepem",
+      "nombre": "RINCON DE LUZ",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 473,
+      "table": "elepem",
+      "nombre": "ROSAS DEL PRADO",
+      "localidad": "MONTEVIDEO SALINAS / PINAMAR",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 474,
+      "table": "elepem",
+      "nombre": "SAN CAMILO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 475,
+      "table": "elepem",
+      "nombre": "SAN CAYETANO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 476,
+      "table": "elepem",
+      "nombre": "SAN FERNANDO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 477,
+      "table": "elepem",
+      "nombre": "San José",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 478,
+      "table": "elepem",
+      "nombre": "SAN PANCRACIO",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 479,
+      "table": "elepem",
+      "nombre": "SANDRA",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 480,
+      "table": "elepem",
+      "nombre": "SEBASTIAL",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 482,
+      "table": "elepem",
+      "nombre": "Segunda Juventud II",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 483,
+      "table": "elepem",
+      "nombre": "Segunda Juventud III",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 484,
+      "table": "elepem",
+      "nombre": "SHIRLEY MEDEROS",
+      "localidad": "MONTEVIDEO CIUDAD DE LA",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 487,
+      "table": "elepem",
+      "nombre": "Tata Luis y Doña Lola",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 488,
+      "table": "elepem",
+      "nombre": "Tibicel - Estilo de Vida",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 489,
+      "table": "elepem",
+      "nombre": "Tilos De Abril",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 490,
+      "table": "elepem",
+      "nombre": "VILLA GUADALUPE",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 491,
+      "table": "elepem",
+      "nombre": "WENCESLAO SILVA (MONREVE)",
+      "localidad": "MONTEVIDEO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 492,
+      "table": "elepem",
+      "nombre": "Ángeles Maisson",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 493,
+      "table": "elepem",
+      "nombre": "Las Nonas",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 494,
+      "table": "elepem",
+      "nombre": "Residencia MARIA CAROLINA",
+      "localidad": "PAYSANDU",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 495,
+      "table": "elepem",
+      "nombre": "Residencia San Cono",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 496,
+      "table": "elepem",
+      "nombre": "Residencial Eben Ezer I",
+      "localidad": "Paysandu",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 497,
+      "table": "elepem",
+      "nombre": "Residencial Eben Ezer II",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 498,
+      "table": "elepem",
+      "nombre": "Residencial Bom Lar",
+      "localidad": "Rivera",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 499,
+      "table": "elepem",
+      "nombre": "Residencial Sociedad Filatrópoca de Santa Fé",
+      "localidad": "Lagos del Norte",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 500,
+      "table": "elepem",
+      "nombre": "HOGAR DE ANCIANOS BLANCA RUBIO DE CASTILLOS",
+      "localidad": "CASTILLOS",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 501,
+      "table": "elepem",
+      "nombre": "Residencial Hogar de Ancianos de Lascano",
+      "localidad": "Lascano",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 502,
+      "table": "elepem",
+      "nombre": "Residencial Mas Infoservicios",
+      "localidad": "Rocha Rural",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 503,
+      "table": "elepem",
+      "nombre": "Residencial San Sueña",
+      "localidad": "Rocha Rural",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 504,
+      "table": "elepem",
+      "nombre": "Residencial Serena",
+      "localidad": "Rocha Rural",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 505,
+      "table": "elepem",
+      "nombre": "El es mi Paz",
+      "localidad": "Fray Bentos",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 506,
+      "table": "elepem",
+      "nombre": "Residencial La Familia",
+      "localidad": "Nuevo Berlin",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 508,
+      "table": "elepem",
+      "nombre": "Residencial Centro Anahata",
+      "localidad": "Salto Rural",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 509,
+      "table": "elepem",
+      "nombre": "Hogar del Adulto Mayor Intendencia de Salto",
+      "localidad": "Salto",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 510,
+      "table": "elepem",
+      "nombre": "HOME RESIDENCIAL S.A.S",
+      "localidad": "SALTO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 511,
+      "table": "elepem",
+      "nombre": "Lo de Ana",
+      "localidad": "Salto",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 512,
+      "table": "elepem",
+      "nombre": "Los Abuelitos",
+      "localidad": "Salto",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 513,
+      "table": "elepem",
+      "nombre": "Residencial Armonia",
+      "localidad": "Salto Ciudad de Santa",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 514,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL EL SALTEÑITO 1",
+      "localidad": "Salto",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 515,
+      "table": "elepem",
+      "nombre": "Residencial El Salteñito 2",
+      "localidad": "Salto",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 516,
+      "table": "elepem",
+      "nombre": "Residencial Guadalupe",
+      "localidad": "Salto",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 517,
+      "table": "elepem",
+      "nombre": "Residencial La Estación",
+      "localidad": "Salto",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 518,
+      "table": "elepem",
+      "nombre": "Residencial Los Abuelitos",
+      "localidad": "Salto",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 519,
+      "table": "elepem",
+      "nombre": "Residencial Saniguet",
+      "localidad": "Salto",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 520,
+      "table": "elepem",
+      "nombre": "Residencial Talabi",
+      "localidad": "Salto",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 521,
+      "table": "elepem",
+      "nombre": "Sol y Luna",
+      "localidad": "Salto",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 522,
+      "table": "elepem",
+      "nombre": "Sol y Luna II",
+      "localidad": "Salto",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 524,
+      "table": "elepem",
+      "nombre": "Casa Campo",
+      "localidad": "Libertad",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 525,
+      "table": "elepem",
+      "nombre": "Décadas Doradas",
+      "localidad": "Ciudad del Plata",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 526,
+      "table": "elepem",
+      "nombre": "El Quincho",
+      "localidad": "Libertad",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 527,
+      "table": "elepem",
+      "nombre": "EL REX",
+      "localidad": "ECILDA PAULLIER",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 528,
+      "table": "elepem",
+      "nombre": "ELBA",
+      "localidad": "LIBERTAD",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 529,
+      "table": "elepem",
+      "nombre": "EMANUEL",
+      "localidad": "DEL PLATA",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 531,
+      "table": "elepem",
+      "nombre": "HOGAR CRISTINA",
+      "localidad": "SAN JOSE",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 532,
+      "table": "elepem",
+      "nombre": "Hogar de Ancianos de San José",
+      "localidad": "San José",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 533,
+      "table": "elepem",
+      "nombre": "HOGAR DEL ALBA",
+      "localidad": "SAN JOSE",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 534,
+      "table": "elepem",
+      "nombre": "HOGAR ESPERANZA",
+      "localidad": "Rodriguez",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 535,
+      "table": "elepem",
+      "nombre": "Iris Rodríguez",
+      "localidad": "San Jose de Mayo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 536,
+      "table": "elepem",
+      "nombre": "LAS ROSAS",
+      "localidad": "SAN JOSE",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 538,
+      "table": "elepem",
+      "nombre": "MIS AMORES",
+      "localidad": "Ciudad Del Plata",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 539,
+      "table": "elepem",
+      "nombre": "RESIDENCIA ANDREA",
+      "localidad": "SAN JOSÈ DE MAYO",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 540,
+      "table": "elepem",
+      "nombre": "Residencial Hogar Liros Residencial San Nicolas",
+      "localidad": "CIUDAD DEL PLATA San José",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 541,
+      "table": "elepem",
+      "nombre": "Residencial La Casa de Miriam",
+      "localidad": "San José",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 542,
+      "table": "elepem",
+      "nombre": "Residencial Mabel",
+      "localidad": "Libertad",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 543,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL MILAGROS",
+      "localidad": "LIBERTAD",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 544,
+      "table": "elepem",
+      "nombre": "Residencial Renacer",
+      "localidad": "San José",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 545,
+      "table": "elepem",
+      "nombre": "Residencial Solis",
+      "localidad": "San José Colonia DELTA La",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 546,
+      "table": "elepem",
+      "nombre": "TREINTA Y TRES",
+      "localidad": "SAN JOSE",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 547,
+      "table": "elepem",
+      "nombre": "Don Joaquín",
+      "localidad": "Egaña",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 548,
+      "table": "elepem",
+      "nombre": "Hogar Don Joaquín",
+      "localidad": "Egaña",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 549,
+      "table": "elepem",
+      "nombre": "Hogar de Ancianos Manuel Souto",
+      "localidad": "Dolores",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 550,
+      "table": "elepem",
+      "nombre": "Hogar Don Ricardo Chacón (Instituto Pro Bienestar del Anciano De Palmitas)",
+      "localidad": "Palmitas",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 551,
+      "table": "elepem",
+      "nombre": "LES AMIS",
+      "localidad": "MERCEDES",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 552,
+      "table": "elepem",
+      "nombre": "Residencial Sueños Dorados",
+      "localidad": "Mercedes",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 553,
+      "table": "elepem",
+      "nombre": "SANTA CATALINA",
+      "localidad": "SANTA CATALINA",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 554,
+      "table": "elepem",
+      "nombre": "Sueños Dorados 2",
+      "localidad": "Mercedes",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 556,
+      "table": "elepem",
+      "nombre": "HOGAR ASOC CIVIL COMISION PRO BIENESTAR DEL ANCIANO DE PASO DE LOS TOROS",
+      "localidad": "PASO DE LOS TOROS",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 557,
+      "table": "elepem",
+      "nombre": "Residencial Casa del Sol",
+      "localidad": "Tacuarembó",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 558,
+      "table": "elepem",
+      "nombre": "Residencial Doña Blanca",
+      "localidad": "Paso de los Toros",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 559,
+      "table": "elepem",
+      "nombre": "Residencial “Dulce Hogar “",
+      "localidad": "Tacuarembo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 560,
+      "table": "elepem",
+      "nombre": "Residencial Hogar de Ancianos San Vicente de Paul",
+      "localidad": "Tacuarembo",
+      "updated_at": "2026-08-16T21:10:16.12684+00:00"
+    },
+    {
+      "id": 561,
+      "table": "elepem",
+      "nombre": "Residencial Justina",
+      "localidad": "Tacuarembó",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 562,
+      "table": "elepem",
+      "nombre": "Residencial “La Familia “",
+      "localidad": "Tacuarembo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 563,
+      "table": "elepem",
+      "nombre": "Residencial Las Violetas",
+      "localidad": "Paso de los Toros",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 564,
+      "table": "elepem",
+      "nombre": "Residencial Los Abuelos",
+      "localidad": "Tacuarembó",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 565,
+      "table": "elepem",
+      "nombre": "Residencial Maricel",
+      "localidad": "Tacuarembo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 566,
+      "table": "elepem",
+      "nombre": "Residencial Doña Aurelia",
+      "localidad": "Ejido de Treinta y Tres",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 567,
+      "table": "elepem",
+      "nombre": "Residencial Josefa Olascoaga",
+      "localidad": "Treinta y Tres",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 569,
+      "table": "elepem",
+      "nombre": "Palas Atenea",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 570,
+      "table": "elepem",
+      "nombre": "Tio  Tito",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 574,
+      "table": "elepem",
+      "nombre": "Residencial Gerardo",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 575,
+      "table": "elepem",
+      "nombre": "Los Angeles",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 577,
+      "table": "elepem",
+      "nombre": "Dos Lunas",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 578,
+      "table": "elepem",
+      "nombre": "Manas Home",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 579,
+      "table": "elepem",
+      "nombre": "Mediterraneo Salud",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 580,
+      "table": "elepem",
+      "nombre": "Residencial Valle Vilcabamba",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 582,
+      "table": "elepem",
+      "nombre": "Residencial Sol De Otoño",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 583,
+      "table": "elepem",
+      "nombre": "Residencial Villa Ravello",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 584,
+      "table": "elepem",
+      "nombre": "Residencial San Diego",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 585,
+      "table": "elepem",
+      "nombre": "Hermano Sol Hermana Luna",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 586,
+      "table": "elepem",
+      "nombre": "Hogar El Fortin SRL",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 587,
+      "table": "elepem",
+      "nombre": "Hogar Dora Moreno",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 588,
+      "table": "elepem",
+      "nombre": "Residencial Colonial",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 589,
+      "table": "elepem",
+      "nombre": "Residencial Itiel",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 590,
+      "table": "elepem",
+      "nombre": "Residencial Vivir Mejor",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 591,
+      "table": "elepem",
+      "nombre": "Residencial Nahuel",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 592,
+      "table": "elepem",
+      "nombre": "Residencial Solaz",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 593,
+      "table": "elepem",
+      "nombre": "Acompaña Residenciales",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 594,
+      "table": "elepem",
+      "nombre": "Residencial Valle Vilcabamba",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 595,
+      "table": "elepem",
+      "nombre": "Residencial Las Olas",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 596,
+      "table": "elepem",
+      "nombre": "Residencial Parquesol",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 597,
+      "table": "elepem",
+      "nombre": "Lo De Cota",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 598,
+      "table": "elepem",
+      "nombre": "Red Oak",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 599,
+      "table": "elepem",
+      "nombre": "Garibaldi Srl",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 600,
+      "table": "elepem",
+      "nombre": "Las Huellas",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 601,
+      "table": "elepem",
+      "nombre": "Las Reinas",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 602,
+      "table": "elepem",
+      "nombre": "The Green Residence",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 603,
+      "table": "elepem",
+      "nombre": "Casablanca – Las Abejas Srl.",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 605,
+      "table": "elepem",
+      "nombre": "Altos Del Centro",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 606,
+      "table": "elepem",
+      "nombre": "Hogar  Setiembre",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 607,
+      "table": "elepem",
+      "nombre": "En Compañía",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 608,
+      "table": "elepem",
+      "nombre": "Santa Bernardita",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 609,
+      "table": "elepem",
+      "nombre": "María De Los Ageles",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 610,
+      "table": "elepem",
+      "nombre": "Aguas De Reposo",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 611,
+      "table": "elepem",
+      "nombre": "Red Bienestar",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 612,
+      "table": "elepem",
+      "nombre": "Valle Vilcabamba",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 613,
+      "table": "elepem",
+      "nombre": "Residencial Irigoitía",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 614,
+      "table": "elepem",
+      "nombre": "Segunda Juventud",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 615,
+      "table": "elepem",
+      "nombre": "Residencial Antares",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 616,
+      "table": "elepem",
+      "nombre": "Las Brisas",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 618,
+      "table": "elepem",
+      "nombre": "Juan XXlll",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 619,
+      "table": "elepem",
+      "nombre": "Valle Vilcabamba",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 620,
+      "table": "elepem",
+      "nombre": "Hogar Siena",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 621,
+      "table": "elepem",
+      "nombre": "Bellos Años",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 622,
+      "table": "elepem",
+      "nombre": "Hogar Marsella",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 623,
+      "table": "elepem",
+      "nombre": "Miguel Angel",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 624,
+      "table": "elepem",
+      "nombre": "San Jorge",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 626,
+      "table": "elepem",
+      "nombre": "Sueños De Hogar",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 627,
+      "table": "elepem",
+      "nombre": "Sueños Compartidos",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 628,
+      "table": "elepem",
+      "nombre": "Altos Del Parque",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 629,
+      "table": "elepem",
+      "nombre": "Facundo Zaccaron",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 631,
+      "table": "elepem",
+      "nombre": "Los Nonos",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 633,
+      "table": "elepem",
+      "nombre": "Terra Nostra",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 635,
+      "table": "elepem",
+      "nombre": "Las Gardenias I",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 637,
+      "table": "elepem",
+      "nombre": "La Huella",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 638,
+      "table": "elepem",
+      "nombre": "Mon Etoile",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 639,
+      "table": "elepem",
+      "nombre": "Los Alpes",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 640,
+      "table": "elepem",
+      "nombre": "Les Jardins",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 641,
+      "table": "elepem",
+      "nombre": "Doña Maria",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 643,
+      "table": "elepem",
+      "nombre": "Dos Soles",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 644,
+      "table": "elepem",
+      "nombre": "Happy Life",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 646,
+      "table": "elepem",
+      "nombre": "Asilo De Ancianos Y Huerfanos Israelita Del Uruguay",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 647,
+      "table": "elepem",
+      "nombre": "Villa Amanda",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 648,
+      "table": "elepem",
+      "nombre": "Las Cuatro Estaciones",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 649,
+      "table": "elepem",
+      "nombre": "Nuestro Hogar",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 651,
+      "table": "elepem",
+      "nombre": "Residencial Del Parque",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 652,
+      "table": "elepem",
+      "nombre": "Casa Tranquila",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 653,
+      "table": "elepem",
+      "nombre": "Mis Nietos",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 655,
+      "table": "elepem",
+      "nombre": "Tres Marías",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 656,
+      "table": "elepem",
+      "nombre": "El Remanso",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 658,
+      "table": "elepem",
+      "nombre": "Old Trafford",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 659,
+      "table": "elepem",
+      "nombre": "Casa Andreoni",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 661,
+      "table": "elepem",
+      "nombre": "The Green Home",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 662,
+      "table": "elepem",
+      "nombre": "Las Gardenias Ill",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 663,
+      "table": "elepem",
+      "nombre": "Asociación Civil Instituto De Las Hermanas Del Perpetuo Socorro",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 664,
+      "table": "elepem",
+      "nombre": "Las Dos Hermanas",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 665,
+      "table": "elepem",
+      "nombre": "En Familia",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 666,
+      "table": "elepem",
+      "nombre": "Polo House",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 668,
+      "table": "elepem",
+      "nombre": "Amanda  2",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 669,
+      "table": "elepem",
+      "nombre": "Las Marías",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 671,
+      "table": "elepem",
+      "nombre": "Las Gardenias Il",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 672,
+      "table": "elepem",
+      "nombre": "Petit Home",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 673,
+      "table": "elepem",
+      "nombre": "Hogar Italiano",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 674,
+      "table": "elepem",
+      "nombre": "Los Rosales",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 675,
+      "table": "elepem",
+      "nombre": "Residencial Jackson",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 676,
+      "table": "elepem",
+      "nombre": "Nuestras Raíces",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 677,
+      "table": "elepem",
+      "nombre": "Residencial Ricaldoni",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 678,
+      "table": "elepem",
+      "nombre": "La Maison Senior Apartaments",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 679,
+      "table": "elepem",
+      "nombre": "la Amistad",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 680,
+      "table": "elepem",
+      "nombre": "La Belle Epoque",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 681,
+      "table": "elepem",
+      "nombre": "Residencial French House- Residencial Arkadia\"",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 682,
+      "table": "elepem",
+      "nombre": "Marías Belen",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 683,
+      "table": "elepem",
+      "nombre": "La Rosaleda",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 684,
+      "table": "elepem",
+      "nombre": "Benito Menni",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 686,
+      "table": "elepem",
+      "nombre": "El Jardín de los Abuelos",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 687,
+      "table": "elepem",
+      "nombre": "Danubio Azul",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 688,
+      "table": "elepem",
+      "nombre": "Hogar Dulce Hogar",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 689,
+      "table": "elepem",
+      "nombre": "Los Robles de Sayago",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 694,
+      "table": "elepem",
+      "nombre": "Centro para el Adulto Mayor",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 696,
+      "table": "elepem",
+      "nombre": "Laura Pingaro",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 697,
+      "table": "elepem",
+      "nombre": "Hogar Casa Campo",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 699,
+      "table": "elepem",
+      "nombre": "Mi Jazmin",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 700,
+      "table": "elepem",
+      "nombre": "Residencial Hotel Lafayette",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 701,
+      "table": "elepem",
+      "nombre": "Veramar Home",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 702,
+      "table": "elepem",
+      "nombre": "La Belle Epoque",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 704,
+      "table": "elepem",
+      "nombre": "Residencial Blanes",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 705,
+      "table": "elepem",
+      "nombre": "Intituto de Las hermanas del Perpetuo Socorro",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 707,
+      "table": "elepem",
+      "nombre": "En Compañìa",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 708,
+      "table": "elepem",
+      "nombre": "Corazon de Oro",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 709,
+      "table": "elepem",
+      "nombre": "María Violeta",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 710,
+      "table": "elepem",
+      "nombre": "Doña Juana",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 711,
+      "table": "elepem",
+      "nombre": "Altos de Carrasco",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 712,
+      "table": "elepem",
+      "nombre": "Basilea Suite",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 713,
+      "table": "elepem",
+      "nombre": "London House Rambla",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 714,
+      "table": "elepem",
+      "nombre": "Hogar Saint Remy",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 715,
+      "table": "elepem",
+      "nombre": "Melina House",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 716,
+      "table": "elepem",
+      "nombre": "Jardines de Setiembre",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 717,
+      "table": "elepem",
+      "nombre": "Fundación Algarrobo",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 718,
+      "table": "elepem",
+      "nombre": "Residencial Kala",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 719,
+      "table": "elepem",
+      "nombre": "Saint Michel",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 720,
+      "table": "elepem",
+      "nombre": "Tata Luis y Doña Lola II",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 721,
+      "table": "elepem",
+      "nombre": "Agee II",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 724,
+      "table": "elepem",
+      "nombre": "Las Condes",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 725,
+      "table": "elepem",
+      "nombre": "Carrasco Home",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 726,
+      "table": "elepem",
+      "nombre": "Como Antes",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 728,
+      "table": "elepem",
+      "nombre": "Altos del Parque",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 729,
+      "table": "elepem",
+      "nombre": "Los Angeles",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 730,
+      "table": "elepem",
+      "nombre": "La Terraza",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 732,
+      "table": "elepem",
+      "nombre": "Dolce Primavera",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 733,
+      "table": "elepem",
+      "nombre": "La Bonne Vie",
+      "localidad": "18 de Mayo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 734,
+      "table": "elepem",
+      "nombre": "Seniority Magna",
+      "localidad": "Barros Blancos",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 735,
+      "table": "elepem",
+      "nombre": "Residencial Primavera",
+      "localidad": "Las Piedras",
+      "updated_at": "2026-08-16T20:26:44.044425+00:00"
+    },
+    {
+      "id": 736,
+      "table": "elepem",
+      "nombre": "En Familia",
+      "localidad": "La Paz",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 737,
+      "table": "elepem",
+      "nombre": "La Rochelle",
+      "localidad": "Shangrilá",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 738,
+      "table": "elepem",
+      "nombre": "Hogar De Ancianos De Nueva Palmira",
+      "localidad": "Nueva Palmira",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 739,
+      "table": "elepem",
+      "nombre": "Hogar De Ancianos Aida De Arce De Rodriguez",
+      "localidad": "Carmelo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 740,
+      "table": "elepem",
+      "nombre": "La Merced",
+      "localidad": "Carmelo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 741,
+      "table": "elepem",
+      "nombre": "Instituto Pro  Bienestar Del Anciano De Nueva Helvecia",
+      "localidad": "Nueva Helvecia",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 742,
+      "table": "elepem",
+      "nombre": "Hogar De Ancianos De Juan Lacaze",
+      "localidad": "Colonia Rural",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 743,
+      "table": "elepem",
+      "nombre": "Hogar De Ancianos De Colonia Valdense",
+      "localidad": "Colonia Valdense",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 744,
+      "table": "elepem",
+      "nombre": "Hogar De Ancianos Centenario Conchillas",
+      "localidad": "Conchillas",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 745,
+      "table": "elepem",
+      "nombre": "Asociación Cristo Salvador Probienestar Del Anciano",
+      "localidad": "Colonia Rural",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 746,
+      "table": "elepem",
+      "nombre": "Asociación Civil Pro Bienesttar Social De La Tercera Edad",
+      "localidad": "Carmelo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 747,
+      "table": "elepem",
+      "nombre": "Hogar De Ancianos De Nueva Helvecia",
+      "localidad": "Nueva Helvecia",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 749,
+      "table": "elepem",
+      "nombre": "Hogar e Ancianos Dr. Luis Mazza",
+      "localidad": "Colonia del Sacramento",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 750,
+      "table": "elepem",
+      "nombre": "Tea Garden 2",
+      "localidad": "Durazno",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 751,
+      "table": "elepem",
+      "nombre": "Hogar Maite",
+      "localidad": "Trinidad",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 752,
+      "table": "elepem",
+      "nombre": "Cipriano Goñi",
+      "localidad": "Trinidad",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 753,
+      "table": "elepem",
+      "nombre": "Asociación Pro Bienestar Del Anciano de Sarandi Grande",
+      "localidad": "Sarandi Grande",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 755,
+      "table": "elepem",
+      "nombre": "Las Lavandas",
+      "localidad": "Punta del Este",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 757,
+      "table": "elepem",
+      "nombre": "Hogar Ecilda Cardozo",
+      "localidad": "San Carlos",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 758,
+      "table": "elepem",
+      "nombre": "Los Alamos",
+      "localidad": "Punta del Este",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 759,
+      "table": "elepem",
+      "nombre": "Casa Abuelas",
+      "localidad": "Paysandu",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 760,
+      "table": "elepem",
+      "nombre": "Carpe Diem",
+      "localidad": "Paysandu",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 761,
+      "table": "elepem",
+      "nombre": "Hogar Enrique chaplín",
+      "localidad": "Nuevo Paysandu",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 762,
+      "table": "elepem",
+      "nombre": "Hogar De Ancianos Valentin Berazan Arenzon",
+      "localidad": "Young",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 763,
+      "table": "elepem",
+      "nombre": "Residencial Sol Y Luna",
+      "localidad": "Salto",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 764,
+      "table": "elepem",
+      "nombre": "Años Dorados",
+      "localidad": "Salto",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 765,
+      "table": "elepem",
+      "nombre": "Residencial Sol",
+      "localidad": "Salto",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 766,
+      "table": "elepem",
+      "nombre": "Hogar De Ancianos Delta",
+      "localidad": "San Jose de Mayo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 767,
+      "table": "elepem",
+      "nombre": "El Buen Vivir",
+      "localidad": "Ciudad del Plata",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 768,
+      "table": "elepem",
+      "nombre": "Asociación Prohogar De Ancianos De San Jose",
+      "localidad": "San Jose de Mayo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 769,
+      "table": "elepem",
+      "nombre": "Residencia Al Anciano E Impedido",
+      "localidad": "Ciudad del Plata",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 771,
+      "table": "elepem",
+      "nombre": "Hogar Dr. Ricardo Braceras",
+      "localidad": "Mercedes",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 772,
+      "table": "elepem",
+      "nombre": "Instituto Pro Bienestar Social del Anciano de Jose Pedro Varela",
+      "localidad": "Jose Pedro Varela",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 773,
+      "table": "elepem",
+      "nombre": "Hogar de Ancianos Mariscala",
+      "localidad": "Mariscala",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 774,
+      "table": "elepem",
+      "nombre": "Hogar de Anciano Blanca Castro de Argenzio",
+      "localidad": "Fraile Muerto",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 775,
+      "table": "elepem",
+      "nombre": "Evergreen Family Care",
+      "localidad": "Rivera",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 776,
+      "table": "elepem",
+      "nombre": "Villa Cata",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 777,
+      "table": "elepem",
+      "nombre": "Centro Zeus",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 779,
+      "table": "elepem",
+      "nombre": "Centro Residencial Tempus",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 780,
+      "table": "elepem",
+      "nombre": "Armon Residencial",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 781,
+      "table": "elepem",
+      "nombre": "Los Viñedos",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 783,
+      "table": "elepem",
+      "nombre": "Tata Luis y Doña Lola",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 784,
+      "table": "elepem",
+      "nombre": "\"Circulo de Promoción y Solidaridad\"",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 786,
+      "table": "elepem",
+      "nombre": "El Naranjo",
+      "localidad": "Ciudad de la Costa",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 787,
+      "table": "elepem",
+      "nombre": "Hogar Huellas",
+      "localidad": "Ciudad de la Costa",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 788,
+      "table": "elepem",
+      "nombre": "La Familia de Laura",
+      "localidad": "Melo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 789,
+      "table": "elepem",
+      "nombre": "Hogar de Ana",
+      "localidad": "Colonia Valdense",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 791,
+      "table": "elepem",
+      "nombre": "Los  Olivos",
+      "localidad": "Florida",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 792,
+      "table": "elepem",
+      "nombre": "Maria Auxiliadora",
+      "localidad": "Florida",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 793,
+      "table": "elepem",
+      "nombre": "Mis Alegrías",
+      "localidad": "Mercedes",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 794,
+      "table": "elepem",
+      "nombre": "Hogar Ramón J. Vinci",
+      "localidad": "Salto",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 796,
+      "table": "elepem",
+      "nombre": "Hogar de Ancianos de Rio Negro",
+      "localidad": "Fray Bentos",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 798,
+      "table": "elepem",
+      "nombre": "Casa Provenza",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-15T01:42:28.065095+00:00"
+    },
+    {
+      "id": 800,
+      "table": "elepem",
+      "nombre": "Granja Los Abuelos",
+      "localidad": "Libertad",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 801,
+      "table": "elepem",
+      "nombre": "Residencial Don Eduardo",
+      "localidad": "Sarandi del Yi",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 809,
+      "table": "elepem",
+      "nombre": "Hogar de Ancianos de la Sociedad de Auxilio Frauenverein",
+      "localidad": "Nueva Helvecia",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 810,
+      "table": "elepem",
+      "nombre": "Hogar para Ancianos de Colonia",
+      "localidad": "Valdense",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 812,
+      "table": "elepem",
+      "nombre": "Hogar de Ancianos Pan de Azúcar",
+      "localidad": "Pan de Azúcar",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 813,
+      "table": "elepem",
+      "nombre": "La Tregua",
+      "localidad": "Punta Ballena",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 814,
+      "table": "elepem",
+      "nombre": "Los Alamos",
+      "localidad": "Punta del Este",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 828,
+      "table": "elepem",
+      "nombre": "Casa del Sol",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 832,
+      "table": "elepem",
+      "nombre": "Cuatro Estaciones",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 844,
+      "table": "elepem",
+      "nombre": "Hogar De Ancianos Piebu",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 845,
+      "table": "elepem",
+      "nombre": "Hogar Israelita",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 848,
+      "table": "elepem",
+      "nombre": "Hogar Madre Ana",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 849,
+      "table": "elepem",
+      "nombre": "Hogar Montpellier",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 854,
+      "table": "elepem",
+      "nombre": "La Casa de Lea",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 862,
+      "table": "elepem",
+      "nombre": "María Belën",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 869,
+      "table": "elepem",
+      "nombre": "Parque Sol",
+      "localidad": "Montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 891,
+      "table": "elepem",
+      "nombre": "Hogar Ancianos Enrique Chaplin",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 903,
+      "table": "elepem",
+      "nombre": "residencial san luca",
+      "localidad": "rocha",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 904,
+      "table": "elepem",
+      "nombre": "hogar dulce compania",
+      "localidad": "castillos",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 905,
+      "table": "elepem",
+      "nombre": "residencial santa maria",
+      "localidad": "san ramon",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 906,
+      "table": "elepem",
+      "nombre": "residencial abu",
+      "localidad": "pando",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 907,
+      "table": "elepem",
+      "nombre": "geriatrico bienestar",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 908,
+      "table": "elepem",
+      "nombre": "hotel asistido region este",
+      "localidad": "rocha",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 909,
+      "table": "elepem",
+      "nombre": "las espumillas",
+      "localidad": "rocha",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 928,
+      "table": "elepem",
+      "nombre": "el bienestar hogar canelones",
+      "localidad": "canelones",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 929,
+      "table": "elepem",
+      "nombre": "residencial jireh",
+      "localidad": "la paz",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 930,
+      "table": "elepem",
+      "nombre": "residencial la rosada",
+      "localidad": "sauce",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 931,
+      "table": "elepem",
+      "nombre": "kairo s 1",
+      "localidad": "solymar",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 932,
+      "table": "elepem",
+      "nombre": "residencial como en casa",
+      "localidad": "rocha",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 933,
+      "table": "elepem",
+      "nombre": "residencial ipora",
+      "localidad": "balneario ipora",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 934,
+      "table": "elepem",
+      "nombre": "residencial alhoa",
+      "localidad": "tacuarembo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 935,
+      "table": "elepem",
+      "nombre": "tacuavida",
+      "localidad": "tacuarembo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 956,
+      "table": "elepem",
+      "nombre": "residencial progreso",
+      "localidad": "progreso",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 957,
+      "table": "elepem",
+      "nombre": "las mariposas residencial boutique",
+      "localidad": "tacuarembo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 958,
+      "table": "elepem",
+      "nombre": "residencial vida feliz",
+      "localidad": "tacuarembo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 975,
+      "table": "elepem",
+      "nombre": "residencial dulce hogar",
+      "localidad": "artigas",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 976,
+      "table": "elepem",
+      "nombre": "hogar de ancianos de artigas",
+      "localidad": "artigas",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 977,
+      "table": "elepem",
+      "nombre": "residencial san agustin",
+      "localidad": "paso de los toros",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 989,
+      "table": "elepem",
+      "nombre": "hogar de ancianos de treinta y tres",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 990,
+      "table": "elepem",
+      "nombre": "hogar el amanecer",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 991,
+      "table": "elepem",
+      "nombre": "golden age residencial",
+      "localidad": "las piedras",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 992,
+      "table": "elepem",
+      "nombre": "residencial viata demna",
+      "localidad": "las piedras",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 993,
+      "table": "elepem",
+      "nombre": "residencial mazel tov",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 994,
+      "table": "elepem",
+      "nombre": "como en casa casa 1",
+      "localidad": "paysandu",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 996,
+      "table": "elepem",
+      "nombre": "magna pocitos",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 997,
+      "table": "elepem",
+      "nombre": "mamina 2",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 998,
+      "table": "elepem",
+      "nombre": "matildas",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 999,
+      "table": "elepem",
+      "nombre": "mediterraneo 2",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1000,
+      "table": "elepem",
+      "nombre": "mediterraneo carrasco",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1001,
+      "table": "elepem",
+      "nombre": "moai centenario",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1002,
+      "table": "elepem",
+      "nombre": "sully arce",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1003,
+      "table": "elepem",
+      "nombre": "union",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1004,
+      "table": "elepem",
+      "nombre": "villa azul",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1005,
+      "table": "elepem",
+      "nombre": "residencial paradise",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1008,
+      "table": "elepem",
+      "nombre": "residencial orquideas",
+      "localidad": "rocha",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1009,
+      "table": "elepem",
+      "nombre": "veneza residencial para adultos mayores",
+      "localidad": "chuy",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1010,
+      "table": "elepem",
+      "nombre": "residencial el ombu",
+      "localidad": "canelones",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1011,
+      "table": "elepem",
+      "nombre": "residencial felipe martinez",
+      "localidad": "pando",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1012,
+      "table": "elepem",
+      "nombre": "residencial boutique colibri",
+      "localidad": "lagomar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1013,
+      "table": "elepem",
+      "nombre": "vila de rosa",
+      "localidad": "parque carrasco",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1014,
+      "table": "elepem",
+      "nombre": "casa nostra residencial",
+      "localidad": "lagomar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1015,
+      "table": "elepem",
+      "nombre": "moai french",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1016,
+      "table": "elepem",
+      "nombre": "residencial punta palmas",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1017,
+      "table": "elepem",
+      "nombre": "residencial tercera edad",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1018,
+      "table": "elepem",
+      "nombre": "residencial vita nuova",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1019,
+      "table": "elepem",
+      "nombre": "san antonio",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1020,
+      "table": "elepem",
+      "nombre": "san fernando entre amigos 2",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1021,
+      "table": "elepem",
+      "nombre": "las comadres",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1022,
+      "table": "elepem",
+      "nombre": "residencial abril",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1023,
+      "table": "elepem",
+      "nombre": "residencial alma amor y vida",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1024,
+      "table": "elepem",
+      "nombre": "residencial ambar",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1025,
+      "table": "elepem",
+      "nombre": "casa yordan",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1026,
+      "table": "elepem",
+      "nombre": "residencial flor de liz",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1027,
+      "table": "elepem",
+      "nombre": "residencial gema juncal",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1028,
+      "table": "elepem",
+      "nombre": "residencial indigo",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1029,
+      "table": "elepem",
+      "nombre": "residencial infinito",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1030,
+      "table": "elepem",
+      "nombre": "residencial jardin del sol",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1031,
+      "table": "elepem",
+      "nombre": "la casa de san marino",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1032,
+      "table": "elepem",
+      "nombre": "residencial la foret carrasco",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1033,
+      "table": "elepem",
+      "nombre": "residencial los jacintos",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1034,
+      "table": "elepem",
+      "nombre": "residencial manantiales",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1035,
+      "table": "elepem",
+      "nombre": "residencial pontevedra",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1036,
+      "table": "elepem",
+      "nombre": "residencial sueno azul",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1037,
+      "table": "elepem",
+      "nombre": "residencial paul cezanne",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1038,
+      "table": "elepem",
+      "nombre": "residencial santa clara",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1044,
+      "table": "elepem",
+      "nombre": "el remanso",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1045,
+      "table": "elepem",
+      "nombre": "hogar mi sueno",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1047,
+      "table": "elepem",
+      "nombre": "los abuelos",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1048,
+      "table": "elepem",
+      "nombre": "los alamos",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1049,
+      "table": "elepem",
+      "nombre": "humana residencial",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1055,
+      "table": "elepem",
+      "nombre": "hogar de ancianos gines cairo medina",
+      "localidad": "canteras de marelli",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1057,
+      "table": "elepem",
+      "nombre": "hogar de ancianos",
+      "localidad": "pando",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1058,
+      "table": "elepem",
+      "nombre": "hogar de ancianos",
+      "localidad": "canelones",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1059,
+      "table": "elepem",
+      "nombre": "hogar de ancianos del chuy",
+      "localidad": "chuy",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1060,
+      "table": "elepem",
+      "nombre": "hogar de adultos mayores",
+      "localidad": "santa clara de olimar",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1061,
+      "table": "elepem",
+      "nombre": "adulto mayor orquideas del lago",
+      "localidad": "la capuera",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1062,
+      "table": "elepem",
+      "nombre": "estilo de vida",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1063,
+      "table": "elepem",
+      "nombre": "casa",
+      "localidad": "colonia nicolich",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1064,
+      "table": "elepem",
+      "nombre": "la mia casa",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1065,
+      "table": "elepem",
+      "nombre": "cotolengo don orione",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1066,
+      "table": "elepem",
+      "nombre": "hogar de ancianos",
+      "localidad": "salto",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1067,
+      "table": "elepem",
+      "nombre": "vitae mentis",
+      "localidad": "barra de carrasco",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1068,
+      "table": "elepem",
+      "nombre": "residencial le parc",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1071,
+      "table": "elepem",
+      "nombre": "residencial myriam martinez",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1072,
+      "table": "elepem",
+      "nombre": "centro ombu",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1076,
+      "table": "elepem",
+      "nombre": "residencial tulipanes",
+      "localidad": "artigas",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1077,
+      "table": "elepem",
+      "nombre": "kairo s 2",
+      "localidad": "lomas de solymar",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1078,
+      "table": "elepem",
+      "nombre": "mi nueva familia",
+      "localidad": "pando",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1079,
+      "table": "elepem",
+      "nombre": "residencial lo de mama 2",
+      "localidad": "pando",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1080,
+      "table": "elepem",
+      "nombre": "residencial renacer",
+      "localidad": "pando",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 1081,
+      "table": "elepem",
+      "nombre": "eublana residencial",
+      "localidad": "parque del plata",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 1082,
+      "table": "elepem",
+      "nombre": "hogar de ancianos pista osm maciel 505",
+      "localidad": "durazno",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1083,
+      "table": "elepem",
+      "nombre": "residencial shalom",
+      "localidad": "durazno",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1084,
+      "table": "elepem",
+      "nombre": "alamos montevideo",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1085,
+      "table": "elepem",
+      "nombre": "amitie",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1086,
+      "table": "elepem",
+      "nombre": "casa blanca",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1087,
+      "table": "elepem",
+      "nombre": "casa blanca 2",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1088,
+      "table": "elepem",
+      "nombre": "centro del adulto mayor buceo",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1089,
+      "table": "elepem",
+      "nombre": "centro del adulto mayor carrasco",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1090,
+      "table": "elepem",
+      "nombre": "cooperativa seran",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1091,
+      "table": "elepem",
+      "nombre": "el naranjo",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1092,
+      "table": "elepem",
+      "nombre": "galicia 1",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1093,
+      "table": "elepem",
+      "nombre": "galicia 2",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1094,
+      "table": "elepem",
+      "nombre": "hogar santa isabel",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1095,
+      "table": "elepem",
+      "nombre": "inema residencial",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1096,
+      "table": "elepem",
+      "nombre": "madre inmaculada",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1097,
+      "table": "elepem",
+      "nombre": "moai libertad",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1098,
+      "table": "elepem",
+      "nombre": "moai rivera",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1099,
+      "table": "elepem",
+      "nombre": "moiru 3",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1100,
+      "table": "elepem",
+      "nombre": "morena residencia",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1101,
+      "table": "elepem",
+      "nombre": "pro gente",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1102,
+      "table": "elepem",
+      "nombre": "residencial brisas de malvin",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1103,
+      "table": "elepem",
+      "nombre": "residencial copelia",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1104,
+      "table": "elepem",
+      "nombre": "residencial esmeralda",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1105,
+      "table": "elepem",
+      "nombre": "residencial eureka",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1106,
+      "table": "elepem",
+      "nombre": "residencial la foret la blanqueada",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1107,
+      "table": "elepem",
+      "nombre": "residencial maria paula",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1108,
+      "table": "elepem",
+      "nombre": "como en casa casa 2",
+      "localidad": "paysandu",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1109,
+      "table": "elepem",
+      "nombre": "hogar emanuel",
+      "localidad": "paysandu",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1110,
+      "table": "elepem",
+      "nombre": "hogar mi sueno",
+      "localidad": "paysandu",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1111,
+      "table": "elepem",
+      "nombre": "residencia del adulto mayor santa lucia",
+      "localidad": "paysandu",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1112,
+      "table": "elepem",
+      "nombre": "nuevo residencial mailuz",
+      "localidad": "rocha",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1113,
+      "table": "elepem",
+      "nombre": "residencial los jazmines",
+      "localidad": "tacuarembo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1114,
+      "table": "elepem",
+      "nombre": "residencial nuevo amanecer",
+      "localidad": "tacuarembo",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1115,
+      "table": "elepem",
+      "nombre": "hogar y guarderia geriatrica",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1116,
+      "table": "elepem",
+      "nombre": "los abuelos",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1117,
+      "table": "elepem",
+      "nombre": "magdalena",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1118,
+      "table": "elepem",
+      "nombre": "ramos y rosas",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1119,
+      "table": "elepem",
+      "nombre": "residencial sin nombre ramon ortiz 315",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T22:38:42.345287+00:00"
+    },
+    {
+      "id": 1121,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL ESPERANZA",
+      "localidad": "Sauce",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1122,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL ESPERANZA",
+      "localidad": "Sauce",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1124,
+      "table": "elepem",
+      "nombre": "GENESIS HOGAR FEMENINO",
+      "localidad": "Parque del Plata",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1125,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL HILOS PLATEADOS",
+      "localidad": "Parque del Plata",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1126,
+      "table": "elepem",
+      "nombre": "HOSTERIA LUZ MARINA",
+      "localidad": "Atlantida",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1127,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL JACARANDÁ",
+      "localidad": "Neptunia",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1128,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL LA FAMILIA",
+      "localidad": "Las Piedras",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1129,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL LO DE MAMÁ",
+      "localidad": "Pando",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1130,
+      "table": "elepem",
+      "nombre": "LOS AÑOS DORADOS",
+      "localidad": "Soca",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1131,
+      "table": "elepem",
+      "nombre": "HOGAR RESIDENCIAL Mª CRISTINA",
+      "localidad": "El Dorado",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1132,
+      "table": "elepem",
+      "nombre": "HOGAR MI SUEÑO",
+      "localidad": "Pinamar",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1133,
+      "table": "elepem",
+      "nombre": "NUESTRO HOGAR",
+      "localidad": "Salinas",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1134,
+      "table": "elepem",
+      "nombre": "Residencial Nuevo Vivir",
+      "localidad": "Atlantida",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1136,
+      "table": "elepem",
+      "nombre": "RESIDENCIA SALINAS",
+      "localidad": "Salinas",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1137,
+      "table": "elepem",
+      "nombre": "SAN CONO",
+      "localidad": "Tala",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1138,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL SHANGRILA",
+      "localidad": "Shangrila",
+      "updated_at": "2026-08-16T22:31:17.780096+00:00"
+    },
+    {
+      "id": 1139,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL VIATA DEMNA",
+      "localidad": "Las Piedras",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1140,
+      "table": "elepem",
+      "nombre": "RESIDENCIAL ZAFIROS",
+      "localidad": "El Pinar",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 895,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "calas hogar",
+      "localidad": "durazno",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 896,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "hogar amaneciendo",
+      "localidad": "blanquillo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 897,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "centro de cuidados amelia",
+      "localidad": "durazno",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 898,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "hogar los abuelos",
+      "localidad": "durazno",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 899,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "la aurora",
+      "localidad": "durazno",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 900,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial tu hogar",
+      "localidad": "durazno",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 901,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial dona ines el bienestar hogar durazno",
+      "localidad": "durazno",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 902,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial sagrada familia hipodromo",
+      "localidad": "durazno",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 910,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "nuevo renacer",
+      "localidad": "rocha",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 911,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "hogar alba",
+      "localidad": "rocha",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 912,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "centro residencial bienestar lascano",
+      "localidad": "lascano",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 916,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial nuestro camino",
+      "localidad": "lascano",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 917,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "centro residencial bienestar cebollati",
+      "localidad": "cebollati",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 918,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "carpe diem rincon de luz",
+      "localidad": "la paloma",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 919,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial reina de las flores",
+      "localidad": "canelones",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 920,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "casona de retiro",
+      "localidad": "juanico",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 921,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial lo de mama",
+      "localidad": "pando",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 922,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial vidal y cia",
+      "localidad": "barros blancos",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 923,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "historias de otono",
+      "localidad": "lomas de solymar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 924,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial nuestro mundo",
+      "localidad": "el pinar norte",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 925,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "casa hogar las lunas",
+      "localidad": "marindia",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 926,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "la la",
+      "localidad": "san jose de carrasco",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 927,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "la macarena",
+      "localidad": "el pinar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 936,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "las violetas",
+      "localidad": "solymar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 937,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "los angeles",
+      "localidad": "el pinar norte",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 938,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "arenas",
+      "localidad": "san jose de carrasco",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 939,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "armonia",
+      "localidad": "shangrila",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 940,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "achiras",
+      "localidad": "solymar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 941,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial nuevo vivir",
+      "localidad": "atlantida",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 942,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "phoenix residencial",
+      "localidad": "parque del plata",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 943,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "hogar san blas",
+      "localidad": "santa rosa",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 944,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "el refugio",
+      "localidad": "san ramon",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 945,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "la maisonette",
+      "localidad": "shangrila",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 946,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial guga",
+      "localidad": "las piedras",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 947,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "hogar residencial maria cristina",
+      "localidad": "el dorado",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 948,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "san pablo",
+      "localidad": "colonia nicolich",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 949,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "hilos plateados",
+      "localidad": "parque del plata",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 950,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "el arca",
+      "localidad": "el pinar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 951,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "alta gracia",
+      "localidad": "salinas",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 952,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "la calaguala",
+      "localidad": "lomas de solymar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 953,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "casa hogar risas y amor",
+      "localidad": "canelones",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 954,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "la quica",
+      "localidad": "santa lucia",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 955,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "la casa de mama",
+      "localidad": "pinamar sur",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 959,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "hogar del carmen",
+      "localidad": "san ramon",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 960,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial vida nueva",
+      "localidad": "tala",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 961,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "san cono",
+      "localidad": "tala",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 962,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "el hogar 2",
+      "localidad": "lagomar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 963,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial canaan",
+      "localidad": "lomas de solymar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 964,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial zafiros",
+      "localidad": "el pinar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 965,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencia salinas",
+      "localidad": "salinas",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 966,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "hogar mi sueno",
+      "localidad": "pinamar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 967,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "la bonne vie",
+      "localidad": "el bosque",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 968,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "brisas del mar",
+      "localidad": "medanos de solymar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 969,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial oasis",
+      "localidad": "artigas",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 970,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial fenix",
+      "localidad": "artigas",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 971,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial aurora",
+      "localidad": "artigas",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 972,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial anos dorados",
+      "localidad": "artigas",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 973,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "segundo marisel",
+      "localidad": "tacuarembo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 974,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "tacuavida plus",
+      "localidad": "tacuarembo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 978,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencia bellanova",
+      "localidad": "paysandu",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 979,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "casa betel",
+      "localidad": "san felix",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 980,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "hogar de ancianos casa de la caridad",
+      "localidad": "ansina",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 981,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "hogar de ancianos de san gregorio de polanco",
+      "localidad": "san gregorio de polanco",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 982,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial mis abuelos",
+      "localidad": "tacuarembo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 983,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial mi sueno",
+      "localidad": "tacuarembo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 984,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial santa isabel",
+      "localidad": "tacuarembo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 985,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial sandra nunez",
+      "localidad": "tacuarembo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 986,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial sandra soca",
+      "localidad": "tacuarembo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 987,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial alma mia",
+      "localidad": "tacuarembo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 988,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial los patitos",
+      "localidad": "san gregorio de polanco",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 995,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial los alamos",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1006,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial ac",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1007,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "moiru 2",
+      "localidad": "montevideo",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1039,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "hogar de ancianos de cerro chato",
+      "localidad": "cerro chato",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1040,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "hogar de ancianos de santa clara de olimar",
+      "localidad": "santa clara de olimar",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1041,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "hogar de ancianos vergara siglo xxi",
+      "localidad": "vergara",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1042,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "hogar la victoria",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1043,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial adulto mayor",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1073,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "residencial sin nombre zona el verde alto",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1074,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "rincon de luz",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1075,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "sol y luna",
+      "localidad": "treinta y tres",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1121,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "Residencia María Carolina",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1122,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "Residencial Colibrí de Adultos y Adultos Mayores",
+      "localidad": "Paysandú",
+      "updated_at": "2026-08-10T21:42:29.880335+00:00"
+    },
+    {
+      "id": 1123,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "Residencial Las Calandrias",
+      "localidad": "Las Toscas",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1124,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "El Hogar",
+      "localidad": "Calle Achiras Manzana 24 Solar 20 entre Gestido y Espinillo, Solymar Sur",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1125,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "Kairos 1",
+      "localidad": "Cruz del Sur manzana 314 solar 6 esquina Amelia Ramírez (Lomas de Solymar Sur",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1126,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "Kairos 2",
+      "localidad": "Marques Castro Manzana 15 Solar 26″]",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1127,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "La Macarena",
+      "localidad": "Mz 145 S 28 – El Pinar – Canelones",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1128,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "La oliva",
+      "localidad": "Av. Juan Mª Pérez y Fuentes esq. Paname El Pinar – Canelones – Uruguay",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1129,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "Altos de la Paz",
+      "localidad": "La Paz, Canelones",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1130,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "Residencial El Parque",
+      "localidad": "Canelones",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1131,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "RESIDENCIAL EN LAS PIEDRAS",
+      "localidad": "Las Piedras, Canelones.",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1132,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "ALTA GRACIA",
+      "localidad": "Salinas",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1133,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "HOGAR CERVIERI",
+      "localidad": "Santa Rosa",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1134,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "HOGAR CIELITO",
+      "localidad": "Sauce",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1135,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "RESIDENCIAL DE ANCIANOS SALINAS",
+      "localidad": "Salinas",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1136,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "LA CASA DE MAMA",
+      "localidad": "PINAMAR SUR",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1137,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "HOGAR LA FAMILIA",
+      "localidad": "Sauce",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    },
+    {
+      "id": 1138,
+      "table": "elepem_sin_ubicacion",
+      "nombre": "RESIDENCIAL SAN BAUTISTA",
+      "localidad": "San Bautista",
+      "updated_at": "2026-08-16T20:43:56.24767+00:00"
+    }
+  ]
+}

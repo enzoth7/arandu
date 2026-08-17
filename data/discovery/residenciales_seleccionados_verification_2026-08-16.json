@@ -1,0 +1,170 @@
+{
+  "operation_date": "2026-08-16",
+  "project_id": "itolluaivfoxnaohbsdk",
+  "verified_at": "2026-08-16T23:54:52.068699+00:00",
+  "checks": {
+    "requested_rows": 14,
+    "resolved_rows": 14,
+    "key_count_failures": [],
+    "source_alignment_failures": 0,
+    "identifier_alignment_failures": 0,
+    "elepem_count_expected": 944,
+    "elepem_count_actual": 944,
+    "sin_ubicacion_count_expected": 116,
+    "sin_ubicacion_count_actual": 116,
+    "senescentis_duplicate_deleted": true,
+    "senescentis_old_references": 0,
+    "senescentis_photos_preserved": 13,
+    "senescentis_attachments_preserved": 13,
+    "senescentis_public_photo_route": {
+      "status": 200,
+      "content_type": "image/webp",
+      "bytes": 105886,
+      "url": "https://aranduy.vercel.app/api/residenciales/FAC-LEGACY-ELP-0092-659F60900D60E0E8/photos/297b06fa-08b6-5116-ac7e-487531ba39e7"
+    }
+  },
+  "rows": [
+    {
+      "id": 1130,
+      "codigo": "FAC-WEB-E6DA09D530",
+      "nombre": "Residencial El Parque",
+      "direccion": "Calle F y Calle 14, Las Toscas",
+      "localidad": "Las Toscas",
+      "departamento": "Canelones",
+      "source_count": 3,
+      "candidate_key": "canelones:las-toscas:residencial-el-parque"
+    },
+    {
+      "id": 1134,
+      "codigo": "FAC-WEB-FB70955484",
+      "nombre": "Hogar Cielito",
+      "direccion": "Barrio Libertador, Sauce",
+      "localidad": "Sauce",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:sauce:hogar-cielito"
+    },
+    {
+      "id": 1144,
+      "codigo": "FAC-WEB-D9BCBA10BF",
+      "nombre": "Residencial San Antonio",
+      "direccion": "19 de Abril 155 esquina Buchental, San José de Carrasco",
+      "localidad": "San José de Carrasco",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:san-jose-de-carrasco:residencial-san-antonio"
+    },
+    {
+      "id": 1145,
+      "codigo": "FAC-WEB-CB1E9DAC72",
+      "nombre": "Hogar Residencial Las Margaritas",
+      "direccion": "Rambla M104 S5, Lomas de Solymar",
+      "localidad": "Lomas de Solymar",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:lomas-de-solymar:hogar-residencial-las-margaritas"
+    },
+    {
+      "id": 1146,
+      "codigo": "FAC-WEB-507F07BED8",
+      "nombre": "Residencial Bea",
+      "direccion": "Ruta 11 km 163.500, Estación Atlántida",
+      "localidad": "Estación Atlántida",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:estacion-atlantida:residencial-bea"
+    },
+    {
+      "id": 1147,
+      "codigo": "FAC-WEB-3F5C76069A",
+      "nombre": "Hogar Mis Abuelos",
+      "direccion": "Independencia entre 25 de Agosto y Delmira Agustini, Costa Azul",
+      "localidad": "Costa Azul",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:costa-azul:hogar-mis-abuelos"
+    },
+    {
+      "id": 1148,
+      "codigo": "FAC-WEB-0E0358F2A3",
+      "nombre": "Casa Hogar Tercera Edad",
+      "direccion": null,
+      "localidad": "Parque del Plata",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:parque-del-plata:casa-hogar-tercera-edad"
+    },
+    {
+      "id": 1149,
+      "codigo": "FAC-WEB-C8D4F92660",
+      "nombre": "Senior Living",
+      "direccion": "Calle 22 entre Calle 1 y Calle 11, Atlántida",
+      "localidad": "Atlántida",
+      "departamento": "Canelones",
+      "source_count": 3,
+      "candidate_key": "canelones:atlantida:senior-living"
+    },
+    {
+      "id": 1150,
+      "codigo": "FAC-WEB-6EB79DFB90",
+      "nombre": "Senescentis III",
+      "direccion": "Stella Maris M37 S9 esquina Virazón, Lomas de Solymar",
+      "localidad": "Lomas de Solymar",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:lomas-de-solymar:senescentis-iii"
+    },
+    {
+      "id": 1151,
+      "codigo": "FAC-WEB-1AA76AB7B6",
+      "nombre": "Lares de Atlántida",
+      "direccion": "Calle 5 entre calles 4 y 6, M42 S3, Atlántida",
+      "localidad": "Atlántida",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:atlantida:lares-de-atlantida"
+    },
+    {
+      "id": 1152,
+      "codigo": "FAC-WEB-4D12835469",
+      "nombre": "Residencial Nazaret",
+      "direccion": "Carlos Gardel 175, El Pinar / Ciudad de la Costa",
+      "localidad": "El Pinar",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:el-pinar:residencial-nazaret"
+    },
+    {
+      "id": 1153,
+      "codigo": "FAC-WEB-A9932C0D02",
+      "nombre": "Granja Residencial \"La Esperanza\"",
+      "direccion": "Ruta Nacional 12 km 94",
+      "localidad": "San Ramón / Tala",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:ruta-12:granja-residencial-la-esperanza"
+    },
+    {
+      "id": 1154,
+      "codigo": "FAC-WEB-BCE40A8C39",
+      "nombre": "Residencial TeaGarden — Av. Lezica 5855",
+      "direccion": "Av. Lezica 5855",
+      "localidad": "Montevideo",
+      "departamento": "Montevideo",
+      "source_count": 2,
+      "candidate_key": "montevideo:teagarden:av-lezica-5855"
+    },
+    {
+      "id": 1155,
+      "codigo": "FAC-WEB-96977DA16B",
+      "nombre": "Residencial TeaGarden — Lanús 5699",
+      "direccion": "Lanús 5699",
+      "localidad": "Montevideo",
+      "departamento": "Montevideo",
+      "source_count": 2,
+      "candidate_key": "montevideo:teagarden:lanus-5699"
+    }
+  ],
+  "schema_changes": 0,
+  "colonia_62_processed": false
+}

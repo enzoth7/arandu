@@ -1,0 +1,2210 @@
+{
+  "source_hashes": {
+    "canelones_sha256": "5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1",
+    "cecilia_sha256": "ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0"
+  },
+  "generated_for": "2026-08-16",
+  "candidate_counts": {
+    "total": 56,
+    "insert_geolocated": 20,
+    "duplicate_geolocated": 14,
+    "insert_unlocated": 16,
+    "duplicate_unlocated": 6
+  },
+  "price_counts": {
+    "total": 21,
+    "update_missing": 17,
+    "verify_existing": 4
+  },
+  "candidates": [
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-26EB87E2DD",
+      "codigo": "FAC-WEB-26EB87E2DD",
+      "legacy_id": "WEB-26EB87E2DD",
+      "nombre": "Residencial Las Calandrias",
+      "departamento": "Canelones",
+      "localidad": "Las Toscas",
+      "direccion": "Calle 5 esquina A",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": [
+        "+59843720018",
+        "+59896031815"
+      ],
+      "emails": "hogarcalandrias@gmail.com",
+      "sitios_web": "https://www.residenciallascalandrias.uy/",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://api.whatsapp.com/send?phone=598096031815&text=Hola, escribo desde la web y tengo una consulta.",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-26EB87E2DD:src_001",
+          "url": "https://www.residenciallascalandrias.uy/",
+          "type": "facility_website",
+          "provider": "official_website",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.384Z",
+          "fields": "nombre,direccion,contactos"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-26EB87E2DD:src_002",
+          "url": "https://1122.com.uy/local/residencial-las-calandrias/LOC552960001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.504Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_unlocated",
+      "candidate_id": "WEB-506DF0EC0B",
+      "codigo": "FAC-WEB-506DF0EC0B",
+      "legacy_id": "WEB-506DF0EC0B",
+      "nombre": "Vila de Rosa",
+      "departamento": "Canelones",
+      "localidad": "Parque Carrasco",
+      "direccion": "Ema Capurro M17 S7",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": [
+        "+59896124177",
+        "+59896256326",
+        "+59897432727"
+      ],
+      "emails": "contacto@viladerosa.com",
+      "sitios_web": "https://www.viladerosa.com/",
+      "instagram_urls": "https://www.instagram.com/viladerosa.uy/",
+      "facebook_urls": "https://www.facebook.com/viladerosa.uy",
+      "otras_redes_urls": "https://wa.me/+59896256326",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-506DF0EC0B:src_001",
+          "url": "https://www.viladerosa.com/",
+          "type": "facility_website",
+          "provider": "official_website",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.384Z",
+          "fields": "nombre,direccion,contactos"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-506DF0EC0B:src_002",
+          "url": "https://inforesidenciales.com.uy/vila-de-rosa/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "source_date": "2026-07-20",
+          "consulted_at": "2026-08-13T23:53:21.399Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_unlocated",
+      "candidate_id": "WEB-3CD22AD103",
+      "codigo": "FAC-WEB-3CD22AD103",
+      "legacy_id": "WEB-3CD22AD103",
+      "nombre": "Achiras",
+      "departamento": "Canelones",
+      "localidad": "Achiras M:1 S:12 – Solymar – Ciudad de la Costa",
+      "direccion": "Achiras M:1 S:12 – Solymar – Ciudad de la Costa",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": [
+        "+59826960819",
+        "+59895056873"
+      ],
+      "emails": "info@residencialachiras.com.uy",
+      "sitios_web": "https://residencialachiras.com.uy",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-3CD22AD103:src_001",
+          "url": "https://inforesidenciales.com.uy/achiras/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "source_date": "2026-07-11",
+          "consulted_at": "2026-08-13T23:53:21.385Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-D719237F2B",
+      "codigo": "FAC-WEB-D719237F2B",
+      "legacy_id": "WEB-D719237F2B",
+      "nombre": "El Hogar",
+      "departamento": "Canelones",
+      "localidad": "Calle Achiras Manzana 24 Solar 20 entre Gestido y Espinillo, Solymar Sur",
+      "direccion": "Calle Achiras Manzana 24 Solar 20 entre Gestido y Espinillo, Solymar Sur",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": [
+        "+59826963294",
+        "+59894269605"
+      ],
+      "emails": "info@residencialelhogar.com",
+      "sitios_web": "https://www.residencialelhogar.com.uy",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-D719237F2B:src_001",
+          "url": "https://inforesidenciales.com.uy/el-hogar/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "source_date": "2026-07-24",
+          "consulted_at": "2026-08-13T23:53:21.385Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-D8BA8ED85B",
+      "codigo": "FAC-WEB-D8BA8ED85B",
+      "legacy_id": "WEB-D8BA8ED85B",
+      "nombre": "Kairos 1",
+      "departamento": "Canelones",
+      "localidad": "Cruz del Sur manzana 314 solar 6 esquina Amelia Ramírez (Lomas de Solymar Sur",
+      "direccion": "Cruz del Sur manzana 314 solar 6 esquina Amelia Ramírez (Lomas de Solymar Sur",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": "+59892315692",
+      "emails": {},
+      "sitios_web": {},
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-D8BA8ED85B:src_001",
+          "url": "https://inforesidenciales.com.uy/kairos1/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "source_date": "2026-08-11",
+          "consulted_at": "2026-08-13T23:53:21.386Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-04BAA81D89",
+      "codigo": "FAC-WEB-04BAA81D89",
+      "legacy_id": "WEB-04BAA81D89",
+      "nombre": "Kairos 2",
+      "departamento": "Canelones",
+      "localidad": "Marques Castro Manzana 15 Solar 26″]",
+      "direccion": "Marques Castro Manzana 15 Solar 26″]",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": "+59892315692",
+      "emails": {},
+      "sitios_web": {},
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-04BAA81D89:src_001",
+          "url": "https://inforesidenciales.com.uy/kairos2/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "source_date": "2026-08-11",
+          "consulted_at": "2026-08-13T23:53:21.387Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-71EDB2071B",
+      "codigo": "FAC-WEB-71EDB2071B",
+      "legacy_id": "WEB-71EDB2071B",
+      "nombre": "La Macarena",
+      "departamento": "Canelones",
+      "localidad": "Mz 145 S 28 – El Pinar – Canelones",
+      "direccion": "Mz 145 S 28 – El Pinar – Canelones",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": "+59894538958",
+      "emails": {},
+      "sitios_web": {},
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-71EDB2071B:src_001",
+          "url": "https://inforesidenciales.com.uy/la-macarena/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "source_date": "2026-07-12",
+          "consulted_at": "2026-08-13T23:53:21.388Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_unlocated",
+      "candidate_id": "WEB-790C2A8E53",
+      "codigo": "FAC-WEB-790C2A8E53",
+      "legacy_id": "WEB-790C2A8E53",
+      "nombre": "LA MAISONETTE",
+      "departamento": "Canelones",
+      "localidad": "Rambla costanera a la altura de la parada 8.5 aproximadamente kilometro 18 -Shangrilá",
+      "direccion": "Rambla costanera a la altura de la parada 8.5 aproximadamente kilometro 18 -Shangrilá",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": [
+        "+59892515757",
+        "+59898906155"
+      ],
+      "emails": {},
+      "sitios_web": {},
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-790C2A8E53:src_001",
+          "url": "https://inforesidenciales.com.uy/la-maisonette/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "source_date": "2026-07-07",
+          "consulted_at": "2026-08-13T23:53:21.390Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-B2CAA47A0A",
+      "codigo": "FAC-WEB-B2CAA47A0A",
+      "legacy_id": "WEB-B2CAA47A0A",
+      "nombre": "La oliva",
+      "departamento": "Canelones",
+      "localidad": "Av. Juan Mª Pérez y Fuentes esq. Paname El Pinar – Canelones – Uruguay",
+      "direccion": "Av. Juan Mª Pérez y Fuentes esq. Paname El Pinar – Canelones – Uruguay",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": "+59826984023",
+      "emails": "info@laolivaresidencial.uy",
+      "sitios_web": "https://www.laolivaresidencial.uy",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-B2CAA47A0A:src_001",
+          "url": "https://inforesidenciales.com.uy/la-oliva/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "source_date": "2026-08-03",
+          "consulted_at": "2026-08-13T23:53:21.391Z",
+          "fields": "nombre,direccion,contactos"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-B2CAA47A0A:src_002",
+          "url": "https://www.redresidenciales.uy/residencial_hotel/canelones/ciudad-de-la-costa/la-oliva-residencial/",
+          "type": "public_directory",
+          "provider": "redresidenciales",
+          "source_date": "2023-07-03",
+          "consulted_at": "2026-08-13T23:53:21.409Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_unlocated",
+      "candidate_id": "WEB-841830BF64",
+      "codigo": "FAC-WEB-841830BF64",
+      "legacy_id": "WEB-841830BF64",
+      "nombre": "La Rosada",
+      "departamento": "Canelones",
+      "localidad": "Camino Tomas Berreta km 30.200 Sauce, Canelones",
+      "direccion": "Camino Tomas Berreta km 30.200 Sauce, Canelones",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": [
+        "+59822922060",
+        "+59898546168",
+        "+59899610143"
+      ],
+      "emails": "residencialarosada2024@gmail.com",
+      "sitios_web": "https://Instagram: @residencial_larosada | Facebook : residencial.la.rosada",
+      "instagram_urls": "https://www.instagram.com/residencial_larosada/",
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59899610143?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-841830BF64:src_001",
+          "url": "https://inforesidenciales.com.uy/la-rosada/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "source_date": "2026-07-03",
+          "consulted_at": "2026-08-13T23:53:21.393Z",
+          "fields": "nombre,direccion,contactos"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-841830BF64:src_002",
+          "url": "https://1122.com.uy/local/residencial-la-rosada/LOC849090001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.499Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_unlocated",
+      "candidate_id": "WEB-2BC23D6D50",
+      "codigo": "FAC-WEB-2BC23D6D50",
+      "legacy_id": "WEB-2BC23D6D50",
+      "nombre": "Hogar San Blas",
+      "departamento": "Canelones",
+      "localidad": "Empalme rutas 6 y 11 (Frente a la rotonda de Santa Rosa)",
+      "direccion": "Empalme rutas 6 y 11 (Frente a la rotonda de Santa Rosa)",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": "+59891899349",
+      "emails": "roberpachegim@gmail.com",
+      "sitios_web": "https://www.instagram.com/hogarabuelossanblas",
+      "instagram_urls": "https://www.instagram.com/hogarabuelossanblas",
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-2BC23D6D50:src_001",
+          "url": "https://inforesidenciales.com.uy/san-blas/",
+          "type": "public_directory",
+          "provider": "inforesidenciales",
+          "source_date": "2026-07-15",
+          "consulted_at": "2026-08-13T23:53:21.396Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-CAD740E554",
+      "codigo": "FAC-WEB-CAD740E554",
+      "legacy_id": "WEB-CAD740E554",
+      "nombre": "Altos de la Paz",
+      "departamento": "Canelones",
+      "localidad": "La Paz, Canelones",
+      "direccion": "camino a la Cuchilla de Pereira 5290",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": "+59899916611",
+      "emails": "federicobonillao@gmail.com",
+      "sitios_web": {},
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-CAD740E554:src_001",
+          "url": "https://www.redresidenciales.uy/residencial_hotel/canelones/altos-de-la-paz/",
+          "type": "public_directory",
+          "provider": "redresidenciales",
+          "source_date": "2022-11-15",
+          "consulted_at": "2026-08-13T23:53:21.401Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-E6DA09D530",
+      "codigo": "FAC-WEB-E6DA09D530",
+      "legacy_id": "WEB-E6DA09D530",
+      "nombre": "Residencial El Parque",
+      "departamento": "Canelones",
+      "localidad": "Canelones",
+      "direccion": "Calle F y Calle 14, Las Toscas , Canelones.",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": "+59894333773",
+      "emails": "info@redresidenciales.com.uy",
+      "sitios_web": {},
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-E6DA09D530:src_001",
+          "url": "https://www.redresidenciales.uy/residencial_hotel/canelones/ciudad-de-la-cosa/residencial-el-parque/",
+          "type": "public_directory",
+          "provider": "redresidenciales",
+          "source_date": "2021-01-28",
+          "consulted_at": "2026-08-13T23:53:21.404Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-4FF89C9223",
+      "codigo": "FAC-WEB-4FF89C9223",
+      "legacy_id": "WEB-4FF89C9223",
+      "nombre": "RESIDENCIAL EN LAS PIEDRAS",
+      "departamento": "Canelones",
+      "localidad": "Las Piedras, Canelones.",
+      "direccion": "Senén Rodriguez 27, Las Piedras, Canelones.",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": [
+        "+59823650894",
+        "+59823653796",
+        "+59895957519",
+        "+59898568082"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59895957519?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-4FF89C9223:src_001",
+          "url": "https://www.redresidenciales.uy/residencial-hotel/canelones/residencial-en-las-piedras/",
+          "type": "public_directory",
+          "provider": "redresidenciales",
+          "source_date": "2020-09-17",
+          "consulted_at": "2026-08-13T23:53:21.407Z",
+          "fields": "nombre,direccion,contactos"
+        },
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-4FF89C9223:src_002",
+          "url": "https://1122.com.uy/local/residencial-don-arturo/LOC531270001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.442Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_geolocated",
+      "candidate_id": "WEB-9B6116FF00",
+      "codigo": "FAC-WEB-9B6116FF00",
+      "legacy_id": "WEB-9B6116FF00",
+      "nombre": "RESIDENCIAL ABU",
+      "departamento": "Canelones",
+      "localidad": "Pando",
+      "direccion": "GRAL. ARTIGAS 893",
+      "lat": -34.7175,
+      "lng": -55.9616,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59822926084",
+        "+59893807556"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-9B6116FF00:src_001",
+          "url": "https://1122.com.uy/local/residencial-abu/LOC533800001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.412Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-52075E418C",
+      "codigo": "FAC-WEB-52075E418C",
+      "legacy_id": "WEB-52075E418C",
+      "nombre": "ALTA GRACIA",
+      "departamento": "Canelones",
+      "localidad": "Salinas",
+      "direccion": null,
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": [
+        "+59843760999",
+        "+59894488635"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-52075E418C:src_001",
+          "url": "https://1122.com.uy/local/alta-gracia/LOC479380001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.414Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_geolocated",
+      "candidate_id": "WEB-8C8BF63875",
+      "codigo": "FAC-WEB-8C8BF63875",
+      "legacy_id": "WEB-8C8BF63875",
+      "nombre": "RESIDENCIAL BOUTIQUE COLIBRI",
+      "departamento": "Canelones",
+      "localidad": "Lagomar",
+      "direccion": "Gestido m2 solar 4",
+      "lat": -34.8386,
+      "lng": -55.9685,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59826811019",
+        "+59897750612"
+      ],
+      "emails": "administacion@residencialcolibri.com",
+      "sitios_web": "https://www.residencialcolibri.com/",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59897750612?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-8C8BF63875:src_001",
+          "url": "https://1122.com.uy/local/residencial-boutique-colibri/LOC836660001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.417Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_unlocated",
+      "candidate_id": "WEB-CB672739C0",
+      "codigo": "FAC-WEB-CB672739C0",
+      "legacy_id": "WEB-CB672739C0",
+      "nombre": "Brisas del Mar",
+      "departamento": "Canelones",
+      "localidad": "Medanos de Solymar",
+      "direccion": "Indiana",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": "+59826983494",
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-CB672739C0:src_001",
+          "url": "https://1122.com.uy/local/brisas-del-mar/LOC819720001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.419Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_geolocated",
+      "candidate_id": "WEB-5FA200D5E4",
+      "codigo": "FAC-WEB-5FA200D5E4",
+      "legacy_id": "WEB-5FA200D5E4",
+      "nombre": "CASA HOGAR LAS LUNAS",
+      "departamento": "Canelones",
+      "localidad": "Marindia",
+      "direccion": "Capiatà esq. Cahire",
+      "lat": -34.7684,
+      "lng": -55.821,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59892733679",
+        "+59894133245"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59892733679?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-5FA200D5E4:src_001",
+          "url": "https://1122.com.uy/local/casa-hogar-las-lunas/LOC867590001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.424Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_geolocated",
+      "candidate_id": "WEB-E810BA9F60",
+      "codigo": "FAC-WEB-E810BA9F60",
+      "legacy_id": "WEB-E810BA9F60",
+      "nombre": "CASONA DE RETIRO",
+      "departamento": "Canelones",
+      "localidad": "Juanicó",
+      "direccion": "Ruta 5 km 37.800 y San Marcos",
+      "lat": -34.5939,
+      "lng": -56.2622,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": "+59897402040",
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59897402040?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-E810BA9F60:src_001",
+          "url": "https://1122.com.uy/local/casona-de-retiro/LOC824580001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.427Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-138B7F5E2C",
+      "codigo": "FAC-WEB-138B7F5E2C",
+      "legacy_id": "WEB-138B7F5E2C",
+      "nombre": "HOGAR CERVIERI",
+      "departamento": "Canelones",
+      "localidad": "Santa Rosa",
+      "direccion": "RODO S/N",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": "+59843133436",
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-138B7F5E2C:src_001",
+          "url": "https://1122.com.uy/local/hogar-cervieri/LOC461380001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.432Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-FB70955484",
+      "codigo": "FAC-WEB-FB70955484",
+      "legacy_id": "WEB-FB70955484",
+      "nombre": "HOGAR CIELITO",
+      "departamento": "Canelones",
+      "localidad": "Sauce",
+      "direccion": "BARRIO LIBERTADOR",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": "+59822940371",
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-FB70955484:src_001",
+          "url": "https://1122.com.uy/local/hogar-cielito/LOC463640001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.435Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-94620C345A",
+      "codigo": "FAC-WEB-94620C345A",
+      "legacy_id": "WEB-94620C345A",
+      "nombre": "RESIDENCIAL DE ANCIANOS SALINAS",
+      "departamento": "Canelones",
+      "localidad": "Salinas",
+      "direccion": "RUTA INTERBALNEARIA Y ABARORE",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": "+59843763793",
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-94620C345A:src_001",
+          "url": "https://1122.com.uy/local/residencial-de-ancianos-salinas/LOC464570001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.439Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_geolocated",
+      "candidate_id": "WEB-D15D892F56",
+      "codigo": "FAC-WEB-D15D892F56",
+      "legacy_id": "WEB-D15D892F56",
+      "nombre": "El Bienestar Hogar Canelones",
+      "departamento": "Canelones",
+      "localidad": "Canelones",
+      "direccion": "Treinta y Tres 692",
+      "lat": -34.5222,
+      "lng": -56.2808,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59896236140",
+        "+59899676875"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59899676875?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-D15D892F56:src_001",
+          "url": "https://1122.com.uy/local/el-bienestar-hogar-canelones/LOC860490001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.446Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-285B84CD01",
+      "codigo": "FAC-WEB-285B84CD01",
+      "legacy_id": "WEB-285B84CD01",
+      "nombre": "RESIDENCIAL ESPERANZA",
+      "departamento": "Canelones",
+      "localidad": "Sauce",
+      "direccion": "C.RENE GONZALEZ 2110",
+      "lat": -34.6506,
+      "lng": -56.0652,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59822941972",
+        "+59899553599"
+      ],
+      "emails": "evangelinaruffinelli@hotmail.com",
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-285B84CD01:src_001",
+          "url": "https://1122.com.uy/local/residencial-esperanza/LOC463750001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.450Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-DA9201D1A8",
+      "codigo": "FAC-WEB-DA9201D1A8",
+      "legacy_id": "WEB-DA9201D1A8",
+      "nombre": "RESIDENCIAL ESPERANZA",
+      "departamento": "Canelones",
+      "localidad": "Sauce",
+      "direccion": "AV.ARTIGAS 1267",
+      "lat": -34.6485,
+      "lng": -56.0599,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": "+59822942614",
+      "emails": "evangelinaruffinelli@hotmail.com",
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-DA9201D1A8:src_001",
+          "url": "https://1122.com.uy/local/residencial-esperanza/LOC463750002",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.453Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-324D0DCA05",
+      "codigo": "FAC-WEB-324D0DCA05",
+      "legacy_id": "WEB-324D0DCA05",
+      "nombre": "EUBLANA RESIDENCIAL",
+      "departamento": "Canelones",
+      "localidad": "Parque del Plata",
+      "direccion": "JOAQUIN SUAREZ (EX CALLE E) ENTRE 8 Y 19",
+      "lat": -34.7645,
+      "lng": -55.7232,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": "+59895775749",
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-324D0DCA05:src_001",
+          "url": "https://1122.com.uy/local/eublana-residencial/LOC620850001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.457Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-F90C6D1CBA",
+      "codigo": "FAC-WEB-F90C6D1CBA",
+      "legacy_id": "WEB-F90C6D1CBA",
+      "nombre": "GENESIS HOGAR FEMENINO",
+      "departamento": "Canelones",
+      "localidad": "Parque del Plata",
+      "direccion": "CALLE Q",
+      "lat": -34.7522,
+      "lng": -55.7133,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": "+59896126068",
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-F90C6D1CBA:src_001",
+          "url": "https://1122.com.uy/local/genesis-hogar-femenino/LOC631470001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.461Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_geolocated",
+      "candidate_id": "WEB-B4B56A78B4",
+      "codigo": "FAC-WEB-B4B56A78B4",
+      "legacy_id": "WEB-B4B56A78B4",
+      "nombre": "Golden Age Residencial",
+      "departamento": "Canelones",
+      "localidad": "Las Piedras",
+      "direccion": "WILSON FERREIRA ALDUNATE 804",
+      "lat": -34.7243,
+      "lng": -56.2234,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59823652480",
+        "+59894690221"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": "https://www.facebook.com/profile.php?id=100093696865188&locale=hi_IN&paipv=0&eav=AfZNLFANzI6Jtqdn2JaVZL3GQKeBUS5yjMABMgRlUqkBheQ_BO3-IpDJPtn8yRM54e8",
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-B4B56A78B4:src_001",
+          "url": "https://1122.com.uy/local/golden-age-residencial/LOC844750001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.465Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_geolocated",
+      "candidate_id": "WEB-3B394470B1",
+      "codigo": "FAC-WEB-3B394470B1",
+      "legacy_id": "WEB-3B394470B1",
+      "nombre": "RESIDENCIAL GUGA",
+      "departamento": "Canelones",
+      "localidad": "Las Piedras",
+      "direccion": "MAGALLANES",
+      "lat": -34.721,
+      "lng": -56.1935,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59823677535",
+        "+59894251534"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59894251534?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-3B394470B1:src_001",
+          "url": "https://1122.com.uy/local/residencial-guga/LOC764970001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.468Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-B343C7CB80",
+      "codigo": "FAC-WEB-B343C7CB80",
+      "legacy_id": "WEB-B343C7CB80",
+      "nombre": "RESIDENCIAL HILOS PLATEADOS",
+      "departamento": "Canelones",
+      "localidad": "Parque del Plata",
+      "direccion": "CALLE 50 METROS ( EN LA ESQUINA CALLE 3 )",
+      "lat": -34.7622,
+      "lng": -55.7309,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59843739133",
+        "+59898369835"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-B343C7CB80:src_001",
+          "url": "https://1122.com.uy/local/residencial-hilos-plateados/LOC630700001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.473Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-C37BF3D7E6",
+      "codigo": "FAC-WEB-C37BF3D7E6",
+      "legacy_id": "WEB-C37BF3D7E6",
+      "nombre": "HOSTERIA LUZ MARINA",
+      "departamento": "Canelones",
+      "localidad": "Atlantida",
+      "direccion": "REP. DE CHILE ESQ 6",
+      "lat": -34.7784,
+      "lng": -55.759,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": "+59843722988",
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-C37BF3D7E6:src_001",
+          "url": "https://1122.com.uy/local/hosteria-luz-marina/LOC465750001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.477Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-588E92AABA",
+      "codigo": "FAC-WEB-588E92AABA",
+      "legacy_id": "WEB-588E92AABA",
+      "nombre": "RESIDENCIAL JACARANDÁ",
+      "departamento": "Canelones",
+      "localidad": "Neptunia",
+      "direccion": "DAUVILLE M.194 S.33",
+      "lat": -34.792,
+      "lng": -55.8644,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": "+59843768371",
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-588E92AABA:src_001",
+          "url": "https://1122.com.uy/local/residencial-jacaranda/LOC603890001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.483Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-A303D7574F",
+      "codigo": "FAC-WEB-A303D7574F",
+      "legacy_id": "WEB-A303D7574F",
+      "nombre": "LA CASA DE MAMA",
+      "departamento": "Canelones",
+      "localidad": "PINAMAR SUR",
+      "direccion": null,
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": [
+        "+59843764019",
+        "+59895368554"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-A303D7574F:src_001",
+          "url": "https://1122.com.uy/local/la-casa-de-mama/LOC463440001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.487Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-6F997C0C8F",
+      "codigo": "FAC-WEB-6F997C0C8F",
+      "legacy_id": "WEB-6F997C0C8F",
+      "nombre": "HOGAR LA FAMILIA",
+      "departamento": "Canelones",
+      "localidad": "Sauce",
+      "direccion": "P.DE LEON 2285",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": "+59822941714",
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-6F997C0C8F:src_001",
+          "url": "https://1122.com.uy/local/hogar-la-familia/LOC463690001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.490Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-AC237D6F94",
+      "codigo": "FAC-WEB-AC237D6F94",
+      "legacy_id": "WEB-AC237D6F94",
+      "nombre": "RESIDENCIAL LA FAMILIA",
+      "departamento": "Canelones",
+      "localidad": "Las Piedras",
+      "direccion": "Batlle y Ordoñez 688",
+      "lat": -34.726,
+      "lng": -56.2191,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59823625779",
+        "+59899374797",
+        "+59899374997"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59899374797?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-AC237D6F94:src_001",
+          "url": "https://1122.com.uy/local/residencial-la-familia/LOC819680001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.495Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-89E8F0B809",
+      "codigo": "FAC-WEB-89E8F0B809",
+      "legacy_id": "WEB-89E8F0B809",
+      "nombre": "RESIDENCIAL LO DE MAMÁ",
+      "departamento": "Canelones",
+      "localidad": "Pando",
+      "direccion": "Continuación 18 de Julio entre Salvador de Marchi y Marconi.No 1416",
+      "lat": -34.7149,
+      "lng": -55.9636,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59892191419",
+        "+59893429100"
+      ],
+      "emails": "jbuchrodriguez@gmail.com",
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59893429100?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-89E8F0B809:src_001",
+          "url": "https://1122.com.uy/local/residencial-lo-de-mama/LOC823620001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.511Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_geolocated",
+      "candidate_id": "WEB-5C6B80D8CC",
+      "codigo": "FAC-WEB-5C6B80D8CC",
+      "legacy_id": "WEB-5C6B80D8CC",
+      "nombre": "RESIDENCIAL LO DE MAMA 2",
+      "departamento": "Canelones",
+      "localidad": "Pando",
+      "direccion": "Piovene 1158",
+      "lat": -34.7179,
+      "lng": -55.9579,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59892191419",
+        "+59893429100"
+      ],
+      "emails": "haydeerodriguez1210@gmail.com",
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": "https://www.instagram.com/lodemamaresidenciales?fbclid=IwZXh0bgNhZW0CMTAAAR0TzTavkKJqsQpnbEUxYj9qgNvnYmwdY4sstodBkRqU-BvoMuCXbVAcrmo_aem_2sCbxWIigdiljBc59efT1g",
+      "facebook_urls": "https://www.facebook.com/profile.php?id=61554446791352",
+      "otras_redes_urls": "https://wa.me/59893429100?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-5C6B80D8CC:src_001",
+          "url": "https://1122.com.uy/local/residencial-lo-de-mama-2/LOC845090001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.515Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-280005A351",
+      "codigo": "FAC-WEB-280005A351",
+      "legacy_id": "WEB-280005A351",
+      "nombre": "LOS AÑOS DORADOS",
+      "departamento": "Canelones",
+      "localidad": "Soca",
+      "direccion": "JAUMES BERNAT Y GESTIDO",
+      "lat": -34.6851,
+      "lng": -55.7104,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59843740866",
+        "+59898774852"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-280005A351:src_001",
+          "url": "https://1122.com.uy/local/los-anos-dorados/LOC431880001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.521Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-C5873075B7",
+      "codigo": "FAC-WEB-C5873075B7",
+      "legacy_id": "WEB-C5873075B7",
+      "nombre": "HOGAR RESIDENCIAL Mª CRISTINA",
+      "departamento": "Canelones",
+      "localidad": "El Dorado",
+      "direccion": "ELÍAS REGULES M. 1 S. 4 Y PÚBLICA",
+      "lat": -34.7075,
+      "lng": -56.2158,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59823698554",
+        "+59891381538"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-C5873075B7:src_001",
+          "url": "https://1122.com.uy/local/hogar-residencial-m-cristina/LOC710200001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.527Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_geolocated",
+      "candidate_id": "WEB-BD057900CE",
+      "codigo": "FAC-WEB-BD057900CE",
+      "legacy_id": "WEB-BD057900CE",
+      "nombre": "MI NUEVA FAMILIA",
+      "departamento": "Canelones",
+      "localidad": "Pando",
+      "direccion": "CORRECH 1025",
+      "lat": -34.7186,
+      "lng": -55.9566,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59822926888",
+        "+59897385503"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": "https://www.facebook.com/profile.php?id=100052281382117",
+      "otras_redes_urls": "https://wa.me/59897385503?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-BD057900CE:src_001",
+          "url": "https://1122.com.uy/local/mi-nueva-familia/LOC526200002",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.532Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-6C184E58FB",
+      "codigo": "FAC-WEB-6C184E58FB",
+      "legacy_id": "WEB-6C184E58FB",
+      "nombre": "HOGAR MI SUEÑO",
+      "departamento": "Canelones",
+      "localidad": "Pinamar",
+      "direccion": "NOGUEIRA ESQ. INTERBALNEARIA",
+      "lat": -34.7807,
+      "lng": -55.8527,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59843760801",
+        "+59843763213",
+        "+59895318272"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59895318272?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-6C184E58FB:src_001",
+          "url": "https://1122.com.uy/local/hogar-mi-sueno/LOC849900001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.539Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-D1F1A2877A",
+      "codigo": "FAC-WEB-D1F1A2877A",
+      "legacy_id": "WEB-D1F1A2877A",
+      "nombre": "NUESTRO HOGAR",
+      "departamento": "Canelones",
+      "localidad": "Salinas",
+      "direccion": "SOMBRA DEL TORO MAN. 42 S. 13",
+      "lat": -34.7812,
+      "lng": -55.8409,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59843767319",
+        "+59893720056"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-D1F1A2877A:src_001",
+          "url": "https://1122.com.uy/local/nuestro-hogar/LOC431870001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.544Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_geolocated",
+      "candidate_id": "WEB-C729C8F8D7",
+      "codigo": "FAC-WEB-C729C8F8D7",
+      "legacy_id": "WEB-C729C8F8D7",
+      "nombre": "Residencial Nuestro Mundo",
+      "departamento": "Canelones",
+      "localidad": "El Pinar Norte",
+      "direccion": "Juaquin Suarez M60A S22",
+      "lat": -34.7912,
+      "lng": -55.9235,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59892749880",
+        "+59896488813"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59896488813?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-C729C8F8D7:src_001",
+          "url": "https://1122.com.uy/local/residencial-nuestro-mundo/LOC858500001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.551Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-E406F39AA5",
+      "codigo": "FAC-WEB-E406F39AA5",
+      "legacy_id": "WEB-E406F39AA5",
+      "nombre": "Residencial Nuevo Vivir",
+      "departamento": "Canelones",
+      "localidad": "Atlantida",
+      "direccion": "Av. Circunvalación esq. Guayabos",
+      "lat": -34.7724,
+      "lng": -55.7663,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59843768818",
+        "+59892543677"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59892543677?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-E406F39AA5:src_001",
+          "url": "https://1122.com.uy/local/residencial-nuevo-vivir/LOC733780001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.557Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_geolocated",
+      "candidate_id": "WEB-419073D4F7",
+      "codigo": "FAC-WEB-419073D4F7",
+      "legacy_id": "WEB-419073D4F7",
+      "nombre": "PHOENIX RESIDENCIAL",
+      "departamento": "Canelones",
+      "localidad": "Parque del Plata",
+      "direccion": "RAMBLA BAJADA 11",
+      "lat": -34.7677,
+      "lng": -55.7187,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59843755213",
+        "+59898774852"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": "https://www.facebook.com/Residencial-phoenix-109308690913042",
+      "otras_redes_urls": "https://wa.me/59898774852?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-419073D4F7:src_001",
+          "url": "https://1122.com.uy/local/phoenix-residencial/LOC350900001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.562Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_geolocated",
+      "candidate_id": "WEB-F8A28EFF42",
+      "codigo": "FAC-WEB-F8A28EFF42",
+      "legacy_id": "WEB-F8A28EFF42",
+      "nombre": "Residencial Reina de las Flores",
+      "departamento": "Canelones",
+      "localidad": "Canelones",
+      "direccion": "Cam. las Violetas",
+      "lat": -34.5359,
+      "lng": -56.2901,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59843325557",
+        "+59896236140",
+        "+59899676875"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59896236140?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-F8A28EFF42:src_001",
+          "url": "https://1122.com.uy/local/residencial-reina-de-las-flores/LOC860490003",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.568Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-6CCA000AFF",
+      "codigo": "FAC-WEB-6CCA000AFF",
+      "legacy_id": "WEB-6CCA000AFF",
+      "nombre": "RESIDENCIAL RENACER",
+      "departamento": "Canelones",
+      "localidad": "Pando",
+      "direccion": "LUIS A. DE HERRERA 732",
+      "lat": -34.7213,
+      "lng": -55.9601,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59892449615",
+        "+59892790900"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59892449615?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-6CCA000AFF:src_001",
+          "url": "https://1122.com.uy/local/residencial-renacer/LOC746850001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.572Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-00AE588DB0",
+      "codigo": "FAC-WEB-00AE588DB0",
+      "legacy_id": "WEB-00AE588DB0",
+      "nombre": "RESIDENCIA SALINAS",
+      "departamento": "Canelones",
+      "localidad": "Salinas",
+      "direccion": "ZORRILLA DE SAN MARTIN E/YANDUBAYU Y ABARORE",
+      "lat": -34.773,
+      "lng": -55.8386,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": "+59843766806",
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-00AE588DB0:src_001",
+          "url": "https://1122.com.uy/local/residencia-salinas/LOC465740001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.579Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_unlocated",
+      "candidate_id": "WEB-A9759E666B",
+      "codigo": "FAC-WEB-A9759E666B",
+      "legacy_id": "WEB-A9759E666B",
+      "nombre": "RESIDENCIAL SAN BAUTISTA",
+      "departamento": "Canelones",
+      "localidad": "San Bautista",
+      "direccion": "HERRERA S/N",
+      "lat": null,
+      "lng": null,
+      "precision_ubicacion": null,
+      "precision_etiqueta": null,
+      "telefonos": "+59843137305",
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-A9759E666B:src_001",
+          "url": "https://1122.com.uy/local/residencial-san-bautista/LOC460370001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.585Z",
+          "fields": "nombre,direccion,contactos"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-1327E582DF",
+      "codigo": "FAC-WEB-1327E582DF",
+      "legacy_id": "WEB-1327E582DF",
+      "nombre": "SAN CONO",
+      "departamento": "Canelones",
+      "localidad": "Tala",
+      "direccion": "Continuación Treinta y Tres esq. Paysandu",
+      "lat": -34.3398,
+      "lng": -55.7711,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59843154014",
+        "+59898124779"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-1327E582DF:src_001",
+          "url": "https://1122.com.uy/local/san-cono/LOC465370001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.591Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_geolocated",
+      "candidate_id": "WEB-AB0299884E",
+      "codigo": "FAC-WEB-AB0299884E",
+      "legacy_id": "WEB-AB0299884E",
+      "nombre": "SAN PABLO",
+      "departamento": "Canelones",
+      "localidad": "Colonia Nicolich",
+      "direccion": "RUTA 101 KM 28.450",
+      "lat": -34.8251,
+      "lng": -56.0049,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59822881897",
+        "+59897123214"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-AB0299884E:src_001",
+          "url": "https://1122.com.uy/local/san-pablo/LOC374310001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.597Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-14ADFF357C",
+      "codigo": "FAC-WEB-14ADFF357C",
+      "legacy_id": "WEB-14ADFF357C",
+      "nombre": "RESIDENCIAL SHANGRILA",
+      "departamento": "Canelones",
+      "localidad": "Shangrila",
+      "direccion": "PARAGUAY M.13 S. 20 ESQ. SAENZ PEÑA",
+      "lat": -34.8576,
+      "lng": -56.0053,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59826821949",
+        "+59899669342"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": "https://www.instagram.com/residencial.shangrila/",
+      "facebook_urls": "https://www.facebook.com/profile.php?id=61551821171207",
+      "otras_redes_urls": "https://wa.me/59899669342?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-14ADFF357C:src_001",
+          "url": "https://1122.com.uy/local/residencial-shangrila/LOC401290001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.603Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-E4CF604A63",
+      "codigo": "FAC-WEB-E4CF604A63",
+      "legacy_id": "WEB-E4CF604A63",
+      "nombre": "RESIDENCIAL VIATA DEMNA",
+      "departamento": "Canelones",
+      "localidad": "Las Piedras",
+      "direccion": "Wilson ferreira aldunatez 011",
+      "lat": -34.7247,
+      "lng": -56.2282,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59823689118",
+        "+59897333614"
+      ],
+      "emails": {},
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": "https://www.instagram.com/residencial_viata.demna/",
+      "facebook_urls": "https://www.facebook.com/profile.php?id=100073239103497",
+      "otras_redes_urls": "https://wa.me/59897333614?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-E4CF604A63:src_001",
+          "url": "https://1122.com.uy/local/residencial-viata-demna/LOC821260001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.612Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "duplicate_geolocated",
+      "candidate_id": "WEB-E2A6A37A50",
+      "codigo": "FAC-WEB-E2A6A37A50",
+      "legacy_id": "WEB-E2A6A37A50",
+      "nombre": "RESIDENCIAL VIDAL Y CIA",
+      "departamento": "Canelones",
+      "localidad": "Barros Blancos",
+      "direccion": "Ruta 8 km 26 - calle Cerro Largo N 58 a 1 cuadra de la ruta.",
+      "lat": -34.7513,
+      "lng": -55.9971,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": "+59891725869",
+      "emails": "residencialvidalycia@gmail.com",
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": "https://wa.me/59891725869?text=Desde%20Guía Móvil 1122",
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-E2A6A37A50:src_001",
+          "url": "https://1122.com.uy/local/residencial-vidal-y-cia/LOC836150001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.622Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    },
+    {
+      "action": "insert_geolocated",
+      "candidate_id": "WEB-8BED0E6C1B",
+      "codigo": "FAC-WEB-8BED0E6C1B",
+      "legacy_id": "WEB-8BED0E6C1B",
+      "nombre": "RESIDENCIAL ZAFIROS",
+      "departamento": "Canelones",
+      "localidad": "El Pinar",
+      "direccion": "AV PEREZ BUTLER KM 30 M193 S4 ENTRE PATRIA Y MACHADO",
+      "lat": -34.8022,
+      "lng": -55.9131,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada del paquete web; precisión no informada",
+      "telefonos": [
+        "+59826816909",
+        "+59892062881"
+      ],
+      "emails": "residencialzafiros@hotmail.com",
+      "sitios_web": "https://wa.link/eg6lfo",
+      "instagram_urls": {},
+      "facebook_urls": {},
+      "otras_redes_urls": {},
+      "sources": [
+        {
+          "reference": "canelones-2026-08-13:5e0d5a6b9e72b98a34bcb736b7d78c969850dc0869468e572a7eb811a32f09d1:WEB-8BED0E6C1B:src_001",
+          "url": "https://1122.com.uy/local/residencial-zafiros/LOC614790001",
+          "type": "public_directory",
+          "provider": "guia_1122",
+          "source_date": null,
+          "consulted_at": "2026-08-13T23:53:21.631Z",
+          "fields": "nombre,direccion,contactos,ubicacion"
+        }
+      ]
+    }
+  ],
+  "prices": [
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-ELP-0006-6E3F1CFA89335BAF",
+      "nombre": "Altos del Pinar",
+      "amount_uyu": 35000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": {},
+      "source_url": "https://www.elpais.com.uy/informacion/residencias-vip-nuevas-tendencias-para-3%C2%AA-edad",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-021",
+      "source_type": "news",
+      "source_provider": "El País",
+      "source_date": "2012-05-15",
+      "source_record_id": "BASE-021"
+    },
+    {
+      "action": "verify_existing",
+      "codigo": "FAC-LEGACY-ELP-0048-2D20813D86F4F23D",
+      "nombre": "La Estancia Hotel Residencial",
+      "amount_uyu": 85000,
+      "precio_fecha": "2026-05-03",
+      "precio_incluye": "Alimentación, lavandería, enfermería, atención médica y prestaciones exigidas a un ELEPEM habilitado.",
+      "source_url": "https://somosuruguay.com.uy/sociedad/la-estancia-hotel-residencial-una-propuesta-busca-transformar-forma-cuidar-adultos-mayores-n2843/amp",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-001",
+      "source_type": "news",
+      "source_provider": "Somos Uruguay",
+      "source_date": "2026-05-03",
+      "source_record_id": "BASE-001"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-ELP-0092-659F60900D60E0E8",
+      "nombre": "Senescentis II",
+      "amount_uyu": 42500,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": "Equipo interdisciplinario, alimentación, enfermería, talleres y otros servicios descritos.",
+      "source_url": "https://www.redresidenciales.uy/residencial-hotel/canelones/ciudad-de-la-costa/senescentis-residencial/",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-010",
+      "source_type": "public_directory",
+      "source_provider": "Red de Residenciales",
+      "source_date": null,
+      "source_record_id": "BASE-010"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-ELP-0225-1E6FEE63E2AC3E6B",
+      "nombre": "La Candelaria",
+      "amount_uyu": 80000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": {},
+      "source_url": "https://infonegocios.biz/nota-principal/en-la-mansa-se-agita-la-candelaria-un-residencial-para-potenciar-el-tiempo-de-familia",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-014",
+      "source_type": "news",
+      "source_provider": "InfoNegocios",
+      "source_date": "2020-11-16",
+      "source_record_id": "BASE-014"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-MSP24-043-F296BAA525093376",
+      "nombre": "Aguas de Reposo",
+      "amount_uyu": 38000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": "Alimentación, enfermería, fisioterapia y actividades descritas en el directorio.",
+      "source_url": "https://www.redresidenciales.uy/residencial_hotel/montevideo/carrasco/carrasco/residencial-aguas-de-reposo/",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-008",
+      "source_type": "public_directory",
+      "source_provider": "Red de Residenciales",
+      "source_date": null,
+      "source_record_id": "BASE-008"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-MSP24-038-EF27E2634E365AAF",
+      "nombre": "Altos del Centro",
+      "amount_uyu": 50000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": "Habitaciones individuales y compartidas; servicios y actividades descritos en el directorio.",
+      "source_url": "https://www.redresidenciales.uy/residencial_hotel/residencial-en-centro/",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-006",
+      "source_type": "public_directory",
+      "source_provider": "Red de Residenciales",
+      "source_date": null,
+      "source_record_id": "BASE-006"
+    },
+    {
+      "action": "verify_existing",
+      "codigo": "FAC-LEGACY-MSP24-061-31302148B63DA6AC",
+      "nombre": "Altos del Parque 1",
+      "amount_uyu": 100000,
+      "precio_fecha": "2025-04-01",
+      "precio_incluye": {},
+      "source_url": "https://app.vitalencecare.com/VitalenceJavaEnvironment/servlet/com.vitalence.buscarcuartos",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-004",
+      "source_type": "public_directory",
+      "source_provider": "Vitalence",
+      "source_date": "2025-04-01",
+      "source_record_id": "BASE-004"
+    },
+    {
+      "action": "verify_existing",
+      "codigo": "FAC-LEGACY-MSP24-161-7F284E6E017823E0",
+      "nombre": "Altos del Parque 2",
+      "amount_uyu": 100000,
+      "precio_fecha": "2025-06-13",
+      "precio_incluye": {},
+      "source_url": "https://app.vitalencecare.com/VitalenceJavaEnvironment/servlet/com.vitalence.buscarcuartos",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-005",
+      "source_type": "public_directory",
+      "source_provider": "Vitalence",
+      "source_date": "2025-06-13",
+      "source_record_id": "BASE-005"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-ELP-0427-C438EEBBD66E1884",
+      "nombre": "Hogar Amelia Ruano de Schiaffino",
+      "amount_uyu": 35000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": {},
+      "source_url": "https://www.elobservador.com.uy/nota/residenciales-un-negocio-que-crece-con-tarifas-de-35-000-a-120-000-al-mes-201972132159",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-025",
+      "source_type": "news",
+      "source_provider": "El Observador",
+      "source_date": "2019-07-21",
+      "source_record_id": "BASE-025"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-ELP-0448-898D6DD9A7C54857",
+      "nombre": "Hotel Continental Senior",
+      "amount_uyu": 35000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": {},
+      "source_url": "https://www.elpais.com.uy/negocios/finanzas/hoteles-para-jubilados-otra-opcion-al-manejar-el-retiro",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:NEW-002",
+      "source_type": "news",
+      "source_provider": "El País",
+      "source_date": "2016-09-11",
+      "source_record_id": "NEW-002"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-ELP-0606-F6306003DF5F90F8",
+      "nombre": "Humana Residencial",
+      "amount_uyu": 125000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": "Comidas, meriendas, actividades, lavandería, enfermería, aire acondicionado y agua caliente, según la nota.",
+      "source_url": "https://infonegocios.biz/un-dia-en/humana-con-su-directora-maria-methol",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-017",
+      "source_type": "news",
+      "source_provider": "InfoNegocios",
+      "source_date": null,
+      "source_record_id": "BASE-017"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-MSP24-111-D0D05002AAEC40A3",
+      "nombre": "La Maison Senior Apartments",
+      "amount_uyu": 201070,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": {},
+      "source_url": "https://www.elpais.com.uy/negocios/finanzas/hoteles-para-jubilados-otra-opcion-al-manejar-el-retiro",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:NEW-003",
+      "source_type": "news",
+      "source_provider": "El País",
+      "source_date": "2016-09-11",
+      "source_record_id": "NEW-003"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-ELP-0479-2A28F8D0ADC27059",
+      "nombre": "LAR - Centro",
+      "amount_uyu": 120000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": {},
+      "source_url": "https://www.elobservador.com.uy/nota/residenciales-un-negocio-que-crece-con-tarifas-de-35-000-a-120-000-al-mes-201972132159",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-023",
+      "source_type": "news",
+      "source_provider": "El Observador",
+      "source_date": "2019-07-21",
+      "source_record_id": "BASE-023"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-MSP24-072-811E25FC964E9DA9",
+      "nombre": "Los Alpes",
+      "amount_uyu": 40000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": {},
+      "source_url": "https://www.elobservador.com.uy/nota/residenciales-un-negocio-que-crece-con-tarifas-de-35-000-a-120-000-al-mes-201972132159",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-024",
+      "source_type": "news",
+      "source_provider": "El Observador",
+      "source_date": "2019-07-21",
+      "source_record_id": "BASE-024"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-MSP24-011-690FB5E8DE8BD869",
+      "nombre": "Manas Home / MH Residencial",
+      "amount_uyu": 65000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": "Atención médica, actividades, alimentación, enfermería y otros servicios descritos.",
+      "source_url": "https://www.redresidenciales.uy/residencial_hotel/carrasco/residencial-manas-casa-asistida/",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-009",
+      "source_type": "public_directory",
+      "source_provider": "Red de Residenciales",
+      "source_date": null,
+      "source_record_id": "BASE-009"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-ELP-0350-1A44EC6E54F3F2D9",
+      "nombre": "Moirú",
+      "amount_uyu": 45000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": "La nota indicaba todos los servicios incluidos.",
+      "source_url": "https://infonegocios.biz/nota-principal/moiru-quiere-romper-el-paradigma-va-por-mas-locales",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-016",
+      "source_type": "news",
+      "source_provider": "InfoNegocios",
+      "source_date": "2021-12-24",
+      "source_record_id": "BASE-016"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-MSP24-044-83322A666C272E22",
+      "nombre": "Red Bienestar",
+      "amount_uyu": 38000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": {},
+      "source_url": "https://www.elobservador.com.uy/nota/residenciales-un-negocio-que-crece-con-tarifas-de-35-000-a-120-000-al-mes-201972132159",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-022",
+      "source_type": "news",
+      "source_provider": "El Observador",
+      "source_date": "2019-07-21",
+      "source_record_id": "BASE-022"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-CANDIDATE-141",
+      "nombre": "Residencial Pontevedra",
+      "amount_uyu": 29000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": "Atención médica, enfermería, alimentación, lavandería y talleres descritos.",
+      "source_url": "https://www.redresidenciales.uy/residencial-hotel/montevideo/reducto/residencial-pontevedra/",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-011",
+      "source_type": "public_directory",
+      "source_provider": "Red de Residenciales",
+      "source_date": null,
+      "source_record_id": "BASE-011"
+    },
+    {
+      "action": "verify_existing",
+      "codigo": "FAC-LEGACY-MSP24-128-0077C3F2BA4412D2",
+      "nombre": "Saniguet",
+      "amount_uyu": 60000,
+      "precio_fecha": "2025-06-12",
+      "precio_incluye": {},
+      "source_url": "https://app.vitalencecare.com/VitalenceJavaEnvironment/servlet/com.vitalence.buscarcuartos",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-003",
+      "source_type": "public_directory",
+      "source_provider": "Vitalence",
+      "source_date": "2025-06-12",
+      "source_record_id": "BASE-003"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-LEGACY-MSP24-041-25544A83B648E4BA",
+      "nombre": "Santa Bernardita",
+      "amount_uyu": 55000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": "Cuatro comidas, lavadero, peluquería y manicura; otros servicios descritos en el directorio.",
+      "source_url": "https://www.redresidenciales.uy/residencial_hotel/montevideo/prado/prado/santa-bernardita-0/",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-007",
+      "source_type": "public_directory",
+      "source_provider": "Red de Residenciales",
+      "source_date": null,
+      "source_record_id": "BASE-007"
+    },
+    {
+      "action": "update_missing",
+      "codigo": "FAC-CANDIDATE-171",
+      "nombre": "Álamos Montevideo",
+      "amount_uyu": 95000,
+      "precio_fecha": "2026-08-16",
+      "precio_incluye": {},
+      "source_url": "https://infonegocios.biz/enfoque/llega-el-nuevo-residencial-alamos-un-centro-de-primer-nivel-para-adultos-mayores",
+      "source_reference": "cecilia-2026-08-14:ed8e94494e77d3d178d25a795d5227630884079bcc613fe2c4e8fd4579913fd0:BASE-015",
+      "source_type": "news",
+      "source_provider": "InfoNegocios",
+      "source_date": "2020-05-20",
+      "source_record_id": "BASE-015"
+    }
+  ]
+}

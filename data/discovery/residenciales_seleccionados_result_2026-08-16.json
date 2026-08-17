@@ -1,0 +1,201 @@
+{
+  "operation_date": "2026-08-16",
+  "project_id": "itolluaivfoxnaohbsdk",
+  "authorization": "Explicit user instruction to add 14 named residential facilities and merge the two Senescentis II records.",
+  "source": {
+    "file": "Cambios/02_pendiente_revision/residenciales/candidatos_pendientes_84.json",
+    "sha256": "A33F13DFF093BEFDCB1C15F171C122E1738D665200CF0A7910360DC402167B4B"
+  },
+  "outcome": {
+    "inserted": 12,
+    "enriched_existing": 2,
+    "merged_duplicate_rows": 1,
+    "deleted_duplicate_id": 92,
+    "survivor_id": 97
+  },
+  "counts_before": {
+    "elepem": 945,
+    "elepem_sin_ubicacion": 104
+  },
+  "counts_after": {
+    "elepem": 944,
+    "elepem_sin_ubicacion": 116
+  },
+  "inserted_rows": [
+    {
+      "id": 1144,
+      "codigo": "FAC-WEB-D9BCBA10BF",
+      "nombre": "Residencial San Antonio",
+      "direccion": "19 de Abril 155 esquina Buchental, San José de Carrasco",
+      "localidad": "San José de Carrasco",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:san-jose-de-carrasco:residencial-san-antonio"
+    },
+    {
+      "id": 1145,
+      "codigo": "FAC-WEB-CB1E9DAC72",
+      "nombre": "Hogar Residencial Las Margaritas",
+      "direccion": "Rambla M104 S5, Lomas de Solymar",
+      "localidad": "Lomas de Solymar",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:lomas-de-solymar:hogar-residencial-las-margaritas"
+    },
+    {
+      "id": 1146,
+      "codigo": "FAC-WEB-507F07BED8",
+      "nombre": "Residencial Bea",
+      "direccion": "Ruta 11 km 163.500, Estación Atlántida",
+      "localidad": "Estación Atlántida",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:estacion-atlantida:residencial-bea"
+    },
+    {
+      "id": 1147,
+      "codigo": "FAC-WEB-3F5C76069A",
+      "nombre": "Hogar Mis Abuelos",
+      "direccion": "Independencia entre 25 de Agosto y Delmira Agustini, Costa Azul",
+      "localidad": "Costa Azul",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:costa-azul:hogar-mis-abuelos"
+    },
+    {
+      "id": 1148,
+      "codigo": "FAC-WEB-0E0358F2A3",
+      "nombre": "Casa Hogar Tercera Edad",
+      "direccion": null,
+      "localidad": "Parque del Plata",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:parque-del-plata:casa-hogar-tercera-edad"
+    },
+    {
+      "id": 1149,
+      "codigo": "FAC-WEB-C8D4F92660",
+      "nombre": "Senior Living",
+      "direccion": "Calle 22 entre Calle 1 y Calle 11, Atlántida",
+      "localidad": "Atlántida",
+      "departamento": "Canelones",
+      "source_count": 3,
+      "candidate_key": "canelones:atlantida:senior-living"
+    },
+    {
+      "id": 1150,
+      "codigo": "FAC-WEB-6EB79DFB90",
+      "nombre": "Senescentis III",
+      "direccion": "Stella Maris M37 S9 esquina Virazón, Lomas de Solymar",
+      "localidad": "Lomas de Solymar",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:lomas-de-solymar:senescentis-iii"
+    },
+    {
+      "id": 1151,
+      "codigo": "FAC-WEB-1AA76AB7B6",
+      "nombre": "Lares de Atlántida",
+      "direccion": "Calle 5 entre calles 4 y 6, M42 S3, Atlántida",
+      "localidad": "Atlántida",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:atlantida:lares-de-atlantida"
+    },
+    {
+      "id": 1152,
+      "codigo": "FAC-WEB-4D12835469",
+      "nombre": "Residencial Nazaret",
+      "direccion": "Carlos Gardel 175, El Pinar / Ciudad de la Costa",
+      "localidad": "El Pinar",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:el-pinar:residencial-nazaret"
+    },
+    {
+      "id": 1153,
+      "codigo": "FAC-WEB-A9932C0D02",
+      "nombre": "Granja Residencial \"La Esperanza\"",
+      "direccion": "Ruta Nacional 12 km 94",
+      "localidad": "San Ramón / Tala",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:ruta-12:granja-residencial-la-esperanza"
+    },
+    {
+      "id": 1154,
+      "codigo": "FAC-WEB-BCE40A8C39",
+      "nombre": "Residencial TeaGarden — Av. Lezica 5855",
+      "direccion": "Av. Lezica 5855",
+      "localidad": "Montevideo",
+      "departamento": "Montevideo",
+      "source_count": 2,
+      "candidate_key": "montevideo:teagarden:av-lezica-5855"
+    },
+    {
+      "id": 1155,
+      "codigo": "FAC-WEB-96977DA16B",
+      "nombre": "Residencial TeaGarden — Lanús 5699",
+      "direccion": "Lanús 5699",
+      "localidad": "Montevideo",
+      "departamento": "Montevideo",
+      "source_count": 2,
+      "candidate_key": "montevideo:teagarden:lanus-5699"
+    }
+  ],
+  "enriched_existing_rows": [
+    {
+      "id": 1130,
+      "codigo": "FAC-WEB-E6DA09D530",
+      "nombre": "Residencial El Parque",
+      "direccion": "Calle F y Calle 14, Las Toscas",
+      "localidad": "Las Toscas",
+      "departamento": "Canelones",
+      "source_count": 3,
+      "candidate_key": "canelones:las-toscas:residencial-el-parque"
+    },
+    {
+      "id": 1134,
+      "codigo": "FAC-WEB-FB70955484",
+      "nombre": "Hogar Cielito",
+      "direccion": "Barrio Libertador, Sauce",
+      "localidad": "Sauce",
+      "departamento": "Canelones",
+      "source_count": 2,
+      "candidate_key": "canelones:sauce:hogar-cielito"
+    }
+  ],
+  "senescentis_merge": {
+    "photos": 13,
+    "reports": 3,
+    "survivor": {
+      "id": 97,
+      "codigo": "FAC-LEGACY-ELP-0092-659F60900D60E0E8",
+      "nombre": "Senescentis II",
+      "aliases": [
+        "Residencial Senescentis II"
+      ],
+      "other_ids": [
+        "ELP-0092",
+        "ELP-0087",
+        "FAC-LEGACY-ELP-0087-B01460CB368D2247"
+      ],
+      "source_count": 11
+    },
+    "attachments": 13,
+    "publications": 2,
+    "old_ref_count": 0,
+    "deleted_id_92_count": 0
+  },
+  "failed_attempts": [
+    {
+      "reason": "situacion is a generated column",
+      "effect": "Full transaction rolled back; no partial changes.",
+      "resolution": "Removed generated column from the insert and reran the transaction."
+    }
+  ],
+  "schema_changes": 0,
+  "colonia_62_processed": false,
+  "backup": "data/discovery/backups/residenciales_seleccionados_2026-08-16_before.json",
+  "dry_run": "data/discovery/residenciales_seleccionados_dry_run_2026-08-16.md"
+}

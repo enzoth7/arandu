@@ -1,0 +1,178 @@
+{
+  "operation": "merge duplicate public.elepem 1054 into 560",
+  "project_id": "itolluaivfoxnaohbsdk",
+  "records_before": [
+    {
+      "id": 560,
+      "lat": -31.7093479,
+      "lng": -55.9986122,
+      "codigo": "FAC-LEGACY-ELP-0803-33624FE2970A51FE",
+      "emails": [],
+      "nombre": "Residencial Hogar de Ancianos San Vicente de Paul",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "María Reggi, 6° sec. Judicial",
+      "legacy_id": "ELP-0803",
+      "localidad": "Tacuarembo",
+      "msp_fecha": null,
+      "otros_ids": [
+        "ELP-0803"
+      ],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "created_at": "2026-08-04T21:56:10.744437+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-10T21:42:29.880335+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Tacuarembó",
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        "",
+        "https://documentos.diputados.gub.uy/docs/L49/Original/03519.pdf",
+        "https://www.daughtersips.org/2025/07/02/svdp-nursing-home-renovations/"
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "other",
+        "other"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04",
+        "2020-05-22",
+        "2025-07-02"
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [
+        ""
+      ],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "puerta más cercana en la misma calle",
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales",
+        "other",
+        "other"
+      ],
+      "fuentes_referencias": [
+        "MSPR-042-2020",
+        "public.residenciales:ELP-0803",
+        "tacuarembo:known:san-vicente:1:4a40fd3a0ea2",
+        "tacuarembo:known:san-vicente:2:8a5eb233e18b"
+      ],
+      "precision_ubicacion": "calle",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T21:41:38.875+00:00",
+        "2026-08-04T00:00:00+00:00",
+        "2026-08-04T00:00:00+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion"
+      ]
+    },
+    {
+      "id": 1054,
+      "lat": -31.711183,
+      "lng": -56.0007832,
+      "codigo": "FAC-CANDIDATE-12",
+      "emails": [],
+      "nombre": "hogar de ancianos san vicente de paul",
+      "osm_ids": [],
+      "osm_urls": [],
+      "direccion": "maria reggi",
+      "legacy_id": null,
+      "localidad": "tacuarembo",
+      "msp_fecha": null,
+      "otros_ids": [],
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "created_at": "2026-08-02T04:59:10.17182+00:00",
+      "imagen_alt": null,
+      "imagen_url": null,
+      "sitios_web": [],
+      "updated_at": "2026-08-10T22:38:42.345287+00:00",
+      "descripcion": null,
+      "mides_fecha": null,
+      "departamento": "Tacuarembó",
+      "fuentes_urls": [
+        "https://www.openstreetmap.org/way/394166234"
+      ],
+      "precio_fecha": null,
+      "facebook_urls": [],
+      "fuentes_tipos": [
+        "openstreetmap"
+      ],
+      "fuentes_fechas": [
+        null
+      ],
+      "instagram_urls": [],
+      "msp_fuente_url": null,
+      "msp_habilitado": false,
+      "otros_ids_urls": [],
+      "precio_es_demo": false,
+      "precio_incluye": [],
+      "google_maps_url": null,
+      "google_place_id": null,
+      "mides_fuente_url": null,
+      "operadores_tipos": [],
+      "otras_redes_urls": [],
+      "mides_certificado": false,
+      "precio_fuente_url": null,
+      "operadores_nombres": [],
+      "precio_mensual_uyu": null,
+      "precision_etiqueta": "Coordenada heredada; pendiente de revision individual",
+      "fuentes_proveedores": [
+        "Fuente privada existente: openstreetmap"
+      ],
+      "fuentes_referencias": [
+        "way/394166234"
+      ],
+      "precision_ubicacion": "referencial",
+      "google_verificado_at": null,
+      "nombres_alternativos": [],
+      "google_verificado_por": null,
+      "otros_ids_proveedores": [],
+      "fuentes_consultadas_at": [
+        "2026-08-02T04:58:16.218+00:00"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,localidad,direccion,ubicacion"
+      ]
+    }
+  ],
+  "backup_created_at": "2026-08-16T21:09:43.754556+00:00",
+  "foreign_key_references_before": {
+    "public.intake_reports": 0,
+    "public.facility_change_publications": 0,
+    "public.facility_document_status_reviews": 0,
+    "elepem_core.facility_experience_publications": 0
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "operation_id": "delete-research-exports-2026-08-16",
+  "generated_at": "2026-08-16T23:26:13.386Z",
+  "project_ref": "itolluaivfoxnaohbsdk",
+  "bucket": {
+    "id": "research-exports",
+    "name": "research-exports",
+    "owner": "",
+    "public": false,
+    "file_size_limit": 52428800,
+    "allowed_mime_types": [
+      "application/zip"
+    ],
+    "created_at": "2026-08-16T09:19:31.194Z",
+    "updated_at": "2026-08-16T09:19:31.194Z"
+  },
+  "deletion_reason": "Bucket privado de exportaciones temporales, redundante y sin uso por la aplicación pública; eliminación solicitada explícitamente por el usuario.",
+  "irreversible": true,
+  "object_count": 5,
+  "total_bytes": 51940091,
+  "objects": [
+    {
+      "name": "image-packs/2026-08-16/mascerca_imagenes_completas_159.zip",
+      "created_at": "2026-08-16T09:42:28.543Z",
+      "updated_at": "2026-08-16T09:42:28.543Z",
+      "mime_type": "application/zip",
+      "size_bytes": 17742350,
+      "sha256": "78799e43e64493acf8dedbab48d5d7fcde6564772355e5c34c99c36f447fc412"
+    },
+    {
+      "name": "image-packs/2026-08-16/mascerca_imagenes_fisicas_completas_155.zip",
+      "created_at": "2026-08-16T09:26:27.651Z",
+      "updated_at": "2026-08-16T09:26:27.651Z",
+      "mime_type": "application/zip",
+      "size_bytes": 17098770,
+      "sha256": "fd047136d85f01cf5dc3bc3da16669c4638aafc879a97bfb6a9c0ab647f70529"
+    },
+    {
+      "name": "image-packs/2026-08-16/mascerca_imagenes_fisicas_parte_1.zip",
+      "created_at": "2026-08-16T09:22:32.083Z",
+      "updated_at": "2026-08-16T09:22:32.083Z",
+      "mime_type": "application/zip",
+      "size_bytes": 4828683,
+      "sha256": "ffdba592d82b2b173354ac42bac25974a13c4cad244c916193236a1a73c73d62"
+    },
+    {
+      "name": "image-packs/2026-08-16/mascerca_imagenes_fisicas_parte_2.zip",
+      "created_at": "2026-08-16T09:22:42.150Z",
+      "updated_at": "2026-08-16T09:22:42.150Z",
+      "mime_type": "application/zip",
+      "size_bytes": 6704918,
+      "sha256": "e28f162046d33456367a30fa676ee8228c10de296e64399d062d28e0a5636b89"
+    },
+    {
+      "name": "image-packs/2026-08-16/mascerca_imagenes_fisicas_parte_3.zip",
+      "created_at": "2026-08-16T09:22:57.944Z",
+      "updated_at": "2026-08-16T09:22:57.944Z",
+      "mime_type": "application/zip",
+      "size_bytes": 5565370,
+      "sha256": "8a2fdedc7aaae31b58b8aef0b54701f12452a425f719c19ad449521473241d50"
+    }
+  ]
+}

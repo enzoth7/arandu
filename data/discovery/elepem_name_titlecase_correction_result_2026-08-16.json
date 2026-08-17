@@ -1,0 +1,58 @@
+{
+  "created_at": "2026-08-16T19:54:41.9751641-03:00",
+  "project_id": "itolluaivfoxnaohbsdk",
+  "operation": "elepem_name_titlecase_correction",
+  "rule": {
+    "style": "Mayúscula inicial en palabras significativas",
+    "lowercase_connectors": [
+      "de",
+      "del",
+      "y",
+      "e",
+      "en",
+      "al",
+      "por",
+      "para",
+      "con",
+      "sin"
+    ],
+    "uppercase_acronyms": [
+      "SRL",
+      "SA",
+      "SAS",
+      "MSP",
+      "OSM"
+    ],
+    "uppercase_roman_numerals": true
+  },
+  "backup": {
+    "path": "data/discovery/backups/elepem_name_titlecase_correction_2026-08-16_before.json",
+    "rows": 940,
+    "bytes": 237642,
+    "sha256": "C16C59AC47873A8B886F2D150EDC7A476042410E3C52BEFD769A51F77DBEB3A7"
+  },
+  "updated": {
+    "elepem": 843,
+    "elepem_sin_ubicacion": 97,
+    "total": 940
+  },
+  "counts_after": {
+    "elepem": 945,
+    "elepem_sin_ubicacion": 104
+  },
+  "examples_verified": [
+    "Abuela Dominga",
+    "Adulto Mayor Orquideas del Lago",
+    "Residencial Senescentis II",
+    "Años Luz SRL",
+    "Casablanca - Las Abejas SRL.",
+    "Hogar de Ancianos Vergara Siglo XXI"
+  ],
+  "verification": {
+    "pending_changes": 0,
+    "noncanonical_acronyms_or_roman_numerals": 0,
+    "rare_symbols": 0,
+    "literal_replacement_sequences": 0,
+    "idempotent": true
+  }
+}

@@ -532,8 +532,8 @@ export function ResidencialesFormView() {
                   {displayedFacilities.map((fac) => {
                     const isChecked = selectedFacilityId === fac.id;
                     const badges: { label: string; tone: string }[] = [];
-                    if (fac.mspFinal) badges.push({ label: "Habilitados", tone: "green" });
-                    if (fac.midesSocial) badges.push({ label: "Certificados", tone: "amber" });
+                    if (fac.mspFinal) badges.push({ label: "Habilitado MSP", tone: "green" });
+                    if (fac.midesSocial) badges.push({ label: "Certificado Social MIDES", tone: "amber" });
                     if (!fac.mspFinal && !fac.midesSocial) {
                       badges.push({ label: "Situación no confirmada", tone: "gray" });
                     }

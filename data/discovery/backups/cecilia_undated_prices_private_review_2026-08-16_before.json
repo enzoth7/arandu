@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "project_id": "itolluaivfoxnaohbsdk",
+  "checked_at": "2026-08-16T07:32:17.195237+00:00",
+  "purpose": "Estado previo a cargar seis evidencias de precios sin fecha en revisión privada",
+  "schema_fingerprint": "cf4f85eeb7701063ba86cfe3ef3be198",
+  "counts": {
+    "intake_reports": 36,
+    "facility_change_publications": 1,
+    "facility_change_publication_photos": 3
+  },
+  "source": {
+    "path": "Cambios/ScrapingCecilia/arandu_precios_evidencia_final.csv",
+    "sha256": "4B8C7B7EC212D7F895C7B40EDFE385E57D7A10F747E399330810B16D225B34CB",
+    "research_cutoff": "2026-08-14"
+  },
+  "matching_reports_before": [],
+  "facility_rows_before": [
+    {
+      "id": 97,
+      "codigo": "FAC-LEGACY-ELP-0092-659F60900D60E0E8",
+      "nombre": "Senescentis Ii",
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_fuente_url": null,
+      "precio_es_demo": false
+    },
+    {
+      "id": 578,
+      "codigo": "FAC-LEGACY-MSP24-011-690FB5E8DE8BD869",
+      "nombre": "Manas Home",
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_fuente_url": null,
+      "precio_es_demo": false
+    },
+    {
+      "id": 605,
+      "codigo": "FAC-LEGACY-MSP24-038-EF27E2634E365AAF",
+      "nombre": "Altos Del Centro",
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_fuente_url": null,
+      "precio_es_demo": false
+    },
+    {
+      "id": 608,
+      "codigo": "FAC-LEGACY-MSP24-041-25544A83B648E4BA",
+      "nombre": "Santa Bernardita",
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_fuente_url": null,
+      "precio_es_demo": false
+    },
+    {
+      "id": 610,
+      "codigo": "FAC-LEGACY-MSP24-043-F296BAA525093376",
+      "nombre": "Aguas De Reposo",
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_fuente_url": null,
+      "precio_es_demo": false
+    },
+    {
+      "id": 1035,
+      "codigo": "FAC-CANDIDATE-141",
+      "nombre": "residencial pontevedra",
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_fuente_url": null,
+      "precio_es_demo": false
+    }
+  ],
+  "target_case_codes": [
+    "AM-20260816-DC13E90F",
+    "AM-20260816-6AD89EE4",
+    "AM-20260816-07344077",
+    "AM-20260816-937BFB3F",
+    "AM-20260816-4E3757CC",
+    "AM-20260816-9BF2F095"
+  ]
+}

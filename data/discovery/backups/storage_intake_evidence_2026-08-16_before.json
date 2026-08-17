@@ -1,0 +1,128 @@
+{
+  "bucket": {
+    "id": "intake-evidence",
+    "name": "intake-evidence",
+    "type": "STANDARD",
+    "owner": null,
+    "public": false,
+    "owner_id": null,
+    "created_at": "2026-07-28T06:09:42.301575+00:00",
+    "updated_at": "2026-07-28T06:09:42.301575+00:00",
+    "file_size_limit": 10485760,
+    "allowed_mime_types": null,
+    "avif_autodetection": false
+  },
+  "counts": {
+    "events": 30,
+    "reports": 12,
+    "attachments": 3,
+    "publications": 1,
+    "storage_objects": 3,
+    "publication_photos": 3
+  },
+  "objects": [
+    {
+      "id": "2c1c2cec-6f87-4200-a018-ff369c4bc2cc",
+      "name": "158e8f5d-35dc-40dd-8905-69ce0623f81c/214f5762-85bb-4bff-94dc-6882e2fe80e6.jpg",
+      "owner": null,
+      "version": "3d86106a-2d7f-4b01-832b-aee6f9489012",
+      "metadata": {
+        "eTag": "\"9a956d66f502f87c1aab9706bfd12bf1\"",
+        "size": 97609,
+        "mimetype": "image/jpeg",
+        "cacheControl": "0, private, no-store",
+        "lastModified": "2026-08-12T22:24:10.000Z",
+        "contentLength": 97609,
+        "httpStatusCode": 200
+      },
+      "owner_id": null,
+      "bucket_id": "intake-evidence",
+      "created_at": "2026-08-12T22:24:10.042399+00:00",
+      "updated_at": "2026-08-12T22:24:10.042399+00:00",
+      "path_tokens": [
+        "158e8f5d-35dc-40dd-8905-69ce0623f81c",
+        "214f5762-85bb-4bff-94dc-6882e2fe80e6.jpg"
+      ],
+      "user_metadata": {},
+      "last_accessed_at": "2026-08-12T22:24:10.042399+00:00"
+    },
+    {
+      "id": "f1d0421a-b36f-48e3-a736-d485f35ae1b7",
+      "name": "158e8f5d-35dc-40dd-8905-69ce0623f81c/bad67a4d-da06-4402-8a6f-3724fea5d816.jpg",
+      "owner": null,
+      "version": "8dfe04d6-ca3e-4981-aa12-03542f535eaf",
+      "metadata": {
+        "eTag": "\"bd55a552d4222c1f8551931d3c8e349c\"",
+        "size": 101906,
+        "mimetype": "image/jpeg",
+        "cacheControl": "0, private, no-store",
+        "lastModified": "2026-08-12T22:24:10.000Z",
+        "contentLength": 101906,
+        "httpStatusCode": 200
+      },
+      "owner_id": null,
+      "bucket_id": "intake-evidence",
+      "created_at": "2026-08-12T22:24:10.03129+00:00",
+      "updated_at": "2026-08-12T22:24:10.03129+00:00",
+      "path_tokens": [
+        "158e8f5d-35dc-40dd-8905-69ce0623f81c",
+        "bad67a4d-da06-4402-8a6f-3724fea5d816.jpg"
+      ],
+      "user_metadata": {},
+      "last_accessed_at": "2026-08-12T22:24:10.03129+00:00"
+    },
+    {
+      "id": "555a5b10-528e-4185-ae00-14eaa2accbb3",
+      "name": "158e8f5d-35dc-40dd-8905-69ce0623f81c/fd41be19-48a3-43c8-8c4d-8f3d4598c37e.jpg",
+      "owner": null,
+      "version": "80df4295-4f57-456d-9d9e-b7e4f2c517ce",
+      "metadata": {
+        "eTag": "\"5e86f84fc8ccd497dc498c2a15dff34c\"",
+        "size": 626914,
+        "mimetype": "image/jpeg",
+        "cacheControl": "0, private, no-store",
+        "lastModified": "2026-08-12T22:24:11.000Z",
+        "contentLength": 626914,
+        "httpStatusCode": 200
+      },
+      "owner_id": null,
+      "bucket_id": "intake-evidence",
+      "created_at": "2026-08-12T22:24:10.094553+00:00",
+      "updated_at": "2026-08-12T22:24:10.094553+00:00",
+      "path_tokens": [
+        "158e8f5d-35dc-40dd-8905-69ce0623f81c",
+        "fd41be19-48a3-43c8-8c4d-8f3d4598c37e.jpg"
+      ],
+      "user_metadata": {},
+      "last_accessed_at": "2026-08-12T22:24:10.094553+00:00"
+    }
+  ],
+  "policies": [
+    {
+      "cmd": "SELECT",
+      "qual": "(bucket_id = 'intake-evidence'::text)",
+      "roles": [
+        "public"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "Public Select Intake Evidence",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "public"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "Public Upload Intake Evidence",
+      "schemaname": "storage",
+      "with_check": "(bucket_id = 'intake-evidence'::text)"
+    }
+  ],
+  "project_id": "itolluaivfoxnaohbsdk",
+  "captured_at": "2026-08-16T07:18:14.147769+00:00"
+}

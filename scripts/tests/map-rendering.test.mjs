@@ -10,9 +10,11 @@ const streetMapPath = new URL("../../app/components/StreetMap.tsx", import.meta.
 const leafletHookPath = new URL("../../app/hooks/useLeafletMap.ts", import.meta.url);
 const globalStylesPath = new URL("../../app/globals.css", import.meta.url);
 const registryPath = new URL("../../app/components/UruguayRegistry.tsx", import.meta.url);
+const photoCarouselPath = new URL("../../app/components/FacilityPhotoCarousel.tsx", import.meta.url);
 const filterHookPath = new URL("../../app/hooks/useFacilityFilters.ts", import.meta.url);
 const registryLoaderPath = new URL("../../lib/facility-registry.ts", import.meta.url);
 const facilityPresentationPath = new URL("../../app/components/facility-presentation.ts", import.meta.url);
+const residencialesFormPath = new URL("../../app/components/ResidencialesFormView.tsx", import.meta.url);
 
 test("las etiquetas públicas del registro conservan los tildes UTF-8", async () => {
   const [presentation, registryLoader] = await Promise.all([
@@ -53,14 +55,16 @@ test("los puntos comparten canvas y los precios se ven desde el encuadre naciona
   assert.match(mapSource, /onOpenDetailsRef\.current\?\.\(facility\.id\)/);
 });
 
-test("el mapa muestra el estado institucional y reparte mapa/lista 40/60", async () => {
+test("el mapa muestra el estado institucional y reparte mapa/lista 50/50", async () => {
   const [source, styles] = await Promise.all([
     readFile(streetMapPath, "utf8"),
     readFile(globalStylesPath, "utf8"),
   ]);
   assert.match(source, /facilityTooltipContent/);
-  assert.match(source, /Habilitación final MSP/);
-  assert.match(source, /Certificado social MIDES/);
+  assert.match(source, /appendInstitutionalStatus\("Habilitado MSP", "habilitado"\)/);
+  assert.match(source, /appendInstitutionalStatus\("Certificado Social MIDES", "mides"\)/);
+  assert.match(source, /className = "mapFacilityTooltipStatuses"/);
+  assert.doesNotMatch(source, /Habilitación final MSP|\.join\(" · "\)/);
   assert.match(source, /Situación no confirmada/);
   assert.match(source, /Sin calificación disponible/);
   assert.match(source, /image\.loading = "lazy"/);
@@ -69,9 +73,23 @@ test("el mapa muestra el estado institucional y reparte mapa/lista 40/60", async
   assert.doesNotMatch(source, /mapPriceMarkerRating|ratingMarkup/);
   assert.match(source, /html: `<span class="\$\{markerClass\}">\$\{label\}<\/span>`/);
   assert.doesNotMatch(source, /\$\{facility\.isDemo \? " · DEMO"/);
-  assert.match(styles, /grid-template-columns: minmax\(240px, 290px\) minmax\(320px, 2fr\) minmax\(420px, 3fr\)/);
+  assert.match(styles, /grid-template-columns: minmax\(240px, 290px\) repeat\(2, minmax\(0, 1fr\)\)/);
   assert.match(styles, /\.mapFacilityTooltipCard/);
   assert.match(styles, /\.mapFacilityTooltipStatus/);
+});
+
+test("las listas muestran las denominaciones institucionales completas", async () => {
+  const [registrySource, residencialesFormSource] = await Promise.all([
+    readFile(registryPath, "utf8"),
+    readFile(residencialesFormPath, "utf8"),
+  ]);
+
+  for (const source of [registrySource, residencialesFormSource]) {
+    assert.match(source, /label: "Habilitado MSP"/);
+    assert.match(source, /label: "Certificado Social MIDES"/);
+    assert.doesNotMatch(source, /label: "Habilitado(?:s)?",/);
+    assert.doesNotMatch(source, /label: "Certificado(?:s)?",/);
+  }
 });
 
 test("el registro conserva filtros, scroll, selección y viewport con un snapshot versionado", async () => {
@@ -208,7 +226,7 @@ test("la capa pública conserva Casa Costa Serena como referencia violeta con cl
   assert.match(source, /photoUrl: photoUrls\[0\] \|\| undefined/);
   assert.match(source, /precisionLabel: "Ubicación aproximada"/);
   assert.match(source, /sourceLabel: "Arandú"/);
-  assert.match(source, /statusShort: "Referencia Arandú",[\s\S]{0,180}description: row\.description/);
+  assert.match(source, /statusShort: "Referencia Arandú",[\s\S]{0,700}description: row\.description/);
 });
 
 test("el panel recupera los filtros originales y usa clasificación desplegable", async () => {
@@ -241,6 +259,85 @@ test("la ficha permite salir y muestra precio y clasificación sin etiquetas de 
   assert.doesNotMatch(source, /!facility\.isDemo && typeof facility\.monthlyPriceUyu/);
   assert.match(source, /aria-label="Cerrar ficha"/);
   assert.match(source, /event\.target === event\.currentTarget/);
-  assert.match(source, /event\.key === "Escape"/);
+  assert.match(source, /dialog\.showModal\(\)/);
+  assert.match(source, /onClose=\{\(event\) => \{[\s\S]{0,100}event\.target === event\.currentTarget/);
+  assert.match(source, /<FacilityPhotoCarousel facilityName=\{facility\.name\}/);
   assert.match(styles, /\.facilityMapDialogHeader \{[\s\S]*position: sticky/);
+});
+
+test("la vista Lista alinea precio y clasificación a la derecha sin rótulos ni fuente", async () => {
+  const [source, styles] = await Promise.all([
+    readFile(registryPath, "utf8"),
+    readFile(globalStylesPath, "utf8"),
+  ]);
+  const listCardSource = source.slice(
+    source.indexOf("function FacilityListCard"),
+    source.indexOf("function FacilityMapDialog"),
+  );
+
+  assert.match(listCardSource, /<FacilityMembershipBadges facility=\{facility\} showQuality=\{false\} \/>/);
+  assert.match(listCardSource, /className="facilityBookingPrice"[\s\S]*<strong>\{formatMonthlyPrice/);
+  assert.match(listCardSource, /<FacilityQualityBadge facility=\{facility\} \/>/);
+  assert.doesNotMatch(listCardSource, /<small>Precio mensual<\/small>/);
+  assert.doesNotMatch(listCardSource, /Fuente:/);
+  assert.match(styles, /\.facilityBookingAside[\s\S]{0,220}align-items: flex-end/);
+  for (const tone of ["outstanding", "good", "requires_improvement", "inadequate", "unrated"]) {
+    assert.match(styles, new RegExp(`\\.qualityRatingBadge-${tone}`));
+  }
+  assert.match(source, /"Sin calificar"/);
+});
+
+test("la vista mixta muestra precio y clasificación separados a la derecha", async () => {
+  const [source, styles] = await Promise.all([
+    readFile(registryPath, "utf8"),
+    readFile(globalStylesPath, "utf8"),
+  ]);
+  const mixedCardSource = source.slice(
+    source.indexOf("function FacilityAccordionCard"),
+    source.indexOf("function FacilityListCard"),
+  );
+
+  assert.match(mixedCardSource, /<FacilityMembershipBadges facility=\{facility\} showQuality=\{false\} \/>/);
+  assert.match(mixedCardSource, /className="facilityCompactAside"[\s\S]*className="facilityCompactPrice"[\s\S]*<FacilityQualityBadge facility=\{facility\} \/>/);
+  assert.doesNotMatch(mixedCardSource, /<small>Precio mensual<\/small>/);
+  assert.match(styles, /\.facilityCompactAside[\s\S]{0,180}justify-items: end/);
+  assert.doesNotMatch(styles, /\.qualityRatingBadge::before/);
+});
+
+test("la ficha muestra todos los medios de contacto públicos disponibles", async () => {
+  const [source, styles, registryLoader] = await Promise.all([
+    readFile(registryPath, "utf8"),
+    readFile(globalStylesPath, "utf8"),
+    readFile(registryLoaderPath, "utf8"),
+  ]);
+  assert.match(source, /function FacilityContactChannels/);
+  assert.match(source, /facility\.contactPhones, facility\.contactPhone/);
+  assert.match(source, /facility\.contactEmails, facility\.contactEmail/);
+  assert.match(source, /facility\.websites/);
+  assert.match(source, /facility\.instagramUrls/);
+  assert.match(source, /facility\.facebookUrls/);
+  assert.match(source, /<FacilityContactChannels facility=\{facility\} \/>/);
+  assert.match(source, /target: "_blank", rel: "noreferrer"/);
+  assert.match(styles, /\.facilityProfileContactChannels \{/);
+  assert.match(styles, /\.facilityContactChannelList \{/);
+  assert.match(registryLoader, /contactPhone: row\.phone \|\| undefined/);
+  assert.match(registryLoader, /contactEmail: row\.email \|\| undefined/);
+});
+
+test("la ficha usa un carrusel accesible y abre las fotos en un visor ampliado", async () => {
+  const [carousel, styles] = await Promise.all([
+    readFile(photoCarouselPath, "utf8"),
+    readFile(globalStylesPath, "utf8"),
+  ]);
+  assert.match(carousel, /aria-label=\{`Ampliar foto/);
+  assert.match(carousel, /event\.key === "ArrowLeft"/);
+  assert.match(carousel, /event\.key === "ArrowRight"/);
+  assert.match(carousel, /aria-live="polite"/);
+  assert.match(carousel, /aria-current=\{photo\.index === activeIndex/);
+  assert.match(carousel, /className="facilityPhotoLightbox"/);
+  assert.match(carousel, /aria-label="Cerrar imagen ampliada"/);
+  assert.match(carousel, /onClose=\{\(event\) => \{[\s\S]{0,100}event\.stopPropagation\(\)/);
+  assert.match(styles, /\.facilityCarouselThumbnails \{[\s\S]{0,180}grid-template-columns: repeat\(5/);
+  assert.doesNotMatch(styles, /\.facilityCarouselThumbnails \{[\s\S]{0,300}overflow-x:\s*auto/);
+  assert.match(styles, /@media \(prefers-reduced-motion: reduce\) \{[\s\S]*\.facilityCarouselImageButton/);
 });
