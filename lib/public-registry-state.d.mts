@@ -1,6 +1,8 @@
 export type PublicRegistryView = "list" | "map" | "mixed";
 export type PublicRegistryStatus = "" | "habilitado" | "mides" | "verificar";
 export type PublicRegistryQualityRating = "" | "outstanding" | "good" | "requires_improvement" | "inadequate";
+export type PublicRegistryPriceOrder = "" | "asc" | "desc";
+export type PublicRegistryPhotoAvailability = "" | "with" | "without";
 
 export type PublicRegistryViewport = {
   center: [number, number];
@@ -16,6 +18,8 @@ export type PublicRegistryState = {
     monthlyPriceRange: { min: number; max: number } | null;
     status: PublicRegistryStatus;
     qualityRating: PublicRegistryQualityRating;
+    priceOrder: PublicRegistryPriceOrder;
+    photoAvailability: PublicRegistryPhotoAvailability;
   };
   registryView: PublicRegistryView;
   selectedId: string | null;

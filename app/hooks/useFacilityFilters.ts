@@ -1,12 +1,20 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { departmentOptions, filterFacilities, prioritizeFacility, sortFacilities } from "../../lib/facility-search.mjs";
+import {
+  departmentOptions,
+  filterFacilities,
+  prioritizeFacility,
+  sortFacilities,
+  sortFacilitiesByPrice,
+} from "../../lib/facility-search.mjs";
 import { facilityHaystack } from "../components/facility-presentation";
 import { canonicalDepartment, foldText } from "../../lib/uruguay.mjs";
 import type { Facility, FacilityQualityRating, FacilityStatus } from "../components/map-types";
 
 export type MonthlyPriceRange = { min: number; max: number };
+export type PriceOrder = "" | "asc" | "desc";
+export type PhotoAvailability = "" | "with" | "without";
 
 export function useFacilityFilters(facilities: Facility[]) {
   const [query, setQuery] = useState("");
@@ -14,6 +22,8 @@ export function useFacilityFilters(facilities: Facility[]) {
   const [monthlyPriceRange, setMonthlyPriceRange] = useState<MonthlyPriceRange | null>(null);
   const [status, setStatus] = useState<"" | FacilityStatus>("");
   const [qualityRating, setQualityRating] = useState<"" | FacilityQualityRating>("");
+  const [priceOrder, setPriceOrder] = useState<PriceOrder>("");
+  const [photoAvailability, setPhotoAvailability] = useState<PhotoAvailability>("");
 
   const haystacks = useMemo(() => {
     const map = new Map<string, string>();
@@ -59,13 +69,14 @@ export function useFacilityFilters(facilities: Facility[]) {
         foldedQuery,
         status,
         qualityRating,
+        photoAvailability,
         monthlyPriceMin: activeMonthlyPriceRange?.min,
         monthlyPriceMax: activeMonthlyPriceRange?.max,
         canonicalDepartmentOf: canonicalDepartment,
       },
       haystackFor,
     ),
-    [facilities, foldedQuery, status, qualityRating, activeMonthlyPriceRange, haystackFor],
+    [facilities, foldedQuery, status, qualityRating, photoAvailability, activeMonthlyPriceRange, haystackFor],
   );
   const matched = useMemo(
     () => filterFacilities(
@@ -78,9 +89,11 @@ export function useFacilityFilters(facilities: Facility[]) {
     ),
     [withoutDepartment, department, haystackFor],
   );
-  const visible = useMemo(
-    () => prioritizeFacility(sortFacilities(matched, "name"), "DEMO-ELEPEM-001"),
-    [matched],
+  const visible = useMemo<Facility[]>(
+    () => priceOrder
+      ? sortFacilitiesByPrice(matched, priceOrder)
+      : prioritizeFacility(sortFacilities(matched, "name"), "DEMO-ELEPEM-001"),
+    [matched, priceOrder],
   );
   const departments = useMemo(
     () => departmentOptions(withoutDepartment, canonicalDepartment),
@@ -93,15 +106,18 @@ export function useFacilityFilters(facilities: Facility[]) {
         foldedQuery,
         department,
         qualityRating,
+        photoAvailability,
         monthlyPriceMin: activeMonthlyPriceRange?.min,
         monthlyPriceMax: activeMonthlyPriceRange?.max,
         canonicalDepartmentOf: canonicalDepartment,
       },
       haystackFor,
     ),
-    [facilities, foldedQuery, department, qualityRating, activeMonthlyPriceRange, haystackFor],
+    [facilities, foldedQuery, department, qualityRating, photoAvailability, activeMonthlyPriceRange, haystackFor],
   );
-  const hasActiveFilters = Boolean(query || department || status || qualityRating || activeMonthlyPriceRange);
+  const hasActiveFilters = Boolean(
+    query || department || status || qualityRating || activeMonthlyPriceRange || priceOrder || photoAvailability,
+  );
 
   function reset() {
     setQuery("");
@@ -109,6 +125,8 @@ export function useFacilityFilters(facilities: Facility[]) {
     setMonthlyPriceRange(null);
     setStatus("");
     setQualityRating("");
+    setPriceOrder("");
+    setPhotoAvailability("");
   }
 
   return {
@@ -119,6 +137,8 @@ export function useFacilityFilters(facilities: Facility[]) {
     setMonthlyPriceRange,
     status, setStatus,
     qualityRating, setQualityRating,
+    priceOrder, setPriceOrder,
+    photoAvailability, setPhotoAvailability,
     visible,
     departments,
     summaryScope,

@@ -43,34 +43,6 @@ function markerColor(category: string) {
   return themeColor(MARKER_COLOR_VARIABLES[category], fallbacks[category]);
 }
 
-function monthlyPrice(facility: Facility) {
-  const price = facility.monthlyPriceUyu;
-  return typeof price === "number" && Number.isFinite(price) && price > 0 ? price : null;
-}
-
-function formatPriceChip(price: number) {
-  return `UYU ${price.toLocaleString("es-UY")}`;
-}
-
-function priceMarkerIcon(facility: Facility, category: string, isSelected: boolean) {
-  const price = monthlyPrice(facility);
-  if (price === null) return null;
-  const markerClass = [
-    "mapPriceMarker",
-    `mapPriceMarker-${category}`,
-    isSelected ? "mapPriceMarker-selected" : "",
-  ].filter(Boolean).join(" ");
-  const label = formatPriceChip(price);
-  const width = Math.max(84, label.length * 8 + 22);
-
-  return L.divIcon({
-    className: "mapPriceMarkerShell",
-    html: `<span class="${markerClass}">${label}</span>`,
-    iconAnchor: [width / 2, 16],
-    iconSize: [width, 32],
-  });
-}
-
 function facilityTooltipContent(facility: Facility) {
   const card = document.createElement("article");
   card.className = "mapFacilityTooltipCard";
@@ -128,7 +100,7 @@ function facilityTooltipContent(facility: Facility) {
 type RenderedMarker = {
   facility: Facility;
   category: string;
-  layer: L.CircleMarker | L.Marker;
+  layer: L.CircleMarker;
 };
 
 function circleMarkerStyle(category: string, isSelected: boolean) {
@@ -144,12 +116,6 @@ function circleMarkerStyle(category: string, isSelected: boolean) {
 
 function updateMarkerSelection(marker: RenderedMarker | undefined, isSelected: boolean) {
   if (!marker) return;
-  if (marker.layer instanceof L.Marker) {
-    marker.layer.getElement()
-      ?.querySelector(".mapPriceMarker")
-      ?.classList.toggle("mapPriceMarker-selected", isSelected);
-    return;
-  }
   const style = circleMarkerStyle(marker.category, isSelected);
   marker.layer.setRadius(style.radius);
   marker.layer.setStyle(style);
@@ -224,8 +190,8 @@ export default function StreetMap({
     };
   }, [mapRef]);
 
-  // Los puntos normales comparten un único canvas y los marcadores con precio
-  // se limitan al viewport, pero se ven también desde el encuadre nacional.
+  // Todos los ELEPEM comparten un único canvas; el precio queda reservado para
+  // las listas y las fichas, sin competir visualmente con el mapa.
   useEffect(() => {
     const map = mapRef.current;
     const markers = markersRef.current;
@@ -239,10 +205,10 @@ export default function StreetMap({
     for (const facility of visibleFacilities) {
       const isSelected = selectedIdRef.current === facility.id;
       const category = facility.isDemo ? "demo" : facilityDisplayCategory(facility);
-      const priceIcon = priceMarkerIcon(facility, category, isSelected);
-      const visibleMarker: L.CircleMarker | L.Marker = priceIcon
-        ? L.marker([facility.lat, facility.lng], { icon: priceIcon, keyboard: true })
-        : L.circleMarker([facility.lat, facility.lng], circleMarkerStyle(category, isSelected));
+      const visibleMarker = L.circleMarker(
+        [facility.lat, facility.lng],
+        circleMarkerStyle(category, isSelected),
+      );
       let singleClickTimer: number | undefined;
       visibleMarker.on("click", () => {
         window.clearTimeout(singleClickTimer);

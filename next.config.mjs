@@ -22,7 +22,7 @@ const contentSecurityPolicy = [
   "object-src 'none'",
   // Leaflet escribe estilos en línea al posicionar el mapa y los marcadores.
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://*.tile.openstreetmap.org",
+  `img-src 'self' data: blob: ${supabaseOrigin} https://*.supabase.co https://*.tile.openstreetmap.org`,
   "font-src 'self' data:",
   "media-src 'self' blob:",
   `connect-src 'self' ${supabaseOrigin} https://*.supabase.co https://nominatim.openstreetmap.org https://vitals.vercel-insights.com https://va.vercel-scripts.com`,

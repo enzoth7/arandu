@@ -10,6 +10,7 @@ export type FacilitySearchCriteria = {
   monthlyPriceMax?: number | null;
   status?: "" | FacilityStatus;
   qualityRating?: "" | FacilityQualityRating;
+  photoAvailability?: "" | "with" | "without";
   canonicalDepartmentOf?: (value: string) => string;
 };
 
@@ -21,6 +22,7 @@ export function matchesAdministrativeStatus(facility: Facility, status: Facility
 export function facilityStageRank(facility: Facility): number;
 export function isSortOrder(value: unknown): value is SortOrder;
 export function sortFacilities(facilities: readonly Facility[], order?: SortOrder): Facility[];
+export function sortFacilitiesByPrice(facilities: readonly Facility[], direction?: "" | "asc" | "desc"): Facility[];
 export function prioritizeFacility(facilities: readonly Facility[], facilityId: string): Facility[];
 export function filterFacilities(
   facilities: readonly Facility[],

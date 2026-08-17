@@ -7,14 +7,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { FacilityPhotoCarousel } from "./FacilityPhotoCarousel";
 import { FacilityExperiences } from "./FacilityExperiences";
+import { QualityRatingSelect } from "./QualityRatingSelect";
 import {
   facilityDisplayCategory,
   facilityDisplayLabel,
   isVerificationFacility,
 } from "./facility-presentation";
 import { canonicalDepartment } from "../../lib/uruguay.mjs";
-import { useFacilityFilters } from "../hooks/useFacilityFilters";
-import { QUALITY_RATING_LABELS, type Facility, type FacilityQualityRating, type FacilityStatus } from "./map-types";
+import {
+  useFacilityFilters,
+  type PhotoAvailability,
+  type PriceOrder,
+} from "../hooks/useFacilityFilters";
+import { QUALITY_RATING_LABELS, type Facility, type FacilityStatus } from "./map-types";
 import {
   PUBLIC_REGISTRY_STATE_KEY,
   PUBLIC_REGISTRY_STATE_VERSION,
@@ -183,6 +188,8 @@ export default function UruguayRegistry({
     setMonthlyPriceRange,
     status, setStatus,
     qualityRating, setQualityRating,
+    priceOrder, setPriceOrder,
+    photoAvailability, setPhotoAvailability,
     visible,
     departments,
     summaryScope,
@@ -207,12 +214,12 @@ export default function UruguayRegistry({
   const lastResultsScrollYRef = useRef(0);
   const persistenceReadyRef = useRef(!persistNavigationState);
   const latestNavigationStateRef = useRef({
-    filters: { query, department, monthlyPriceRange, status, qualityRating },
+    filters: { query, department, monthlyPriceRange, status, qualityRating, priceOrder, photoAvailability },
     registryView,
     selectedId,
   });
   latestNavigationStateRef.current = {
-    filters: { query, department, monthlyPriceRange, status, qualityRating },
+    filters: { query, department, monthlyPriceRange, status, qualityRating, priceOrder, photoAvailability },
     registryView,
     selectedId,
   };
@@ -304,6 +311,8 @@ export default function UruguayRegistry({
       setMonthlyPriceRange(restored.filters.monthlyPriceRange);
       setStatus(restored.filters.status);
       setQualityRating(restored.filters.qualityRating);
+      setPriceOrder(restored.filters.priceOrder);
+      setPhotoAvailability(restored.filters.photoAvailability);
       setRegistryView(restored.registryView);
       setSelectedId(restored.selectedId);
       restoredScrollRef.current = restored.scroll;
@@ -320,6 +329,8 @@ export default function UruguayRegistry({
     persistNavigationState,
     setDepartment,
     setMonthlyPriceRange,
+    setPhotoAvailability,
+    setPriceOrder,
     setQualityRating,
     setQuery,
     setStatus,
@@ -348,6 +359,8 @@ export default function UruguayRegistry({
     department,
     monthlyPriceRange,
     navigationRestored,
+    photoAvailability,
+    priceOrder,
     qualityRating,
     query,
     registryView,
@@ -627,16 +640,34 @@ export default function UruguayRegistry({
             </select>
           </label>
 
-          <label>
-            <b>Clasificación</b>
-            <select
+          <div className="registryFilterField">
+            <b id="registry-quality-filter-label">Clasificación</b>
+            <QualityRatingSelect
+              labelledBy="registry-quality-filter-label"
               value={qualityRating}
-              onChange={(event) => setQualityRating(event.target.value as "" | FacilityQualityRating)}
+              onChange={setQualityRating}
+            />
+          </div>
+
+          <label>
+            <b>Orden por precio</b>
+            <select value={priceOrder} onChange={(event) => setPriceOrder(event.target.value as PriceOrder)}>
+              <option value="">Orden alfabético</option>
+              <option value="asc">Precio: menor a mayor</option>
+              <option value="desc">Precio: mayor a menor</option>
+            </select>
+            <small className="registryFilterHelp">Los residenciales sin precio quedan al final.</small>
+          </label>
+
+          <label>
+            <b>Fotografías</b>
+            <select
+              value={photoAvailability}
+              onChange={(event) => setPhotoAvailability(event.target.value as PhotoAvailability)}
             >
-              <option value="">Todas</option>
-              {(Object.entries(QUALITY_RATING_LABELS) as Array<[FacilityQualityRating, string]>).map(([value, label]) => (
-                <option value={value} key={value}>{label}</option>
-              ))}
+              <option value="">Todos</option>
+              <option value="with">Con fotos</option>
+              <option value="without">Sin fotos</option>
             </select>
           </label>
 

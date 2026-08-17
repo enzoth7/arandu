@@ -15,6 +15,9 @@ const filterHookPath = new URL("../../app/hooks/useFacilityFilters.ts", import.m
 const registryLoaderPath = new URL("../../lib/facility-registry.ts", import.meta.url);
 const facilityPresentationPath = new URL("../../app/components/facility-presentation.ts", import.meta.url);
 const residencialesFormPath = new URL("../../app/components/ResidencialesFormView.tsx", import.meta.url);
+const homeHeroPath = new URL("../../app/components/AranduHomeHero.tsx", import.meta.url);
+const qualityRatingSelectPath = new URL("../../app/components/QualityRatingSelect.tsx", import.meta.url);
+const nextConfigPath = new URL("../../next.config.mjs", import.meta.url);
 
 test("las etiquetas públicas del registro conservan los tildes UTF-8", async () => {
   const [presentation, registryLoader] = await Promise.all([
@@ -39,7 +42,7 @@ test("el mapa no crea fichas emergentes por cada residencial", async () => {
   assert.match(styles, /\.leafletRegistryMap \.leaflet-popup \{ display: none !important; \}/);
 });
 
-test("los puntos comparten canvas y los precios se ven desde el encuadre nacional", async () => {
+test("los puntos comparten canvas y el mapa no muestra precios", async () => {
   const [mapSource, hookSource] = await Promise.all([
     readFile(streetMapPath, "utf8"),
     readFile(leafletHookPath, "utf8"),
@@ -48,9 +51,8 @@ test("los puntos comparten canvas y los precios se ven desde el encuadre naciona
   assert.match(hookSource, /updateWhenIdle:\s*true/);
   assert.match(mapSource, /map\.getBounds\(\)\.pad\(0\.35\)/);
   assert.match(mapSource, /renderedMarkersRef/);
-  assert.doesNotMatch(mapSource, /PRICE_LABEL_ZOOM|getZoom\(\)\s*>=/);
-  assert.match(mapSource, /const priceIcon = priceMarkerIcon\(facility, category, isSelected\)/);
-  assert.doesNotMatch(mapSource, /if \(facility\.isDemo\) return null/);
+  assert.doesNotMatch(mapSource, /priceMarkerIcon|mapPriceMarker|formatPriceChip|monthlyPriceUyu/);
+  assert.match(mapSource, /const visibleMarker = L\.circleMarker/);
   assert.match(mapSource, /visibleMarker\.on\("dblclick"/);
   assert.match(mapSource, /onOpenDetailsRef\.current\?\.\(facility\.id\)/);
 });
@@ -70,12 +72,24 @@ test("el mapa muestra el estado institucional y reparte mapa/lista 50/50", async
   assert.match(source, /image\.loading = "lazy"/);
   assert.match(source, /visibleMarker\.on\("focus"/);
   assert.match(source, /className: "facilityRichTooltip"/);
-  assert.doesNotMatch(source, /mapPriceMarkerRating|ratingMarkup/);
-  assert.match(source, /html: `<span class="\$\{markerClass\}">\$\{label\}<\/span>`/);
+  assert.doesNotMatch(source, /mapPriceMarker|ratingMarkup/);
   assert.doesNotMatch(source, /\$\{facility\.isDemo \? " · DEMO"/);
   assert.match(styles, /grid-template-columns: minmax\(240px, 290px\) repeat\(2, minmax\(0, 1fr\)\)/);
   assert.match(styles, /\.mapFacilityTooltipCard/);
   assert.match(styles, /\.mapFacilityTooltipStatus/);
+});
+
+test("la portada extiende la foto bajo el blanco y oculta su borde con una transición continua", async () => {
+  const [hero, styles] = await Promise.all([
+    readFile(homeHeroPath, "utf8"),
+    readFile(globalStylesPath, "utf8"),
+  ]);
+  assert.match(hero, /src="\/Hero\.webp"/);
+  assert.match(styles, /\.aranduHeroVisual \{[\s\S]{0,260}position: absolute;[\s\S]{0,220}inset: 0 0 0 24%/);
+  assert.match(styles, /\.aranduHero::before \{[\s\S]{0,260}width: 72%/);
+  assert.match(styles, /#fff 0 46%/);
+  assert.match(styles, /transparent 100%/);
+  assert.match(styles, /@media \(max-width: 760px\)[\s\S]*\.aranduHeroVisual \{[\s\S]{0,100}position: relative/);
 });
 
 test("las listas muestran las denominaciones institucionales completas", async () => {
@@ -103,6 +117,8 @@ test("el registro conserva filtros, scroll, selección y viewport con un snapsho
       monthlyPriceRange: { min: 50_000, max: 90_000 },
       status: "habilitado",
       qualityRating: "good",
+      priceOrder: "asc",
+      photoAvailability: "with",
     },
     registryView: "mixed",
     selectedId: "ELP-0001",
@@ -130,6 +146,8 @@ test("el registro conserva filtros, scroll, selección y viewport con un snapsho
       monthlyPriceRange: { min: 90_000, max: 50_000 },
       status: "estado-retirado",
       qualityRating: "valor-transitorio",
+      priceOrder: "lado",
+      photoAvailability: "desconocido",
     },
     registryView: "grid",
     selectedId: { id: "ELP-0001" },
@@ -144,6 +162,8 @@ test("el registro conserva filtros, scroll, selección y viewport con un snapsho
       monthlyPriceRange: null,
       status: "",
       qualityRating: "",
+      priceOrder: "",
+      photoAvailability: "",
     },
     registryView: "mixed",
     selectedId: null,
@@ -164,6 +184,8 @@ test("el registro conserva filtros, scroll, selección y viewport con un snapsho
       monthlyPriceRange: null,
       status: "",
       qualityRating: "",
+      priceOrder: "",
+      photoAvailability: "",
     },
     registryView: "mixed",
     selectedId: null,
@@ -233,20 +255,36 @@ test("la capa pública conserva Casa Costa Serena como referencia violeta con cl
 });
 
 test("el panel recupera los filtros originales y usa clasificación desplegable", async () => {
-  const [source, hookSource] = await Promise.all([
+  const [source, hookSource, qualitySelect] = await Promise.all([
     readFile(registryPath, "utf8"),
     readFile(filterHookPath, "utf8"),
+    readFile(qualityRatingSelectPath, "utf8"),
   ]);
   assert.match(source, /<b>Departamento<\/b>[\s\S]*<select value=\{department\}/);
   assert.match(source, /<b>Situación institucional<\/b>[\s\S]*<select value=\{status\}/);
-  assert.match(source, /<b>Clasificación<\/b>[\s\S]*<select[\s\S]*value=\{qualityRating\}/);
+  assert.match(source, /<QualityRatingSelect[\s\S]*value=\{qualityRating\}[\s\S]*onChange=\{setQualityRating\}/);
+  assert.doesNotMatch(source, /registryQualityLegend/);
+  assert.match(qualitySelect, /role="listbox"/);
+  assert.match(qualitySelect, /role="option"/);
+  assert.match(qualitySelect, /registryQualityDot-\$\{option\.value\}/);
+  assert.match(qualitySelect, /event\.key === "Escape"/);
+  assert.match(qualitySelect, /"ArrowDown", "ArrowUp", "Home", "End"/);
+  assert.match(source, /<b>Orden por precio<\/b>[\s\S]*Precio: menor a mayor[\s\S]*Precio: mayor a menor/);
+  assert.match(source, /<b>Fotografías<\/b>[\s\S]*value=\{photoAvailability\}/);
   assert.match(source, /aria-label="Precio mensual mínimo"/);
   assert.match(source, /aria-label="Precio mensual máximo"/);
   assert.doesNotMatch(source, /registryQualityFilter-/);
   assert.doesNotMatch(source, /ELEPEM de prueba/);
   assert.match(hookSource, /departmentOptions/);
-  assert.match(hookSource, /prioritizeFacility\(sortFacilities\(matched, "name"\), "DEMO-ELEPEM-001"\)/);
+  assert.match(hookSource, /sortFacilitiesByPrice\(matched, priceOrder\)/);
+  assert.match(hookSource, /photoAvailability/);
   assert.match(hookSource, /monthlyPriceMin: activeMonthlyPriceRange\?\.min/);
+});
+
+test("la política de contenido permite las fotografías públicas de Supabase", async () => {
+  const config = await readFile(nextConfigPath, "utf8");
+  assert.match(config, /img-src 'self' data: blob: \$\{supabaseOrigin\} https:\/\/\*\.supabase\.co/);
+  assert.match(config, /connect-src 'self' \$\{supabaseOrigin\} https:\/\/\*\.supabase\.co/);
 });
 
 test("la ficha permite salir y muestra precio y clasificación sin etiquetas de prueba", async () => {

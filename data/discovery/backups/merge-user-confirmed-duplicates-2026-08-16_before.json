@@ -1,0 +1,685 @@
+{
+  "operation_id": "merge-user-confirmed-duplicates-2026-08-16",
+  "generated_at": "2026-08-17T01:38:20.733Z",
+  "project_ref": "itolluaivfoxnaohbsdk",
+  "apply_requested": true,
+  "before_count": 944,
+  "expected_after_count": 940,
+  "relation_counts_for_sources": [
+    {
+      "relation": "public.facility_change_publications",
+      "count": 0
+    },
+    {
+      "relation": "public.intake_reports",
+      "count": 0
+    },
+    {
+      "relation": "public.facility_document_status_reviews",
+      "count": 0
+    },
+    {
+      "relation": "elepem_core.facility_experience_publications",
+      "count": 0
+    }
+  ],
+  "merges": [
+    {
+      "label": "Hogar Don Joaquín → Don Joaquín",
+      "target_id": 547,
+      "source_ids": [
+        548
+      ],
+      "final_name": "Don Joaquín",
+      "alternative_names": [
+        "Hogar Don Joaquín"
+      ],
+      "final_status": "habilitacion_msp",
+      "source_count": 8
+    },
+    {
+      "label": "Le Parc → Residencial Le Parc",
+      "target_id": 355,
+      "source_ids": [
+        1068
+      ],
+      "final_name": "Residencial Le Parc",
+      "alternative_names": [
+        "Le Parc"
+      ],
+      "final_status": "situacion_no_confirmada",
+      "source_count": 3
+    },
+    {
+      "label": "Los Alamos (Maldonado) → Residencial Centro de Cuidados Alamos",
+      "target_id": 758,
+      "source_ids": [
+        214,
+        814
+      ],
+      "final_name": "Residencial Centro de Cuidados Alamos",
+      "alternative_names": [
+        "Los Alamos"
+      ],
+      "final_status": "habilitacion_msp",
+      "source_count": 8
+    }
+  ],
+  "rows": [
+    {
+      "id": "214",
+      "codigo": "FAC-LEGACY-ELP-0246-DCDCED195CF31C87",
+      "legacy_id": "ELP-0246",
+      "nombre": "Residencial Centro de Cuidados Alamos",
+      "nombres_alternativos": [],
+      "departamento": "Maldonado",
+      "localidad": "Punta del Este",
+      "direccion": "Av. Pedragosa Sierra y el Havre, padrón 7084",
+      "lat": -34.9301047,
+      "lng": -54.9379602,
+      "precision_ubicacion": "calle",
+      "precision_etiqueta": "centroide de calle",
+      "telefonos": [],
+      "emails": [],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": false,
+      "msp_fuente_url": null,
+      "msp_fecha": null,
+      "mides_certificado": false,
+      "mides_fuente_url": null,
+      "mides_fecha": null,
+      "situacion": "situacion_no_confirmada",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "otros_ids": [
+        "ELP-0246"
+      ],
+      "otros_ids_urls": [
+        ""
+      ],
+      "fuentes_referencias": [
+        "MSPR-030-2021",
+        "public.residenciales:ELP-0246"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 214
+    },
+    {
+      "id": "355",
+      "codigo": "FAC-LEGACY-ELP-0497-6DE25D7735C2011F",
+      "legacy_id": "ELP-0497",
+      "nombre": "Le Parc",
+      "nombres_alternativos": [],
+      "departamento": "Montevideo",
+      "localidad": "Montevideo",
+      "direccion": "SOCA 1595",
+      "lat": -34.8991555,
+      "lng": -56.1578417,
+      "precision_ubicacion": "puerta",
+      "precision_etiqueta": "calle y puerta exacta",
+      "telefonos": [],
+      "emails": [],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": false,
+      "msp_fuente_url": null,
+      "msp_fecha": null,
+      "mides_certificado": false,
+      "mides_fuente_url": null,
+      "mides_fecha": null,
+      "situacion": "situacion_no_confirmada",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "otros_ids": [
+        "ELP-0497"
+      ],
+      "otros_ids_urls": [
+        ""
+      ],
+      "fuentes_referencias": [
+        "MSPR-019-2022",
+        "public.residenciales:ELP-0497"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 355
+    },
+    {
+      "id": "547",
+      "codigo": "FAC-LEGACY-ELP-0787-1FD7AA34C00B569C",
+      "legacy_id": "ELP-0787",
+      "nombre": "Don Joaquín",
+      "nombres_alternativos": [],
+      "departamento": "Soriano",
+      "localidad": "Egaña",
+      "direccion": "Del Corralito y Zapicán",
+      "lat": -33.6153745,
+      "lng": -57.6186563,
+      "precision_ubicacion": "calle",
+      "precision_etiqueta": "centroide de calle",
+      "telefonos": [
+        "45388534 - 092841683"
+      ],
+      "emails": [],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": true,
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_fecha": "2026-06-30T03:00:00.000Z",
+      "mides_certificado": false,
+      "mides_fuente_url": null,
+      "mides_fecha": null,
+      "situacion": "habilitacion_msp",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "otros_ids": [
+        "ELP-0787"
+      ],
+      "otros_ids_urls": [
+        ""
+      ],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MSPF-212",
+        "MSPR-064-2023",
+        "public.residenciales:ELP-0787"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 547
+    },
+    {
+      "id": "548",
+      "codigo": "FAC-LEGACY-ELP-0790-8142906DCEA90E69",
+      "legacy_id": "ELP-0790",
+      "nombre": "Hogar Don Joaquín",
+      "nombres_alternativos": [],
+      "departamento": "Soriano",
+      "localidad": "Egaña",
+      "direccion": "Yamandu S/N Entre San Salvador Y De La Estación S/N",
+      "lat": -33.6037283,
+      "lng": -57.6157101,
+      "precision_ubicacion": "calle",
+      "precision_etiqueta": "centroide de calle",
+      "telefonos": [
+        "45388534"
+      ],
+      "emails": [],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": false,
+      "msp_fuente_url": null,
+      "msp_fecha": null,
+      "mides_certificado": true,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "mides_fecha": "2026-01-12T03:00:00.000Z",
+      "situacion": "certificado_social_mides",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [
+        "official"
+      ],
+      "otros_ids": [
+        "ELP-0790"
+      ],
+      "otros_ids_urls": [
+        ""
+      ],
+      "fuentes_referencias": [
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "MIDES-281",
+        "MSPR-048-2019",
+        "public.residenciales:ELP-0790"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/soriano-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MIDES",
+        "Página departamental de Certificado Social",
+        "Certificados de registro MSP emitidos 2017-marzo 2024",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-01-12T03:00:00.000Z",
+        "2026-01-12T03:00:00.000Z",
+        null,
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 548
+    },
+    {
+      "id": "758",
+      "codigo": "FAC-LEGACY-MSP24-191-7113CCB17C3085F6",
+      "legacy_id": "MSP24-191",
+      "nombre": "Los Alamos",
+      "nombres_alternativos": [],
+      "departamento": "Maldonado",
+      "localidad": "Punta del Este",
+      "direccion": "Pedregosa Sierra s/n esq. Bilbao",
+      "lat": -34.9444438,
+      "lng": -54.9345029,
+      "precision_ubicacion": "calle",
+      "precision_etiqueta": "Ubicación aproximada sobre la calle",
+      "telefonos": [],
+      "emails": [],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": true,
+      "msp_fuente_url": "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+      "msp_fecha": "2026-06-30T03:00:00.000Z",
+      "mides_certificado": true,
+      "mides_fuente_url": "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+      "mides_fecha": "2026-01-31T03:00:00.000Z",
+      "situacion": "habilitacion_msp",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [],
+      "otros_ids": [],
+      "otros_ids_urls": [],
+      "fuentes_referencias": [
+        "MSP:ELEPEM-HABILITADOS-JUNIO-2026",
+        "MIDES:CERTIFICADO-SOCIAL-ENERO-2026",
+        "public.residenciales:MSP24-191"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        ""
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "MSP",
+        "MIDES",
+        "Fuentes oficiales importadas desde public.residenciales"
+      ],
+      "fuentes_fechas": [
+        "2026-06-30T03:00:00.000Z",
+        "2026-01-31T03:00:00.000Z",
+        "2026-08-04T03:00:00.000Z"
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-10T21:42:29.880Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "msp_habilitado",
+        "mides_certificado",
+        "nombre,departamento,localidad,direccion,ubicacion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 758
+    },
+    {
+      "id": "814",
+      "codigo": "FAC-OFFICIAL-ELP-0231-4DCC84D3C5F6FE62",
+      "legacy_id": null,
+      "nombre": "Los Alamos",
+      "nombres_alternativos": [],
+      "departamento": "Maldonado",
+      "localidad": "Punta del Este",
+      "direccion": "Bilbao c/Pedragosa Sierra Pda.",
+      "lat": -34.9518244,
+      "lng": -54.9279572,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "centroide de calle",
+      "telefonos": [
+        "42481758 42480339 - 098856984"
+      ],
+      "emails": [
+        "aamperez@hotmail.com"
+      ],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": false,
+      "msp_fuente_url": null,
+      "msp_fecha": null,
+      "mides_certificado": false,
+      "mides_fuente_url": null,
+      "mides_fecha": null,
+      "situacion": "situacion_no_confirmada",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [
+        "official",
+        "official"
+      ],
+      "otros_ids": [
+        "ELP-0231",
+        "ELP-0232"
+      ],
+      "otros_ids_urls": [
+        "",
+        ""
+      ],
+      "fuentes_referencias": [
+        "MIDES-061",
+        "MSPF-029",
+        "MSPR-081-2019"
+      ],
+      "fuentes_urls": [
+        "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/maldonado-establecimientos-larga-estadia-para-personas-mayores-certificado-social",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2026-06/ELEPEM%20HABILITADOS%20JUNIO%202026.pdf",
+        "https://www.gub.uy/ministerio-salud-publica/sites/ministerio-salud-publica/files/2024-03/ELEPEM%20CERTIFICADOS%207-3-2024.pdf"
+      ],
+      "fuentes_tipos": [
+        "official",
+        "official",
+        "official"
+      ],
+      "fuentes_proveedores": [
+        "Página departamental de Certificado Social",
+        "ELEPEM habilitados a junio de 2026",
+        "Certificados de registro MSP emitidos 2017-marzo 2024"
+      ],
+      "fuentes_fechas": [
+        "2024-07-15T03:00:00.000Z",
+        "2026-06-30T03:00:00.000Z",
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z",
+        "2026-08-04T21:41:38.875Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,localidad,direccion",
+        "nombre,departamento,direccion"
+      ],
+      "created_at": "2026-08-04T21:56:10.744Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 814
+    },
+    {
+      "id": "1068",
+      "codigo": "FAC-CANDIDATE-26",
+      "legacy_id": null,
+      "nombre": "Residencial Le Parc",
+      "nombres_alternativos": [],
+      "departamento": "Montevideo",
+      "localidad": "Montevideo",
+      "direccion": "Direccion no informada",
+      "lat": -34.8991835,
+      "lng": -56.1579571,
+      "precision_ubicacion": "referencial",
+      "precision_etiqueta": "Coordenada disponible; direccion no informada",
+      "telefonos": [],
+      "emails": [],
+      "sitios_web": [],
+      "instagram_urls": [],
+      "facebook_urls": [],
+      "otras_redes_urls": [],
+      "operadores_nombres": [],
+      "operadores_tipos": [],
+      "precio_mensual_uyu": null,
+      "precio_fecha": null,
+      "precio_incluye": [],
+      "precio_fuente_url": null,
+      "precio_es_demo": false,
+      "msp_habilitado": false,
+      "msp_fuente_url": null,
+      "msp_fecha": null,
+      "mides_certificado": false,
+      "mides_fuente_url": null,
+      "mides_fecha": null,
+      "situacion": "situacion_no_confirmada",
+      "descripcion": null,
+      "imagen_url": null,
+      "imagen_alt": null,
+      "google_place_id": null,
+      "google_maps_url": null,
+      "google_verificado_at": null,
+      "google_verificado_por": null,
+      "osm_ids": [],
+      "osm_urls": [],
+      "otros_ids_proveedores": [],
+      "otros_ids": [],
+      "otros_ids_urls": [],
+      "fuentes_referencias": [
+        "node/12599456724"
+      ],
+      "fuentes_urls": [
+        "https://www.openstreetmap.org/node/12599456724"
+      ],
+      "fuentes_tipos": [
+        "openstreetmap"
+      ],
+      "fuentes_proveedores": [
+        "Fuente privada existente: openstreetmap"
+      ],
+      "fuentes_fechas": [
+        null
+      ],
+      "fuentes_consultadas_at": [
+        "2026-08-02T04:58:16.218Z"
+      ],
+      "fuentes_campos_respaldados": [
+        "nombre,ubicacion"
+      ],
+      "created_at": "2026-08-02T04:59:10.171Z",
+      "updated_at": "2026-08-16T22:53:52.174Z",
+      "id_num": 1068
+    }
+  ]
+}

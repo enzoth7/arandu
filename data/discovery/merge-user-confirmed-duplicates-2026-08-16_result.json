@@ -1,0 +1,135 @@
+{
+  "operation_id": "merge-user-confirmed-duplicates-2026-08-16",
+  "generated_at": "2026-08-17T01:38:20.733Z",
+  "project_ref": "itolluaivfoxnaohbsdk",
+  "apply_requested": true,
+  "before_count": 944,
+  "expected_after_count": 940,
+  "relation_counts_for_sources": [
+    {
+      "relation": "public.facility_change_publications",
+      "count": 0
+    },
+    {
+      "relation": "public.intake_reports",
+      "count": 0
+    },
+    {
+      "relation": "public.facility_document_status_reviews",
+      "count": 0
+    },
+    {
+      "relation": "elepem_core.facility_experience_publications",
+      "count": 0
+    }
+  ],
+  "merges": [
+    {
+      "label": "Hogar Don Joaquín → Don Joaquín",
+      "target_id": 547,
+      "source_ids": [
+        548
+      ],
+      "final_name": "Don Joaquín",
+      "alternative_names": [
+        "Hogar Don Joaquín"
+      ],
+      "final_status": "habilitacion_msp",
+      "source_count": 8
+    },
+    {
+      "label": "Le Parc → Residencial Le Parc",
+      "target_id": 355,
+      "source_ids": [
+        1068
+      ],
+      "final_name": "Residencial Le Parc",
+      "alternative_names": [
+        "Le Parc"
+      ],
+      "final_status": "situacion_no_confirmada",
+      "source_count": 3
+    },
+    {
+      "label": "Los Alamos (Maldonado) → Residencial Centro de Cuidados Alamos",
+      "target_id": 758,
+      "source_ids": [
+        214,
+        814
+      ],
+      "final_name": "Residencial Centro de Cuidados Alamos",
+      "alternative_names": [
+        "Los Alamos"
+      ],
+      "final_status": "habilitacion_msp",
+      "source_count": 8
+    }
+  ],
+  "completed_at": "2026-08-17T01:38:21.289Z",
+  "applied": true,
+  "after_count": 940,
+  "rows_removed": 4,
+  "remaining_source_rows": 0,
+  "final_rows": [
+    {
+      "id": 355,
+      "codigo": "FAC-LEGACY-ELP-0497-6DE25D7735C2011F",
+      "nombre": "Residencial Le Parc",
+      "nombres_alternativos": [
+        "Le Parc"
+      ],
+      "departamento": "Montevideo",
+      "localidad": "Montevideo",
+      "direccion": "SOCA 1595",
+      "msp_habilitado": false,
+      "mides_certificado": false,
+      "situacion": "situacion_no_confirmada",
+      "telefonos": [],
+      "emails": [],
+      "source_count": 3
+    },
+    {
+      "id": 547,
+      "codigo": "FAC-LEGACY-ELP-0787-1FD7AA34C00B569C",
+      "nombre": "Don Joaquín",
+      "nombres_alternativos": [
+        "Hogar Don Joaquín"
+      ],
+      "departamento": "Soriano",
+      "localidad": "Egaña",
+      "direccion": "Del Corralito y Zapicán",
+      "msp_habilitado": true,
+      "mides_certificado": true,
+      "situacion": "habilitacion_msp",
+      "telefonos": [
+        "45388534 - 092841683",
+        "45388534"
+      ],
+      "emails": [],
+      "source_count": 8
+    },
+    {
+      "id": 758,
+      "codigo": "FAC-LEGACY-MSP24-191-7113CCB17C3085F6",
+      "nombre": "Residencial Centro de Cuidados Alamos",
+      "nombres_alternativos": [
+        "Los Alamos"
+      ],
+      "departamento": "Maldonado",
+      "localidad": "Punta del Este",
+      "direccion": "Pedregosa Sierra s/n esq. Bilbao",
+      "msp_habilitado": true,
+      "mides_certificado": true,
+      "situacion": "habilitacion_msp",
+      "telefonos": [
+        "42481758 42480339 - 098856984"
+      ],
+      "emails": [
+        "aamperez@hotmail.com"
+      ],
+      "source_count": 8
+    }
+  ],
+  "backup": "data/discovery/backups/merge-user-confirmed-duplicates-2026-08-16_before.json",
+  "dry_run": "data/discovery/merge-user-confirmed-duplicates-2026-08-16_dry_run.json"
+}

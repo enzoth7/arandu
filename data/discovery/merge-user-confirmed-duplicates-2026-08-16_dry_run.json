@@ -1,0 +1,68 @@
+{
+  "operation_id": "merge-user-confirmed-duplicates-2026-08-16",
+  "generated_at": "2026-08-17T01:38:20.733Z",
+  "project_ref": "itolluaivfoxnaohbsdk",
+  "apply_requested": true,
+  "before_count": 944,
+  "expected_after_count": 940,
+  "relation_counts_for_sources": [
+    {
+      "relation": "public.facility_change_publications",
+      "count": 0
+    },
+    {
+      "relation": "public.intake_reports",
+      "count": 0
+    },
+    {
+      "relation": "public.facility_document_status_reviews",
+      "count": 0
+    },
+    {
+      "relation": "elepem_core.facility_experience_publications",
+      "count": 0
+    }
+  ],
+  "merges": [
+    {
+      "label": "Hogar Don Joaquín → Don Joaquín",
+      "target_id": 547,
+      "source_ids": [
+        548
+      ],
+      "final_name": "Don Joaquín",
+      "alternative_names": [
+        "Hogar Don Joaquín"
+      ],
+      "final_status": "habilitacion_msp",
+      "source_count": 8
+    },
+    {
+      "label": "Le Parc → Residencial Le Parc",
+      "target_id": 355,
+      "source_ids": [
+        1068
+      ],
+      "final_name": "Residencial Le Parc",
+      "alternative_names": [
+        "Le Parc"
+      ],
+      "final_status": "situacion_no_confirmada",
+      "source_count": 3
+    },
+    {
+      "label": "Los Alamos (Maldonado) → Residencial Centro de Cuidados Alamos",
+      "target_id": 758,
+      "source_ids": [
+        214,
+        814
+      ],
+      "final_name": "Residencial Centro de Cuidados Alamos",
+      "alternative_names": [
+        "Los Alamos"
+      ],
+      "final_status": "habilitacion_msp",
+      "source_count": 8
+    }
+  ]
+}

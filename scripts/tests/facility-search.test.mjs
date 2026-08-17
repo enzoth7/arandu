@@ -11,6 +11,7 @@ import {
   matchesAdministrativeStatus,
   prioritizeFacility,
   sortFacilities,
+  sortFacilitiesByPrice,
 } from "../../lib/facility-search.mjs";
 import { canonicalDepartment, foldText } from "../../lib/uruguay.mjs";
 
@@ -99,6 +100,33 @@ test("el rango de precio usa importes mensuales publicados y no infiere los falt
   ];
   const found = filterFacilities(list, criteria({ monthlyPriceMin: 70_000, monthlyPriceMax: 90_000 }), haystackFor);
   assert.deepEqual(found.map((f) => f.id), ["medio"]);
+});
+
+test("el filtro de fotos distingue objetos públicos presentes de fichas sin imagen", () => {
+  const list = [
+    facility({ id: "principal", photoUrl: "https://example.test/foto.webp" }),
+    facility({ id: "galeria", photoUrls: ["https://example.test/otra.webp"] }),
+    facility({ id: "sin-foto" }),
+  ];
+  assert.deepEqual(
+    filterFacilities(list, criteria({ photoAvailability: "with" }), haystackFor).map((item) => item.id),
+    ["principal", "galeria"],
+  );
+  assert.deepEqual(
+    filterFacilities(list, criteria({ photoAvailability: "without" }), haystackFor).map((item) => item.id),
+    ["sin-foto"],
+  );
+});
+
+test("el precio ordena en ambos sentidos y deja los faltantes al final", () => {
+  const list = [
+    facility({ id: "sin", name: "Sin precio" }),
+    facility({ id: "alto", name: "Alto", monthlyPriceUyu: 120_000 }),
+    facility({ id: "bajo", name: "Bajo", monthlyPriceUyu: 55_000 }),
+  ];
+  assert.deepEqual(sortFacilitiesByPrice(list, "asc").map((item) => item.id), ["bajo", "alto", "sin"]);
+  assert.deepEqual(sortFacilitiesByPrice(list, "desc").map((item) => item.id), ["alto", "bajo", "sin"]);
+  assert.deepEqual(list.map((item) => item.id), ["sin", "alto", "bajo"]);
 });
 
 test("los criterios se combinan", () => {
