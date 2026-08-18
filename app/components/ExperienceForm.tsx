@@ -457,7 +457,7 @@ export function ExperienceForm({
   </section>;
 
   const stepDescription = step === 1
-    ? "Elegí cómo querés compartirla, qué datos de contacto aportar y si autorizás el envío de una copia al ELEPEM."
+    ? ""
     : step === 2
       ? "Identificá el establecimiento y contanos desde qué vínculo se completa la experiencia."
       : currentDimension
@@ -598,7 +598,7 @@ export function ExperienceForm({
           <section className={styles.sources} aria-labelledby="experience-sources-title">
             <h3 id="experience-sources-title">Fuentes</h3>
             <p>Las preguntas se trazan a la guía del Sistema de Cuidados, al documento de buenas prácticas del Movimiento ELEPEM y, cuando se indica, a una decisión metodológica de Arandú.</p>
-            <div><a href="https://www.gub.uy/ministerio-desarrollo-social/comunicacion/publicaciones/elegir-centro-larga-estadia-tener-cuenta-folleto" target="_blank" rel="noreferrer">Sistema de Cuidados · Elegir un centro de larga estadía</a><a href="https://www.movimientoelepem.org.uy/documentos/otros-documentos/" target="_blank" rel="noreferrer">Movimiento ELEPEM · Documentos de buenas prácticas</a></div>
+            <div><a href="https://itolluaivfoxnaohbsdk.supabase.co/storage/v1/object/public/pdf/Recomendaciones.pdf" target="_blank" rel="noreferrer">Sistema de Cuidados · Elegir un centro de larga estadía</a><a href="https://itolluaivfoxnaohbsdk.supabase.co/storage/v1/object/public/pdf/BUENAS%20PRACTICAS%20DE%20CUIDADO%20DESDE%20EL%20ROL%20FAMILIAR-ALLEGADO.pdf" target="_blank" rel="noreferrer">Movimiento ELEPEM · Documentos de buenas prácticas</a></div>
           </section>
 
           <label className={`${styles.checkRow} ${styles.finalConsent}`}><input type="checkbox" checked={consent} aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? "final-consent-error" : undefined} onChange={(event) => setConsent(event.target.checked)} /><span>Confirmo que la información es correcta y autorizo que se procese según las opciones elegidas. La publicación y el envío al ELEPEM se realizarán únicamente después de la revisión correspondiente.</span></label>

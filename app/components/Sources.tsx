@@ -6,11 +6,11 @@ const sources = [
     href: "https://cien.ei.udelar.edu.uy/wp-content/uploads/2026/04/DIGITAL-Informe-Atencion-a-PM.pdf",
   },
   {
-    citation: "Ministerio de Desarrollo Social. (2026, 12 de enero). Establecimientos de larga estadía para personas mayores con certificado social. gub.uy. Recuperado el 14 de agosto de 2026, de",
+    citation: "Ministerio de Desarrollo Social. (2026, 12 de enero). Establecimientos de larga estadía para personas mayores con certificado social. gub.uy. Recuperado el 14 de agosto de 2026.",
     href: "https://www.gub.uy/ministerio-desarrollo-social/etiqueta/otros/establecimientos-larga-estadia-para-personas-mayores-certificado-social",
   },
   {
-    citation: "Ministerio de Salud Pública. (2026, 30 de junio). Listado de residenciales habilitados y certificados por MSP que alojan a personas mayores. gub.uy. Recuperado el 14 de agosto de 2026, de",
+    citation: "Ministerio de Salud Pública. (2026, 30 de junio). Listado de residenciales habilitados y certificados por MSP que alojan a personas mayores. gub.uy. Recuperado el 14 de agosto de 2026.",
     href: "https://www.gub.uy/ministerio-salud-publica/comunicacion/comunicados/listado-residenciales-habilitados-certificados-msp-alojan-personas-mayores",
   },
   {
@@ -23,11 +23,11 @@ const sources = [
   },
   {
     citation: "Ministerio de Desarrollo Social, Instituto Nacional de las Personas Mayores, Sistema de Cuidados, & Ministerio de Salud. (2019). Elegir un centro de larga estadía: ¿Qué tener en cuenta?",
-    href: "https://www.gub.uy/ministerio-desarrollo-social/comunicacion/publicaciones/elegir-centro-larga-estadia-tener-cuenta-folleto",
+    href: "https://itolluaivfoxnaohbsdk.supabase.co/storage/v1/object/public/pdf/Recomendaciones.pdf",
   },
   {
     citation: "Movimiento de Familiares y Residentes de Elepem. (2026, junio). Buenas prácticas de cuidado desde el rol del familiar/allegado de la persona mayor residente en ELEPEM.",
-    href: "https://www.movimientoelepem.org.uy/documentos/otros-documentos/",
+    href: "https://itolluaivfoxnaohbsdk.supabase.co/storage/v1/object/public/pdf/BUENAS%20PRACTICAS%20DE%20CUIDADO%20DESDE%20EL%20ROL%20FAMILIAR-ALLEGADO.pdf",
   },
 ] as const;
 
@@ -42,9 +42,8 @@ export function Sources() {
       <h2 id="bibliography-title">Documentos consultados</h2>
       <ol className="bibliographyList">
         {sources.map((source) => <li key={source.href}>
-          <span>{source.citation}</span>{" "}
           <a href={source.href} target="_blank" rel="noopener noreferrer">
-            {source.href}<ExternalLink size={15} aria-hidden="true" />
+            {source.citation} <ExternalLink size={15} aria-hidden="true" />
           </a>
         </li>)}
       </ol>
