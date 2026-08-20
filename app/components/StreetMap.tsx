@@ -10,7 +10,7 @@ import {
   useLeafletMap,
 } from "../hooks/useLeafletMap";
 import { facilityDisplayCategory } from "./facility-presentation";
-import { QUALITY_RATING_LABELS, type Facility } from "./map-types";
+import type { Facility } from "./map-types";
 
 const FIT_OPTIONS = { padding: [28, 28] as [number, number], maxZoom: 14 };
 const SELECTED_ZOOM = 16;
@@ -18,6 +18,18 @@ const SELECTED_ZOOM = 16;
 export type RegistryMapViewport = {
   center: [number, number];
   zoom: number;
+};
+
+export type RegistryMapBounds = {
+  south: number;
+  west: number;
+  north: number;
+  east: number;
+};
+
+export type RegistryMapViewportContext = {
+  bounds: RegistryMapBounds;
+  userInitiated: boolean;
 };
 
 const MARKER_COLOR_VARIABLES: Record<string, string> = {
@@ -83,16 +95,9 @@ function facilityTooltipContent(facility: Facility) {
       appendInstitutionalStatus("Situación no confirmada", category);
     }
   }
-  const rating = document.createElement("span");
-  rating.className = facility.qualityRating
-    ? `mapFacilityTooltipRating mapFacilityTooltipRating-${facility.qualityRating}`
-    : "mapFacilityTooltipRating is-unrated";
-  rating.textContent = facility.qualityRating
-    ? QUALITY_RATING_LABELS[facility.qualityRating]
-    : "Sin calificación disponible";
   const address = document.createElement("small");
   address.textContent = facility.address || "Dirección no informada";
-  copy.append(name, institutionalStatuses, rating, address);
+  copy.append(name, institutionalStatuses, address);
   card.append(media, copy);
   return card;
 }
@@ -129,14 +134,16 @@ export default function StreetMap({
   initialViewport = null,
   onViewportChange,
   restoreSelectionWithoutFlying = false,
+  autoFitFacilities = true,
 }: {
   facilities: Facility[];
   selectedId: string | null;
   onSelect: (id: string) => void;
   onOpenDetails?: (id: string) => void;
   initialViewport?: RegistryMapViewport | null;
-  onViewportChange?: (viewport: RegistryMapViewport) => void;
+  onViewportChange?: (viewport: RegistryMapViewport, context: RegistryMapViewportContext) => void;
   restoreSelectionWithoutFlying?: boolean;
+  autoFitFacilities?: boolean;
 }) {
   const { containerRef, mapRef, markersRef } = useLeafletMap(initialViewport ?? URUGUAY_VIEW);
   const mappedFacilities = useMemo(
@@ -158,6 +165,7 @@ export default function StreetMap({
   const onOpenDetailsRef = useRef(onOpenDetails);
   const onViewportChangeRef = useRef(onViewportChange);
   const selectedIdRef = useRef(selectedId);
+  const userViewportChangeRef = useRef(false);
   const skipInitialFitRef = useRef(Boolean(initialViewport));
   const skipInitialSelectionFlyRef = useRef(restoreSelectionWithoutFlying);
   const [viewportRevision, setViewportRevision] = useState(0);
@@ -170,10 +178,33 @@ export default function StreetMap({
     const map = mapRef.current;
     if (!map) return;
     let timer: number | undefined;
+    const mapContainer = map.getContainer();
+    const markUserViewportChange = () => {
+      userViewportChangeRef.current = true;
+    };
+    const markViewportControlChange = (event: Event) => {
+      const target = event.target;
+      if (target instanceof Element && target.closest(".leaflet-control-zoom-in, .leaflet-control-zoom-out")) {
+        markUserViewportChange();
+      }
+    };
     const syncViewport = () => {
       setViewportRevision((value) => value + 1);
       const center = map.getCenter();
-      onViewportChangeRef.current?.({ center: [center.lat, center.lng], zoom: map.getZoom() });
+      const bounds = map.getBounds();
+      onViewportChangeRef.current?.(
+        { center: [center.lat, center.lng], zoom: map.getZoom() },
+        {
+          bounds: {
+            south: bounds.getSouth(),
+            west: bounds.getWest(),
+            north: bounds.getNorth(),
+            east: bounds.getEast(),
+          },
+          userInitiated: userViewportChangeRef.current,
+        },
+      );
+      userViewportChangeRef.current = false;
     };
     const scheduleSync = () => {
       window.clearTimeout(timer);
@@ -181,10 +212,18 @@ export default function StreetMap({
     };
     const suppressPopup = () => map.closePopup();
     syncViewport();
+    mapContainer.addEventListener("click", markViewportControlChange, true);
+    mapContainer.addEventListener("wheel", markUserViewportChange, { capture: true, passive: true });
+    mapContainer.addEventListener("keydown", markUserViewportChange, true);
+    map.on("dragstart", markUserViewportChange);
     map.on("zoomend moveend", scheduleSync);
     map.on("popupopen", suppressPopup);
     return () => {
       window.clearTimeout(timer);
+      mapContainer.removeEventListener("click", markViewportControlChange, true);
+      mapContainer.removeEventListener("wheel", markUserViewportChange, true);
+      mapContainer.removeEventListener("keydown", markUserViewportChange, true);
+      map.off("dragstart", markUserViewportChange);
       map.off("zoomend moveend", scheduleSync);
       map.off("popupopen", suppressPopup);
     };
@@ -252,6 +291,10 @@ export default function StreetMap({
     if (!map) return;
     const key = pointsKey(mappedFacilities);
     const bounds = pointBounds(mappedFacilities);
+    if (!autoFitFacilities) {
+      fittedKeyRef.current = key;
+      return;
+    }
     if (skipInitialFitRef.current) {
       skipInitialFitRef.current = false;
       fittedKeyRef.current = key;
@@ -261,7 +304,7 @@ export default function StreetMap({
       fittedKeyRef.current = key;
       map.fitBounds(bounds, FIT_OPTIONS);
     }
-  }, [mapRef, mappedFacilities]);
+  }, [autoFitFacilities, mapRef, mappedFacilities]);
 
   useEffect(() => {
     if (skipInitialSelectionFlyRef.current) {

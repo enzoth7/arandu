@@ -73,25 +73,51 @@ test("los criterios vacíos no filtran", () => {
   assert.equal(filterFacilities(list, criteria(), haystackFor).length, 2);
 });
 
-test("los filtros de clasificación incluyen los ELEPEM sin calificar", () => {
+test("la clasificación distingue valores disponibles de fichas sin calificar", () => {
   const list = [
-    facility({ id: "demo-bueno", isDemo: true, qualityRating: "good" }),
-    facility({ id: "real-sin-clasificar", mspFinal: true }),
+    facility({ id: "bueno", qualityRating: "good" }),
+    facility({ id: "sobresaliente", qualityRating: "outstanding" }),
+    facility({ id: "sin-calificar" }),
   ];
-  const good = filterFacilities(list, criteria({ qualityRating: "good" }), haystackFor);
-  const outstanding = filterFacilities(list, criteria({ qualityRating: "outstanding" }), haystackFor);
-  const requiresImprovement = filterFacilities(
-    list,
-    criteria({ qualityRating: "requires_improvement" }),
-    haystackFor,
+  assert.deepEqual(
+    filterFacilities(list, criteria({ qualityRating: "good" }), haystackFor).map((item) => item.id),
+    ["bueno"],
   );
-  const inadequate = filterFacilities(list, criteria({ qualityRating: "inadequate" }), haystackFor);
-  const unrated = filterFacilities(list, criteria({ qualityRating: "unrated" }), haystackFor);
-  assert.deepEqual(good.map((f) => f.id), ["demo-bueno"]);
-  assert.deepEqual(outstanding, []);
-  assert.deepEqual(requiresImprovement, []);
-  assert.deepEqual(inadequate, []);
-  assert.deepEqual(unrated.map((f) => f.id), ["real-sin-clasificar"]);
+  assert.deepEqual(
+    filterFacilities(list, criteria({ qualityRating: "unrated" }), haystackFor).map((item) => item.id),
+    ["sin-calificar"],
+  );
+});
+
+test("los atributos usan OR dentro de un grupo y AND entre grupos", () => {
+  const list = [
+    facility({
+      id: "coincide",
+      stayTypes: ["permanente"],
+      environmentFeatures: ["espacio_exterior"],
+    }),
+    facility({
+      id: "otra-estadia",
+      stayTypes: ["centro_dia"],
+      environmentFeatures: ["espacio_exterior"],
+    }),
+    facility({ id: "sin-datos", stayTypes: null, environmentFeatures: null }),
+  ];
+  const found = filterFacilities(list, criteria({
+    attributeFilters: {
+      stayTypes: ["permanente", "temporal_respiro"],
+      environmentFeatures: ["espacio_exterior"],
+    },
+  }), haystackFor);
+  assert.deepEqual(found.map((f) => f.id), ["coincide"]);
+});
+
+test("sin información no se interpreta como una respuesta negativa", () => {
+  const list = [facility({ id: "desconocido", careServices: null })];
+  const found = filterFacilities(list, criteria({
+    attributeFilters: { careServices: ["enfermeria"] },
+  }), haystackFor);
+  assert.deepEqual(found, []);
 });
 
 test("el rango de precio usa importes mensuales publicados y no infiere los faltantes", () => {
@@ -133,15 +159,15 @@ test("el precio ordena en ambos sentidos y deja los faltantes al final", () => {
 
 test("los criterios se combinan", () => {
   const list = [
-    facility({ id: "a", department: "Montevideo", mspFinal: true, monthlyPriceUyu: 80_000, qualityRating: "good" }),
+    facility({ id: "a", department: "Montevideo", mspFinal: true, monthlyPriceUyu: 80_000, careServices: ["enfermeria"] }),
     facility({ id: "b", department: "Montevideo", mspFinal: true, monthlyPriceUyu: 80_000 }),
-    facility({ id: "c", department: "Montevideo", mspFinal: true, monthlyPriceUyu: 120_000, qualityRating: "good" }),
-    facility({ id: "d", department: "Salto", mspFinal: true, monthlyPriceUyu: 80_000, qualityRating: "good" }),
+    facility({ id: "c", department: "Montevideo", mspFinal: true, monthlyPriceUyu: 120_000, careServices: ["enfermeria"] }),
+    facility({ id: "d", department: "Salto", mspFinal: true, monthlyPriceUyu: 80_000, careServices: ["enfermeria"] }),
   ];
   const found = filterFacilities(list, criteria({
     department: "Montevideo",
     status: "habilitado",
-    qualityRating: "good",
+    attributeFilters: { careServices: ["enfermeria"] },
     monthlyPriceMin: 70_000,
     monthlyPriceMax: 90_000,
   }), haystackFor);

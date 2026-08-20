@@ -2,12 +2,12 @@
 
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { ChevronDown, ChevronUp, CircleHelp, Globe2, Image as ImageIcon, Mail, Map as MapIcon, Phone, RotateCcw, Search, Share2, X } from "lucide-react";
+import { CircleHelp, Globe2, Image as ImageIcon, Mail, Map as MapIcon, Phone, RotateCcw, Search, Share2, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { FacilityPhotoCarousel } from "./FacilityPhotoCarousel";
 import { FacilityExperiences } from "./FacilityExperiences";
-import { QualityRatingSelect } from "./QualityRatingSelect";
+import { RegistryAttributeFilters } from "./RegistryAttributeFilters";
 import {
   facilityDisplayCategory,
   facilityDisplayLabel,
@@ -18,14 +18,22 @@ import {
   useFacilityFilters,
   type PhotoAvailability,
   type PriceOrder,
+  type RegistryFacilityStatus,
 } from "../hooks/useFacilityFilters";
-import { QUALITY_RATING_LABELS, type Facility, type FacilityStatus } from "./map-types";
+import {
+  QUALITY_RATING_LABELS,
+  type Facility,
+  type FacilityQualityFilter,
+} from "./map-types";
 import {
   PUBLIC_REGISTRY_STATE_KEY,
   PUBLIC_REGISTRY_STATE_VERSION,
+  hasPublicRegistryFilterParams,
   parsePublicRegistryState,
+  parsePublicRegistrySearchParams,
+  serializePublicRegistrySearchParams,
 } from "../../lib/public-registry-state.mjs";
-import type { RegistryMapViewport } from "./StreetMap";
+import type { RegistryMapBounds, RegistryMapViewport } from "./StreetMap";
 
 const StreetMap = dynamic(() => import("./StreetMap"), {
   ssr: false,
@@ -185,11 +193,13 @@ export default function UruguayRegistry({
     department, setDepartment,
     monthlyPriceBounds,
     monthlyPriceRange,
+    activeMonthlyPriceRange,
     setMonthlyPriceRange,
     status, setStatus,
     qualityRating, setQualityRating,
     priceOrder, setPriceOrder,
     photoAvailability, setPhotoAvailability,
+    attributeFilters, setAttributeFilters, toggleAttributeFilter,
     visible,
     departments,
     summaryScope,
@@ -201,6 +211,9 @@ export default function UruguayRegistry({
   const [detailId, setDetailId] = useState<string | null>(null);
   const [activeKpiHelp, setActiveKpiHelp] = useState<string | null>(null);
   const [registryView, setRegistryView] = useState<RegistryView>("mixed");
+  const [mapBounds, setMapBounds] = useState<RegistryMapBounds | null>(null);
+  const [mapAreaActive, setMapAreaActive] = useState(false);
+  const [mapResetRevision, setMapResetRevision] = useState(0);
   const [navigationRestored, setNavigationRestored] = useState(!persistNavigationState);
   const [restoringNavigation, setRestoringNavigation] = useState(persistNavigationState);
   const mapColumnRef = useRef<HTMLDivElement | null>(null);
@@ -214,17 +227,29 @@ export default function UruguayRegistry({
   const lastResultsScrollYRef = useRef(0);
   const persistenceReadyRef = useRef(!persistNavigationState);
   const latestNavigationStateRef = useRef({
-    filters: { query, department, monthlyPriceRange, status, qualityRating, priceOrder, photoAvailability },
+    filters: { query, department, monthlyPriceRange: activeMonthlyPriceRange, status, qualityRating, priceOrder, photoAvailability, attributeFilters },
     registryView,
     selectedId,
+    mapAreaActive,
   });
   latestNavigationStateRef.current = {
-    filters: { query, department, monthlyPriceRange, status, qualityRating, priceOrder, photoAvailability },
+    filters: { query, department, monthlyPriceRange: activeMonthlyPriceRange, status, qualityRating, priceOrder, photoAvailability, attributeFilters },
     registryView,
     selectedId,
+    mapAreaActive,
   };
 
-  const resultFacilities = visible;
+  const resultFacilities = useMemo(() => {
+    if (!mapAreaActive || !mapBounds || registryView === "list") return visible;
+    return visible.filter((facility) => (
+      Number.isFinite(facility.lat)
+      && Number.isFinite(facility.lng)
+      && facility.lat >= mapBounds.south
+      && facility.lat <= mapBounds.north
+      && facility.lng >= mapBounds.west
+      && facility.lng <= mapBounds.east
+    ));
+  }, [mapAreaActive, mapBounds, registryView, visible]);
   const mapFacilities = visible;
   const selected = selectedId ? (mapFacilities.find((facility) => facility.id === selectedId) ?? null) : null;
   const detailedFacility = detailId
@@ -244,7 +269,6 @@ export default function UruguayRegistry({
   const monthlyPriceEnd = monthlyPriceBounds && monthlyPriceRange && monthlyPriceSpread > 0
     ? ((monthlyPriceRange.max - monthlyPriceBounds.min) / monthlyPriceSpread) * 100
     : 100;
-
   const saveNavigationState = useCallback((windowYOverride?: number) => {
     if (!persistNavigationState || !persistenceReadyRef.current) return;
     const windowY = Math.max(
@@ -286,11 +310,34 @@ export default function UruguayRegistry({
     }
   }, []);
 
+  const applyFilterState = useCallback((filters: ReturnType<typeof parsePublicRegistrySearchParams>) => {
+    setQuery(filters.query);
+    setDepartment(filters.department);
+    setMonthlyPriceRange(filters.monthlyPriceRange);
+    setStatus(filters.status);
+    setQualityRating(filters.qualityRating);
+    setPriceOrder(filters.priceOrder);
+    setPhotoAvailability(filters.photoAvailability);
+    setAttributeFilters(filters.attributeFilters);
+  }, [
+    setAttributeFilters,
+    setDepartment,
+    setMonthlyPriceRange,
+    setPhotoAvailability,
+    setPriceOrder,
+    setQuery,
+    setQualityRating,
+    setStatus,
+  ]);
+
   useEffect(() => {
     if (navigationRestoreHandled.current) return;
     navigationRestoreHandled.current = true;
 
-    if (!persistNavigationState) {
+    const hasUrlFilters = hasPublicRegistryFilterParams(window.location.search);
+    if (hasUrlFilters) applyFilterState(parsePublicRegistrySearchParams(window.location.search));
+
+    if (!persistNavigationState || hasUrlFilters) {
       persistenceReadyRef.current = true;
       setNavigationRestored(true);
       setRestoringNavigation(false);
@@ -306,15 +353,10 @@ export default function UruguayRegistry({
     }
 
     if (restored) {
-      setQuery(restored.filters.query);
-      setDepartment(restored.filters.department);
-      setMonthlyPriceRange(restored.filters.monthlyPriceRange);
-      setStatus(restored.filters.status);
-      setQualityRating(restored.filters.qualityRating);
-      setPriceOrder(restored.filters.priceOrder);
-      setPhotoAvailability(restored.filters.photoAvailability);
+      applyFilterState(restored.filters);
       setRegistryView(restored.registryView);
       setSelectedId(restored.selectedId);
+      setMapAreaActive(restored.mapAreaActive);
       restoredScrollRef.current = restored.scroll;
       lastWindowScrollYRef.current = restored.scroll.windowY;
       lastResultsScrollYRef.current = restored.scroll.resultsY;
@@ -326,15 +368,15 @@ export default function UruguayRegistry({
     }
     setNavigationRestored(true);
   }, [
+    applyFilterState,
     persistNavigationState,
-    setDepartment,
-    setMonthlyPriceRange,
-    setPhotoAvailability,
-    setPriceOrder,
-    setQualityRating,
-    setQuery,
-    setStatus,
   ]);
+
+  useEffect(() => {
+    const restoreFromHistory = () => applyFilterState(parsePublicRegistrySearchParams(window.location.search));
+    window.addEventListener("popstate", restoreFromHistory);
+    return () => window.removeEventListener("popstate", restoreFromHistory);
+  }, [applyFilterState]);
 
   useEffect(() => {
     if (directFacilityHandled.current || allFacilities.length === 0) return;
@@ -348,16 +390,19 @@ export default function UruguayRegistry({
 
   useEffect(() => {
     if (loading || !navigationRestored || restoringNavigation) return;
-    if (selectedId && !mapFacilities.some((facility) => facility.id === selectedId)) {
+    const selectionScope = mapAreaActive ? resultFacilities : mapFacilities;
+    if (selectedId && !selectionScope.some((facility) => facility.id === selectedId)) {
       setSelectedId(null);
     }
-  }, [loading, mapFacilities, navigationRestored, restoringNavigation, selectedId]);
+  }, [loading, mapAreaActive, mapFacilities, navigationRestored, restoringNavigation, resultFacilities, selectedId]);
 
   useEffect(() => {
     saveNavigationState();
   }, [
     department,
-    monthlyPriceRange,
+    activeMonthlyPriceRange,
+    attributeFilters,
+    mapAreaActive,
     navigationRestored,
     photoAvailability,
     priceOrder,
@@ -367,6 +412,34 @@ export default function UruguayRegistry({
     restoringNavigation,
     saveNavigationState,
     selectedId,
+    status,
+  ]);
+
+  useEffect(() => {
+    if (!navigationRestored || restoringNavigation) return;
+    const params = serializePublicRegistrySearchParams({
+      query,
+      department,
+      monthlyPriceRange: activeMonthlyPriceRange,
+      status,
+      qualityRating,
+      priceOrder,
+      photoAvailability,
+      attributeFilters,
+    }, window.location.search);
+    const search = params.toString();
+    const nextUrl = `${window.location.pathname}${search ? `?${search}` : ""}${window.location.hash}`;
+    window.history.replaceState(window.history.state, "", nextUrl);
+  }, [
+    activeMonthlyPriceRange,
+    attributeFilters,
+    department,
+    navigationRestored,
+    photoAvailability,
+    priceOrder,
+    qualityRating,
+    query,
+    restoringNavigation,
     status,
   ]);
 
@@ -539,11 +612,14 @@ export default function UruguayRegistry({
 
   function resetFilters() {
     reset();
+    setMapAreaActive(false);
+    setMapBounds(null);
     setSelectedId(null);
     setDetailId(null);
     restoredScrollRef.current = null;
     lastResultsScrollYRef.current = 0;
     mapViewportRef.current = null;
+    setMapResetRevision((revision) => revision + 1);
     if (persistNavigationState) {
       try {
         window.localStorage.removeItem(PUBLIC_REGISTRY_STATE_KEY);
@@ -577,8 +653,10 @@ export default function UruguayRegistry({
           <label className="searchField">
             <b>Buscar por nombre, localidad o departamento</b>
             <div className="registrySearchBox">
-              <Search size={26} />
+              <Search size={26} aria-hidden="true" />
               <input
+                type="search"
+                autoComplete="off"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Escribí un nombre, una localidad o un departamento"
@@ -610,21 +688,28 @@ export default function UruguayRegistry({
 
     <div className={`registryMapLayout registryMapLayout-${registryView}`}>
       <aside className="card registryFiltersPanel" aria-label="Filtros de resultados">
-        <div className="registryFiltersHeading">
-          <div><span>Filtrar resultados</span><small>Elegí una o más opciones</small></div>
+        <header className="registryFiltersHeading">
+          <div>
+            <h2>Filtrar resultados</h2>
+            <output aria-live="polite">
+              {resultFacilities.length} {mapAreaActive && registryView !== "list" ? "en esta zona" : "encontrados"}
+            </output>
+          </div>
           <button
             type="button"
             className="registryClearFilters"
-            disabled={!hasActiveFilters && !selectedId}
-            aria-label="Restablecer filtros y mapa"
-            title="Restablecer filtros y mapa"
+            disabled={!hasActiveFilters && !selectedId && !mapAreaActive}
             onClick={resetFilters}
-          ><RotateCcw size={17}/></button>
-        </div>
+          ><RotateCcw size={17} aria-hidden="true" />Limpiar</button>
+        </header>
         <div className="registryToolbar">
           <label>
             <b>Departamento</b>
-            <select value={department} onChange={(event) => setDepartment(event.target.value)}>
+            <select value={department} onChange={(event) => {
+              setMapAreaActive(false);
+              setMapBounds(null);
+              setDepartment(event.target.value);
+            }}>
               <option value="">Todos</option>
               {departments.map(([name, count]) => <option key={name} value={name}>{name} ({count})</option>)}
             </select>
@@ -632,7 +717,7 @@ export default function UruguayRegistry({
 
           <label>
             <b>Situación institucional</b>
-            <select value={status} onChange={(event) => setStatus(event.target.value as "" | FacilityStatus)}>
+            <select value={status} onChange={(event) => setStatus(event.target.value as RegistryFacilityStatus)}>
               <option value="">Todas</option>
               <option value="habilitado">Habilitación final MSP</option>
               <option value="mides">Certificado social MIDES</option>
@@ -640,14 +725,19 @@ export default function UruguayRegistry({
             </select>
           </label>
 
-          <div className="registryFilterField">
-            <b id="registry-quality-filter-label">Clasificación</b>
-            <QualityRatingSelect
-              labelledBy="registry-quality-filter-label"
+          <label>
+            <b>Clasificación</b>
+            <select
               value={qualityRating}
-              onChange={setQualityRating}
-            />
-          </div>
+              onChange={(event) => setQualityRating(event.target.value as FacilityQualityFilter)}
+            >
+              <option value="">Todas</option>
+              {Object.entries(QUALITY_RATING_LABELS).map(([value, label]) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
+              <option value="unrated">Sin calificar</option>
+            </select>
+          </label>
 
           <label>
             <b>Ordenar por:</b>
@@ -720,34 +810,47 @@ export default function UruguayRegistry({
               <p>Sin precios publicados todavía.</p>
             </section>
           )}
+
+          <RegistryAttributeFilters value={attributeFilters} onToggle={toggleAttributeFilter} />
         </div>
       </aside>
       {registryView !== "list" && <div className="registryMapColumn" ref={mapColumnRef}>
         {navigationRestored ? <StreetMap
+          key={`registry-map-${mapResetRevision}`}
           facilities={mapFacilities}
           selectedId={selected?.id ?? null}
           onSelect={setSelectedId}
           onOpenDetails={openFacilityDetails}
           initialViewport={mapViewportRef.current}
           restoreSelectionWithoutFlying={Boolean(mapViewportRef.current && selected)}
-          onViewportChange={(viewport) => {
+          autoFitFacilities={!mapAreaActive}
+          onViewportChange={(viewport, context) => {
             mapViewportRef.current = viewport;
+            setMapBounds(context.bounds);
+            if (context.userInitiated) {
+              setMapAreaActive(true);
+              if (department) setDepartment("");
+              lastResultsScrollYRef.current = 0;
+              if (resultsScrollRef.current) resultsScrollRef.current.scrollTop = 0;
+            }
             saveNavigationState();
           }}
         /> : <div className="streetMapLoading" role="status">Restaurando el mapa…</div>}
       </div>}
 
       {registryView !== "map" && <aside className="card registryResults">
-        <div className="resultsHead"><h2>ELEPEM encontrados</h2><output className="resultCount">{resultFacilities.length}</output></div>
+        <div className="resultsHead">
+          <h2>{mapAreaActive && registryView !== "list" ? "ELEPEM en esta zona del mapa" : "ELEPEM encontrados"}</h2>
+          <output className="resultCount" aria-live="polite">{resultFacilities.length}</output>
+        </div>
 
         <div className="registryResultsScroll" ref={bindResultsScroll}>
           {resultFacilities.map((facility) => (
-            <FacilityAccordionCard
+            <FacilityResultCard
               facility={facility}
               isSelected={selected?.id === facility.id}
               isListView={registryView === "list"}
               suppressAutoScroll={restoringNavigation}
-              onSelect={setSelectedId}
               onViewMore={(selectedFacility) => {
                 openFacilityDetails(selectedFacility.id);
                 window.requestAnimationFrame(() => mapColumnRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
@@ -817,107 +920,96 @@ function badgeTone(facility: Facility) {
   return "gray";
 }
 
-function FacilityMembershipBadges({ facility, showQuality = true }: { facility: Facility; showQuality?: boolean }) {
+function FacilityMembershipBadges({ facility }: { facility: Facility }) {
   const badges = [
     facility.mspFinal && { label: "Habilitado MSP", tone: "green" },
     facility.midesSocial && { label: "Certificado Social MIDES", tone: "amber" },
   ].filter(Boolean) as { label: string; tone: string }[];
   const primaryBadge = isVerificationFacility(facility);
 
-  return <span className="facilityBadges" aria-label="Situaciones y clasificación">
+  return <span className="facilityBadges" aria-label="Situaciones institucionales">
     {primaryBadge ? (
       <span className={`sourceBadge sourceBadge-${badgeTone(facility)}`}>{facilityDisplayLabel(facility)}</span>
     ) : badges.map((badge) => (
       <span className={`sourceBadge sourceBadge-${badge.tone}`} key={badge.label}>{badge.label}</span>
     ))}
-    {showQuality && <FacilityQualityBadge facility={facility} />}
+  </span>;
+}
+
+function FacilityPrimaryStatusBadge({ facility }: { facility: Facility }) {
+  const status = facility.mspFinal
+    ? { label: "Habilitación MSP", tone: "green" }
+    : facility.midesSocial
+      ? { label: "Certificado social MIDES", tone: "amber" }
+      : { label: "Situación no confirmada", tone: "gray" };
+
+  return <span className="facilityBadges" aria-label="Situación institucional">
+    <span className={`sourceBadge sourceBadge-${status.tone}`}>{status.label}</span>
   </span>;
 }
 
 function FacilityQualityBadge({ facility }: { facility: Facility }) {
   const rating = facility.qualityRating ?? "unrated";
   const label = facility.qualityRating ? QUALITY_RATING_LABELS[facility.qualityRating] : "Sin calificar";
-  return <span className={`qualityRatingBadge qualityRatingBadge-${rating}`}>
-    {label}
-  </span>;
+  return <span className={`qualityRatingBadge qualityRatingBadge-${rating}`}>{label}</span>;
 }
 
-function FacilityAccordionCard({
+function FacilityResultCard({
   facility,
   isSelected,
   isListView,
   suppressAutoScroll,
-  onSelect,
   onViewMore,
 }: {
   facility: Facility;
   isSelected: boolean;
   isListView: boolean;
   suppressAutoScroll: boolean;
-  onSelect: (id: string) => void;
   onViewMore: (facility: Facility) => void;
 }) {
-  const [isOpen, setIsOpen] = useState(isSelected);
   const cardRef = useRef<HTMLElement | null>(null);
   const suppressAutoScrollRef = useRef(suppressAutoScroll);
   suppressAutoScrollRef.current = suppressAutoScroll;
 
   useEffect(() => {
-    if (isSelected) {
-      setIsOpen(true);
-      if (!suppressAutoScrollRef.current) {
-        cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }
+    if (isSelected && !suppressAutoScrollRef.current) {
+      cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
   }, [isSelected]);
 
-  const toggle = () => {
-    const nextState = !isOpen;
-    setIsOpen(nextState);
-    if (nextState) {
-      onSelect(facility.id);
-    }
-  };
-
   if (isListView) return <FacilityListCard facility={facility} onViewMore={onViewMore} />;
+  const hasPublicPrice = typeof facility.monthlyPriceUyu === "number" && facility.monthlyPriceUyu > 0;
 
   return (
-    <article ref={cardRef} className={`facilityCard facility-${facilityDisplayCategory(facility)} ${isOpen ? "isOpen" : ""} ${isSelected ? "selected" : ""}`}>
-      <button type="button" className="facilityAccordionHeader" onClick={toggle} aria-expanded={isOpen}>
-        <span className="facilityCompactMedia" aria-hidden="true">
-          {facility.photoUrl
-            ? <Image src={facility.photoUrl} alt="" fill sizes="64px" unoptimized />
-            : <ImageIcon size={19} />}
-        </span>
-        <div className="facilityAccordionTitle">
-          <strong>{facility.name}</strong>
-          <span className="facilityLocation">{facility.locality} · {canonicalDepartment(facility.department)}</span>
-          <FacilityMembershipBadges facility={facility} showQuality={false} />
+    <article ref={cardRef} className={`facilityCard facility-${facilityDisplayCategory(facility)} ${isSelected ? "selected" : ""}`}>
+      <div className="facilityCompactLayout">
+        <div className="facilityCompactSummary">
+          <span className="facilityCompactMedia" aria-hidden="true">
+            {facility.photoUrl
+              ? <Image src={facility.photoUrl} alt="" fill sizes="190px" unoptimized />
+              : <ImageIcon size={24} />}
+          </span>
+          <span className="facilityAccordionTitle">
+            <strong>{facility.name}</strong>
+            <span className="facilityCompactMeta">{facility.locality || "No informado"}</span>
+            <span className="facilityCompactMeta">{canonicalDepartment(facility.department)}</span>
+            <span className="facilityCompactMeta">{facility.address || "No informado"}</span>
+            <FacilityPrimaryStatusBadge facility={facility} />
+          </span>
         </div>
-        <span className="facilityCompactAside">
-          {typeof facility.monthlyPriceUyu === "number" && facility.monthlyPriceUyu > 0 && (
-            <span
-              className="facilityCompactPrice"
-              aria-label={`Precio mensual: ${formatMonthlyPrice(facility.monthlyPriceUyu)}`}
-            >
-              <b>{formatMonthlyPrice(facility.monthlyPriceUyu)}</b>
-            </span>
-          )}
+        <div className="facilityCompactAside">
+          <button type="button" className="facilityCompactAction" onClick={() => onViewMore(facility)}>Ver más</button>
+          <span
+            className={`facilityCompactPrice${hasPublicPrice ? "" : " isMissing"}`}
+            aria-label={hasPublicPrice ? `Precio mensual: ${formatMonthlyPrice(facility.monthlyPriceUyu as number)}` : "Precio no informado"}
+          >
+            {hasPublicPrice
+              ? <b>{formatMonthlyPrice(facility.monthlyPriceUyu as number)}</b>
+              : <small>Precio no informado</small>}
+          </span>
           <FacilityQualityBadge facility={facility} />
-        </span>
-        <span className="facilityAccordionChevron">
-          {isOpen ? <ChevronUp size={18}/> : <ChevronDown size={18}/>}
-        </span>
-      </button>
-
-      {isOpen && (
-        <div className="facilityAccordionBody">
-          {facility.address && <p className="facilityAddress"><strong>Dirección:</strong> {facility.address}</p>}
-          <div className="facilityAccordionActions">
-            <button type="button" className="reportContinue facilityViewMoreBtn" onClick={() => onViewMore(facility)}>Ver más</button>
-          </div>
         </div>
-      )}
+      </div>
     </article>
   );
 }
@@ -932,23 +1024,23 @@ function FacilityListCard({ facility, onViewMore }: { facility: Facility; onView
     </div>
     <div className="facilityBookingContent">
       <h3>{facility.name}</h3>
-      <p className="facilityBookingLocation">{facility.locality} · {canonicalDepartment(facility.department)}</p>
-      <FacilityMembershipBadges facility={facility} showQuality={false} />
-      <div className="facilityBookingFacts">
-        {facility.address && <span>{facility.address}</span>}
-      </div>
-      {facility.description && <p className="facilityBookingDescription">{facility.description}</p>}
+      <p className="facilityBookingMeta">{facility.locality || "No informado"}</p>
+      <p className="facilityBookingMeta">{canonicalDepartment(facility.department)}</p>
+      <p className="facilityBookingMeta">{facility.address || "No informado"}</p>
+      <FacilityPrimaryStatusBadge facility={facility} />
     </div>
     <div className="facilityBookingAside">
       <div className="facilityBookingAsideFooter">
-        {hasPublicPrice && <div
-          className="facilityBookingPrice"
-          aria-label={`Precio mensual: ${formatMonthlyPrice(facility.monthlyPriceUyu as number)}`}
+        <button type="button" className="facilityBookingAction" onClick={() => onViewMore(facility)}>Ver más</button>
+        <div
+          className={`facilityBookingPrice${hasPublicPrice ? "" : " isMissing"}`}
+          aria-label={hasPublicPrice ? `Precio mensual: ${formatMonthlyPrice(facility.monthlyPriceUyu as number)}` : "Precio no informado"}
         >
-          <strong>{formatMonthlyPrice(facility.monthlyPriceUyu as number)}</strong>
-        </div>}
+          {hasPublicPrice
+            ? <strong>{formatMonthlyPrice(facility.monthlyPriceUyu as number)}</strong>
+            : <small>Precio no informado</small>}
+        </div>
         <FacilityQualityBadge facility={facility} />
-        <button type="button" className="facilityBookingAction" onClick={() => onViewMore(facility)}>Ver ficha</button>
       </div>
     </div>
   </article>;
@@ -1000,7 +1092,7 @@ function FacilityMapDialog({ facility, onClose }: { facility: Facility; onClose:
           : <div className="facilityProfilePhotoMissing">Foto no informada</div>}
       </div>
       <div className="facilityProfileSummary">
-        <FacilityMembershipBadges facility={facility} showQuality={false} />
+        <FacilityMembershipBadges facility={facility} />
         <h3>Información del ELEPEM</h3>
         <p>{facility.description || "Todavía no hay una descripción pública verificada de la vida cotidiana en este ELEPEM."}</p>
         <div className="facilityProfilePrice">
@@ -1008,7 +1100,6 @@ function FacilityMapDialog({ facility, onClose }: { facility: Facility; onClose:
           <strong>{facility.monthlyPriceUyu
             ? `Desde $ ${facility.monthlyPriceUyu.toLocaleString("es-UY")}`
             : "No informado"}</strong>
-          <FacilityQualityBadge facility={facility} />
         </div>
         <div className="facilityProfileActions">
           <Link href={`/experiencia?elepem=${encodeURIComponent(facility.id)}`}>Dejar una experiencia</Link>

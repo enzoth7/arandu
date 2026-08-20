@@ -3,8 +3,12 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import {
   PUBLIC_REGISTRY_STATE_MAX_AGE_MS,
+  hasPublicRegistryFilterParams,
+  parsePublicRegistrySearchParams,
   parsePublicRegistryState,
+  serializePublicRegistrySearchParams,
 } from "../../lib/public-registry-state.mjs";
+import { emptyFacilityAttributeFilters } from "../../lib/facility-filter-options.mjs";
 
 const streetMapPath = new URL("../../app/components/StreetMap.tsx", import.meta.url);
 const leafletHookPath = new URL("../../app/hooks/useLeafletMap.ts", import.meta.url);
@@ -16,7 +20,7 @@ const registryLoaderPath = new URL("../../lib/facility-registry.ts", import.meta
 const facilityPresentationPath = new URL("../../app/components/facility-presentation.ts", import.meta.url);
 const residencialesFormPath = new URL("../../app/components/ResidencialesFormView.tsx", import.meta.url);
 const homeHeroPath = new URL("../../app/components/AranduHomeHero.tsx", import.meta.url);
-const qualityRatingSelectPath = new URL("../../app/components/QualityRatingSelect.tsx", import.meta.url);
+const attributeFiltersPath = new URL("../../app/components/RegistryAttributeFilters.tsx", import.meta.url);
 const nextConfigPath = new URL("../../next.config.mjs", import.meta.url);
 const portalChromePath = new URL("../../app/components/PortalChrome.tsx", import.meta.url);
 const institutionalAccessPath = new URL("../../app/components/InstitutionalAccess.tsx", import.meta.url);
@@ -62,7 +66,30 @@ test("los puntos comparten canvas y el mapa no muestra precios", async () => {
   assert.match(mapSource, /onOpenDetailsRef\.current\?\.\(facility\.id\)/);
 });
 
-test("el mapa muestra el estado institucional y reparte mapa/lista 50/50", async () => {
+test("la lista sigue la zona visible sin quitar los demás filtros", async () => {
+  const [mapSource, registrySource] = await Promise.all([
+    readFile(streetMapPath, "utf8"),
+    readFile(registryPath, "utf8"),
+  ]);
+
+  assert.match(mapSource, /export type RegistryMapBounds/);
+  assert.match(mapSource, /userInitiated: userViewportChangeRef\.current/);
+  assert.match(mapSource, /map\.on\("dragstart", markUserViewportChange\)/);
+  assert.match(mapSource, /mapContainer\.addEventListener\("click", markViewportControlChange/);
+  assert.match(mapSource, /mapContainer\.addEventListener\("wheel"/);
+  assert.match(mapSource, /if \(!autoFitFacilities\)/);
+  assert.match(registrySource, /const resultFacilities = useMemo/);
+  assert.match(registrySource, /facility\.lat >= mapBounds\.south/);
+  assert.match(registrySource, /facility\.lng <= mapBounds\.east/);
+  assert.match(registrySource, /const mapFacilities = visible/);
+  assert.match(registrySource, /autoFitFacilities=\{!mapAreaActive\}/);
+  assert.match(registrySource, /setMapResetRevision\(\(revision\) => revision \+ 1\)/);
+  assert.match(registrySource, /key=\{`registry-map-\$\{mapResetRevision\}`\}/);
+  assert.match(registrySource, /if \(context\.userInitiated\)[\s\S]*setMapAreaActive\(true\)[\s\S]*if \(department\) setDepartment\(""\)/);
+  assert.match(registrySource, /ELEPEM en esta zona del mapa/);
+});
+
+test("el mapa muestra el estado institucional y comparte el ancho con la lista", async () => {
   const [source, styles] = await Promise.all([
     readFile(streetMapPath, "utf8"),
     readFile(globalStylesPath, "utf8"),
@@ -73,13 +100,16 @@ test("el mapa muestra el estado institucional y reparte mapa/lista 50/50", async
   assert.match(source, /className = "mapFacilityTooltipStatuses"/);
   assert.doesNotMatch(source, /Habilitación final MSP|\.join\(" · "\)/);
   assert.match(source, /Situación no confirmada/);
-  assert.match(source, /Sin calificación disponible/);
+  assert.doesNotMatch(source, /calificación|qualityRating|mapFacilityTooltipRating/i);
   assert.match(source, /image\.loading = "lazy"/);
   assert.match(source, /visibleMarker\.on\("focus"/);
   assert.match(source, /className: "facilityRichTooltip"/);
   assert.doesNotMatch(source, /mapPriceMarker|ratingMarkup/);
   assert.doesNotMatch(source, /\$\{facility\.isDemo \? " · DEMO"/);
-  assert.match(styles, /grid-template-columns: minmax\(240px, 290px\) repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(styles, /grid-template-columns: minmax\(300px, 340px\) repeat\(2, minmax\(360px, 1fr\)\)/);
+  assert.match(styles, /grid-template-areas: "filters map results"/);
+  assert.match(styles, /\.registryFiltersPanel \{[\s\S]{0,260}height: auto;[\s\S]{0,180}overflow: visible/);
+  assert.match(styles, /\.registryMapColumn \{[\s\S]{0,120}position: sticky;[\s\S]{0,80}top: 96px/);
   assert.match(styles, /\.mapFacilityTooltipCard/);
   assert.match(styles, /\.mapFacilityTooltipStatus/);
 });
@@ -145,12 +175,17 @@ test("el registro conserva filtros, scroll, selección y viewport con un snapsho
       department: "Montevideo",
       monthlyPriceRange: { min: 50_000, max: 90_000 },
       status: "habilitado",
-      qualityRating: "unrated",
+      qualityRating: "good",
       priceOrder: "asc",
       photoAvailability: "with",
+      attributeFilters: {
+        ...emptyFacilityAttributeFilters(),
+        careServices: ["enfermeria"],
+      },
     },
     registryView: "mixed",
     selectedId: "ELP-0001",
+    mapAreaActive: true,
     scroll: { windowY: 720, resultsY: 430 },
     mapViewport: { center: [-34.9, -56.2], zoom: 13 },
   };
@@ -174,9 +209,10 @@ test("el registro conserva filtros, scroll, selección y viewport con un snapsho
       department: "Montevideo",
       monthlyPriceRange: { min: 90_000, max: 50_000 },
       status: "estado-retirado",
-      qualityRating: "valor-transitorio",
+      qualityRating: "valor-retirado",
       priceOrder: "lado",
       photoAvailability: "desconocido",
+      attributeFilters: { careServices: ["valor_invalido"] },
     },
     registryView: "grid",
     selectedId: { id: "ELP-0001" },
@@ -193,9 +229,11 @@ test("el registro conserva filtros, scroll, selección y viewport con un snapsho
       qualityRating: "",
       priceOrder: "",
       photoAvailability: "",
+      attributeFilters: emptyFacilityAttributeFilters(),
     },
     registryView: "mixed",
     selectedId: null,
+    mapAreaActive: false,
     scroll: { windowY: 0, resultsY: 0 },
     mapViewport: null,
   });
@@ -215,9 +253,11 @@ test("el registro conserva filtros, scroll, selección y viewport con un snapsho
       qualityRating: "",
       priceOrder: "",
       photoAvailability: "",
+      attributeFilters: emptyFacilityAttributeFilters(),
     },
     registryView: "mixed",
     selectedId: null,
+    mapAreaActive: false,
     scroll: { windowY: 0, resultsY: 0 },
     mapViewport: null,
   });
@@ -231,6 +271,34 @@ test("el registro conserva filtros, scroll, selección y viewport con un snapsho
   assert.match(registrySource, /visibilitychange/);
   assert.match(registrySource, /suppressAutoScroll=\{restoringNavigation\}/);
   assert.match(registrySource, /Algunos residenciales están incluidos tanto en la lista de Habilitados como en la de Certificados\./);
+});
+
+test("los filtros relevantes se comparten por URL y toleran valores retirados", () => {
+  const attributes = { ...emptyFacilityAttributeFilters(), careServices: ["enfermeria"] };
+  const params = serializePublicRegistrySearchParams({
+    query: "costa",
+    department: "Canelones",
+    monthlyPriceRange: { min: 50_000, max: 90_000 },
+    status: "mides",
+    qualityRating: "good",
+    priceOrder: "asc",
+    photoAvailability: "with",
+    attributeFilters: attributes,
+  }, "?elepem=DEMO-ELEPEM-001");
+  assert.equal(params.get("elepem"), "DEMO-ELEPEM-001");
+  assert.equal(hasPublicRegistryFilterParams(params), true);
+  assert.deepEqual(parsePublicRegistrySearchParams(params), {
+    query: "costa",
+    department: "Canelones",
+    monthlyPriceRange: { min: 50_000, max: 90_000 },
+    status: "mides",
+    qualityRating: "good",
+    priceOrder: "asc",
+    photoAvailability: "with",
+    attributeFilters: attributes,
+  });
+  assert.deepEqual(parsePublicRegistrySearchParams("?cuidados=valor_retirado").attributeFilters, emptyFacilityAttributeFilters());
+  assert.equal(parsePublicRegistrySearchParams("?clasificacion=valor_retirado").qualityRating, "");
 });
 
 test("el registro captura windowY antes de una navegación interna de Next", async () => {
@@ -268,10 +336,11 @@ test("la restauración reintenta ambos scrolls hasta estabilizar el layout", asy
   assert.match(source, /window\.cancelAnimationFrame\(verifyFrame\)/);
 });
 
-test("la capa pública conserva Casa Costa Serena como referencia violeta con clasificación Bueno", async () => {
+test("la capa pública conserva Casa Costa Serena como referencia violeta y datos de filtros", async () => {
   const source = await readFile(registryLoaderPath, "utf8");
   assert.match(source, /id = 'DEMO-ELEPEM-001'/);
-  assert.match(source, /qualityRating: "good"/);
+  assert.match(source, /facility\.cuidados_profesionales/);
+  assert.match(source, /careServices: row\.cuidados_profesionales/);
   assert.match(source, /where publication\.demo_facility_id = facility\.id/);
   assert.match(source, /const approvedPhotoUrls = Array\.isArray\(row\.approved_photo_paths\)/);
   assert.match(source, /left join storage\.objects as storage_object/);
@@ -281,35 +350,38 @@ test("la capa pública conserva Casa Costa Serena como referencia violeta con cl
   assert.match(source, /precisionLabel: "Ubicación aproximada"/);
   assert.match(source, /sourceLabel: "Arandú"/);
   assert.match(source, /statusShort: "Referencia Arandú",[\s\S]{0,700}description: row\.description/);
+  assert.match(source, /qualityRating: "good"/);
 });
 
-test("el panel recupera los filtros originales y usa clasificación desplegable", async () => {
-  const [source, hookSource, qualitySelect] = await Promise.all([
+test("el panel agrupa filtros verificables y conserva la clasificación", async () => {
+  const [source, hookSource, attributeFilters] = await Promise.all([
     readFile(registryPath, "utf8"),
     readFile(filterHookPath, "utf8"),
-    readFile(qualityRatingSelectPath, "utf8"),
+    readFile(attributeFiltersPath, "utf8"),
   ]);
   assert.match(source, /<b>Departamento<\/b>[\s\S]*<select value=\{department\}/);
   assert.match(source, /<b>Situación institucional<\/b>[\s\S]*<select value=\{status\}/);
-  assert.match(source, /<QualityRatingSelect[\s\S]*value=\{qualityRating\}[\s\S]*onChange=\{setQualityRating\}/);
-  assert.doesNotMatch(source, /registryQualityLegend/);
-  assert.match(qualitySelect, /role="listbox"/);
-  assert.match(qualitySelect, /role="option"/);
-  assert.match(qualitySelect, /value: "unrated", label: "Sin calificar"/);
-  assert.match(qualitySelect, /value === "outstanding" && <Star/);
-  assert.match(qualitySelect, /registryQualityDot-\$\{value\}/);
-  assert.match(qualitySelect, /event\.key === "Escape"/);
-  assert.match(qualitySelect, /"ArrowDown", "ArrowUp", "Home", "End"/);
+  assert.match(source, /<b>Clasificación<\/b>[\s\S]*value=\{qualityRating\}/);
+  assert.match(source, /QUALITY_RATING_LABELS/);
+  assert.match(source, /Sin calificar/);
+  assert.match(attributeFilters, /<div className="registryAdvancedFilters">/);
+  assert.match(attributeFilters, /<fieldset key=\{group\.key\}>/);
+  assert.match(attributeFilters, /type="checkbox"/);
+  assert.doesNotMatch(attributeFilters, /Más filtros|Sin información verificada|registryDemoFilterNotice/);
   assert.match(source, /<b>Ordenar por:<\/b>[\s\S]*Precio: menor a mayor[\s\S]*Precio: mayor a menor/);
   assert.match(source, /<b>Fotografías<\/b>[\s\S]*value=\{photoAvailability\}/);
   assert.match(source, /aria-label="Precio mensual mínimo"/);
   assert.match(source, /aria-label="Precio mensual máximo"/);
-  assert.doesNotMatch(source, /registryQualityFilter-/);
   assert.doesNotMatch(source, /ELEPEM de prueba/);
+  assert.doesNotMatch(source, /activeFilterChips|registryActiveFilters|Quitar filtro/);
   assert.match(hookSource, /departmentOptions/);
   assert.match(hookSource, /sortFacilitiesByPrice\(matched, priceOrder\)/);
   assert.match(hookSource, /photoAvailability/);
+  assert.match(hookSource, /qualityRating/);
+  assert.match(hookSource, /attributeFilters/);
   assert.match(hookSource, /monthlyPriceMin: activeMonthlyPriceRange\?\.min/);
+  assert.match(source, /serializePublicRegistrySearchParams/);
+  assert.match(source, /window\.addEventListener\("popstate"/);
 });
 
 test("la política de contenido permite las fotografías públicas de Supabase", async () => {
@@ -321,14 +393,16 @@ test("la política de contenido permite las fotografías públicas de Supabase",
   assert.match(config, /search: ""/);
 });
 
-test("la ficha permite salir y muestra precio y clasificación sin etiquetas de prueba", async () => {
+test("la ficha permite salir y las tarjetas muestran precio y clasificación", async () => {
   const [source, styles] = await Promise.all([
     readFile(registryPath, "utf8"),
     readFile(globalStylesPath, "utf8"),
   ]);
   assert.doesNotMatch(source, /Precio mensual demostrativo|Precio demostrativo|· DEMO/);
-  assert.match(source, /aria-label={`Precio mensual:/);
-  assert.match(source, /FacilityQualityBadge facility={facility}/);
+  assert.match(source, /aria-label=\{hasPublicPrice \? `Precio mensual:/);
+  assert.match(source, /Precio no informado/);
+  assert.match(source, /function FacilityQualityBadge/);
+  assert.match(source, /Sin calificar/);
   assert.match(source, /facilityCompactPrice/);
   assert.match(source, /onOpenDetails=\{openFacilityDetails\}/);
   assert.doesNotMatch(source, /!facility\.isDemo && typeof facility\.monthlyPriceUyu/);
@@ -340,7 +414,7 @@ test("la ficha permite salir y muestra precio y clasificación sin etiquetas de 
   assert.match(styles, /\.facilityMapDialogHeader \{[\s\S]*position: sticky/);
 });
 
-test("la vista Lista alinea precio y clasificación a la derecha sin rótulos ni fuente", async () => {
+test("la vista Lista alinea acción, precio y clasificación a la derecha", async () => {
   const [source, styles] = await Promise.all([
     readFile(registryPath, "utf8"),
     readFile(globalStylesPath, "utf8"),
@@ -350,33 +424,37 @@ test("la vista Lista alinea precio y clasificación a la derecha sin rótulos ni
     source.indexOf("function FacilityMapDialog"),
   );
 
-  assert.match(listCardSource, /<FacilityMembershipBadges facility=\{facility\} showQuality=\{false\} \/>/);
-  assert.match(listCardSource, /className="facilityBookingPrice"[\s\S]*<strong>\{formatMonthlyPrice/);
-  assert.match(listCardSource, /<FacilityQualityBadge facility=\{facility\} \/>/);
+  assert.match(listCardSource, /<FacilityPrimaryStatusBadge facility=\{facility\} \/>/);
+  assert.doesNotMatch(listCardSource, /Localidad:<\/b>|Departamento:<\/b>|Dirección:<\/b>/);
+  assert.match(listCardSource, /facility\.locality[\s\S]*canonicalDepartment\(facility\.department\)[\s\S]*facility\.address/);
+  assert.match(listCardSource, /className="facilityBookingAction"[\s\S]*>Ver más<\/button>[\s\S]*facilityBookingPrice[\s\S]*FacilityQualityBadge/);
+  assert.match(listCardSource, /Precio no informado/);
   assert.doesNotMatch(listCardSource, /<small>Precio mensual<\/small>/);
   assert.doesNotMatch(listCardSource, /Fuente:/);
   assert.match(styles, /\.facilityBookingAside[\s\S]{0,220}align-items: flex-end/);
-  for (const tone of ["outstanding", "good", "requires_improvement", "inadequate", "unrated"]) {
-    assert.match(styles, new RegExp(`\\.qualityRatingBadge-${tone}`));
-  }
-  assert.match(source, /"Sin calificar"/);
+  assert.match(styles, /\.qualityRatingBadge/);
 });
 
-test("la vista mixta muestra precio y clasificación separados a la derecha", async () => {
+test("la vista mixta es estática y muestra datos, clasificación, precio y acción", async () => {
   const [source, styles] = await Promise.all([
     readFile(registryPath, "utf8"),
     readFile(globalStylesPath, "utf8"),
   ]);
   const mixedCardSource = source.slice(
-    source.indexOf("function FacilityAccordionCard"),
+    source.indexOf("function FacilityResultCard"),
     source.indexOf("function FacilityListCard"),
   );
 
-  assert.match(mixedCardSource, /<FacilityMembershipBadges facility=\{facility\} showQuality=\{false\} \/>/);
-  assert.match(mixedCardSource, /className="facilityCompactAside"[\s\S]*className="facilityCompactPrice"[\s\S]*<FacilityQualityBadge facility=\{facility\} \/>/);
+  assert.match(mixedCardSource, /<FacilityPrimaryStatusBadge facility=\{facility\} \/>/);
+  assert.doesNotMatch(mixedCardSource, /Localidad:<\/b>|Departamento:<\/b>|Dirección:<\/b>/);
+  assert.match(mixedCardSource, /facility\.locality[\s\S]*canonicalDepartment\(facility\.department\)[\s\S]*facility\.address/);
+  assert.match(mixedCardSource, /className="facilityCompactAside"[\s\S]*className="facilityCompactAction"[\s\S]*>Ver más<\/button>[\s\S]*facilityCompactPrice[\s\S]*FacilityQualityBadge/);
+  assert.match(mixedCardSource, /Precio no informado/);
+  assert.doesNotMatch(mixedCardSource, /aria-expanded|facilityAccordionChevron|facilityAccordionBody|ChevronUp|ChevronDown/);
   assert.doesNotMatch(mixedCardSource, /<small>Precio mensual<\/small>/);
   assert.match(styles, /\.facilityCompactAside[\s\S]{0,180}justify-items: end/);
-  assert.doesNotMatch(styles, /\.qualityRatingBadge::before/);
+  assert.match(styles, /\.facilityCompactLayout[\s\S]{0,160}min-height: 206px/);
+  assert.match(styles, /\.qualityRatingBadge/);
 });
 
 test("la ficha muestra todos los medios de contacto públicos disponibles", async () => {

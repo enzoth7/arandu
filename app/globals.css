@@ -3194,13 +3194,11 @@ textarea {
 .mapFacilityTooltipCopy { min-width: 0; padding: 11px 12px; display: grid; align-content: center; gap: 5px; }
 .mapFacilityTooltipCopy strong { color: #102a4d; font-size: .88rem; line-height: 1.25; }
 .mapFacilityTooltipCopy small { color: #5c6f7d; font-size: .72rem; line-height: 1.35; }
-.mapFacilityTooltipRating { width: max-content; max-width: 100%; padding: 3px 7px; border-radius: 999px; background: #eaf6ed; color: #17613d; font-size: .66rem; font-weight: 850; }
-.mapFacilityTooltipRating.is-unrated { background: #eef1f4; color: #5e6d78; }
 .resultsMeta { margin: 0 0 4px; color: var(--muted); font-size: .76rem; }
 
 .registryResultsScroll {
   overflow: auto;
-  padding-right: 5px;
+  padding-right: 12px;
   scrollbar-color: #8a8f96 transparent;
   scrollbar-width: thin;
 }
@@ -3215,7 +3213,7 @@ textarea {
   overflow: hidden;
 }
 
-.facilityCard:hover, .facilityCard.selected, .facilityCard.isOpen {
+.facilityCard:hover, .facilityCard.selected {
   border-color: #93bbf5;
   box-shadow: 0 6px 18px rgba(20,35,55,.07);
 }
@@ -3224,22 +3222,6 @@ textarea {
 .facility-habilitado { border-left-color: var(--green); }
 .facility-mides { border-left-color: #d97706; }
 .facility-unconfirmed { border-left-color: #64748b; background: #f8fafc; }
-
-.facilityAccordionHeader {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 12px 14px;
-  border: 0;
-  background: transparent;
-  text-align: left;
-  cursor: pointer;
-}
-.facilityAccordionHeader:hover {
-  background: rgba(21,94,239,.03);
-}
 
 .facilityCompactMedia {
   position: relative;
@@ -3363,27 +3345,6 @@ textarea {
 }
 .mapPopupBadges { margin: 7px 0; }
 
-.facilityAccordionChevron {
-  display: grid;
-  place-items: center;
-  flex: 0 0 auto;
-  color: #64748b;
-  transition: transform .2s;
-}
-
-.facilityAccordionBody {
-  padding: 0 14px 14px;
-  border-top: 1px dashed #e2e8f0;
-  margin-top: 2px;
-  padding-top: 10px;
-  animation: facilityBodyIn .25s ease-out both;
-}
-
-@keyframes facilityBodyIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: none; }
-}
-
 .facilityAddress, .facilityPlaces {
   margin: 4px 0;
   font-size: .83rem;
@@ -3403,19 +3364,6 @@ textarea {
 }
 .facilityPrecision { font-style: normal; }
 
-.facilityAccordionActions {
-  margin-top: 12px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.facilityViewMoreBtn {
-  width: 100%;
-  min-height: 40px;
-  justify-content: center;
-  border-radius: 10px;
-}
 
 .facilityMapDialog {
   width: min(1180px, calc(100vw - 32px));
@@ -4132,7 +4080,6 @@ textarea {
   border-radius: 13px;
   box-shadow: none;
 }
-.facilityAccordionHeader { padding: 16px; }
 .facilityAccordionTitle > strong { color: #17304f; font-size: .95rem; line-height: 1.3; }
 .facilityLocation { margin-top: 4px; color: #62758a; }
 .sourceBadge { font-weight: 750; }
@@ -4385,7 +4332,8 @@ textarea {
 .registryMapLayout,
 .registryMapLayout.hasUnlocatedPanel {
   width: 100%;
-  grid-template-columns: minmax(240px, 290px) repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(300px, 340px) repeat(2, minmax(360px, 1fr));
+  grid-template-areas: "filters map results";
   gap: 16px;
   margin: 18px 0 0;
   transform: none;
@@ -4393,14 +4341,34 @@ textarea {
 .registryMapLayout.mapListOnly {
   grid-template-columns: minmax(240px, 290px) minmax(420px, 1fr);
 }
-.registryMapLayout-list { grid-template-columns: minmax(240px, 290px) minmax(0, 1fr); }
-.registryMapLayout-map { grid-template-columns: minmax(240px, 290px) minmax(0, 1fr); }
+.registryMapLayout-list {
+  grid-template-columns: minmax(300px, 340px) minmax(0, 1fr);
+  grid-template-areas: "filters results";
+}
+.registryMapLayout-map {
+  grid-template-columns: minmax(300px, 340px) minmax(0, 1fr);
+  grid-template-areas: "filters map";
+}
 .registryFiltersPanel {
-  height: 720px;
-  padding: 22px 18px;
+  grid-area: filters;
+  height: auto;
+  padding: 18px 16px;
   border-radius: 20px;
-  overflow-y: auto;
+  overflow: visible;
+  align-self: start;
   box-shadow: 0 12px 34px rgba(15, 35, 66, .07);
+}
+.registryMapColumn {
+  grid-area: map;
+  position: sticky;
+  top: 96px;
+  align-self: start;
+}
+.registryResults {
+  grid-area: results;
+  position: sticky;
+  top: 96px;
+  align-self: start;
 }
 .registryFiltersHeading {
   display: flex;
@@ -4412,14 +4380,14 @@ textarea {
   border-bottom: 1px solid #e2e8ef;
 }
 .registryFiltersPanel .registryFiltersHeading .registryClearFilters {
-  flex: 0 0 34px;
-  width: 34px;
-  min-height: 34px;
+  flex: 0 0 auto;
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin: 0;
-  padding: 0;
+  gap: 7px;
+  padding: 0 12px;
   border: 1px solid #b9cbe0;
   border-radius: 10px;
   background: #f7faff;
@@ -4439,19 +4407,27 @@ textarea {
   opacity: .72;
 }
 .registryFiltersHeading div { display: grid; gap: 2px; }
-.registryFiltersHeading span { color: #17304f; font-size: 1.02rem; font-weight: 850; }
-.registryFiltersHeading small { color: #6b7d91; font-size: .74rem; }
+.registryFiltersHeading h2 { margin: 0; color: var(--text); font-size: 1.05rem; }
+.registryFiltersHeading output { color: var(--muted); font-size: .78rem; font-weight: 700; }
 .registryFiltersPanel .registryToolbar {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 18px;
+  gap: 12px;
   max-width: none;
-  margin: 20px 0 0;
+  margin: 16px 0 0;
   padding: 0;
   border: 0;
 }
 .registryFiltersPanel .registryToolbar label { min-width: 0; }
-.registryFiltersPanel .registryToolbar select { height: 52px; }
+.registryFiltersPanel .registryToolbar label > b:first-child {
+  margin-bottom: 5px;
+  font-size: .76rem;
+}
+.registryFiltersPanel .registryToolbar select {
+  height: 44px;
+  font-size: .82rem;
+  font-weight: 650;
+}
 
 .registryFilterHelp {
   display: block;
@@ -4461,155 +4437,42 @@ textarea {
   line-height: 1.4;
 }
 
-.qualityRatingBadge {
-  --quality-rating-color: #151a21;
-  display: inline-flex;
-  width: max-content;
-  align-items: center;
-  padding: 5px 9px;
-  border: 1px solid var(--quality-rating-color);
-  border-radius: 999px;
-  background: #f3f5f7;
-  color: #151a21;
-  font-size: .72rem;
-  font-weight: 850;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-.qualityRatingBadge-outstanding {
-  --quality-rating-color: #3f8f00;
-  background: #f1f8e9;
-  color: #244d08;
-}
-.qualityRatingBadge-good {
-  --quality-rating-color: #4b9700;
-  background: #f3f9ea;
-  color: #285407;
-}
-.qualityRatingBadge-requires_improvement {
-  --quality-rating-color: #ff9800;
-  background: #fff5e6;
-  color: #6b3b00;
-}
-.qualityRatingBadge-inadequate {
-  --quality-rating-color: #cf170b;
-  background: #fff0ed;
-  color: #7d160d;
-}
-.qualityRatingBadge-unrated {
-  --quality-rating-color: #151a21;
-  background: #f1f3f5;
-  color: #151a21;
-}
-
-.registryFilterField { position: relative; min-width: 0; margin: 0; }
-.registryFilterField > b:first-child {
-  display: block;
-  margin-bottom: 7px;
-  color: #31465f;
-  font-size: .82rem;
-}
-
-.registryQualitySelect { position: relative; }
-.registryQualitySelectTrigger {
-  width: 100%;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 0 13px 0 16px;
-  border: 1.5px solid #b9cee2;
-  border-radius: 12px;
-  background: #fff;
-  color: var(--text);
-  box-shadow: none;
-  font: inherit;
-  font-weight: 700;
-  text-align: left;
-}
-.registryQualitySelectTrigger > span,
-.registryQualityOption > span {
-  display: inline-flex;
+.registryAdvancedFilters {
   min-width: 0;
-  align-items: center;
-  gap: 9px;
+  padding-top: 0;
 }
-.registryQualitySelectTrigger:hover {
-  border-color: var(--blue);
-  background: #f7fbff;
-  box-shadow: none;
-  transform: none;
+.registryAttributeGroups { display: grid; gap: 0; }
+.registryAttributeGroups fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 14px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
 }
-.registryQualitySelectTrigger:focus-visible {
-  border-color: #1d5fd1;
-  outline: 3px solid rgba(29, 95, 209, .14);
-  outline-offset: 0;
-}
-.registryQualitySelectTrigger[aria-expanded="true"] svg { transform: rotate(180deg); }
-
-.registryQualityOptions {
-  position: absolute;
-  z-index: 1200;
-  top: calc(100% + 7px);
-  left: 0;
-  width: 100%;
-  display: grid;
-  gap: 3px;
-  padding: 6px;
-  border: 1px solid #b9cee2;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 16px 36px rgba(15, 35, 66, .18);
-}
-.registryQualityOption {
+.registryAttributeGroups fieldset:first-child { padding-top: 0; }
+.registryAttributeGroups fieldset:last-child { padding-bottom: 0; border-bottom: 0; }
+.registryAttributeGroups legend { margin-bottom: 5px; color: var(--text); font-size: .82rem; font-weight: 800; }
+.registryAttributeGroups ul { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.registryAttributeGroups label {
   min-height: 44px;
-  width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 9px 10px;
-  border: 0;
+  gap: 8px;
+  padding: 5px 6px;
+  border: 1px solid transparent;
   border-radius: 8px;
-  background: #fff;
-  color: #17304f;
-  box-shadow: none;
-  font: inherit;
-  font-size: .86rem;
-  font-weight: 700;
-  text-align: left;
+  color: var(--text);
+  font-size: .76rem;
+  font-weight: 500;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: border-color .18s ease, background .18s ease, transform .18s ease;
 }
-.registryQualityOption:hover,
-.registryQualityOption:focus-visible {
-  border: 0;
-  outline: 0;
-  background: #edf6ff;
-  color: #123f70;
-  box-shadow: none;
-  transform: none;
-}
-.registryQualityOption[aria-selected="true"] { background: #e5f1ff; color: #123f70; }
-
-.registryQualityDot {
-  --registry-quality-color: #151a21;
-  width: 12px;
-  height: 12px;
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: var(--registry-quality-color);
-  color: #fff;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--registry-quality-color);
-}
-
-.registryQualityDot-outstanding { --registry-quality-color: #3f8f00; }
-.registryQualityDot-good { --registry-quality-color: #4b9700; }
-.registryQualityDot-requires_improvement { --registry-quality-color: #ff9800; }
-.registryQualityDot-inadequate { --registry-quality-color: #cf170b; }
-.registryQualityDot-unrated { --registry-quality-color: #7b8794; }
+.registryAttributeGroups label:hover { border-color: #a9c5df; background: var(--surface2); transform: translateY(-1px); }
+.registryAttributeGroups label:has(input:checked) { border-color: var(--blue); background: var(--surface2); color: var(--blue2); font-weight: 750; }
+.registryAttributeGroups input { width: 20px; height: 20px; margin: 0; accent-color: var(--blue); }
+.registryAttributeGroups input:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 
 .registryPriceRange {
   min-width: 0;
@@ -4762,28 +4625,96 @@ textarea {
 .facilityDocumentBadge.is-compact { min-height: 24px; padding: 3px 6px; }
 .facilityDocumentStars { display: inline-flex; gap: 1px; }
 .facilityDocumentStars .is-empty { opacity: .38; }
-.facilityAccordionHeader {
+.facilityCompactSummary {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
   align-items: stretch;
   gap: 0;
-  padding: 0;
+}
+.facilityCompactLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(146px, .3fr);
+  min-height: 206px;
 }
 .facilityCompactMedia {
-  flex-basis: 116px;
-  width: 116px;
-  height: auto;
-  min-height: 126px;
+  width: 180px;
+  height: 100%;
+  min-height: 206px;
   border: 0;
   border-right: 1px solid #d4e0da;
   border-radius: 0;
 }
 .facilityAccordionTitle {
-  justify-content: center;
-  padding: 16px 12px 16px 16px;
+  justify-content: flex-start;
+  padding: 18px 14px 18px 18px;
 }
-.facilityAccordionChevron {
-  align-self: center;
-  margin: 0 14px 0 2px;
+.facilityAccordionTitle > strong { font-size: 1rem; }
+.facilityCompactMeta {
+  margin-top: 4px;
+  color: #536a82;
+  font-size: .76rem;
+  line-height: 1.35;
 }
+.facilityAccordionTitle > .facilityBadges { margin-top: auto; padding-top: 10px; }
+.facilityCompactAside {
+  width: 100%;
+  min-width: 0;
+  margin-left: 0;
+  padding: 18px 18px 18px 12px;
+  align-self: stretch;
+  align-content: start;
+  border-left: 0;
+}
+.facilityCompactAside > :not(.facilityCompactAction) { justify-self: end; }
+.facilityCompactPrice b { font-size: 1.12rem; }
+.facilityCompactPrice small,
+.facilityBookingPrice small { color: #65778b; font-size: .72rem; font-weight: 750; }
+.facilityCompactPrice.isMissing,
+.facilityBookingPrice.isMissing { color: #65778b; }
+.qualityRatingBadge {
+  --quality-rating-color: #151a21;
+  display: inline-flex;
+  width: max-content;
+  max-width: 100%;
+  align-items: center;
+  padding: 5px 9px;
+  border: 1px solid var(--quality-rating-color);
+  border-radius: 999px;
+  background: #f1f3f5;
+  color: #151a21;
+  font-size: .7rem;
+  font-weight: 850;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.qualityRatingBadge-outstanding { --quality-rating-color: #3f8f00; background: #f1f8e9; color: #244d08; }
+.qualityRatingBadge-good { --quality-rating-color: #4b9700; background: #f3f9ea; color: #285407; }
+.qualityRatingBadge-requires_improvement { --quality-rating-color: #ff9800; background: #fff5e6; color: #6b3b00; }
+.qualityRatingBadge-inadequate { --quality-rating-color: #cf170b; background: #fff0ed; color: #7d160d; }
+.qualityRatingBadge-unrated { --quality-rating-color: #64748b; background: #f1f3f5; color: #334155; }
+.facilityCompactAction {
+  width: 100%;
+  min-width: 0;
+  max-width: 120px;
+  min-height: 44px;
+  padding: 9px 14px;
+  border: 1px solid var(--blue);
+  border-radius: 9px;
+  background: var(--blue);
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 800;
+  transition: background .18s ease, box-shadow .18s ease;
+}
+.facilityCompactAction:hover { background: var(--blue2); box-shadow: 0 4px 12px rgba(15, 79, 135, .16); }
+.facilityCompactAction:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+@media (max-width: 1400px) and (min-width: 981px) {
+  .facilityCompactSummary { grid-template-columns: 120px minmax(0, 1fr); }
+  .facilityCompactMedia { width: 120px; }
+  .facilityAccordionTitle { padding-inline: 12px 8px; }
+}
+
 .facilityDocumentBadge-strong-green { color: #005a32; background: #e1f2e7; }
 .facilityDocumentBadge-light-green { color: #34744a; background: #edf7ef; }
 .facilityDocumentBadge-yellow { color: #7a5100; background: #fff4d4; }
@@ -4799,7 +4730,7 @@ textarea {
 @media (max-width: 1180px) {
   .registryMapLayout,
   .registryMapLayout.hasUnlocatedPanel {
-    grid-template-columns: minmax(220px, 260px) repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(220px, 260px) repeat(2, minmax(300px, 1fr));
   }
   .registryMapLayout-list,
   .registryMapLayout-map {
@@ -4811,9 +4742,17 @@ textarea {
   .registryMapLayout,
   .registryMapLayout.hasUnlocatedPanel,
   .registryMapLayout.mapListOnly { grid-template-columns: 1fr; }
+  .registryMapLayout { grid-template-areas: "filters" "map" "results"; }
+  .registryMapLayout-list { grid-template-areas: "filters" "results"; }
+  .registryMapLayout-map { grid-template-areas: "filters" "map"; }
   .registryFiltersPanel { height: auto; overflow: visible; }
+  .registryMapColumn { position: relative; top: auto; }
+  .registryResults { position: static; top: auto; }
   .registryFiltersPanel .registryToolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .registryFiltersPanel .registryPriceRange { grid-column: 1 / -1; }
+  .registryAdvancedFilters { grid-column: 1 / -1; }
+  .registryAttributeGroups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .registryAttributeGroups label { font-size: .82rem; }
   .registryFiltersPanel .mapModes { max-width: 360px; }
   .registryQuickSummary {
     grid-template-columns: repeat(4, minmax(140px, 170px));
@@ -4845,7 +4784,16 @@ textarea {
   .registrySearchFirst .registrySearchBox { height: 62px; grid-template-columns: 48px minmax(0, 1fr); }
   .registrySearchFirst .registrySearchBox input { height: 58px; font-size: .96rem; }
   .registryFiltersPanel .registryToolbar { grid-template-columns: 1fr; }
+  .registryAttributeGroups { grid-template-columns: 1fr; }
+  .registryAttributeGroups label { font-size: .88rem; }
+  .registryAttributeGroups legend { font-size: .9rem; }
+  .registryFiltersPanel .registryToolbar select { font-size: .9rem; }
   .registryFiltersPanel .mapModes { max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .registryAttributeGroups label { transition: none; }
+  .registryAttributeGroups label:hover { transform: none; }
 }
 
 .teamInbox { max-width: 1280px; margin: 0 auto; }
@@ -6212,7 +6160,7 @@ textarea {
 .registryFiltersPanel {
   display: flex;
   flex-direction: column;
-  height: 720px;
+  height: auto;
 }
 
 .personDecidesCard {
@@ -7348,7 +7296,6 @@ select:not(:disabled) {
 .facilityProfilePrice strong { display: block; }
 .facilityProfilePrice strong { font-size: clamp(1.2rem, 2vw, 1.65rem); line-height: 1.2; }
 .facilityProfilePrice span { margin-bottom: 5px; color: var(--muted); font-size: .75rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
-.facilityProfilePrice .qualityRatingBadge { width: max-content; margin-top: 12px; }
 
 .facilityTraceability {
   margin-top: 16px;
@@ -9535,33 +9482,20 @@ select:not(:disabled) {
 .facilityBookingPhotoPlaceholder small { font-size: .68rem; font-weight: 750; }
 .facilityBookingContent { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; }
 .facilityBookingContent h3 { margin: 1px 0 3px; color: #133d36; font-size: 1.13rem; line-height: 1.25; }
-.facilityBookingLocation { margin: 0; color: #506d64; font-size: .86rem; font-weight: 700; }
-.facilityBookingContent .facilityBadges { margin-top: 10px; }
-.facilityBookingFacts { display: flex; flex-wrap: wrap; gap: 6px 12px; margin-top: 12px; color: #314d44; font-size: .8rem; line-height: 1.35; }
-.facilityBookingFacts span + span { padding-left: 12px; border-left: 1px solid #cddbd4; }
-.facilityBookingDescription {
-  display: -webkit-box;
-  max-width: 68ch;
-  margin: 10px 0 0;
-  overflow: hidden;
-  color: #4d665e;
-  font-size: .82rem;
-  line-height: 1.42;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
+.facilityBookingMeta { margin: 3px 0 0; color: #506d64; font-size: .8rem; line-height: 1.35; }
+.facilityBookingContent .facilityBadges { margin-top: auto; padding-top: 10px; }
 .facilityBookingAside {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 16px;
   min-width: 0;
   padding-left: 18px;
-  border-left: 1px solid #e0e9e4;
+  border-left: 0;
   text-align: right;
 }
-.facilityBookingAsideFooter { display: grid; justify-items: end; gap: 10px; margin-top: auto; }
+.facilityBookingAsideFooter { display: grid; justify-items: end; gap: 10px; margin-top: 0; }
 .facilityBookingPrice { color: #173f68; }
 .facilityBookingPrice strong { font-size: 1.18rem; line-height: 1.18; }
 .facilityBookingAction {
@@ -9886,27 +9820,29 @@ select:not(:disabled) {
 }
 
 @media (max-width: 640px) {
-  .facilityCompactMedia { flex-basis: 92px; width: 92px; min-height: 116px; }
+  .facilityCompactLayout { grid-template-columns: 1fr; }
+  .facilityCompactMedia { width: 96px; min-height: 116px; }
   .facilityAccordionTitle { padding: 14px 9px 14px 12px; }
-  .facilityAccordionChevron { margin-right: 9px; }
-  .facilityAccordionHeader {
+  .facilityCompactSummary {
     display: grid;
-    grid-template-columns: 92px minmax(0, 1fr) auto;
+    grid-template-columns: 96px minmax(0, 1fr);
     align-items: center;
   }
-  .facilityCompactMedia { grid-row: 1 / 3; }
+  .facilityCompactMedia { grid-row: auto; }
   .facilityCompactAside {
-    grid-column: 2;
-    justify-self: end;
-    margin: 0 9px 12px 12px;
+    grid-column: auto;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: end;
+    justify-self: stretch;
+    margin: 0;
+    padding: 12px;
+    border-top: 1px solid #d4e0da;
+    border-left: 0;
   }
-  .facilityAccordionChevron { grid-column: 3; grid-row: 1 / 3; }
   .facilityBookingCard { grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding: 11px; }
   .facilityBookingMedia { min-height: 104px; }
   .facilityBookingContent h3 { font-size: .98rem; }
-  .facilityBookingFacts { margin-top: 8px; font-size: .74rem; }
-  .facilityBookingFacts span + span { padding-left: 0; border-left: 0; }
-  .facilityBookingDescription { display: none; }
   .registryViewSwitcher {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));

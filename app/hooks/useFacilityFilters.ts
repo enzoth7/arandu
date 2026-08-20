@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   departmentOptions,
   filterFacilities,
@@ -10,20 +10,47 @@ import {
 } from "../../lib/facility-search.mjs";
 import { facilityHaystack } from "../components/facility-presentation";
 import { canonicalDepartment, foldText } from "../../lib/uruguay.mjs";
+import {
+  emptyFacilityAttributeFilters,
+  hasFacilityAttributeFilters,
+  normalizeFacilityAttributeFilters,
+  type FacilityAttributeFilterKey,
+  type FacilityAttributeFilters,
+} from "../../lib/facility-filter-options.mjs";
 import type { Facility, FacilityQualityFilter, FacilityStatus } from "../components/map-types";
 
 export type MonthlyPriceRange = { min: number; max: number };
 export type PriceOrder = "" | "asc" | "desc";
 export type PhotoAvailability = "" | "with" | "without";
+export type RegistryFacilityStatus = "" | Exclude<FacilityStatus, "app">;
 
 export function useFacilityFilters(facilities: Facility[]) {
   const [query, setQuery] = useState("");
   const [department, setDepartment] = useState("");
   const [monthlyPriceRange, setMonthlyPriceRange] = useState<MonthlyPriceRange | null>(null);
-  const [status, setStatus] = useState<"" | FacilityStatus>("");
+  const [status, setStatus] = useState<RegistryFacilityStatus>("");
   const [qualityRating, setQualityRating] = useState<FacilityQualityFilter>("");
   const [priceOrder, setPriceOrder] = useState<PriceOrder>("");
   const [photoAvailability, setPhotoAvailability] = useState<PhotoAvailability>("");
+  const [attributeFilters, setAttributeFiltersState] = useState<FacilityAttributeFilters>(
+    emptyFacilityAttributeFilters,
+  );
+
+  const setAttributeFilters = useCallback((value: unknown) => {
+    setAttributeFiltersState(normalizeFacilityAttributeFilters(value));
+  }, []);
+
+  const toggleAttributeFilter = useCallback((group: FacilityAttributeFilterKey, option: string) => {
+    setAttributeFiltersState((current) => {
+      const selected = current[group];
+      return {
+        ...current,
+        [group]: selected.includes(option)
+          ? selected.filter((value) => value !== option)
+          : [...selected, option],
+      };
+    });
+  }, []);
 
   const haystacks = useMemo(() => {
     const map = new Map<string, string>();
@@ -70,13 +97,14 @@ export function useFacilityFilters(facilities: Facility[]) {
         status,
         qualityRating,
         photoAvailability,
+        attributeFilters,
         monthlyPriceMin: activeMonthlyPriceRange?.min,
         monthlyPriceMax: activeMonthlyPriceRange?.max,
         canonicalDepartmentOf: canonicalDepartment,
       },
       haystackFor,
     ),
-    [facilities, foldedQuery, status, qualityRating, photoAvailability, activeMonthlyPriceRange, haystackFor],
+    [facilities, foldedQuery, status, qualityRating, photoAvailability, attributeFilters, activeMonthlyPriceRange, haystackFor],
   );
   const matched = useMemo(
     () => filterFacilities(
@@ -107,16 +135,18 @@ export function useFacilityFilters(facilities: Facility[]) {
         department,
         qualityRating,
         photoAvailability,
+        attributeFilters,
         monthlyPriceMin: activeMonthlyPriceRange?.min,
         monthlyPriceMax: activeMonthlyPriceRange?.max,
         canonicalDepartmentOf: canonicalDepartment,
       },
       haystackFor,
     ),
-    [facilities, foldedQuery, department, qualityRating, photoAvailability, activeMonthlyPriceRange, haystackFor],
+    [facilities, foldedQuery, department, qualityRating, photoAvailability, attributeFilters, activeMonthlyPriceRange, haystackFor],
   );
   const hasActiveFilters = Boolean(
-    query || department || status || qualityRating || activeMonthlyPriceRange || priceOrder || photoAvailability,
+    query || department || status || qualityRating || activeMonthlyPriceRange || priceOrder || photoAvailability
+      || hasFacilityAttributeFilters(attributeFilters),
   );
 
   function reset() {
@@ -127,6 +157,7 @@ export function useFacilityFilters(facilities: Facility[]) {
     setQualityRating("");
     setPriceOrder("");
     setPhotoAvailability("");
+    setAttributeFiltersState(emptyFacilityAttributeFilters());
   }
 
   return {
@@ -134,11 +165,13 @@ export function useFacilityFilters(facilities: Facility[]) {
     department, setDepartment,
     monthlyPriceBounds,
     monthlyPriceRange: monthlyPriceRange ?? monthlyPriceBounds,
+    activeMonthlyPriceRange,
     setMonthlyPriceRange,
     status, setStatus,
     qualityRating, setQualityRating,
     priceOrder, setPriceOrder,
     photoAvailability, setPhotoAvailability,
+    attributeFilters, setAttributeFilters, toggleAttributeFilter,
     visible,
     departments,
     summaryScope,

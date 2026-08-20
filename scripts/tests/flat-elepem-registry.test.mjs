@@ -9,6 +9,7 @@ import { assertMetrics } from "../verify-flat-elepem.mjs";
 const migrationPath = new URL("../../supabase/migrations/20260813120000_flatten_elepem_registry.sql", import.meta.url);
 const fictitiousPriceCleanupPath = new URL("../../supabase/migrations/20260814170000_remove_fictitious_prices.sql", import.meta.url);
 const casaPrototypePricePath = new URL("../../supabase/migrations/20260814180000_restore_casa_costa_serena_prototype_price.sql", import.meta.url);
+const filterAttributesPath = new URL("../../supabase/migrations/20260820202413_add_elepem_filter_attributes.sql", import.meta.url);
 const cleanupPath = new URL("../../supabase/maintenance/20260813130000_drop_legacy_elepem_registry.sql", import.meta.url);
 const registryPath = new URL("../../lib/facility-registry.ts", import.meta.url);
 
@@ -48,6 +49,25 @@ test("el prototipo restaura únicamente el precio aislado de Casa Costa Serena",
   assert.match(source, /id <> 'DEMO-ELEPEM-001'[\s\S]*monthly_price_from_uyu is not null/i);
   assert.match(source, /precio_mensual_uyu is not null and precio_fuente_url is null/i);
   assert.doesNotMatch(source, /update public\.elepem\s+set/i);
+});
+
+test("los atributos filtrables quedan centrales y sólo el demo recibe valores iniciales", async () => {
+  const migration = await readFile(filterAttributesPath, "utf8");
+  const registry = await readFile(registryPath, "utf8");
+  for (const column of [
+    "modalidades_estadia",
+    "habitacion_privacidad",
+    "entorno",
+    "accesibilidad_movilidad",
+    "cuidados_profesionales",
+    "vida_cotidiana_vinculos",
+  ]) {
+    assert.match(migration, new RegExp(`add column ${column} text\\[\\]`, "i"));
+    assert.match(registry, new RegExp(`registry\\.${column}`, "i"));
+  }
+  assert.match(migration, /update arandu_demo\.facilities[\s\S]*DEMO-ELEPEM-001/i);
+  assert.doesNotMatch(migration, /update public\.elepem\s+set/i);
+  assert.match(migration, /array_position\(modalidades_estadia, null\) is null/i);
 });
 
 test("la limpieza exige archivo trazable y un punto de restauración completo", async () => {

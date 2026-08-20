@@ -1,4 +1,5 @@
 import type { Facility, FacilityQualityFilter, FacilityStatus } from "../app/components/map-types";
+import type { FacilityAttributeFilters } from "./facility-filter-options.mjs";
 
 export type SortOrder = "name" | "department" | "stage";
 
@@ -11,6 +12,7 @@ export type FacilitySearchCriteria = {
   status?: "" | FacilityStatus;
   qualityRating?: FacilityQualityFilter;
   photoAvailability?: "" | "with" | "without";
+  attributeFilters?: Partial<FacilityAttributeFilters>;
   canonicalDepartmentOf?: (value: string) => string;
 };
 

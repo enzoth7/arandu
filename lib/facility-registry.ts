@@ -24,6 +24,12 @@ type FlatElepemRow = Record<string, unknown> & {
   precio_fecha: string | null;
   precio_incluye: string[];
   precio_es_demo: boolean;
+  modalidades_estadia: NonNullable<Facility["stayTypes"]> | null;
+  habitacion_privacidad: NonNullable<Facility["roomPrivacyFeatures"]> | null;
+  entorno: NonNullable<Facility["environmentFeatures"]> | null;
+  accesibilidad_movilidad: NonNullable<Facility["accessibilityFeatures"]> | null;
+  cuidados_profesionales: NonNullable<Facility["careServices"]> | null;
+  vida_cotidiana_vinculos: NonNullable<Facility["dailyLifeFeatures"]> | null;
   msp_habilitado: boolean;
   mides_certificado: boolean;
   situacion: "habilitacion_msp" | "certificado_social_mides" | "situacion_no_confirmada";
@@ -157,6 +163,12 @@ function toFacility(row: FlatElepemRow): Facility {
     monthlyPriceAsOf: row.precio_fecha || undefined,
     monthlyPriceIncludes: row.precio_incluye,
     priceIsDemo: row.precio_es_demo,
+    stayTypes: row.modalidades_estadia,
+    roomPrivacyFeatures: row.habitacion_privacidad,
+    environmentFeatures: row.entorno,
+    accessibilityFeatures: row.accesibilidad_movilidad,
+    careServices: row.cuidados_profesionales,
+    dailyLifeFeatures: row.vida_cotidiana_vinculos,
     createdAt: isoDate(row.created_at),
     updatedAt: isoDate(row.updated_at),
   };
@@ -186,6 +198,12 @@ export async function loadPublicFacilities(): Promise<{ facilities: Facility[]; 
       registry.precio_fecha,
       registry.precio_incluye,
       registry.precio_es_demo,
+      registry.modalidades_estadia,
+      registry.habitacion_privacidad,
+      registry.entorno,
+      registry.accesibilidad_movilidad,
+      registry.cuidados_profesionales,
+      registry.vida_cotidiana_vinculos,
       registry.msp_habilitado,
       registry.mides_certificado,
       registry.situacion,
@@ -403,6 +421,12 @@ type DemoMapFacilityRow = {
   monthly_price_from_uyu: number | null;
   price_as_of: string | null;
   price_includes: string[];
+  modalidades_estadia: NonNullable<Facility["stayTypes"]>;
+  habitacion_privacidad: NonNullable<Facility["roomPrivacyFeatures"]>;
+  entorno: NonNullable<Facility["environmentFeatures"]>;
+  accesibilidad_movilidad: NonNullable<Facility["accessibilityFeatures"]>;
+  cuidados_profesionales: NonNullable<Facility["careServices"]>;
+  vida_cotidiana_vinculos: NonNullable<Facility["dailyLifeFeatures"]>;
   image_url: string;
   approved_photo_paths: string[] | null;
   approved_remove_current_photo: boolean | null;
@@ -418,7 +442,11 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
         facility.id, facility.name, facility.department, facility.locality,
         facility.address, facility.description, facility.phone, facility.email,
         facility.lat, facility.lng, facility.monthly_price_from_uyu,
-        facility.price_as_of, facility.price_includes, facility.image_url,
+        facility.price_as_of, facility.price_includes,
+        facility.modalidades_estadia, facility.habitacion_privacidad,
+        facility.entorno, facility.accesibilidad_movilidad,
+        facility.cuidados_profesionales, facility.vida_cotidiana_vinculos,
+        facility.image_url,
         approved_photos.photo_paths as approved_photo_paths,
         approved_photos.remove_current_photo as approved_remove_current_photo,
         facility.created_at, facility.updated_at
@@ -494,6 +522,12 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
         monthlyPriceIncludes: row.price_includes,
         priceIsDemo: row.monthly_price_from_uyu !== null,
         qualityRating: "good",
+        stayTypes: row.modalidades_estadia,
+        roomPrivacyFeatures: row.habitacion_privacidad,
+        environmentFeatures: row.entorno,
+        accessibilityFeatures: row.accesibilidad_movilidad,
+        careServices: row.cuidados_profesionales,
+        dailyLifeFeatures: row.vida_cotidiana_vinculos,
         createdAt: isoDate(row.created_at),
         updatedAt: isoDate(row.updated_at),
         isDemo: true,

@@ -1,8 +1,10 @@
+import type { FacilityAttributeFilters } from "./facility-filter-options.mjs";
+
 export type PublicRegistryView = "list" | "map" | "mixed";
 export type PublicRegistryStatus = "" | "habilitado" | "mides" | "verificar";
-export type PublicRegistryQualityRating = "" | "outstanding" | "good" | "requires_improvement" | "inadequate" | "unrated";
 export type PublicRegistryPriceOrder = "" | "asc" | "desc";
 export type PublicRegistryPhotoAvailability = "" | "with" | "without";
+export type PublicRegistryQualityRating = "" | "outstanding" | "good" | "requires_improvement" | "inadequate" | "unrated";
 
 export type PublicRegistryViewport = {
   center: [number, number];
@@ -20,9 +22,11 @@ export type PublicRegistryState = {
     qualityRating: PublicRegistryQualityRating;
     priceOrder: PublicRegistryPriceOrder;
     photoAvailability: PublicRegistryPhotoAvailability;
+    attributeFilters: FacilityAttributeFilters;
   };
   registryView: PublicRegistryView;
   selectedId: string | null;
+  mapAreaActive: boolean;
   scroll: {
     windowY: number;
     resultsY: number;
@@ -35,3 +39,9 @@ export const PUBLIC_REGISTRY_STATE_KEY: "arandu:public-registry-return:v1";
 export const PUBLIC_REGISTRY_STATE_MAX_AGE_MS: number;
 
 export function parsePublicRegistryState(raw: string | null, now?: number): PublicRegistryState | null;
+export function hasPublicRegistryFilterParams(value: string | URLSearchParams): boolean;
+export function parsePublicRegistrySearchParams(value: string | URLSearchParams): PublicRegistryState["filters"];
+export function serializePublicRegistrySearchParams(
+  filters: PublicRegistryState["filters"],
+  currentValue?: string | URLSearchParams,
+): URLSearchParams;
