@@ -8,9 +8,7 @@ import {
   EXPERIENCE_DRAFT_VERSION,
   EXPERIENCE_QUESTIONS,
   EXPERIENCE_SCALE_OPTIONS,
-  PARTICIPATION_OPTIONS,
   RELATIONSHIP_OPTIONS,
-  RESPONDENT_OPTIONS,
   sanitizeExperienceDraft,
   scoreExperienceAnswers,
   type ExperienceAnswerValue,
@@ -67,12 +65,6 @@ const CATEGORY_LABELS: Record<ExperienceCategory, string> = {
   inadequate: "Inadecuado",
 };
 
-const SOURCE_LABELS = {
-  care_system_2019: "Sistema de Cuidados (2019)",
-  elepem_movement_2026: "Movimiento ELEPEM (2026)",
-  arandu_methodology_v1: "Criterio metodológico de Arandú",
-} as const;
-
 const RESPONDENT_AUTOFILL: Partial<Record<RelationshipValue, RespondentValue>> = {
   resident: "current_resident",
   family_referent_friend_neighbor: "family_or_close_person",
@@ -116,7 +108,6 @@ function QuestionBlock({
   onClear: (questionId: ExperienceQuestionId) => void;
 }) {
   const questions = EXPERIENCE_QUESTIONS.filter((question) => question.dimensionId === dimension.id);
-  const answered = questions.filter((question) => answers[question.id]).length;
 
   return <div className={styles.questionBlock}>
     <div className={styles.blockStatus} aria-live="polite">

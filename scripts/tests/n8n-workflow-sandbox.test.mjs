@@ -2,7 +2,10 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-const workflowPath = new URL("../../n8n/workflows/arandu-whatsapp-sandbox.json", import.meta.url);
+const workflowPath = new URL(
+  "../../../Información/n8n/workflows/arandu-whatsapp-sandbox.json",
+  import.meta.url,
+);
 const chatwootRoutePath = new URL("../../app/api/integrations/chatwoot/webhook/route.ts", import.meta.url);
 const chatwootAuthPath = new URL("../../lib/chatwoot-webhook-auth.mjs", import.meta.url);
 const routePath = new URL("../../app/api/integrations/n8n/intake-reports/route.ts", import.meta.url);

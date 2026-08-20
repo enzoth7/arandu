@@ -8,6 +8,9 @@ out/
 .agents/
 .vscode/
 .local-backups/
+.tmp/
+scratch/
+*.log
 
 
 # environment files
