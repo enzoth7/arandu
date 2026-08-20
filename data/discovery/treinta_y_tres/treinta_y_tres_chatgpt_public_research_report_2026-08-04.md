@@ -134,7 +134,7 @@ treinta_y_tres_chatgpt_search_log_2026-08-04.md
 ## Prompt preparado para Codex
 
 ```text
-Read AGENTS.md and docs/PLAN_NACIONAL_DESCUBRIMIENTO_ELEPEM.md.
+Read AGENTS.md.
 
 Use: data/discovery/treinta_y_tres/treinta_y_tres_chatgpt_public_candidates_2026-08-04.json
 

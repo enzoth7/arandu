@@ -158,7 +158,7 @@ durazno_chatgpt_search_log_2026-08-04.md
 ## Prompt preparado para Codex
 
 ```text
-Read AGENTS.md and docs/PLAN_NACIONAL_DESCUBRIMIENTO_ELEPEM.md.
+Read AGENTS.md.
 
 Use:
 
