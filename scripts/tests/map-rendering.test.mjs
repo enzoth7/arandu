@@ -9,11 +9,19 @@ import {
   serializePublicRegistrySearchParams,
 } from "../../lib/public-registry-state.mjs";
 import { emptyFacilityAttributeFilters } from "../../lib/facility-filter-options.mjs";
+import {
+  formatPublicFacilityCode,
+  parsePublicFacilityCode,
+  publicFacilityPath,
+} from "../../lib/public-facility-code.mjs";
 
 const streetMapPath = new URL("../../app/components/StreetMap.tsx", import.meta.url);
 const leafletHookPath = new URL("../../app/hooks/useLeafletMap.ts", import.meta.url);
 const globalStylesPath = new URL("../../app/globals.css", import.meta.url);
 const registryPath = new URL("../../app/components/UruguayRegistry.tsx", import.meta.url);
+const facilityProfilePath = new URL("../../app/components/FacilityProfile.tsx", import.meta.url);
+const facilityPagePath = new URL("../../app/(publico)/elepem/[codigo]/page.tsx", import.meta.url);
+const publicScrollResetPath = new URL("../../app/components/PublicScrollReset.tsx", import.meta.url);
 const photoCarouselPath = new URL("../../app/components/FacilityPhotoCarousel.tsx", import.meta.url);
 const filterHookPath = new URL("../../app/hooks/useFacilityFilters.ts", import.meta.url);
 const registryLoaderPath = new URL("../../lib/facility-registry.ts", import.meta.url);
@@ -152,20 +160,19 @@ test("el padrón público consulta Supabase sin una ventana de caché", async ()
 });
 
 test("las listas muestran las denominaciones institucionales completas", async () => {
-  const [registrySource, residencialesFormSource] = await Promise.all([
+  const [registrySource, facilityProfileSource, residencialesFormSource] = await Promise.all([
     readFile(registryPath, "utf8"),
+    readFile(facilityProfilePath, "utf8"),
     readFile(residencialesFormPath, "utf8"),
   ]);
 
-  for (const source of [registrySource, residencialesFormSource]) {
-    assert.match(source, /label: "Habilitado MSP"/);
-    assert.match(source, /label: "Certificado Social MIDES"/);
-    assert.doesNotMatch(source, /label: "Habilitado(?:s)?",/);
-    assert.doesNotMatch(source, /label: "Certificado(?:s)?",/);
-  }
+  assert.match(`${registrySource}\n${facilityProfileSource}`, /label: "Habilitación MSP"/);
+  assert.match(`${registrySource}\n${facilityProfileSource}`, /label: "Certificado social MIDES"/);
+  assert.match(residencialesFormSource, /label: "Habilitado MSP"/);
+  assert.match(residencialesFormSource, /label: "Certificado Social MIDES"/);
 });
 
-test("el registro conserva filtros, scroll, selección y viewport con un snapshot versionado", async () => {
+test("el registro conserva filtros, selección y viewport con un snapshot versionado", async () => {
   const now = Date.UTC(2026, 7, 15, 12, 0, 0);
   const snapshot = {
     version: 1,
@@ -268,7 +275,6 @@ test("el registro conserva filtros, scroll, selección y viewport con un snapsho
   assert.match(registrySource, /lastResultsScrollYRef/);
   assert.match(registrySource, /mapViewportRef/);
   assert.match(registrySource, /persistenceReadyRef/);
-  assert.match(registrySource, /visibilitychange/);
   assert.match(registrySource, /suppressAutoScroll=\{restoringNavigation\}/);
   assert.match(registrySource, /Algunos residenciales están incluidos tanto en la lista de Habilitados como en la de Certificados\./);
 });
@@ -301,39 +307,39 @@ test("los filtros relevantes se comparten por URL y toleran valores retirados", 
   assert.equal(parsePublicRegistrySearchParams("?clasificacion=valor_retirado").qualityRating, "");
 });
 
-test("el registro captura windowY antes de una navegación interna de Next", async () => {
-  const source = await readFile(registryPath, "utf8");
+test("recargar o volver inicia arriba sin reponer el scroll anterior", async () => {
+  const [source, page, scrollReset] = await Promise.all([
+    readFile(registryPath, "utf8"),
+    readFile(facilityPagePath, "utf8"),
+    readFile(publicScrollResetPath, "utf8"),
+  ]);
 
-  assert.match(source, /lastWindowScrollYRef/);
-  assert.match(source, /navigationWindowYRef/);
-  assert.match(source, /document\.addEventListener\("click", captureInternalNavigation, true\)/);
-  assert.match(source, /event\.button !== 0[\s\S]*event\.metaKey[\s\S]*event\.ctrlKey[\s\S]*event\.shiftKey[\s\S]*event\.altKey/);
-  assert.match(source, /anchor\.hasAttribute\("download"\)/);
-  assert.match(source, /browsingContext && browsingContext !== "_self"/);
-  assert.match(source, /destination\.origin !== current\.origin/);
-  assert.match(source, /destination\.pathname === current\.pathname && destination\.search === current\.search/);
-  assert.match(source, /navigationWindowYRef\.current = windowY;[\s\S]*saveNavigationState\(windowY\)/);
-  assert.match(source, /window\.addEventListener\("beforeunload", saveLastPosition\)/);
-  assert.match(source, /saveNavigationState\(navigationWindowYRef\.current \?\? lastWindowScrollYRef\.current\)/);
-  assert.match(source, /document\.removeEventListener\("click", captureInternalNavigation, true\)/);
+  assert.match(scrollReset, /window\.history\.scrollRestoration = "manual"/);
+  assert.match(scrollReset, /window\.location\.pathname !== "\/"/);
+  assert.match(scrollReset, /window\.location\.hash === "#registro"/);
+  assert.match(scrollReset, /window\.addEventListener\("pageshow", resetHomeScroll\)/);
+  assert.match(scrollReset, /window\.addEventListener\("popstate", resetHomeScroll\)/);
+  assert.match(scrollReset, /window\.scrollTo\(\{ top: 0, left: 0, behavior: "auto" \}\)/);
+  assert.match(source, /scroll: \{[\s\S]{0,100}windowY: 0,[\s\S]{0,100}resultsY: 0/);
+  assert.doesNotMatch(source, /RESTORE_SCROLL_|scroll\.windowY|scroll\.resultsY/);
+  assert.match(page, /<Link href="\/" className="facilityPermanentBack">/);
 });
 
-test("la restauración reintenta ambos scrolls hasta estabilizar el layout", async () => {
-  const source = await readFile(registryPath, "utf8");
+test("Ver más no selecciona ni desplaza el mapa y la tarjeta sí puede señalarlo", async () => {
+  const [source, mapSource] = await Promise.all([
+    readFile(registryPath, "utf8"),
+    readFile(streetMapPath, "utf8"),
+  ]);
+  const openDetailsStart = source.indexOf("function openFacilityDetails");
+  const openDetailsSource = source.slice(openDetailsStart, source.indexOf("\n\n  return <>", openDetailsStart));
 
-  assert.match(source, /RESTORE_SCROLL_MAX_ATTEMPTS = 30/);
-  assert.match(source, /RESTORE_SCROLL_RETRY_MS = 100/);
-  assert.match(source, /RESTORE_SCROLL_STABLE_PASSES = 2/);
-  assert.match(source, /resultsNode\.scrollTop = scroll\.resultsY/);
-  assert.match(source, /window\.scrollTo\(\{ top: scroll\.windowY, left: 0, behavior: "auto" \}\)/);
-  assert.match(source, /document\.documentElement\.scrollHeight/);
-  assert.match(source, /currentResultsNode\?\.scrollHeight/);
-  assert.match(source, /stablePasses >= RESTORE_SCROLL_STABLE_PASSES/);
-  assert.match(source, /attempts >= RESTORE_SCROLL_MAX_ATTEMPTS/);
-  assert.match(source, /persistenceReadyRef\.current = true;[\s\S]*setRestoringNavigation\(false\);[\s\S]*saveNavigationState\(lastWindowScrollYRef\.current\)/);
-  assert.match(source, /window\.clearTimeout\(retryTimer\)/);
-  assert.match(source, /window\.cancelAnimationFrame\(applyFrame\)/);
-  assert.match(source, /window\.cancelAnimationFrame\(verifyFrame\)/);
+  assert.doesNotMatch(openDetailsSource, /setSelectedId/);
+  assert.doesNotMatch(source, /mapColumnRef|scrollIntoView\(\{ behavior: "smooth", block: "start" \}\)/);
+  assert.match(source, /className="facilityCardSelect"[\s\S]{0,240}onClick=\{\(\) => onSelect\(facility\)\}/);
+  assert.match(source, /onMouseEnter=\{\(\) => onHighlight\(facility\.id\)\}/);
+  assert.match(source, /highlightedId=\{highlightedId\}/);
+  assert.match(mapSource, /facilityId === selectedId \|\| facilityId === highlightedId/);
+  assert.doesNotMatch(mapSource, /flyToPoint\([^\n]*highlightedId/);
 });
 
 test("la capa pública conserva Casa Costa Serena como referencia violeta y datos de filtros", async () => {
@@ -394,15 +400,17 @@ test("la política de contenido permite las fotografías públicas de Supabase",
 });
 
 test("la ficha permite salir y las tarjetas muestran precio y clasificación", async () => {
-  const [source, styles] = await Promise.all([
+  const [source, profile, page, styles] = await Promise.all([
     readFile(registryPath, "utf8"),
+    readFile(facilityProfilePath, "utf8"),
+    readFile(facilityPagePath, "utf8"),
     readFile(globalStylesPath, "utf8"),
   ]);
   assert.doesNotMatch(source, /Precio mensual demostrativo|Precio demostrativo|· DEMO/);
   assert.match(source, /aria-label=\{hasPublicPrice \? `Precio mensual:/);
   assert.match(source, /Precio no informado/);
-  assert.match(source, /function FacilityQualityBadge/);
-  assert.match(source, /Sin calificar/);
+  assert.match(profile, /function FacilityQualityBadge/);
+  assert.match(profile, /Sin calificar/);
   assert.match(source, /facilityCompactPrice/);
   assert.match(source, /onOpenDetails=\{openFacilityDetails\}/);
   assert.doesNotMatch(source, /!facility\.isDemo && typeof facility\.monthlyPriceUyu/);
@@ -410,7 +418,10 @@ test("la ficha permite salir y las tarjetas muestran precio y clasificación", a
   assert.match(source, /event\.target === event\.currentTarget/);
   assert.match(source, /dialog\.showModal\(\)/);
   assert.match(source, /onClose=\{\(event\) => \{[\s\S]{0,100}event\.target === event\.currentTarget/);
-  assert.match(source, /<FacilityPhotoCarousel facilityName=\{facility\.name\}/);
+  assert.match(profile, /<FacilityPhotoCarousel facilityName=\{facility\.name\}/);
+  assert.match(page, /Volver a resultados/);
+  assert.match(page, /resolvePublicFacilityRoute/);
+  assert.match(source, /router\.push\(publicFacilityPath\(facility\.registryId\)\)/);
   assert.match(styles, /\.facilityMapDialogHeader \{[\s\S]*position: sticky/);
 });
 
@@ -459,7 +470,7 @@ test("la vista mixta es estática y muestra datos, clasificación, precio y acci
 
 test("la ficha muestra todos los medios de contacto públicos disponibles", async () => {
   const [source, styles, registryLoader] = await Promise.all([
-    readFile(registryPath, "utf8"),
+    readFile(facilityProfilePath, "utf8"),
     readFile(globalStylesPath, "utf8"),
     readFile(registryLoaderPath, "utf8"),
   ]);
@@ -471,10 +482,19 @@ test("la ficha muestra todos los medios de contacto públicos disponibles", asyn
   assert.match(source, /facility\.facebookUrls/);
   assert.match(source, /<FacilityContactChannels facility=\{facility\} \/>/);
   assert.match(source, /target: "_blank", rel: "noreferrer"/);
-  assert.match(styles, /\.facilityProfileContactChannels \{/);
   assert.match(styles, /\.facilityContactChannelList \{/);
-  assert.match(registryLoader, /contactPhone: row\.phone \|\| undefined/);
-  assert.match(registryLoader, /contactEmail: row\.email \|\| undefined/);
+  assert.match(registryLoader, /contactPhone: row\.telefonos\[0\] \|\| undefined/);
+  assert.match(registryLoader, /contactEmail: row\.emails\[0\] \|\| undefined/);
+});
+
+test("cada id tiene un código ELPM y una ruta pública determinista", () => {
+  assert.equal(formatPublicFacilityCode(1), "ELPM-0001");
+  assert.equal(formatPublicFacilityCode(185), "ELPM-0185");
+  assert.equal(formatPublicFacilityCode(10_000), "ELPM-10000");
+  assert.equal(parsePublicFacilityCode("elpm-0185"), 185);
+  assert.equal(parsePublicFacilityCode("ELP-0185"), null);
+  assert.equal(parsePublicFacilityCode("ELPM-0000"), null);
+  assert.equal(publicFacilityPath(185), "/elepem/elpm-0185");
 });
 
 test("la ficha usa un carrusel accesible y abre las fotos en un visor ampliado", async () => {

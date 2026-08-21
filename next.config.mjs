@@ -55,6 +55,7 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
+  // Permite aislar compilaciones auxiliares sin compartir la caché del servidor local.
   distDir: process.env.ARANDU_NEXT_DIST_DIR || ".next",
   outputFileTracingRoot: projectRoot,
   poweredByHeader: false,

@@ -129,6 +129,7 @@ function updateMarkerSelection(marker: RenderedMarker | undefined, isSelected: b
 export default function StreetMap({
   facilities,
   selectedId,
+  highlightedId = null,
   onSelect,
   onOpenDetails,
   initialViewport = null,
@@ -138,6 +139,7 @@ export default function StreetMap({
 }: {
   facilities: Facility[];
   selectedId: string | null;
+  highlightedId?: string | null;
   onSelect: (id: string) => void;
   onOpenDetails?: (id: string) => void;
   initialViewport?: RegistryMapViewport | null;
@@ -160,6 +162,7 @@ export default function StreetMap({
   const fittedKeyRef = useRef("");
   const previousSelectedIdRef = useRef<string | null>(null);
   const styledSelectedIdRef = useRef<string | null>(null);
+  const styledHighlightedIdRef = useRef<string | null>(null);
   const renderedMarkersRef = useRef(new Map<string, RenderedMarker>());
   const onSelectRef = useRef(onSelect);
   const onOpenDetailsRef = useRef(onOpenDetails);
@@ -275,15 +278,25 @@ export default function StreetMap({
     }
   }, [mapRef, mappedFacilities, markersRef, viewportRevision]);
 
-  // La selección sólo modifica los dos marcadores afectados.
+  // La selección y el hover sólo modifican los marcadores afectados. El hover
+  // no cambia el centro ni el zoom del mapa.
   useEffect(() => {
-    const previousId = styledSelectedIdRef.current;
-    if (previousId !== selectedId) {
-      updateMarkerSelection(renderedMarkersRef.current.get(previousId || ""), false);
+    const affectedIds = new Set([
+      styledSelectedIdRef.current,
+      styledHighlightedIdRef.current,
+      selectedId,
+      highlightedId,
+    ]);
+    for (const facilityId of affectedIds) {
+      if (!facilityId) continue;
+      updateMarkerSelection(
+        renderedMarkersRef.current.get(facilityId),
+        facilityId === selectedId || facilityId === highlightedId,
+      );
     }
-    updateMarkerSelection(renderedMarkersRef.current.get(selectedId || ""), true);
     styledSelectedIdRef.current = selectedId;
-  }, [selectedId]);
+    styledHighlightedIdRef.current = highlightedId;
+  }, [highlightedId, selectedId, viewportRevision]);
 
   // Encuadrar sólo en la carga inicial o al cambiar los filtros.
   useEffect(() => {

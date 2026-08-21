@@ -129,8 +129,13 @@ function toFacility(row: FlatElepemRow): Facility {
     ...(!row.approved_remove_current_photo && row.imagen_url ? [row.imagen_url] : []),
   ];
   const providers = [...new Set(row.fuentes_proveedores.map((item) => String(item || "").trim()).filter(Boolean))];
+  const registryId = Number(row.canonical_id);
+  if (!Number.isSafeInteger(registryId) || registryId <= 0) {
+    throw new Error(`El ELEPEM ${row.codigo} no tiene un id primario válido.`);
+  }
   return {
     id: row.codigo,
+    registryId,
     legacyId: row.legacy_id || undefined,
     name: row.nombre,
     alternativeNames: row.nombres_alternativos,
@@ -174,9 +179,8 @@ function toFacility(row: FlatElepemRow): Facility {
   };
 }
 
-export async function loadPublicFacilities(): Promise<{ facilities: Facility[]; dataSource: string }> {
-  const rows = await querySupabaseDatabase<FlatElepemRow>(`
-    select
+const FLAT_ELEPEM_SELECT = `
+  select
       registry.id::text as canonical_id,
       registry.codigo,
       registry.legacy_id,
@@ -220,8 +224,8 @@ export async function loadPublicFacilities(): Promise<{ facilities: Facility[]; 
       approved_photos.remove_current_photo as approved_remove_current_photo,
       registry.created_at,
       registry.updated_at
-    from public.elepem as registry
-    left join lateral (
+  from public.elepem as registry
+  left join lateral (
       select
         coalesce(bool_or(publication.remove_current_photo), false) as remove_current_photo,
         coalesce(array_agg(
@@ -248,10 +252,25 @@ export async function loadPublicFacilities(): Promise<{ facilities: Facility[]; 
           order by latest.published_at desc, latest.id desc
           limit 1
         )
-    ) as approved_photos on true
+  ) as approved_photos on true
+`;
+
+export async function loadPublicFacilities(): Promise<{ facilities: Facility[]; dataSource: string }> {
+  const rows = await querySupabaseDatabase<FlatElepemRow>(`
+    ${FLAT_ELEPEM_SELECT}
     order by registry.departamento, registry.nombre, registry.codigo
   `);
   return { facilities: rows.map(toFacility), dataSource: "public.elepem" };
+}
+
+export async function loadPublicFacilityByRegistryId(registryId: number): Promise<Facility | null> {
+  if (!Number.isSafeInteger(registryId) || registryId <= 0) return null;
+  const rows = await querySupabaseDatabase<FlatElepemRow>(`
+    ${FLAT_ELEPEM_SELECT}
+    where registry.id = $1
+    limit 1
+  `, [registryId]);
+  return rows[0] ? toFacility(rows[0]) : null;
 }
 
 export async function loadAssignedFacilityProfiles(

@@ -62,8 +62,10 @@ export type FacilitySituation =
   | "demo";
 
 export type Facility = {
-  /** Stable public code. The bigint database id is kept behind the API. */
+  /** Operational key retained while legacy consumers are migrated. */
   id: string;
+  /** Primary key used to derive the canonical public ELPM code. */
+  registryId?: number;
   legacyId?: string;
   name: string;
   alternativeNames?: string[];

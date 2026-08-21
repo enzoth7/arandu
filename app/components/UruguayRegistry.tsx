@@ -2,15 +2,18 @@
 
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { CircleHelp, Globe2, Image as ImageIcon, Mail, Map as MapIcon, Phone, RotateCcw, Search, Share2, X } from "lucide-react";
-import Link from "next/link";
+import { CircleHelp, Image as ImageIcon, Map as MapIcon, RotateCcw, Search, X } from "lucide-react";
 import Image from "next/image";
-import { FacilityPhotoCarousel } from "./FacilityPhotoCarousel";
-import { FacilityExperiences } from "./FacilityExperiences";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import {
+  FacilityPrimaryStatusBadge,
+  FacilityProfile,
+  FacilityQualityBadge,
+} from "./FacilityProfile";
 import { RegistryAttributeFilters } from "./RegistryAttributeFilters";
 import {
   facilityDisplayCategory,
-  facilityDisplayLabel,
   isVerificationFacility,
 } from "./facility-presentation";
 import { canonicalDepartment } from "../../lib/uruguay.mjs";
@@ -25,6 +28,7 @@ import {
   type Facility,
   type FacilityQualityFilter,
 } from "./map-types";
+import { publicFacilityPath } from "../../lib/public-facility-code.mjs";
 import {
   PUBLIC_REGISTRY_STATE_KEY,
   PUBLIC_REGISTRY_STATE_VERSION,
@@ -40,105 +44,8 @@ const StreetMap = dynamic(() => import("./StreetMap"), {
   loading: () => <div className="streetMapLoading">Preparando el mapa con calles…</div>,
 });
 
-const RESTORE_SCROLL_MAX_ATTEMPTS = 30;
-const RESTORE_SCROLL_RETRY_MS = 100;
-const RESTORE_SCROLL_STABLE_PASSES = 2;
-const RESTORE_SCROLL_TOLERANCE_PX = 1;
-
 function formatMonthlyPrice(value: number) {
   return `UYU ${value.toLocaleString("es-UY")}`;
-}
-
-type ContactChannelKind = "phone" | "email" | "website" | "instagram" | "facebook";
-
-type ContactChannel = {
-  kind: ContactChannelKind;
-  label: string;
-  value: string;
-  href: string;
-};
-
-function uniqueContactValues(...sources: Array<readonly string[] | string | undefined>) {
-  const values: string[] = [];
-  const known = new Set<string>();
-  for (const source of sources) {
-    const items = Array.isArray(source) ? source : [source];
-    for (const item of items) {
-      if (typeof item !== "string") continue;
-      const value = item.trim();
-      const key = value.toLocaleLowerCase("es-UY");
-      if (!value || known.has(key)) continue;
-      known.add(key);
-      values.push(value);
-    }
-  }
-  return values;
-}
-
-function publicContactUrl(value: string) {
-  try {
-    const url = new URL(value);
-    return ["http:", "https:"].includes(url.protocol) ? url.toString() : null;
-  } catch {
-    return null;
-  }
-}
-
-function FacilityContactIcon({ kind }: { kind: ContactChannelKind }) {
-  const props = { "aria-hidden": true, size: 20, strokeWidth: 2 } as const;
-  if (kind === "phone") return <Phone {...props} />;
-  if (kind === "email") return <Mail {...props} />;
-  if (kind === "website") return <Globe2 {...props} />;
-  return <Share2 {...props} />;
-}
-
-function FacilityContactChannels({ facility }: { facility: Facility }) {
-  const channels: ContactChannel[] = [];
-
-  for (const value of uniqueContactValues(facility.contactPhones, facility.contactPhone)) {
-    if (/^[+()0-9\s.-]{6,32}$/.test(value)) {
-      channels.push({ kind: "phone", label: "Teléfono", value, href: `tel:${value.replace(/[()\s.-]/g, "")}` });
-    }
-  }
-  for (const value of uniqueContactValues(facility.contactEmails, facility.contactEmail)) {
-    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-      channels.push({ kind: "email", label: "Correo electrónico", value, href: `mailto:${encodeURIComponent(value)}` });
-    }
-  }
-  for (const [kind, label, values] of [
-    ["website", "Sitio web", facility.websites],
-    ["instagram", "Instagram", facility.instagramUrls],
-    ["facebook", "Facebook", facility.facebookUrls],
-  ] as const) {
-    for (const value of uniqueContactValues(values)) {
-      const href = publicContactUrl(value);
-      if (href) channels.push({ kind, label, value, href });
-    }
-  }
-
-  if (!channels.length) return null;
-
-  return <section className="facilityProfileContactChannels" aria-labelledby="facility-contact-channels-title">
-    <div className="facilityProfileContactHeading">
-      <h3 id="facility-contact-channels-title">Medios de contacto</h3>
-      <p>Información pública disponible del residencial.</p>
-    </div>
-    <ul className="facilityContactChannelList">
-      {channels.map((channel) => {
-        const isExternal = ["website", "instagram", "facebook"].includes(channel.kind);
-        return <li key={`${channel.kind}:${channel.href}`}>
-          <a
-            href={channel.href}
-            aria-label={`${channel.label}: ${channel.value}`}
-            {...(isExternal ? { target: "_blank", rel: "noreferrer" } : {})}
-          >
-            <span className="facilityContactChannelIcon"><FacilityContactIcon kind={channel.kind} /></span>
-            <span><small>{channel.label}</small><strong>{channel.value}</strong></span>
-          </a>
-        </li>;
-      })}
-    </ul>
-  </section>;
 }
 
 // El registro es presentacional: recibe las fichas ya consolidadas y no sabe de
@@ -169,6 +76,7 @@ export default function UruguayRegistry({
   showChoiceCta = false,
   persistNavigationState = false,
 }: UruguayRegistryProps) {
+  const router = useRouter();
   const registryFacilities = useMemo(
     () => facilities.filter((facility) => !facility.isDemo),
     [facilities],
@@ -208,6 +116,7 @@ export default function UruguayRegistry({
   } = useFacilityFilters(allFacilities);
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [highlightedId, setHighlightedId] = useState<string | null>(null);
   const [detailId, setDetailId] = useState<string | null>(null);
   const [activeKpiHelp, setActiveKpiHelp] = useState<string | null>(null);
   const [registryView, setRegistryView] = useState<RegistryView>("mixed");
@@ -216,14 +125,10 @@ export default function UruguayRegistry({
   const [mapResetRevision, setMapResetRevision] = useState(0);
   const [navigationRestored, setNavigationRestored] = useState(!persistNavigationState);
   const [restoringNavigation, setRestoringNavigation] = useState(persistNavigationState);
-  const mapColumnRef = useRef<HTMLDivElement | null>(null);
   const resultsScrollRef = useRef<HTMLDivElement | null>(null);
   const directFacilityHandled = useRef(false);
   const navigationRestoreHandled = useRef(false);
-  const restoredScrollRef = useRef<{ windowY: number; resultsY: number } | null>(null);
   const mapViewportRef = useRef<RegistryMapViewport | null>(null);
-  const lastWindowScrollYRef = useRef(0);
-  const navigationWindowYRef = useRef<number | null>(null);
   const lastResultsScrollYRef = useRef(0);
   const persistenceReadyRef = useRef(!persistNavigationState);
   const latestNavigationStateRef = useRef({
@@ -269,28 +174,16 @@ export default function UruguayRegistry({
   const monthlyPriceEnd = monthlyPriceBounds && monthlyPriceRange && monthlyPriceSpread > 0
     ? ((monthlyPriceRange.max - monthlyPriceBounds.min) / monthlyPriceSpread) * 100
     : 100;
-  const saveNavigationState = useCallback((windowYOverride?: number) => {
+  const saveNavigationState = useCallback(() => {
     if (!persistNavigationState || !persistenceReadyRef.current) return;
-    const windowY = Math.max(
-      0,
-      typeof windowYOverride === "number" && Number.isFinite(windowYOverride)
-        ? windowYOverride
-        : navigationWindowYRef.current ?? lastWindowScrollYRef.current,
-    );
-    const resultsY = Math.max(
-      0,
-      resultsScrollRef.current?.scrollTop ?? lastResultsScrollYRef.current,
-    );
-    lastWindowScrollYRef.current = windowY;
-    lastResultsScrollYRef.current = resultsY;
     try {
       window.localStorage.setItem(PUBLIC_REGISTRY_STATE_KEY, JSON.stringify({
         version: PUBLIC_REGISTRY_STATE_VERSION,
         savedAt: Date.now(),
         ...latestNavigationStateRef.current,
         scroll: {
-          windowY,
-          resultsY,
+          windowY: 0,
+          resultsY: 0,
         },
         mapViewport: mapViewportRef.current,
       }));
@@ -357,15 +250,11 @@ export default function UruguayRegistry({
       setRegistryView(restored.registryView);
       setSelectedId(restored.selectedId);
       setMapAreaActive(restored.mapAreaActive);
-      restoredScrollRef.current = restored.scroll;
-      lastWindowScrollYRef.current = restored.scroll.windowY;
-      lastResultsScrollYRef.current = restored.scroll.resultsY;
+      lastResultsScrollYRef.current = 0;
       mapViewportRef.current = restored.mapViewport;
-    } else {
-      lastWindowScrollYRef.current = Math.max(0, window.scrollY);
-      persistenceReadyRef.current = true;
-      setRestoringNavigation(false);
     }
+    persistenceReadyRef.current = true;
+    setRestoringNavigation(false);
     setNavigationRestored(true);
   }, [
     applyFilterState,
@@ -382,11 +271,17 @@ export default function UruguayRegistry({
     if (directFacilityHandled.current || allFacilities.length === 0) return;
     directFacilityHandled.current = true;
     const requestedId = new URLSearchParams(window.location.search).get("elepem");
-    if (requestedId && allFacilities.some((facility) => facility.id === requestedId)) {
-      setSelectedId(requestedId);
-      setDetailId(requestedId);
+    const requestedFacility = requestedId
+      ? allFacilities.find((facility) => facility.id === requestedId || facility.legacyId === requestedId)
+      : null;
+    if (requestedFacility?.registryId) {
+      setSelectedId(requestedFacility.id);
+      router.replace(publicFacilityPath(requestedFacility.registryId));
+    } else if (requestedFacility) {
+      setSelectedId(requestedFacility.id);
+      setDetailId(requestedFacility.id);
     }
-  }, [allFacilities]);
+  }, [allFacilities, router]);
 
   useEffect(() => {
     if (loading || !navigationRestored || restoringNavigation) return;
@@ -443,180 +338,13 @@ export default function UruguayRegistry({
     status,
   ]);
 
-  useEffect(() => {
-    if (!persistNavigationState || !navigationRestored) return;
-    let frame = 0;
-    let navigationResetTimer = 0;
-    const resultsNode = resultsScrollRef.current;
-    const scheduleSave = () => {
-      if (navigationWindowYRef.current === null) {
-        lastWindowScrollYRef.current = Math.max(0, window.scrollY);
-      }
-      if (resultsNode) {
-        lastResultsScrollYRef.current = Math.max(0, resultsNode.scrollTop);
-      }
-      window.cancelAnimationFrame(frame);
-      frame = window.requestAnimationFrame(saveNavigationState);
-    };
-    const saveLastPosition = () => {
-      saveNavigationState(navigationWindowYRef.current ?? lastWindowScrollYRef.current);
-    };
-    const saveWhenHidden = () => {
-      if (document.visibilityState === "hidden") saveLastPosition();
-    };
-    const captureInternalNavigation = (event: MouseEvent) => {
-      if (
-        event.button !== 0
-        || event.metaKey
-        || event.ctrlKey
-        || event.shiftKey
-        || event.altKey
-      ) return;
-
-      const target = event.target instanceof Element ? event.target : null;
-      const anchor = target?.closest<HTMLAnchorElement>("a[href]");
-      if (!anchor || anchor.hasAttribute("download")) return;
-      const browsingContext = anchor.target.trim().toLowerCase();
-      if (browsingContext && browsingContext !== "_self") return;
-
-      let destination: URL;
-      try {
-        destination = new URL(anchor.href, window.location.href);
-      } catch {
-        return;
-      }
-      const current = new URL(window.location.href);
-      if (destination.origin !== current.origin) return;
-      if (destination.pathname === current.pathname && destination.search === current.search) return;
-
-      const windowY = Math.max(0, window.scrollY);
-      navigationWindowYRef.current = windowY;
-      lastWindowScrollYRef.current = windowY;
-      saveNavigationState(windowY);
-
-      // Si un manejador cancela la navegación, la vista sigue montada. El
-      // resguardo se libera más tarde sin alterar el click ni su destino.
-      window.clearTimeout(navigationResetTimer);
-      navigationResetTimer = window.setTimeout(() => {
-        navigationWindowYRef.current = null;
-        lastWindowScrollYRef.current = Math.max(0, window.scrollY);
-        saveNavigationState(lastWindowScrollYRef.current);
-      }, 30_000);
-    };
-    window.addEventListener("scroll", scheduleSave, { passive: true });
-    window.addEventListener("pagehide", saveLastPosition);
-    window.addEventListener("beforeunload", saveLastPosition);
-    document.addEventListener("click", captureInternalNavigation, true);
-    document.addEventListener("visibilitychange", saveWhenHidden);
-    resultsNode?.addEventListener("scroll", scheduleSave, { passive: true });
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.clearTimeout(navigationResetTimer);
-      window.removeEventListener("scroll", scheduleSave);
-      window.removeEventListener("pagehide", saveLastPosition);
-      window.removeEventListener("beforeunload", saveLastPosition);
-      document.removeEventListener("click", captureInternalNavigation, true);
-      document.removeEventListener("visibilitychange", saveWhenHidden);
-      resultsNode?.removeEventListener("scroll", scheduleSave);
-      if (resultsNode) {
-        lastResultsScrollYRef.current = Math.max(0, resultsNode.scrollTop);
-      }
-      // Next.js puede desmontar esta vista sin emitir `pagehide`; el cleanup
-      // cierra esa ventana y conserva el último scroll antes de navegar.
-      saveLastPosition();
-    };
-  }, [navigationRestored, persistNavigationState, registryView, saveNavigationState]);
-
-  useEffect(() => {
-    if (!navigationRestored || !restoringNavigation || loading) return;
-    const scroll = restoredScrollRef.current;
-    if (!scroll) {
-      persistenceReadyRef.current = true;
-      setRestoringNavigation(false);
-      return;
-    }
-
-    let applyFrame = 0;
-    let verifyFrame = 0;
-    let retryTimer = 0;
-    let attempts = 0;
-    let stablePasses = 0;
-    let previousLayoutSignature = "";
-    let finished = false;
-
-    const finishRestore = () => {
-      if (finished) return;
-      finished = true;
-      window.cancelAnimationFrame(applyFrame);
-      window.cancelAnimationFrame(verifyFrame);
-      window.clearTimeout(retryTimer);
-      lastWindowScrollYRef.current = Math.max(0, window.scrollY);
-      lastResultsScrollYRef.current = Math.max(
-        0,
-        resultsScrollRef.current?.scrollTop ?? scroll.resultsY,
-      );
-      restoredScrollRef.current = null;
-      persistenceReadyRef.current = true;
-      setRestoringNavigation(false);
-      saveNavigationState(lastWindowScrollYRef.current);
-    };
-
-    const applyScroll = () => {
-      if (finished) return;
-      attempts += 1;
-      const resultsNode = resultsScrollRef.current;
-      if (resultsNode) resultsNode.scrollTop = scroll.resultsY;
-      window.scrollTo({ top: scroll.windowY, left: 0, behavior: "auto" });
-
-      verifyFrame = window.requestAnimationFrame(() => {
-        if (finished) return;
-        const currentResultsNode = resultsScrollRef.current;
-        const windowReached = Math.abs(window.scrollY - scroll.windowY) <= RESTORE_SCROLL_TOLERANCE_PX;
-        const resultsReached = !currentResultsNode
-          || Math.abs(currentResultsNode.scrollTop - scroll.resultsY) <= RESTORE_SCROLL_TOLERANCE_PX;
-        const layoutSignature = [
-          document.documentElement.scrollHeight,
-          document.body?.scrollHeight ?? 0,
-          currentResultsNode?.scrollHeight ?? 0,
-          currentResultsNode?.clientHeight ?? 0,
-        ].join(":");
-        const reachedAndStable = windowReached
-          && resultsReached
-          && layoutSignature === previousLayoutSignature;
-        stablePasses = reachedAndStable
-          ? stablePasses + 1
-          : windowReached && resultsReached ? 1 : 0;
-        previousLayoutSignature = layoutSignature;
-
-        if (
-          stablePasses >= RESTORE_SCROLL_STABLE_PASSES
-          || attempts >= RESTORE_SCROLL_MAX_ATTEMPTS
-        ) {
-          finishRestore();
-          return;
-        }
-        retryTimer = window.setTimeout(() => {
-          applyFrame = window.requestAnimationFrame(applyScroll);
-        }, RESTORE_SCROLL_RETRY_MS);
-      });
-    };
-
-    applyFrame = window.requestAnimationFrame(applyScroll);
-    return () => {
-      finished = true;
-      window.cancelAnimationFrame(applyFrame);
-      window.cancelAnimationFrame(verifyFrame);
-      window.clearTimeout(retryTimer);
-    };
-  }, [loading, navigationRestored, registryView, restoringNavigation, resultFacilities.length, saveNavigationState]);
-
   function resetFilters() {
     reset();
     setMapAreaActive(false);
     setMapBounds(null);
     setSelectedId(null);
+    setHighlightedId(null);
     setDetailId(null);
-    restoredScrollRef.current = null;
     lastResultsScrollYRef.current = 0;
     mapViewportRef.current = null;
     setMapResetRevision((revision) => revision + 1);
@@ -630,7 +358,13 @@ export default function UruguayRegistry({
   }
 
   function openFacilityDetails(facilityId: string) {
-    setSelectedId(facilityId);
+    const facility = allFacilities.find((candidate) => candidate.id === facilityId);
+    if (!facility) return;
+    if (facility.registryId) {
+      saveNavigationState();
+      router.push(publicFacilityPath(facility.registryId));
+      return;
+    }
     setDetailId(facilityId);
   }
 
@@ -814,11 +548,12 @@ export default function UruguayRegistry({
           <RegistryAttributeFilters value={attributeFilters} onToggle={toggleAttributeFilter} />
         </div>
       </aside>
-      {registryView !== "list" && <div className="registryMapColumn" ref={mapColumnRef}>
+      {registryView !== "list" && <div className="registryMapColumn">
         {navigationRestored ? <StreetMap
           key={`registry-map-${mapResetRevision}`}
           facilities={mapFacilities}
           selectedId={selected?.id ?? null}
+          highlightedId={highlightedId}
           onSelect={setSelectedId}
           onOpenDetails={openFacilityDetails}
           initialViewport={mapViewportRef.current}
@@ -851,10 +586,9 @@ export default function UruguayRegistry({
               isSelected={selected?.id === facility.id}
               isListView={registryView === "list"}
               suppressAutoScroll={restoringNavigation}
-              onViewMore={(selectedFacility) => {
-                openFacilityDetails(selectedFacility.id);
-                window.requestAnimationFrame(() => mapColumnRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
-              }}
+              onSelect={(selectedFacility) => setSelectedId(selectedFacility.id)}
+              onHighlight={setHighlightedId}
+              onViewMore={(selectedFacility) => openFacilityDetails(selectedFacility.id)}
               key={facility.id}
             />
           ))}
@@ -912,59 +646,21 @@ function RegistryKpi({ activeHelp, className, help, helpId, label, onActivate, o
   </div>;
 }
 
-function badgeTone(facility: Facility) {
-  const category = facilityDisplayCategory(facility);
-  if (category === "demo") return "violet";
-  if (category === "habilitado") return "green";
-  if (category === "mides") return "amber";
-  return "gray";
-}
-
-function FacilityMembershipBadges({ facility }: { facility: Facility }) {
-  const badges = [
-    facility.mspFinal && { label: "Habilitado MSP", tone: "green" },
-    facility.midesSocial && { label: "Certificado Social MIDES", tone: "amber" },
-  ].filter(Boolean) as { label: string; tone: string }[];
-  const primaryBadge = isVerificationFacility(facility);
-
-  return <span className="facilityBadges" aria-label="Situaciones institucionales">
-    {primaryBadge ? (
-      <span className={`sourceBadge sourceBadge-${badgeTone(facility)}`}>{facilityDisplayLabel(facility)}</span>
-    ) : badges.map((badge) => (
-      <span className={`sourceBadge sourceBadge-${badge.tone}`} key={badge.label}>{badge.label}</span>
-    ))}
-  </span>;
-}
-
-function FacilityPrimaryStatusBadge({ facility }: { facility: Facility }) {
-  const status = facility.mspFinal
-    ? { label: "Habilitación MSP", tone: "green" }
-    : facility.midesSocial
-      ? { label: "Certificado social MIDES", tone: "amber" }
-      : { label: "Situación no confirmada", tone: "gray" };
-
-  return <span className="facilityBadges" aria-label="Situación institucional">
-    <span className={`sourceBadge sourceBadge-${status.tone}`}>{status.label}</span>
-  </span>;
-}
-
-function FacilityQualityBadge({ facility }: { facility: Facility }) {
-  const rating = facility.qualityRating ?? "unrated";
-  const label = facility.qualityRating ? QUALITY_RATING_LABELS[facility.qualityRating] : "Sin calificar";
-  return <span className={`qualityRatingBadge qualityRatingBadge-${rating}`}>{label}</span>;
-}
-
 function FacilityResultCard({
   facility,
   isSelected,
   isListView,
   suppressAutoScroll,
+  onSelect,
+  onHighlight,
   onViewMore,
 }: {
   facility: Facility;
   isSelected: boolean;
   isListView: boolean;
   suppressAutoScroll: boolean;
+  onSelect: (facility: Facility) => void;
+  onHighlight: (facilityId: string | null) => void;
   onViewMore: (facility: Facility) => void;
 }) {
   const cardRef = useRef<HTMLElement | null>(null);
@@ -977,11 +673,31 @@ function FacilityResultCard({
     }
   }, [isSelected]);
 
-  if (isListView) return <FacilityListCard facility={facility} onViewMore={onViewMore} />;
+  if (isListView) {
+    return <FacilityListCard
+      facility={facility}
+      isSelected={isSelected}
+      onSelect={onSelect}
+      onHighlight={onHighlight}
+      onViewMore={onViewMore}
+    />;
+  }
   const hasPublicPrice = typeof facility.monthlyPriceUyu === "number" && facility.monthlyPriceUyu > 0;
 
   return (
-    <article ref={cardRef} className={`facilityCard facility-${facilityDisplayCategory(facility)} ${isSelected ? "selected" : ""}`}>
+    <article
+      ref={cardRef}
+      className={`facilityCard facility-${facilityDisplayCategory(facility)} ${isSelected ? "selected" : ""}`}
+      onMouseEnter={() => onHighlight(facility.id)}
+      onMouseLeave={() => onHighlight(null)}
+    >
+      <button
+        type="button"
+        className="facilityCardSelect"
+        aria-label={`Seleccionar ${facility.name} en el mapa`}
+        aria-pressed={isSelected}
+        onClick={() => onSelect(facility)}
+      />
       <div className="facilityCompactLayout">
         <div className="facilityCompactSummary">
           <span className="facilityCompactMedia" aria-hidden="true">
@@ -1014,9 +730,32 @@ function FacilityResultCard({
   );
 }
 
-function FacilityListCard({ facility, onViewMore }: { facility: Facility; onViewMore: (facility: Facility) => void }) {
+function FacilityListCard({
+  facility,
+  isSelected,
+  onSelect,
+  onHighlight,
+  onViewMore,
+}: {
+  facility: Facility;
+  isSelected: boolean;
+  onSelect: (facility: Facility) => void;
+  onHighlight: (facilityId: string | null) => void;
+  onViewMore: (facility: Facility) => void;
+}) {
   const hasPublicPrice = typeof facility.monthlyPriceUyu === "number" && facility.monthlyPriceUyu > 0;
-  return <article className={`facilityBookingCard facility-${facilityDisplayCategory(facility)}`}>
+  return <article
+    className={`facilityBookingCard facility-${facilityDisplayCategory(facility)} ${isSelected ? "selected" : ""}`}
+    onMouseEnter={() => onHighlight(facility.id)}
+    onMouseLeave={() => onHighlight(null)}
+  >
+    <button
+      type="button"
+      className="facilityCardSelect"
+      aria-label={`Seleccionar ${facility.name} en el mapa`}
+      aria-pressed={isSelected}
+      onClick={() => onSelect(facility)}
+    />
     <div className="facilityBookingMedia" aria-hidden="true">
     {facility.photoUrl
       ? <Image src={facility.photoUrl} alt="" fill sizes="200px" unoptimized />
@@ -1048,11 +787,6 @@ function FacilityListCard({ facility, onViewMore }: { facility: Facility; onView
 
 function FacilityMapDialog({ facility, onClose }: { facility: Facility; onClose: () => void }) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
-  const photoUrls = useMemo(() => facility.photoUrls?.length
-    ? facility.photoUrls
-    : facility.photoUrl
-      ? [facility.photoUrl]
-      : [], [facility.photoUrl, facility.photoUrls]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -1085,33 +819,7 @@ function FacilityMapDialog({ facility, onClose }: { facility: Facility; onClose:
       <button type="button" className="facilityDialogClose" aria-label="Cerrar ficha" title="Cerrar ficha" onClick={onClose}><X size={22} aria-hidden="true" /></button>
     </header>
     <div className="facilityMapDialogContent">
-    <div className="facilityProfileLead">
-      <div className="facilityProfileMedia">
-        {photoUrls.length
-          ? <FacilityPhotoCarousel facilityName={facility.name} photoUrls={photoUrls} />
-          : <div className="facilityProfilePhotoMissing">Foto no informada</div>}
-      </div>
-      <div className="facilityProfileSummary">
-        <FacilityMembershipBadges facility={facility} />
-        <h3>Información del ELEPEM</h3>
-        <p>{facility.description || "Todavía no hay una descripción pública verificada de la vida cotidiana en este ELEPEM."}</p>
-        <div className="facilityProfilePrice">
-          <span>Precio mensual</span>
-          <strong>{facility.monthlyPriceUyu
-            ? `Desde $ ${facility.monthlyPriceUyu.toLocaleString("es-UY")}`
-            : "No informado"}</strong>
-        </div>
-        <div className="facilityProfileActions">
-          <Link href={`/experiencia?elepem=${encodeURIComponent(facility.id)}`}>Dejar una experiencia</Link>
-          <Link href={`/preocupacion?elepem=${encodeURIComponent(facility.id)}`}>Contar una preocupación</Link>
-        </div>
-      </div>
-    </div>
-
-    <FacilityContactChannels facility={facility} />
-    <div className="facilityProfileExperiences">
-      <FacilityExperiences facilityId={facility.id} />
-    </div>
+      <FacilityProfile facility={facility} />
     </div>
     </div>
   </dialog>;
