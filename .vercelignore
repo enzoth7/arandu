@@ -1,15 +1,15 @@
 # Insumos operativos y auditorías: no forman parte del runtime web.
-Base de Datos/
-Cambios/
-data/discovery/
-docs/
-scripts/
-supabase/
+/Base de Datos/
+/Cambios/
+/data/discovery/
+/docs/
+/scripts/
+/supabase/
 
 # Configuración y artefactos locales.
-.env*
-!.env.example
-.git/
-.next/
-.next-*/
-node_modules/
+/.env*
+!/.env.example
+/.git/
+/.next/
+/.next-*/
+/node_modules/
