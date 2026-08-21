@@ -29,6 +29,7 @@ const facilityPresentationPath = new URL("../../app/components/facility-presenta
 const residencialesFormPath = new URL("../../app/components/ResidencialesFormView.tsx", import.meta.url);
 const homeHeroPath = new URL("../../app/components/AranduHomeHero.tsx", import.meta.url);
 const attributeFiltersPath = new URL("../../app/components/RegistryAttributeFilters.tsx", import.meta.url);
+const qualityRatingSelectPath = new URL("../../app/components/QualityRatingSelect.tsx", import.meta.url);
 const nextConfigPath = new URL("../../next.config.mjs", import.meta.url);
 const portalChromePath = new URL("../../app/components/PortalChrome.tsx", import.meta.url);
 const institutionalAccessPath = new URL("../../app/components/InstitutionalAccess.tsx", import.meta.url);
@@ -122,7 +123,7 @@ test("el mapa muestra el estado institucional y comparte el ancho con la lista",
   assert.match(styles, /\.mapFacilityTooltipStatus/);
 });
 
-test("la portada mantiene las personas nítidas y amplía la foto para ocultar bordes", async () => {
+test("la portada muestra la foto nítida, completa y sin un velo blanco", async () => {
   const [hero, styles] = await Promise.all([
     readFile(homeHeroPath, "utf8"),
     readFile(globalStylesPath, "utf8"),
@@ -130,10 +131,14 @@ test("la portada mantiene las personas nítidas y amplía la foto para ocultar b
   assert.match(hero, /src="\/Hero\.webp"/);
   assert.match(styles, /\.aranduHeroVisual \{[\s\S]{0,220}position: absolute;[\s\S]{0,160}inset: 0;/);
   assert.doesNotMatch(styles, /\.aranduHeroVisual::before/);
-  assert.match(styles, /\.aranduHeroImage \{[\s\S]{0,220}object-fit: contain;[\s\S]{0,100}object-position: right center;[\s\S]{0,100}transform: scale\(1\.12\);[\s\S]{0,100}filter: none;[\s\S]{0,100}opacity: 1/);
-  assert.match(styles, /\.aranduHero::before \{[\s\S]{0,260}width: 74%/);
-  assert.match(styles, /#fff 0 42%/);
-  assert.match(styles, /transparent 100%/);
+  assert.match(hero, /href="#mapa-registro"/);
+  assert.match(hero, /registry\.scrollIntoView/);
+  assert.match(styles, /\.aranduHero \{[\s\S]{0,220}overflow: hidden;[\s\S]{0,100}border-radius: 28px/);
+  assert.match(styles, /\.aranduHeroImage \{[\s\S]{0,220}object-fit: contain;[\s\S]{0,100}object-position: right center;[\s\S]{0,100}transform: none;[\s\S]{0,100}filter: none;[\s\S]{0,100}opacity: 1/);
+  assert.match(styles, /\.aranduHero::before \{[\s\S]{0,260}width: 58%;[\s\S]{0,100}background: #fff/);
+  assert.match(styles, /\.aranduHeroVisual::after \{ display: none; \}/);
+  assert.doesNotMatch(styles, /\.aranduHero::before \{[\s\S]{0,260}linear-gradient/);
+  assert.match(styles, /\.aranduHeroCredit \{[\s\S]{0,120}width: 100%;[\s\S]{0,100}text-align: right/);
   assert.match(styles, /@media \(max-width: 760px\)[\s\S]*\.aranduHeroVisual \{[\s\S]{0,180}position: relative;[\s\S]{0,180}aspect-ratio: 1400 \/ 935/);
 });
 
@@ -334,6 +339,8 @@ test("Ver más no selecciona ni desplaza el mapa y la tarjeta sí puede señalar
   const openDetailsSource = source.slice(openDetailsStart, source.indexOf("\n\n  return <>", openDetailsStart));
 
   assert.doesNotMatch(openDetailsSource, /setSelectedId/);
+  assert.match(openDetailsSource, /window\.open\(publicFacilityPath\(facility\.registryId\), "_blank", "noopener,noreferrer"\)/);
+  assert.doesNotMatch(openDetailsSource, /router\.push/);
   assert.doesNotMatch(source, /mapColumnRef|scrollIntoView\(\{ behavior: "smooth", block: "start" \}\)/);
   assert.match(source, /className="facilityCardSelect"[\s\S]{0,240}onClick=\{\(\) => onSelect\(facility\)\}/);
   assert.match(source, /onMouseEnter=\{\(\) => onHighlight\(facility\.id\)\}/);
@@ -360,21 +367,25 @@ test("la capa pública conserva Casa Costa Serena como referencia violeta y dato
 });
 
 test("el panel agrupa filtros verificables y conserva la clasificación", async () => {
-  const [source, hookSource, attributeFilters] = await Promise.all([
+  const [source, hookSource, attributeFilters, qualityRatingSelect] = await Promise.all([
     readFile(registryPath, "utf8"),
     readFile(filterHookPath, "utf8"),
     readFile(attributeFiltersPath, "utf8"),
+    readFile(qualityRatingSelectPath, "utf8"),
   ]);
   assert.match(source, /<b>Departamento<\/b>[\s\S]*<select value=\{department\}/);
   assert.match(source, /<b>Situación institucional<\/b>[\s\S]*<select value=\{status\}/);
-  assert.match(source, /<b>Clasificación<\/b>[\s\S]*value=\{qualityRating\}/);
-  assert.match(source, /QUALITY_RATING_LABELS/);
-  assert.match(source, /Sin calificar/);
+  assert.match(source, /<b id="registry-quality-filter-label">Clasificación<\/b>[\s\S]*<QualityRatingSelect/);
+  assert.match(qualityRatingSelect, /QUALITY_RATING_LABELS/);
+  assert.match(qualityRatingSelect, /Sin calificar/);
+  assert.match(qualityRatingSelect, /registryQualityDot-/);
+  assert.match(qualityRatingSelect, /role="listbox"/);
   assert.match(attributeFilters, /<div className="registryAdvancedFilters">/);
   assert.match(attributeFilters, /<fieldset key=\{group\.key\}>/);
   assert.match(attributeFilters, /type="checkbox"/);
   assert.doesNotMatch(attributeFilters, /Más filtros|Sin información verificada|registryDemoFilterNotice/);
   assert.match(source, /<b>Ordenar por:<\/b>[\s\S]*Precio: menor a mayor[\s\S]*Precio: mayor a menor/);
+  assert.doesNotMatch(source, /Los residenciales sin precio quedan al final/);
   assert.match(source, /<b>Fotografías<\/b>[\s\S]*value=\{photoAvailability\}/);
   assert.match(source, /aria-label="Precio mensual mínimo"/);
   assert.match(source, /aria-label="Precio mensual máximo"/);
@@ -421,7 +432,7 @@ test("la ficha permite salir y las tarjetas muestran precio y clasificación", a
   assert.match(profile, /<FacilityPhotoCarousel facilityName=\{facility\.name\}/);
   assert.match(page, /Volver a resultados/);
   assert.match(page, /resolvePublicFacilityRoute/);
-  assert.match(source, /router\.push\(publicFacilityPath\(facility\.registryId\)\)/);
+  assert.match(source, /window\.open\(publicFacilityPath\(facility\.registryId\), "_blank", "noopener,noreferrer"\)/);
   assert.match(styles, /\.facilityMapDialogHeader \{[\s\S]*position: sticky/);
 });
 
@@ -482,7 +493,8 @@ test("la ficha muestra todos los medios de contacto públicos disponibles", asyn
   assert.match(source, /facility\.facebookUrls/);
   assert.match(source, /<FacilityContactChannels facility=\{facility\} \/>/);
   assert.match(source, /target: "_blank", rel: "noreferrer"/);
-  assert.match(styles, /\.facilityContactChannelList \{/);
+  assert.match(styles, /\.facilityContactChannelList \{[\s\S]{0,180}grid-template-columns: repeat\(auto-fill, minmax\(250px, 320px\)\);[\s\S]{0,100}justify-content: start/);
+  assert.match(styles, /@media \(max-width: 760px\)[\s\S]*\.facilityContactChannelList \{ grid-template-columns: 1fr; \}/);
   assert.match(registryLoader, /contactPhone: row\.telefonos\[0\] \|\| undefined/);
   assert.match(registryLoader, /contactEmail: row\.emails\[0\] \|\| undefined/);
 });
@@ -497,6 +509,32 @@ test("cada id tiene un código ELPM y una ruta pública determinista", () => {
   assert.equal(publicFacilityPath(185), "/elepem/elpm-0185");
 });
 
+test("la ficha permanente evita repeticiones y usa una sola superficie visual", async () => {
+  const [profile, page, styles] = await Promise.all([
+    readFile(facilityProfilePath, "utf8"),
+    readFile(facilityPagePath, "utf8"),
+    readFile(globalStylesPath, "utf8"),
+  ]);
+
+  assert.doesNotMatch(profile, /Ficha actualizada|facilityProfileUpdated|facilityProfileLocation/);
+  assert.doesNotMatch(profile, /Sin descripción pública verificada/);
+  assert.doesNotMatch(page, /facilityPermanentCode|Contar una preocupación/);
+  assert.match(page, /showConcernAction=\{false\} showSources=\{false\}/);
+  assert.doesNotMatch(profile, /Vigente o registrado|El precio incluye:/);
+  assert.match(profile, /<dt>Habilitación<\/dt>[\s\S]{0,120}<FacilityPrimaryStatusBadge facility=\{facility\}/);
+  assert.match(profile, /<dd className="facilityFactPrice">\{facility\.monthlyPriceUyu/);
+  assert.match(profile, /className="facilityProfileShell"/);
+  assert.match(page, /className="facilityPermanentPage"/);
+  assert.match(styles, /\.facilityPermanentPage \{[\s\S]{0,500}background: #fff;[\s\S]{0,200}box-shadow:/);
+  assert.match(styles, /\.facilityProfileSummary \{[\s\S]{0,180}padding: 0;[\s\S]{0,100}border: 0;[\s\S]{0,100}background: transparent;[\s\S]{0,100}box-shadow: none/);
+  assert.match(styles, /\.facilityProfileFacts \.qualityRatingBadge,[\s\S]{0,120}\.facilityProfileFacts \.facilityBadges \.sourceBadge \{[\s\S]{0,120}width: 184px;[\s\S]{0,100}min-height: 32px/);
+  assert.match(styles, /\.facilityProfileFacts dd\.facilityFactPrice \{[\s\S]{0,100}width: 184px;[\s\S]{0,100}justify-content: center;[\s\S]{0,100}color: var\(--blue2\);[\s\S]{0,80}font-size: 1rem/);
+  assert.doesNotMatch(styles, /\.facilityFactValue/);
+  assert.match(page, /title: \{ absolute: `Arandú \| \$\{facility\.name\}` \}/);
+  assert.doesNotMatch(page, /title: `\$\{facility\.name\} \| \$\{publicCode\}`/);
+  assert.match(styles, /\.facilityPermanentContent \.facilityProfileExperiences \.facilityExperiencesSection \{[\s\S]{0,160}border-top: 0;/);
+});
+
 test("la ficha usa un carrusel accesible y abre las fotos en un visor ampliado", async () => {
   const [carousel, styles] = await Promise.all([
     readFile(photoCarouselPath, "utf8"),
@@ -505,7 +543,8 @@ test("la ficha usa un carrusel accesible y abre las fotos en un visor ampliado",
   assert.match(carousel, /aria-label=\{`Ampliar foto/);
   assert.match(carousel, /event\.key === "ArrowLeft"/);
   assert.match(carousel, /event\.key === "ArrowRight"/);
-  assert.match(carousel, /aria-live="polite"/);
+  assert.doesNotMatch(carousel, /facilityCarouselCount|>Ampliar<|<span>\{photo\.index \+ 1\}<\/span>/);
+  assert.match(carousel, /facilityCarouselExpand" aria-hidden="true"><Maximize2 size=\{22\} \/>/);
   assert.match(carousel, /aria-current=\{photo\.index === activeIndex/);
   assert.match(carousel, /className="facilityPhotoLightbox"/);
   assert.match(carousel, /aria-label="Cerrar imagen ampliada"/);

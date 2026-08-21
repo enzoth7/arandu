@@ -4429,13 +4429,105 @@ textarea {
   font-weight: 650;
 }
 
-.registryFilterHelp {
-  display: block;
-  margin-top: 6px;
-  color: #6b7d91;
-  font-size: .74rem;
-  line-height: 1.4;
+.registryFilterField { display: grid; gap: 5px; }
+.registryFilterField > b { font-size: .76rem; }
+.registryQualitySelect { position: relative; }
+.registryQualitySelectTrigger {
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 13px 0 16px;
+  border: 1.5px solid #b9cee2;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text);
+  box-shadow: none;
+  font: inherit;
+  font-size: .82rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
 }
+.registryQualitySelectTrigger > span,
+.registryQualityOption > span {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+.registryQualitySelectTrigger:hover {
+  border-color: var(--blue);
+  background: #f7fbff;
+  box-shadow: none;
+  transform: none;
+}
+.registryQualitySelectTrigger:focus-visible {
+  border-color: #1d5fd1;
+  outline: 3px solid rgba(29, 95, 209, .14);
+  outline-offset: 0;
+}
+.registryQualitySelectTrigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+.registryQualityOptions {
+  position: absolute;
+  z-index: 1200;
+  top: calc(100% + 7px);
+  left: 0;
+  width: 100%;
+  display: grid;
+  gap: 3px;
+  padding: 6px;
+  border: 1px solid #b9cee2;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 16px 36px rgba(15, 35, 66, .18);
+}
+.registryQualityOption {
+  min-height: 44px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  color: #17304f;
+  box-shadow: none;
+  text-align: left;
+  cursor: pointer;
+}
+.registryQualityOption:hover,
+.registryQualityOption:focus-visible {
+  border: 0;
+  outline: 0;
+  background: #edf6ff;
+  color: #123f70;
+  box-shadow: none;
+  transform: none;
+}
+.registryQualityOption[aria-selected="true"] { background: #e5f1ff; color: #123f70; }
+.registryQualityDot {
+  --registry-quality-color: #151a21;
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--registry-quality-color);
+  color: #fff;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--registry-quality-color);
+}
+.registryQualityDot-outstanding { --registry-quality-color: #3f8f00; }
+.registryQualityDot-good { --registry-quality-color: #4b9700; }
+.registryQualityDot-requires_improvement { --registry-quality-color: #ff9800; }
+.registryQualityDot-inadequate { --registry-quality-color: #cf170b; }
+.registryQualityDot-unrated { --registry-quality-color: #151a21; }
 
 .registryAdvancedFilters {
   min-width: 0;
@@ -7263,11 +7355,11 @@ select:not(:disabled) {
 .facilityProfileMedia { min-width: 0; }
 
 .facilityProfileSummary {
-  padding: clamp(20px, 2.4vw, 30px);
-  border: 1px solid #d8e5f2;
-  border-radius: 20px;
-  background: linear-gradient(155deg, #f8fbff 0%, #fff 76%);
-  box-shadow: 0 10px 32px rgba(17, 58, 96, .06);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .facilityProfileSummary h3 {
@@ -7368,12 +7460,15 @@ select:not(:disabled) {
 
 .facilityContactChannelList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 320px));
+  justify-content: start;
   gap: 10px;
   margin: 14px 0 0;
   padding: 0;
   list-style: none;
 }
+
+.facilityContactChannelList li { min-width: 0; }
 
 .facilityContactChannelList a {
   display: flex;
@@ -7473,15 +7568,15 @@ select:not(:disabled) {
 }
 .facilityCarouselImageButton:hover > img { transform: scale(1.015); }
 .facilityCarouselImageButton:focus-visible { outline: 4px solid var(--focus); outline-offset: -4px; }
-.facilityCarouselExpand,
-.facilityCarouselCount {
+.facilityCarouselExpand {
   position: absolute;
   z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  min-height: 36px;
-  padding: 7px 11px;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
   border: 1px solid rgba(255, 255, 255, .38);
   border-radius: 999px;
   background: rgba(7, 29, 53, .78);
@@ -7492,7 +7587,6 @@ select:not(:disabled) {
   backdrop-filter: blur(7px);
 }
 .facilityCarouselExpand { right: 14px; bottom: 14px; }
-.facilityCarouselCount { left: 14px; bottom: 14px; }
 .facilityCarouselArrow {
   position: absolute;
   z-index: 3;
@@ -7535,21 +7629,6 @@ select:not(:disabled) {
 .facilityCarouselThumbnails button.isActive { border-color: var(--blue); opacity: 1; box-shadow: 0 0 0 2px #dcecff; }
 .facilityCarouselThumbnails button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 .facilityCarouselThumbnails img { display: block; width: 100%; height: 72px; border-radius: 7px; object-fit: cover; }
-.facilityCarouselThumbnails span {
-  position: absolute;
-  right: 7px;
-  bottom: 7px;
-  display: grid;
-  width: 22px;
-  height: 22px;
-  place-items: center;
-  border-radius: 50%;
-  background: rgba(7, 29, 53, .78);
-  color: #fff;
-  font-size: .67rem;
-  font-weight: 900;
-}
-
 /* Visor ampliado, independiente de la ficha, con navegación por flechas. */
 .facilityPhotoLightbox {
   width: min(1420px, calc(100vw - 28px));
@@ -7615,7 +7694,7 @@ select:not(:disabled) {
 @media (max-width: 900px) {
   .facilityProfileLead { grid-template-columns: 1fr; }
   .facilityProfilePhotoMissing { min-height: 280px; }
-  .facilityProfileSummary { padding: 22px; }
+  .facilityProfileSummary { padding: 0; }
   .facilityCarouselImageButton > img { aspect-ratio: 16 / 10; }
 }
 
@@ -7632,7 +7711,7 @@ select:not(:disabled) {
   .facilityMapDialogLocation { gap: 3px 6px; font-size: .73rem; }
   .facilityMapDialogHeader button { width: 44px; height: 44px; }
   .facilityProfileLead { gap: 18px; }
-  .facilityProfileSummary { padding: 18px; border-radius: 16px; }
+  .facilityProfileSummary { padding: 0; border-radius: 0; }
   .facilityProfileSummary h3 { margin-top: 16px; }
   .facilityProfileActions { grid-template-columns: 1fr; }
   .facilityContactChannelList { grid-template-columns: 1fr; }
@@ -7642,11 +7721,9 @@ select:not(:disabled) {
   .facilityCarouselArrow.isPrevious { left: 9px; }
   .facilityCarouselArrow.isNext { right: 9px; }
   .facilityCarouselExpand { right: 9px; bottom: 9px; }
-  .facilityCarouselCount { left: 9px; bottom: 9px; }
   .facilityCarouselThumbnails { gap: 5px; margin-top: 8px; }
   .facilityCarouselThumbnails button { min-height: 54px; padding: 2px; border-radius: 9px; }
   .facilityCarouselThumbnails img { height: 54px; border-radius: 6px; }
-  .facilityCarouselThumbnails span { right: 4px; bottom: 4px; width: 20px; height: 20px; }
   .facilityPhotoLightbox { width: calc(100vw - 12px); max-height: calc(100dvh - 12px); border-radius: 14px; }
   .facilityPhotoLightboxSurface { max-height: calc(100dvh - 12px); }
   .facilityPhotoLightbox header { min-height: 68px; padding: 10px 10px 10px 16px; }
@@ -8925,16 +9002,13 @@ select:not(:disabled) {
 .aranduHero {
   position: relative;
   isolation: isolate;
-  min-height: clamp(540px, 62vh, 660px);
-  display: grid;
-  grid-template-columns: 1fr;
+  min-height: clamp(480px, 50vh, 500px);
+  display: flex;
   overflow: hidden;
   border-radius: 28px;
   border: 1px solid #d8e0d8;
-  background:
-    radial-gradient(circle at 18% 12%, rgba(234, 244, 235, .96), transparent 31rem),
-    #fff;
-  box-shadow: 0 24px 60px rgba(28, 55, 46, .12);
+  background: #fff;
+  box-shadow: none;
   animation: aranduHeroEnter .65s cubic-bezier(.16, 1, .3, 1) both;
 }
 
@@ -8958,48 +9032,35 @@ select:not(:disabled) {
 .aranduDemoBanner p { margin: 0; }
 .aranduDemoBanner strong { color: #4c3000; letter-spacing: .045em; }
 
-.aranduHero::before {
-  position: absolute;
-  z-index: 2;
-  inset: 0 auto 0 0;
-  width: 74%;
-  content: "";
-  pointer-events: none;
-  background: linear-gradient(90deg, #fff 0 42%, rgba(255, 255, 255, .98) 52%, rgba(255, 255, 255, .88) 62%, rgba(255, 255, 255, .58) 74%, rgba(255, 255, 255, .22) 86%, transparent 100%);
-}
+.aranduHero::before { display: none; }
 
 .aranduHeroVisual {
-  position: absolute;
+  position: relative;
   z-index: 0;
-  inset: 0;
-  min-height: 100%;
+  inset: auto;
+  min-height: inherit;
+  flex: 0 0 auto;
+  align-self: stretch;
+  aspect-ratio: 1400 / 935;
   overflow: hidden;
   background: #d9e9f7;
 }
 
-.aranduHeroVisual::after {
-  position: absolute;
-  z-index: 2;
-  inset: 0;
-  content: "";
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, .18), transparent 32%),
-    rgba(226, 239, 248, .12);
-}
+.aranduHeroVisual::after { display: none; }
 
 .aranduHeroImage {
   z-index: 1;
-  object-fit: contain;
-  object-position: right center;
-  transform: translateX(-1.5%) scale(1.12);
+  object-fit: cover;
+  object-position: center;
+  transform: none;
   filter: none;
   opacity: 1;
 }
 
 .aranduHeroCredit {
-  width: min(1280px, calc(100% - 34px));
-  margin: 8px auto 0;
+  width: 100%;
+  margin: 8px 0 0;
+  padding-right: 3px;
   color: #64756e;
   font-size: .78rem;
   text-align: right;
@@ -9009,9 +9070,11 @@ select:not(:disabled) {
   position: relative;
   z-index: 3;
   min-height: inherit;
-  max-width: 750px;
-  width: min(58%, 750px);
-  padding: clamp(42px, 6vw, 92px);
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: none;
+  width: auto;
+  padding: clamp(42px, 4vw, 68px);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -9029,10 +9092,10 @@ select:not(:disabled) {
 }
 
 .aranduHero h1 {
-  max-width: 600px;
+  max-width: 520px;
   margin: 0;
   color: var(--navy);
-  font-size: clamp(3rem, 5.2vw, 5.45rem);
+  font-size: clamp(2.8rem, 4vw, 4.2rem);
   font-weight: 800;
   letter-spacing: -.052em;
   line-height: 1.02;
@@ -9041,15 +9104,15 @@ select:not(:disabled) {
 
 .aranduHero p {
   max-width: 37rem;
-  margin: 24px 0 0;
+  margin: 20px 0 0;
   color: var(--muted);
-  font-size: clamp(1.08rem, 1.8vw, 1.35rem);
+  font-size: clamp(1rem, 1.45vw, 1.2rem);
 }
 
 .aranduHeroActions {
   display: flex;
   gap: 12px;
-  margin-top: 32px;
+  margin-top: 28px;
   flex-wrap: wrap;
 }
 
@@ -9195,8 +9258,8 @@ select:not(:disabled) {
 }
 
 @keyframes aranduImageSettle {
-  from { opacity: .7; transform: scale(.965); }
-  to { opacity: .88; transform: scale(.985); }
+  from { opacity: .82; }
+  to { opacity: 1; }
 }
 
 @media (max-width: 1180px) {
@@ -9220,6 +9283,14 @@ select:not(:disabled) {
   .publicSite .nav a.nav-preocupacion { margin-left: 0; }
 }
 
+@media (min-width: 761px) and (max-width: 1280px) {
+  .aranduHeroVisual {
+    flex-basis: 42%;
+    aspect-ratio: auto;
+  }
+  .aranduHeroImage { object-position: left center; }
+}
+
 @media (max-width: 760px) {
   body { font-size: 17px; }
   .topin { min-height: 68px; padding-inline: 12px; }
@@ -9234,7 +9305,7 @@ select:not(:disabled) {
   }
   .aranduHero {
     min-height: 0;
-    grid-template-columns: 1fr;
+    flex-direction: column;
     border-radius: 22px;
   }
   .aranduHero::before { display: none; }
@@ -9242,19 +9313,20 @@ select:not(:disabled) {
     position: relative;
     inset: auto;
     min-height: 0;
+    align-self: auto;
     aspect-ratio: 1400 / 935;
   }
   .aranduHeroVisual::after {
-    background: rgba(226, 239, 248, .1);
+    display: none;
   }
   .aranduHeroImage {
     object-position: center;
-    transform: scale(.985);
-    filter: saturate(.86) contrast(.96);
-    opacity: .88;
+    transform: none;
+    filter: none;
+    opacity: 1;
     animation: aranduImageSettle 1.2s cubic-bezier(.16, 1, .3, 1) both;
   }
-  .aranduHeroCredit { width: calc(100% - 20px); }
+  .aranduHeroCredit { width: 100%; }
   .aranduHeroContent {
     width: auto;
     min-height: 0;
@@ -9296,13 +9368,13 @@ select:not(:disabled) {
   gap: 12px;
 }
 
-.facilityExperiencesHeader h3 {
+.facilityExperiencesHeader h2 {
   margin: 0;
   color: #173559;
   font-size: clamp(1.05rem, 2vw, 1.25rem);
 }
 
-.facilityExperiencesHeader h3 span {
+.facilityExperiencesHeader h2 span {
   color: var(--muted);
   font-weight: 700;
 }
@@ -9947,14 +10019,12 @@ select:not(:disabled) {
 
 .aranduHero {
   border-color: var(--line);
-  background:
-    radial-gradient(circle at 18% 12%, rgba(222, 239, 255, .96), transparent 31rem),
-    #fff;
-  box-shadow: 0 8px 28px rgba(18, 59, 103, .08);
+  background: #fff;
+  box-shadow: none;
 }
 
 .aranduHero::before {
-  background: linear-gradient(90deg, #fff 0 42%, rgba(255, 255, 255, .98) 52%, rgba(255, 255, 255, .88) 62%, rgba(255, 255, 255, .58) 74%, rgba(255, 255, 255, .22) 86%, transparent 100%);
+  background: #fff;
 }
 
 .aranduHeroVisual {
@@ -9962,9 +10032,7 @@ select:not(:disabled) {
 }
 
 .aranduHeroVisual::after {
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, .08), transparent 32%),
-    rgba(226, 239, 248, .04);
+  display: none;
 }
 
 .aranduHeroActions a,
@@ -10124,14 +10192,19 @@ select:not(:disabled) {
 
 @media (max-width: 760px) {
   .aranduHeroVisual::after {
-    background: rgba(226, 239, 248, .1);
+    display: none;
   }
 }
 
 /* Ficha permanente de ELEPEM. */
 .facilityPermanentPage {
-  width: min(1180px, 100%);
-  margin: clamp(20px, 4vw, 48px) auto 0;
+  width: min(1180px, calc(100% - clamp(24px, 5vw, 72px)));
+  margin: clamp(24px, 4vw, 48px) auto clamp(64px, 8vw, 112px);
+  padding: clamp(22px, 4vw, 48px);
+  border: 1px solid #d5e3f1;
+  border-radius: clamp(20px, 2.4vw, 30px);
+  background: #fff;
+  box-shadow: 0 18px 54px rgba(18, 59, 103, .1);
   animation: facility-page-enter .3s cubic-bezier(.16, 1, .3, 1) both;
 }
 
@@ -10154,19 +10227,6 @@ select:not(:disabled) {
 .facilityPermanentBack:hover { text-decoration: underline; }
 .facilityPermanentBack:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; border-radius: 8px; }
 
-.facilityPermanentCode {
-  width: max-content;
-  margin: 0 0 8px;
-  padding: 5px 9px;
-  border: 1px solid #a9c5df;
-  border-radius: 8px;
-  background: var(--surface2);
-  color: var(--navy);
-  font-size: .76rem;
-  font-weight: 850;
-  letter-spacing: .05em;
-}
-
 .facilityPermanentHeader h1 {
   max-width: 24ch;
   margin: 0;
@@ -10176,64 +10236,122 @@ select:not(:disabled) {
   letter-spacing: -.025em;
 }
 
-.facilityPermanentHeader > p:not(.facilityPermanentCode) {
+.facilityPermanentHeader > p {
   margin: 9px 0 0;
   color: var(--muted);
   font-size: clamp(1rem, 1.6vw, 1.12rem);
 }
 
 .facilityPermanentContent {
-  display: grid;
-  gap: clamp(24px, 4vw, 40px);
   padding-top: clamp(24px, 4vw, 40px);
 }
 
+.facilityPermanentContent .facilityProfileShell {
+  display: grid;
+  min-width: 0;
+}
+
+.facilityPermanentContent .facilityProfileLead {
+  padding-bottom: clamp(28px, 4vw, 44px);
+}
+
 .facilityPermanentContent .facilityProfileSummary h2 {
-  margin: 20px 0 8px;
+  margin: 0 0 8px;
   color: var(--navy);
   font-size: clamp(1.2rem, 2vw, 1.55rem);
 }
 
 .facilityProfileFacts {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(130px, .8fr);
-  gap: 12px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
   margin: 22px 0 0;
-}
-
-.facilityProfileFacts > div {
-  padding: 15px;
+  overflow: hidden;
   border: 1px solid #cfe0f2;
   border-radius: 14px;
   background: #fff;
 }
 
+.facilityProfileFacts > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 58px;
+  padding: 13px 15px;
+  border-bottom: 1px solid #e1eaf3;
+}
+
+.facilityProfileFacts > div:last-child { border-bottom: 0; }
+
 .facilityProfileFacts dt {
-  margin-bottom: 6px;
+  margin: 0;
   color: var(--muted);
   font-size: .76rem;
   font-weight: 800;
 }
 
 .facilityProfileFacts dd {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   margin: 0;
   color: var(--navy);
-  font-size: 1.1rem;
+  font-size: .72rem;
   font-weight: 850;
+  text-align: right;
 }
 
-.facilityProfileFacts small {
-  display: block;
-  margin-top: 5px;
-  color: var(--muted);
-  line-height: 1.4;
+.facilityProfileFacts .facilityBadges {
+  margin: 0;
 }
 
-.facilityProfileIncludes { margin-top: 14px !important; font-size: .88rem !important; }
+.facilityProfileFacts .qualityRatingBadge,
+.facilityProfileFacts .facilityBadges .sourceBadge {
+  width: 184px;
+  max-width: 100%;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 850;
+  line-height: 1.15;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.facilityProfileFacts dd.facilityFactPrice {
+  width: 184px;
+  max-width: 100%;
+  justify-content: center;
+  color: var(--blue2);
+  font-size: 1rem;
+  font-weight: 850;
+  text-align: center;
+}
+
+.facilityProfileActions.isSingle {
+  grid-template-columns: minmax(0, 1fr);
+}
 
 .facilityProfileSection {
   padding-top: clamp(22px, 3vw, 32px);
   border-top: 1px solid var(--line);
+}
+
+.facilityPermanentContent .facilityProfileSection {
+  margin: 0;
+  padding: clamp(28px, 4vw, 42px) 0;
+  border-top: 1px solid var(--line);
+}
+
+.facilityPermanentContent .facilityProfileSection:last-child {
+  padding-bottom: 0;
 }
 
 .facilityProfileSection > h2 {
@@ -10242,16 +10360,16 @@ select:not(:disabled) {
   font-size: clamp(1.25rem, 2vw, 1.55rem);
 }
 
-.facilityProfileLocation p {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin: 7px 0;
-  color: var(--text);
-}
-
-.facilityProfileLocation small { color: var(--muted); }
 .facilityProfileMissing { margin: 0; color: var(--muted); }
+
+.facilityPermanentContent .facilityProfileMissing {
+  width: fit-content;
+  max-width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--surface2);
+  line-height: 1.5;
+}
 
 .facilityAttributeGroups {
   display: grid;
@@ -10278,7 +10396,16 @@ select:not(:disabled) {
 .facilityProfileSources a { display: inline-flex; align-items: center; gap: 7px; color: var(--blue2); font-weight: 800; }
 .facilityProfileSources a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 5px; }
 .facilityProfileSources li p { margin: 5px 0 0; color: var(--muted); font-size: .82rem; }
-.facilityProfileUpdated { display: flex; align-items: center; gap: 7px; margin: 16px 0 0; color: var(--muted); font-size: .84rem; }
+.facilityPermanentContent .facilityProfileExperiences .facilityExperiencesSection {
+  margin: 0;
+  padding: 0;
+  border-top: 0;
+}
+
+.facilityPermanentContent .facilityExperiencesHeader h2 {
+  color: var(--navy);
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+}
 
 @keyframes facility-page-enter {
   from { opacity: 0; transform: translateY(10px); }
@@ -10286,7 +10413,12 @@ select:not(:disabled) {
 }
 
 @media (max-width: 760px) {
-  .facilityPermanentPage { margin-top: 16px; }
+  .facilityPermanentPage {
+    width: calc(100% - 24px);
+    margin-top: 16px;
+    margin-bottom: 48px;
+    padding: 20px;
+  }
   .facilityPermanentHeader h1 { font-size: clamp(1.8rem, 9vw, 2.6rem); }
   .facilityProfileFacts,
   .facilityAttributeGroups { grid-template-columns: 1fr; }

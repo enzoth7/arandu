@@ -142,7 +142,7 @@ export function FacilityPhotoCarousel({ facilityName, photoUrls }: FacilityPhoto
             unoptimized
             onError={() => omitFailedPhoto(activePhoto)}
           />
-          <span className="facilityCarouselExpand" aria-hidden="true"><Maximize2 size={18} />Ampliar</span>
+          <span className="facilityCarouselExpand" aria-hidden="true"><Maximize2 size={22} /></span>
         </button>
 
         {photoCount > 1 && (
@@ -156,9 +156,6 @@ export function FacilityPhotoCarousel({ facilityName, photoUrls }: FacilityPhoto
           </>
         )}
 
-        <output className="facilityCarouselCount" aria-live="polite" aria-atomic="true">
-          {activeIndex + 1} / {photoCount}
-        </output>
       </div>
 
       {photoCount > 1 && (
@@ -181,7 +178,6 @@ export function FacilityPhotoCarousel({ facilityName, photoUrls }: FacilityPhoto
                 unoptimized
                 onError={() => omitFailedPhoto(photo.url)}
               />
-              <span>{photo.index + 1}</span>
             </button>
           ))}
         </div>
@@ -205,7 +201,6 @@ export function FacilityPhotoCarousel({ facilityName, photoUrls }: FacilityPhoto
           <header>
             <div>
               <h2 id="facility-photo-lightbox-title">{facilityName}</h2>
-              <p>Foto {activeIndex + 1} de {photoCount}</p>
             </div>
             <button type="button" onClick={closeLightbox} aria-label="Cerrar imagen ampliada" title="Cerrar">
               <X size={24} aria-hidden="true" />

@@ -15,11 +15,11 @@ export async function generateMetadata({ params }: FacilityPageProps): Promise<M
   const { codigo } = await params;
   const resolved = await resolvePublicFacilityRoute(codigo);
   if (!resolved) return { title: "ELEPEM no encontrado" };
-  const { facility, canonicalPath, publicCode } = resolved;
+  const { facility, canonicalPath } = resolved;
   const description = facility.description
     || `${facility.name}, ELEPEM en ${facility.locality}, ${facility.department}.`;
   return {
-    title: `${facility.name} | ${publicCode}`,
+    title: { absolute: `Arandú | ${facility.name}` },
     description,
     alternates: { canonical: canonicalPath },
   };
@@ -31,19 +31,18 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   if (!resolved) notFound();
   if (`/elepem/${codigo}` !== resolved.canonicalPath) permanentRedirect(resolved.canonicalPath);
 
-  const { facility, publicCode } = resolved;
+  const { facility } = resolved;
   return <article className="facilityPermanentPage">
     <header className="facilityPermanentHeader">
       <Link href="/" className="facilityPermanentBack">
         <ArrowLeft size={19} aria-hidden="true" />Volver a resultados
       </Link>
-      <p className="facilityPermanentCode">{publicCode}</p>
       <h1>{facility.name}</h1>
       <p>{facility.address || "Dirección no informada"}</p>
       <p>{facility.locality || "Localidad no informada"} · {facility.department}</p>
     </header>
     <div className="facilityPermanentContent">
-      <FacilityProfile facility={facility} />
+      <FacilityProfile facility={facility} showConcernAction={false} showSources={false} />
     </div>
   </article>;
 }

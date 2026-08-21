@@ -154,7 +154,7 @@ export function FacilityExperiences({ facilityId }: { facilityId: string }) {
   return (
     <section className="facilityExperiencesSection" aria-labelledby={titleId} aria-busy={loading || loadingMore}>
       <div className="facilityExperiencesHeader">
-        <h3 id={titleId}>Experiencias {count !== null && <span>({count})</span>}</h3>
+        <h2 id={titleId}>Experiencias {count !== null && <span>({count})</span>}</h2>
       </div>
 
       <p className="facilityExperiencesAnnouncement" aria-live="polite">{announcement}</p>

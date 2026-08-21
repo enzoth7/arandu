@@ -2,24 +2,16 @@
 
 import Link from "next/link";
 import {
-  CalendarDays,
   Check,
   ExternalLink,
   Globe2,
   Mail,
-  MapPin,
   Phone,
   Share2,
 } from "lucide-react";
 import { FACILITY_ATTRIBUTE_FILTER_GROUPS } from "../../lib/facility-filter-options.mjs";
-import { canonicalDepartment } from "../../lib/uruguay.mjs";
 import { FacilityExperiences } from "./FacilityExperiences";
 import { FacilityPhotoCarousel } from "./FacilityPhotoCarousel";
-import {
-  facilityDisplayCategory,
-  facilityDisplayLabel,
-  isVerificationFacility,
-} from "./facility-presentation";
 import { QUALITY_RATING_LABELS, type Facility } from "./map-types";
 
 type ContactChannelKind = "phone" | "email" | "website" | "instagram" | "facebook";
@@ -103,30 +95,6 @@ function formatDate(value?: string) {
   }).format(date);
 }
 
-function badgeTone(facility: Facility) {
-  const category = facilityDisplayCategory(facility);
-  if (category === "demo") return "violet";
-  if (category === "habilitado") return "green";
-  if (category === "mides") return "amber";
-  return "gray";
-}
-
-export function FacilityMembershipBadges({ facility }: { facility: Facility }) {
-  const badges = [
-    facility.mspFinal && { label: "Habilitación MSP", tone: "green" },
-    facility.midesSocial && { label: "Certificado social MIDES", tone: "amber" },
-  ].filter(Boolean) as { label: string; tone: string }[];
-  const primaryBadge = isVerificationFacility(facility);
-
-  return <span className="facilityBadges" aria-label="Situaciones institucionales">
-    {primaryBadge ? (
-      <span className={`sourceBadge sourceBadge-${badgeTone(facility)}`}>{facilityDisplayLabel(facility)}</span>
-    ) : badges.map((badge) => (
-      <span className={`sourceBadge sourceBadge-${badge.tone}`} key={badge.label}>{badge.label}</span>
-    ))}
-  </span>;
-}
-
 export function FacilityPrimaryStatusBadge({ facility }: { facility: Facility }) {
   const status = facility.mspFinal
     ? { label: "Habilitación MSP", tone: "green" }
@@ -190,7 +158,6 @@ function FacilityAttributes({ facility }: { facility: Facility }) {
 }
 
 function FacilitySources({ facility }: { facility: Facility }) {
-  const updatedAt = formatDate(facility.updatedAt);
   return <section className="facilityProfileSection facilityProfileSources" aria-labelledby="facility-sources-title">
     <h2 id="facility-sources-title">Fuentes</h2>
     {facility.sourceLinks?.length ? <ul>
@@ -207,19 +174,24 @@ function FacilitySources({ facility }: { facility: Facility }) {
         </li>;
       })}
     </ul> : <p className="facilityProfileMissing">La referencia está conservada, pero no tiene una URL pública disponible.</p>}
-    {updatedAt && <p className="facilityProfileUpdated"><CalendarDays size={16} aria-hidden="true" />Ficha actualizada el {updatedAt}</p>}
   </section>;
 }
 
-export function FacilityProfile({ facility }: { facility: Facility }) {
+export function FacilityProfile({
+  facility,
+  showConcernAction = true,
+  showSources = true,
+}: {
+  facility: Facility;
+  showConcernAction?: boolean;
+  showSources?: boolean;
+}) {
   const photoUrls = facility.photoUrls?.length
     ? facility.photoUrls
     : facility.photoUrl
       ? [facility.photoUrl]
       : [];
-  const priceDate = formatDate(facility.monthlyPriceAsOf);
-
-  return <>
+  return <div className="facilityProfileShell">
     <div className="facilityProfileLead">
       <div className="facilityProfileMedia">
         {photoUrls.length
@@ -227,44 +199,36 @@ export function FacilityProfile({ facility }: { facility: Facility }) {
           : <div className="facilityProfilePhotoMissing">Foto no informada</div>}
       </div>
       <section className="facilityProfileSummary" aria-labelledby="facility-summary-title">
-        <FacilityMembershipBadges facility={facility} />
         <h2 id="facility-summary-title">Información principal</h2>
-        <p>{facility.description || "Sin descripción pública verificada."}</p>
+        {facility.description && <p>{facility.description}</p>}
         <dl className="facilityProfileFacts">
           <div>
             <dt>Precio mensual</dt>
-            <dd>{facility.monthlyPriceUyu
+            <dd className="facilityFactPrice">{facility.monthlyPriceUyu
               ? `UYU ${facility.monthlyPriceUyu.toLocaleString("es-UY")}`
               : "No informado"}</dd>
-            {priceDate && <small>Vigente o registrado el {priceDate}</small>}
           </div>
           <div>
             <dt>Clasificación</dt>
             <dd><FacilityQualityBadge facility={facility} /></dd>
           </div>
+          <div>
+            <dt>Habilitación</dt>
+            <dd><FacilityPrimaryStatusBadge facility={facility} /></dd>
+          </div>
         </dl>
-        {facility.monthlyPriceIncludes?.length ? <p className="facilityProfileIncludes">
-          <strong>El precio incluye:</strong> {facility.monthlyPriceIncludes.join(", ")}.
-        </p> : null}
-        <div className="facilityProfileActions">
+        <div className={`facilityProfileActions${showConcernAction ? "" : " isSingle"}`}>
           <Link href={`/experiencia?elepem=${encodeURIComponent(facility.id)}`}>Dejar una experiencia</Link>
-          <Link href={`/preocupacion?elepem=${encodeURIComponent(facility.id)}`}>Contar una preocupación</Link>
+          {showConcernAction && <Link href={`/preocupacion?elepem=${encodeURIComponent(facility.id)}`}>Contar una preocupación</Link>}
         </div>
       </section>
     </div>
-
-    <section className="facilityProfileSection facilityProfileLocation" aria-labelledby="facility-location-title">
-      <h2 id="facility-location-title">Ubicación</h2>
-      <p><MapPin size={20} aria-hidden="true" />{facility.address || "Dirección no informada"}</p>
-      <p>{facility.locality || "Localidad no informada"} · {canonicalDepartment(facility.department)}</p>
-      <small>Precisión: {facility.precisionLabel}</small>
-    </section>
 
     <FacilityContactChannels facility={facility} />
     <FacilityAttributes facility={facility} />
     <div className="facilityProfileSection facilityProfileExperiences">
       <FacilityExperiences facilityId={facility.id} />
     </div>
-    <FacilitySources facility={facility} />
-  </>;
+    {showSources && <FacilitySources facility={facility} />}
+  </div>;
 }

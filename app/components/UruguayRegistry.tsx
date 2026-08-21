@@ -12,6 +12,7 @@ import {
   FacilityQualityBadge,
 } from "./FacilityProfile";
 import { RegistryAttributeFilters } from "./RegistryAttributeFilters";
+import { QualityRatingSelect } from "./QualityRatingSelect";
 import {
   facilityDisplayCategory,
   isVerificationFacility,
@@ -23,11 +24,7 @@ import {
   type PriceOrder,
   type RegistryFacilityStatus,
 } from "../hooks/useFacilityFilters";
-import {
-  QUALITY_RATING_LABELS,
-  type Facility,
-  type FacilityQualityFilter,
-} from "./map-types";
+import type { Facility } from "./map-types";
 import { publicFacilityPath } from "../../lib/public-facility-code.mjs";
 import {
   PUBLIC_REGISTRY_STATE_KEY,
@@ -362,7 +359,7 @@ export default function UruguayRegistry({
     if (!facility) return;
     if (facility.registryId) {
       saveNavigationState();
-      router.push(publicFacilityPath(facility.registryId));
+      window.open(publicFacilityPath(facility.registryId), "_blank", "noopener,noreferrer");
       return;
     }
     setDetailId(facilityId);
@@ -420,7 +417,7 @@ export default function UruguayRegistry({
       <button type="button" className={registryView === "mixed" ? "active" : ""} aria-pressed={registryView === "mixed"} onClick={() => setRegistryView("mixed")}>Mixta</button>
     </div>
 
-    <div className={`registryMapLayout registryMapLayout-${registryView}`}>
+    <div className={`registryMapLayout registryMapLayout-${registryView}`} id="mapa-registro">
       <aside className="card registryFiltersPanel" aria-label="Filtros de resultados">
         <header className="registryFiltersHeading">
           <div>
@@ -459,19 +456,14 @@ export default function UruguayRegistry({
             </select>
           </label>
 
-          <label>
-            <b>Clasificación</b>
-            <select
+          <div className="registryFilterField">
+            <b id="registry-quality-filter-label">Clasificación</b>
+            <QualityRatingSelect
+              labelledBy="registry-quality-filter-label"
               value={qualityRating}
-              onChange={(event) => setQualityRating(event.target.value as FacilityQualityFilter)}
-            >
-              <option value="">Todas</option>
-              {Object.entries(QUALITY_RATING_LABELS).map(([value, label]) => (
-                <option key={value} value={value}>{label}</option>
-              ))}
-              <option value="unrated">Sin calificar</option>
-            </select>
-          </label>
+              onChange={setQualityRating}
+            />
+          </div>
 
           <label>
             <b>Ordenar por:</b>
@@ -480,7 +472,6 @@ export default function UruguayRegistry({
               <option value="asc">Precio: menor a mayor</option>
               <option value="desc">Precio: mayor a menor</option>
             </select>
-            <small className="registryFilterHelp">Los residenciales sin precio quedan al final.</small>
           </label>
 
           <label>
