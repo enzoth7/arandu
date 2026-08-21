@@ -55,8 +55,11 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
-  // Permite aislar compilaciones auxiliares sin compartir la caché del servidor local.
-  distDir: process.env.ARANDU_NEXT_DIST_DIR || ".next",
+  // Desarrollo y producción no pueden escribir en el mismo directorio: ejecutar
+  // `next build` con `next dev` abierto reemplaza chunks que el servidor local
+  // todavía tiene en memoria y deja las rutas respondiendo 500 hasta reiniciarlo.
+  // La variable sigue permitiendo aislar compilaciones auxiliares cuando haga falta.
+  distDir: process.env.ARANDU_NEXT_DIST_DIR || (isDevelopment ? ".next-dev" : ".next"),
   outputFileTracingRoot: projectRoot,
   poweredByHeader: false,
   images: {

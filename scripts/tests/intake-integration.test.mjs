@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 import {
   buildReportPayload,
@@ -10,10 +10,10 @@ import {
   sameSecret,
 } from "../../lib/intake-report.mjs";
 import { integrationSignature, verifyN8nIntakeRequest } from "../../lib/n8n-intake-auth.mjs";
-import { chatwootSignature, verifyChatwootWebhook } from "../../lib/chatwoot-webhook-auth.mjs";
 
-const concernFormPath = new URL("../../app/components/IntakeReportForm.tsx", import.meta.url);
-const privacyContactPath = new URL("../../app/components/PrivacyContactBlock.tsx", import.meta.url);
+const concernPagePath = new URL("../../app/(publico)/preocupacion/page.tsx", import.meta.url);
+const publicNavigationPath = new URL("../../app/components/navigation.ts", import.meta.url);
+const intakeRoutePath = new URL("../../app/api/intake-reports/route.ts", import.meta.url);
 
 const sandboxReport = {
   setting: "En un residencial / ELEPEM",
@@ -66,20 +66,15 @@ test("el contrato web exige consentimiento y un ELEPEM del padrón", () => {
   assert.equal(buildReportPayload({ ...webReport, facility: { name: "Sin identificador" } }), null);
 });
 
-test("el contacto de una preocupación pide sólo vínculo, nombre, teléfono y correo", async () => {
-  const [formSource, privacySource] = await Promise.all([
-    readFile(concernFormPath, "utf8"),
-    readFile(privacyContactPath, "utf8"),
+test("la recepción de preocupaciones se retira y la URL pública redirige", async () => {
+  const [pageSource, navigationSource] = await Promise.all([
+    readFile(concernPagePath, "utf8"),
+    readFile(publicNavigationPath, "utf8"),
   ]);
-  assert.match(privacySource, /Relación con la persona o los hechos/);
-  assert.match(privacySource, />Nombre<\/span>/);
-  assert.match(privacySource, />Teléfono<\/span>/);
-  assert.match(privacySource, />Correo electrónico<\/span>/);
-  assert.doesNotMatch(privacySource, /alias|Horario o condición segura|Medio seguro de contacto/i);
-  assert.doesNotMatch(privacySource, /Recibirás un código para consultar el estado/);
-  assert.match(formSource, /reporter: relationship \|\| "No indicado"/);
-  assert.match(formSource, /reporterName: privacy === "Anónima" \? "" : contact\.name/);
-  assert.match(formSource, /\["Situación", "Lugar", "Contacto", "Enviar"\]/);
+  await assert.rejects(access(intakeRoutePath), { code: "ENOENT" });
+  assert.match(pageSource, /redirect\(facility \? `\/experiencia\?elepem=/);
+  assert.doesNotMatch(pageSource, /IntakeReportForm|loadPublicFacilitiesOrEmpty/);
+  assert.doesNotMatch(navigationSource, /Tengo una preocupación|view: "preocupacion"|preocupacion:/);
 });
 
 test("el contrato conserva nombre, vínculo y contacto confidencial", () => {
@@ -140,23 +135,4 @@ test("compara tokens sin revelar su longitud o contenido", () => {
   assert.equal(sameSecret("token-a", "token-a"), true);
   assert.equal(sameSecret("token-a", "token-b"), false);
   assert.equal(sameSecret("short", "a-much-longer-value"), false);
-});
-
-test("verifica la firma Chatwoot sobre timestamp y cuerpo crudo", () => {
-  const secret = "chatwoot-secret-with-at-least-32-characters";
-  const now = Date.parse("2026-08-04T15:00:00.000Z");
-  const timestamp = String(Math.floor(now / 1_000));
-  const rawBody = '{"event":"message_created","content":"ficticio"}';
-  const headers = new Headers({
-    "x-chatwoot-timestamp": timestamp,
-    "x-chatwoot-signature": chatwootSignature(secret, timestamp, rawBody),
-  });
-  assert.equal(verifyChatwootWebhook({ headers, rawBody, secret, now }).ok, true);
-
-  const reformatted = JSON.stringify(JSON.parse(rawBody), null, 2);
-  assert.equal(verifyChatwootWebhook({ headers, rawBody: reformatted, secret, now }).ok, false);
-  headers.set("x-chatwoot-signature", "sha256=00");
-  assert.equal(verifyChatwootWebhook({ headers, rawBody, secret, now }).ok, false);
-  headers.set("x-chatwoot-signature", chatwootSignature(secret, timestamp, rawBody));
-  assert.equal(verifyChatwootWebhook({ headers, rawBody, secret, now: now + 300_001 }).ok, false);
 });

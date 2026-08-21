@@ -96,100 +96,49 @@ test("destino, contacto y autorizaciones de envío se validan sin fallback", () 
   assert.deepEqual(registered?.contact, { name: "Persona", phone: "+598 99 123 456", email: null });
 });
 
-test("la experiencia conserva adjuntos sin grabador y la preocupación conserva relato y voz", async () => {
-  const [experience, experienceStyles, concern, sharedBlock, privateAttachments, attachmentRoute] = await Promise.all([
+test("la experiencia breve elimina adjuntos, grabador y datos de contacto", async () => {
+  const [experience, attachmentRoute] = await Promise.all([
     readFile(new URL("../../app/components/ExperienceForm.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../../app/components/ExperienceForm.module.css", import.meta.url), "utf8"),
-    readFile(new URL("../../app/components/IntakeReportForm.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../../app/components/PrivacyContactBlock.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../../app/components/PrivateAttachmentFields.tsx", import.meta.url), "utf8"),
     readFile(new URL("../../app/api/intake-reports/[caseCode]/attachments/route.ts", import.meta.url), "utf8"),
   ]);
-  assert.match(experience, /Publicarla de forma anónima/);
-  assert.match(experience, /Mantenerla privada/);
-  assert.match(experience, /Datos de contacto opcionales/);
-  assert.match(experience, /Envío directo al ELEPEM/);
+  assert.match(experience, /Cinco secciones breves/);
+  assert.match(experience, /publicación anónima después de la moderación/);
   assert.match(experience, /sendToFacility/);
-  assert.doesNotMatch(experience, /Resumen agregado/);
-  assert.match(concern, /<PrivacyContactBlock/);
-  assert.doesNotMatch(experience, />Anónima<|>Confidencial<|>Con identidad registrada</);
-  assert.match(sharedBlock, /Anónima/);
-  assert.match(sharedBlock, /Confidencial/);
-  assert.match(sharedBlock, /Con identidad registrada/);
-  assert.match(experience, /<PrivateAttachmentFields/);
-  assert.match(experience, /allowRecording=\{false\}/);
-  assert.match(experience, /catch \{\s*failed\.push\(file\.name\);/);
-  assert.match(experience, /result\.uploadToken[\s\S]*await uploadFiles[\s\S]*files\.map\(\(file\) => file\.name\)/);
-  assert.match(experience, /Contá brevemente tu experiencia/);
-  assert.match(concern, /<PrivateAttachmentFields/);
-  assert.match(concern, /Contá brevemente qué está pasando/);
-  assert.doesNotMatch(concern, /allowRecording=\{false\}/);
-  assert.match(privateAttachments, /privateNarrativeComposer/);
-  assert.match(privateAttachments, /TOCÁ/);
-  assert.match(privateAttachments, /Adjuntar archivo/);
-  assert.match(privateAttachments, /Hasta 5 archivos privados en total/);
-  assert.doesNotMatch(privateAttachments, /Archivos privados \(opcionales\)|Podés adjuntar imágenes, audios o documentos para la revisión\./);
-  assert.match(privateAttachments, /navigator\.mediaDevices\.getUserMedia/);
-  assert.match(privateAttachments, /new MediaRecorder/);
-  assert.match(experienceStyles, /reportFilePicker\):focus-within/);
-  assert.doesNotMatch(experience, /accept="image\/jpeg|Imágenes privadas|sólo admiten imágenes privadas/);
+  assert.match(experience, /shareContactWithFacility/);
+  assert.doesNotMatch(experience, /PrivateAttachmentFields|uploadFiles|MediaRecorder|type="file"|Datos de contacto opcionales/);
   assert.doesNotMatch(attachmentRoute, /entry_type === "experience" && cleanType\.startsWith\("audio\/"\)/);
 });
 
-test("el formulario vCR1 mantiene el recorrido sin mostrar contadores y usa un borrador sin datos sensibles", async () => {
+test("el formulario breve usa cinco pantallas, vínculo verificado y revisión final", async () => {
   const source = await readFile(new URL("../../app/components/ExperienceForm.tsx", import.meta.url), "utf8");
-  assert.match(source, /Tu experiencia puede ayudar a otras personas\. Este cuestionario busca conocer cómo es la vida cotidiana en este establecimiento desde la perspectiva de las personas residentes y de quienes las acompañan\. No incluyas nombres, diagnósticos, fotografías ni otros datos que permitan identificar a una persona\./);
-  assert.match(source, /step >= 3 && step <= 8/);
-  assert.doesNotMatch(source, /Fase \{currentPhase\} de 4|Paso \{step\} de \{TOTAL_STEPS\}|% del recorrido|Bandeja privada · revisión humana/);
-  assert.match(source, /Bloque \$\{currentDimension\.order\} de 6/);
-  assert.match(source, /return value === "current_resident";/);
-  assert.match(source, /Publicarla de forma anónima/);
-  assert.match(source, /!validInitialFacilityId && restored\.facilityId/);
-  assert.match(source, /Borrar borrador/);
-  assert.match(source, /El borrador guardado no era válido y se descartó/);
-  assert.match(source, /aria-describedby=\{errors\.respondentType/);
-  assert.match(source, /aria-describedby=\{errors\.residentParticipation/);
-  assert.match(source, /aria-describedby=\{errors\.consent/);
-  assert.doesNotMatch(source, /Período aproximado|periodStartYear|periodEndYear/);
-
-  const draftStart = source.indexOf("const draftSnapshot = useMemo");
-  const draftEnd = source.indexOf("useEffect(() =>", draftStart);
-  assert.ok(draftStart >= 0 && draftEnd > draftStart);
-  const draftSource = source.slice(draftStart, draftEnd);
-  assert.match(draftSource, /facilityId/);
-  assert.match(draftSource, /residentParticipation/);
-  assert.match(draftSource, /answers/);
-  assert.doesNotMatch(draftSource, /narrative|relationshipOther|contact|files|requestedDestination|publicationConsent|futureAuthorizations|consent/);
+  assert.match(source, /Sección \{step \+ 1\} de 5/);
+  assert.match(source, /relationship\.relationshipType === "resident"/);
+  assert.match(source, /Omitir esta sección/);
+  assert.match(source, /Revisá antes de enviar/);
+  assert.match(source, /Enviar para revisión/);
+  assert.doesNotMatch(source, /30 preguntas|residentParticipation|relationshipOther|type="file"/);
 });
 
-test("el cambio ELEPEM no exige fecha y limita fotos privadas", async () => {
-  const parsed = parseFacilityChangeSubmission({ facilityId: "DEMO-ELEPEM-002", changes: { phone: "+598 000 002" }, photoCount: 2 });
-  assert.equal(parsed?.facilityId, "DEMO-ELEPEM-002");
+test("el cambio ELEPEM usa un ID real y limita fotos autorizadas", async () => {
+  const parsed = parseFacilityChangeSubmission({ facilityId: 244, changes: { phones: ["2400 0002"] }, photoCount: 2, photoRightsConfirmed: true });
+  assert.equal(parsed?.facilityId, 244);
   assert.equal(parsed?.payload.publication, "never_automatic");
-  assert.equal(parsed?.payload.needsSupportingDocument, true);
-  assert.equal(parseFacilityChangeSubmission({ facilityId: "DEMO-ELEPEM-002", changes: {}, photoCount: 11 }), null);
-  assert.equal(parseFacilityChangeSubmission({ facilityId: "DEMO-ELEPEM-002", changes: {}, photoCount: 0 }), null);
-  const removal = parseFacilityChangeSubmission({ facilityId: "DEMO-ELEPEM-002", changes: {}, photoCount: 0, removeCurrentPhoto: true });
-  assert.equal(removal?.payload.removeCurrentPhoto, true);
+  assert.equal(parseFacilityChangeSubmission({ facilityId: 244, changes: {}, photoCount: 11 }), null);
+  assert.equal(parseFacilityChangeSubmission({ facilityId: 244, changes: {}, photoCount: 0 }), null);
   const source = await readFile(new URL("../../app/components/institutional/FacilityChangeForm.tsx", import.meta.url), "utf8");
-  assert.doesNotMatch(source, /Fecha de vigencia del dato/);
+  assert.match(source, /Fecha del precio/);
 });
 
 test("las fotos propuestas comparten una sola procedencia y declaración de derechos", async () => {
   const source = await readFile(new URL("../../app/components/institutional/FacilityChangeForm.tsx", import.meta.url), "utf8");
-  assert.match(source, /facilityProposedPhotoGrid/);
   assert.match(source, /Procedencia de las fotos/);
-  assert.match(source, /rightsSource", photoSource/);
-  assert.match(source, /rightsConfirmed", String\(photoRightsConfirmed\)/);
-  assert.match(source, /aria-label={`Quitar foto \$\{index \+ 1\}`}/);
-  assert.match(source, /Editar fotos/);
-  assert.match(source, /Foto publicada actualmente/);
-  assert.match(source, /Quitar foto publicada/);
-  assert.doesNotMatch(source, /Proponer fotos/);
-  assert.doesNotMatch(source, /Procedencia de esta foto/);
+  assert.match(source, /rightsSource/);
+  assert.match(source, /rightsConfirmed/);
+  assert.match(source, /Confirmo que tengo autorización y derechos/);
+  assert.doesNotMatch(source, /supporting_document|documentos de respaldo/);
 });
 
-test("las APIs demo no contienen escrituras al padrón canónico", async () => {
+test("sólo la aprobación institucional escribe en el padrón canónico", async () => {
   const paths = [
     new URL("../../app/api/experiences/route.ts", import.meta.url),
     new URL("../../app/api/institutional/facility/requests/route.ts", import.meta.url),
@@ -199,7 +148,8 @@ test("las APIs demo no contienen escrituras al padrón canónico", async () => {
   ];
   const source = (await Promise.all(paths.map((path) => readFile(path, "utf8")))).join("\n");
   assert.doesNotMatch(source, /(?:insert\s+into|update|delete\s+from)\s+(?:public\.)?residenciales/i);
-  assert.doesNotMatch(source, /(?:insert\s+into|update|delete\s+from)\s+elepem_core\.facilities\b/i);
+  assert.match(source, /UPDATE public\.elepem SET/);
+  assert.match(source, /institutional_facility_change_approved/);
   assert.match(source, /facility_experience_publications/);
   assert.match(source, /is_demo/);
 });
@@ -210,7 +160,7 @@ test("las fotos ELEPEM sólo se publican tras aprobación estatal explícita", a
     readFile(new URL("../../app/api/residenciales/[facilityKey]/photos/[photoId]/route.ts", import.meta.url), "utf8"),
     readFile(new URL("../../app/components/institutional/StateInbox.tsx", import.meta.url), "utf8"),
   ]);
-  assert.match(decisionRoute, /action === "approve_preview"/);
+  assert.match(decisionRoute, /action === "approve"/);
   assert.match(decisionRoute, /facility_change_publications/);
   assert.match(decisionRoute, /rights_metadata->>'rightsConfirmed' = 'true'/);
   assert.doesNotMatch(publicPhotoRoute, /institutionalSessionOrError/);
@@ -218,7 +168,7 @@ test("las fotos ELEPEM sólo se publican tras aprobación estatal explícita", a
   assert.match(publicPhotoRoute, /publication_batch_id/);
   assert.match(publicPhotoRoute, /rightsConfirmed/);
   assert.match(decisionRoute, /facility_change_publications/);
-  assert.match(inbox, /Aprobar y publicar fotos/);
+  assert.match(inbox, /Aprobar cambios/);
 });
 
 test("las propuestas ELEPEM usan borrador privado y finalización con evidencia", async () => {
@@ -226,10 +176,10 @@ test("las propuestas ELEPEM usan borrador privado y finalización con evidencia"
   const attachment = await readFile(new URL("../../app/api/intake-reports/[caseCode]/attachments/route.ts", import.meta.url), "utf8");
   assert.match(route, /mode === "finalize"/);
   assert.match(route, /current_status = 'draft'/);
-  assert.match(route, /needsSupportingDocument/);
-  assert.match(attachment, /La carga privada de fotos y documentos no está configurada en este entorno/);
+  assert.match(route, /submitted_by_user_id/);
+  assert.match(attachment, /La carga privada de fotos no está configurada en este entorno/);
   assert.match(attachment, /máximo de 10 fotos/);
-  assert.match(attachment, /supporting_document/);
+  assert.match(route, /rightsConfirmed/);
 });
 
 test("la revisión documental interna es append-only y no crea una proyección pública", async () => {
@@ -248,7 +198,7 @@ test("las decisiones de publicacion estan protegidas por el rol estatal", async 
   ];
   for (const path of paths) {
     const source = await readFile(path, "utf8");
-    assert.match(source, /institutionalSessionOrError\(request, "state"\)/);
+    assert.match(source, /institutionalSessionOrError\(request, "moderator"\)/);
   }
 });
 
@@ -307,7 +257,7 @@ test("el triaje conserva las cuatro verificaciones auditables", async () => {
     assert.match(route, new RegExp(key));
   }
   assert.match(inbox, /event\.event_data\?\.triage/);
-  assert.match(route, /JSON\.stringify\(\{ decision: action, preview, triage, reviewer/);
+  assert.match(route, /JSON\.stringify\(\{ decision: action, triage, userId/);
 });
 
 test("la decisión de experiencias distingue publicar de no publicar", async () => {

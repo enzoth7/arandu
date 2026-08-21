@@ -1,20 +1,31 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { ExperienceForm } from "../../components/ExperienceForm";
-import { loadPublicFacilitiesOrEmpty } from "../../../lib/facility-registry";
-import { canonicalDepartment, URUGUAY_DEPARTMENTS } from "../../../lib/uruguay.mjs";
+import { loadVerifiedPersonalRelationships } from "../../../lib/brief-experience-db";
+import { readAccountSession } from "../../../lib/institutional-auth";
 
 export const metadata: Metadata = {
   title: "Compartir una experiencia",
-  description: "Formulario para compartir una experiencia sobre un ELEPEM y enviarla a revisión humana privada.",
+  description: "Cinco preguntas breves sobre la vida cotidiana en un ELEPEM, con revisión humana antes de publicar.",
 };
 
 export default async function ExperiencePage({ searchParams }: { searchParams: Promise<{ elepem?: string }> }) {
   const params = await searchParams;
-  const enabled = process.env.DEMO_MODE === "true" && process.env.DEMO_INTAKE_ENABLED === "true";
-  const validDepartments = new Set(URUGUAY_DEPARTMENTS);
-  const facilities = (await loadPublicFacilitiesOrEmpty())
-    .map(({ id, name, locality, department }) => ({ id, name, locality, department: canonicalDepartment(department) }))
-    .filter((facility) => validDepartments.has(facility.department))
-    .sort((left, right) => left.name.localeCompare(right.name, "es-UY", { sensitivity: "base" }));
-  return <ExperienceForm facilities={facilities} initialFacilityId={params.elepem || ""} enabled={enabled} />;
+  const account = await readAccountSession();
+  const next = params.elepem ? `/experiencia?elepem=${encodeURIComponent(params.elepem)}` : "/experiencia";
+  if (!account) redirect(`/iniciar-sesion?next=${encodeURIComponent(next)}`);
+  const relationships = await loadVerifiedPersonalRelationships(account.userId);
+  if (relationships.length === 0) {
+    return <main className="publicSimplePage">
+      <section className="institutionalCard">
+        <p className="eyebrow">Experiencias verificadas</p>
+        <h1>Tu vínculo todavía no está habilitado</h1>
+        <p>Para proteger a las personas, la versión para residentes o familiares sólo se abre cuando el vínculo con un ELEPEM fue verificado. No podés elegirlo manualmente desde este formulario.</p>
+      </section>
+    </main>;
+  }
+  const requested = params.elepem || "";
+  const initialFacilityKey = relationships.find((item) => item.facilityKey === requested || item.selectionKey === requested)?.selectionKey
+    ?? relationships[0].selectionKey;
+  return <ExperienceForm relationships={relationships} initialFacilityKey={initialFacilityKey} />;
 }

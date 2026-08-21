@@ -8,7 +8,6 @@ import type {
   RespondentValue,
 } from "./experience-questionnaire.mjs";
 
-export const DEMO_FACILITY_ID_PATTERN: RegExp;
 export const EXPERIENCE_ANSWER_VALUES: Set<string>;
 export const EXPERIENCE_PRIVACY_VALUES: Set<string>;
 export const EXPERIENCE_PAYLOAD_VERSION: 5;
@@ -71,6 +70,6 @@ export function parseExperienceSubmission(value: unknown): null | {
 };
 export function demoIntakeEnabled(env?: Record<string, string | undefined>): boolean;
 export function parseFacilityChangeSubmission(value: unknown): null | {
-  facilityId: string;
-  payload: Record<string, unknown>;
+  facilityId: number;
+  payload: Record<string, unknown> & { photoCount: number; photoRightsConfirmed: boolean };
 };

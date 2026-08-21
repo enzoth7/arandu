@@ -4,11 +4,11 @@ import { useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Building2, LogOut, Menu } from "lucide-react";
+import { LogIn, LogOut, Menu } from "lucide-react";
 import {
   homeFor,
   navItemsFor,
-  INSTITUTIONAL_LOGIN,
+  ACCOUNT_LOGIN,
   pathFor,
   type Portal,
 } from "./navigation";
@@ -27,9 +27,9 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
   const [menuOpen, setMenuOpen] = useState(false);
   const isInstitutional = portal !== "public";
 
-  const signOut = () => {
-    void fetch("/api/institutional/session", { method: "DELETE" }).catch(() => undefined);
-    router.push("/");
+  const signOut = async () => {
+    await fetch("/api/auth/logout", { method: "POST" }).catch(() => undefined);
+    router.push("/iniciar-sesion");
     router.refresh();
   };
 
@@ -68,8 +68,8 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
             ? <button type="button" className="profileReset" onClick={signOut}>
                 <LogOut size={16}/><span>Salir</span>
               </button>
-            : <Link className="institutionalAccess" href={INSTITUTIONAL_LOGIN}>
-                <Building2 size={16}/><span>Acceso institucional</span>
+            : <Link className="institutionalAccess" href={ACCOUNT_LOGIN}>
+                <LogIn size={16}/><span>Acceso institucional</span>
               </Link>}
         </div>
       </div>
@@ -88,7 +88,7 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
             <span>Información para elegir</span>
           </div>
           <nav className="aranduFooterLinks" aria-label="Enlaces del pie">
-            <Link href="/acceso-institucional">Acceso institucional</Link>
+            <Link href="/iniciar-sesion">Acceso institucional</Link>
           </nav>
         </div>}
       </footer>

@@ -8,7 +8,6 @@ export type View =
   // Público
   | "buscar"
   | "guia"
-  | "preocupacion"
   | "experiencia"
   | "seguimiento"
   | "fuentes"
@@ -19,19 +18,19 @@ export type View =
   | "bandeja"
   | "mis_elepem"
   | "solicitudes"
-  | "nuevo_cambio";
+  | "nuevo_cambio"
+  | "agenda_visitas";
 
 export type Portal = "public" | "state" | "facility";
 
 export const PUBLIC_HOME = "/";
 export const STATE_HOME = "/institucional/estado/bandeja";
 export const FACILITY_HOME = "/institucional/elepem";
-export const INSTITUTIONAL_LOGIN = "/acceso-institucional";
+export const ACCOUNT_LOGIN = "/iniciar-sesion";
 
 const publicViewPaths: Partial<Record<View, string>> = {
   buscar: PUBLIC_HOME,
   guia: "/guia",
-  preocupacion: "/preocupacion",
   experiencia: "/experiencia",
   seguimiento: "/seguimiento",
   fuentes: "/fuentes",
@@ -47,20 +46,16 @@ const facilityViewPaths: Partial<Record<View, string>> = {
   mis_elepem: FACILITY_HOME,
   solicitudes: "/institucional/elepem/solicitudes",
   nuevo_cambio: "/institucional/elepem/solicitudes/nueva",
+  agenda_visitas: "/institucional/elepem/visitas",
 };
 
 export type NavItem = { view: View; label: string };
 
-/**
- * Navegación pública. Sólo se listan destinos que existen: «Compartir
- * experiencia» se incorpora cuando exista ese flujo, para no dejar entradas
- * que no lleven a ninguna parte.
- */
+/** Navegación pública breve: cada destino corresponde a una tarea vigente. */
 export const publicNavItems: readonly NavItem[] = [
   { view: "buscar", label: "Buscar" },
   { view: "guia", label: "Cómo elegir" },
   { view: "experiencia", label: "Experiencias" },
-  { view: "preocupacion", label: "Tengo una preocupación" },
   { view: "fuentes", label: "Fuentes" },
 ];
 
@@ -73,6 +68,7 @@ export const organizationNavItems: readonly NavItem[] = [
 export const facilityNavItems: readonly NavItem[] = [
   { view: "mis_elepem", label: "Mis ELEPEM" },
   { view: "solicitudes", label: "Solicitudes" },
+  { view: "agenda_visitas", label: "Visitas" },
   { view: "nuevo_cambio", label: "Proponer cambio" },
 ];
 

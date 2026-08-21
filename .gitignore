@@ -9,6 +9,8 @@ out/
 .vscode/
 .local-backups/
 .tmp/
+.temp/
+supabase/.temp/
 scratch/
 *.log
 

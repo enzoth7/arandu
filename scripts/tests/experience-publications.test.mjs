@@ -49,14 +49,18 @@ test("el tamano de pagina usa 5 por defecto y un maximo de 20", () => {
   assert.equal(parseExperiencePageLimit("21"), null);
 });
 
-test("la moderacion usa el propietario real o demo sin mezclar expedientes", async () => {
+test("la moderacion usa el propietario real o demo y admite experiencias verificadas explícitas", async () => {
   const source = await readFile(new URL("../../lib/experience-publication-db.ts", import.meta.url), "utf8");
   assert.match(source, /Boolean\(report\.facility_id\) === Boolean\(report\.demo_facility_id\)/);
   assert.match(source, /facility_id IS NOT DISTINCT FROM \$2::bigint/);
   assert.match(source, /demo_facility_id IS NOT DISTINCT FROM \$3/);
   assert.match(source, /VALUES \(\$1, \$2::bigint, \$3,/);
   assert.doesNotMatch(source, /facility_id IS NULL AND demo_facility_id = \$2/);
-  assert.match(source, /!report\.is_demo \|\| report\.entry_type !== "experience"/);
+  assert.match(source, /report\.report_payload\?\.experienceKind === "visit"/);
+  assert.match(source, /report\.entry_type === "experience" && report\.is_demo/);
+  assert.match(source, /!isVisitExperience && !isVerifiedResidentialExperience && !isPrototypeExperience/);
+  assert.match(source, /report\.payload_version === 6/);
+  assert.match(source, /relationshipSnapshot/);
 });
 
 test("v5 publica sólo con autorización anónima explícita y nunca conserva periodo público", async () => {
@@ -64,7 +68,7 @@ test("v5 publica sólo con autorización anónima explícita y nunca conserva pe
   assert.match(source, /reportPayloadVersion === 5 \|\| reportPayloadVersion === 4/);
   assert.doesNotMatch(source, /privacyMode === "anonymous"/);
   assert.match(source, /reportPayloadVersion === 4/);
-  assert.match(source, /version\) === 5[\s\S]*publicPeriod: null/);
+  assert.match(source, /\[5, 6\]\.includes[\s\S]*publicPeriod: null/);
   assert.match(source, /requestedDestination !== "consider_anonymized"/);
   assert.match(source, /publicationConsent !== true/);
 });

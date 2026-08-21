@@ -6,18 +6,18 @@ import { institutionalSessionOrError, requireInstitutionalRole } from "./institu
 export type TeamSession = { reviewer: string; expiresAt: number };
 
 export async function requireTeamSession(): Promise<TeamSession> {
-  const session = await requireInstitutionalRole("state");
-  return { reviewer: session.identity, expiresAt: session.expiresAt };
+  const session = await requireInstitutionalRole("administrator");
+  return { reviewer: session.identity, expiresAt: Date.now() + 60 * 60 * 1_000 };
 }
 
 export async function readServerTeamSession(): Promise<TeamSession | null> {
   return null;
 }
 
-export function teamSessionOrUnauthorized(request: NextRequest):
+export async function teamSessionOrUnauthorized(request: NextRequest): Promise<
   | { session: TeamSession; response: null }
-  | { session: null; response: NextResponse } {
-  const auth = institutionalSessionOrError(request, "state");
+  | { session: null; response: NextResponse }> {
+  const auth = await institutionalSessionOrError(request, "administrator");
   if (!auth.session) return { session: null, response: auth.response };
-  return { session: { reviewer: auth.session.identity, expiresAt: auth.session.expiresAt }, response: null };
+  return { session: { reviewer: auth.session.identity, expiresAt: Date.now() + 60 * 60 * 1_000 }, response: null };
 }

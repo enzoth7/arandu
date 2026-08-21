@@ -3,8 +3,7 @@ import { loadAssignedFacilityProfiles } from "../../../../../lib/facility-regist
 import { requireInstitutionalRole } from "../../../../../lib/institutional-auth";
 
 export default async function NewFacilityChangePage() {
-  const session = await requireInstitutionalRole("facility");
+  const session = await requireInstitutionalRole("facility_representative");
   const facilities = await loadAssignedFacilityProfiles(session.facilityIds);
-  const enabled = process.env.DEMO_MODE === "true" && process.env.DEMO_INTAKE_ENABLED === "true";
-  return <FacilityChangeForm facilities={facilities} enabled={enabled} />;
+  return <FacilityChangeForm facilities={facilities} />;
 }

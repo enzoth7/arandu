@@ -32,7 +32,8 @@ export const metadata: Metadata = {
   description: "Información clara sobre ELEPEM en Uruguay.",
   applicationName: "Arandú",
   icons: {
-    icon: "/arandu-mark.svg",
+    icon: [{ url: "/arandu-mark.svg?v=20260821", type: "image/svg+xml" }],
+    shortcut: [{ url: "/arandu-mark.svg?v=20260821", type: "image/svg+xml" }],
   },
   openGraph: {
     type: "website",

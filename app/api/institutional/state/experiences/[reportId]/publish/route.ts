@@ -14,7 +14,7 @@ export async function POST(
   request: NextRequest,
   context: { params: Promise<{ reportId: string }> },
 ) {
-  const auth = institutionalSessionOrError(request, "state");
+  const auth = await institutionalSessionOrError(request, "moderator");
   if (!auth.session) return auth.response;
   const { reportId } = await context.params;
   if (!UUID_PATTERN.test(reportId)) {

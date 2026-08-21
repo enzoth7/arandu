@@ -10,6 +10,8 @@ type PublicExperience = {
   relationship: string | null;
   period: string | null;
   publishedAt: string | null;
+  kind: "residential" | "visit";
+  perspective: "resident" | "family" | "visitor" | null;
 };
 
 type ExperiencePage = {
@@ -60,6 +62,10 @@ function normalizePage(payload: unknown): ExperiencePage {
       relationship: firstString(rawItem, ["relationship", "publicRelationship", "public_relationship"]),
       period: firstString(rawItem, ["period", "publicPeriod", "public_period"]),
       publishedAt,
+      kind: rawItem.kind === "visit" ? "visit" : "residential",
+      perspective: rawItem.perspective === "resident" || rawItem.perspective === "family" || rawItem.perspective === "visitor"
+        ? rawItem.perspective
+        : null,
     }];
   });
 
@@ -196,6 +202,8 @@ export function FacilityExperiences({ facilityId }: { facilityId: string }) {
                     )}
                   </p>
                 )}
+                {item.perspective && <p className="facilityExperienceKind">{{ resident: "Experiencia de una persona residente", family: "Experiencia de un familiar o persona allegada", visitor: "Experiencia de visita" }[item.perspective]}</p>}
+                {!item.perspective && item.kind === "visit" && <p className="facilityExperienceKind">Experiencia de visita</p>}
                 <p className="facilityExperiencesBody">{item.body}</p>
               </li>
             );

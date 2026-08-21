@@ -11,12 +11,14 @@
     "test:osm-discovery": "node --test scripts/tests/osm-candidate-discovery.test.mjs",
     "test:matching": "node --test scripts/tests/facility-matching.test.mjs scripts/tests/candidate-review.test.mjs scripts/tests/facility-search.test.mjs",
     "test:map": "node --test scripts/tests/map-rendering.test.mjs scripts/tests/facility-document-status.test.mjs",
+    "test:guide": "node --test scripts/tests/choosing-guide.test.mjs",
+    "test:visits": "node --test scripts/tests/visit-scheduling.test.mjs",
     "test:intake": "node --test scripts/tests/intake-integration.test.mjs scripts/tests/n8n-workflow-sandbox.test.mjs",
     "test:normalized-backfill": "node --test scripts/tests/normalized-elepem-backfill.test.mjs scripts/tests/elepem-data-source.test.mjs",
     "test:unified-registry": "node --test scripts/tests/unified-elepem-registry.test.mjs scripts/tests/elepem-data-source.test.mjs",
     "test:unified-registry:local": "node --test scripts/tests/unified-elepem-registry-local.test.mjs",
     "test:flat-registry": "node --test scripts/tests/flat-elepem-registry.test.mjs scripts/tests/facility-search.test.mjs scripts/tests/map-rendering.test.mjs",
-    "test:institutional": "node --test scripts/tests/experience-questionnaire.test.mjs scripts/tests/institutional-demo.test.mjs scripts/tests/institutional-session.test.mjs scripts/tests/experience-publications.test.mjs",
+    "test:institutional": "node --test scripts/tests/experience-questionnaire.test.mjs scripts/tests/brief-experience.test.mjs scripts/tests/institutional-demo.test.mjs scripts/tests/institutional-auth.test.mjs scripts/tests/experience-publications.test.mjs",
     "demo:reset": "node --env-file=.env scripts/reset-demo-intake.mjs --confirm-demo-only",
     "db:elepem:backup": "node --env-file=.env scripts/backup-flat-elepem-cutover.mjs",
     "db:elepem:verify": "node --env-file=.env scripts/verify-flat-elepem.mjs",
@@ -24,6 +26,7 @@
     "db:elepem:import": "node --env-file=.env scripts/import-flat-elepem.mjs --apply"
   },
   "dependencies": {
+    "@supabase/ssr": "0.12.4",
     "@supabase/supabase-js": "^2.112.3",
     "@vercel/analytics": "^2.0.1",
     "dotenv": "^17.4.2",

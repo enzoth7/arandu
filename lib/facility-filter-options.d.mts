@@ -22,5 +22,10 @@ export function emptyFacilityAttributeFilters(): FacilityAttributeFilters;
 export function normalizeFacilityAttributeFilters(value: unknown): FacilityAttributeFilters;
 export function hasFacilityAttributeFilters(value: unknown): boolean;
 export function facilityAttributeFilterLabel(groupKey: FacilityAttributeFilterKey, optionValue: string): string;
+export function facilityMatchesAttributeFilter(
+  facility: Partial<FacilityWithFilterAttributes>,
+  groupKey: FacilityAttributeFilterKey,
+  optionValue: string,
+): boolean;
 
 export type FacilityWithFilterAttributes = Pick<Facility, FacilityAttributeFilterKey>;

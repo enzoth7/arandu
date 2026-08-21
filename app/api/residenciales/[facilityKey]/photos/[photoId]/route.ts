@@ -26,18 +26,16 @@ export async function GET(
        ON publication.id = photo.publication_id
      JOIN public.intake_report_attachments AS attachment
        ON attachment.id = photo.attachment_id
-     LEFT JOIN public.elepem AS facility ON facility.id = publication.facility_id
-     LEFT JOIN arandu_demo.facilities AS demo ON demo.id = publication.demo_facility_id
+     JOIN public.elepem AS facility ON facility.id = publication.facility_id
      WHERE photo.id = $1
-       AND COALESCE(facility.codigo, demo.id) = $2
+       AND facility.codigo = $2
        AND attachment.purpose = 'facility_photo'
        AND attachment.mime_type LIKE 'image/%'
        AND attachment.rights_metadata->>'rightsConfirmed' = 'true'
        AND publication.publication_batch_id = (
          SELECT latest.publication_batch_id
          FROM public.facility_change_publications AS latest
-         WHERE latest.facility_id IS NOT DISTINCT FROM publication.facility_id
-           AND latest.demo_facility_id IS NOT DISTINCT FROM publication.demo_facility_id
+         WHERE latest.facility_id = publication.facility_id
          ORDER BY latest.published_at DESC, latest.id DESC
          LIMIT 1
        )

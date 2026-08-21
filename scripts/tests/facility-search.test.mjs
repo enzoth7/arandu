@@ -13,6 +13,7 @@ import {
   sortFacilities,
   sortFacilitiesByPrice,
 } from "../../lib/facility-search.mjs";
+import { FACILITY_ATTRIBUTE_FILTER_GROUPS } from "../../lib/facility-filter-options.mjs";
 import { canonicalDepartment, foldText } from "../../lib/uruguay.mjs";
 
 function facility(overrides = {}) {
@@ -30,6 +31,72 @@ function facility(overrides = {}) {
 
 const haystackFor = (f) => foldText(`${f.name} ${f.address} ${f.locality} ${f.department}`);
 const criteria = (extra) => ({ canonicalDepartmentOf: canonicalDepartment, ...extra });
+
+test("la taxonomía visible coincide con el ajuste solicitado", () => {
+  const labels = Object.fromEntries(FACILITY_ATTRIBUTE_FILTER_GROUPS.map((group) => [
+    group.label,
+    group.options.map(([, label]) => label),
+  ]));
+  assert.deepEqual(labels, {
+    "Tipo de estadía": [
+      "Estadía permanente",
+      "Estadía temporal",
+      "Estadía de respiro",
+      "Centro de día",
+      "Recuperación o convalecencia",
+      "Rehabilitación",
+    ],
+    "Habitación y privacidad": [
+      "Habitación individual",
+      "Habitación compartida",
+      "Baño privado",
+      "Baño compartido",
+    ],
+    Entorno: [
+      "Jardín, patio o espacio exterior",
+      "Espacios comunes",
+      "Aire acondicionado",
+      "Calefacción",
+      "Iluminación natural",
+    ],
+    "Accesibilidad y movilidad": [
+      "Acceso sin escalones",
+      "Ascensor o ayuda para escaleras",
+      "Circulación para silla de ruedas",
+      "Baño adaptado",
+      "Barras de apoyo",
+      "Ducha a nivel del piso",
+      "Sistema de llamada en dormitorio o baño",
+      "Camas articuladas o eléctricas",
+    ],
+    "Cuidados y profesionales": [
+      "Atención o asistencia durante las 24 horas",
+      "Dirección técnica médica",
+      "Médico general",
+      "Médico geriatra",
+      "Enfermería",
+      "Fisioterapia",
+      "Nutricionista",
+      "Psicología",
+      "Trabajo social o asistencia social",
+      "Odontología",
+      "Podología",
+    ],
+    "Vida cotidiana y vínculos": [
+      "Actividades y recreación",
+      "Paseos y salidas",
+      "Actividad física",
+      "Música, arte o talleres",
+      "Estimulación cognitiva",
+      "Alimentación adaptada",
+      "Menú visible",
+      "Horarios amplios de visita",
+      "Espacio privado para visitas o llamadas",
+      "Acceso a teléfono",
+      "Internet o Wi-Fi",
+    ],
+  });
+});
 
 test("un ELEPEM con MSP o MIDES tiene respaldo administrativo", () => {
   assert.equal(hasOfficialAdministrativeRecord(facility({ mspFinal: true })), true);
@@ -110,6 +177,54 @@ test("los atributos usan OR dentro de un grupo y AND entre grupos", () => {
     },
   }), haystackFor);
   assert.deepEqual(found.map((f) => f.id), ["coincide"]);
+});
+
+test("los filtros separados siguen encontrando valores agrupados anteriores", () => {
+  const legacy = facility({
+    id: "legacy",
+    stayTypes: ["temporal_respiro", "recuperacion_rehabilitacion"],
+    roomPrivacyFeatures: ["habitacion_privada", "espacio_privado_visitas_llamadas"],
+    environmentFeatures: ["climatizacion"],
+    accessibilityFeatures: ["bano_adaptado_barras"],
+    dailyLifeFeatures: ["telefono_internet"],
+  });
+
+  for (const [group, option] of [
+    ["stayTypes", "temporal"],
+    ["stayTypes", "respiro"],
+    ["stayTypes", "recuperacion_convalecencia"],
+    ["stayTypes", "rehabilitacion"],
+    ["roomPrivacyFeatures", "habitacion_individual"],
+    ["environmentFeatures", "aire_acondicionado"],
+    ["environmentFeatures", "calefaccion"],
+    ["accessibilityFeatures", "bano_adaptado"],
+    ["accessibilityFeatures", "barras_apoyo"],
+    ["dailyLifeFeatures", "espacio_privado_visitas_llamadas"],
+    ["dailyLifeFeatures", "acceso_telefono"],
+    ["dailyLifeFeatures", "internet_wifi"],
+  ]) {
+    const found = filterFacilities([legacy], criteria({
+      attributeFilters: { [group]: [option] },
+    }), haystackFor);
+    assert.deepEqual(found.map((item) => item.id), ["legacy"], `${group}:${option}`);
+  }
+});
+
+test("los filtros nuevos aceptan valores ya clasificados con la taxonomía nueva", () => {
+  const current = facility({
+    id: "actual",
+    stayTypes: ["respiro"],
+    careServices: ["medico_geriatra"],
+    dailyLifeFeatures: ["internet_wifi"],
+  });
+  const found = filterFacilities([current], criteria({
+    attributeFilters: {
+      stayTypes: ["respiro"],
+      careServices: ["medico_geriatra"],
+      dailyLifeFeatures: ["internet_wifi"],
+    },
+  }), haystackFor);
+  assert.deepEqual(found.map((item) => item.id), ["actual"]);
 });
 
 test("sin información no se interpreta como una respuesta negativa", () => {

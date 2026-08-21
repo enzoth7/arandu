@@ -4,15 +4,30 @@ import { querySupabaseDatabase } from "../../../../../lib/supabase-db";
 
 export const runtime = "nodejs";
 
+const PRIVATE_PAYLOAD_KEYS = new Set([
+  "name", "fullname", "email", "phone", "address", "document", "identity",
+  "contact", "contacts", "contactname", "contactemail", "contactphone",
+  "residentname", "familyname", "userid", "submittedbyuserid",
+]);
+
+function pseudonymizePayload(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(pseudonymizePayload);
+  if (!value || typeof value !== "object") return value;
+  return Object.fromEntries(Object.entries(value as Record<string, unknown>)
+    .filter(([key]) => !PRIVATE_PAYLOAD_KEYS.has(key.replace(/[^a-z]/gi, "").toLowerCase()))
+    .map(([key, nested]) => [key, pseudonymizePayload(nested)]));
+}
+
 export async function GET(request: NextRequest) {
-  const auth = institutionalSessionOrError(request, "state");
+  const auth = await institutionalSessionOrError(request, "moderator");
   if (!auth.session) return auth.response;
   try {
-    const reports = await querySupabaseDatabase<{
+    const rawReports = await querySupabaseDatabase<{
       id: string; case_code: string; entry_type: string; current_status: string; priority: string;
       demo_facility_id: string | null; report_payload: Record<string, unknown>; created_at: string;
       contacts: unknown; events: unknown; attachments: unknown;
       facility: null | { id: number; key: string; name: string; locality: string; department: string };
+      demoFacility: null | { key: string; name: string; locality: string; department: string };
       publication: null | {
         id: string; status: "draft" | "published" | "withdrawn"; publicBody: string;
         publicRelationship: string | null; publicPeriod: string | null; publishedAt: string | null;
@@ -25,6 +40,10 @@ export async function GET(request: NextRequest) {
            'id', facility.id, 'key', facility.codigo, 'name', facility.nombre,
            'locality', facility.localidad, 'department', facility.departamento
          ) END AS facility,
+         CASE WHEN demo_facility.id IS NULL THEN NULL ELSE jsonb_build_object(
+           'key', demo_facility.id, 'name', demo_facility.name,
+           'locality', demo_facility.locality, 'department', demo_facility.department
+         ) END AS "demoFacility",
          CASE WHEN experience_publication.id IS NULL THEN NULL ELSE jsonb_build_object(
            'id', experience_publication.id, 'status', experience_publication.status,
            'publicBody', experience_publication.public_body,
@@ -36,20 +55,16 @@ export async function GET(request: NextRequest) {
            'decision', document_review.decision, 'reason', document_review.reason,
            'createdAt', document_review.created_at
          ) END AS "documentReview",
-         COALESCE((SELECT jsonb_agg(jsonb_build_object(
-           'name', contact.name, 'phone', contact.phone, 'email', contact.email
-         )) FROM public.intake_report_contacts AS contact WHERE contact.report_id = report.id), '[]'::jsonb) AS contacts,
+         '[]'::jsonb AS contacts,
          COALESCE((SELECT jsonb_agg(jsonb_build_object(
            'id', event.id, 'status', event.status, 'public_title', event.public_title,
-           'public_description', event.public_description, 'internal_note', event.internal_note,
-           'event_data', event.event_data, 'actor', event.actor, 'created_at', event.created_at
+           'public_description', event.public_description,
+           'event_data', event.event_data, 'created_at', event.created_at
          ) ORDER BY event.created_at) FROM public.intake_report_events AS event WHERE event.report_id = report.id), '[]'::jsonb) AS events,
-         COALESCE((SELECT jsonb_agg(jsonb_build_object(
-           'id', attachment.id, 'file_name', attachment.file_name, 'mime_type', attachment.mime_type,
-           'size_bytes', attachment.size_bytes, 'purpose', attachment.purpose, 'rights_metadata', attachment.rights_metadata
-         ) ORDER BY attachment.created_at) FROM public.intake_report_attachments AS attachment WHERE attachment.report_id = report.id), '[]'::jsonb) AS attachments
+         '[]'::jsonb AS attachments
        FROM public.intake_reports AS report
        LEFT JOIN public.elepem AS facility ON facility.id = report.facility_id
+       LEFT JOIN arandu_demo.facilities AS demo_facility ON demo_facility.id = report.demo_facility_id
        LEFT JOIN elepem_core.facility_experience_publications AS experience_publication
          ON experience_publication.report_id = report.id
        LEFT JOIN LATERAL (
@@ -59,13 +74,17 @@ export async function GET(request: NextRequest) {
             OR review.demo_facility_id = report.demo_facility_id
          ORDER BY review.created_at DESC LIMIT 1
        ) AS document_review ON true
-       WHERE report.is_demo = true
-         AND report.current_status <> 'draft'
+       WHERE report.current_status <> 'draft'
+         AND report.entry_type = 'experience'
        ORDER BY report.created_at DESC
        LIMIT 200`);
+    const reports = rawReports.map((report) => ({
+      ...report,
+      report_payload: pseudonymizePayload(report.report_payload) as Record<string, unknown>,
+    }));
     return NextResponse.json({ reports }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     console.error("Institutional state inbox failed.", { message: error instanceof Error ? error.message : "unknown" });
-    return NextResponse.json({ error: "No se pudo cargar la bandeja demo." }, { status: 502 });
+    return NextResponse.json({ error: "No se pudo cargar la bandeja institucional." }, { status: 502 });
   }
 }

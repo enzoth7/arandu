@@ -81,9 +81,7 @@ export async function POST(request: NextRequest, context: { params: Promise<{ ca
   const purposeValue = input.get("purpose");
   const purpose = purposeValue === "facility_photo"
     ? "facility_photo"
-    : purposeValue === "supporting_document"
-      ? "supporting_document"
-      : cleanType.startsWith("audio/") ? "audio" : "evidence";
+    : cleanType.startsWith("audio/") ? "audio" : "evidence";
   const rightsSourceValue = input.get("rightsSource");
   const rightsSource = typeof rightsSourceValue === "string" ? rightsSourceValue.trim().slice(0, 1_000) : "";
   const rightsConfirmed = input.get("rightsConfirmed") === "true";
@@ -113,10 +111,10 @@ export async function POST(request: NextRequest, context: { params: Promise<{ ca
   try {
     // Las fotos de ficha llevan metadatos de derechos nuevos. Hasta que la Edge
     // Function v2 esté desplegada, pasan por el fallback privado del servidor.
-    const needsPrivateValidation = purpose === "facility_photo" || purpose === "supporting_document" || cleanType.startsWith("audio/");
+    const needsPrivateValidation = purpose === "facility_photo" || cleanType.startsWith("audio/");
     const serviceHeaders = supabaseServiceHeaders();
     if (needsPrivateValidation && !serviceHeaders) {
-      return NextResponse.json({ error: "La carga privada de fotos y documentos no está configurada en este entorno." }, { status: 503 });
+      return NextResponse.json({ error: "La carga privada de fotos no está configurada en este entorno." }, { status: 503 });
     }
     const response = needsPrivateValidation
       ? new Response(null, { status: 503 })
@@ -150,8 +148,11 @@ export async function POST(request: NextRequest, context: { params: Promise<{ ca
         ? rows[0].report_payload.evidenceUploadToken
         : "";
       if (rows[0]?.id && storedToken && sameSecret(storedToken, uploadToken)) {
-        if ((purpose === "facility_photo" || purpose === "supporting_document") && rows[0].entry_type !== "facility_change") {
+        if (purpose === "facility_photo" && rows[0].entry_type !== "facility_change") {
           return NextResponse.json({ error: "Ese tipo de adjunto no corresponde a este expediente." }, { status: 400 });
+        }
+        if (rows[0].entry_type === "facility_change" && purpose !== "facility_photo") {
+          return NextResponse.json({ error: "Las solicitudes de cambio solo admiten fotografías autorizadas." }, { status: 400 });
         }
         reportId = rows[0].id;
       }
@@ -172,10 +173,7 @@ export async function POST(request: NextRequest, context: { params: Promise<{ ca
     if (purpose === "facility_photo" && (counts.facility_photo || 0) >= 10) {
       return NextResponse.json({ error: "La solicitud ya alcanzó el máximo de 10 fotos." }, { status: 409 });
     }
-    if (purpose === "supporting_document" && (counts.supporting_document || 0) >= 5) {
-      return NextResponse.json({ error: "La solicitud ya alcanzó el máximo de 5 documentos de respaldo." }, { status: 409 });
-    }
-    if (purpose !== "facility_photo" && purpose !== "supporting_document" && total >= MAX_EVIDENCE_FILES) {
+    if (purpose !== "facility_photo" && total >= MAX_EVIDENCE_FILES) {
       return NextResponse.json({ error: "La comunicación ya alcanzó el máximo de 5 archivos." }, { status: 409 });
     }
 

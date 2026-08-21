@@ -15,6 +15,8 @@ type PublicExperienceRow = {
   public_relationship: string | null;
   public_period: string | null;
   published_at: Date | string;
+  experience_kind: "residential" | "visit";
+  public_perspective: "resident" | "family" | "visitor" | null;
 };
 
 export async function GET(
@@ -40,7 +42,7 @@ export async function GET(
         [facility.key],
       ),
       querySupabaseDatabase<PublicExperienceRow>(
-        `SELECT publication_id, public_body, public_relationship, public_period, published_at
+        `SELECT publication_id, public_body, public_relationship, public_period, published_at, experience_kind, public_perspective
          FROM public.facility_experiences_published
          WHERE facility_key = $1
            AND ($2::timestamptz IS NULL OR (published_at, publication_id) < ($2::timestamptz, $3::uuid))
@@ -55,6 +57,8 @@ export async function GET(
       body: row.public_body,
       relationship: row.public_relationship,
       period: row.public_period,
+      kind: row.experience_kind,
+      perspective: row.public_perspective,
       publishedAt: new Date(row.published_at).toISOString(),
     }));
     const lastItem = items.at(-1);

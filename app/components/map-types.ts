@@ -11,10 +11,17 @@ export const QUALITY_RATING_LABELS: Record<FacilityQualityRating, string> = {
 
 export type FacilityStayType =
   | "permanente"
+  | "temporal"
+  | "respiro"
+  | "recuperacion_convalecencia"
+  | "rehabilitacion"
+  /** Valores agrupados anteriores, conservados mientras existan datos con esa taxonomía. */
   | "temporal_respiro"
   | "centro_dia"
   | "recuperacion_rehabilitacion";
 export type FacilityRoomPrivacyFeature =
+  | "habitacion_individual"
+  /** Valor anterior de habitación individual. */
   | "habitacion_privada"
   | "habitacion_compartida"
   | "bano_privado"
@@ -23,13 +30,20 @@ export type FacilityRoomPrivacyFeature =
 export type FacilityEnvironmentFeature =
   | "espacio_exterior"
   | "espacios_comunes"
+  | "aire_acondicionado"
+  | "calefaccion"
+  /** Valor agrupado anterior. */
   | "climatizacion"
   | "iluminacion_natural";
 export type FacilityAccessibilityFeature =
   | "acceso_sin_escalones"
+  /** Valor retirado de los filtros, conservado para leer registros existentes. */
   | "una_planta"
   | "ascensor_ayuda_escaleras"
   | "circulacion_silla_ruedas"
+  | "bano_adaptado"
+  | "barras_apoyo"
+  /** Valor agrupado anterior. */
   | "bano_adaptado_barras"
   | "ducha_nivel_piso"
   | "llamada_dormitorio_bano"
@@ -37,6 +51,8 @@ export type FacilityAccessibilityFeature =
 export type FacilityCareService =
   | "asistencia_24_horas"
   | "direccion_tecnica_medica"
+  | "medico_general"
+  | "medico_geriatra"
   | "enfermeria"
   | "fisioterapia"
   | "nutricion"
@@ -53,6 +69,10 @@ export type FacilityDailyLifeFeature =
   | "alimentacion_adaptada"
   | "menu_visible"
   | "visitas_amplias"
+  | "espacio_privado_visitas_llamadas"
+  | "acceso_telefono"
+  | "internet_wifi"
+  /** Valor agrupado anterior. */
   | "telefono_internet";
 
 export type FacilitySituation =

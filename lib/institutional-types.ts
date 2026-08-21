@@ -1,11 +1,16 @@
 import type { ExperienceReportPayload, ExperienceSubmissionInput } from "./demo-intake.mjs";
 
-export type InstitutionalRole = "state" | "facility";
+export type InstitutionalRole =
+  | "administrator"
+  | "verifier"
+  | "moderator"
+  | "support"
+  | "facility_representative";
 export type IntakeKind = "concern" | "experience" | "facility_change";
 export type SubmittedActor = "public" | "system" | "state" | "facility";
 
-export type DemoFacilityProfile = {
-  id: `DEMO-ELEPEM-00${1 | 2 | 3}`;
+export type FacilityProfile = {
+  id: number;
   name: string;
   locality: string;
   department: string;
@@ -14,10 +19,11 @@ export type DemoFacilityProfile = {
   imageUrl: string;
   imageUrls?: string[];
   imageAlt: string;
-  phone: string;
-  email: string;
-  monthlyPriceFromUyu: number;
-  priceVerifiedAt: string;
+  phones: string[];
+  emails: string[];
+  monthlyPriceFromUyu: number | null;
+  priceVerifiedAt: string | null;
+  priceSourceUrl: string | null;
   priceIncludes: string[];
 };
 
@@ -25,10 +31,10 @@ export type ExperienceSubmission = ExperienceSubmissionInput;
 export type StoredExperiencePayload = ExperienceReportPayload;
 
 export type FacilityChangeSet = {
-  facilityId: DemoFacilityProfile["id"];
+  facilityId: FacilityProfile["id"];
   effectiveDate: string;
   evidenceNote: string;
-  changes: Partial<Pick<DemoFacilityProfile, "name" | "address" | "description" | "phone" | "email" | "monthlyPriceFromUyu">>;
+  changes: Partial<Pick<FacilityProfile, "name" | "address" | "description" | "phones" | "emails" | "monthlyPriceFromUyu">>;
   photo?: {
     fileName: string;
     sourceDeclaration: string;

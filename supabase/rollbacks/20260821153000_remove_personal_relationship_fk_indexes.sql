@@ -1,0 +1,2 @@
+drop index if exists public.user_facility_relationships_verified_by_idx;
+drop index if exists public.user_facility_relationships_elepem_id_idx;

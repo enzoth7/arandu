@@ -65,17 +65,28 @@ async function loadEligibleReport(
   if (!report) {
     throw new ExperiencePublicationWorkflowError(404, "report_not_found", "No se encontro la experiencia.");
   }
-  if (!report.is_demo || report.entry_type !== "experience") {
-    throw new ExperiencePublicationWorkflowError(400, "not_demo_experience", "El expediente no es una experiencia de demostracion.");
+  const isVisitExperience = report.entry_type === "experience"
+    && !report.is_demo
+    && report.report_payload?.experienceKind === "visit";
+  const isVerifiedResidentialExperience = report.entry_type === "experience"
+    && report.report_payload?.experienceKind === "residential"
+    && Number(report.report_payload?.version) === 6;
+  const isPrototypeExperience = report.entry_type === "experience" && report.is_demo && !isVerifiedResidentialExperience;
+  if (!isVisitExperience && !isVerifiedResidentialExperience && !isPrototypeExperience) {
+    throw new ExperiencePublicationWorkflowError(400, "unsupported_experience", "El expediente no es una experiencia publicable.");
   }
   if (Boolean(report.facility_id) === Boolean(report.demo_facility_id)) {
     throw new ExperiencePublicationWorkflowError(409, "facility_not_resolved", "La experiencia no tiene un unico ELEPEM vinculado.");
   }
   const reportPayloadVersion = Number(report.report_payload?.version);
-  const payloadAllowsPublication = reportPayloadVersion === 5 || reportPayloadVersion === 4;
+  const payloadAllowsPublication = isVisitExperience
+    ? reportPayloadVersion === 1 && report.payload_version === 3 && typeof report.report_payload?.visitId === "string"
+    : isVerifiedResidentialExperience
+      ? report.payload_version === 6
+        && ["resident", "family"].includes(String((report.report_payload?.relationshipSnapshot as Record<string, unknown> | undefined)?.type || ""))
+      : (reportPayloadVersion === 5 || reportPayloadVersion === 4) && report.payload_version === 3;
   if (
-    report.payload_version !== 3
-    || !payloadAllowsPublication
+    !payloadAllowsPublication
     || report.report_payload?.requestedDestination !== "consider_anonymized"
     || report.report_payload?.publicationConsent !== true
   ) {
@@ -89,8 +100,14 @@ async function loadEligibleReport(
 }
 
 function previewForReport(report: EligibleReportRow, preview: ExperiencePreviewInput): ExperiencePreviewInput {
-  return Number(report.report_payload?.version) === 5
-    ? { ...preview, publicPeriod: null }
+  const relationshipType = (report.report_payload?.relationshipSnapshot as Record<string, unknown> | undefined)?.type;
+  const relationshipLabel = relationshipType === "resident"
+    ? "Experiencia de una persona residente"
+    : relationshipType === "family"
+      ? "Experiencia de un familiar o persona allegada"
+      : preview.publicRelationship;
+  return report.report_payload?.experienceKind === "visit" || [5, 6].includes(Number(report.report_payload?.version))
+    ? { ...preview, publicRelationship: relationshipLabel, publicPeriod: null }
     : preview;
 }
 

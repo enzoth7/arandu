@@ -9,7 +9,10 @@ import {
   Phone,
   Share2,
 } from "lucide-react";
-import { FACILITY_ATTRIBUTE_FILTER_GROUPS } from "../../lib/facility-filter-options.mjs";
+import {
+  FACILITY_ATTRIBUTE_FILTER_GROUPS,
+  facilityMatchesAttributeFilter,
+} from "../../lib/facility-filter-options.mjs";
 import { FacilityExperiences } from "./FacilityExperiences";
 import { FacilityPhotoCarousel } from "./FacilityPhotoCarousel";
 import { QUALITY_RATING_LABELS, type Facility } from "./map-types";
@@ -139,10 +142,9 @@ function FacilityContactChannels({ facility }: { facility: Facility }) {
 
 function FacilityAttributes({ facility }: { facility: Facility }) {
   const groups = FACILITY_ATTRIBUTE_FILTER_GROUPS.flatMap((group) => {
-    const values = facility[group.key as keyof Facility];
-    if (!Array.isArray(values) || values.length === 0) return [];
-    const selected = new Set(values as string[]);
-    const labels = group.options.filter(([value]) => selected.has(value)).map(([, label]) => label);
+    const labels = group.options
+      .filter(([value]) => facilityMatchesAttributeFilter(facility, group.key, value))
+      .map(([, label]) => label);
     return labels.length ? [{ key: group.key, label: group.label, labels }] : [];
   });
 
@@ -179,12 +181,12 @@ function FacilitySources({ facility }: { facility: Facility }) {
 
 export function FacilityProfile({
   facility,
-  showConcernAction = true,
   showSources = true,
+  visitAgendaAvailable = false,
 }: {
   facility: Facility;
-  showConcernAction?: boolean;
   showSources?: boolean;
+  visitAgendaAvailable?: boolean;
 }) {
   const photoUrls = facility.photoUrls?.length
     ? facility.photoUrls
@@ -217,9 +219,9 @@ export function FacilityProfile({
             <dd><FacilityPrimaryStatusBadge facility={facility} /></dd>
           </div>
         </dl>
-        <div className={`facilityProfileActions${showConcernAction ? "" : " isSingle"}`}>
+        <div className={`facilityProfileActions ${visitAgendaAvailable ? "" : "isSingle"}`}>
+          {visitAgendaAvailable && <Link href={`/cuenta/visitas/nueva?elepem=${facility.registryId}`}>Agendar una visita</Link>}
           <Link href={`/experiencia?elepem=${encodeURIComponent(facility.id)}`}>Dejar una experiencia</Link>
-          {showConcernAction && <Link href={`/preocupacion?elepem=${encodeURIComponent(facility.id)}`}>Contar una preocupación</Link>}
         </div>
       </section>
     </div>

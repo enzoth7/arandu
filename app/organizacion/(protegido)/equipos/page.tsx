@@ -1,12 +1,5 @@
-import type { Metadata } from "next";
-import { TeamIntakeInbox } from "../../../components/team/TeamIntakeInbox";
-
-export const metadata: Metadata = {
-  title: "Equipos · Arandú",
-  description: "Comunicaciones recibidas y gestión institucional.",
-  robots: { index: false, follow: false },
-};
+import { redirect } from "next/navigation";
 
 export default function OrganizacionEquiposPage() {
-  return <TeamIntakeInbox />;
+  redirect("/institucional/estado/bandeja");
 }

@@ -2,7 +2,8 @@
 /* eslint-disable @next/next/no-img-element -- las miniaturas requieren la sesión institucional. */
 
 import { useEffect, useState } from "react";
-import { AlertTriangle, CheckCircle2, ChevronRight, EyeOff, FileText, Image as ImageIcon, RefreshCw, Send, ShieldAlert } from "lucide-react";
+import { CheckCircle2, ChevronRight, EyeOff, FileText, Image as ImageIcon, RefreshCw, Send, ShieldAlert } from "lucide-react";
+import { BRIEF_EXPERIENCE_RATINGS, BRIEF_EXPERIENCE_SECTIONS } from "../../../lib/brief-experience.mjs";
 import {
   EXPERIENCE_DIMENSIONS,
   EXPERIENCE_QUESTIONS,
@@ -27,13 +28,14 @@ type Triage = {
 type InboxReport = {
   id: string; case_code: string; entry_type: IntakeKind; current_status: string; priority: string; demo_facility_id: string | null; report_payload: Record<string, unknown>; created_at: string;
   facility: { id: number; key: string; name: string; locality: string; department: string } | null;
+  demoFacility: { key: string; name: string; locality: string; department: string } | null;
   publication: Publication | null; contacts: Array<{ name?: string; phone?: string; email?: string }>;
   attachments: Array<{ id: string; file_name: string; mime_type: string; purpose: string }>;
   documentReview: { decision: "inadequate" | "clear"; reason: string; createdAt: string } | null;
   events: Array<{ event_data?: { triage?: Partial<Triage> } }>;
 };
 type PublicationDraft = { publicBody: string; publicRelationship: string; publicPeriod: string };
-type Action = "moderate" | "reclassify_sensitive" | "private_review" | "private_facility" | "review" | "contact" | "refer" | "resolve" | "request_info" | "reject" | "approve_preview" | "publish" | "withdraw";
+type Action = "moderate" | "reclassify_sensitive" | "private_review" | "private_facility" | "review" | "contact" | "refer" | "resolve" | "request_info" | "reject" | "approve" | "publish" | "withdraw";
 type PendingAction = { report: InboxReport; action: Action; title: string; description: string; openPublicationAfter?: boolean };
 
 const KIND_LABELS: Record<IntakeKind, string> = { concern: "Preocupación", experience: "Experiencia", facility_change: "Solicitud de cambio" };
@@ -50,10 +52,16 @@ function textValue(value: unknown) { return typeof value === "string" ? value.tr
 function triagePriority(value: unknown): Triage["priority"] | null { return value === "Alta" || value === "Media" || value === "Baja" || value === "Por evaluar" ? value : null; }
 function recordValue(value: unknown): Record<string, unknown> { return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {}; }
 function isV5Experience(report: InboxReport) { return report.entry_type === "experience" && report.report_payload.version === 5; }
-function reportSummary(report: InboxReport) { return textValue(report.report_payload.narrative) || (report.entry_type === "experience" ? "Experiencia estructurada sin relato adicional." : report.entry_type === "facility_change" ? textValue(report.report_payload.evidenceNote) || "Solicitud de actualización de ficha." : "Preocupación sin relato adicional."); }
-function facilityLabel(report: InboxReport) { return report.facility ? `${report.facility.name} · ${report.facility.locality} · ${report.facility.department}` : "Sin ELEPEM vinculado"; }
+function isV6Experience(report: InboxReport) { return report.entry_type === "experience" && report.report_payload.version === 6 && report.report_payload.experienceKind === "residential"; }
+function isVisitExperience(report: InboxReport) { return report.entry_type === "experience" && report.report_payload.experienceKind === "visit"; }
+function reportKindLabel(report: InboxReport) { return isVisitExperience(report) ? "Experiencia de visita" : KIND_LABELS[report.entry_type]; }
+function reportSummary(report: InboxReport) { return textValue(report.report_payload.comment) || textValue(report.report_payload.narrative) || (report.entry_type === "experience" ? "Experiencia estructurada sin relato adicional." : report.entry_type === "facility_change" ? textValue(report.report_payload.evidenceNote) || "Solicitud de actualización de ficha." : "Preocupación sin relato adicional."); }
+function facilityLabel(report: InboxReport) {
+  const facility = report.facility || report.demoFacility;
+  return facility ? `${facility.name} · ${facility.locality} · ${facility.department}` : "Sin ELEPEM vinculado";
+}
 function publicationDraft(report: InboxReport): PublicationDraft {
-  if (isV5Experience(report)) {
+  if (isV5Experience(report) || isV6Experience(report) || isVisitExperience(report)) {
     return {
       publicBody: report.publication?.publicBody || "",
       publicRelationship: report.publication?.publicRelationship || "",
@@ -67,11 +75,50 @@ function canPublishExperience(report: InboxReport) {
     && report.report_payload.publicationConsent === true;
 }
 
+function FacilityChangeInformation({ report }: { report: InboxReport }) {
+  const changes = recordValue(report.report_payload.changes);
+  const labels: Record<string, string> = { name: "Nombre", address: "Dirección", description: "Descripción", phones: "Teléfonos", emails: "Correos", monthlyPriceFromUyu: "Precio mensual" };
+  const display = (key: string, value: unknown) => {
+    if (Array.isArray(value)) return value.length ? value.join(" · ") : "Retirar todos los valores existentes";
+    if (key === "monthlyPriceFromUyu") return `UYU ${Number(value).toLocaleString("es-UY")}`;
+    return textValue(value) || "Vaciar el campo";
+  };
+  return <><h3>Cambios solicitados</h3><dl className="stateExperienceSummary">{Object.entries(changes).map(([key, value]) => <div key={key}><dt>{labels[key] || key}</dt><dd>{display(key, value)}</dd></div>)}</dl>
+    {Object.hasOwn(changes, "monthlyPriceFromUyu") && <p className="stateInboxNarrative"><strong>Respaldo del precio:</strong> {textValue(report.report_payload.priceDate)} · <a href={textValue(report.report_payload.priceSourceUrl)} target="_blank" rel="noreferrer">Abrir fuente pública</a></p>}
+    {textValue(report.report_payload.evidenceNote) && <p className="stateInboxNarrative"><strong>Contexto:</strong> {textValue(report.report_payload.evidenceNote)}</p>}
+  </>;
+}
+
 function answerLabel(scale: "frequency" | "fulfillment", value: unknown) {
   return EXPERIENCE_SCALE_OPTIONS[scale].find((option) => option.value === value)?.label || "Sin respuesta";
 }
 
 function ExperienceInformation({ report }: { report: InboxReport }) {
+  if (isVisitExperience(report)) {
+    const spaces = Array.isArray(report.report_payload.spaces) ? report.report_payload.spaces.join(" · ") : "No informado";
+    const topics = Array.isArray(report.report_payload.topics) ? report.report_payload.topics.join(" · ") : "No informado";
+    const costs = Array.isArray(report.report_payload.costInformation) ? report.report_payload.costInformation.join(" · ") : "No informado";
+    return <><h3>Experiencia de visita</h3><dl className="stateExperienceSummary"><div><dt>Espacios conocidos</dt><dd>{spaces}</dd></div><div><dt>Preguntas respondidas</dt><dd>{textValue(report.report_payload.questionsAnswered) || "No informado"}</dd></div><div><dt>Temas conversados</dt><dd>{topics}</dd></div><div><dt>Información económica</dt><dd>{costs}</dd></div><div><dt>Destino solicitado</dt><dd>{DESTINATION_LABELS[textValue(report.report_payload.requestedDestination)] || "Sólo revisión estatal privada"}</dd></div></dl>{textValue(report.report_payload.usefulInformation) && <p className="stateInboxNarrative"><strong>Fue útil:</strong> {textValue(report.report_payload.usefulInformation)}</p>}{textValue(report.report_payload.missingInformation) && <p className="stateInboxNarrative"><strong>Faltó conocer:</strong> {textValue(report.report_payload.missingInformation)}</p>}</>;
+  }
+  if (isV6Experience(report)) {
+    const snapshot = recordValue(report.report_payload.relationshipSnapshot);
+    const relationshipLabel = snapshot.type === "resident" ? "Persona residente" : "Familiar o persona allegada";
+    const ratingLabels = Object.fromEntries(BRIEF_EXPERIENCE_RATINGS.map((rating) => [rating.value, rating.label]));
+    const storedAnswers = Array.isArray(report.report_payload.answers) ? report.report_payload.answers.map(recordValue) : [];
+    const answerBySection = new Map(storedAnswers.map((stored) => [textValue(stored.sectionId), stored]));
+    const futureAuthorizations = recordValue(report.report_payload.futureAuthorizations);
+    return <><h3>Experiencia breve verificada</h3>
+      <dl className="stateExperienceSummary"><div><dt>Perspectiva</dt><dd>{relationshipLabel}</dd></div><div><dt>Destino solicitado</dt><dd>{DESTINATION_LABELS[textValue(report.report_payload.requestedDestination)] || "Sólo revisión estatal privada"}</dd></div></dl>
+      <div>{BRIEF_EXPERIENCE_SECTIONS.map((section) => {
+        const stored = answerBySection.get(section.id) || {};
+        const reasons = Array.isArray(stored.reasonIds) ? stored.reasonIds : [];
+        const aspectLabels = new Map(section.aspects);
+        return <section className="stateExperienceSummary" key={section.id}><h4>{section.title}</h4><p><strong>{stored.skipped === true ? "Omitida" : ratingLabels[textValue(stored.rating)] || "Sin respuesta"}</strong></p>{reasons.length > 0 && <ul>{reasons.map((reason) => <li key={String(reason)}>{aspectLabels.get(String(reason)) || String(reason)}</li>)}</ul>}</section>;
+      })}</div>
+      <h4>Comentario privado</h4><p className="stateInboxNarrative">{reportSummary(report)}</p>
+      <h4>Autorizaciones privadas</h4><dl className="stateExperienceSummary"><div><dt>Enviar mensaje moderado al ELEPEM</dt><dd>{futureAuthorizations.sendToFacility === true ? "Autorizado" : "No autorizado"}</dd></div><div><dt>Compartir correo con el ELEPEM</dt><dd>{futureAuthorizations.shareContactWithFacility === true ? "Autorizado" : "No autorizado"}</dd></div></dl>
+    </>;
+  }
   if (!isV5Experience(report)) {
     return <><h3>Experiencia recibida</h3><dl className="stateExperienceSummary"><div><dt>Vínculo</dt><dd>{textValue(report.report_payload.relationship) || "No informado"}</dd></div><div><dt>Período</dt><dd>{textValue(report.report_payload.period) || "No informado"}</dd></div><div><dt>Destino solicitado</dt><dd>{DESTINATION_LABELS[textValue(report.report_payload.requestedDestination)] || "Sólo revisión estatal privada"}</dd></div></dl><p className="stateInboxNarrative">{reportSummary(report)}</p><div className="stateExperienceAnswers">{Object.entries(recordValue(report.report_payload.answers)).map(([key, answer]) => <div key={key}><span>{key}</span><strong>{ANSWER_LABELS[textValue(answer)] || "Sin respuesta"}</strong></div>)}</div></>;
   }
@@ -163,13 +210,13 @@ export function StateInbox() {
       {feedback && <p className="stateInboxFeedback" role="status"><CheckCircle2 size={17} />{feedback}</p>}
       {loading ? <p role="status">Cargando bandeja…</p> : reports.length > 0 ? <div className="stateInboxLayout">
         <aside className="stateInboxQueue" aria-label="Lista de expedientes">
-          {reports.map((report) => <button type="button" className={selected?.id === report.id ? "isSelected" : ""} aria-current={selected?.id === report.id ? "true" : undefined} onClick={() => { setSelectedId(report.id); setDetailTab("information"); setPublicationEditorId(""); }} key={report.id}><span><em className={`stateInboxKind stateInboxKind-${report.entry_type}`}>{KIND_LABELS[report.entry_type]}</em><strong>{report.facility?.name || "Sin ELEPEM vinculado"}</strong><small>{new Date(report.created_at).toLocaleDateString("es-UY")}</small></span><span><small>{STATUS_LABELS[report.current_status] || report.current_status}</small></span><ChevronRight size={18} aria-hidden="true" /></button>)}
+          {reports.map((report) => <button type="button" className={selected?.id === report.id ? "isSelected" : ""} aria-current={selected?.id === report.id ? "true" : undefined} onClick={() => { setSelectedId(report.id); setDetailTab("information"); setPublicationEditorId(""); }} key={report.id}><span><em className={`stateInboxKind stateInboxKind-${report.entry_type}`}>{reportKindLabel(report)}</em><strong>{report.facility?.name || "Sin ELEPEM vinculado"}</strong><small>{new Date(report.created_at).toLocaleDateString("es-UY")}</small></span><span><small>{STATUS_LABELS[report.current_status] || report.current_status}</small></span><ChevronRight size={18} aria-hidden="true" /></button>)}
         </aside>
         {selected && <article className="stateInboxDetail">
-          <header><div><small>{selected.case_code} · {new Date(selected.created_at).toLocaleString("es-UY")}</small><h2>{facilityLabel(selected)}</h2></div><div className="stateInboxHeaderBadges"><span className={`stateInboxKind stateInboxKind-${selected.entry_type}`}>{KIND_LABELS[selected.entry_type]}</span><span className="sourceBadge sourceBadge-gray">{STATUS_LABELS[selected.current_status] || selected.current_status}</span></div></header>
+          <header><div><small>{selected.case_code} · {new Date(selected.created_at).toLocaleString("es-UY")}</small><h2>{facilityLabel(selected)}</h2></div><div className="stateInboxHeaderBadges"><span className={`stateInboxKind stateInboxKind-${selected.entry_type}`}>{reportKindLabel(selected)}</span><span className="sourceBadge sourceBadge-gray">{STATUS_LABELS[selected.current_status] || selected.current_status}</span></div></header>
           <div className="stateInboxDetailTabs" role="tablist" aria-label="Detalle del expediente"><button type="button" role="tab" aria-selected={detailTab === "information"} className={detailTab === "information" ? "active" : ""} onClick={() => setDetailTab("information")}>Información</button><button type="button" role="tab" aria-selected={detailTab === "actions"} className={detailTab === "actions" ? "active" : ""} onClick={() => setDetailTab("actions")}>Acciones</button></div>
           {detailTab === "information" ? <section className="stateInboxInformation" aria-label="Información del expediente">
-            {selected.entry_type === "experience" ? <ExperienceInformation report={selected} /> : <><p className="stateInboxNarrative">{reportSummary(selected)}</p>{selected.entry_type === "facility_change" && selected.report_payload.removeCurrentPhoto === true && <p className="stateInboxNarrative"><strong>Foto actual:</strong> se solicitó su retiro. Seguirá publicada hasta que el Estado revise y resuelva el expediente.</p>}</>}
+            {selected.entry_type === "experience" ? <ExperienceInformation report={selected} /> : selected.entry_type === "facility_change" ? <FacilityChangeInformation report={selected} /> : <p className="stateInboxNarrative">{reportSummary(selected)}</p>}
             {selected.contacts.length > 0 && <section className="stateInboxPrivateData"><h3>Contacto privado</h3><p>{[selected.contacts[0]?.name, selected.contacts[0]?.phone, selected.contacts[0]?.email].filter(Boolean).join(" · ")}</p></section>}
             {selected.attachments.length > 0 && <section className="stateInboxPrivateData"><h3>Adjuntos privados</h3><ul className="stateAttachmentList">{selected.attachments.map((attachment) => <li key={attachment.id}>{attachment.mime_type.startsWith("image/") ? <img src={`/api/institutional/attachments/${attachment.id}`} alt={`Adjunto privado: ${attachment.file_name}`} /> : <FileText size={18} aria-hidden="true" />}<a href={`/api/institutional/attachments/${attachment.id}`} target="_blank" rel="noreferrer">{attachment.file_name}</a>{attachment.mime_type.startsWith("image/") && <ImageIcon size={15} aria-hidden="true" />}</li>)}</ul></section>}
           </section> : <section className="stateInboxActions" aria-label="Acciones de revisión">
@@ -187,22 +234,22 @@ export function StateInbox() {
                       <button type="button" className="reportBack" disabled={busyId === selected.id || selected.publication?.status === "published"} onClick={() => declinePublication(selected)}><EyeOff size={17} />No publicar</button>
                     </div>
                   </div>
-                  <button type="button" className="reportBack" disabled={busyId === selected.id || selected.publication?.status === "published"} onClick={() => setPendingAction({ report: selected, action: "reclassify_sensitive", title: "¿Tratarla como preocupación?", description: "La experiencia pasará al circuito privado de preocupaciones sensibles." })}><AlertTriangle size={17} />Tratar como preocupación</button>
                 </> : <>
-                  {selected.entry_type === "facility_change" && <button type="button" className="reportBack" disabled={busyId === selected.id} onClick={() => setPendingAction({ report: selected, action: "request_info", title: "¿Pedir información?", description: "El ELEPEM podrá responder desde su portal de prueba." })}>Pedir información</button>}
+                  {selected.entry_type === "facility_change" && <button type="button" className="reportBack" disabled={busyId === selected.id} onClick={() => setPendingAction({ report: selected, action: "request_info", title: "¿Pedir información?", description: "El representante podrá responder desde Mi ELEPEM." })}>Pedir información</button>}
+                  {selected.entry_type === "facility_change" && <button type="button" className="reportBack" disabled={busyId === selected.id} onClick={() => setPendingAction({ report: selected, action: "reject", title: "¿Rechazar la solicitud?", description: "La ficha central no será modificada." })}>Rechazar</button>}
                   <button type="button" className="reportBack" disabled={busyId === selected.id} onClick={() => setPendingAction({
                     report: selected,
-                    action: selected.entry_type === "facility_change" ? "approve_preview" : "resolve",
-                    title: selected.entry_type === "facility_change" ? "¿Aprobar y publicar las fotos?" : "¿Confirmar acción?",
+                    action: selected.entry_type === "facility_change" ? "approve" : "resolve",
+                    title: selected.entry_type === "facility_change" ? "¿Aprobar y actualizar la ficha?" : "¿Confirmar acción?",
                     description: selected.entry_type === "facility_change"
-                      ? "Las fotos autorizadas quedarán visibles en el portal y la decisión será auditable."
+                      ? "Se actualizarán únicamente los campos permitidos y las fotos autorizadas. La operación será auditable."
                       : "La decisión quedará registrada de forma auditable.",
-                  })}>{selected.entry_type === "facility_change" ? "Aprobar y publicar fotos" : "Resolver"}</button>
+                  })}>{selected.entry_type === "facility_change" ? "Aprobar cambios" : "Resolver"}</button>
                 </>}
               </div>
             </section>
             {selected.facility && <section className="stateDocumentStatus"><h3>Estado documental interno</h3><p>Este estado no se muestra al público y no representa una evaluación de calidad o seguridad.</p>{selected.documentReview?.decision === "inadequate" && <p className="stateInternalStatus"><strong>Inadecuado interno vigente.</strong> {selected.documentReview.reason}</p>}<label className="reportField"><span>Fundamento</span><textarea value={documentReasons[selected.id] || ""} onChange={(event) => setDocumentReasons((current) => ({ ...current, [selected.id]: event.target.value }))} minLength={10} maxLength={4000} /></label><div className="institutionalCardActions"><button type="button" className="reportBack" disabled={busyId === selected.id} onClick={() => void saveDocumentStatus("inadequate")}>Marcar Inadecuado</button><button type="button" className="reportBack" disabled={busyId === selected.id} onClick={() => void saveDocumentStatus("clear")}>Restablecer automático</button></div></section>}
-            {showPublicationEditor && selectedDraft && <section className="institutionalPublicationEditor"><h3>Preparar publicación</h3><p>Escribí una versión nueva, anonimizada y sin datos de contacto ni puntajes internos.</p><label className="reportField"><span>Texto que verá el público</span><textarea value={selectedDraft.publicBody} onChange={(event) => updateDraft(selected.id, "publicBody", event.target.value)} minLength={10} maxLength={4000} /></label><div className="reportFieldGrid"><label className="reportField"><span>Vínculo</span><input value={selectedDraft.publicRelationship} onChange={(event) => updateDraft(selected.id, "publicRelationship", event.target.value)} maxLength={120} /></label>{!isV5Experience(selected) && <label className="reportField"><span>Período</span><input value={selectedDraft.publicPeriod} onChange={(event) => updateDraft(selected.id, "publicPeriod", event.target.value)} maxLength={120} /></label>}</div><button type="button" className="reportContinue statePublishButton" disabled={busyId === selected.id || selectedDraft.publicBody.trim().length < 10} onClick={() => setPendingAction({ report: selected, action: "publish", title: "¿Publicar experiencia?", description: "El texto moderado aparecerá en la ficha pública." })}><Send size={17} />Confirmar publicación</button></section>}
+            {showPublicationEditor && selectedDraft && <section className="institutionalPublicationEditor"><h3>Preparar publicación</h3><p>Escribí una versión nueva, anonimizada y sin datos de contacto ni puntajes internos.</p><label className="reportField"><span>Texto que verá el público</span><textarea value={selectedDraft.publicBody} onChange={(event) => updateDraft(selected.id, "publicBody", event.target.value)} minLength={10} maxLength={4000} /></label><div className="reportFieldGrid"><label className="reportField"><span>Vínculo</span><input value={selectedDraft.publicRelationship} onChange={(event) => updateDraft(selected.id, "publicRelationship", event.target.value)} maxLength={120} /></label>{!isV5Experience(selected) && !isV6Experience(selected) && !isVisitExperience(selected) && <label className="reportField"><span>Período</span><input value={selectedDraft.publicPeriod} onChange={(event) => updateDraft(selected.id, "publicPeriod", event.target.value)} maxLength={120} /></label>}</div><button type="button" className="reportContinue statePublishButton" disabled={busyId === selected.id || selectedDraft.publicBody.trim().length < 10} onClick={() => setPendingAction({ report: selected, action: "publish", title: "¿Publicar experiencia?", description: "El texto moderado aparecerá en la ficha pública." })}><Send size={17} />Confirmar publicación</button></section>}
             {selected.entry_type === "experience" && selected.publication?.status === "published" && <button type="button" className="reportBack" disabled={busyId === selected.id} onClick={() => setPendingAction({ report: selected, action: "withdraw", title: "¿Retirar publicación?", description: "La experiencia dejará de aparecer en la ficha pública." })}><EyeOff size={17} />Retirar publicación</button>}
           </section>}
         </article>}

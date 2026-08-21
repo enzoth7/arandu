@@ -6,12 +6,13 @@ import { CalendarDays, CheckCircle2, Clock3, FilePenLine, MessageSquare, Refresh
 type RequestEvent = { public_title: string; public_description: string; created_at: string };
 type RequestItem = { id: string; facility_name: string | null; current_status: string; report_payload: Record<string, unknown>; created_at: string; events: RequestEvent[] };
 
-const CHANGE_LABELS: Record<string, string> = { name: "Nombre", address: "Dirección", description: "Descripción", phone: "Teléfono comercial", email: "Correo comercial", monthlyPriceFromUyu: "Precio mensual desde" };
+const CHANGE_LABELS: Record<string, string> = { name: "Nombre", address: "Dirección", description: "Descripción", phones: "Teléfonos", emails: "Correos", monthlyPriceFromUyu: "Precio mensual" };
 const STATUS_LABELS: Record<string, string> = { received: "Enviada", in_review: "En revisión", contact: "Se necesita información", resolved: "Resuelta", closed: "Cerrada" };
 
 function textValue(value: unknown) { return typeof value === "string" ? value.trim() : ""; }
 function formatDate(value: string) { return new Intl.DateTimeFormat("es-UY", { dateStyle: "medium", timeStyle: "short" }).format(new Date(value)); }
 function formatChangeValue(key: string, value: unknown) {
+  if (Array.isArray(value)) return value.length ? value.join(" · ") : "Se solicitó retirar todos los valores";
   const text = textValue(value);
   if (!text) return "Actualización solicitada";
   if (key === "monthlyPriceFromUyu") { const amount = Number(text); return Number.isFinite(amount) ? `$ ${amount.toLocaleString("es-UY")}` : text; }
@@ -19,9 +20,8 @@ function formatChangeValue(key: string, value: unknown) {
 }
 function requestSummary(report: RequestItem) {
   const rawChanges = report.report_payload.changes;
-  const changes = rawChanges && typeof rawChanges === "object" && !Array.isArray(rawChanges) ? Object.entries(rawChanges as Record<string, unknown>).filter(([, value]) => textValue(value)).map(([key, value]) => ({ label: CHANGE_LABELS[key] || key, value: formatChangeValue(key, value) })) : [];
+  const changes = rawChanges && typeof rawChanges === "object" && !Array.isArray(rawChanges) ? Object.entries(rawChanges as Record<string, unknown>).map(([key, value]) => ({ label: CHANGE_LABELS[key] || key, value: formatChangeValue(key, value) })) : [];
   const photoCount = Number(report.report_payload.photoCount || 0);
-  if (report.report_payload.removeCurrentPhoto === true) changes.push({ label: "Foto actual", value: "Se solicitó retirarla" });
   if (photoCount > 0) changes.push({ label: "Fotos nuevas", value: `${photoCount} ${photoCount === 1 ? "foto propuesta" : "fotos propuestas"}` });
   return changes;
 }

@@ -32,7 +32,7 @@ const attributeFiltersPath = new URL("../../app/components/RegistryAttributeFilt
 const qualityRatingSelectPath = new URL("../../app/components/QualityRatingSelect.tsx", import.meta.url);
 const nextConfigPath = new URL("../../next.config.mjs", import.meta.url);
 const portalChromePath = new URL("../../app/components/PortalChrome.tsx", import.meta.url);
-const institutionalAccessPath = new URL("../../app/components/InstitutionalAccess.tsx", import.meta.url);
+const accountAccessPath = new URL("../../app/components/AccountAccess.tsx", import.meta.url);
 const publicRegistryPagePath = new URL("../../app/(publico)/page.tsx", import.meta.url);
 const residencialesApiPath = new URL("../../app/api/residenciales/route.ts", import.meta.url);
 const residencialesHookPath = new URL("../../app/hooks/useResidenciales.ts", import.meta.url);
@@ -142,14 +142,14 @@ test("la portada muestra la foto nítida, completa y sin un velo blanco", async 
   assert.match(styles, /@media \(max-width: 760px\)[\s\S]*\.aranduHeroVisual \{[\s\S]{0,180}position: relative;[\s\S]{0,180}aspect-ratio: 1400 \/ 935/);
 });
 
-test("el aviso académico aparece en el acceso institucional y en todos sus portales", async () => {
-  const [portalChrome, institutionalAccess] = await Promise.all([
+test("el aviso académico aparece en el acceso de cuenta y en todos los portales", async () => {
+  const [portalChrome, accountAccess] = await Promise.all([
     readFile(portalChromePath, "utf8"),
-    readFile(institutionalAccessPath, "utf8"),
+    readFile(accountAccessPath, "utf8"),
   ]);
   assert.match(portalChrome, /<AcademicPrototypeNotice \/>/);
   assert.doesNotMatch(portalChrome, /portal === "public" && <AcademicPrototypeNotice/);
-  assert.match(institutionalAccess, /<main className="accessGate">[\s\S]*<AcademicPrototypeNotice \/>/);
+  assert.match(accountAccess, /<main className="accessGate">[\s\S]*<AcademicPrototypeNotice \/>/);
 });
 
 test("el padrón público consulta Supabase sin una ventana de caché", async () => {
@@ -321,7 +321,8 @@ test("recargar o volver inicia arriba sin reponer el scroll anterior", async () 
 
   assert.match(scrollReset, /window\.history\.scrollRestoration = "manual"/);
   assert.match(scrollReset, /window\.location\.pathname !== "\/"/);
-  assert.match(scrollReset, /window\.location\.hash === "#registro"/);
+  assert.match(scrollReset, /\["#registro", "#mapa-registro"\]\.includes\(window\.location\.hash\)/);
+  assert.match(scrollReset, /requestedTarget\.scrollIntoView/);
   assert.match(scrollReset, /window\.addEventListener\("pageshow", resetHomeScroll\)/);
   assert.match(scrollReset, /window\.addEventListener\("popstate", resetHomeScroll\)/);
   assert.match(scrollReset, /window\.scrollTo\(\{ top: 0, left: 0, behavior: "auto" \}\)/);
@@ -519,7 +520,8 @@ test("la ficha permanente evita repeticiones y usa una sola superficie visual", 
   assert.doesNotMatch(profile, /Ficha actualizada|facilityProfileUpdated|facilityProfileLocation/);
   assert.doesNotMatch(profile, /Sin descripción pública verificada/);
   assert.doesNotMatch(page, /facilityPermanentCode|Contar una preocupación/);
-  assert.match(page, /showConcernAction=\{false\} showSources=\{false\}/);
+  assert.match(page, /<FacilityProfile facility=\{facility\} showSources=\{false\}/);
+  assert.doesNotMatch(profile, /showConcernAction|\/preocupacion|Contar una preocupación/);
   assert.doesNotMatch(profile, /Vigente o registrado|El precio incluye:/);
   assert.match(profile, /<dt>Habilitación<\/dt>[\s\S]{0,120}<FacilityPrimaryStatusBadge facility=\{facility\}/);
   assert.match(profile, /<dd className="facilityFactPrice">\{facility\.monthlyPriceUyu/);

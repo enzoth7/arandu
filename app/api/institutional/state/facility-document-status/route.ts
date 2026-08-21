@@ -5,7 +5,7 @@ import { querySupabaseDatabase } from "../../../../../lib/supabase-db";
 export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
-  const auth = institutionalSessionOrError(request, "state");
+  const auth = await institutionalSessionOrError(request, "administrator");
   if (!auth.session) return auth.response;
   let body: Record<string, unknown>;
   try { body = await request.json() as Record<string, unknown>; } catch { return NextResponse.json({ error: "Solicitud inválida." }, { status: 400 }); }

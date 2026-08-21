@@ -1,6 +1,6 @@
 import { querySupabaseDatabase } from "./supabase-db";
 import type { Facility } from "../app/components/map-types";
-import type { DemoFacilityProfile } from "./institutional-types";
+import type { FacilityProfile } from "./institutional-types";
 
 type FlatElepemRow = Record<string, unknown> & {
   canonical_id: string;
@@ -22,6 +22,7 @@ type FlatElepemRow = Record<string, unknown> & {
   facebook_urls: string[];
   precio_mensual_uyu: number | null;
   precio_fecha: string | null;
+  precio_fuente_url: string | null;
   precio_incluye: string[];
   precio_es_demo: boolean;
   modalidades_estadia: NonNullable<Facility["stayTypes"]> | null;
@@ -122,7 +123,7 @@ function statusShort(row: FlatElepemRow) {
 function toFacility(row: FlatElepemRow): Facility {
   const links = sourceLinks(row);
   const approvedPhotoUrls = Array.isArray(row.approved_photo_paths)
-    ? row.approved_photo_paths.map(publicStoragePhotoUrl).filter(Boolean)
+    ? row.approved_photo_paths.map((photoId) => `/api/residenciales/${encodeURIComponent(row.codigo)}/photos/${encodeURIComponent(photoId)}`)
     : [];
   const photoUrls = [
     ...approvedPhotoUrls,
@@ -200,6 +201,7 @@ const FLAT_ELEPEM_SELECT = `
       registry.facebook_urls,
       registry.precio_mensual_uyu,
       registry.precio_fecha,
+      registry.precio_fuente_url,
       registry.precio_incluye,
       registry.precio_es_demo,
       registry.modalidades_estadia,
@@ -229,7 +231,7 @@ const FLAT_ELEPEM_SELECT = `
       select
         coalesce(bool_or(publication.remove_current_photo), false) as remove_current_photo,
         coalesce(array_agg(
-          attachment.object_path
+          photo.id::text
           order by report.created_at, publication.report_id, photo.position
         ) filter (where storage_object.id is not null), '{}')::text[] as photo_paths
       from public.facility_change_publications as publication
@@ -274,94 +276,33 @@ export async function loadPublicFacilityByRegistryId(registryId: number): Promis
 }
 
 export async function loadAssignedFacilityProfiles(
-  facilityKeys: readonly string[],
-): Promise<DemoFacilityProfile[]> {
-  if (facilityKeys.length === 0) return [];
-  const rows = await querySupabaseDatabase<{
-    id: DemoFacilityProfile["id"];
-    name: string;
-    locality: string;
-    department: string;
-    address: string;
-    description: string;
-    image_url: string;
-    image_alt: string;
-    approved_photo_paths: string[] | null;
-    approved_remove_current_photo: boolean | null;
-    phone: string;
-    email: string;
-    monthly_price_from_uyu: number;
-    price_as_of: string;
-    price_includes: string[];
-  }>(`
-    select
-      facility.id,
-      facility.name,
-      facility.locality,
-      facility.department,
-      facility.address,
-      facility.description,
-      facility.image_url,
-      facility.image_alt,
-      approved_photos.photo_paths as approved_photo_paths,
-      approved_photos.remove_current_photo as approved_remove_current_photo,
-      facility.phone,
-      facility.email,
-      facility.monthly_price_from_uyu,
-      facility.price_as_of,
-      facility.price_includes
-    from arandu_demo.facilities as facility
-    left join lateral (
-      select
-        coalesce(bool_or(publication.remove_current_photo), false) as remove_current_photo,
-        coalesce(array_agg(
-          attachment.object_path
-          order by report.created_at, publication.report_id, photo.position
-        ) filter (where storage_object.id is not null), '{}')::text[] as photo_paths
-      from public.facility_change_publications as publication
-      join public.intake_reports as report on report.id = publication.report_id
-      left join public.facility_change_publication_photos as photo on photo.publication_id = publication.id
-      left join public.intake_report_attachments as attachment
-        on attachment.id = photo.attachment_id
-       and attachment.bucket_id = 'intake-evidence'
-       and attachment.purpose = 'facility_photo'
-       and attachment.mime_type like 'image/%'
-       and attachment.rights_metadata->>'rightsConfirmed' = 'true'
-      left join storage.objects as storage_object
-        on storage_object.bucket_id = attachment.bucket_id
-       and storage_object.name = attachment.object_path
-      where publication.demo_facility_id = facility.id
-        and publication.publication_batch_id = (
-          select latest.publication_batch_id
-          from public.facility_change_publications as latest
-          where latest.demo_facility_id = facility.id
-          order by latest.published_at desc, latest.id desc
-          limit 1
-        )
-    ) as approved_photos on true
-    where facility.id = any($1::text[]) and facility.active and facility.is_test
-    order by facility.name
-  `, [[...facilityKeys]]);
+  facilityIds: readonly number[],
+): Promise<FacilityProfile[]> {
+  const validIds = [...new Set(facilityIds.filter((id) => Number.isSafeInteger(id) && id > 0))];
+  if (validIds.length === 0) return [];
+  const rows = await querySupabaseDatabase<FlatElepemRow>(`
+    ${FLAT_ELEPEM_SELECT}
+    where registry.id = any($1::bigint[])
+    order by registry.nombre, registry.id
+  `, [validIds]);
   return rows.map((row) => {
-    const approvedUrls = Array.isArray(row.approved_photo_paths)
-      ? row.approved_photo_paths.map(publicStoragePhotoUrl).filter(Boolean)
-      : [];
-    const imageUrls = [...approvedUrls, ...(!row.approved_remove_current_photo ? [row.image_url] : [])];
+    const facility = toFacility(row);
     return {
-      id: row.id,
-      name: row.name,
-      locality: row.locality,
-      department: row.department,
-      address: row.address,
-      description: row.description,
-      imageUrl: imageUrls[0] || row.image_url,
-      imageUrls,
-      imageAlt: row.image_alt,
-      phone: row.phone,
-      email: row.email,
-      monthlyPriceFromUyu: row.monthly_price_from_uyu,
-      priceVerifiedAt: row.price_as_of,
-      priceIncludes: row.price_includes,
+      id: Number(row.canonical_id),
+      name: facility.name,
+      locality: facility.locality,
+      department: facility.department,
+      address: facility.address,
+      description: facility.description || "",
+      imageUrl: facility.photoUrl || "/arandu-mark.svg",
+      imageUrls: facility.photoUrls || [],
+      imageAlt: row.imagen_alt || `Foto de ${facility.name}`,
+      phones: facility.contactPhones || [],
+      emails: facility.contactEmails || [],
+      monthlyPriceFromUyu: row.precio_mensual_uyu,
+      priceVerifiedAt: row.precio_fecha,
+      priceSourceUrl: row.precio_fuente_url,
+      priceIncludes: row.precio_incluye,
     };
   });
 }
@@ -414,16 +355,6 @@ export async function resolvePublicFacilityReference(value: string): Promise<Pub
   const id = Number(row?.id);
   if (!row || !Number.isSafeInteger(id) || id <= 0) return null;
   return { id, key: row.codigo, name: row.nombre, locality: row.localidad, department: row.departamento };
-}
-
-export async function demoFacilityExists(value: string): Promise<boolean> {
-  if (!/^DEMO-ELEPEM-00[1-3]$/.test(value)) return false;
-  const rows = await querySupabaseDatabase<{ exists: boolean }>(`
-    select exists (
-      select 1 from arandu_demo.facilities where id = $1 and active and is_test
-    ) as exists
-  `, [value]);
-  return rows[0]?.exists === true;
 }
 
 type DemoMapFacilityRow = {
