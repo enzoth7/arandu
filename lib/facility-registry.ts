@@ -333,7 +333,7 @@ export async function loadAssignedFacilityProfiles(
       monthlyPriceFromUyu: null,
       priceVerifiedAt: null,
       priceSourceUrl: null,
-      priceIncludes: null,
+      priceIncludes: [],
     });
   }
 
@@ -523,6 +523,7 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
     return [];
   }
 }
+
 
 
 

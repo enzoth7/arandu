@@ -1,4 +1,4 @@
-import type { PoolClient } from "pg";
+﻿import type { PoolClient } from "pg";
 import { newCaseCode } from "./intake-report.mjs";
 import {
   nextVisitState,
@@ -110,7 +110,7 @@ export async function createVisitRequest(userId: string, input: {
         and (membership.valid_until is null or membership.valid_until > now())
     ) as available`, [isDemo ? null : input.facilityId, isDemo ? input.facilityId : null]);
     if (!available.rows[0]?.available) {
-      throw new VisitWorkflowError(409, "agenda_unavailable", "Este ELEPEM todavía no gestiona visitas desde Arandú.");
+      throw new VisitWorkflowError(409, "agenda_unavailable", "Este ELEPEM todavÃ­a no gestiona visitas desde ArandÃº.");
     }
     const inserted = await client.query<{ id: string }>(`insert into public.facility_visits (
         demo_facility_id,
@@ -161,7 +161,7 @@ export async function listRepresentativeVisits(userId: string, facilityIds: read
 async function lockedVisit(client: PoolClient, visitId: string) {
   const result = await client.query<VisitRecord>(`${VISIT_SELECT}
     where visit.id = $1::uuid for update of visit`, [visitId]);
-  if (!result.rows[0]) throw new VisitWorkflowError(404, "visit_not_found", "No se encontrÃ³ la visita.");
+  if (!result.rows[0]) throw new VisitWorkflowError(404, "visit_not_found", "No se encontrÃƒÂ³ la visita.");
   return result.rows[0];
 }
 
@@ -205,7 +205,7 @@ async function updateVisitFromTransition(
     facilityNote ?? null,
     row.status,
   ]);
-  if (!result.rows[0]) throw new VisitWorkflowError(409, "visit_changed", "La visita cambiÃ³ mientras se procesaba la acciÃ³n.");
+  if (!result.rows[0]) throw new VisitWorkflowError(409, "visit_changed", "La visita cambiÃƒÂ³ mientras se procesaba la acciÃƒÂ³n.");
   const selected = await client.query<VisitRecord>(`${VISIT_SELECT} where visit.id = $1::uuid`, [row.id]);
   const updated = selected.rows[0];
   if (!updated) throw new Error("visit-read-after-update-failed");
@@ -219,24 +219,24 @@ export async function applyVisitorVisitAction(userId: string, visitId: string, a
 }) {
   return withSupabaseTransaction(async (client) => {
     const row = await lockedVisit(client, visitId);
-    if (row.requester_user_id !== userId) throw new VisitWorkflowError(403, "visit_forbidden", "No tenÃ©s permiso sobre esta visita.");
+    if (row.requester_user_id !== userId) throw new VisitWorkflowError(403, "visit_forbidden", "No tenÃƒÂ©s permiso sobre esta visita.");
     const transition = nextVisitState(row.status, action.action, {
       actor: "visitor", proposedStartAt: row.proposed_start_at,
       preferredStartAt: action.preferredStartAt,
     });
-    if (!transition) throw new VisitWorkflowError(409, "invalid_transition", "Esa acciÃ³n no corresponde al estado actual de la visita.");
+    if (!transition) throw new VisitWorkflowError(409, "invalid_transition", "Esa acciÃƒÂ³n no corresponde al estado actual de la visita.");
     return updateVisitFromTransition(client, row, userId, transition);
   });
 }
 
-export async function applyFacilityVisitAction(userId: string, facilityIds: readonly number[], visitId: string, action: {
+export async function applyFacilityVisitAction(userId: string, facilityIds: readonly (number | string)[], visitId: string, action: {
   action: "propose" | "confirm" | "cancel" | "complete" | "not_completed";
   startAt?: string;
   facilityNote: string | null;
 }) {
   return withSupabaseTransaction(async (client) => {
     const row = await lockedVisit(client, visitId);
-    if (!facilityIds.includes(Number(row.facility_id))) throw new VisitWorkflowError(403, "visit_forbidden", "La visita no pertenece a un ELEPEM asignado.");
+    if (!facilityIds.includes(row.demo_facility_id || Number(row.facility_id))) throw new VisitWorkflowError(403, "visit_forbidden", "La visita no pertenece a un ELEPEM asignado.");
     const membership = await client.query<{ allowed: boolean }>(`select exists (
       select 1 from public.facility_memberships membership
       join public.institutional_accounts account on account.user_id = membership.user_id
@@ -245,12 +245,12 @@ export async function applyFacilityVisitAction(userId: string, facilityIds: read
         and account.role = 'facility_representative'
         and (membership.valid_until is null or membership.valid_until > now())
     ) as allowed`, [userId, row.facility_id]);
-    if (!membership.rows[0]?.allowed) throw new VisitWorkflowError(403, "membership_inactive", "La representaciÃ³n ya no estÃ¡ vigente.");
+    if (!membership.rows[0]?.allowed) throw new VisitWorkflowError(403, "membership_inactive", "La representaciÃƒÂ³n ya no estÃƒÂ¡ vigente.");
     const transition = nextVisitState(row.status, action.action, {
       actor: "facility", startAt: action.startAt,
       confirmedStartAt: row.confirmed_start_at, now: Date.now(),
     });
-    if (!transition) throw new VisitWorkflowError(409, "invalid_transition", "Esa acciÃ³n no corresponde al estado o al horario actual.");
+    if (!transition) throw new VisitWorkflowError(409, "invalid_transition", "Esa acciÃƒÂ³n no corresponde al estado o al horario actual.");
     return updateVisitFromTransition(client, row, userId, transition, action.facilityNote);
   });
 }
@@ -258,8 +258,8 @@ export async function applyFacilityVisitAction(userId: string, facilityIds: read
 export async function submitVisitExperience(userId: string, visitId: string, payload: Record<string, unknown>) {
   return withSupabaseTransaction(async (client) => {
     const row = await lockedVisit(client, visitId);
-    if (row.requester_user_id !== userId) throw new VisitWorkflowError(403, "visit_forbidden", "No tenÃ©s permiso sobre esta visita.");
-    if (row.status !== "realizada") throw new VisitWorkflowError(409, "visit_not_completed", "La experiencia se habilita despuÃ©s de una visita realizada.");
+    if (row.requester_user_id !== userId) throw new VisitWorkflowError(403, "visit_forbidden", "No tenÃƒÂ©s permiso sobre esta visita.");
+    if (row.status !== "realizada") throw new VisitWorkflowError(409, "visit_not_completed", "La experiencia se habilita despuÃƒÂ©s de una visita realizada.");
     if (row.experience_report_id) return { reportId: row.experience_report_id, alreadySubmitted: true };
     for (let attempt = 0; attempt < 3; attempt += 1) {
       const caseCode = newCaseCode();
@@ -276,7 +276,7 @@ export async function submitVisitExperience(userId: string, visitId: string, pay
       await client.query(`insert into public.intake_report_events (
         report_id, status, public_title, public_description, event_data, actor
       ) values ($1, 'received', 'Experiencia de visita recibida',
-        'La experiencia quedÃ³ disponible para moderaciÃ³n institucional.', $2::jsonb, 'system')`, [
+        'La experiencia quedÃƒÂ³ disponible para moderaciÃƒÂ³n institucional.', $2::jsonb, 'system')`, [
         reportId, JSON.stringify({ decision: "visit_experience_received", visitId }),
       ]);
       const linked = await client.query(`update public.facility_visits
@@ -290,4 +290,5 @@ export async function submitVisitExperience(userId: string, visitId: string, pay
     throw new Error("case-code-exhausted");
   });
 }
+
 
