@@ -64,25 +64,45 @@ export async function POST(request: NextRequest) {
 
   if (invitedByResidentId && Number.isSafeInteger(facilityId) && facilityId > 0) {
     await querySupabaseDatabase(`
+      with verifier as (
+        select user_id from public.institutional_accounts where role in ('administrator', 'verifier') and status = 'active' limit 1
+      )
       insert into public.user_facility_relationships
-        (user_id, elepem_id, relationship_type, status, verified_at, verified_by, valid_until)
-      values
-        ($1::uuid, $2, 'family', 'verified', now(), $3::uuid, now() + interval '365 days')
-      on conflict (user_id, elepem_id)
-      do update set
+        (user_id, elepem_id, relationship_type, status, requested_at, reviewed_at, verified_at, verified_by, valid_until)
+      select
+        $1::uuid, $2, 'family', 'verified', now(), now(), now(), verifier.user_id, now() + interval '365 days'
+      from verifier
+      where not exists (
+        select 1 from public.user_facility_relationships
+        where user_id = $1::uuid and elepem_id = $2
+      )
+    `, [data.user.id, facilityId]).catch((err) => {
+      console.error("Failed to automatically insert invited family relationship:", err);
+    });
+
+    await querySupabaseDatabase(`
+      with verifier as (
+        select user_id from public.institutional_accounts where role in ('administrator', 'verifier') and status = 'active' limit 1
+      )
+      update public.user_facility_relationships
+      set
         relationship_type = 'family',
         status = 'verified',
+        requested_at = coalesce(requested_at, now()),
+        reviewed_at = now(),
         verified_at = now(),
-        verified_by = excluded.verified_by,
+        verified_by = (select user_id from verifier),
         valid_until = now() + interval '365 days',
         updated_at = now()
-    `, [data.user.id, facilityId, invitedByResidentId]).catch((err) => {
-      console.error("Failed to automatically link invited family relationship:", err);
+      where user_id = $1::uuid and elepem_id = $2
+    `, [data.user.id, facilityId]).catch((err) => {
+      console.error("Failed to automatically update invited family relationship:", err);
     });
   }
 
   return NextResponse.json({ updated: true }, { headers: { "Cache-Control": "no-store" } });
 }
+
 
 
 
