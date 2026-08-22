@@ -15,6 +15,7 @@ import { loadAssignedFacilityProfiles } from "../../lib/facility-registry";
 import { AccountLogout } from "../components/institutional/AccountLogout";
 import { loadVerifiedPersonalRelationships } from "../../lib/brief-experience-db";
 import { institutionalHome } from "../../lib/institutional-auth";
+import { querySupabaseDatabase } from "../../lib/supabase-db";
 import { TermsAcceptanceModal } from "../components/TermsAcceptanceModal";
 
 export const metadata: Metadata = { title: "Mi cuenta" };
@@ -49,6 +50,40 @@ export default async function AccountPage() {
     badgeClass = "isFamily";
   }
 
+  let residentInfo: { name: string; facilityName: string } | null = null;
+  if (familyRel && !isTemporaryAdmin) {
+    const residentRows = await querySupabaseDatabase<{
+      first_name: string | null;
+      last_name: string | null;
+      email: string | null;
+    }>(`
+      select p.first_name, p.last_name, u.email
+      from auth.users u
+      left join public.user_profiles p on p.user_id = u.id
+      where u.id = (
+        select (raw_user_meta_data->>'invited_by_resident_id')::uuid
+        from auth.users
+        where id = $1::uuid
+      )
+      limit 1
+    `, [account.userId]).catch(() => []);
+
+    if (residentRows[0]) {
+      const resName = [residentRows[0].first_name, residentRows[0].last_name].filter(Boolean).join(" ").trim()
+        || residentRows[0].email
+        || "un residente verificado";
+      residentInfo = {
+        name: resName,
+        facilityName: familyRel.facilityName,
+      };
+    } else {
+      residentInfo = {
+        name: "un residente verificado",
+        facilityName: familyRel.facilityName,
+      };
+    }
+  }
+
   return <main className="institutionalWorkspace accountWorkspace">
     <TermsAcceptanceModal open={!account.termsAccepted && !isTemporaryAdmin} />
     <header className="accountHero">
@@ -65,10 +100,16 @@ export default async function AccountPage() {
             {account.email}
             {profile?.phone && <span className="accountPhone"> · {profile.phone}</span>}
           </p>
+          {residentInfo && (
+            <p className="accountLinkedResident">
+              Vinculado al residente <strong>{residentInfo.name}</strong> · <span>{residentInfo.facilityName}</span>
+            </p>
+          )}
         </div>
       </div>
       <AccountLogout />
     </header>
+
 
 
     <section className="accountActions" aria-labelledby="account-actions-title">
@@ -139,13 +180,16 @@ export default async function AccountPage() {
           </div>
           <div className="accountCardCopy">
             <h3>Experiencias de residencia</h3>
-            <p>{relationshipCount > 0
-              ? "Compartí tu experiencia vinculada a un ELEPEM."
-              : "Necesitás un vínculo residente o familiar verificado para participar."}</p>
+            <p>{residentInfo
+              ? `Vinculado al residente ${residentInfo.name} en ${residentInfo.facilityName}. Compartí tu experiencia sobre el residencial.`
+              : relationshipCount > 0
+                ? "Compartí tu experiencia vinculada a un ELEPEM."
+                : "Necesitás un vínculo residente o familiar verificado para participar."}</p>
           </div>
           {relationshipCount > 0 && <Link className="accountCardLink" href="/experiencia">
             Compartir una experiencia <ArrowRight size={18} aria-hidden="true" />
           </Link>}
+
         </article>}
       </div>
     </section>

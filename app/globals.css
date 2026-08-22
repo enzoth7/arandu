@@ -9138,10 +9138,28 @@ select:not(:disabled) {
 }
 
 .accountPhone {
-  color: #64748B;
-  font-weight: 600;
+  color: #71889c;
 }
 
+.accountLinkedResident {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0 0;
+  font-size: 0.88rem;
+  color: var(--blue2);
+  background: #f0f7ff;
+  border: 1px solid #bfdbfe;
+  padding: 6px 14px;
+  border-radius: 8px;
+  width: fit-content;
+  line-height: 1.4;
+}
+
+.accountLinkedResident strong {
+  font-weight: 700;
+  color: var(--blue2);
+}
 
 .accountHero .reportBack {
   flex: 0 0 auto;
