@@ -79,10 +79,13 @@ export async function POST(request: NextRequest) {
   if (!auth.session.facilityIds.includes(parsed.facilityId)) return NextResponse.json({ error: "Ese ELEPEM no está asignado a tu cuenta." }, { status: 403 });
   if (parsed.payload.photoCount > 0 && parsed.payload.photoRightsConfirmed !== true) return NextResponse.json({ error: "Las fotografías requieren confirmación de derechos." }, { status: 400 });
   try {
-    const exists = await querySupabaseDatabase<{ exists: boolean }>("SELECT EXISTS(SELECT 1 FROM public.elepem WHERE id = $1) AS exists", [parsed.facilityId]);
+    const isDemo = typeof parsed.facilityId === "string" && parsed.facilityId.startsWith("DEMO-");
+    const exists = isDemo
+      ? await querySupabaseDatabase<{ exists: boolean }>("SELECT EXISTS(SELECT 1 FROM arandu_demo.facilities WHERE id = $1) AS exists", [parsed.facilityId])
+      : await querySupabaseDatabase<{ exists: boolean }>("SELECT EXISTS(SELECT 1 FROM public.elepem WHERE id = $1) AS exists", [parsed.facilityId]);
     if (!exists[0]?.exists) return NextResponse.json({ error: "El ELEPEM asignado ya no está disponible." }, { status: 409 });
-    const result = await insertDemoIntake({ kind: "facility_change", submittedActor: "facility", facilityId: parsed.facilityId,
-      payload: parsed.payload, payloadVersion: 3, initialStatus: "draft", isDemo: false, submittedByUserId: auth.session.userId });
+    const result = await insertDemoIntake({ kind: "facility_change", submittedActor: "facility", facilityId: isDemo ? null : (parsed.facilityId as number), demoFacilityId: isDemo ? parsed.facilityId as string : null,
+      payload: parsed.payload, payloadVersion: 3, initialStatus: "draft", isDemo, submittedByUserId: auth.session.userId });
     return NextResponse.json({ caseCode: result.caseCode, uploadToken: result.uploadToken }, { status: 201 });
   } catch (error) {
     console.error("Facility change intake failed.", { message: error instanceof Error ? error.message : "unknown" });

@@ -2,7 +2,7 @@ import type { PoolClient } from "pg";
 import type { InstitutionalRole } from "./institutional-types";
 import { querySupabaseDatabase, withSupabaseTransaction } from "./supabase-db";
 
-export type FacilityOption = { id: number; name: string; locality: string; department: string };
+export type FacilityOption = { id: number | string; name: string; locality: string; department: string };
 export type RelationshipKind = "resident" | "family";
 export type RelationshipStatus = "pending" | "verified" | "expired" | "disputed" | "rejected" | "revoked";
 
@@ -31,8 +31,14 @@ export async function listFacilityOptions(): Promise<FacilityOption[]> {
   const rows = await querySupabaseDatabase<{ id: string; name: string; locality: string; department: string }>(`
     select id::text, nombre as name, coalesce(localidad, '') as locality,
            coalesce(departamento, '') as department
-    from public.elepem order by nombre, id`);
-  return rows.map((row) => ({ ...row, id: Number(row.id) })).filter((row) => Number.isSafeInteger(row.id));
+    from public.elepem
+    union all
+    select id, name, coalesce(locality, '') as locality,
+           coalesce(department, '') as department
+    from arandu_demo.facilities
+    where active and is_test
+    order by name, id`);
+  return rows.map((row) => ({ ...row, id: /^\d+$/.test(row.id) ? Number(row.id) : row.id }));
 }
 
 type RelationshipRow = {
@@ -77,12 +83,15 @@ export async function listOwnRelationshipRequests(userId: string) {
   return rows.map(relationshipDto);
 }
 
-export async function requestRelationship(userId: string, facilityId: number, relationshipType: RelationshipKind) {
+export async function requestRelationship(userId: string, facilityId: number | string, relationshipType: RelationshipKind) {
   return withSupabaseTransaction(async (client) => {
-    const facility = await client.query<{ name: string }>("select nombre as name from public.elepem where id = $1", [facilityId]);
+    const isDemo = typeof facilityId === "string" && facilityId.startsWith("DEMO-");
+    const facility = isDemo 
+      ? await client.query<{ name: string }>("select name from arandu_demo.facilities where id = $1", [facilityId])
+      : await client.query<{ name: string }>("select nombre as name from public.elepem where id = $1", [facilityId]);
     if (!facility.rows[0]) throw new RoleWorkflowError(404, "No se encontró el ELEPEM.");
     const prior = await client.query<{ id: string; status: RelationshipStatus }>(`select id, status
-      from public.user_facility_relationships where user_id = $1::uuid and elepem_id = $2 for update`, [userId, facilityId]);
+      from public.user_facility_relationships where user_id = $1::uuid and elepem_id is not distinct from $2::bigint and demo_facility_id is not distinct from $3 for update`, [userId, isDemo ? null : facilityId, isDemo ? facilityId : null]);
     if (prior.rows[0]?.status === "verified") throw new RoleWorkflowError(409, "Ya tenés un vínculo verificado con este ELEPEM.");
     if (prior.rows[0]?.status === "pending") return { id: prior.rows[0].id, status: "pending" as const, idempotent: true };
 
@@ -100,8 +109,8 @@ export async function requestRelationship(userId: string, facilityId: number, re
           verified_at = null, verified_by = null, valid_until = null, updated_at = now()
         where id = $1 and user_id = $2::uuid returning id`, [prior.rows[0].id, userId, relationshipType, firstName, lastName])
       : await client.query<{ id: string }>(`insert into public.user_facility_relationships
-          (user_id, elepem_id, relationship_type, status, first_name, last_name)
-        values ($1::uuid, $2, $3, 'pending', $4, $5) returning id`, [userId, facilityId, relationshipType, firstName, lastName]);
+          (user_id, elepem_id, demo_facility_id, relationship_type, status, first_name, last_name)
+        values ($1::uuid, $2, $3, $4, 'pending', $5, $6) returning id`, [userId, isDemo ? null : facilityId, isDemo ? facilityId : null, relationshipType, firstName, lastName]);
     const id = result.rows[0]?.id;
     if (!id) throw new Error("relationship-request-write-failed");
     await audit(client, { entityType: "facility_relationship", entityKey: id, action: "requested", actor: userId,
@@ -145,20 +154,25 @@ export async function decideRelationship(input: {
   });
 }
 
-type MembershipRow = { user_id: string; email: string; elepem_id: string; facility_name: string; status: string; requested_at: Date | string; reviewed_at: Date | string | null };
+type MembershipRow = { user_id: string; email: string; elepem_id: string | null; demo_facility_id: string | null; facility_name: string; status: string; requested_at: Date | string; reviewed_at: Date | string | null };
 export async function listOwnRepresentationClaims(userId: string) {
   const rows = await querySupabaseDatabase<MembershipRow>(`select membership.user_id::text, auth_user.email,
-    membership.elepem_id::text, facility.nombre as facility_name, membership.status,
+    membership.elepem_id::text, membership.demo_facility_id, coalesce(facility.nombre, demo.name) as facility_name, membership.status,
     membership.requested_at, membership.reviewed_at
-    from public.facility_memberships membership join public.elepem facility on facility.id = membership.elepem_id
+    from public.facility_memberships membership 
+    left join public.elepem facility on facility.id = membership.elepem_id
+    left join arandu_demo.facilities demo on demo.id = membership.demo_facility_id
     join auth.users auth_user on auth_user.id = membership.user_id
     where membership.user_id = $1::uuid order by membership.requested_at desc`, [userId]);
-  return rows.map((row) => ({ ...row, facilityId: Number(row.elepem_id), requestedAt: iso(row.requested_at), reviewedAt: iso(row.reviewed_at) }));
+  return rows.map((row) => ({ ...row, facilityId: row.demo_facility_id || (row.elepem_id ? Number(row.elepem_id) : null), requestedAt: iso(row.requested_at), reviewedAt: iso(row.reviewed_at) }));
 }
 
-export async function requestRepresentation(userId: string, facilityId: number) {
+export async function requestRepresentation(userId: string, facilityId: number | string) {
   return withSupabaseTransaction(async (client) => {
-    const facility = await client.query("select 1 from public.elepem where id = $1", [facilityId]);
+    const isDemo = typeof facilityId === "string" && facilityId.startsWith("DEMO-");
+    const facility = isDemo
+      ? await client.query("select 1 from arandu_demo.facilities where id = $1", [facilityId])
+      : await client.query("select 1 from public.elepem where id = $1", [facilityId]);
     if (!facility.rows[0]) throw new RoleWorkflowError(404, "No se encontró el ELEPEM.");
     const account = await client.query<{ role: InstitutionalRole }>(`select role from public.institutional_accounts
       where user_id = $1::uuid for update`, [userId]);
@@ -168,14 +182,14 @@ export async function requestRepresentation(userId: string, facilityId: number) 
     if (!account.rows[0]) await client.query(`insert into public.institutional_accounts (user_id, role, status)
       values ($1::uuid, 'facility_representative', 'active')`, [userId]);
     const prior = await client.query<{ status: string }>(`select status from public.facility_memberships
-      where user_id = $1::uuid and elepem_id = $2 for update`, [userId, facilityId]);
+      where user_id = $1::uuid and elepem_id is not distinct from $2::bigint and demo_facility_id is not distinct from $3 for update`, [userId, isDemo ? null : facilityId, isDemo ? facilityId : null]);
     if (prior.rows[0]?.status === "active") throw new RoleWorkflowError(409, "Ya representás este ELEPEM.");
     if (prior.rows[0]?.status === "pending") return { status: "pending" as const, idempotent: true };
     if (prior.rows[0]) await client.query(`update public.facility_memberships set status = 'pending', requested_at = now(),
       reviewed_at = null, verified_at = null, verified_by = null, valid_until = null, updated_at = now()
-      where user_id = $1::uuid and elepem_id = $2`, [userId, facilityId]);
-    else await client.query(`insert into public.facility_memberships (user_id, elepem_id, status)
-      values ($1::uuid, $2, 'pending')`, [userId, facilityId]);
+      where user_id = $1::uuid and elepem_id is not distinct from $2::bigint and demo_facility_id is not distinct from $3`, [userId, isDemo ? null : facilityId, isDemo ? facilityId : null]);
+    else await client.query(`insert into public.facility_memberships (user_id, elepem_id, demo_facility_id, status)
+      values ($1::uuid, $2, $3, 'pending')`, [userId, isDemo ? null : facilityId, isDemo ? facilityId : null]);
     await audit(client, { entityType: "facility_membership", entityKey: `${userId}:${facilityId}`,
       action: "representation_requested", actor: userId, before: prior.rows[0] || null,
       after: { status: "pending", facilityId } });
@@ -185,29 +199,32 @@ export async function requestRepresentation(userId: string, facilityId: number) 
 
 export async function listRepresentationClaims() {
   const rows = await querySupabaseDatabase<MembershipRow>(`select membership.user_id::text, auth_user.email,
-    membership.elepem_id::text, facility.nombre as facility_name, membership.status,
+    membership.elepem_id::text, membership.demo_facility_id, coalesce(facility.nombre, demo.name) as facility_name, membership.status,
     membership.requested_at, membership.reviewed_at
-    from public.facility_memberships membership join public.elepem facility on facility.id = membership.elepem_id
+    from public.facility_memberships membership 
+    left join public.elepem facility on facility.id = membership.elepem_id
+    left join arandu_demo.facilities demo on demo.id = membership.demo_facility_id
     join auth.users auth_user on auth_user.id = membership.user_id
     order by case membership.status when 'pending' then 0 else 1 end, membership.requested_at desc`);
-  return rows.map((row) => ({ ...row, facilityId: Number(row.elepem_id), requestedAt: iso(row.requested_at), reviewedAt: iso(row.reviewed_at) }));
+  return rows.map((row) => ({ ...row, facilityId: row.demo_facility_id || (row.elepem_id ? Number(row.elepem_id) : null), requestedAt: iso(row.requested_at), reviewedAt: iso(row.reviewed_at) }));
 }
 
-export async function decideRepresentation(input: { actorId: string; userId: string; facilityId: number; action: "approve" | "reject" | "suspend" | "revoke" }) {
+export async function decideRepresentation(input: { actorId: string; userId: string; facilityId: number | string; action: "approve" | "reject" | "suspend" | "revoke" }) {
   return withSupabaseTransaction(async (client) => {
+    const isDemo = typeof input.facilityId === "string" && input.facilityId.startsWith("DEMO-");
     const row = await client.query<{ status: string }>(`select status from public.facility_memberships
-      where user_id = $1::uuid and elepem_id = $2 for update`, [input.userId, input.facilityId]);
+      where user_id = $1::uuid and elepem_id is not distinct from $2::bigint and demo_facility_id is not distinct from $3 for update`, [input.userId, isDemo ? null : input.facilityId, isDemo ? input.facilityId : null]);
     if (!row.rows[0]) throw new RoleWorkflowError(404, "No se encontró la solicitud de representación.");
     const next = { approve: "active", reject: "rejected", suspend: "suspended", revoke: "revoked" }[input.action];
     if (row.rows[0].status === next) return { status: next, idempotent: true };
     if (input.action === "approve" && !["pending", "suspended"].includes(row.rows[0].status)) throw new RoleWorkflowError(409, "Solo se puede aprobar una solicitud pendiente o reactivar una representación suspendida.");
     if (input.action === "reject" && row.rows[0].status !== "pending") throw new RoleWorkflowError(409, "Solo se puede rechazar una solicitud pendiente.");
     if (["suspend", "revoke"].includes(input.action) && !["active", "suspended"].includes(row.rows[0].status)) throw new RoleWorkflowError(409, "Solo se puede suspender o revocar una representación aprobada.");
-    await client.query(`update public.facility_memberships set status = $3, reviewed_at = now(),
-      verified_at = case when $3 = 'active' then coalesce(verified_at, now()) else verified_at end,
-      verified_by = case when $3 = 'active' then coalesce(verified_by, $4::uuid) else verified_by end,
+    await client.query(`update public.facility_memberships set status = $4, reviewed_at = now(),
+      verified_at = case when $4 = 'active' then coalesce(verified_at, now()) else verified_at end,
+      verified_by = case when $4 = 'active' then coalesce(verified_by, $5::uuid) else verified_by end,
       updated_at = now()
-      where user_id = $1::uuid and elepem_id = $2`, [input.userId, input.facilityId, next, input.actorId]);
+      where user_id = $1::uuid and elepem_id is not distinct from $2::bigint and demo_facility_id is not distinct from $3`, [input.userId, isDemo ? null : input.facilityId, isDemo ? input.facilityId : null, next, input.actorId]);
     await audit(client, { entityType: "facility_membership", entityKey: `${input.userId}:${input.facilityId}`,
       action: `representation_${input.action}`, actor: input.actorId,
       before: { status: row.rows[0].status }, after: { status: next } });

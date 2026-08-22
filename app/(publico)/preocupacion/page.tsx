@@ -34,7 +34,6 @@ export default function ConcernPage() {
         {/* Hero Banner */}
         <section className={styles.hero}>
           <div className={styles.heroContent}>
-            <p className={styles.heroEyebrow}>INFORMACIÓN EXTERNA</p>
             <h1 className={styles.heroTitle}>
               Orientación ante situaciones de preocupación
             </h1>
@@ -56,21 +55,14 @@ export default function ConcernPage() {
         {/* Emergency Banner */}
         <section className={styles.emergencyCard}>
           <div className={styles.emergencyLeft}>
-            <div className={styles.emergencyBadge}>
-              <AlertTriangle size={15} aria-hidden="true" />
-              <span>EMERGENCIA</span>
-            </div>
             <h2 className={styles.emergencyTitle}>¿Hay una persona en riesgo inmediato?</h2>
             <p className={styles.emergencyText}>
               9-1-1: llamada gratuita, incluso sin saldo, disponible las 24 horas. También está disponible la App 9-1-1.
             </p>
           </div>
           <div className={styles.emergencyActions}>
-            <a href="tel:911" className={styles.emergencyCallBtn}>
-              Llamar al 9-1-1
-            </a>
             <a
-              href="https://www.gub.uy/ministerio-interior/politicas-y-gestion/app-emergencia-9-1-1"
+              href="https://www.gub.uy/ministerio-interior/tramites-y-servicios/servicios/emergencia-9-1-1"
               target="_blank"
               rel="noreferrer"
               className={styles.emergencyAppBtn}
@@ -122,13 +114,9 @@ export default function ConcernPage() {
               </div>
             </div>
 
-            <div className={styles.warningBox}>
-              <strong>Pendiente antes de producción:</strong> las páginas oficiales publican dos correos distintos. Confirmar con Inmayores cuál corresponde fijar.
-            </div>
-
             <div className={styles.cardActions}>
               <a
-                href="https://www.gub.uy/tramites/servicio-orientacion-atencion-situaciones-abuso-maltrato-hacia-personas-mayores"
+                href="https://www.gub.uy/tramites/servicio-atencion-personas-mayores-situacion-abuso-yo-maltrato"
                 target="_blank"
                 rel="noreferrer"
                 className={styles.primaryActionBtn}
@@ -136,7 +124,7 @@ export default function ConcernPage() {
                 Abrir trámite oficial
               </a>
               <a
-                href="https://www.gub.uy/ministerio-desarrollo-social/inmayores"
+                href="https://www.gub.uy/ministerio-desarrollo-social/comunicacion/campanas/campana-toma-conciencia-del-abuso-maltrato-vejez"
                 target="_blank"
                 rel="noreferrer"
                 className={styles.secondaryActionBtn}
@@ -177,7 +165,7 @@ export default function ConcernPage() {
 
             <div className={styles.cardActions}>
               <a
-                href="https://www.gub.uy/tramites/consultas-denuncias-reclamos-sugerencias-presentadas-ante-atencion-usuario"
+                href="https://www.gub.uy/tramites/sistema-unico-denuncias-instituciones-salud"
                 target="_blank"
                 rel="noreferrer"
                 className={styles.primaryActionBtn}
@@ -218,7 +206,7 @@ export default function ConcernPage() {
 
             <div className={styles.cardActions}>
               <a
-                href="https://www.gub.uy/ministerio-salud-publica"
+                href="https://www.gub.uy/ministerio-salud-publica/fiscalizacion"
                 target="_blank"
                 rel="noreferrer"
                 className={styles.primaryActionBtn}
@@ -263,7 +251,7 @@ export default function ConcernPage() {
 
             <div className={styles.cardActions}>
               <a
-                href="https://www.gub.uy/tramites/habilitacion-establecimientos-larga-estadia-para-personas-mayores-elepem"
+                href="https://www.gub.uy/ministerio-salud-publica/servicios-salud/elepem"
                 target="_blank"
                 rel="noreferrer"
                 className={styles.primaryActionBtn}
@@ -300,7 +288,7 @@ export default function ConcernPage() {
 
             <div className={styles.cardActions}>
               <a
-                href="https://www.gub.uy/sistema-cuidados"
+                href="https://www.gub.uy/sistema-cuidados/comunicacion/publicaciones/conoce-sistema-nacional-integrado-cuidados"
                 target="_blank"
                 rel="noreferrer"
                 className={styles.primaryActionBtn}

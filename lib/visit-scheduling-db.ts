@@ -8,7 +8,8 @@ import { querySupabaseDatabase, withSupabaseTransaction } from "./supabase-db";
 
 export type VisitRecord = {
   id: string;
-  facility_id: string;
+  facility_id: string | null;
+  demo_facility_id: string | null;
   facility_key: string;
   facility_name: string;
   facility_locality: string;
@@ -40,15 +41,16 @@ export class VisitWorkflowError extends Error {
   }
 }
 
-const VISIT_SELECT = `select visit.id, visit.facility_id::text, facility.codigo as facility_key,
-  facility.nombre as facility_name, facility.localidad as facility_locality,
-  facility.departamento as facility_department, visit.requester_user_id::text,
+const VISIT_SELECT = `select visit.id, visit.facility_id::text, visit.demo_facility_id, coalesce(facility.codigo, demo.id) as facility_key,
+  coalesce(facility.nombre, demo.name) as facility_name, coalesce(facility.localidad, demo.locality, '') as facility_locality,
+  coalesce(facility.departamento, demo.department, '') as facility_department, visit.requester_user_id::text,
   visit.status, visit.preferred_start_at, visit.proposed_start_at, visit.confirmed_start_at,
   visit.contact_name, visit.contact_email, visit.contact_phone, visit.party_size,
   visit.practical_note, visit.facility_note, visit.experience_report_id,
   visit.created_at, visit.updated_at
 from public.facility_visits visit
-join public.elepem facility on facility.id = visit.facility_id`;
+left join public.elepem facility on facility.id = visit.facility_id
+left join arandu_demo.facilities demo on demo.id = visit.demo_facility_id`;
 
 function normalizeVisit(row: VisitRecord) {
   const date = (value: Date | string | null) => value ? new Date(value).toISOString() : null;
@@ -76,19 +78,20 @@ function normalizeVisit(row: VisitRecord) {
   };
 }
 
-export async function facilityHasVisitAgenda(facilityId: number) {
+export async function facilityHasVisitAgenda(facilityId: number | string) {
+  const isDemo = typeof facilityId === "string" && facilityId.startsWith("DEMO-");
   const rows = await querySupabaseDatabase<{ available: boolean }>(`select exists (
     select 1 from public.facility_memberships membership
     join public.institutional_accounts account on account.user_id = membership.user_id
-    where membership.elepem_id = $1 and membership.status = 'active'
+    where membership.elepem_id is not distinct from $1::bigint and membership.demo_facility_id is not distinct from $2 and membership.status = 'active'
       and account.status = 'active' and account.role = 'facility_representative'
       and (membership.valid_until is null or membership.valid_until > now())
-  ) as available`, [facilityId]);
+  ) as available`, [isDemo ? null : facilityId, isDemo ? facilityId : null]);
   return rows[0]?.available === true;
 }
 
 export async function createVisitRequest(userId: string, input: {
-  facilityId: number;
+  facilityId: number | string;
   preferredStartAt: string;
   contactName: string;
   contactEmail: string | null;
@@ -98,22 +101,24 @@ export async function createVisitRequest(userId: string, input: {
   acknowledgedNotConfirmation: true;
 }) {
   return withSupabaseTransaction(async (client) => {
+    const isDemo = typeof input.facilityId === "string" && input.facilityId.startsWith("DEMO-");
     const available = await client.query<{ available: boolean }>(`select exists (
       select 1 from public.facility_memberships membership
       join public.institutional_accounts account on account.user_id = membership.user_id
-      where membership.elepem_id = $1 and membership.status = 'active'
+      where membership.elepem_id is not distinct from $1::bigint and membership.demo_facility_id is not distinct from $2 and membership.status = 'active'
         and account.status = 'active' and account.role = 'facility_representative'
         and (membership.valid_until is null or membership.valid_until > now())
-    ) as available`, [input.facilityId]);
+    ) as available`, [isDemo ? null : input.facilityId, isDemo ? input.facilityId : null]);
     if (!available.rows[0]?.available) {
       throw new VisitWorkflowError(409, "agenda_unavailable", "Este ELEPEM todavía no gestiona visitas desde Arandú.");
     }
     const inserted = await client.query<{ id: string }>(`insert into public.facility_visits (
+        demo_facility_id,
         facility_id, requester_user_id, preferred_start_at, contact_name, contact_email,
         contact_phone, party_size, practical_note, acknowledged_not_confirmation
-      ) values ($1, $2::uuid, $3::timestamptz, $4, $5, $6, $7, $8, true)
+      ) values ($1, $2, $3::uuid, $4::timestamptz, $5, $6, $7, $8, $9, true)
       returning id`, [
-      input.facilityId, userId, input.preferredStartAt, input.contactName,
+      isDemo ? input.facilityId : null, isDemo ? null : input.facilityId, userId, input.preferredStartAt, input.contactName,
       input.contactEmail, input.contactPhone, input.partySize, input.practicalNote,
     ]);
     const visitId = inserted.rows[0]?.id;
@@ -133,26 +138,30 @@ export async function listVisitorVisits(userId: string) {
   return rows.map(normalizeVisit);
 }
 
-export async function listRepresentativeVisits(userId: string, facilityIds: readonly number[]) {
+export async function listRepresentativeVisits(userId: string, facilityIds: readonly (number | string)[]) {
   if (facilityIds.length === 0) return [];
+  const numericIds = facilityIds.filter((id) => typeof id === "number" || /^\d+$/.test(id));
+  const textIds = facilityIds.filter((id) => typeof id === "string" && id.startsWith("DEMO-"));
   const rows = await querySupabaseDatabase<VisitRecord>(`${VISIT_SELECT}
-    where visit.facility_id = any($1::bigint[])
+    where (visit.facility_id = any($1::bigint[]) or visit.demo_facility_id = any($3::text[]))
       and exists (
         select 1 from public.facility_memberships membership
         join public.institutional_accounts account on account.user_id = membership.user_id
-        where membership.user_id = $2::uuid and membership.elepem_id = visit.facility_id
+        where membership.user_id = $2::uuid 
+          and membership.elepem_id is not distinct from visit.facility_id
+          and membership.demo_facility_id is not distinct from visit.demo_facility_id
           and membership.status = 'active' and account.status = 'active'
           and account.role = 'facility_representative'
           and (membership.valid_until is null or membership.valid_until > now())
       )
-    order by visit.created_at desc`, [facilityIds, userId]);
+    order by visit.created_at desc`, [numericIds, userId, textIds]);
   return rows.map(normalizeVisit);
 }
 
 async function lockedVisit(client: PoolClient, visitId: string) {
   const result = await client.query<VisitRecord>(`${VISIT_SELECT}
     where visit.id = $1::uuid for update of visit`, [visitId]);
-  if (!result.rows[0]) throw new VisitWorkflowError(404, "visit_not_found", "No se encontró la visita.");
+  if (!result.rows[0]) throw new VisitWorkflowError(404, "visit_not_found", "No se encontrÃ³ la visita.");
   return result.rows[0];
 }
 
@@ -196,7 +205,7 @@ async function updateVisitFromTransition(
     facilityNote ?? null,
     row.status,
   ]);
-  if (!result.rows[0]) throw new VisitWorkflowError(409, "visit_changed", "La visita cambió mientras se procesaba la acción.");
+  if (!result.rows[0]) throw new VisitWorkflowError(409, "visit_changed", "La visita cambiÃ³ mientras se procesaba la acciÃ³n.");
   const selected = await client.query<VisitRecord>(`${VISIT_SELECT} where visit.id = $1::uuid`, [row.id]);
   const updated = selected.rows[0];
   if (!updated) throw new Error("visit-read-after-update-failed");
@@ -210,12 +219,12 @@ export async function applyVisitorVisitAction(userId: string, visitId: string, a
 }) {
   return withSupabaseTransaction(async (client) => {
     const row = await lockedVisit(client, visitId);
-    if (row.requester_user_id !== userId) throw new VisitWorkflowError(403, "visit_forbidden", "No tenés permiso sobre esta visita.");
+    if (row.requester_user_id !== userId) throw new VisitWorkflowError(403, "visit_forbidden", "No tenÃ©s permiso sobre esta visita.");
     const transition = nextVisitState(row.status, action.action, {
       actor: "visitor", proposedStartAt: row.proposed_start_at,
       preferredStartAt: action.preferredStartAt,
     });
-    if (!transition) throw new VisitWorkflowError(409, "invalid_transition", "Esa acción no corresponde al estado actual de la visita.");
+    if (!transition) throw new VisitWorkflowError(409, "invalid_transition", "Esa acciÃ³n no corresponde al estado actual de la visita.");
     return updateVisitFromTransition(client, row, userId, transition);
   });
 }
@@ -236,12 +245,12 @@ export async function applyFacilityVisitAction(userId: string, facilityIds: read
         and account.role = 'facility_representative'
         and (membership.valid_until is null or membership.valid_until > now())
     ) as allowed`, [userId, row.facility_id]);
-    if (!membership.rows[0]?.allowed) throw new VisitWorkflowError(403, "membership_inactive", "La representación ya no está vigente.");
+    if (!membership.rows[0]?.allowed) throw new VisitWorkflowError(403, "membership_inactive", "La representaciÃ³n ya no estÃ¡ vigente.");
     const transition = nextVisitState(row.status, action.action, {
       actor: "facility", startAt: action.startAt,
       confirmedStartAt: row.confirmed_start_at, now: Date.now(),
     });
-    if (!transition) throw new VisitWorkflowError(409, "invalid_transition", "Esa acción no corresponde al estado o al horario actual.");
+    if (!transition) throw new VisitWorkflowError(409, "invalid_transition", "Esa acciÃ³n no corresponde al estado o al horario actual.");
     return updateVisitFromTransition(client, row, userId, transition, action.facilityNote);
   });
 }
@@ -249,8 +258,8 @@ export async function applyFacilityVisitAction(userId: string, facilityIds: read
 export async function submitVisitExperience(userId: string, visitId: string, payload: Record<string, unknown>) {
   return withSupabaseTransaction(async (client) => {
     const row = await lockedVisit(client, visitId);
-    if (row.requester_user_id !== userId) throw new VisitWorkflowError(403, "visit_forbidden", "No tenés permiso sobre esta visita.");
-    if (row.status !== "realizada") throw new VisitWorkflowError(409, "visit_not_completed", "La experiencia se habilita después de una visita realizada.");
+    if (row.requester_user_id !== userId) throw new VisitWorkflowError(403, "visit_forbidden", "No tenÃ©s permiso sobre esta visita.");
+    if (row.status !== "realizada") throw new VisitWorkflowError(409, "visit_not_completed", "La experiencia se habilita despuÃ©s de una visita realizada.");
     if (row.experience_report_id) return { reportId: row.experience_report_id, alreadySubmitted: true };
     for (let attempt = 0; attempt < 3; attempt += 1) {
       const caseCode = newCaseCode();
@@ -267,7 +276,7 @@ export async function submitVisitExperience(userId: string, visitId: string, pay
       await client.query(`insert into public.intake_report_events (
         report_id, status, public_title, public_description, event_data, actor
       ) values ($1, 'received', 'Experiencia de visita recibida',
-        'La experiencia quedó disponible para moderación institucional.', $2::jsonb, 'system')`, [
+        'La experiencia quedÃ³ disponible para moderaciÃ³n institucional.', $2::jsonb, 'system')`, [
         reportId, JSON.stringify({ decision: "visit_experience_received", visitId }),
       ]);
       const linked = await client.query(`update public.facility_visits
@@ -281,3 +290,4 @@ export async function submitVisitExperience(userId: string, visitId: string, pay
     throw new Error("case-code-exhausted");
   });
 }
+

@@ -1,4 +1,4 @@
-import { querySupabaseDatabase } from "./supabase-db";
+﻿import { querySupabaseDatabase } from "./supabase-db";
 import type { Facility } from "../app/components/map-types";
 import type { FacilityProfile } from "./institutional-types";
 
@@ -90,7 +90,7 @@ function sourceLinks(row: FlatElepemRow): NonNullable<Facility["sourceLinks"]> {
     if (!url) continue;
     const provider = String(row.fuentes_proveedores[index] || "").trim();
     const reference = String(row.fuentes_referencias[index] || "").trim();
-    const label = (provider || reference || "Fuente pública").slice(0, 200);
+    const label = (provider || reference || "Fuente pÃºblica").slice(0, 200);
     const key = `${label}:${url}`;
     if (seen.has(key)) continue;
     seen.add(key);
@@ -115,9 +115,9 @@ function statusGroup(row: FlatElepemRow): Facility["statusGroup"] {
 }
 
 function statusShort(row: FlatElepemRow) {
-  if (row.msp_habilitado) return "Habilitación MSP";
+  if (row.msp_habilitado) return "HabilitaciÃ³n MSP";
   if (row.mides_certificado) return "Certificado social MIDES";
-  return "Situación no confirmada";
+  return "SituaciÃ³n no confirmada";
 }
 
 function toFacility(row: FlatElepemRow): Facility {
@@ -132,7 +132,7 @@ function toFacility(row: FlatElepemRow): Facility {
   const providers = [...new Set(row.fuentes_proveedores.map((item) => String(item || "").trim()).filter(Boolean))];
   const registryId = Number(row.canonical_id);
   if (!Number.isSafeInteger(registryId) || registryId <= 0) {
-    throw new Error(`El ELEPEM ${row.codigo} no tiene un id primario válido.`);
+    throw new Error(`El ELEPEM ${row.codigo} no tiene un id primario vÃ¡lido.`);
   }
   return {
     id: row.codigo,
@@ -150,7 +150,7 @@ function toFacility(row: FlatElepemRow): Facility {
     situacion: row.situacion,
     statusGroup: statusGroup(row),
     statusShort: statusShort(row),
-    sourceLabel: providers.join(" + ") || "Referencia conservada sin URL pública",
+    sourceLabel: providers.join(" + ") || "Referencia conservada sin URL pÃºblica",
     mspFinal: row.msp_habilitado,
     midesSocial: row.mides_certificado,
     sourceUrl: links[0]?.url,
@@ -276,16 +276,26 @@ export async function loadPublicFacilityByRegistryId(registryId: number): Promis
 }
 
 export async function loadAssignedFacilityProfiles(
-  facilityIds: readonly number[],
+  facilityIds: readonly (number | string)[],
 ): Promise<FacilityProfile[]> {
-  const validIds = [...new Set(facilityIds.filter((id) => Number.isSafeInteger(id) && id > 0))];
-  if (validIds.length === 0) return [];
-  const rows = await querySupabaseDatabase<FlatElepemRow>(`
+  const numericIds = [...new Set(facilityIds.filter((id) => typeof id === "number" || /^\d+$/.test(id)).map(Number))];
+  const demoIds = [...new Set(facilityIds.filter((id) => typeof id === "string" && id.startsWith("DEMO-")))];
+  
+  if (numericIds.length === 0 && demoIds.length === 0) return [];
+  
+  const rows = numericIds.length > 0 ? await querySupabaseDatabase<FlatElepemRow>(`
     ${FLAT_ELEPEM_SELECT}
     where registry.id = any($1::bigint[])
     order by registry.nombre, registry.id
-  `, [validIds]);
-  return rows.map((row) => {
+  `, [numericIds]) : [];
+  
+  const demoRows = demoIds.length > 0 ? await querySupabaseDatabase<{ id: string; name: string; locality: string; department: string; address: string }>(`
+    select id, name, coalesce(locality, '') as locality, coalesce(department, '') as department, coalesce(address, '') as address
+    from arandu_demo.facilities
+    where id = any($1::text[])
+  `, [demoIds]) : [];
+
+  const profiles: FacilityProfile[] = rows.map((row) => {
     const facility = toFacility(row);
     return {
       id: Number(row.canonical_id),
@@ -296,15 +306,38 @@ export async function loadAssignedFacilityProfiles(
       description: facility.description || "",
       imageUrl: facility.photoUrl || "/arandu-mark.svg",
       imageUrls: facility.photoUrls || [],
-      imageAlt: row.imagen_alt || `Foto de ${facility.name}`,
+      imageAlt: row.imagen_alt || "Foto de ${facility.name}",
       phones: facility.contactPhones || [],
       emails: facility.contactEmails || [],
       monthlyPriceFromUyu: row.precio_mensual_uyu,
       priceVerifiedAt: row.precio_fecha,
       priceSourceUrl: row.precio_fuente_url,
       priceIncludes: row.precio_incluye,
-    };
+    } as FacilityProfile;
   });
+
+  for (const demo of demoRows) {
+    profiles.push({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      id: demo.id as any, // Cast for UI
+      name: demo.name,
+      locality: demo.locality,
+      department: demo.department,
+      address: demo.address,
+      description: "ELEPEM de prueba.",
+      imageUrl: "/arandu-mark.svg",
+      imageUrls: [],
+      imageAlt: "Foto de ${demo.name}",
+      phones: [],
+      emails: [],
+      monthlyPriceFromUyu: null,
+      priceVerifiedAt: null,
+      priceSourceUrl: null,
+      priceIncludes: null,
+    });
+  }
+
+  return profiles;
 }
 
 export async function loadPublicFacilitiesOrEmpty(): Promise<Facility[]> {
@@ -434,7 +467,7 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
     `);
     const publicReferenceText = (value: string) => value
       .replace(/\s*\([^)]*fictici[^)]*\)\s*$/i, "")
-      .replace(/Demostraci[oó]n/gi, "de la Costa")
+      .replace(/Demostraci[oÃ³]n/gi, "de la Costa")
       .trim();
     return rows.map((row) => {
       const approvedPhotoUrls = Array.isArray(row.approved_photo_paths)
@@ -453,11 +486,11 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
         lat: row.lat,
         lng: row.lng,
         precision: "referencial",
-        precisionLabel: "Ubicación aproximada",
+        precisionLabel: "UbicaciÃ³n aproximada",
         situacion: "demo",
         statusGroup: "app",
-        statusShort: "Referencia Arandú",
-        sourceLabel: "Arandú",
+        statusShort: "Referencia ArandÃº",
+        sourceLabel: "ArandÃº",
         mspFinal: false,
         midesSocial: false,
         contactPhone: row.phone || undefined,
@@ -490,3 +523,6 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
     return [];
   }
 }
+
+
+

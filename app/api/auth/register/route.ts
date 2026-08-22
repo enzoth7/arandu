@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
   let lastName = "";
   let phone = "";
   let accountType: "personal" | "elepem" = "personal";
-  let facilityId: number | null = null;
+  let facilityId: number | string | null = null;
   let termsAccepted = false;
 
   try {
@@ -28,7 +28,9 @@ export async function POST(request: NextRequest) {
     lastName = typeof body.lastName === "string" ? body.lastName.trim().slice(0, 100) : "";
     phone = typeof body.phone === "string" ? body.phone.trim().slice(0, 50) : "";
     accountType = body.accountType === "elepem" ? "elepem" : "personal";
-    facilityId = typeof body.facilityId === "number" && Number.isSafeInteger(body.facilityId) && body.facilityId > 0 ? body.facilityId : null;
+    const rawId = body.facilityId;
+    const isDemo = typeof rawId === "string" && rawId.startsWith("DEMO-");
+    facilityId = isDemo ? rawId : (typeof rawId === "number" && Number.isSafeInteger(rawId) && rawId > 0 ? rawId : null);
     termsAccepted = Boolean(body.termsAccepted);
   } catch {
     return NextResponse.json({ error: "Datos de registro no válidos." }, { status: 400 });

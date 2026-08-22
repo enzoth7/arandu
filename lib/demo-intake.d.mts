@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   ExperienceAnswerValue,
   ExperiencePrivacyMode,
   ExperienceQuestionId,
@@ -70,6 +70,7 @@ export function parseExperienceSubmission(value: unknown): null | {
 };
 export function demoIntakeEnabled(env?: Record<string, string | undefined>): boolean;
 export function parseFacilityChangeSubmission(value: unknown): null | {
-  facilityId: number;
+  facilityId: number | string;
   payload: Record<string, unknown> & { photoCount: number; photoRightsConfirmed: boolean };
 };
+
