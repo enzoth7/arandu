@@ -45,21 +45,24 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
           {navItemsFor(portal).map((item) => {
             const href = pathFor(portal, item.view);
             const isActive = pathname === href;
-            return <Link
-              key={item.view}
-              href={href}
-              className={`${isActive ? "active" : ""} nav-${item.view}`}
-              aria-current={isActive ? "page" : undefined}
-              onClick={() => setMenuOpen(false)}
-            >{item.label}</Link>;
+            return (
+              <Link
+                key={item.view}
+                href={href}
+                className={`${isActive ? "active" : ""} nav-${item.view}`}
+                aria-current={isActive ? "page" : undefined}
+                onClick={() => setMenuOpen(false)}
+              >{item.label}</Link>
+            );
           })}
+          {!isInstitutional && (
+            <Link
+              href="/cuenta/visitas"
+              className="headerCtaVisita"
+              onClick={() => setMenuOpen(false)}
+            >Agendar una visita</Link>
+          )}
         </nav>
-
-        {!isInstitutional && (
-          <Link href="/cuenta/visitas" className="headerCtaVisita" onClick={() => setMenuOpen(false)}>
-            Agendar una visita
-          </Link>
-        )}
 
         <div className="tools">
           <button

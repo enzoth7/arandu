@@ -446,7 +446,7 @@ button {
   padding: 10px 32px;
   position: relative;
   display: grid;
-  grid-template-columns: 1fr auto auto auto;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 16px;
 }
@@ -10141,7 +10141,6 @@ select:not(:disabled) {
   .topin { display: flex; justify-content: space-between; }
   .tools .menuToggle { display: inline-flex; }
   .nav { display: none; }
-  .headerCtaVisita { display: none; }
   .nav.open {
     display: flex;
     position: absolute;
@@ -10156,6 +10155,13 @@ select:not(:disabled) {
     box-shadow: 0 16px 26px rgba(31, 55, 47, .12);
   }
   .nav.open a { width: 100%; }
+  .nav.open .headerCtaVisita {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+  }
 }
 
 @media (min-width: 761px) and (max-width: 1280px) {

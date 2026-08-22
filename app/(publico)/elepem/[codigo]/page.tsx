@@ -4,7 +4,6 @@ import { ArrowLeft } from "lucide-react";
 import { notFound, permanentRedirect } from "next/navigation";
 import { FacilityProfile } from "../../../components/FacilityProfile";
 import { resolvePublicFacilityRoute } from "../../../../lib/public-facility-route";
-import { facilityHasVisitAgenda } from "../../../../lib/visit-scheduling-db";
 
 type FacilityPageProps = {
   params: Promise<{ codigo: string }>;
@@ -33,9 +32,6 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   if (`/elepem/${codigo}` !== resolved.canonicalPath) permanentRedirect(resolved.canonicalPath);
 
   const { facility } = resolved;
-  const visitAgendaAvailable = facility.registryId
-    ? await facilityHasVisitAgenda(facility.registryId)
-    : false;
   return <article className="facilityPermanentPage">
     <header className="facilityPermanentHeader">
       <Link href="/" className="facilityPermanentBack">
@@ -46,7 +42,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       <p>{facility.locality || "Localidad no informada"} · {facility.department}</p>
     </header>
     <div className="facilityPermanentContent">
-      <FacilityProfile facility={facility} showSources={false} visitAgendaAvailable={visitAgendaAvailable} />
+      <FacilityProfile facility={facility} showSources={false} />
     </div>
   </article>;
 }
