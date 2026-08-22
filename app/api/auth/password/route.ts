@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
   }
 
 
-  if (invitedByResidentId && Number.isSafeInteger(facilityId) && facilityId > 0) {
+  if (invitedByResidentId && (isDemo || (Number.isSafeInteger(facilityId) && (facilityId as number) > 0))) {
     await querySupabaseDatabase(`
       with verifier as (
         select user_id from public.institutional_accounts where role in ('administrator', 'verifier') and status = 'active' limit 1
