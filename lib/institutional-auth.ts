@@ -5,6 +5,8 @@ import { createServerSupabaseClient } from "./supabase/server";
 import { querySupabaseDatabase } from "./supabase-db";
 import type { InstitutionalRole } from "./institutional-types";
 import { readTemporaryAdminSession, TEMPORARY_ADMIN_COOKIE } from "./temporary-demo-auth";
+import { upsertUserProfile } from "./user-profile-db";
+
 
 const ROLE_HOME: Record<InstitutionalRole, string> = {
   administrator: "/equipo/admin",
@@ -114,6 +116,17 @@ async function validatedAccountSession(): Promise<AccountSession | null> {
           accountType: meta.account_type === "elepem" ? "elepem" : "personal",
         }
       : null;
+
+  if (!profileRow && profile) {
+    upsertUserProfile({
+      userId: data.user.id,
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      phone: profile.phone,
+      accountType: profile.accountType,
+    }).catch(() => {});
+  }
+
 
   const account = accountRows[0];
   const email = data.user.email || "";

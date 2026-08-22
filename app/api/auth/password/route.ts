@@ -68,15 +68,15 @@ export async function POST(request: NextRequest) {
         select user_id from public.institutional_accounts where role in ('administrator', 'verifier') and status = 'active' limit 1
       )
       insert into public.user_facility_relationships
-        (user_id, elepem_id, relationship_type, status, requested_at, reviewed_at, verified_at, verified_by, valid_until)
+        (user_id, elepem_id, relationship_type, status, first_name, last_name, requested_at, reviewed_at, verified_at, verified_by, valid_until)
       select
-        $1::uuid, $2, 'family', 'verified', now(), now(), now(), verifier.user_id, now() + interval '365 days'
+        $1::uuid, $2, 'family', 'verified', $3, $4, now(), now(), now(), verifier.user_id, now() + interval '365 days'
       from verifier
       where not exists (
         select 1 from public.user_facility_relationships
         where user_id = $1::uuid and elepem_id = $2
       )
-    `, [data.user.id, facilityId]).catch((err) => {
+    `, [data.user.id, facilityId, firstName || null, lastName || null]).catch((err) => {
       console.error("Failed to automatically insert invited family relationship:", err);
     });
 
@@ -87,6 +87,8 @@ export async function POST(request: NextRequest) {
       update public.user_facility_relationships
       set
         relationship_type = 'family',
+        first_name = coalesce($3, first_name),
+        last_name = coalesce($4, last_name),
         status = 'verified',
         requested_at = coalesce(requested_at, now()),
         reviewed_at = now(),
@@ -95,10 +97,11 @@ export async function POST(request: NextRequest) {
         valid_until = now() + interval '365 days',
         updated_at = now()
       where user_id = $1::uuid and elepem_id = $2
-    `, [data.user.id, facilityId]).catch((err) => {
+    `, [data.user.id, facilityId, firstName || null, lastName || null]).catch((err) => {
       console.error("Failed to automatically update invited family relationship:", err);
     });
   }
+
 
   return NextResponse.json({ updated: true }, { headers: { "Cache-Control": "no-store" } });
 }

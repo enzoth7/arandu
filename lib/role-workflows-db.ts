@@ -36,7 +36,8 @@ export async function listFacilityOptions(): Promise<FacilityOption[]> {
 }
 
 type RelationshipRow = {
-  id: string; user_id: string; email?: string; elepem_id: string | null; demo_facility_id: string | null;
+  id: string; user_id: string; email?: string; first_name?: string | null; last_name?: string | null;
+  elepem_id: string | null; demo_facility_id: string | null;
   facility_name: string; locality: string; department: string; relationship_type: RelationshipKind;
   status: RelationshipStatus; requested_at: Date | string; verified_at: Date | string | null;
   valid_until: Date | string | null; assigned_verifier_id: string | null;
@@ -45,6 +46,8 @@ type RelationshipRow = {
 function relationshipDto(row: RelationshipRow) {
   return {
     id: row.id, userId: row.user_id, email: row.email || null,
+    firstName: row.first_name || null, lastName: row.last_name || null,
+    fullName: [row.first_name, row.last_name].filter(Boolean).join(" ") || null,
     facilityId: row.elepem_id ? Number(row.elepem_id) : null,
     demoFacilityId: row.demo_facility_id, facilityName: row.facility_name,
     locality: row.locality, department: row.department,
@@ -55,6 +58,8 @@ function relationshipDto(row: RelationshipRow) {
 }
 
 const RELATIONSHIP_SELECT = `select relationship.id, relationship.user_id::text,
+  coalesce(relationship.first_name, profile.first_name) as first_name,
+  coalesce(relationship.last_name, profile.last_name) as last_name,
   relationship.elepem_id::text, relationship.demo_facility_id,
   coalesce(facility.nombre, demo.name) as facility_name,
   coalesce(facility.localidad, demo.locality, '') as locality,
@@ -62,6 +67,7 @@ const RELATIONSHIP_SELECT = `select relationship.id, relationship.user_id::text,
   relationship.relationship_type, relationship.status, relationship.requested_at,
   relationship.verified_at, relationship.valid_until, relationship.assigned_verifier_id::text
 from public.user_facility_relationships relationship
+left join public.user_profiles profile on profile.user_id = relationship.user_id
 left join public.elepem facility on facility.id = relationship.elepem_id
 left join arandu_demo.facilities demo on demo.id = relationship.demo_facility_id`;
 
@@ -79,14 +85,23 @@ export async function requestRelationship(userId: string, facilityId: number, re
       from public.user_facility_relationships where user_id = $1::uuid and elepem_id = $2 for update`, [userId, facilityId]);
     if (prior.rows[0]?.status === "verified") throw new RoleWorkflowError(409, "Ya tenés un vínculo verificado con este ELEPEM.");
     if (prior.rows[0]?.status === "pending") return { id: prior.rows[0].id, status: "pending" as const, idempotent: true };
+
+    const profileRes = await client.query<{ first_name: string; last_name: string }>(
+      "select first_name, last_name from public.user_profiles where user_id = $1::uuid",
+      [userId]
+    );
+    const firstName = profileRes.rows[0]?.first_name || null;
+    const lastName = profileRes.rows[0]?.last_name || null;
+
     const result = prior.rows[0]
       ? await client.query<{ id: string }>(`update public.user_facility_relationships set relationship_type = $3,
+          first_name = coalesce($4, first_name), last_name = coalesce($5, last_name),
           status = 'pending', requested_at = now(), reviewed_at = null, assigned_verifier_id = null,
           verified_at = null, verified_by = null, valid_until = null, updated_at = now()
-        where id = $1 and user_id = $2::uuid returning id`, [prior.rows[0].id, userId, relationshipType])
+        where id = $1 and user_id = $2::uuid returning id`, [prior.rows[0].id, userId, relationshipType, firstName, lastName])
       : await client.query<{ id: string }>(`insert into public.user_facility_relationships
-          (user_id, elepem_id, relationship_type, status)
-        values ($1::uuid, $2, $3, 'pending') returning id`, [userId, facilityId, relationshipType]);
+          (user_id, elepem_id, relationship_type, status, first_name, last_name)
+        values ($1::uuid, $2, $3, 'pending', $4, $5) returning id`, [userId, facilityId, relationshipType, firstName, lastName]);
     const id = result.rows[0]?.id;
     if (!id) throw new Error("relationship-request-write-failed");
     await audit(client, { entityType: "facility_relationship", entityKey: id, action: "requested", actor: userId,
@@ -94,6 +109,7 @@ export async function requestRelationship(userId: string, facilityId: number, re
     return { id, status: "pending" as const, idempotent: false };
   });
 }
+
 
 export async function listVerificationRequests() {
   const rows = await querySupabaseDatabase<RelationshipRow>(`select base.*, auth_user.email
