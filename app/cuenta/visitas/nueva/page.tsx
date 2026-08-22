@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { readAccountSession } from "../../../../lib/institutional-auth";
+import { loadVerifiedPersonalRelationships } from "../../../../lib/brief-experience-db";
 import { loadPublicFacilityByRegistryId } from "../../../../lib/facility-registry";
 import { facilityHasVisitAgenda } from "../../../../lib/visit-scheduling-db";
 import { VisitBookingForm } from "../../../components/visits/VisitBookingForm";
@@ -16,7 +17,12 @@ export default async function NewVisitPage({ searchParams }: { searchParams: Pro
   const next = `/cuenta/visitas/nueva?elepem=${facilityId}`;
   const account = await readAccountSession();
   if (!account) redirect(`/iniciar-sesion?next=${encodeURIComponent(next)}`);
+  const personalRelationships = account.userId.startsWith("temporary:") ? [] : await loadVerifiedPersonalRelationships(account.userId);
+  if (personalRelationships.some((r) => r.relationshipType === "family")) {
+    redirect("/cuenta");
+  }
   const facility = await loadPublicFacilityByRegistryId(facilityId);
+
   if (!facility) notFound();
   const available = await facilityHasVisitAgenda(facilityId);
   const contactName = account.profile ? `${account.profile.firstName} ${account.profile.lastName}`.trim() : "";

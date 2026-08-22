@@ -90,7 +90,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
     setMessage("");
     setError("");
 
-    if (isRegister) {
+    if (isRegister || isPasswordSetup) {
       if (!firstName.trim() || !lastName.trim()) {
         setError(selectedType === "elepem" ? "Por favor ingresá el nombre y apellido del representante." : "Por favor ingresá tu nombre y apellido.");
         return;
@@ -99,7 +99,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
         setError("Por favor ingresá un teléfono de contacto válido.");
         return;
       }
-      if (selectedType === "elepem" && !selectedFacilityId) {
+      if (isRegister && selectedType === "elepem" && !selectedFacilityId) {
         setError("Por favor seleccioná el ELEPEM que representás.");
         return;
       }
@@ -131,8 +131,9 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
             termsAccepted,
           }
         : mode === "password"
-          ? { password, termsAccepted }
+          ? { password, firstName, lastName, phone, termsAccepted }
           : { email, password };
+
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -226,7 +227,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
         <p className="accessGateLead">{isRegister ? "Completá tus datos de contacto para continuar." : copy.lead}</p>
         
         <form className="organizationLoginForm" onSubmit={submit}>
-          {isRegister && (
+          {(isRegister || isPasswordSetup) && (
             <div className="accountFormRow2">
               <label htmlFor="register-firstname">
                 <span>{selectedType === "elepem" ? "Nombre del representante" : "Nombre"}</span>
@@ -338,12 +339,12 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
                 onChange={(event) => setEmail(event.target.value)}
                 autoComplete={mode === "login" ? "username" : "email"}
                 required
-                autoFocus={!isRegister}
+                autoFocus={!isRegister && !isPasswordSetup}
               />
             </div>
           </label>}
 
-          {isRegister && (
+          {(isRegister || isPasswordSetup) && (
             <label htmlFor="register-phone">
               <span>Teléfono de contacto</span>
               <div className="accessInput">
@@ -360,6 +361,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
               </div>
             </label>
           )}
+
 
           {needsPassword && <label htmlFor={`${mode}-password`}>
             <span>{isPasswordSetup ? "Nueva contraseña" : "Contraseña"}</span>

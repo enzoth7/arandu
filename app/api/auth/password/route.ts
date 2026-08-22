@@ -8,9 +8,20 @@ export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
   let password = "";
+  let bodyFirstName = "";
+  let bodyLastName = "";
+  let bodyPhone = "";
   try {
-    const body = await request.json() as { password?: unknown };
+    const body = await request.json() as {
+      password?: unknown;
+      firstName?: unknown;
+      lastName?: unknown;
+      phone?: unknown;
+    };
     password = typeof body.password === "string" ? body.password : "";
+    bodyFirstName = typeof body.firstName === "string" ? body.firstName.trim().slice(0, 100) : "";
+    bodyLastName = typeof body.lastName === "string" ? body.lastName.trim().slice(0, 100) : "";
+    bodyPhone = typeof body.phone === "string" ? body.phone.trim().slice(0, 50) : "";
   } catch {
     // La validación inferior produce una respuesta estable.
   }
@@ -25,12 +36,13 @@ export async function POST(request: NextRequest) {
   if (error) return NextResponse.json({ error: "No pudimos guardar esa contraseña. Probá con una diferente." }, { status: 400, headers: { "Cache-Control": "no-store" } });
 
   const meta = data.user.user_metadata || {};
-  const firstName = String(meta.first_name || meta.nombre || "").trim();
-  const lastName = String(meta.last_name || meta.apellido || "").trim();
-  const phone = String(meta.phone || meta.telefono || "").trim();
+  const firstName = bodyFirstName || String(meta.first_name || meta.nombre || "").trim();
+  const lastName = bodyLastName || String(meta.last_name || meta.apellido || "").trim();
+  const phone = bodyPhone || String(meta.phone || meta.telefono || "").trim();
   const accountType = meta.account_type === "elepem" ? "elepem" : "personal";
   const facilityId = Number(meta.facility_id);
   const invitedByResidentId = typeof meta.invited_by_resident_id === "string" ? meta.invited_by_resident_id : null;
+
 
   if (firstName || lastName || phone) {
     await upsertUserProfile({

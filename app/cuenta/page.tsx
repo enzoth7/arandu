@@ -107,16 +107,16 @@ export default async function AccountPage() {
           <Link className="accountCardLink" href="/institucional/solicitar-representacion">Solicitar representación <ArrowRight size={18} aria-hidden="true" /></Link>
         </article>}
 
-        {!isTemporaryAdmin && <article className="accountActionCard">
+        {!isTemporaryAdmin && !familyRel && <article className="accountActionCard">
           <div className="accountCardIcon isRelationships" aria-hidden="true"><Link2 size={24} /></div>
           <div className="accountCardCopy">
             <h3>Mis vínculos</h3>
-            <p>Solicitá y consultá la verificación de un vínculo residente o familiar para compartir experiencias de residencia.</p>
+            <p>Solicitá y consultá la verificación de residencia para compartir experiencias e invitar familiares.</p>
           </div>
           <Link className="accountCardLink" href="/cuenta/vinculos">Gestionar vínculos <ArrowRight size={18} aria-hidden="true" /></Link>
         </article>}
 
-        {!isTemporaryAdmin && <article className="accountActionCard">
+        {!isTemporaryAdmin && !familyRel && <article className="accountActionCard">
           <div className="accountCardIcon isVisits" aria-hidden="true"><CalendarDays size={24} /></div>
           <div className="accountCardCopy">
             <h3>Visitas</h3>
@@ -126,6 +126,7 @@ export default async function AccountPage() {
             Ver mis visitas <ArrowRight size={18} aria-hidden="true" />
           </Link>
         </article>}
+
 
         {!isTemporaryAdmin && <article className="accountActionCard">
           <div className="accountCardTopline">
