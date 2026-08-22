@@ -22,12 +22,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Correo o rol inválido." }, { status: 400 });
     }
     try {
-      const supabase = await createServerSupabaseClient();
+      const implicitSupabase = (await import("@supabase/supabase-js")).createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "",
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || "",
+        { auth: { flowType: "implicit", persistSession: false } }
+      );
+
       const callback = new URL("/auth/callback", request.nextUrl.origin);
       callback.searchParams.set("next", "/crear-contrasena");
       callback.searchParams.set("kind", "signup");
 
-      await supabase.auth.signInWithOtp({
+      await implicitSupabase.auth.signInWithOtp({
         email,
         options: {
           shouldCreateUser: true,
