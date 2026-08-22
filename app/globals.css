@@ -8148,15 +8148,18 @@ textarea {
 }
 
 .tools .institutionalAccess.hasSession {
-  background: rgba(255, 255, 255, .14);
-  border-color: rgba(255, 255, 255, .45);
-  color: #ffffff;
+  background: #f0f7ff;
+  border-color: #93c5fd;
+  color: var(--navy, #123b67);
+  font-weight: 750;
 }
 
 .tools .institutionalAccess.hasSession:hover {
-  background: rgba(255, 255, 255, .24);
-  border-color: #ffffff;
+  background: #dbeafe;
+  border-color: var(--blue2, #1d6fa5);
+  color: var(--navy, #123b67);
 }
+
 
 
 /* La marca es un enlace al inicio del portal, no un botón de reinicio. */
@@ -10200,6 +10203,23 @@ select:not(:disabled) {
   background: #edf3ed;
   color: var(--navy);
 }
+
+.tools .institutionalAccess.hasSession {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: var(--navy);
+  font-weight: 750;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.tools .institutionalAccess.hasSession:hover {
+  background: #dbeafe;
+  border-color: var(--blue2);
+  color: var(--navy);
+}
+
 
 .tools button.profileReset {
   color: #9a3434;
