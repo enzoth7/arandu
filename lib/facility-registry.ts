@@ -90,7 +90,7 @@ function sourceLinks(row: FlatElepemRow): NonNullable<Facility["sourceLinks"]> {
     if (!url) continue;
     const provider = String(row.fuentes_proveedores[index] || "").trim();
     const reference = String(row.fuentes_referencias[index] || "").trim();
-    const label = (provider || reference || "Fuente pÃºblica").slice(0, 200);
+    const label = (provider || reference || "Fuente pública").slice(0, 200);
     const key = `${label}:${url}`;
     if (seen.has(key)) continue;
     seen.add(key);
@@ -115,9 +115,9 @@ function statusGroup(row: FlatElepemRow): Facility["statusGroup"] {
 }
 
 function statusShort(row: FlatElepemRow) {
-  if (row.msp_habilitado) return "HabilitaciÃ³n MSP";
+  if (row.msp_habilitado) return "Habilitación MSP";
   if (row.mides_certificado) return "Certificado social MIDES";
-  return "SituaciÃ³n no confirmada";
+  return "Situación no confirmada";
 }
 
 function toFacility(row: FlatElepemRow): Facility {
@@ -132,7 +132,7 @@ function toFacility(row: FlatElepemRow): Facility {
   const providers = [...new Set(row.fuentes_proveedores.map((item) => String(item || "").trim()).filter(Boolean))];
   const registryId = Number(row.canonical_id);
   if (!Number.isSafeInteger(registryId) || registryId <= 0) {
-    throw new Error(`El ELEPEM ${row.codigo} no tiene un id primario vÃ¡lido.`);
+    throw new Error(`El ELEPEM ${row.codigo} no tiene un id primario válido.`);
   }
   return {
     id: row.codigo,
@@ -150,7 +150,7 @@ function toFacility(row: FlatElepemRow): Facility {
     situacion: row.situacion,
     statusGroup: statusGroup(row),
     statusShort: statusShort(row),
-    sourceLabel: providers.join(" + ") || "Referencia conservada sin URL pÃºblica",
+    sourceLabel: providers.join(" + ") || "Referencia conservada sin URL pública",
     mspFinal: row.msp_habilitado,
     midesSocial: row.mides_certificado,
     sourceUrl: links[0]?.url,
@@ -467,7 +467,7 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
     `);
     const publicReferenceText = (value: string) => value
       .replace(/\s*\([^)]*fictici[^)]*\)\s*$/i, "")
-      .replace(/Demostraci[oÃ³]n/gi, "de la Costa")
+      .replace(/Demostraci[oó]n/gi, "de la Costa")
       .trim();
     return rows.map((row) => {
       const approvedPhotoUrls = Array.isArray(row.approved_photo_paths)
@@ -486,11 +486,11 @@ export async function loadDemoMapFacilitiesOrEmpty(enabled: boolean): Promise<Fa
         lat: row.lat,
         lng: row.lng,
         precision: "referencial",
-        precisionLabel: "UbicaciÃ³n aproximada",
+        precisionLabel: "Ubicación aproximada",
         situacion: "demo",
         statusGroup: "app",
-        statusShort: "Referencia ArandÃº",
-        sourceLabel: "ArandÃº",
+        statusShort: "Referencia Arandú",
+        sourceLabel: "Arandú",
         mspFinal: false,
         midesSocial: false,
         contactPhone: row.phone || undefined,

@@ -9,18 +9,18 @@ export async function POST(request: NextRequest) {
   const auth = await institutionalSessionOrError(request, "administrator");
   if (!auth.session) return auth.response;
   let input: Record<string, unknown>;
-  try { input = await request.json(); } catch { return NextResponse.json({ error: "Solicitud invÃ¡lida." }, { status: 400 }); }
+  try { input = await request.json(); } catch { return NextResponse.json({ error: "Solicitud inválida." }, { status: 400 }); }
   const userId = String(input.userId || "");
   const facilityId = input.facilityId;
   const isDemo = typeof facilityId === "string" && facilityId.startsWith("DEMO-");
   const parsedId = isDemo ? facilityId : Number(facilityId);
   const action = String(input.action || "") as "approve" | "reject" | "suspend" | "revoke";
-  if (!UUID.test(userId) || (!isDemo && !Number.isSafeInteger(parsedId)) || !["approve", "reject", "suspend", "revoke"].includes(action)) return NextResponse.json({ error: "DecisiÃ³n invÃ¡lida." }, { status: 400 });
+  if (!UUID.test(userId) || (!isDemo && !Number.isSafeInteger(parsedId)) || !["approve", "reject", "suspend", "revoke"].includes(action)) return NextResponse.json({ error: "Decisión inválida." }, { status: 400 });
   try { return NextResponse.json(await decideRepresentation({ actorId: auth.session.userId, userId, facilityId: parsedId, action })); }
   catch (error) {
     if (error instanceof RoleWorkflowError) return NextResponse.json({ error: error.message }, { status: error.status });
     console.error("Representation decision failed.", { message: error instanceof Error ? error.message : "unknown" });
-    return NextResponse.json({ error: "No se pudo guardar la decisiÃ³n." }, { status: 500 });
+    return NextResponse.json({ error: "No se pudo guardar la decisión." }, { status: 500 });
   }
 }
 

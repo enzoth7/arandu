@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
   const facilityId = input.facilityId;
   const isDemo = typeof facilityId === "string" && facilityId.startsWith("DEMO-");
   const parsedId = isDemo ? facilityId : Number(facilityId);
-  if ((!isDemo && (!Number.isSafeInteger(parsedId) || (parsedId as number) <= 0)) || !parsedId) return NextResponse.json({ error: "SeleccionÃ¡ un ELEPEM." }, { status: 400 });
+  if ((!isDemo && (!Number.isSafeInteger(parsedId) || (parsedId as number) <= 0)) || !parsedId) return NextResponse.json({ error: "Seleccioná un ELEPEM." }, { status: 400 });
   try {
     const result = await requestRepresentation(auth.account.userId, parsedId);
     return NextResponse.json(result, { status: result.idempotent ? 200 : 201 });
