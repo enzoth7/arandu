@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowLeft, HeartHandshake, Link2, UserCheck, UserPlus } from "lucide-react";
+import { ArrowLeft, Link2, UserPlus } from "lucide-react";
 import { readAccountSession } from "../../../lib/institutional-auth";
 import { listFacilityOptions, listOwnRelationshipRequests } from "../../../lib/role-workflows-db";
 import { InviteFamilyForm, RelationshipRequestForm, WorkflowStatus } from "../../components/institutional/RoleWorkflowForms";
@@ -31,35 +31,14 @@ export default async function RelationshipsPage() {
     <div className="workflowColumns">
       {verifiedResident ? (
         <section className="workflowPanel">
-          <div className="verifiedResidentBanner">
-            <div className="verifiedResidentHeader">
-              <span className="verifiedIcon"><UserCheck size={24} /></span>
-              <div>
-                <h2>Residente verificado</h2>
-                <p className="verifiedFacilityTitle">{verifiedResident.facilityName}</p>
-                <p className="verifiedFacilityLocation">
-                  {[verifiedResident.locality, verifiedResident.department].filter(Boolean).join(" · ")}
-                </p>
-              </div>
-            </div>
-
-            <div className="verifiedResidentActions">
-              <Link href="/experiencia" className="workflowPrimary verifiedActionBtn">
-                <HeartHandshake size={18} /> Contar experiencia de residencia
-              </Link>
-            </div>
+          <div className="inviteFamilyHeading">
+            <span className="inviteIcon"><UserPlus size={20} /></span>
+            <h3>Invitar un familiar</h3>
           </div>
-
-          <div className="inviteFamilySection">
-            <div className="inviteFamilyHeading">
-              <span className="inviteIcon"><UserPlus size={20} /></span>
-              <h3>Invitar un familiar</h3>
-            </div>
-            <p className="inviteFamilyLead">
-              Como residente verificado, podés invitar a un familiar o allegado ingresando su correo electrónico.
-            </p>
-            <InviteFamilyForm facilityName={verifiedResident.facilityName} />
-          </div>
+          <p className="inviteFamilyLead">
+            Ingresá el correo de tu familiar para enviarle una invitación y que pueda participar en Arandú.
+          </p>
+          <InviteFamilyForm facilityName={verifiedResident.facilityName} />
         </section>
       ) : pendingResidentRequest ? (
         <section className="workflowPanel">
@@ -77,27 +56,21 @@ export default async function RelationshipsPage() {
         </section>
       )}
 
-      <section className="workflowPanel">
-        <h2>Historial de solicitudes</h2>
-        {requests.length ? (
-          <div className="workflowList">
-            {requests.map((request) => (
-              <article className="workflowRequest" key={request.id}>
-                <div>
-                  <h3>{request.facilityName}</h3>
-                  <p>
-                    {request.relationshipType === "resident" ? "Persona residente" : "Familiar invitado"} · {[request.locality, request.department].filter(Boolean).join(" · ")}
-                  </p>
-                </div>
-                <WorkflowStatus status={request.status} />
-              </article>
-            ))}
-          </div>
-        ) : (
-          <p className="workflowEmpty">Todavía no enviaste solicitudes.</p>
-        )}
-      </section>
+      <div className="workflowRequestListDirect">
+        {requests.map((request) => (
+          <article className="workflowRequest" key={request.id}>
+            <div>
+              <h3>{request.facilityName}</h3>
+              <p>
+                {request.relationshipType === "resident" ? "Persona residente" : "Familiar invitado"} · {[request.locality, request.department].filter(Boolean).join(" · ")}
+              </p>
+            </div>
+            <WorkflowStatus status={request.status} />
+          </article>
+        ))}
+      </div>
     </div>
   </main>;
 }
+
 

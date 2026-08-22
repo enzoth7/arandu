@@ -4480,7 +4480,7 @@ textarea {
   color: #B42318;
   border: 1px solid #FCA5A5;
 }
-.workflowList, .workflowReviewList, .workflowAccountList {
+.workflowList, .workflowReviewList, .workflowAccountList, .workflowRequestListDirect {
   display: flex;
   flex-direction: column;
   gap: 12px;
