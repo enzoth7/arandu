@@ -9128,6 +9128,13 @@ select:not(:disabled) {
   border: 1px solid #BFDBFE;
 }
 
+.accountBadge.isInstitutional {
+  background: #FFFBEB;
+  color: #92400E;
+  border: 1px solid #FDE68A;
+}
+
+
 
 .accountEmail {
   max-width: 100%;

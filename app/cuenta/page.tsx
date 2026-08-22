@@ -36,10 +36,24 @@ export default async function AccountPage() {
   const residentRel = personalRelationships.find((r) => r.relationshipType === "resident");
   const familyRel = personalRelationships.find((r) => r.relationshipType === "family");
 
+  const isInstitutionalAdminOrStaff = Boolean(
+    account.institutional && ["administrator", "verifier", "moderator"].includes(account.institutional.role)
+  );
+
   let badgeLabel = "Cuenta personal";
   let badgeClass = "isPersonal";
 
-  if (isElepemType) {
+  if (account.institutional) {
+    const roleLabels: Record<string, string> = {
+      administrator: "Administrador",
+      verifier: "Verificador",
+      moderator: "Moderador",
+      support: "Soporte",
+      facility_representative: "Representante ELEPEM",
+    };
+    badgeLabel = roleLabels[account.institutional.role] || "Institucional";
+    badgeClass = account.institutional.role === "facility_representative" ? "isElepem" : "isInstitutional";
+  } else if (isElepemType) {
     badgeLabel = "Representante ELEPEM";
     badgeClass = "isElepem";
   } else if (residentRel) {
@@ -139,7 +153,7 @@ export default async function AccountPage() {
           {(account.institutional.role !== "facility_representative" || facilities.length > 0) && <Link className="accountCardLink" href={institutionalHome(account.institutional.role)}>Abrir panel <ArrowRight size={18} aria-hidden="true" /></Link>}
         </article>}
 
-        {!isTemporaryAdmin && isElepemType && (!account.institutional || account.institutional.role === "facility_representative") && <article className="accountActionCard accountInstitutionalCard">
+        {!isInstitutionalAdminOrStaff && !isTemporaryAdmin && isElepemType && (!account.institutional || account.institutional.role === "facility_representative") && <article className="accountActionCard accountInstitutionalCard">
           <div className="accountCardIcon isInstitutional" aria-hidden="true"><Building2 size={24} /></div>
           <div className="accountCardCopy">
             <h3>Representar un ELEPEM</h3>
@@ -148,7 +162,7 @@ export default async function AccountPage() {
           <Link className="accountCardLink" href="/institucional/solicitar-representacion">Solicitar representación <ArrowRight size={18} aria-hidden="true" /></Link>
         </article>}
 
-        {!isTemporaryAdmin && !familyRel && <article className="accountActionCard">
+        {!isInstitutionalAdminOrStaff && !isTemporaryAdmin && !familyRel && <article className="accountActionCard">
           <div className="accountCardIcon isRelationships" aria-hidden="true"><Link2 size={24} /></div>
           <div className="accountCardCopy">
             <h3>Mis vínculos</h3>
@@ -157,7 +171,7 @@ export default async function AccountPage() {
           <Link className="accountCardLink" href="/cuenta/vinculos">Gestionar vínculos <ArrowRight size={18} aria-hidden="true" /></Link>
         </article>}
 
-        {!isTemporaryAdmin && !familyRel && <article className="accountActionCard">
+        {!isInstitutionalAdminOrStaff && !isTemporaryAdmin && !familyRel && <article className="accountActionCard">
           <div className="accountCardIcon isVisits" aria-hidden="true"><CalendarDays size={24} /></div>
           <div className="accountCardCopy">
             <h3>Visitas</h3>
@@ -168,8 +182,7 @@ export default async function AccountPage() {
           </Link>
         </article>}
 
-
-        {!isTemporaryAdmin && <article className="accountActionCard">
+        {!isInstitutionalAdminOrStaff && !isTemporaryAdmin && <article className="accountActionCard">
           <div className="accountCardTopline">
             <div className="accountCardIcon isExperiences" aria-hidden="true"><HeartHandshake size={24} /></div>
             <span className={`accountStatus ${relationshipCount > 0 ? "isActive" : ""}`}>
@@ -187,10 +200,9 @@ export default async function AccountPage() {
           {relationshipCount > 0 && <Link className="accountCardLink" href="/experiencia">
             Compartir una experiencia <ArrowRight size={18} aria-hidden="true" />
           </Link>}
-
-
         </article>}
       </div>
     </section>
   </main>;
+
 }
