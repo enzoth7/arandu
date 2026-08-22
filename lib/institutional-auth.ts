@@ -12,9 +12,9 @@ const ROLE_HOME: Record<InstitutionalRole, string> = {
   administrator: "/equipo/admin",
   verifier: "/equipo/verificaciones",
   moderator: "/equipo/moderacion",
-  support: "/cuenta",
   facility_representative: "/institucional/elepem",
 };
+
 
 export function institutionalHome(role: InstitutionalRole) {
   return ROLE_HOME[role];

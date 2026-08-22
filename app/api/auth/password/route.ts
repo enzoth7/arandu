@@ -62,6 +62,18 @@ export async function POST(request: NextRequest) {
     });
   }
 
+  const institutionalRole = typeof meta.institutional_role === "string" ? meta.institutional_role : null;
+  if (institutionalRole && ["administrator", "verifier", "moderator"].includes(institutionalRole)) {
+    await querySupabaseDatabase(`
+      insert into public.institutional_accounts (user_id, role, status)
+      values ($1::uuid, $2, 'active')
+      on conflict (user_id) do update set role = excluded.role, status = 'active', updated_at = now()
+    `, [data.user.id, institutionalRole]).catch((err) => {
+      console.error("Failed to assign institutional role on password set:", err);
+    });
+  }
+
+
   if (invitedByResidentId && Number.isSafeInteger(facilityId) && facilityId > 0) {
     await querySupabaseDatabase(`
       with verifier as (

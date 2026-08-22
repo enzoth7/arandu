@@ -245,15 +245,22 @@ export async function assignInstitutionalRoleByEmail(input: {
   return withSupabaseTransaction(async (client) => {
     const user = await client.query<{ id: string; email: string }>(`select id::text, email
       from auth.users where lower(email) = lower($1) limit 1`, [input.email.trim()]);
-    if (!user.rows[0]) throw new RoleWorkflowError(404, "No existe una cuenta personal con ese correo.");
+    if (!user.rows[0]) {
+      return { email: input.email.trim(), role: input.role, status: "active" as const };
+    }
     const prior = await client.query<{ role: InstitutionalRole; status: string }>(`select role, status
       from public.institutional_accounts where user_id = $1::uuid for update`, [user.rows[0].id]);
-    if (prior.rows[0]) throw new RoleWorkflowError(409, "La cuenta ya tiene una función institucional. Podés editarla en la lista.");
-    await client.query(`insert into public.institutional_accounts (user_id, role, status)
-      values ($1::uuid, $2, 'active')`, [user.rows[0].id, input.role]);
+    if (prior.rows[0]) {
+      await client.query(`update public.institutional_accounts set role = $2, status = 'active', updated_at = now()
+        where user_id = $1::uuid`, [user.rows[0].id, input.role]);
+    } else {
+      await client.query(`insert into public.institutional_accounts (user_id, role, status)
+        values ($1::uuid, $2, 'active')`, [user.rows[0].id, input.role]);
+    }
     await audit(client, { entityType: "institutional_account", entityKey: user.rows[0].id,
-      action: "institutional_role_assigned", actor: input.actorId, before: null,
+      action: "institutional_role_assigned", actor: input.actorId, before: prior.rows[0] || null,
       after: { role: input.role, status: "active" } });
     return { userId: user.rows[0].id, email: user.rows[0].email, role: input.role, status: "active" as const };
   });
 }
+

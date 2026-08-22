@@ -48,12 +48,12 @@ export default async function AccountPage() {
       administrator: "Administrador",
       verifier: "Verificador",
       moderator: "Moderador",
-      support: "Soporte",
       facility_representative: "Representante ELEPEM",
     };
     badgeLabel = roleLabels[account.institutional.role] || "Institucional";
     badgeClass = account.institutional.role === "facility_representative" ? "isElepem" : "isInstitutional";
   } else if (isElepemType) {
+
     badgeLabel = "Representante ELEPEM";
     badgeClass = "isElepem";
   } else if (residentRel) {
@@ -143,13 +143,14 @@ export default async function AccountPage() {
             <span className="accountStatus isInstitutional">Acceso institucional activo</span>
           </div>
           <div className="accountCardCopy">
-            <h3>{{ administrator: "Administración", verifier: "Verificación", moderator: "Moderación", support: "Soporte", facility_representative: "Representante de ELEPEM" }[account.institutional.role]}</h3>
+            <h3>{{ administrator: "Administración", verifier: "Verificación", moderator: "Moderación", facility_representative: "Representante de ELEPEM" }[account.institutional.role]}</h3>
             <p>{account.institutional.role === "facility_representative"
               ? facilities.length
                 ? `Gestioná ${facilities.length} ELEPEM asignado${facilities.length === 1 ? "" : "s"}.`
                 : "Tu solicitud todavía no tiene una representación activa."
               : "Accedé al panel separado correspondiente a tu función."}</p>
           </div>
+
           {(account.institutional.role !== "facility_representative" || facilities.length > 0) && <Link className="accountCardLink" href={institutionalHome(account.institutional.role)}>Abrir panel <ArrowRight size={18} aria-hidden="true" /></Link>}
         </article>}
 

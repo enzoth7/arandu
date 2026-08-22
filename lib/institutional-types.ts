@@ -4,8 +4,8 @@ export type InstitutionalRole =
   | "administrator"
   | "verifier"
   | "moderator"
-  | "support"
   | "facility_representative";
+
 export type IntakeKind = "concern" | "experience" | "facility_change";
 export type SubmittedActor = "public" | "system" | "state" | "facility";
 

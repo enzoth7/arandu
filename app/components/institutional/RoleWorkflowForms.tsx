@@ -163,7 +163,7 @@ export function WorkflowDecisionButtons({ endpoint, payload, kind, status }: { e
   return <div className="workflowDecisionArea"><div className="workflowDecisionButtons">{actions.map(({ value, label, icon: Icon }) => <button key={value} type="button" className={value === "approve" ? "workflowPrimary" : "workflowSecondary"} disabled={state.kind === "loading"} onClick={() => void decide(value)}><Icon size={17} /> {label}</button>)}</div><SubmitNotice state={state} /></div>;
 }
 
-const ROLE_LABEL: Record<InstitutionalRole, string> = { administrator: "Administrador", verifier: "Verificador", moderator: "Moderador", support: "Soporte", facility_representative: "Representante" };
+const ROLE_LABEL: Record<InstitutionalRole, string> = { administrator: "Administrador", verifier: "Verificador", moderator: "Moderador", facility_representative: "Representante" };
 
 export function AccountRoleEditor({ account }: { account: { userId: string; email: string; role: InstitutionalRole; status: string } }) {
   const router = useRouter();
@@ -259,11 +259,11 @@ export function InstitutionalRoleAssignmentForm() {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
-    setState({ kind: "loading", message: "Asignando función…" });
+    setState({ kind: "loading", message: "Enviando invitación y asignando función…" });
     try {
       await postJson("/api/team/admin/accounts", { email: String(data.get("email") || ""), role: data.get("role") });
       form.reset();
-      setState({ kind: "success", message: "Función institucional asignada con éxito." });
+      setState({ kind: "success", message: "Invitación enviada y función asignada con éxito." });
       router.refresh();
     } catch (error) {
       setState({ kind: "error", message: error instanceof Error ? error.message : "No se pudo asignar." });
@@ -275,7 +275,7 @@ export function InstitutionalRoleAssignmentForm() {
       <label className="workflowField">
         <span className="fieldLabel">
           <Mail size={15} aria-hidden="true" />
-          <strong>Correo de la cuenta registrada</strong>
+          <strong>Correo de la persona a invitar</strong>
         </span>
         <input
           name="email"
@@ -295,20 +295,20 @@ export function InstitutionalRoleAssignmentForm() {
         <select name="role" defaultValue="verifier" className="workflowInput">
           <option value="verifier">Verificador</option>
           <option value="moderator">Moderador</option>
-          <option value="support">Soporte</option>
           <option value="administrator">Administrador</option>
         </select>
       </label>
 
       <button className="workflowPrimary workflowSubmitBtn" disabled={state.kind === "loading"}>
         <ShieldCheck size={18} />
-        {state.kind === "loading" ? "Asignando…" : "Asignar función"}
+        {state.kind === "loading" ? "Enviando…" : "Invitar y asignar función"}
       </button>
 
       <SubmitNotice state={state} />
     </form>
   );
 }
+
 
 export function WorkflowStatus({ status }: { status: string }) {
   const label: Record<string, string> = {
