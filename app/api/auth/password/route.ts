@@ -40,7 +40,9 @@ export async function POST(request: NextRequest) {
   const lastName = bodyLastName || String(meta.last_name || meta.apellido || "").trim();
   const phone = bodyPhone || String(meta.phone || meta.telefono || "").trim();
   const accountType = meta.account_type === "elepem" ? "elepem" : "personal";
-  const facilityId = Number(meta.facility_id);
+  const rawId = meta.facility_id;
+  const isDemo = typeof rawId === "string" && rawId.startsWith("DEMO-");
+  const facilityId = isDemo ? rawId : Number(rawId);
   const invitedByResidentId = typeof meta.invited_by_resident_id === "string" ? meta.invited_by_resident_id : null;
 
 
@@ -56,7 +58,7 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  if (accountType === "elepem" && Number.isSafeInteger(facilityId) && facilityId > 0) {
+  if (accountType === "elepem" && (isDemo || (Number.isSafeInteger(facilityId) && (facilityId as number) > 0))) {
     await requestRepresentation(data.user.id, facilityId).catch((err) => {
       console.error("Failed to register facility representation on password set:", err);
     });
