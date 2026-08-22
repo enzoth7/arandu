@@ -7,7 +7,8 @@ import {
   BRIEF_EXPERIENCE_SECTIONS,
   BRIEF_EXPERIENCE_VERSION,
   briefExperienceCommentPrompt,
-  briefExperienceSituationPrefix,
+  briefExperienceSituationTitle,
+  getBriefExperienceAspects,
   type BriefExperienceRating,
 } from "../../lib/brief-experience.mjs";
 import type { VerifiedPersonalRelationship } from "../../lib/brief-experience-db";
@@ -91,12 +92,24 @@ export function ExperienceForm({ relationships, initialFacilityKey }: { relation
         <p className={styles.sectionTitle}>{section.title}</p>
         <h2 tabIndex={-1} ref={headingRef}>{relationship.relationshipType === "resident" ? section.residentPrompt : section.familyPrompt}</h2>
         <div className={styles.ratingGrid}>{BRIEF_EXPERIENCE_RATINGS.map((rating) => <button key={rating.value} type="button" className={answer.rating === rating.value && !answer.skipped ? styles.selected : ""} onClick={() => chooseRating(rating.value)}>{rating.label}</button>)}</div>
-        {answer.rating && answer.rating !== "unrated" && !answer.skipped && <fieldset className={styles.situations}><legend>{briefExperienceSituationPrefix(answer.rating)}. ¿Qué aspectos influyeron? <span>Opcional</span></legend>
-          {section.aspects.map(([id, label]) => <label key={id}><input type="checkbox" checked={answer.reasonIds.includes(id)} onChange={() => toggleReason(id)} /><span>{label}</span></label>)}
-        </fieldset>}
+        {answer.rating && answer.rating !== "unrated" && !answer.skipped && (() => {
+          const dynamicAspects = getBriefExperienceAspects(section.id, answer.rating, relationship.relationshipType);
+          return (
+            <fieldset className={styles.situations}>
+              <legend>{briefExperienceSituationTitle(answer.rating)} <span>Opcional</span></legend>
+              {dynamicAspects.map(([id, label]) => (
+                <label key={id}>
+                  <input type="checkbox" checked={answer.reasonIds.includes(id)} onChange={() => toggleReason(id)} />
+                  <span>{label}</span>
+                </label>
+              ))}
+            </fieldset>
+          );
+        })()}
         <button type="button" className={styles.skip} onClick={() => updateAnswer({ rating: null, reasonIds: [], skipped: true })}>{answer.skipped ? "Sección omitida" : "Omitir esta sección"}</button>
       </section>
     </> : <section className={styles.review}>
+
       <p className={styles.eyebrow}>Revisión final</p><h2 tabIndex={-1} ref={headingRef}>Revisá antes de enviar</h2>
       <div className={styles.summary}>{BRIEF_EXPERIENCE_SECTIONS.map((item, index) => {
         const stored = answers[index];

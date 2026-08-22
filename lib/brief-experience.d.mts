@@ -7,6 +7,8 @@ export const BRIEF_EXPERIENCE_SECTIONS: ReadonlyArray<{
   id: string; title: string; residentPrompt: string; familyPrompt: string; aspects: ReadonlyArray<readonly [string, string]>;
 }>;
 export function briefExperienceSituationPrefix(rating: BriefExperienceRating): string;
+export function briefExperienceSituationTitle(rating: BriefExperienceRating): string;
+export function getBriefExperienceAspects(sectionId: string, rating: BriefExperienceRating | null, relationshipType?: BriefExperienceRelationship): Array<readonly [string, string]>;
 export function briefExperienceCommentPrompt(relationshipType: BriefExperienceRelationship): string;
 export function parseBriefExperienceSubmission(value: unknown): null | {
   facilityId: number | null;
