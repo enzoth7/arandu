@@ -4341,6 +4341,8 @@ textarea {
   border-radius: 9999px;
   padding: 2px 8px;
   width: fit-content;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 .accountStatusBadge.isActive {
   background: #EBFBF2;

@@ -117,11 +117,11 @@ export function AccountRoleEditor({ account }: { account: { userId: string; emai
         </div>
         <div className="accountInfo">
           <strong className="accountEmailText">{account.email}</strong>
-          <span className={`accountStatusBadge ${isSuspended ? "isSuspended" : "isActive"}`}>
-            <span className="statusDot" aria-hidden="true" />
-            {isSuspended ? "Acceso suspendido" : "Acceso activo"}
-          </span>
         </div>
+        <span className={`accountStatusBadge ${isSuspended ? "isSuspended" : "isActive"}`}>
+          <span className="statusDot" aria-hidden="true" />
+          {isSuspended ? "Acceso suspendido" : "Acceso activo"}
+        </span>
       </div>
 
       <div className="accountRowControls">
