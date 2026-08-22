@@ -4,10 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Building2, Eye, EyeOff, LockKeyhole, Mail, Phone, UserRound } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import { AcademicPrototypeNotice } from "./AcademicPrototypeNotice";
-
+import { createBrowserSupabaseClient } from "../../lib/supabase/browser";
 import type { FacilityOption } from "../../lib/role-workflows-db";
+
 
 type AccountAccessMode = "login" | "register" | "recover" | "password" | "reset";
 
@@ -85,9 +86,48 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
     return matchDept && matchSearch;
   });
 
+  useEffect(() => {
+    if (!isPasswordSetup) return;
+    if (typeof window === "undefined") return;
+
+    try {
+      const supabase = createBrowserSupabaseClient();
+      const hash = window.location.hash;
+      if (hash && hash.includes("access_token")) {
+        const params = new URLSearchParams(hash.replace(/^#/, ""));
+        const accessToken = params.get("access_token");
+        const refreshToken = params.get("refresh_token");
+        if (accessToken && refreshToken) {
+          supabase.auth.setSession({ access_token: accessToken, refresh_token: refreshToken })
+            .then(({ data }) => {
+              if (data?.user) {
+                const meta = data.user.user_metadata || {};
+                if (meta.first_name || meta.nombre) setFirstName(String(meta.first_name || meta.nombre));
+                if (meta.last_name || meta.apellido) setLastName(String(meta.last_name || meta.apellido));
+                if (meta.phone || meta.telefono) setPhone(String(meta.phone || meta.telefono));
+              }
+            })
+            .catch(() => {});
+        }
+      } else {
+        supabase.auth.getUser().then(({ data }) => {
+          if (data?.user) {
+            const meta = data.user.user_metadata || {};
+            if (meta.first_name || meta.nombre) setFirstName(String(meta.first_name || meta.nombre));
+            if (meta.last_name || meta.apellido) setLastName(String(meta.last_name || meta.apellido));
+            if (meta.phone || meta.telefono) setPhone(String(meta.phone || meta.telefono));
+          }
+        }).catch(() => {});
+      }
+    } catch {
+      // Ignore
+    }
+  }, [isPasswordSetup]);
+
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setMessage("");
+
     setError("");
 
     if (isRegister || isPasswordSetup) {

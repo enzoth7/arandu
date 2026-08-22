@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
+import { AuthHashListener } from "./components/AuthHashListener";
 import "leaflet/dist/leaflet.css";
 import "./globals.css";
+
 
 const merriweatherSans = localFont({
   src: [
@@ -50,12 +52,15 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+
   return (
     <html lang="es" className={merriweatherSans.variable}>
       <body>
+        <AuthHashListener />
         {children}
         <Analytics />
       </body>
     </html>
   );
 }
+
