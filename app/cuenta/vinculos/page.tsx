@@ -15,14 +15,17 @@ export default async function RelationshipsPage() {
   const [facilities, requests] = await Promise.all([listFacilityOptions(), listOwnRelationshipRequests(account.userId)]);
 
   const verifiedResident = requests.find((r) => r.status === "verified" && r.relationshipType === "resident");
+  const verifiedFamily = requests.find((r) => r.status === "verified" && r.relationshipType === "family");
   const pendingResidentRequest = requests.find((r) => r.status === "pending" && r.relationshipType === "resident");
+
+  const eyebrowLabel = verifiedResident ? "Residente" : verifiedFamily ? "Familiar" : "Cuenta personal";
 
   return <main className="institutionalWorkspace workflowWorkspace">
     <Link className="workflowBack" href="/cuenta"><ArrowLeft size={18} /> Volver a mi cuenta</Link>
     <header className="workflowHero">
       <span className="workflowHeroIcon"><Link2 size={25} /></span>
       <div>
-        <p className="accountEyebrow">Cuenta personal</p>
+        <p className="accountEyebrow">{eyebrowLabel}</p>
         <h1>Mis vínculos</h1>
         <p>Gestioná tu verificación de residencia e invitá a tus familiares para compartir experiencias.</p>
       </div>
@@ -40,6 +43,19 @@ export default async function RelationshipsPage() {
           </p>
           <InviteFamilyForm facilityName={verifiedResident.facilityName} />
         </section>
+      ) : verifiedFamily ? (
+        <section className="workflowPanel">
+          <div className="inviteFamilyHeading">
+            <span className="inviteIcon"><UserPlus size={20} /></span>
+            <h3>Familiar verificado</h3>
+          </div>
+          <p className="inviteFamilyLead">
+            Tenés verificación activa como familiar de <strong>{verifiedFamily.facilityName}</strong>. Podés compartir experiencias de residencia en Arandú.
+          </p>
+          <Link className="button isPrimary fullWidth" style={{ display: "inline-flex", justifyContent: "center", marginTop: "16px", textDecoration: "none" }} href="/experiencia">
+            Compartir experiencia
+          </Link>
+        </section>
       ) : pendingResidentRequest ? (
         <section className="workflowPanel">
           <h2>Solicitud en revisión</h2>
@@ -55,6 +71,7 @@ export default async function RelationshipsPage() {
           <RelationshipRequestForm facilities={facilities} />
         </section>
       )}
+
 
       <div className="workflowRequestListDirect">
         {requests.map((request) => (

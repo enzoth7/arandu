@@ -9105,9 +9105,21 @@ select:not(:disabled) {
 }
 
 .accountBadge.isPersonal {
+  background: #F1F5F9;
+  color: #475569;
+  border: 1px solid #CBD5E1;
+}
+
+.accountBadge.isResident {
   background: #EBFBF2;
   color: #196C3B;
   border: 1px solid #B8ECCB;
+}
+
+.accountBadge.isFamily {
+  background: #ECFEFF;
+  color: #0E7490;
+  border: 1px solid #A5F3FC;
 }
 
 .accountBadge.isElepem {
@@ -9115,6 +9127,7 @@ select:not(:disabled) {
   color: var(--blue2);
   border: 1px solid #BFDBFE;
 }
+
 
 .accountEmail {
   max-width: 100%;

@@ -32,6 +32,23 @@ export default async function AccountPage() {
   const fullName = profile ? `${profile.firstName} ${profile.lastName}`.trim() : "";
   const isElepemType = profile?.accountType === "elepem";
 
+  const residentRel = personalRelationships.find((r) => r.relationshipType === "resident");
+  const familyRel = personalRelationships.find((r) => r.relationshipType === "family");
+
+  let badgeLabel = "Cuenta personal";
+  let badgeClass = "isPersonal";
+
+  if (isElepemType) {
+    badgeLabel = "Representante ELEPEM";
+    badgeClass = "isElepem";
+  } else if (residentRel) {
+    badgeLabel = "Residente";
+    badgeClass = "isResident";
+  } else if (familyRel) {
+    badgeLabel = "Familiar";
+    badgeClass = "isFamily";
+  }
+
   return <main className="institutionalWorkspace accountWorkspace">
     <TermsAcceptanceModal open={!account.termsAccepted && !isTemporaryAdmin} />
     <header className="accountHero">
@@ -40,8 +57,8 @@ export default async function AccountPage() {
         <div>
           <div className="accountTitleRow">
             <h1>{fullName || "Mi cuenta"}</h1>
-            <span className={`accountBadge ${isElepemType ? "isElepem" : "isPersonal"}`}>
-              {isElepemType ? "Representante ELEPEM" : "Cuenta personal"}
+            <span className={`accountBadge ${badgeClass}`}>
+              {badgeLabel}
             </span>
           </div>
           <p className="accountEmail">
@@ -52,6 +69,7 @@ export default async function AccountPage() {
       </div>
       <AccountLogout />
     </header>
+
 
     <section className="accountActions" aria-labelledby="account-actions-title">
       <div className="accountSectionHeading">
