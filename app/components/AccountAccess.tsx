@@ -57,7 +57,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
   const needsEmail = !isPasswordSetup;
   const needsPassword = mode === "login" || isPasswordSetup;
 
-  const [accountType, setAccountType] = useState<"personal" | "elepem">("personal");
+  const [selectedType, setSelectedType] = useState<"personal" | "elepem" | null>(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
@@ -102,7 +102,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
             : "/api/auth/password";
 
       const payload = mode === "register"
-        ? { email, firstName, lastName, phone, accountType, termsAccepted }
+        ? { email, firstName, lastName, phone, accountType: selectedType || "personal", termsAccepted }
         : mode === "password"
           ? { password, termsAccepted }
           : { email, password };
@@ -138,45 +138,66 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
     }
   }
 
+  // Step 1 of registration: Two floating cards in the air
+  if (isRegister && selectedType === null && !message) {
+    return <main className="accessGate">
+      <div className="accessGateContent">
+        <AcademicPrototypeNotice />
+        <div className="accessGatePanel isLogin">
+          <Image src="/arandu-mark.svg" alt="Arandú" className="accessGateLogo isOrganization" width={160} height={160} priority />
+          <h1>Registrarte</h1>
+          <p className="accessGateLead">Elegí el tipo de cuenta que querés crear.</p>
+
+          <div className="registerTypeCards">
+            <button
+              type="button"
+              className="registerTypeCard"
+              onClick={() => setSelectedType("personal")}
+            >
+              <div className="registerTypeIcon"><UserRound size={30} /></div>
+              <strong>Persona</strong>
+              <span>Cuenta personal</span>
+            </button>
+
+            <button
+              type="button"
+              className="registerTypeCard"
+              onClick={() => setSelectedType("elepem")}
+            >
+              <div className="registerTypeIcon"><Building2 size={30} /></div>
+              <strong>ELEPEM</strong>
+              <span>Representante</span>
+            </button>
+          </div>
+
+          <div className="accessInlineLinks">
+            <Link href="/iniciar-sesion">Ya tengo una cuenta</Link>
+          </div>
+          <Link className="accessLoginBack" href="/">
+            <ArrowLeft size={17} aria-hidden="true" />Volver al sitio público
+          </Link>
+        </div>
+      </div>
+    </main>;
+  }
+
+  // Step 2 of registration (or login / recovery / password setup)
   return <main className="accessGate">
     <div className="accessGateContent">
       <AcademicPrototypeNotice />
       <div className="accessGatePanel isLogin">
         <Image src="/arandu-mark.svg" alt="Arandú" className="accessGateLogo isOrganization" width={160} height={160} priority />
-        <h1>{copy.title}</h1>
-        <p className="accessGateLead">{copy.lead}</p>
-        <form className="organizationLoginForm" onSubmit={submit}>
-          {isRegister && (
-            <div className="accountTypeSelector" role="radiogroup" aria-label="Tipo de cuenta">
-              <button
-                type="button"
-                role="radio"
-                aria-checked={accountType === "personal"}
-                className={`accountTypeOption ${accountType === "personal" ? "isSelected" : ""}`}
-                onClick={() => setAccountType("personal")}
-              >
-                <div className="accountTypeIcon"><UserRound size={20} /></div>
-                <div className="accountTypeInfo">
-                  <strong>Registrar como persona</strong>
-                  <small>Cuenta personal para agendar visitas, compartir experiencias o verificar vínculo familiar/residente.</small>
-                </div>
-              </button>
-              <button
-                type="button"
-                role="radio"
-                aria-checked={accountType === "elepem"}
-                className={`accountTypeOption ${accountType === "elepem" ? "isSelected" : ""}`}
-                onClick={() => setAccountType("elepem")}
-              >
-                <div className="accountTypeIcon"><Building2 size={20} /></div>
-                <div className="accountTypeInfo">
-                  <strong>Registrar como ELEPEM</strong>
-                  <small>Para titulares o representantes que solicitan acceso y gestionan la ficha de un establecimiento.</small>
-                </div>
-              </button>
-            </div>
-          )}
+        
+        {isRegister && (
+          <button type="button" className="registerBackStep" onClick={() => { setSelectedType(null); setMessage(""); setError(""); }}>
+            <ArrowLeft size={16} /> Cambiar a {selectedType === "elepem" ? "Persona" : "ELEPEM"}
+          </button>
+        )}
 
+        <h1>{isRegister ? `Registro ${selectedType === "elepem" ? "ELEPEM" : "personal"}` : copy.title}</h1>
+        <p className="accessGateLead">{isRegister ? "Completá tus datos de contacto para continuar." : copy.lead}</p>
+        
+        <form className="organizationLoginForm" onSubmit={submit}>
           {isRegister && (
             <div className="accountFormRow2">
               <label htmlFor="register-firstname">
@@ -290,4 +311,5 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
     </div>
   </main>;
 }
+
 
