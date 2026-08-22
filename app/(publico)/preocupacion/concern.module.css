@@ -1,8 +1,8 @@
 .page {
   min-height: calc(100vh - 72px);
   padding: clamp(24px, 4vw, 56px);
-  background: #f7faf8;
-  color: #123326;
+  background: #f1f7fc;
+  color: #17324f;
 }
 
 .container {
@@ -18,16 +18,16 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #1a563f;
+  color: #1769aa;
   font-weight: 750;
   font-size: 0.92rem;
   text-decoration: none;
-  transition: opacity 0.15s;
+  transition: color 0.15s;
 }
 
 .backLink:hover {
+  color: #0f4f87;
   text-decoration: underline;
-  opacity: 0.85;
 }
 
 /* Hero section */
@@ -36,11 +36,12 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 32px;
-  background: #1c523f;
+  background: #103864;
   color: #ffffff;
   border-radius: 24px;
   padding: clamp(28px, 4vw, 44px);
   margin-bottom: 24px;
+  box-shadow: 0 16px 40px rgba(16, 56, 100, 0.12);
 }
 
 .heroContent {
@@ -51,7 +52,7 @@
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.12em;
-  color: #a3cfbb;
+  color: #9fcbf6;
   text-transform: uppercase;
   margin: 0 0 10px;
 }
@@ -67,15 +68,15 @@
 .heroDescription {
   font-size: 1rem;
   line-height: 1.5;
-  color: #e2f0e8;
+  color: #e1effc;
   margin: 0;
 }
 
 .heroSideBox {
   display: flex;
   gap: 14px;
-  background: rgba(0, 0, 0, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 18px;
   padding: 18px 20px;
   max-width: 320px;
@@ -84,7 +85,7 @@
 }
 
 .heroSideIcon {
-  color: #a3cfbb;
+  color: #9fcbf6;
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -100,7 +101,7 @@
 .heroSideBox p {
   margin: 0;
   font-size: 0.8rem;
-  color: #c9e4d5;
+  color: #cde4f7;
   line-height: 1.4;
 }
 
@@ -204,14 +205,14 @@
 .sectionTitle {
   font-size: clamp(1.8rem, 3.5vw, 2.3rem);
   font-weight: 850;
-  color: #123326;
+  color: #102f52;
   margin: 0;
 }
 
 .sectionSubtitle {
   max-width: 480px;
   font-size: 0.88rem;
-  color: #52665e;
+  color: #536a82;
   line-height: 1.45;
   margin: 0;
   text-align: right;
@@ -227,12 +228,12 @@
 
 .channelCard {
   background: #ffffff;
-  border: 1px solid #d9e6de;
+  border: 1px solid #c7dbed;
   border-radius: 20px;
   padding: 24px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 16px rgba(18, 51, 38, 0.03);
+  box-shadow: 0 4px 16px rgba(16, 47, 82, 0.04);
 }
 
 .cardTop {
@@ -246,8 +247,8 @@
   width: 42px;
   height: 42px;
   border-radius: 12px;
-  background: #e6f4ec;
-  color: #16533c;
+  background: #eaf3fb;
+  color: #1769aa;
   display: grid;
   place-items: center;
 }
@@ -256,8 +257,9 @@
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.06em;
-  color: #16533c;
-  background: #eef7f2;
+  color: #124b7a;
+  background: #edf6ff;
+  border: 1px solid #d0e4f7;
   padding: 4px 10px;
   border-radius: 99px;
 }
@@ -265,14 +267,14 @@
 .cardHeading {
   font-size: 1.15rem;
   font-weight: 800;
-  color: #123326;
+  color: #102f52;
   margin: 0 0 6px;
   line-height: 1.25;
 }
 
 .cardSummary {
   font-size: 0.88rem;
-  color: #52665e;
+  color: #536a82;
   line-height: 1.45;
   margin: 0 0 16px;
 }
@@ -289,18 +291,22 @@
   align-items: flex-start;
   gap: 10px;
   font-size: 0.86rem;
-  color: #1e3a2f;
+  color: #17324f;
   line-height: 1.4;
 }
 
 .detailRow a {
-  color: #1a563f;
+  color: #1769aa;
   font-weight: 700;
   text-decoration: underline;
 }
 
+.detailRow a:hover {
+  color: #0f4f87;
+}
+
 .detailIcon {
-  color: #4a6b5d;
+  color: #536a82;
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -327,11 +333,11 @@
 }
 
 .noteBox {
-  background: #f3f7f4;
+  background: #f1f7fc;
   border-radius: 10px;
   padding: 10px 14px;
   font-size: 0.82rem;
-  color: #4a6156;
+  color: #3d5975;
   line-height: 1.4;
   margin-bottom: 16px;
 }
@@ -348,7 +354,7 @@
   align-items: center;
   justify-content: center;
   flex: 1;
-  background: #16533c;
+  background: #1769aa;
   color: #ffffff;
   font-weight: 750;
   font-size: 0.88rem;
@@ -360,7 +366,7 @@
 }
 
 .primaryActionBtn:hover {
-  background: #113f2e;
+  background: #0f4f87;
 }
 
 .secondaryActionBtn {
@@ -368,8 +374,8 @@
   align-items: center;
   justify-content: center;
   background: #ffffff;
-  color: #1e293b;
-  border: 1.5px solid #d1d5db;
+  color: #123b67;
+  border: 1.5px solid #a8c7e4;
   font-weight: 750;
   font-size: 0.88rem;
   padding: 11px 16px;
@@ -380,8 +386,8 @@
 }
 
 .secondaryActionBtn:hover {
-  background: #f9fafb;
-  border-color: #9ca3af;
+  background: #f0f7fe;
+  border-color: #1769aa;
 }
 
 /* Footer disclaimer */
@@ -390,16 +396,16 @@
   align-items: flex-start;
   gap: 12px;
   background: #ffffff;
-  border: 1px solid #d9e6de;
+  border: 1px solid #c7dbed;
   border-radius: 16px;
   padding: 16px 20px;
   font-size: 0.84rem;
-  color: #4a6156;
+  color: #536a82;
   line-height: 1.45;
 }
 
 .disclaimerIcon {
-  color: #1a563f;
+  color: #1769aa;
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -440,3 +446,4 @@
     grid-template-columns: 1fr;
   }
 }
+
