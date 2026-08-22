@@ -10,6 +10,7 @@ export async function POST(request: NextRequest) {
   let lastName = "";
   let phone = "";
   let accountType: "personal" | "elepem" = "personal";
+  let facilityId: number | null = null;
   let termsAccepted = false;
 
   try {
@@ -19,6 +20,7 @@ export async function POST(request: NextRequest) {
       lastName?: unknown;
       phone?: unknown;
       accountType?: unknown;
+      facilityId?: unknown;
       termsAccepted?: unknown;
     };
     email = typeof body.email === "string" ? body.email.trim().toLowerCase().slice(0, 254) : "";
@@ -26,17 +28,26 @@ export async function POST(request: NextRequest) {
     lastName = typeof body.lastName === "string" ? body.lastName.trim().slice(0, 100) : "";
     phone = typeof body.phone === "string" ? body.phone.trim().slice(0, 50) : "";
     accountType = body.accountType === "elepem" ? "elepem" : "personal";
+    facilityId = typeof body.facilityId === "number" && Number.isSafeInteger(body.facilityId) && body.facilityId > 0 ? body.facilityId : null;
     termsAccepted = Boolean(body.termsAccepted);
   } catch {
     return NextResponse.json({ error: "Datos de registro no válidos." }, { status: 400 });
   }
 
   if (!firstName || !lastName) {
-    return NextResponse.json({ error: "Por favor ingresá tu nombre y apellido." }, { status: 400 });
+    return NextResponse.json({
+      error: accountType === "elepem"
+        ? "Por favor ingresá el nombre y apellido del representante."
+        : "Por favor ingresá tu nombre y apellido.",
+    }, { status: 400 });
   }
 
   if (!phone || phone.length < 6) {
     return NextResponse.json({ error: "Por favor ingresá un teléfono de contacto válido." }, { status: 400 });
+  }
+
+  if (accountType === "elepem" && !facilityId) {
+    return NextResponse.json({ error: "Por favor seleccioná el ELEPEM que representás." }, { status: 400 });
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -62,6 +73,7 @@ export async function POST(request: NextRequest) {
           last_name: lastName,
           phone,
           account_type: accountType,
+          facility_id: facilityId,
           terms_accepted_at: new Date().toISOString(),
         },
       },

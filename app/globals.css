@@ -335,6 +335,35 @@ button {
   }
 }
 
+.registerFacilityGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  border: 1px dashed #CBD5E1;
+  border-radius: 16px;
+  background: #F8FAFC;
+}
+
+.accessSelect,
+.accessInput select {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 0;
+  border: 0;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.accessFieldHint.isWarning {
+  color: #c2410c;
+}
+
+
 .organizationLoginForm {
   padding: 28px;
   display: grid;

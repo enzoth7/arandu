@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "../../../../lib/supabase/server";
 import { upsertUserProfile } from "../../../../lib/user-profile-db";
+import { requestRepresentation } from "../../../../lib/role-workflows-db";
 
 export const runtime = "nodejs";
 
@@ -27,6 +28,7 @@ export async function POST(request: NextRequest) {
   const lastName = String(meta.last_name || meta.apellido || "").trim();
   const phone = String(meta.phone || meta.telefono || "").trim();
   const accountType = meta.account_type === "elepem" ? "elepem" : "personal";
+  const facilityId = Number(meta.facility_id);
 
   if (firstName || lastName || phone) {
     await upsertUserProfile({
@@ -40,6 +42,13 @@ export async function POST(request: NextRequest) {
     });
   }
 
+  if (accountType === "elepem" && Number.isSafeInteger(facilityId) && facilityId > 0) {
+    await requestRepresentation(data.user.id, facilityId).catch((err) => {
+      console.error("Failed to register facility representation on password set:", err);
+    });
+  }
+
   return NextResponse.json({ updated: true }, { headers: { "Cache-Control": "no-store" } });
 }
+
 

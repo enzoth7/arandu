@@ -7,12 +7,15 @@ import { ArrowLeft, ArrowRight, Building2, Eye, EyeOff, LockKeyhole, Mail, Phone
 import { useState, type FormEvent } from "react";
 import { AcademicPrototypeNotice } from "./AcademicPrototypeNotice";
 
+import type { FacilityOption } from "../../lib/role-workflows-db";
+
 type AccountAccessMode = "login" | "register" | "recover" | "password" | "reset";
 
 type AccountAccessProps = {
   mode: AccountAccessMode;
   next?: string;
   invalidLink?: boolean;
+  facilities?: FacilityOption[];
 };
 
 const CONTENT: Record<AccountAccessMode, { title: string; lead: string; submit: string; busy: string }> = {
@@ -48,7 +51,7 @@ const CONTENT: Record<AccountAccessMode, { title: string; lead: string; submit: 
   },
 };
 
-export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: AccountAccessProps) {
+export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, facilities = [] }: AccountAccessProps) {
   const router = useRouter();
   const copy = CONTENT[mode];
   const isRegister = mode === "register";
@@ -62,6 +65,10 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [selectedFacilityId, setSelectedFacilityId] = useState<number | "">("");
+  const [departmentFilter, setDepartmentFilter] = useState("");
+  const [facilitySearch, setFacilitySearch] = useState("");
+
   const [password, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -70,6 +77,14 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
   const [error, setError] = useState(invalidLink ? "El enlace no es válido, venció o ya fue utilizado." : "");
   const [submitting, setSubmitting] = useState(false);
 
+  const departments = Array.from(new Set(facilities.map((f) => f.department).filter(Boolean))).sort();
+  const filteredFacilities = facilities.filter((f) => {
+    const matchDept = !departmentFilter || f.department === departmentFilter;
+    const q = facilitySearch.trim().toLowerCase();
+    const matchSearch = !q || f.name.toLowerCase().includes(q) || (f.locality || "").toLowerCase().includes(q);
+    return matchDept && matchSearch;
+  });
+
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setMessage("");
@@ -77,11 +92,15 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
 
     if (isRegister) {
       if (!firstName.trim() || !lastName.trim()) {
-        setError("Por favor ingresá tu nombre y apellido.");
+        setError(selectedType === "elepem" ? "Por favor ingresá el nombre y apellido del representante." : "Por favor ingresá tu nombre y apellido.");
         return;
       }
       if (!phone.trim() || phone.trim().length < 6) {
         setError("Por favor ingresá un teléfono de contacto válido.");
+        return;
+      }
+      if (selectedType === "elepem" && !selectedFacilityId) {
+        setError("Por favor seleccioná el ELEPEM que representás.");
         return;
       }
     }
@@ -102,7 +121,15 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
             : "/api/auth/password";
 
       const payload = mode === "register"
-        ? { email, firstName, lastName, phone, accountType: selectedType || "personal", termsAccepted }
+        ? {
+            email,
+            firstName,
+            lastName,
+            phone,
+            accountType: selectedType || "personal",
+            facilityId: selectedType === "elepem" ? Number(selectedFacilityId) : undefined,
+            termsAccepted,
+          }
         : mode === "password"
           ? { password, termsAccepted }
           : { email, password };
@@ -130,6 +157,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
       setFirstName("");
       setLastName("");
       setPhone("");
+      setSelectedFacilityId("");
       setTermsAccepted(false);
     } catch {
       setError("No pudimos conectarnos. Volvé a intentarlo.");
@@ -194,14 +222,14 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
           </button>
         )}
 
-        <h1>{isRegister ? `Registro ${selectedType === "elepem" ? "ELEPEM" : "personal"}` : copy.title}</h1>
+        <h1>{isRegister ? (selectedType === "elepem" ? "Registro de ELEPEM" : "Registro de persona") : copy.title}</h1>
         <p className="accessGateLead">{isRegister ? "Completá tus datos de contacto para continuar." : copy.lead}</p>
         
         <form className="organizationLoginForm" onSubmit={submit}>
           {isRegister && (
             <div className="accountFormRow2">
               <label htmlFor="register-firstname">
-                <span>Nombre</span>
+                <span>{selectedType === "elepem" ? "Nombre del representante" : "Nombre"}</span>
                 <div className="accessInput">
                   <UserRound size={19} aria-hidden="true" />
                   <input
@@ -217,7 +245,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
                 </div>
               </label>
               <label htmlFor="register-lastname">
-                <span>Apellido</span>
+                <span>{selectedType === "elepem" ? "Apellido del representante" : "Apellido"}</span>
                 <div className="accessInput">
                   <UserRound size={19} aria-hidden="true" />
                   <input
@@ -230,6 +258,70 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
                     required
                   />
                 </div>
+              </label>
+            </div>
+          )}
+
+          {isRegister && selectedType === "elepem" && (
+            <div className="registerFacilityGroup">
+              <div className="accountFormRow2">
+                <label htmlFor="register-dept">
+                  <span>Filtro por departamento</span>
+                  <div className="accessInput">
+                    <select
+                      id="register-dept"
+                      value={departmentFilter}
+                      onChange={(e) => {
+                        setDepartmentFilter(e.target.value);
+                        setFacilitySearch("");
+                      }}
+                      className="accessSelect"
+                    >
+                      <option value="">Todos los departamentos</option>
+                      {departments.map((dept) => (
+                        <option key={dept} value={dept}>{dept}</option>
+                      ))}
+                    </select>
+                  </div>
+                </label>
+
+                <label htmlFor="register-search">
+                  <span>Buscar ELEPEM</span>
+                  <div className="accessInput">
+                    <input
+                      id="register-search"
+                      type="search"
+                      placeholder="Nombre o localidad…"
+                      value={facilitySearch}
+                      onChange={(e) => setFacilitySearch(e.target.value)}
+                      autoComplete="off"
+                    />
+                  </div>
+                </label>
+              </div>
+
+              <label htmlFor="register-facility">
+                <span>ELEPEM que representás *</span>
+                <div className="accessInput">
+                  <Building2 size={19} aria-hidden="true" />
+                  <select
+                    id="register-facility"
+                    value={selectedFacilityId}
+                    onChange={(e) => setSelectedFacilityId(Number(e.target.value) || "")}
+                    required
+                    className="accessSelect"
+                  >
+                    <option value="" disabled>Seleccionar ELEPEM ({filteredFacilities.length} disponibles)</option>
+                    {filteredFacilities.map((facility) => (
+                      <option key={facility.id} value={facility.id}>
+                        {facility.name} · {facility.locality || facility.department}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                {filteredFacilities.length === 0 && (
+                  <small className="accessFieldHint isWarning">No se encontraron ELEPEM con ese filtro de búsqueda.</small>
+                )}
               </label>
             </div>
           )}
