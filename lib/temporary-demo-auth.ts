@@ -4,7 +4,10 @@ export const TEMPORARY_ADMIN_COOKIE = "arandu-temporary-admin";
 const MAX_AGE_SECONDS = 8 * 60 * 60;
 
 function secret() {
-  const value = process.env.INSTITUTIONAL_SESSION_SECRET || "";
+  const value = process.env.INSTITUTIONAL_SESSION_SECRET
+    || process.env.TEAM_SESSION_SECRET
+    || process.env.SESSION_SECRET
+    || "";
   if (value.length < 32) throw new Error("Temporary institutional session is not configured.");
   return value;
 }
@@ -19,8 +22,8 @@ function equal(left: string, right: string) {
 }
 
 export function temporaryAdminCredentialsMatch(username: string, password: string) {
-  const expectedUsername = process.env.STATE_DEMO_USERNAME || "";
-  const expectedPassword = process.env.STATE_DEMO_PASSWORD || "";
+  const expectedUsername = process.env.STATE_DEMO_USERNAME || process.env.TEAM_DEMO_USERNAME || "";
+  const expectedPassword = process.env.STATE_DEMO_PASSWORD || process.env.TEAM_DEMO_PASSWORD || "";
   return expectedUsername.length >= 3 && expectedPassword.length >= 8
     && equal(username, expectedUsername) && equal(password, expectedPassword);
 }
