@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -21,34 +21,34 @@ type AccountAccessProps = {
 
 const CONTENT: Record<AccountAccessMode, { title: string; lead: string; submit: string; busy: string }> = {
   login: {
-    title: "Iniciar sesión",
-    lead: "Ingresá con el correo y la contraseña de tu cuenta de Arandú.",
-    submit: "Iniciar sesión",
-    busy: "Ingresando…",
+    title: "Iniciar sesiÃ³n",
+    lead: "IngresÃ¡ con el correo y la contraseÃ±a de tu cuenta de ArandÃº.",
+    submit: "Iniciar sesiÃ³n",
+    busy: "Ingresandoâ€¦",
   },
   register: {
     title: "Crear una cuenta",
-    lead: "Elegí cómo vas a participar y completá tus datos de contacto.",
-    submit: "Enviar enlace de confirmación",
-    busy: "Enviando enlace…",
+    lead: "ElegÃ­ cÃ³mo vas a participar y completÃ¡ tus datos de contacto.",
+    submit: "Enviar enlace de confirmaciÃ³n",
+    busy: "Enviando enlaceâ€¦",
   },
   recover: {
-    title: "Recuperar contraseña",
-    lead: "Te enviaremos un enlace para que puedas elegir una contraseña nueva.",
+    title: "Recuperar contraseÃ±a",
+    lead: "Te enviaremos un enlace para que puedas elegir una contraseÃ±a nueva.",
     submit: "Enviar enlace",
-    busy: "Enviando…",
+    busy: "Enviandoâ€¦",
   },
   password: {
-    title: "Crear contraseña",
-    lead: "Tu correo ya fue confirmado. Elegí la contraseña que vas a usar para iniciar sesión.",
-    submit: "Guardar contraseña",
-    busy: "Guardando…",
+    title: "Crear contraseÃ±a",
+    lead: "Tu correo ya fue confirmado. ElegÃ­ la contraseÃ±a que vas a usar para iniciar sesiÃ³n.",
+    submit: "Guardar contraseÃ±a",
+    busy: "Guardandoâ€¦",
   },
   reset: {
-    title: "Nueva contraseña",
-    lead: "Elegí una contraseña nueva para recuperar el acceso a tu cuenta.",
-    submit: "Guardar contraseña",
-    busy: "Guardando…",
+    title: "Nueva contraseÃ±a",
+    lead: "ElegÃ­ una contraseÃ±a nueva para recuperar el acceso a tu cuenta.",
+    submit: "Guardar contraseÃ±a",
+    busy: "Guardandoâ€¦",
   },
 };
 
@@ -66,7 +66,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [selectedFacilityId, setSelectedFacilityId] = useState<number | "">("");
+  const [selectedFacilityId, setSelectedFacilityId] = useState<number | string>("");
   const [departmentFilter, setDepartmentFilter] = useState("");
   const [facilitySearch, setFacilitySearch] = useState("");
 
@@ -75,7 +75,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
   const [showPassword, setShowPassword] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [message, setMessage] = useState("");
-  const [error, setError] = useState(invalidLink ? "El enlace no es válido, venció o ya fue utilizado." : "");
+  const [error, setError] = useState(invalidLink ? "El enlace no es vÃ¡lido, venciÃ³ o ya fue utilizado." : "");
   const [submitting, setSubmitting] = useState(false);
 
   const departments = Array.from(new Set(facilities.map((f) => f.department).filter(Boolean))).sort();
@@ -132,25 +132,25 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
 
     if (isRegister || isPasswordSetup) {
       if (!firstName.trim() || !lastName.trim()) {
-        setError(selectedType === "elepem" ? "Por favor ingresá el nombre y apellido del representante." : "Por favor ingresá tu nombre y apellido.");
+        setError(selectedType === "elepem" ? "Por favor ingresÃ¡ el nombre y apellido del representante." : "Por favor ingresÃ¡ tu nombre y apellido.");
         return;
       }
       if (!phone.trim() || phone.trim().length < 6) {
-        setError("Por favor ingresá un teléfono de contacto válido.");
+        setError("Por favor ingresÃ¡ un telÃ©fono de contacto vÃ¡lido.");
         return;
       }
       if (isRegister && selectedType === "elepem" && !selectedFacilityId) {
-        setError("Por favor seleccioná el ELEPEM que representás.");
+        setError("Por favor seleccionÃ¡ el ELEPEM que representÃ¡s.");
         return;
       }
     }
 
     if (requiresTerms && !termsAccepted) {
-      setError("Por favor leé y aceptá nuestros Términos y Condiciones antes de continuar.");
+      setError("Por favor leÃ© y aceptÃ¡ nuestros TÃ©rminos y Condiciones antes de continuar.");
       return;
     }
     if (isPasswordSetup && password !== confirmation) {
-      setError("Las contraseñas no coinciden.");
+      setError("Las contraseÃ±as no coinciden.");
       return;
     }
     setSubmitting(true);
@@ -167,7 +167,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
             lastName,
             phone,
             accountType: selectedType || "personal",
-            facilityId: selectedType === "elepem" ? Number(selectedFacilityId) : undefined,
+            facilityId: selectedType === "elepem" ? (typeof selectedFacilityId === "string" && selectedFacilityId.startsWith("DEMO-") ? selectedFacilityId : Number(selectedFacilityId)) : undefined,
             termsAccepted,
           }
         : mode === "password"
@@ -182,7 +182,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
       });
       const result = await response.json().catch(() => null) as { message?: string; error?: string } | null;
       if (!response.ok) {
-        setError(result?.error || "No se pudo completar la operación.");
+        setError(result?.error || "No se pudo completar la operaciÃ³n.");
         return;
       }
       if (mode === "password" && termsAccepted) {
@@ -193,7 +193,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
         router.refresh();
         return;
       }
-      setMessage(result?.message || "Revisá tu correo para confirmar tu cuenta.");
+      setMessage(result?.message || "RevisÃ¡ tu correo para confirmar tu cuenta.");
       setEmail("");
       setFirstName("");
       setLastName("");
@@ -201,7 +201,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
       setSelectedFacilityId("");
       setTermsAccepted(false);
     } catch {
-      setError("No pudimos conectarnos. Volvé a intentarlo.");
+      setError("No pudimos conectarnos. VolvÃ© a intentarlo.");
     } finally {
       setSubmitting(false);
     }
@@ -213,9 +213,9 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
       <div className="accessGateContent">
         <AcademicPrototypeNotice />
         <div className="accessGatePanel isLogin">
-          <Image src="/arandu-mark.svg" alt="Arandú" className="accessGateLogo isOrganization" width={160} height={160} priority />
+          <Image src="/arandu-mark.svg" alt="ArandÃº" className="accessGateLogo isOrganization" width={160} height={160} priority />
           <h1>Registrarte</h1>
-          <p className="accessGateLead">Elegí el tipo de cuenta que querés crear.</p>
+          <p className="accessGateLead">ElegÃ­ el tipo de cuenta que querÃ©s crear.</p>
 
           <div className="registerTypeCards">
             <button
@@ -243,7 +243,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
             <Link href="/iniciar-sesion">Ya tengo una cuenta</Link>
           </div>
           <Link className="accessLoginBack" href="/">
-            <ArrowLeft size={17} aria-hidden="true" />Volver al sitio público
+            <ArrowLeft size={17} aria-hidden="true" />Volver al sitio pÃºblico
           </Link>
         </div>
       </div>
@@ -255,7 +255,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
     <div className="accessGateContent">
       <AcademicPrototypeNotice />
       <div className="accessGatePanel isLogin">
-        <Image src="/arandu-mark.svg" alt="Arandú" className="accessGateLogo isOrganization" width={160} height={160} priority />
+        <Image src="/arandu-mark.svg" alt="ArandÃº" className="accessGateLogo isOrganization" width={160} height={160} priority />
         
         {isRegister && (
           <button type="button" className="registerBackStep" onClick={() => { setSelectedType(null); setMessage(""); setError(""); }}>
@@ -264,7 +264,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
         )}
 
         <h1>{isRegister ? (selectedType === "elepem" ? "Registro de ELEPEM" : "Registro de persona") : copy.title}</h1>
-        <p className="accessGateLead">{isRegister ? "Completá tus datos de contacto para continuar." : copy.lead}</p>
+        <p className="accessGateLead">{isRegister ? "CompletÃ¡ tus datos de contacto para continuar." : copy.lead}</p>
         
         <form className="organizationLoginForm" onSubmit={submit}>
           {(isRegister || isPasswordSetup) && (
@@ -332,7 +332,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
                     <input
                       id="register-search"
                       type="search"
-                      placeholder="Nombre o localidad…"
+                      placeholder="Nombre o localidadâ€¦"
                       value={facilitySearch}
                       onChange={(e) => setFacilitySearch(e.target.value)}
                       autoComplete="off"
@@ -342,33 +342,33 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
               </div>
 
               <label htmlFor="register-facility">
-                <span>ELEPEM que representás *</span>
+                <span>ELEPEM que representÃ¡s *</span>
                 <div className="accessInput">
                   <Building2 size={19} aria-hidden="true" />
                   <select
                     id="register-facility"
                     value={selectedFacilityId}
-                    onChange={(e) => setSelectedFacilityId(Number(e.target.value) || "")}
+                    onChange={(e) => setSelectedFacilityId(e.target.value)}
                     required
                     className="accessSelect"
                   >
                     <option value="" disabled>Seleccionar ELEPEM ({filteredFacilities.length} disponibles)</option>
                     {filteredFacilities.map((facility) => (
                       <option key={facility.id} value={facility.id}>
-                        {facility.name} · {facility.locality || facility.department}
+                        {facility.name} Â· {facility.locality || facility.department}
                       </option>
                     ))}
                   </select>
                 </div>
                 {filteredFacilities.length === 0 && (
-                  <small className="accessFieldHint isWarning">No se encontraron ELEPEM con ese filtro de búsqueda.</small>
+                  <small className="accessFieldHint isWarning">No se encontraron ELEPEM con ese filtro de bÃºsqueda.</small>
                 )}
               </label>
             </div>
           )}
 
           {needsEmail && <label htmlFor={`${mode}-email`}>
-            <span>{mode === "login" ? "Correo o usuario de transición" : "Correo electrónico"}</span>
+            <span>{mode === "login" ? "Correo o usuario de transiciÃ³n" : "Correo electrÃ³nico"}</span>
             <div className="accessInput">
               <Mail size={19} aria-hidden="true" />
               <input
@@ -386,7 +386,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
 
           {(isRegister || isPasswordSetup) && (
             <label htmlFor="register-phone">
-              <span>Teléfono de contacto</span>
+              <span>TelÃ©fono de contacto</span>
               <div className="accessInput">
                 <Phone size={19} aria-hidden="true" />
                 <input
@@ -404,12 +404,12 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
 
 
           {needsPassword && <label htmlFor={`${mode}-password`}>
-            <span>{isPasswordSetup ? "Nueva contraseña" : "Contraseña"}</span>
-            <div className="accessInput"><LockKeyhole size={19} aria-hidden="true" /><input id={`${mode}-password`} type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={mode === "login" ? "current-password" : "new-password"} minLength={8} maxLength={128} required autoFocus={!needsEmail} /><button className="accessPasswordToggle" type="button" onClick={() => setShowPassword((visible) => !visible)} aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}>{showPassword ? <EyeOff size={19} aria-hidden="true" /> : <Eye size={19} aria-hidden="true" />}</button></div>
-            {isPasswordSetup && <small className="accessFieldHint">Usá al menos 8 caracteres.</small>}
+            <span>{isPasswordSetup ? "Nueva contraseÃ±a" : "ContraseÃ±a"}</span>
+            <div className="accessInput"><LockKeyhole size={19} aria-hidden="true" /><input id={`${mode}-password`} type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={mode === "login" ? "current-password" : "new-password"} minLength={8} maxLength={128} required autoFocus={!needsEmail} /><button className="accessPasswordToggle" type="button" onClick={() => setShowPassword((visible) => !visible)} aria-label={showPassword ? "Ocultar contraseÃ±a" : "Mostrar contraseÃ±a"}>{showPassword ? <EyeOff size={19} aria-hidden="true" /> : <Eye size={19} aria-hidden="true" />}</button></div>
+            {isPasswordSetup && <small className="accessFieldHint">UsÃ¡ al menos 8 caracteres.</small>}
           </label>}
           {isPasswordSetup && <label htmlFor="password-confirmation">
-            <span>Repetir contraseña</span>
+            <span>Repetir contraseÃ±a</span>
             <div className="accessInput"><LockKeyhole size={19} aria-hidden="true" /><input id="password-confirmation" type={showPassword ? "text" : "password"} value={confirmation} onChange={(event) => setConfirmation(event.target.value)} autoComplete="new-password" minLength={8} maxLength={128} required /></div>
           </label>}
 
@@ -426,7 +426,7 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
                 <span>
                   Antes de continuar por favor lee nuestros{" "}
                   <Link href="/terminos" target="_blank" rel="noopener noreferrer" className="termsLink">
-                    Términos y Condiciones
+                    TÃ©rminos y Condiciones
                   </Link>
                   , aceptalos y presiona confirmar.
                 </span>
@@ -437,13 +437,15 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
           {error && <p className="accessLoginError" role="alert">{error}</p>}
           {message && <p className="accessLoginSuccess" role="status" aria-live="polite">{message}</p>}
           <button className="accessLoginSubmit" type="submit" disabled={submitting || (requiresTerms && !termsAccepted)}>{submitting ? copy.busy : copy.submit}<ArrowRight size={18} aria-hidden="true" /></button>
-          {mode === "login" && <div className="accessInlineLinks"><Link href="/recuperar-contrasena">Olvidé mi contraseña</Link><Link href="/registrarse">Registrarme</Link></div>}
+          {mode === "login" && <div className="accessInlineLinks"><Link href="/recuperar-contrasena">OlvidÃ© mi contraseÃ±a</Link><Link href="/registrarse">Registrarme</Link></div>}
           {(mode === "register" || mode === "recover") && <div className="accessInlineLinks"><Link href="/iniciar-sesion">Ya tengo una cuenta</Link></div>}
         </form>
-        <Link className="accessLoginBack" href="/"><ArrowLeft size={17} aria-hidden="true" />Volver al sitio público</Link>
+        <Link className="accessLoginBack" href="/"><ArrowLeft size={17} aria-hidden="true" />Volver al sitio pÃºblico</Link>
       </div>
     </div>
   </main>;
 }
+
+
 
 

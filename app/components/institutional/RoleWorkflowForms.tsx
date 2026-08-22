@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
@@ -11,7 +11,7 @@ type NoticeState = { kind: "idle" | "loading" | "success" | "error"; message: st
 async function postJson(url: string, body: Record<string, unknown>) {
   const response = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
   const payload = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(typeof payload.error === "string" ? payload.error : "No se pudo completar la acción.");
+  if (!response.ok) throw new Error(typeof payload.error === "string" ? payload.error : "No se pudo completar la acciÃ³n.");
   return payload;
 }
 
@@ -38,13 +38,13 @@ export function RelationshipRequestForm({ facilities }: { facilities: FacilityOp
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    setState({ kind: "loading", message: "Enviando solicitud…" });
+    setState({ kind: "loading", message: "Enviando solicitudâ€¦" });
     try {
       await postJson("/api/account/relationships", {
-        facilityId: Number(data.get("facilityId")),
+        facilityId: String(data.get("facilityId")).startsWith("DEMO-") ? String(data.get("facilityId")) : Number(data.get("facilityId")),
         relationshipType: "resident",
       });
-      setState({ kind: "success", message: "Solicitud enviada. Un Verificador independiente revisará tu solicitud de residencia." });
+      setState({ kind: "success", message: "Solicitud enviada. Un Verificador independiente revisarÃ¡ tu solicitud de residencia." });
       router.refresh();
     } catch (error) { setState({ kind: "error", message: error instanceof Error ? error.message : "No se pudo enviar." }); }
   }
@@ -62,7 +62,7 @@ export function RelationshipRequestForm({ facilities }: { facilities: FacilityOp
       <strong>Buscar ELEPEM</strong>
       <input
         type="search"
-        placeholder="Nombre o localidad…"
+        placeholder="Nombre o localidadâ€¦"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className="workflowSearchInput"
@@ -71,20 +71,20 @@ export function RelationshipRequestForm({ facilities }: { facilities: FacilityOp
     </label>
 
     <label className="workflowField">
-      <strong>Residencial en el que vivís *</strong>
+      <strong>Residencial en el que vivÃ­s *</strong>
       <select name="facilityId" required defaultValue="">
         <option value="" disabled>Seleccionar ELEPEM</option>
         {filtered.map((facility) => (
           <option key={facility.id} value={facility.id}>
-            {facility.name} · {facility.locality || facility.department}
+            {facility.name} Â· {facility.locality || facility.department}
           </option>
         ))}
       </select>
-      {filtered.length === 0 && <span className="workflowFieldHint">No hay resultados para esa búsqueda.</span>}
+      {filtered.length === 0 && <span className="workflowFieldHint">No hay resultados para esa bÃºsqueda.</span>}
     </label>
 
-    <p className="workflowHelp">No pedimos historias clínicas, documentos ni datos sensibles de salud.</p>
-    <button className="workflowPrimary" disabled={state.kind === "loading"}>{state.kind === "loading" ? "Enviando…" : "Solicitar verificación de residencia"}</button>
+    <p className="workflowHelp">No pedimos historias clÃ­nicas, documentos ni datos sensibles de salud.</p>
+    <button className="workflowPrimary" disabled={state.kind === "loading"}>{state.kind === "loading" ? "Enviandoâ€¦" : "Solicitar verificaciÃ³n de residencia"}</button>
     <SubmitNotice state={state} />
   </form>;
 }
@@ -95,13 +95,13 @@ export function InviteFamilyForm({ facilityName }: { facilityName: string }) {
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setState({ kind: "loading", message: "Enviando invitación…" });
+    setState({ kind: "loading", message: "Enviando invitaciÃ³nâ€¦" });
     try {
       const res = await postJson("/api/account/family-invitations", { email }) as { message?: string };
-      setState({ kind: "success", message: res.message || "Invitación enviada al familiar." });
+      setState({ kind: "success", message: res.message || "InvitaciÃ³n enviada al familiar." });
       setEmail("");
     } catch (error) {
-      setState({ kind: "error", message: error instanceof Error ? error.message : "No se pudo enviar la invitación." });
+      setState({ kind: "error", message: error instanceof Error ? error.message : "No se pudo enviar la invitaciÃ³n." });
     }
   }
 
@@ -119,10 +119,10 @@ export function InviteFamilyForm({ facilityName }: { facilityName: string }) {
         />
       </label>
       <p className="workflowHelp">
-        Se le enviará un correo para unirse a Arandú y compartir su experiencia respecto a {facilityName}.
+        Se le enviarÃ¡ un correo para unirse a ArandÃº y compartir su experiencia respecto a {facilityName}.
       </p>
       <button className="workflowPrimary" disabled={state.kind === "loading"}>
-        {state.kind === "loading" ? "Enviando…" : "Enviar invitación al familiar"}
+        {state.kind === "loading" ? "Enviandoâ€¦" : "Enviar invitaciÃ³n al familiar"}
       </button>
       <SubmitNotice state={state} />
     </form>
@@ -133,14 +133,14 @@ export function InviteFamilyForm({ facilityName }: { facilityName: string }) {
 export function RepresentationRequestForm({ facilities }: { facilities: FacilityOption[] }) {
   const router = useRouter(); const [state, setState] = useState<NoticeState>({ kind: "idle", message: "" });
   async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault(); const data = new FormData(event.currentTarget); setState({ kind: "loading", message: "Enviando solicitud…" });
-    try { await postJson("/api/institutional/representation-claims", { facilityId: Number(data.get("facilityId")) }); setState({ kind: "success", message: "Solicitud recibida. Administración comprobará la autorización." }); router.refresh(); }
+    event.preventDefault(); const data = new FormData(event.currentTarget); setState({ kind: "loading", message: "Enviando solicitudâ€¦" });
+    try { await postJson("/api/institutional/representation-claims", { facilityId: String(data.get("facilityId")).startsWith("DEMO-") ? String(data.get("facilityId")) : Number(data.get("facilityId")) }); setState({ kind: "success", message: "Solicitud recibida. AdministraciÃ³n comprobarÃ¡ la autorizaciÃ³n." }); router.refresh(); }
     catch (error) { setState({ kind: "error", message: error instanceof Error ? error.message : "No se pudo enviar." }); }
   }
   return <form className="workflowForm" onSubmit={submit}>
-    <label className="workflowField"><strong>ELEPEM que representás</strong><select name="facilityId" required defaultValue=""><option value="" disabled>Seleccionar ELEPEM</option>{facilities.map((facility) => <option key={facility.id} value={facility.id}>{facility.name} · {facility.department}</option>)}</select></label>
-    <p className="workflowHelp">La solicitud no da acceso automático. Administración comprobará la autorización antes de habilitar el portal.</p>
-    <button className="workflowPrimary" disabled={state.kind === "loading"}>{state.kind === "loading" ? "Enviando…" : "Solicitar representación"}</button>
+    <label className="workflowField"><strong>ELEPEM que representÃ¡s</strong><select name="facilityId" required defaultValue=""><option value="" disabled>Seleccionar ELEPEM</option>{facilities.map((facility) => <option key={facility.id} value={facility.id}>{facility.name} Â· {facility.department}</option>)}</select></label>
+    <p className="workflowHelp">La solicitud no da acceso automÃ¡tico. AdministraciÃ³n comprobarÃ¡ la autorizaciÃ³n antes de habilitar el portal.</p>
+    <button className="workflowPrimary" disabled={state.kind === "loading"}>{state.kind === "loading" ? "Enviandoâ€¦" : "Solicitar representaciÃ³n"}</button>
     <SubmitNotice state={state} />
   </form>;
 }
@@ -150,13 +150,13 @@ export function WorkflowDecisionButtons({ endpoint, payload, kind, status }: { e
   const actions = status === "pending"
     ? [{ value: "approve", label: kind === "verification" ? "Verificar" : "Aprobar", icon: Check }, { value: "reject", label: "Rechazar", icon: X }]
     : kind === "verification" && status === "verified"
-      ? [{ value: "dispute", label: "Poner en revisión", icon: Clock3 }, { value: "revoke", label: "Revocar", icon: X }]
+      ? [{ value: "dispute", label: "Poner en revisiÃ³n", icon: Clock3 }, { value: "revoke", label: "Revocar", icon: X }]
       : kind === "representation" && ["active", "suspended"].includes(status)
         ? [{ value: status === "active" ? "suspend" : "approve", label: status === "active" ? "Suspender" : "Reactivar", icon: Clock3 }, { value: "revoke", label: "Revocar", icon: X }]
         : [];
   async function decide(action: string) {
-    setState({ kind: "loading", message: "Guardando…" });
-    try { await postJson(endpoint, { ...payload, action }); setState({ kind: "success", message: "Decisión guardada." }); router.refresh(); }
+    setState({ kind: "loading", message: "Guardandoâ€¦" });
+    try { await postJson(endpoint, { ...payload, action }); setState({ kind: "success", message: "DecisiÃ³n guardada." }); router.refresh(); }
     catch (error) { setState({ kind: "error", message: error instanceof Error ? error.message : "No se pudo guardar." }); }
   }
   if (!actions.length) return null;
@@ -171,7 +171,7 @@ export function AccountRoleEditor({ account }: { account: { userId: string; emai
   const [state, setState] = useState<NoticeState>({ kind: "idle", message: "" });
 
   async function save() {
-    setState({ kind: "loading", message: "Guardando…" });
+    setState({ kind: "loading", message: "Guardandoâ€¦" });
     try {
       await postJson("/api/team/admin/accounts", { userId: account.userId, role });
       setState({ kind: "success", message: "Rol actualizado correctamente." });
@@ -183,7 +183,7 @@ export function AccountRoleEditor({ account }: { account: { userId: string; emai
 
   async function toggleStatus() {
     const next = account.status === "active" ? "suspended" : "active";
-    setState({ kind: "loading", message: "Guardando…" });
+    setState({ kind: "loading", message: "Guardandoâ€¦" });
     try {
       await postJson("/api/team/admin/accounts", { userId: account.userId, status: next });
       setState({ kind: "success", message: next === "active" ? "Acceso reactivado." : "Acceso suspendido." });
@@ -259,11 +259,11 @@ export function InstitutionalRoleAssignmentForm() {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
-    setState({ kind: "loading", message: "Enviando invitación y asignando función…" });
+    setState({ kind: "loading", message: "Enviando invitaciÃ³n y asignando funciÃ³nâ€¦" });
     try {
       await postJson("/api/team/admin/accounts", { email: String(data.get("email") || ""), role: data.get("role") });
       form.reset();
-      setState({ kind: "success", message: "Invitación enviada y función asignada con éxito." });
+      setState({ kind: "success", message: "InvitaciÃ³n enviada y funciÃ³n asignada con Ã©xito." });
       router.refresh();
     } catch (error) {
       setState({ kind: "error", message: error instanceof Error ? error.message : "No se pudo asignar." });
@@ -290,7 +290,7 @@ export function InstitutionalRoleAssignmentForm() {
       <label className="workflowField">
         <span className="fieldLabel">
           <UserCheck size={15} aria-hidden="true" />
-          <strong>Función o rol</strong>
+          <strong>FunciÃ³n o rol</strong>
         </span>
         <select name="role" defaultValue="verifier" className="workflowInput">
           <option value="verifier">Verificador</option>
@@ -301,7 +301,7 @@ export function InstitutionalRoleAssignmentForm() {
 
       <button className="workflowPrimary workflowSubmitBtn" disabled={state.kind === "loading"}>
         <ShieldCheck size={18} />
-        {state.kind === "loading" ? "Enviando…" : "Invitar y asignar función"}
+        {state.kind === "loading" ? "Enviandoâ€¦" : "Invitar y asignar funciÃ³n"}
       </button>
 
       <SubmitNotice state={state} />
@@ -316,7 +316,7 @@ export function WorkflowStatus({ status }: { status: string }) {
     verified: "Verificado",
     active: "Activo",
     suspended: "Suspendido",
-    disputed: "En revisión",
+    disputed: "En revisiÃ³n",
     rejected: "Rechazado",
     revoked: "Revocado",
     expired: "Vencido"
@@ -329,4 +329,5 @@ export function WorkflowStatus({ status }: { status: string }) {
     </span>
   );
 }
+
 
