@@ -4180,6 +4180,128 @@ textarea {
   font-size: 0.9rem;
   line-height: 1.5;
 }
+
+.verifiedResidentBanner {
+  padding: 20px;
+  border-radius: 18px;
+  background: #F0FDF4;
+  border: 1.5px solid #BBF7D0;
+  margin-bottom: 24px;
+}
+
+.verifiedResidentHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.verifiedIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #DCFCE7;
+  color: #15803D;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.verifiedResidentHeader h2 {
+  font-size: 1.15rem;
+  color: #166534;
+  margin: 0 0 2px;
+}
+
+.verifiedFacilityTitle {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 0;
+}
+
+.verifiedFacilityLocation {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 2px 0 0;
+}
+
+.verifiedResidentActions {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #DCFCE7;
+}
+
+.verifiedActionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 10px 18px;
+  border-radius: 12px;
+}
+
+.inviteFamilySection {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #FAFCFE;
+}
+
+.inviteFamilyHeading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.inviteFamilyHeading h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--navy);
+  font-weight: 800;
+}
+
+.inviteIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #DBEAFE;
+  color: var(--blue);
+  display: grid;
+  place-items: center;
+}
+
+.inviteFamilyLead {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0 0 16px;
+  line-height: 1.45;
+}
+
+.workflowPendingCard {
+  padding: 20px;
+  border-radius: 16px;
+  background: #FFFBEB;
+  border: 1.5px solid #FDE68A;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.workflowPendingCard h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #92400E;
+}
+
+.workflowPendingCard p {
+  margin: 0 0 8px;
+  font-size: 0.86rem;
+  color: #78350F;
+  line-height: 1.45;
+}
+
 .workflowPanelHeading {
   display: flex;
   justify-content: space-between;

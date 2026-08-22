@@ -40,8 +40,11 @@ export function RelationshipRequestForm({ facilities }: { facilities: FacilityOp
     const data = new FormData(event.currentTarget);
     setState({ kind: "loading", message: "Enviando solicitud…" });
     try {
-      await postJson("/api/account/relationships", { facilityId: Number(data.get("facilityId")), relationshipType: data.get("relationshipType") });
-      setState({ kind: "success", message: "Solicitud enviada. Un Verificador independiente revisará el vínculo." });
+      await postJson("/api/account/relationships", {
+        facilityId: Number(data.get("facilityId")),
+        relationshipType: "resident",
+      });
+      setState({ kind: "success", message: "Solicitud enviada. Un Verificador independiente revisará tu solicitud de residencia." });
       router.refresh();
     } catch (error) { setState({ kind: "error", message: error instanceof Error ? error.message : "No se pudo enviar." }); }
   }
@@ -68,7 +71,7 @@ export function RelationshipRequestForm({ facilities }: { facilities: FacilityOp
     </label>
 
     <label className="workflowField">
-      <strong>ELEPEM</strong>
+      <strong>Residencial en el que vivís *</strong>
       <select name="facilityId" required defaultValue="">
         <option value="" disabled>Seleccionar ELEPEM</option>
         {filtered.map((facility) => (
@@ -80,14 +83,50 @@ export function RelationshipRequestForm({ facilities }: { facilities: FacilityOp
       {filtered.length === 0 && <span className="workflowFieldHint">No hay resultados para esa búsqueda.</span>}
     </label>
 
-    <fieldset className="workflowChoices"><legend>Tu vínculo</legend>
-      <label><input type="radio" name="relationshipType" value="resident" required /> Persona residente</label>
-      <label><input type="radio" name="relationshipType" value="family" required /> Familiar o persona allegada</label>
-    </fieldset>
-    <p className="workflowHelp">No pedimos el nombre de la persona residente, parentesco exacto, documentos ni datos de salud.</p>
-    <button className="workflowPrimary" disabled={state.kind === "loading"}>{state.kind === "loading" ? "Enviando…" : "Solicitar verificación"}</button>
+    <p className="workflowHelp">No pedimos historias clínicas, documentos ni datos sensibles de salud.</p>
+    <button className="workflowPrimary" disabled={state.kind === "loading"}>{state.kind === "loading" ? "Enviando…" : "Solicitar verificación de residencia"}</button>
     <SubmitNotice state={state} />
   </form>;
+}
+
+export function InviteFamilyForm({ facilityName }: { facilityName: string }) {
+  const [state, setState] = useState<NoticeState>({ kind: "idle", message: "" });
+  const [email, setEmail] = useState("");
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setState({ kind: "loading", message: "Enviando invitación…" });
+    try {
+      const res = await postJson("/api/account/family-invitations", { email }) as { message?: string };
+      setState({ kind: "success", message: res.message || "Invitación enviada al familiar." });
+      setEmail("");
+    } catch (error) {
+      setState({ kind: "error", message: error instanceof Error ? error.message : "No se pudo enviar la invitación." });
+    }
+  }
+
+  return (
+    <form className="workflowForm inviteFamilyForm" onSubmit={submit}>
+      <label className="workflowField">
+        <strong>Correo del familiar o persona allegada</strong>
+        <input
+          type="email"
+          placeholder="familiar@ejemplo.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          autoComplete="email"
+        />
+      </label>
+      <p className="workflowHelp">
+        Se le enviará un correo para unirse a Arandú y compartir su experiencia respecto a {facilityName}.
+      </p>
+      <button className="workflowPrimary" disabled={state.kind === "loading"}>
+        {state.kind === "loading" ? "Enviando…" : "Enviar invitación al familiar"}
+      </button>
+      <SubmitNotice state={state} />
+    </form>
+  );
 }
 
 
