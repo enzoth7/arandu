@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, ArrowRight, Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
+import { ArrowLeft, ArrowRight, Building2, Eye, EyeOff, LockKeyhole, Mail, Phone, UserRound } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { AcademicPrototypeNotice } from "./AcademicPrototypeNotice";
 
@@ -23,10 +23,10 @@ const CONTENT: Record<AccountAccessMode, { title: string; lead: string; submit: 
     busy: "Ingresando…",
   },
   register: {
-    title: "Registrarte",
-    lead: "Ingresá tu correo. Te enviaremos un enlace para confirmarlo y crear tu contraseña.",
-    submit: "Enviar enlace de registro",
-    busy: "Enviando…",
+    title: "Crear una cuenta",
+    lead: "Elegí cómo vas a participar y completá tus datos de contacto.",
+    submit: "Enviar enlace de confirmación",
+    busy: "Enviando enlace…",
   },
   recover: {
     title: "Recuperar contraseña",
@@ -51,10 +51,16 @@ const CONTENT: Record<AccountAccessMode, { title: string; lead: string; submit: 
 export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: AccountAccessProps) {
   const router = useRouter();
   const copy = CONTENT[mode];
+  const isRegister = mode === "register";
   const isPasswordSetup = mode === "password" || mode === "reset";
   const requiresTerms = mode === "register" || mode === "password";
   const needsEmail = !isPasswordSetup;
   const needsPassword = mode === "login" || isPasswordSetup;
+
+  const [accountType, setAccountType] = useState<"personal" | "elepem">("personal");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
@@ -68,6 +74,18 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
     event.preventDefault();
     setMessage("");
     setError("");
+
+    if (isRegister) {
+      if (!firstName.trim() || !lastName.trim()) {
+        setError("Por favor ingresá tu nombre y apellido.");
+        return;
+      }
+      if (!phone.trim() || phone.trim().length < 6) {
+        setError("Por favor ingresá un teléfono de contacto válido.");
+        return;
+      }
+    }
+
     if (requiresTerms && !termsAccepted) {
       setError("Por favor leé y aceptá nuestros Términos y Condiciones antes de continuar.");
       return;
@@ -82,10 +100,17 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
         : mode === "register" ? "/api/auth/register"
           : mode === "recover" ? "/api/auth/recover"
             : "/api/auth/password";
+
+      const payload = mode === "register"
+        ? { email, firstName, lastName, phone, accountType, termsAccepted }
+        : mode === "password"
+          ? { password, termsAccepted }
+          : { email, password };
+
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(mode === "password" ? { password, termsAccepted } : { email, password }),
+        body: JSON.stringify(payload),
       });
       const result = await response.json().catch(() => null) as { message?: string; error?: string } | null;
       if (!response.ok) {
@@ -100,8 +125,11 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
         router.refresh();
         return;
       }
-      setMessage(result?.message || "Revisá tu correo para continuar.");
+      setMessage(result?.message || "Revisá tu correo para confirmar tu cuenta.");
       setEmail("");
+      setFirstName("");
+      setLastName("");
+      setPhone("");
       setTermsAccepted(false);
     } catch {
       setError("No pudimos conectarnos. Volvé a intentarlo.");
@@ -118,10 +146,108 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
         <h1>{copy.title}</h1>
         <p className="accessGateLead">{copy.lead}</p>
         <form className="organizationLoginForm" onSubmit={submit}>
+          {isRegister && (
+            <div className="accountTypeSelector" role="radiogroup" aria-label="Tipo de cuenta">
+              <button
+                type="button"
+                role="radio"
+                aria-checked={accountType === "personal"}
+                className={`accountTypeOption ${accountType === "personal" ? "isSelected" : ""}`}
+                onClick={() => setAccountType("personal")}
+              >
+                <div className="accountTypeIcon"><UserRound size={20} /></div>
+                <div className="accountTypeInfo">
+                  <strong>Registrar como persona</strong>
+                  <small>Cuenta personal para agendar visitas, compartir experiencias o verificar vínculo familiar/residente.</small>
+                </div>
+              </button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked={accountType === "elepem"}
+                className={`accountTypeOption ${accountType === "elepem" ? "isSelected" : ""}`}
+                onClick={() => setAccountType("elepem")}
+              >
+                <div className="accountTypeIcon"><Building2 size={20} /></div>
+                <div className="accountTypeInfo">
+                  <strong>Registrar como ELEPEM</strong>
+                  <small>Para titulares o representantes que solicitan acceso y gestionan la ficha de un establecimiento.</small>
+                </div>
+              </button>
+            </div>
+          )}
+
+          {isRegister && (
+            <div className="accountFormRow2">
+              <label htmlFor="register-firstname">
+                <span>Nombre</span>
+                <div className="accessInput">
+                  <UserRound size={19} aria-hidden="true" />
+                  <input
+                    id="register-firstname"
+                    type="text"
+                    placeholder="Tu nombre"
+                    value={firstName}
+                    onChange={(event) => setFirstName(event.target.value)}
+                    autoComplete="given-name"
+                    required
+                    autoFocus
+                  />
+                </div>
+              </label>
+              <label htmlFor="register-lastname">
+                <span>Apellido</span>
+                <div className="accessInput">
+                  <UserRound size={19} aria-hidden="true" />
+                  <input
+                    id="register-lastname"
+                    type="text"
+                    placeholder="Tu apellido"
+                    value={lastName}
+                    onChange={(event) => setLastName(event.target.value)}
+                    autoComplete="family-name"
+                    required
+                  />
+                </div>
+              </label>
+            </div>
+          )}
+
           {needsEmail && <label htmlFor={`${mode}-email`}>
             <span>{mode === "login" ? "Correo o usuario de transición" : "Correo electrónico"}</span>
-            <div className="accessInput"><Mail size={19} aria-hidden="true" /><input id={`${mode}-email`} type={mode === "login" ? "text" : "email"} value={email} onChange={(event) => setEmail(event.target.value)} autoComplete={mode === "login" ? "username" : "email"} required autoFocus /></div>
+            <div className="accessInput">
+              <Mail size={19} aria-hidden="true" />
+              <input
+                id={`${mode}-email`}
+                type={mode === "login" ? "text" : "email"}
+                placeholder="ejemplo@correo.com"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                autoComplete={mode === "login" ? "username" : "email"}
+                required
+                autoFocus={!isRegister}
+              />
+            </div>
           </label>}
+
+          {isRegister && (
+            <label htmlFor="register-phone">
+              <span>Teléfono de contacto</span>
+              <div className="accessInput">
+                <Phone size={19} aria-hidden="true" />
+                <input
+                  id="register-phone"
+                  type="tel"
+                  placeholder="099 123 456"
+                  value={phone}
+                  onChange={(event) => setPhone(event.target.value)}
+                  autoComplete="tel"
+                  required
+                />
+              </div>
+            </label>
+          )}
+
           {needsPassword && <label htmlFor={`${mode}-password`}>
             <span>{isPasswordSetup ? "Nueva contraseña" : "Contraseña"}</span>
             <div className="accessInput"><LockKeyhole size={19} aria-hidden="true" /><input id={`${mode}-password`} type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={mode === "login" ? "current-password" : "new-password"} minLength={8} maxLength={128} required autoFocus={!needsEmail} /><button className="accessPasswordToggle" type="button" onClick={() => setShowPassword((visible) => !visible)} aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}>{showPassword ? <EyeOff size={19} aria-hidden="true" /> : <Eye size={19} aria-hidden="true" />}</button></div>
@@ -164,3 +290,4 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false }: A
     </div>
   </main>;
 }
+

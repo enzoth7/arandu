@@ -9,7 +9,19 @@ function montevideoIso(value: string) {
   return Number.isFinite(parsed.getTime()) ? parsed.toISOString() : "";
 }
 
-export function VisitBookingForm({ facilityId, facilityName, accountEmail }: { facilityId: number; facilityName: string; accountEmail: string }) {
+export function VisitBookingForm({
+  facilityId,
+  facilityName,
+  accountEmail,
+  defaultContactName = "",
+  defaultContactPhone = "",
+}: {
+  facilityId: number;
+  facilityName: string;
+  accountEmail: string;
+  defaultContactName?: string;
+  defaultContactPhone?: string;
+}) {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -34,9 +46,9 @@ export function VisitBookingForm({ facilityId, facilityName, accountEmail }: { f
     <div className="reportFieldGrid">
       <label className="reportField"><span>Fecha y hora preferida *</span><input name="preferredStartAt" type="datetime-local" min={tomorrow} required /></label>
       <label className="reportField"><span>Cantidad de asistentes *</span><select name="partySize" defaultValue="1">{[1,2,3,4,5,6].map((value) => <option value={value} key={value}>{value}</option>)}</select></label>
-      <label className="reportField"><span>Nombre de contacto *</span><input name="contactName" autoComplete="name" maxLength={120} required /></label>
+      <label className="reportField"><span>Nombre de contacto *</span><input name="contactName" defaultValue={defaultContactName} autoComplete="name" maxLength={120} required /></label>
       <label className="reportField"><span>Correo</span><input name="contactEmail" type="email" autoComplete="email" defaultValue={accountEmail} maxLength={254} /></label>
-      <label className="reportField"><span>Teléfono</span><input name="contactPhone" type="tel" autoComplete="tel" maxLength={32} /></label>
+      <label className="reportField"><span>Teléfono</span><input name="contactPhone" type="tel" autoComplete="tel" defaultValue={defaultContactPhone} maxLength={32} /></label>
     </div>
     <label className="reportField"><span>Nota práctica (opcional)</span><textarea name="practicalNote" maxLength={500} placeholder="Por ejemplo: necesitamos confirmar si la entrada tiene escalones." /><small>No incluyas diagnósticos, historias clínicas, documentos ni datos de residentes.</small></label>
     <label className="reportCheckbox"><input name="acknowledged" type="checkbox" required /><span>Entiendo que esto es una solicitud y no una visita confirmada.</span></label>

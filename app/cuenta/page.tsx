@@ -28,14 +28,26 @@ export default async function AccountPage() {
   const personalRelationships = isTemporaryAdmin ? [] : await loadVerifiedPersonalRelationships(account.userId);
   const relationshipCount = personalRelationships.length;
 
+  const profile = account.profile;
+  const fullName = profile ? `${profile.firstName} ${profile.lastName}`.trim() : "";
+  const isElepemType = profile?.accountType === "elepem";
+
   return <main className="institutionalWorkspace accountWorkspace">
     <TermsAcceptanceModal open={!account.termsAccepted && !isTemporaryAdmin} />
     <header className="accountHero">
       <div className="accountIdentity">
         <div className="accountAvatar" aria-hidden="true"><UserRound size={28} /></div>
         <div>
-          <h1>Mi cuenta</h1>
-          <p className="accountEmail">{account.email}</p>
+          <div className="accountTitleRow">
+            <h1>{fullName || "Mi cuenta"}</h1>
+            <span className={`accountBadge ${isElepemType ? "isElepem" : "isPersonal"}`}>
+              {isElepemType ? "Representante ELEPEM" : "Cuenta personal"}
+            </span>
+          </div>
+          <p className="accountEmail">
+            {account.email}
+            {profile?.phone && <span className="accountPhone"> · {profile.phone}</span>}
+          </p>
         </div>
       </div>
       <AccountLogout />
@@ -50,11 +62,42 @@ export default async function AccountPage() {
       </div>
 
       <div className="accountActionGrid">
+        {account.institutional && <article className="accountActionCard accountInstitutionalCard">
+          <div className="accountCardTopline">
+            <div className="accountCardIcon isInstitutional" aria-hidden="true">
+              {account.institutional.role === "facility_representative" ? <Building2 size={24} /> : <ShieldCheck size={24} />}
+            </div>
+            <span className="accountStatus isInstitutional">Acceso institucional activo</span>
+          </div>
+          <div className="accountCardCopy">
+            <h3>{{ administrator: "Administración", verifier: "Verificación", moderator: "Moderación", support: "Soporte", facility_representative: "Representante de ELEPEM" }[account.institutional.role]}</h3>
+            <p>{account.institutional.role === "facility_representative"
+              ? facilities.length
+                ? `Gestioná ${facilities.length} ELEPEM asignado${facilities.length === 1 ? "" : "s"}.`
+                : "Tu solicitud todavía no tiene una representación activa."
+              : "Accedé al panel separado correspondiente a tu función."}</p>
+          </div>
+          {(account.institutional.role !== "facility_representative" || facilities.length > 0) && <Link className="accountCardLink" href={institutionalHome(account.institutional.role)}>Abrir panel <ArrowRight size={18} aria-hidden="true" /></Link>}
+        </article>}
+
+        {!isTemporaryAdmin && isElepemType && (!account.institutional || account.institutional.role === "facility_representative") && <article className="accountActionCard accountInstitutionalCard">
+          <div className="accountCardIcon isInstitutional" aria-hidden="true"><Building2 size={24} /></div>
+          <div className="accountCardCopy">
+            <h3>Representar un ELEPEM</h3>
+            <p>Solicitá acceso institucional al ELEPEM que gestionás para proponer cambios en su ficha y agenda de visitas.</p>
+          </div>
+          <Link className="accountCardLink" href="/institucional/solicitar-representacion">Solicitar representación <ArrowRight size={18} aria-hidden="true" /></Link>
+        </article>}
+
         {!isTemporaryAdmin && <article className="accountActionCard">
           <div className="accountCardIcon isRelationships" aria-hidden="true"><Link2 size={24} /></div>
-          <div className="accountCardCopy"><h3>Mis vínculos</h3><p>Solicitá y consultá la verificación de un vínculo residente o familiar.</p></div>
+          <div className="accountCardCopy">
+            <h3>Mis vínculos</h3>
+            <p>Solicitá y consultá la verificación de un vínculo residente o familiar para compartir experiencias de residencia.</p>
+          </div>
           <Link className="accountCardLink" href="/cuenta/vinculos">Gestionar vínculos <ArrowRight size={18} aria-hidden="true" /></Link>
         </article>}
+
         {!isTemporaryAdmin && <article className="accountActionCard">
           <div className="accountCardIcon isVisits" aria-hidden="true"><CalendarDays size={24} /></div>
           <div className="accountCardCopy">
@@ -86,25 +129,7 @@ export default async function AccountPage() {
           </Link>}
         </article>}
 
-        {account.institutional && <article className="accountActionCard accountInstitutionalCard">
-          <div className="accountCardTopline">
-            <div className="accountCardIcon isInstitutional" aria-hidden="true">
-              {account.institutional.role === "facility_representative" ? <Building2 size={24} /> : <ShieldCheck size={24} />}
-            </div>
-            <span className="accountStatus isInstitutional">Acceso institucional</span>
-          </div>
-          <div className="accountCardCopy">
-            <h3>{{ administrator: "Administración", verifier: "Verificación", moderator: "Moderación", support: "Soporte", facility_representative: "Representante de ELEPEM" }[account.institutional.role]}</h3>
-            <p>{account.institutional.role === "facility_representative"
-              ? facilities.length
-                ? `Gestioná ${facilities.length} ELEPEM asignado${facilities.length === 1 ? "" : "s"}.`
-                : "Tu solicitud todavía no tiene una representación activa."
-              : "Accedé al panel separado correspondiente a tu función."}</p>
-          </div>
-          {(account.institutional.role !== "facility_representative" || facilities.length > 0) && <Link className="accountCardLink" href={institutionalHome(account.institutional.role)}>Abrir panel <ArrowRight size={18} aria-hidden="true" /></Link>}
-        </article>}
-
-        {!isTemporaryAdmin && (!account.institutional || account.institutional.role === "facility_representative") && <article className="accountActionCard">
+        {!isTemporaryAdmin && !isElepemType && (!account.institutional || account.institutional.role === "facility_representative") && <article className="accountActionCard">
           <div className="accountCardIcon isInstitutional" aria-hidden="true"><Building2 size={24} /></div>
           <div className="accountCardCopy"><h3>Representar un ELEPEM</h3><p>Solicitá acceso institucional a un ELEPEM existente. La aprobación no es automática.</p></div>
           <Link className="accountCardLink" href="/institucional/solicitar-representacion">Solicitar representación <ArrowRight size={18} aria-hidden="true" /></Link>

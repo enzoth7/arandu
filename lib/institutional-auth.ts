@@ -31,9 +31,17 @@ export type InstitutionalSession = {
   facilityIds: number[];
 };
 
+export type AccountProfile = {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  accountType: "personal" | "elepem";
+};
+
 export type AccountSession = {
   userId: string;
   email: string;
+  profile: AccountProfile | null;
   termsAccepted: boolean;
   termsAcceptedAt?: string;
   institutional: InstitutionalSession | null;
@@ -45,6 +53,12 @@ async function validatedAccountSession(): Promise<AccountSession | null> {
   if (temporaryAdmin) return {
     userId: `temporary:${temporaryAdmin.username}`,
     email: temporaryAdmin.username,
+    profile: {
+      firstName: "Admin",
+      lastName: "Demostración",
+      phone: "",
+      accountType: "elepem",
+    },
     termsAccepted: true,
     institutional: { userId: `temporary:${temporaryAdmin.username}`, identity: temporaryAdmin.username,
       email: temporaryAdmin.username, role: "administrator", status: "active", facilityIds: [] },
@@ -56,27 +70,59 @@ async function validatedAccountSession(): Promise<AccountSession | null> {
     ? data.user.user_metadata.terms_accepted_at
     : undefined;
   const termsAccepted = Boolean(termsAcceptedAt);
-  const rows = await querySupabaseDatabase<{
-    role: InstitutionalRole;
-    status: "active" | "suspended" | "revoked";
-    facility_ids: string[];
-  }>(`SELECT account.role, account.status,
-       COALESCE(array_agg(membership.elepem_id::text ORDER BY membership.elepem_id)
-         FILTER (WHERE membership.elepem_id IS NOT NULL), '{}') AS facility_ids
-     FROM public.institutional_accounts AS account
-     LEFT JOIN public.facility_memberships AS membership
-       ON membership.user_id = account.user_id
-      AND membership.status = 'active'
-      AND (membership.valid_until IS NULL OR membership.valid_until > now())
-     WHERE account.user_id = $1
-     GROUP BY account.role, account.status`, [data.user.id]);
-  const account = rows[0];
+
+  const [accountRows, profileRows] = await Promise.all([
+    querySupabaseDatabase<{
+      role: InstitutionalRole;
+      status: "active" | "suspended" | "revoked";
+      facility_ids: string[];
+    }>(`SELECT account.role, account.status,
+         COALESCE(array_agg(membership.elepem_id::text ORDER BY membership.elepem_id)
+           FILTER (WHERE membership.elepem_id IS NOT NULL), '{}') AS facility_ids
+       FROM public.institutional_accounts AS account
+       LEFT JOIN public.facility_memberships AS membership
+         ON membership.user_id = account.user_id
+        AND membership.status = 'active'
+        AND (membership.valid_until IS NULL OR membership.valid_until > now())
+       WHERE account.user_id = $1
+       GROUP BY account.role, account.status`, [data.user.id]),
+    querySupabaseDatabase<{
+      first_name: string;
+      last_name: string;
+      phone: string;
+      account_type: "personal" | "elepem";
+    }>(`SELECT first_name, last_name, phone, account_type
+       FROM public.user_profiles
+       WHERE user_id = $1
+       LIMIT 1`, [data.user.id]),
+  ]);
+
+  const profileRow = profileRows[0];
+  const meta = data.user.user_metadata || {};
+  const profile: AccountProfile | null = profileRow
+    ? {
+        firstName: profileRow.first_name,
+        lastName: profileRow.last_name,
+        phone: profileRow.phone,
+        accountType: profileRow.account_type || "personal",
+      }
+    : (meta.first_name || meta.nombre)
+      ? {
+          firstName: String(meta.first_name || meta.nombre || ""),
+          lastName: String(meta.last_name || meta.apellido || ""),
+          phone: String(meta.phone || meta.telefono || ""),
+          accountType: meta.account_type === "elepem" ? "elepem" : "personal",
+        }
+      : null;
+
+  const account = accountRows[0];
   const email = data.user.email || "";
-  if (!account || account.status !== "active") return { userId: data.user.id, email, termsAccepted, termsAcceptedAt, institutional: null };
+  if (!account || account.status !== "active") return { userId: data.user.id, email, profile, termsAccepted, termsAcceptedAt, institutional: null };
   const facilityIds = account.facility_ids.map(Number).filter((id) => Number.isSafeInteger(id) && id > 0);
   return {
     userId: data.user.id,
     email,
+    profile,
     termsAccepted,
     termsAcceptedAt,
     institutional: { userId: data.user.id, identity: data.user.id, email, role: account.role, status: "active", facilityIds },

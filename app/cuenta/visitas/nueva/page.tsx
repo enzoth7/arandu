@@ -19,8 +19,18 @@ export default async function NewVisitPage({ searchParams }: { searchParams: Pro
   const facility = await loadPublicFacilityByRegistryId(facilityId);
   if (!facility) notFound();
   const available = await facilityHasVisitAgenda(facilityId);
+  const contactName = account.profile ? `${account.profile.firstName} ${account.profile.lastName}`.trim() : "";
+  const contactPhone = account.profile?.phone || "";
+
   return <main className="visitBookingPage">{available
-    ? <VisitBookingForm facilityId={facilityId} facilityName={facility.name} accountEmail={account.email} />
+    ? <VisitBookingForm
+        facilityId={facilityId}
+        facilityName={facility.name}
+        accountEmail={account.email}
+        defaultContactName={contactName}
+        defaultContactPhone={contactPhone}
+      />
     : <section className="visitUnavailable"><h1>Agenda no disponible</h1><p>Este ELEPEM todavía no gestiona visitas desde Arandú. Podés usar los datos públicos de contacto de su ficha.</p><Link className="reportContinue" href={`/elepem/${facility.id}`}>Volver a la ficha</Link></section>}
   </main>;
 }
+

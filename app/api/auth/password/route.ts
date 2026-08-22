@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "../../../../lib/supabase/server";
+import { upsertUserProfile } from "../../../../lib/user-profile-db";
 
 export const runtime = "nodejs";
 
@@ -20,5 +21,25 @@ export async function POST(request: NextRequest) {
   
   const { error } = await supabase.auth.updateUser({ password });
   if (error) return NextResponse.json({ error: "No pudimos guardar esa contraseña. Probá con una diferente." }, { status: 400, headers: { "Cache-Control": "no-store" } });
+
+  const meta = data.user.user_metadata || {};
+  const firstName = String(meta.first_name || meta.nombre || "").trim();
+  const lastName = String(meta.last_name || meta.apellido || "").trim();
+  const phone = String(meta.phone || meta.telefono || "").trim();
+  const accountType = meta.account_type === "elepem" ? "elepem" : "personal";
+
+  if (firstName || lastName || phone) {
+    await upsertUserProfile({
+      userId: data.user.id,
+      firstName: firstName || "Usuario",
+      lastName: lastName || "",
+      phone: phone || "",
+      accountType,
+    }).catch((err) => {
+      console.error("Failed to upsert user profile on password set:", err);
+    });
+  }
+
   return NextResponse.json({ updated: true }, { headers: { "Cache-Control": "no-store" } });
 }
+
