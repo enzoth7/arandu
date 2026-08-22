@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LogIn, LogOut, Menu } from "lucide-react";
+import { LogIn, LogOut, Menu, UserRound } from "lucide-react";
 import {
   homeFor,
   navItemsFor,
@@ -18,17 +18,35 @@ import { AcademicPrototypeNotice } from "./AcademicPrototypeNotice";
 //
 // La navegación usa <Link>: son enlaces reales, así que funcionan con clic
 // central, «abrir en pestaña nueva» y lectores de pantalla, y Next los precarga.
-// El público no tiene sesión, así que no muestra «Salir»; en su lugar ofrece un
-// acceso institucional discreto.
+// Si el usuario inició sesión, muestra «Hola, [Nombre]» con acceso directo a /cuenta.
 
 export function PortalChrome({ portal, children }: { portal: Portal; children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [userSession, setUserSession] = useState<{ displayName: string } | null>(null);
   const isInstitutional = portal !== "public";
+
+  useEffect(() => {
+    let active = true;
+    fetch("/api/auth/me")
+      .then((res) => res.json())
+      .then((data) => {
+        if (active && data.authenticated) {
+          setUserSession({ displayName: data.displayName });
+        } else if (active) {
+          setUserSession(null);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, [pathname]);
 
   const signOut = async () => {
     await fetch("/api/auth/logout", { method: "POST" }).catch(() => undefined);
+    setUserSession(null);
     router.push("/iniciar-sesion");
     router.refresh();
   };
@@ -79,9 +97,13 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
             ? <button type="button" className="profileReset" onClick={signOut}>
                 <LogOut size={16}/><span>Salir</span>
               </button>
-            : <Link className="institutionalAccess" href={ACCOUNT_LOGIN}>
-                <LogIn size={16}/><span>Acceso institucional</span>
-              </Link>}
+            : userSession
+              ? <Link className="institutionalAccess hasSession" href="/cuenta" title={`Mi cuenta (${userSession.displayName})`}>
+                  <UserRound size={16}/><span>Hola, {userSession.displayName}</span>
+                </Link>
+              : <Link className="institutionalAccess" href={ACCOUNT_LOGIN}>
+                  <LogIn size={16}/><span>Acceso institucional</span>
+                </Link>}
         </div>
       </div>
     </header>
@@ -99,10 +121,15 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
             <span>Información para elegir</span>
           </div>
           <nav className="aranduFooterLinks" aria-label="Enlaces del pie">
-            <Link href="/iniciar-sesion">Acceso institucional</Link>
+            {userSession ? (
+              <Link href="/cuenta">Mi cuenta ({userSession.displayName})</Link>
+            ) : (
+              <Link href="/iniciar-sesion">Acceso institucional</Link>
+            )}
           </nav>
         </div>}
       </footer>
     </div>
   </main>;
 }
+

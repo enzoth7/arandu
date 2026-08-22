@@ -8135,6 +8135,9 @@ textarea {
   font-size: .86rem;
   font-weight: 700;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   transition: background .16s, border-color .16s, color .16s;
 }
 
@@ -8143,6 +8146,18 @@ textarea {
   border-color: #fff;
   color: #fff;
 }
+
+.tools .institutionalAccess.hasSession {
+  background: rgba(255, 255, 255, .14);
+  border-color: rgba(255, 255, 255, .45);
+  color: #ffffff;
+}
+
+.tools .institutionalAccess.hasSession:hover {
+  background: rgba(255, 255, 255, .24);
+  border-color: #ffffff;
+}
+
 
 /* La marca es un enlace al inicio del portal, no un botón de reinicio. */
 .brand {
@@ -10527,6 +10542,14 @@ select:not(:disabled) {
   .brandMark { width: 42px; height: 42px; }
   .brandWordmark { font-size: 1.25rem; }
   .tools .institutionalAccess span { display: none; }
+  .tools .institutionalAccess.hasSession span {
+    display: inline;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .banner { border-radius: 13px; }
   .aranduDemoBanner {
     width: calc(100% - 20px);
