@@ -34,7 +34,6 @@ export default async function AccountPage() {
       <div className="accountIdentity">
         <div className="accountAvatar" aria-hidden="true"><UserRound size={28} /></div>
         <div>
-          <p className="accountEyebrow">Tu espacio en Arandú</p>
           <h1>Mi cuenta</h1>
           <p className="accountEmail">{account.email}</p>
         </div>
