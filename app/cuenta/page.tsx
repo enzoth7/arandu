@@ -128,12 +128,6 @@ export default async function AccountPage() {
             Compartir una experiencia <ArrowRight size={18} aria-hidden="true" />
           </Link>}
         </article>}
-
-        {!isTemporaryAdmin && !isElepemType && (!account.institutional || account.institutional.role === "facility_representative") && <article className="accountActionCard">
-          <div className="accountCardIcon isInstitutional" aria-hidden="true"><Building2 size={24} /></div>
-          <div className="accountCardCopy"><h3>Representar un ELEPEM</h3><p>Solicitá acceso institucional a un ELEPEM existente. La aprobación no es automática.</p></div>
-          <Link className="accountCardLink" href="/institucional/solicitar-representacion">Solicitar representación <ArrowRight size={18} aria-hidden="true" /></Link>
-        </article>}
       </div>
     </section>
   </main>;
