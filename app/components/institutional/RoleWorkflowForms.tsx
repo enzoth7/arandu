@@ -23,8 +23,21 @@ function SubmitNotice({ state }: { state: NoticeState }) {
 export function RelationshipRequestForm({ facilities }: { facilities: FacilityOption[] }) {
   const router = useRouter();
   const [state, setState] = useState<NoticeState>({ kind: "idle", message: "" });
+  const [department, setDepartment] = useState("");
+  const [search, setSearch] = useState("");
+
+  const departments = Array.from(new Set(facilities.map((f) => f.department).filter(Boolean))).sort();
+
+  const filtered = facilities.filter((f) => {
+    const matchDept = !department || f.department === department;
+    const q = search.trim().toLowerCase();
+    const matchSearch = !q || f.name.toLowerCase().includes(q) || (f.locality || "").toLowerCase().includes(q);
+    return matchDept && matchSearch;
+  });
+
   async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault(); const data = new FormData(event.currentTarget);
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
     setState({ kind: "loading", message: "Enviando solicitud…" });
     try {
       await postJson("/api/account/relationships", { facilityId: Number(data.get("facilityId")), relationshipType: data.get("relationshipType") });
@@ -32,8 +45,41 @@ export function RelationshipRequestForm({ facilities }: { facilities: FacilityOp
       router.refresh();
     } catch (error) { setState({ kind: "error", message: error instanceof Error ? error.message : "No se pudo enviar." }); }
   }
+
   return <form className="workflowForm" onSubmit={submit}>
-    <label className="workflowField"><strong>ELEPEM</strong><select name="facilityId" required defaultValue=""><option value="" disabled>Seleccionar ELEPEM</option>{facilities.map((facility) => <option key={facility.id} value={facility.id}>{facility.name} · {facility.locality || facility.department}</option>)}</select></label>
+    <label className="workflowField">
+      <strong>Departamento</strong>
+      <select value={department} onChange={(e) => { setDepartment(e.target.value); setSearch(""); }}>
+        <option value="">Todos los departamentos</option>
+        {departments.map((d) => <option key={d} value={d}>{d}</option>)}
+      </select>
+    </label>
+
+    <label className="workflowField">
+      <strong>Buscar ELEPEM</strong>
+      <input
+        type="search"
+        placeholder="Nombre o localidad…"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="workflowSearchInput"
+        autoComplete="off"
+      />
+    </label>
+
+    <label className="workflowField">
+      <strong>ELEPEM</strong>
+      <select name="facilityId" required defaultValue="">
+        <option value="" disabled>Seleccionar ELEPEM</option>
+        {filtered.map((facility) => (
+          <option key={facility.id} value={facility.id}>
+            {facility.name} · {facility.locality || facility.department}
+          </option>
+        ))}
+      </select>
+      {filtered.length === 0 && <span className="workflowFieldHint">No hay resultados para esa búsqueda.</span>}
+    </label>
+
     <fieldset className="workflowChoices"><legend>Tu vínculo</legend>
       <label><input type="radio" name="relationshipType" value="resident" required /> Persona residente</label>
       <label><input type="radio" name="relationshipType" value="family" required /> Familiar o persona allegada</label>
@@ -43,6 +89,7 @@ export function RelationshipRequestForm({ facilities }: { facilities: FacilityOp
     <SubmitNotice state={state} />
   </form>;
 }
+
 
 export function RepresentationRequestForm({ facilities }: { facilities: FacilityOption[] }) {
   const router = useRouter(); const [state, setState] = useState<NoticeState>({ kind: "idle", message: "" });

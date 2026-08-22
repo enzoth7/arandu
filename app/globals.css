@@ -4113,6 +4113,11 @@ textarea {
   background: #FFFFFF;
   outline: 3px solid color-mix(in srgb, var(--focus) 35%, transparent);
 }
+.workflowFieldHint {
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding: 2px 4px;
+}
 .workflowChoices {
   display: grid;
   gap: 10px;
