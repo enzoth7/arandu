@@ -1,7 +1,8 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, Check, ShieldCheck } from "lucide-react";
-import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import Link from "next/link";
+import { ArrowLeft, ArrowRight, Check, Compass, Paperclip, ShieldCheck, X } from "lucide-react";
+import { useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import {
   BRIEF_EXPERIENCE_RATINGS,
   BRIEF_EXPERIENCE_SECTIONS,
@@ -23,6 +24,7 @@ export function ExperienceForm({ relationships, initialFacilityKey }: { relation
   const [reviewing, setReviewing] = useState(false);
   const [answers, setAnswers] = useState<Answer[]>(emptyAnswers);
   const [comment, setComment] = useState("");
+  const [attachedFile, setAttachedFile] = useState<File | null>(null);
   const [publicationConsent, setPublicationConsent] = useState(true);
   const [sendToFacility, setSendToFacility] = useState(false);
   const [shareContactWithFacility, setShareContactWithFacility] = useState(false);
@@ -31,6 +33,7 @@ export function ExperienceForm({ relationships, initialFacilityKey }: { relation
   const [error, setError] = useState("");
   const [result, setResult] = useState<{ caseCode: string; message: string } | null>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const relationship = relationships.find((item) => item.selectionKey === facilityKey) ?? relationships[0];
   const section = BRIEF_EXPERIENCE_SECTIONS[step];
   const answer = answers[step];
@@ -57,6 +60,18 @@ export function ExperienceForm({ relationships, initialFacilityKey }: { relation
     if (reviewing) setReviewing(false);
     else setStep((value) => Math.max(0, value - 1));
   }
+
+  function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    if (file.size > 10 * 1024 * 1024) {
+      setError("El archivo no puede superar los 10 MB.");
+      return;
+    }
+    setAttachedFile(file);
+    setError("");
+  }
+
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!reviewing) return continueForward();
@@ -116,7 +131,51 @@ export function ExperienceForm({ relationships, initialFacilityKey }: { relation
         const label = stored.skipped ? "Omitida" : BRIEF_EXPERIENCE_RATINGS.find((rating) => rating.value === stored.rating)?.label || "Sin respuesta";
         return <button type="button" key={item.id} onClick={() => { setStep(index); setReviewing(false); }}><span>{item.title}</span><strong>{label}</strong></button>;
       })}</div>
-      <label className={styles.comment}><span>{briefExperienceCommentPrompt(relationship.relationshipType)}</span><textarea maxLength={1200} value={comment} onChange={(event) => setComment(event.target.value)} /><small>{comment.length}/1200 · Opcional</small></label>
+
+      <div className={styles.commentSection}>
+        <label className={styles.comment}>
+          <span>{briefExperienceCommentPrompt(relationship.relationshipType)}</span>
+          <textarea maxLength={1200} value={comment} onChange={(event) => setComment(event.target.value)} placeholder="Escribí aquí tu comentario o testimonio..." />
+          <small>{comment.length}/1200 · Opcional</small>
+        </label>
+
+        <div className={styles.attachmentGroup}>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
+            onChange={handleFileChange}
+            className={styles.fileInputHidden}
+            id="experience-attachment"
+          />
+          {!attachedFile ? (
+            <button
+              type="button"
+              className={styles.attachmentBtn}
+              onClick={() => fileInputRef.current?.click()}
+            >
+              <Paperclip size={18} aria-hidden="true" />
+              <span>Adjuntar un archivo (opcional)</span>
+            </button>
+          ) : (
+            <div className={styles.attachmentPreview}>
+              <Paperclip size={16} aria-hidden="true" />
+              <span className={styles.attachmentName}>{attachedFile.name} ({(attachedFile.size / 1024).toFixed(1)} KB)</span>
+              <button
+                type="button"
+                className={styles.removeAttachmentBtn}
+                onClick={() => {
+                  setAttachedFile(null);
+                  if (fileInputRef.current) fileInputRef.current.value = "";
+                }}
+              >
+                <X size={15} /> Quitar
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
       <fieldset className={styles.consents}><legend>Autorizaciones separadas</legend>
         <label><input type="checkbox" checked={publicationConsent} onChange={(event) => setPublicationConsent(event.target.checked)} /><span>Puede considerarse para publicación anónima después de la moderación.</span></label>
         <label><input type="checkbox" checked={sendToFacility} onChange={(event) => setSendToFacility(event.target.checked)} /><span>Puede enviarse un mensaje moderado al ELEPEM.</span></label>
@@ -136,5 +195,24 @@ export function ExperienceForm({ relationships, initialFacilityKey }: { relation
 }
 
 function ConcernHelp() {
-  return <aside className={styles.concernHelp}><strong>¿Te preocupa una situación?</strong><span>Podés llamar gratis al <a href="tel:08001811">0800 1811</a> o desde Antel al <a href="tel:*1811">*1811</a>.</span></aside>;
+  return (
+    <aside className={styles.officialChannelsCard}>
+      <div className={styles.officialChannelsLeft}>
+        <span className={styles.officialChannelsIcon}>
+          <Compass size={22} aria-hidden="true" />
+        </span>
+        <div className={styles.officialChannelsInfo}>
+          <span className={styles.officialChannelsEyebrow}>OPCIÓN ADICIONAL</span>
+          <strong>¿Necesitás consultar una situación que te preocupa?</strong>
+          <p>
+            Arandú no recibe ni canaliza denuncias. Este acceso solamente reúne canales oficiales para que puedas comunicarte directamente con el organismo correspondiente.
+          </p>
+        </div>
+      </div>
+      <Link href="/preocupacion" className={styles.officialChannelsBtn} target="_blank">
+        Ver canales oficiales
+      </Link>
+    </aside>
+  );
 }
+

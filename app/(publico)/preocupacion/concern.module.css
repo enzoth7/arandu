@@ -1,0 +1,238 @@
+.page {
+  min-height: calc(100vh - 72px);
+  padding: clamp(24px, 4vw, 56px);
+  background: #f1f7fc;
+  color: var(--text);
+}
+
+.container {
+  width: min(880px, 100%);
+  margin: 0 auto;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--blue);
+  font-weight: 750;
+  font-size: 0.9rem;
+  text-decoration: none;
+  margin-bottom: 24px;
+  transition: color 0.15s;
+}
+
+.backLink:hover {
+  color: var(--blue2);
+  text-decoration: underline;
+}
+
+.header {
+  background: #ffffff;
+  border: 1px solid #c7dbed;
+  border-radius: 24px;
+  padding: clamp(28px, 4vw, 44px);
+  box-shadow: 0 16px 40px rgba(16, 47, 82, 0.06);
+  margin-bottom: 24px;
+}
+
+.iconBadge {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #E2F2EB;
+  color: #198754;
+  display: grid;
+  place-items: center;
+  margin-bottom: 16px;
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #198754;
+  margin: 0 0 6px;
+}
+
+.header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  line-height: 1.15;
+  color: var(--navy);
+  margin: 0 0 16px;
+  font-weight: 850;
+}
+
+.lead {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+  max-width: 720px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #d4e3f0;
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(16, 47, 82, 0.04);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.cardIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #e6f2fb;
+  color: var(--blue);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.cardHeader h2 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 0 0 4px;
+  line-height: 1.25;
+}
+
+.cardBadge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #198754;
+  background: #eef8f3;
+  padding: 2px 8px;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 0;
+}
+
+.cardDescription {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 0 0 16px;
+  flex-grow: 1;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid #edf4fa;
+}
+
+.phoneLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.phoneLink strong {
+  font-size: 1.05rem;
+  color: var(--navy);
+}
+
+.phoneLink span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.phoneLink:hover strong {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.externalLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--blue);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.externalLink:hover {
+  text-decoration: underline;
+}
+
+.cardFooter {
+  font-size: 0.76rem;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+.emergencyCard {
+  background: #fffdfa;
+  border-color: #fce4b8;
+}
+
+.emergencyIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #fee2e2;
+  color: #dc2626;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.emergencyBadge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #b91c1c;
+  background: #fef2f2;
+  padding: 2px 8px;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 0;
+}
+
+.emergencyPhoneLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #dc2626;
+  text-decoration: none;
+}
+
+.emergencyPhoneLink strong {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #b91c1c;
+}
+
+.emergencyPhoneLink span {
+  font-size: 0.82rem;
+  color: #991b1b;
+}
