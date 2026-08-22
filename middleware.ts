@@ -43,10 +43,25 @@ const store: RateLimitStore = new MemoryRateLimitStore();
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const code = request.nextUrl.searchParams.get("code");
+  const tokenHash = request.nextUrl.searchParams.get("token_hash");
+
+  if ((code || tokenHash) && pathname !== "/auth/callback") {
+    const callbackUrl = new URL("/auth/callback", request.url);
+    if (code) callbackUrl.searchParams.set("code", code);
+    if (tokenHash) callbackUrl.searchParams.set("token_hash", tokenHash);
+    const type = request.nextUrl.searchParams.get("type");
+    if (type) callbackUrl.searchParams.set("type", type);
+    callbackUrl.searchParams.set("next", "/crear-contrasena");
+    callbackUrl.searchParams.set("kind", "signup");
+    return NextResponse.redirect(callbackUrl);
+  }
+
   const match = RULES.find(
     (entry) => entry.method === request.method && entry.pathname.test(pathname),
   );
   if (!match) return refreshSupabaseSession(request);
+
 
   const key = `${match.name}:${clientIdentifier(request.headers)}`;
   const result = store.hit(key, match.rule, Date.now());

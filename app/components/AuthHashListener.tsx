@@ -10,8 +10,25 @@ export function AuthHashListener() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const searchCode = searchParams.get("code");
+    const searchTokenHash = searchParams.get("token_hash");
+    if ((searchCode || searchTokenHash) && pathname !== "/auth/callback") {
+      const cb = new URL("/auth/callback", window.location.origin);
+      if (searchCode) cb.searchParams.set("code", searchCode);
+      if (searchTokenHash) cb.searchParams.set("token_hash", searchTokenHash);
+      const searchType = searchParams.get("type");
+      if (searchType) cb.searchParams.set("type", searchType);
+      cb.searchParams.set("next", "/crear-contrasena");
+      cb.searchParams.set("kind", "signup");
+      window.location.replace(cb.toString());
+      return;
+    }
+
     const hash = window.location.hash;
     if (!hash || !hash.includes("access_token")) return;
+
 
     try {
       const params = new URLSearchParams(hash.replace(/^#/, ""));
