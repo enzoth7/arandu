@@ -180,15 +180,14 @@ export default async function AccountPage() {
           </div>
           <div className="accountCardCopy">
             <h3>Experiencias de residencia</h3>
-            <p>{residentInfo
-              ? `Vinculado al residente ${residentInfo.name} en ${residentInfo.facilityName}. Compartí tu experiencia sobre el residencial.`
-              : relationshipCount > 0
-                ? "Compartí tu experiencia vinculada a un ELEPEM."
-                : "Necesitás un vínculo residente o familiar verificado para participar."}</p>
+            <p>{relationshipCount > 0
+              ? "Compartí tu experiencia vinculada a un ELEPEM."
+              : "Necesitás un vínculo residente o familiar verificado para participar."}</p>
           </div>
           {relationshipCount > 0 && <Link className="accountCardLink" href="/experiencia">
             Compartir una experiencia <ArrowRight size={18} aria-hidden="true" />
           </Link>}
+
 
         </article>}
       </div>
