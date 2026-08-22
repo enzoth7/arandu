@@ -37,7 +37,9 @@ export async function POST(request: NextRequest) {
 
   try {
     const supabase = await createServerSupabaseClient();
-    const callback = new URL("/registrarse", request.nextUrl.origin);
+    const callback = new URL("/auth/callback", request.nextUrl.origin);
+    callback.searchParams.set("next", "/crear-contrasena");
+    callback.searchParams.set("kind", "signup");
     await supabase.auth.signInWithOtp({
       email,
       options: {
@@ -47,12 +49,14 @@ export async function POST(request: NextRequest) {
           account_type: "personal",
           invited_by_resident_id: auth.account.userId,
           facility_id: residentRelationship.facilityId,
+          relationship_type: "family",
         },
       },
     });
   } catch (error) {
     console.error("Family invitation send failed:", error);
   }
+
 
   return NextResponse.json({
     message: `Invitación enviada a ${email}. Tu familiar podrá acceder a Arandú para compartir su experiencia.`,

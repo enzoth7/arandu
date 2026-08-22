@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "../../../../lib/supabase/server";
 import { upsertUserProfile } from "../../../../lib/user-profile-db";
 import { requestRepresentation } from "../../../../lib/role-workflows-db";
+import { querySupabaseDatabase } from "../../../../lib/supabase-db";
 
 export const runtime = "nodejs";
 
@@ -29,6 +30,7 @@ export async function POST(request: NextRequest) {
   const phone = String(meta.phone || meta.telefono || "").trim();
   const accountType = meta.account_type === "elepem" ? "elepem" : "personal";
   const facilityId = Number(meta.facility_id);
+  const invitedByResidentId = typeof meta.invited_by_resident_id === "string" ? meta.invited_by_resident_id : null;
 
   if (firstName || lastName || phone) {
     await upsertUserProfile({
@@ -48,7 +50,27 @@ export async function POST(request: NextRequest) {
     });
   }
 
+  if (invitedByResidentId && Number.isSafeInteger(facilityId) && facilityId > 0) {
+    await querySupabaseDatabase(`
+      insert into public.user_facility_relationships
+        (user_id, elepem_id, relationship_type, status, verified_at, verified_by, valid_until)
+      values
+        ($1::uuid, $2, 'family', 'verified', now(), $3::uuid, now() + interval '365 days')
+      on conflict (user_id, elepem_id)
+      do update set
+        relationship_type = 'family',
+        status = 'verified',
+        verified_at = now(),
+        verified_by = excluded.verified_by,
+        valid_until = now() + interval '365 days',
+        updated_at = now()
+    `, [data.user.id, facilityId, invitedByResidentId]).catch((err) => {
+      console.error("Failed to automatically link invited family relationship:", err);
+    });
+  }
+
   return NextResponse.json({ updated: true }, { headers: { "Cache-Control": "no-store" } });
 }
+
 
 
