@@ -182,11 +182,9 @@ function FacilitySources({ facility }: { facility: Facility }) {
 export function FacilityProfile({
   facility,
   showSources = true,
-  visitAgendaAvailable = false,
 }: {
   facility: Facility;
   showSources?: boolean;
-  visitAgendaAvailable?: boolean;
 }) {
   const photoUrls = facility.photoUrls?.length
     ? facility.photoUrls
@@ -219,9 +217,9 @@ export function FacilityProfile({
             <dd><FacilityPrimaryStatusBadge facility={facility} /></dd>
           </div>
         </dl>
-        <div className={`facilityProfileActions ${visitAgendaAvailable ? "" : "isSingle"}`}>
-          {visitAgendaAvailable && <Link href={`/cuenta/visitas/nueva?elepem=${facility.registryId}`}>Agendar una visita</Link>}
+        <div className="facilityProfileActions">
           <Link href={`/experiencia?elepem=${encodeURIComponent(facility.id)}`}>Dejar una experiencia</Link>
+          <Link href={`/cuenta/visitas`} className="facilityProfileActionsSecondary">Agendar una visita</Link>
         </div>
       </section>
     </div>

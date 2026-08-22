@@ -55,6 +55,12 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
           })}
         </nav>
 
+        {!isInstitutional && (
+          <Link href="/cuenta/visitas" className="headerCtaVisita" onClick={() => setMenuOpen(false)}>
+            Agendar una visita
+          </Link>
+        )}
+
         <div className="tools">
           <button
             type="button"
