@@ -19,7 +19,8 @@ export type View =
   | "mis_elepem"
   | "solicitudes"
   | "nuevo_cambio"
-  | "agenda_visitas";
+  | "agenda_visitas"
+  | "solicitar_representacion";
 
 export type Portal = "public" | "state" | "facility";
 
@@ -47,6 +48,7 @@ const facilityViewPaths: Partial<Record<View, string>> = {
   solicitudes: "/institucional/elepem/solicitudes",
   nuevo_cambio: "/institucional/elepem/solicitudes/nueva",
   agenda_visitas: "/institucional/elepem/visitas",
+  solicitar_representacion: "/institucional/solicitar-representacion",
 };
 
 export type NavItem = { view: View; label: string };
@@ -70,6 +72,7 @@ export const facilityNavItems: readonly NavItem[] = [
   { view: "solicitudes", label: "Solicitudes" },
   { view: "agenda_visitas", label: "Visitas" },
   { view: "nuevo_cambio", label: "Proponer cambio" },
+  { view: "solicitar_representacion", label: "Solicitar representación" },
 ];
 
 export function navItemsFor(portal: Portal) {

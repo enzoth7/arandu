@@ -1,4 +1,4 @@
-﻿import { querySupabaseDatabase } from "./supabase-db";
+import { querySupabaseDatabase } from "./supabase-db";
 import type { Facility } from "../app/components/map-types";
 import type { FacilityProfile } from "./institutional-types";
 
@@ -304,7 +304,7 @@ export async function loadAssignedFacilityProfiles(
       department: facility.department,
       address: facility.address,
       description: facility.description || "",
-      imageUrl: facility.photoUrl || "/arandu-mark.svg",
+      imageUrl: facility.photoUrl || "",
       imageUrls: facility.photoUrls || [],
       imageAlt: row.imagen_alt || "Foto de ${facility.name}",
       phones: facility.contactPhones || [],
@@ -325,7 +325,7 @@ export async function loadAssignedFacilityProfiles(
       department: demo.department,
       address: demo.address,
       description: "ELEPEM de prueba.",
-      imageUrl: "/arandu-mark.svg",
+      imageUrl: "",
       imageUrls: [],
       imageAlt: "Foto de ${demo.name}",
       phones: [],

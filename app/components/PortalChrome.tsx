@@ -93,17 +93,34 @@ export function PortalChrome({ portal, children }: { portal: Portal; children: R
             aria-label="Abrir menú"
           ><Menu size={17}/> Menú</button>
 
-          {isInstitutional
-            ? <button type="button" className="profileReset" onClick={signOut}>
-                <LogOut size={16}/><span>Salir</span>
+          {userSession ? (
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <Link className="institutionalAccess hasSession" href="/cuenta" title={`Mi cuenta (${userSession.displayName})`}>
+                <UserRound size={16}/><span>Hola, {userSession.displayName}</span>
+              </Link>
+              <button 
+                type="button" 
+                onClick={signOut} 
+                title="Cerrar sesión"
+                style={{ 
+                  background: "transparent", 
+                  border: "none", 
+                  color: "#cf170b", 
+                  cursor: "pointer", 
+                  display: "flex", 
+                  padding: "4px", 
+                  borderRadius: "50%",
+                  transition: "background 0.2s"
+                }}
+              >
+                <LogOut size={20}/>
               </button>
-            : userSession
-              ? <Link className="institutionalAccess hasSession" href="/cuenta" title={`Mi cuenta (${userSession.displayName})`}>
-                  <UserRound size={16}/><span>Hola, {userSession.displayName}</span>
-                </Link>
-              : <Link className="institutionalAccess" href={ACCOUNT_LOGIN}>
-                  <LogIn size={16}/><span>Acceso institucional</span>
-                </Link>}
+            </div>
+          ) : (
+            <Link className="institutionalAccess" href={ACCOUNT_LOGIN}>
+              <LogIn size={16}/><span>Acceso institucional</span>
+            </Link>
+          )}
         </div>
       </div>
     </header>

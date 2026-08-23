@@ -151,9 +151,6 @@ export async function POST(request: NextRequest, context: { params: Promise<{ ca
         if (purpose === "facility_photo" && rows[0].entry_type !== "facility_change") {
           return NextResponse.json({ error: "Ese tipo de adjunto no corresponde a este expediente." }, { status: 400 });
         }
-        if (rows[0].entry_type === "facility_change" && purpose !== "facility_photo") {
-          return NextResponse.json({ error: "Las solicitudes de cambio solo admiten fotografías autorizadas." }, { status: 400 });
-        }
         reportId = rows[0].id;
       }
     } catch (err) {

@@ -121,7 +121,18 @@ export function ExperienceForm({ relationships, initialFacilityKey }: { relation
             </fieldset>
           );
         })()}
-        <button type="button" className={styles.skip} onClick={() => updateAnswer({ rating: null, reasonIds: [], skipped: true })}>{answer.skipped ? "Sección omitida" : "Omitir esta sección"}</button>
+        {answer.rating === "unrated" && !answer.skipped && (
+          <div className={styles.privacy} style={{ marginTop: 26 }}>
+            <span style={{ fontSize: "0.95rem", color: "#102f52", fontWeight: 500 }}>
+              Esta sección quedará registrada sin una valoración porque no contás con información suficiente.
+            </span>
+          </div>
+        )}
+        <button type="button" className={styles.skip} onClick={() => {
+          updateAnswer({ rating: null, reasonIds: [], skipped: true });
+          if (step < BRIEF_EXPERIENCE_SECTIONS.length - 1) setStep((value) => value + 1);
+          else setReviewing(true);
+        }}>Omitir esta sección</button>
       </section>
     </> : <section className={styles.review}>
 
@@ -129,7 +140,7 @@ export function ExperienceForm({ relationships, initialFacilityKey }: { relation
       <div className={styles.summary}>{BRIEF_EXPERIENCE_SECTIONS.map((item, index) => {
         const stored = answers[index];
         const label = stored.skipped ? "Omitida" : BRIEF_EXPERIENCE_RATINGS.find((rating) => rating.value === stored.rating)?.label || "Sin respuesta";
-        return <button type="button" key={item.id} onClick={() => { setStep(index); setReviewing(false); }}><span>{item.title}</span><strong>{label}</strong></button>;
+        return <button type="button" key={item.id} onClick={() => { setStep(index); setReviewing(false); }}><span>{item.title}</span><strong data-rating={stored.skipped ? "unrated" : (stored.rating ?? "unrated")}>{label}</strong></button>;
       })}</div>
 
       <div className={styles.commentSection}>
@@ -199,7 +210,7 @@ function ConcernHelp() {
     <aside className={styles.officialChannelsCard}>
       <div className={styles.officialChannelsLeft}>
         <span className={styles.officialChannelsIcon}>
-          <Compass size={22} aria-hidden="true" />
+          
         </span>
         <div className={styles.officialChannelsInfo}>
           <span className={styles.officialChannelsEyebrow}>OPCIÓN ADICIONAL</span>

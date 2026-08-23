@@ -219,7 +219,7 @@ export function FacilityProfile({
         </dl>
         <div className="facilityProfileActions">
           <Link href={`/experiencia?elepem=${encodeURIComponent(facility.id)}`}>Dejar una experiencia</Link>
-          <Link href={`/cuenta/visitas`} className="facilityProfileActionsSecondary">Agendar una visita</Link>
+          <Link href={facility.registryId ? `/cuenta/visitas/nueva?elepem=${facility.registryId}` : `/cuenta/visitas`} className="facilityProfileActionsSecondary">Agendar una visita</Link>
         </div>
       </section>
     </div>

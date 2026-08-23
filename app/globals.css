@@ -4567,14 +4567,51 @@ textarea {
   text-transform: uppercase;
 }
 .workflowDecisionArea {
-  padding-top: 14px;
-  margin-top: 14px;
-  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .workflowDecisionButtons {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+.workflowReviewMainRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+}
+.workflowDecisionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+.workflowDecisionBtn:hover { filter: brightness(0.95); }
+.workflowDecisionBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.workflowBtnGreen {
+  background-color: #E6F4EA;
+  color: #137333;
+  border-color: #137333;
+}
+.workflowBtnRed {
+  background-color: #FCE8E6;
+  color: #C5221F;
+  border-color: #C5221F;
+}
+.workflowBtnYellow {
+  background-color: #FEF7E0;
+  color: #B06000;
+  border-color: #B06000;
 }
 .workflowDecisionArea .workflowNotice {
   margin-top: 10px;
@@ -4752,20 +4789,6 @@ textarea {
   opacity: 0.45;
   cursor: not-allowed;
 }
-.moderationPrivacyNotice {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  margin: 0 auto 18px;
-  padding: 13px 16px;
-  border: 1px solid #A3E6C0;
-  border-radius: 12px;
-  background: #EBFBF2;
-  color: #087443;
-  font-size: 0.88rem;
-}
-.moderationPrivacyNotice strong { font-weight: 750; }
-.moderationPrivacyNotice span { color: var(--navy); }
 .accountCardIcon.isRelationships {
   background: var(--bluebg);
   color: var(--blue);
@@ -5461,7 +5484,7 @@ textarea {
   box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--registry-quality-color);
 }
 .registryQualityDot-outstanding { --registry-quality-color: #3f8f00; }
-.registryQualityDot-good { --registry-quality-color: #4b9700; }
+.registryQualityDot-good { --registry-quality-color: #5eba00; }
 .registryQualityDot-requires_improvement { --registry-quality-color: #ff9800; }
 .registryQualityDot-inadequate { --registry-quality-color: #cf170b; }
 .registryQualityDot-unrated { --registry-quality-color: #151a21; }
@@ -8742,7 +8765,7 @@ select:not(:disabled) {
 
 .demoFacilityGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 460px));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 360px));
   gap: 20px;
 }
 
@@ -8756,7 +8779,18 @@ select:not(:disabled) {
 
 .demoFacilityImage {
   position: relative;
-  min-height: 220px;
+  min-height: 180px;
+}
+
+.demoFacilityNoImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 180px;
+  background: #f4f6f8;
+  color: #798a9c;
+  font-size: 0.9rem;
 }
 
 .demoFacilityImage img {
@@ -9313,14 +9347,32 @@ select:not(:disabled) {
   outline-offset: 3px;
 }
 
-.accountInstitutionalCard { grid-column: 1 / -1; min-height: 230px; }
+.accountRepresentCard {
+  background: #D28E00;
+  color: #fff;
+  border-color: #C38300;
+}
+.accountRepresentCard h3, .accountRepresentCard p {
+  color: #fff;
+}
+.accountRepresentCard .accountCardIcon {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+.accountRepresentCard .accountCardLink {
+  background: #fff;
+  color: #D28E00;
+}
+.accountRepresentCard .accountCardLink:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
 
 @media (max-width: 720px) {
   .accountWorkspace { width: min(100% - 24px, 1120px); margin-block: 22px 36px; }
   .accountHero { align-items: flex-start; flex-direction: column; }
   .accountHero .reportBack { width: 100%; }
   .accountActionGrid { grid-template-columns: 1fr; }
-  .accountInstitutionalCard { grid-column: auto; }
+  
 }
 
 @media (max-width: 430px) {
@@ -11780,7 +11832,7 @@ select:not(:disabled) {
 .visitBookingForm .reportCheckbox { margin: 20px 0; }
 .visitBookingForm .reportContinue { width: 100%; justify-content: center; }
 
-.visitDashboard { width: 100%; }
+.visitDashboard { width: 100%; display: grid; gap: 24px; }
 .visitCards { display: grid; gap: 20px; }
 .visitCard {
   padding: clamp(20px, 4vw, 32px);
@@ -11824,11 +11876,22 @@ select:not(:disabled) {
   display: flex;
   gap: 12px;
   align-items: flex-start;
+}
+
+.visitDetailsGrid {
+  display: grid;
+  gap: 20px;
   margin: 24px 0;
 }
 
+@media (min-width: 600px) {
+  .visitDetailsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .visitDate span { display: grid; gap: 2px; }
-.visitPrivateDetails { display: grid; gap: 12px; margin: 20px 0; }
+.visitPrivateDetails { display: grid; gap: 12px; align-content: flex-start; }
 .visitPrivateDetails div { display: grid; grid-template-columns: minmax(100px, 150px) 1fr; gap: 16px; }
 .visitPrivateDetails dt { color: var(--muted); font-weight: 700; }
 .visitPrivateDetails dd { margin: 0; overflow-wrap: anywhere; }
@@ -12187,4 +12250,49 @@ select:not(:disabled) {
   .termsModalBody {
     padding: 24px 18px;
   }
+}
+
+.teamTabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 2px solid #d9e6f2;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.teamTabs::-webkit-scrollbar {
+  display: none;
+}
+
+.teamTab {
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #60788f;
+  background: #f1f7fc;
+  border-radius: 12px 12px 0 0;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-bottom: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.teamTab:hover {
+  background: #eef6fd;
+  color: #173b62;
+}
+
+.teamTab.active {
+  background: #fff;
+  color: #1976b9;
+  border-color: #d9e6f2;
+  margin-bottom: -2px;
+  border-bottom: 2px solid #fff;
+}
+.stateInboxPrivacyNotice {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 6px;
 }

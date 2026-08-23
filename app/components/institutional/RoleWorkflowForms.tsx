@@ -1,8 +1,8 @@
-﻿"use client";
+"use client";
 
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
-import { Check, Clock3, Mail, ShieldCheck, UserCheck, UserRound, X } from "lucide-react";
+import { Check, Clock3, Mail, ShieldCheck, UserCheck, UserRound, X, Building2 } from "lucide-react";
 import type { InstitutionalRole } from "../../../lib/institutional-types";
 import type { FacilityOption } from "../../../lib/role-workflows-db";
 
@@ -159,11 +159,21 @@ export function WorkflowDecisionButtons({ endpoint, payload, kind, status }: { e
     try { await postJson(endpoint, { ...payload, action }); setState({ kind: "success", message: "Decisión guardada." }); router.refresh(); }
     catch (error) { setState({ kind: "error", message: error instanceof Error ? error.message : "No se pudo guardar." }); }
   }
+
   if (!actions.length) return null;
-  return <div className="workflowDecisionArea"><div className="workflowDecisionButtons">{actions.map(({ value, label, icon: Icon }) => <button key={value} type="button" className={value === "approve" ? "workflowPrimary" : "workflowSecondary"} disabled={state.kind === "loading"} onClick={() => void decide(value)}><Icon size={17} /> {label}</button>)}</div><SubmitNotice state={state} /></div>;
+
+  const actionColors: Record<string, string> = {
+    approve: "workflowBtnGreen",
+    reject: "workflowBtnRed",
+    suspend: "workflowBtnYellow",
+    revoke: "workflowBtnRed",
+    dispute: "workflowBtnYellow"
+  };
+
+  return <div className="workflowDecisionArea"><div className="workflowDecisionButtons">{actions.map(({ value, label, icon: Icon }) => <button key={value} type="button" className={`workflowDecisionBtn ${actionColors[value] || "workflowSecondary"}`} disabled={state.kind === "loading"} onClick={() => void decide(value)}><Icon size={17} /> {label}</button>)}</div><SubmitNotice state={state} /></div>;
 }
 
-const ROLE_LABEL: Record<InstitutionalRole, string> = { administrator: "Administrador", verifier: "Verificador", moderator: "Moderador", facility_representative: "Representante" };
+const ROLE_LABEL: Record<InstitutionalRole, string> = { administrator: "Administrador", verifier: "Verificador", moderator: "Moderador", facility_representative: "Representante ELEPEM" };
 
 export function AccountRoleEditor({ account }: { account: { userId: string; email: string; role: InstitutionalRole; status: string } }) {
   const router = useRouter();
@@ -251,18 +261,24 @@ export function AccountRoleEditor({ account }: { account: { userId: string; emai
   );
 }
 
-export function InstitutionalRoleAssignmentForm() {
+export function InstitutionalRoleAssignmentForm({ facilities = [] }: { facilities?: FacilityOption[] }) {
   const router = useRouter();
   const [state, setState] = useState<NoticeState>({ kind: "idle", message: "" });
+  const [role, setRole] = useState("verifier");
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
-    setState({ kind: "loading", message: "Enviando invitación y asignando función…" });
+    setState({ kind: "loading", message: "Enviando invitación y asignando función..." });
     try {
-      await postJson("/api/team/admin/accounts", { email: String(data.get("email") || ""), role: data.get("role") });
+      await postJson("/api/team/admin/accounts", { 
+        email: String(data.get("email") || ""), 
+        role: data.get("role"),
+        facilityId: data.get("facilityId") || undefined 
+      });
       form.reset();
+      setRole("verifier");
       setState({ kind: "success", message: "Invitación enviada y función asignada con éxito." });
       router.refresh();
     } catch (error) {
@@ -292,16 +308,34 @@ export function InstitutionalRoleAssignmentForm() {
           <UserCheck size={15} aria-hidden="true" />
           <strong>Función o rol</strong>
         </span>
-        <select name="role" defaultValue="verifier" className="workflowInput">
+        <select name="role" value={role} onChange={(e) => setRole(e.target.value)} className="workflowInput">
           <option value="verifier">Verificador</option>
           <option value="moderator">Moderador</option>
           <option value="administrator">Administrador</option>
+          <option value="facility_representative">Representante ELEPEM</option>
         </select>
       </label>
 
+      {role === "facility_representative" && (
+        <label className="workflowField">
+          <span className="fieldLabel">
+            <Building2 size={15} aria-hidden="true" />
+            <strong>ELEPEM a asignar</strong>
+          </span>
+          <select name="facilityId" required defaultValue="" className="workflowInput">
+            <option value="" disabled>Seleccionar ELEPEM</option>
+            {facilities.map((facility) => (
+              <option key={facility.id} value={facility.id}>
+                {facility.name} — {facility.department}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
+
       <button className="workflowPrimary workflowSubmitBtn" disabled={state.kind === "loading"}>
         <ShieldCheck size={18} />
-        {state.kind === "loading" ? "Enviando…" : "Invitar y asignar función"}
+        {state.kind === "loading" ? "Enviando..." : "Invitar y asignar función"}
       </button>
 
       <SubmitNotice state={state} />

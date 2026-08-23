@@ -1,11 +1,10 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Building2, Eye, EyeOff, LockKeyhole, Mail, Phone, UserRound } from "lucide-react";
 import { useState, useEffect, type FormEvent } from "react";
-import { AcademicPrototypeNotice } from "./AcademicPrototypeNotice";
 import { createBrowserSupabaseClient } from "../../lib/supabase/browser";
 import type { FacilityOption } from "../../lib/role-workflows-db";
 
@@ -211,7 +210,6 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
   if (isRegister && selectedType === null && !message) {
     return <main className="accessGate">
       <div className="accessGateContent">
-        <AcademicPrototypeNotice />
         <div className="accessGatePanel isLogin">
           <Image src="/arandu-mark.svg" alt="Arandú" className="accessGateLogo isOrganization" width={160} height={160} priority />
           <h1>Registrarte</h1>
@@ -253,7 +251,6 @@ export function AccountAccess({ mode, next = "/cuenta", invalidLink = false, fac
   // Step 2 of registration (or login / recovery / password setup)
   return <main className="accessGate">
     <div className="accessGateContent">
-      <AcademicPrototypeNotice />
       <div className="accessGatePanel isLogin">
         <Image src="/arandu-mark.svg" alt="Arandú" className="accessGateLogo isOrganization" width={160} height={160} priority />
         

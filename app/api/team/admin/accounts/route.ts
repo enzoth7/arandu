@@ -18,9 +18,14 @@ export async function POST(request: NextRequest) {
   const role = input.role ? String(input.role) as InstitutionalRole : undefined;
   const status = input.status ? String(input.status) as "active" | "suspended" | "revoked" : undefined;
   if (email) {
-    if (!/^\S+@\S+\.\S+$/.test(email) || !role || !["administrator", "verifier", "moderator"].includes(role)) {
+    if (!/^\S+@\S+\.\S+$/.test(email) || !role || !ROLES.includes(role)) {
       return NextResponse.json({ error: "Correo o rol inválido." }, { status: 400 });
     }
+    const facilityId = input.facilityId ? (String(input.facilityId).startsWith("DEMO-") ? String(input.facilityId) : Number(input.facilityId)) : undefined;
+    if (role === "facility_representative" && !facilityId) {
+      return NextResponse.json({ error: "Se requiere especificar el ELEPEM para asignar a un representante." }, { status: 400 });
+    }
+
     try {
       const implicitSupabase = (await import("@supabase/supabase-js")).createClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "",
@@ -47,7 +52,8 @@ export async function POST(request: NextRequest) {
       const result = await assignInstitutionalRoleByEmail({
         actorId: auth.session.userId,
         email,
-        role: role as Exclude<InstitutionalRole, "facility_representative">,
+        role,
+        facilityId,
       });
 
       return NextResponse.json(result, { status: 201 });

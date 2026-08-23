@@ -9,27 +9,25 @@ export default async function FacilityHomePage() {
 
   return (
     <section className="institutionalWorkspace">
-      <header className="institutionalPageHeader">
-        <div>
-          <h1>Mis ELEPEM</h1>
-          <p>Consultá los datos registrados y proponé actualizaciones para revisión institucional.</p>
-        </div>
-      </header>
       <div className="demoFacilityGrid">
         {facilities.map((facility) => (
           <article className="demoFacilityCard" key={facility.id}>
             <div className={`demoFacilityImage${(facility.imageUrls?.length || 0) > 1 ? " hasGallery" : ""}`}>
-              {(facility.imageUrls?.length ? facility.imageUrls : [facility.imageUrl]).map((imageUrl, index) => (
-                <Image
-                  src={imageUrl}
-                  alt={index === 0 ? facility.imageAlt : `Foto pública ${index + 1} de ${facility.name}`}
-                  width={720}
-                  height={420}
-                  sizes="(max-width: 760px) 100vw, 33vw"
-                  unoptimized={imageUrl.startsWith("/api/")}
-                  key={imageUrl}
-                />
-              ))}
+              {(facility.imageUrls?.length ? facility.imageUrls : (facility.imageUrl ? [facility.imageUrl] : [])).length > 0 ? (
+                (facility.imageUrls?.length ? facility.imageUrls : [facility.imageUrl]).map((imageUrl, index) => (
+                  <Image
+                    src={imageUrl}
+                    alt={index === 0 ? facility.imageAlt : `Foto pública ${index + 1} de ${facility.name}`}
+                    width={720}
+                    height={420}
+                    sizes="(max-width: 760px) 100vw, 33vw"
+                    unoptimized={imageUrl.startsWith("/api/")}
+                    key={imageUrl}
+                  />
+                ))
+              ) : (
+                <div className="demoFacilityNoImage">Sin imagen disponible</div>
+              )}
             </div>
             <div className="demoFacilityBody">
               <h2>{facility.name}</h2>

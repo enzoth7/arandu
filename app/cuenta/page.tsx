@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import { readAccountSession } from "../../lib/institutional-auth";
 import { loadAssignedFacilityProfiles } from "../../lib/facility-registry";
-import { AccountLogout } from "../components/institutional/AccountLogout";
 import { loadVerifiedPersonalRelationships } from "../../lib/brief-experience-db";
 import { institutionalHome } from "../../lib/institutional-auth";
 import { querySupabaseDatabase } from "../../lib/supabase-db";
@@ -24,6 +23,10 @@ export const dynamic = "force-dynamic";
 export default async function AccountPage() {
   const account = await readAccountSession();
   if (!account) redirect("/iniciar-sesion?next=/cuenta");
+  const isStaff = account.institutional && ["administrator", "verifier", "moderator"].includes(account.institutional.role);
+  if (isStaff) {
+    redirect(institutionalHome(account.institutional!.role));
+  }
   const isTemporaryAdmin = account.userId.startsWith("temporary:");
   const facilities = account.institutional?.role === "facility_representative" ? await loadAssignedFacilityProfiles(account.institutional.facilityIds) : [];
   const personalRelationships = isTemporaryAdmin ? [] : await loadVerifiedPersonalRelationships(account.userId);
@@ -121,7 +124,7 @@ export default async function AccountPage() {
           )}
         </div>
       </div>
-      <AccountLogout />
+      
     </header>
 
 
@@ -135,12 +138,11 @@ export default async function AccountPage() {
       </div>
 
       <div className="accountActionGrid">
-        {account.institutional && <article className="accountActionCard accountInstitutionalCard">
+        {account.institutional && <article className="accountActionCard">
           <div className="accountCardTopline">
             <div className="accountCardIcon isInstitutional" aria-hidden="true">
               {account.institutional.role === "facility_representative" ? <Building2 size={24} /> : <ShieldCheck size={24} />}
             </div>
-            <span className="accountStatus isInstitutional">Acceso institucional activo</span>
           </div>
           <div className="accountCardCopy">
             <h3>{{ administrator: "Administración", verifier: "Verificación", moderator: "Moderación", facility_representative: "Representante de ELEPEM" }[account.institutional.role]}</h3>
@@ -154,7 +156,7 @@ export default async function AccountPage() {
           {(account.institutional.role !== "facility_representative" || facilities.length > 0) && <Link className="accountCardLink" href={institutionalHome(account.institutional.role)}>Abrir panel <ArrowRight size={18} aria-hidden="true" /></Link>}
         </article>}
 
-        {!isInstitutionalAdminOrStaff && !isTemporaryAdmin && isElepemType && (!account.institutional || account.institutional.role === "facility_representative") && <article className="accountActionCard accountInstitutionalCard">
+        {!isInstitutionalAdminOrStaff && !isTemporaryAdmin && isElepemType && (!account.institutional || account.institutional.role === "facility_representative") && <article className="accountActionCard accountRepresentCard">
           <div className="accountCardIcon isInstitutional" aria-hidden="true"><Building2 size={24} /></div>
           <div className="accountCardCopy">
             <h3>Representar un ELEPEM</h3>

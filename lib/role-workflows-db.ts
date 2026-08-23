@@ -154,10 +154,12 @@ export async function decideRelationship(input: {
   });
 }
 
-type MembershipRow = { user_id: string; email: string; elepem_id: string | null; demo_facility_id: string | null; facility_name: string; status: string; requested_at: Date | string; reviewed_at: Date | string | null };
+type MembershipRow = { user_id: string; email: string; elepem_id: string | null; demo_facility_id: string | null; facility_name: string; department: string | null; locality: string | null; status: string; requested_at: Date | string; reviewed_at: Date | string | null };
 export async function listOwnRepresentationClaims(userId: string) {
   const rows = await querySupabaseDatabase<MembershipRow>(`select membership.user_id::text, auth_user.email,
-    membership.elepem_id::text, membership.demo_facility_id, coalesce(facility.nombre, demo.name) as facility_name, membership.status,
+    membership.elepem_id::text, membership.demo_facility_id, coalesce(facility.nombre, demo.name) as facility_name, 
+    coalesce(facility.departamento, demo.department) as department, coalesce(facility.localidad, demo.locality) as locality,
+    membership.status,
     membership.requested_at, membership.reviewed_at
     from public.facility_memberships membership 
     left join public.elepem facility on facility.id = membership.elepem_id
@@ -199,7 +201,9 @@ export async function requestRepresentation(userId: string, facilityId: number |
 
 export async function listRepresentationClaims() {
   const rows = await querySupabaseDatabase<MembershipRow>(`select membership.user_id::text, auth_user.email,
-    membership.elepem_id::text, membership.demo_facility_id, coalesce(facility.nombre, demo.name) as facility_name, membership.status,
+    membership.elepem_id::text, membership.demo_facility_id, coalesce(facility.nombre, demo.name) as facility_name, 
+    coalesce(facility.departamento, demo.department) as department, coalesce(facility.localidad, demo.locality) as locality,
+    membership.status,
     membership.requested_at, membership.reviewed_at
     from public.facility_memberships membership 
     left join public.elepem facility on facility.id = membership.elepem_id
@@ -257,14 +261,50 @@ export async function updateInstitutionalAccount(input: { actorId: string; userI
 export async function assignInstitutionalRoleByEmail(input: {
   actorId: string;
   email: string;
-  role: Exclude<InstitutionalRole, "facility_representative">;
+  role: InstitutionalRole;
+  facilityId?: number | string;
 }) {
   return withSupabaseTransaction(async (client) => {
+    if (input.role === "facility_representative" && !input.facilityId) {
+      throw new RoleWorkflowError(400, "Se requiere un ELEPEM para asignar el rol de representante.");
+    }
+
     const user = await client.query<{ id: string; email: string }>(`select id::text, email
       from auth.users where lower(email) = lower($1) limit 1`, [input.email.trim()]);
+    
     if (!user.rows[0]) {
       return { email: input.email.trim(), role: input.role, status: "active" as const };
     }
+
+    if (input.role === "facility_representative") {
+      const isDemo = typeof input.facilityId === "string" && input.facilityId.startsWith("DEMO-");
+      const facility = isDemo
+        ? await client.query("select 1 from arandu_demo.facilities where id = $1", [input.facilityId])
+        : await client.query("select 1 from public.elepem where id = $1", [input.facilityId]);
+      if (!facility.rows[0]) throw new RoleWorkflowError(404, "No se encontró el ELEPEM.");
+      
+      const priorAcc = await client.query<{ role: InstitutionalRole; status: string }>(`select role, status from public.institutional_accounts where user_id = $1::uuid for update`, [user.rows[0].id]);
+      if (priorAcc.rows[0] && priorAcc.rows[0].role !== "facility_representative") {
+        throw new RoleWorkflowError(409, "La cuenta ya cumple otra función institucional.");
+      }
+      if (!priorAcc.rows[0]) {
+        await client.query(`insert into public.institutional_accounts (user_id, role, status) values ($1::uuid, 'facility_representative', 'active')`, [user.rows[0].id]);
+      } else if (priorAcc.rows[0].status !== "active") {
+        await client.query(`update public.institutional_accounts set status = 'active', updated_at = now() where user_id = $1::uuid`, [user.rows[0].id]);
+      }
+
+      const priorMem = await client.query<{ status: string }>(`select status from public.facility_memberships where user_id = $1::uuid and elepem_id is not distinct from $2::bigint and demo_facility_id is not distinct from $3 for update`, [user.rows[0].id, isDemo ? null : input.facilityId, isDemo ? input.facilityId : null]);
+      
+      if (priorMem.rows[0]) {
+        await client.query(`update public.facility_memberships set status = 'active', verified_at = now(), verified_by = $4::uuid, updated_at = now() where user_id = $1::uuid and elepem_id is not distinct from $2::bigint and demo_facility_id is not distinct from $3`, [user.rows[0].id, isDemo ? null : input.facilityId, isDemo ? input.facilityId : null, input.actorId]);
+      } else {
+        await client.query(`insert into public.facility_memberships (user_id, elepem_id, demo_facility_id, status, requested_at, reviewed_at, verified_at, verified_by) values ($1::uuid, $2, $3, 'active', now(), now(), now(), $4::uuid)`, [user.rows[0].id, isDemo ? null : input.facilityId, isDemo ? input.facilityId : null, input.actorId]);
+      }
+
+      await audit(client, { entityType: "facility_membership", entityKey: `${user.rows[0].id}:${input.facilityId}`, action: "representation_assigned", actor: input.actorId, before: priorMem.rows[0] || null, after: { status: "active", facilityId: input.facilityId } });
+      return { userId: user.rows[0].id, email: user.rows[0].email, role: input.role, status: "active" as const };
+    }
+
     const prior = await client.query<{ role: InstitutionalRole; status: string }>(`select role, status
       from public.institutional_accounts where user_id = $1::uuid for update`, [user.rows[0].id]);
     if (prior.rows[0]) {

@@ -203,7 +203,13 @@ export function StateInbox() {
   return (
     <section className="institutionalWorkspace stateInboxWorkspace">
       <header className="institutionalPageHeader">
-        <div><h1>Revisión estatal</h1><p>Seleccioná una entrada, revisá su información y registrá una acción trazable.</p></div>
+        <div>
+          <h1>Revisión estatal</h1>
+          <p>Seleccioná una entrada, revisá su información y registrá una acción trazable.</p>
+          <p className="stateInboxPrivacyNotice">
+            Las experiencias se muestran seudonimizadas, sin correo, teléfono ni evidencia de verificación.
+          </p>
+        </div>
         <button type="button" className="reportBack" onClick={() => void load()} disabled={loading}><RefreshCw size={17} />Actualizar</button>
       </header>
       {error && <p className="reportFieldError" role="alert"><ShieldAlert size={17} />{error}</p>}
