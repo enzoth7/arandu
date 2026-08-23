@@ -95,7 +95,7 @@ export function ExperienceForm({ relationships, initialFacilityKey }: { relation
 
   return <main className={styles.page}><form className={styles.form} onSubmit={submit} noValidate>
     <header className={styles.header}>
-      <div><p className={styles.eyebrow}>Experiencia verificada</p><h1>Compartí lo esencial</h1><p>Cinco secciones breves. Tu identidad no se muestra al ELEPEM ni al público.</p></div>
+      <div><h1>Revisa tu experiencia</h1></div>
       {relationships.length > 1 ? <label className={styles.facilitySelect}>ELEPEM<select value={facilityKey} onChange={(event) => { setFacilityKey(event.target.value); setAnswers(emptyAnswers()); setStep(0); setReviewing(false); }}>
         {relationships.map((item) => <option key={item.selectionKey} value={item.selectionKey}>{item.facilityName}</option>)}
       </select></label> : <div className={styles.facilityName}><span>ELEPEM</span><strong>{relationship.facilityName}</strong><small>{relationship.locality} · {relationship.department}</small></div>}
@@ -136,7 +136,7 @@ export function ExperienceForm({ relationships, initialFacilityKey }: { relation
       </section>
     </> : <section className={styles.review}>
 
-      <p className={styles.eyebrow}>Revisión final</p><h2 tabIndex={-1} ref={headingRef}>Revisá antes de enviar</h2>
+      <h2 tabIndex={-1} ref={headingRef}>Revisá antes de enviar</h2>
       <div className={styles.summary}>{BRIEF_EXPERIENCE_SECTIONS.map((item, index) => {
         const stored = answers[index];
         const label = stored.skipped ? "Omitida" : BRIEF_EXPERIENCE_RATINGS.find((rating) => rating.value === stored.rating)?.label || "Sin respuesta";
