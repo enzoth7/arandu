@@ -106,7 +106,7 @@ export function ExperienceForm({ relationships, initialFacilityKey }: { relation
       <section className={styles.question}>
         <p className={styles.sectionTitle}>{section.title}</p>
         <h2 tabIndex={-1} ref={headingRef}>{relationship.relationshipType === "resident" ? section.residentPrompt : section.familyPrompt}</h2>
-        <div className={styles.ratingGrid}>{BRIEF_EXPERIENCE_RATINGS.map((rating) => <button key={rating.value} type="button" className={answer.rating === rating.value && !answer.skipped ? styles.selected : ""} onClick={() => chooseRating(rating.value)}>{rating.label}</button>)}</div>
+        <div className={styles.ratingGrid}>{BRIEF_EXPERIENCE_RATINGS.map((rating) => <button key={rating.value} type="button" className={answer.rating === rating.value && !answer.skipped ? styles.selected : ""} data-rating={rating.value} onClick={() => chooseRating(rating.value)}>{rating.label}</button>)}</div>
         {answer.rating && answer.rating !== "unrated" && !answer.skipped && (() => {
           const dynamicAspects = getBriefExperienceAspects(section.id, answer.rating, relationship.relationshipType);
           return (
@@ -209,11 +209,7 @@ function ConcernHelp() {
   return (
     <aside className={styles.officialChannelsCard}>
       <div className={styles.officialChannelsLeft}>
-        <span className={styles.officialChannelsIcon}>
-          
-        </span>
         <div className={styles.officialChannelsInfo}>
-          <span className={styles.officialChannelsEyebrow}>OPCIÓN ADICIONAL</span>
           <strong>¿Necesitás consultar una situación que te preocupa?</strong>
           <p>
             Arandú no recibe ni canaliza denuncias. Este acceso solamente reúne canales oficiales para que puedas comunicarte directamente con el organismo correspondiente.
